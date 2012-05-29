@@ -1,0 +1,40 @@
+<div class="row">
+<div class="span6">
+<h2>{{ product.title }}</h2>
+<hr>
+{{ product.description }}
+<hr>
+{% if product.available %}
+
+ <form action="/cart/add" method="post" class="well form-inline">
+
+   <select id="mediumSelect" name='id' class="medium">
+     {% for variant in product.variants %}
+     <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+     {% endfor %}
+   </select>
+   <button type="submit" class="btn btn-primary pull-right" id="addtocart">Add to cart</button>
+ </form>
+ 
+{% else %}
+Sorry, the product is not available
+{% endif %}
+</div>
+<div class="span6">
+<ul class="thumbnails">
+<li class="span6">
+   <a class="thumbnail" href="#" title="{{ product.title }}">
+    <img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" />
+   </a>
+</li>
+{% for image in product.images %}
+{% if forloop.length > 1 %}
+<li class="span2">
+   <a href="#" class="thumbnail" title="{{ product.title }}"><img src="{{ image | product_img_url: 'small' }}" alt="{{ product.title | escape }}" /></a>
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+</div>
+
+</div>

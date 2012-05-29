@@ -1,0 +1,37 @@
+<div class="row">
+{% include 'sidebar' %}
+
+<div class="span9">
+<div class="page-header">
+   <h1>{{blog.title}}</h1>
+</div>
+{% paginate blog.articles by 20 %}
+
+{% for article in blog.articles  %}
+
+<h3 class="blog"><a href="{{article.url}}" title="{{ article.title }}">{{ article.title }}</a></h3>
+{% if blog.comments_enabled? %}
+{% if article.comments.size > 0 %}
+<p>
+    <a href="{{article.url}}#comments" title="View comments for {{ article.title }}">{{ article.comments.size }} {{ article.comments.size | pluralize: 'comment', 'comments'}}</a>
+</p>
+{% endif %}  
+{% endif %}  
+<div class="article-body-truncated textile">
+	{{ article.content | truncatewords: 25 }} [<a href="{{ article.url }}" title="{{ article.title }}">Details</a>]
+</div>    
+<hr>
+{% endfor %}
+
+
+{% if paginate.pages > 1 %}
+<div id="pagination" class="info" style="margin-top: 20px">
+	{{ paginate | default_pagination }}
+</div>
+{% endif %}
+
+{% endpaginate %}
+  
+  </div>
+  </div>
+

@@ -1,0 +1,41 @@
+<div class="row">
+{% include 'sidebar' %}
+      <div class="span9 columns">
+<div class="carousel slide" id="myCarousel">
+            <div class="carousel-inner">
+            {% for i in (1..5) %}
+{% assign show_image = 'show_image_' | append: i %}
+{% capture slideshow %}{{ 'slideshow_' | append: i | append: '.jpg' }}{% endcapture %}
+
+{% assign image_link = 'image_' | append: i | append: '_link' %}
+{% assign image_desc = 'image_' | append: i | append: '_desc' %}
+{% if settings.[show_image] %}
+          <div class="item {% if forloop.first %}active item{% endif %}">
+        <img src="{{ slideshow | asset_url }}">
+               {% if settings.[image_desc] != '' %}
+               <div class="carousel-caption">
+                  <p>{{ settings.[image_desc] }}</p>
+                </div>
+                {% endif %}
+              </div>
+{% endif %}
+{% endfor %}
+              </div>
+            <a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
+            <a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
+          </div>
+
+<hr>
+<div class="page-header">
+ <h1>{{ pages[settings.welcome_message].title }}</h1>
+</div>
+      	  {{ pages[settings.welcome_message].content }}
+<hr>
+
+
+      {% assign collection = settings.frontpage_collection %}
+      {% include 'product-loop' %}  
+     
+  </div>
+  </div>
+

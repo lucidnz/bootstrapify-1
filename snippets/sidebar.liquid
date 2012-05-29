@@ -1,0 +1,30 @@
+ <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+            <li class="nav-header">{{ linklists[settings.sidebar_linklist_1].title }}</li>
+             {% for link in linklists[settings.sidebar_linklist_1].links %}
+                <li>{{ link.title | link_to: link.url }}</li>
+              {% endfor %}
+             {% if settings.sidebar_linklist_2.title != "" and linklists[settings.sidebar_linklist_2].links.size > 0 %} 
+                  <li class="nav-header">{{ linklists[settings.sidebar_linklist_2].title }}</li>
+             {% for link in linklists[settings.sidebar_linklist_2].links %}
+                <li>{{ link.title | link_to: link.url }}</li>
+              {% endfor %}
+              {% endif %}
+              
+                          {% if settings.sidebar_linklist_3.title != "" and linklists[settings.sidebar_linklist_3].links.size > 0 %} 
+
+                <li class="nav-header">{{ linklists[settings.sidebar_linklist_3].title }}</li>
+             {% for link in linklists[settings.sidebar_linklist_3].links %}
+                <li>{{ link.title | link_to: link.url }}</li>
+              {% endfor %} 
+               {% endif %}
+             <li class="nav-header">{{ blogs[settings.main_blog].title }}</li>
+             {% for article in blogs[settings.main_blog].articles %}
+                <li>{{ article.title | link_to: article.url }}</li>
+            {% endfor %}
+
+             
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->

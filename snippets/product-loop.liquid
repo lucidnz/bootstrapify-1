@@ -1,0 +1,20 @@
+ <div id="collection">
+     
+        {% for product in collections[collection].products %}
+    {% cycle 'product-loop-clear-start': '<div class="row-fluid"><ul class="thumbnails">', '', '' %}
+
+<li class="span3">
+          <div class="thumbnail">
+        
+        <img src="{{ product.images.first | product_img_url: 'medium' }}" alt="{{ product.title }}" />
+        
+         <div class="caption">
+              <h5><a href= "{{ product.url | within: collection }}">{{ product.title }}</a></h5>
+              {% if product.compare_at_price_max > product.price %}<span class="label important">On Sale</span> <s>{{ product.compare_at_price_max | money }}</s>{% endif %} 
+              <small>{{ product.price_min | money_without_currency }}{% if product.price_varies %} - {{ product.price_max | money }}{% endif %}</small>
+          </div>
+ </div>
+</li>
+          {% cycle 'product-loop-clear-end': '', '', '</ul></div>' %}
+  {% endfor %}
+  </div>
