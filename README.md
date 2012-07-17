@@ -1,7 +1,7 @@
 Bootstrapify
 =================
 
-Bootstrapify is an open-source base theme for Shopify that makes it super quick and easy for developers to start building amazing, responsive themes from scratch without having to do all the hard setup work.
+Bootstrapify is an open-source base theme for Shopify that makes it super quick and easy for developers to start building amazing, responsive themes without having to do all the fiddly, repetitive setup work when starting from scratch.
 
 More info can be found at http://luciddesign.co.nz/projects/2012/07/17/bootstrapify/
 
