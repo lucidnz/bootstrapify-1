@@ -1,68 +1,74 @@
-
-
 <script type="text/javascript">
 function remove_item(id) {
-  document.getElementById('updates_'+id).value = 0;
-  document.getElementById('cartform').submit();
+    document.getElementById('updates_'+id).value = 0;
+	document.getElementById('cartform').submit();
 }
 </script>
-<h2>Shopping Cart</h2>
-<div class="row">
-    <div class="span12">
-{% if cart.item_count == 0 %}
-<p>Your shopping basket is empty.</p>
-{% else %}
-<form action="/cart" method="post" id="cartform" class="form-horizontal">
-  <table class="table table-striped">
-    <tr>
-      <th></th>
-      <th>Item Description</th>
-      <th>Price</th>
-      <th>Qty</th>
-      <th>Delete</th>
-      <th>Total</th>
-    </tr>
 
-    {% for item in cart.items %}
-    <tr>
-      <td class="image">
-        <a href="{{ item.product.url }}"><img src="{{ item.product.images.first | product_img_url: 'thumb' }}" /></a>
-      </td>
-      <td class="description"><p><a href="{{ item.product.url }}">{{ item.title }}</a></p>
-        {{ item.product.description | strip_html | truncate: 120 }}</td>
-      <td class="price">{{ item.price | money }}</td>
-      <td class="quantity"><input type="text" class="span1" name="updates[{{item.variant.id}}]" id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" onfocus="this.select();"/></td>
-      <td class="delete"><a href="#" onclick="remove_item({{ item.variant.id }}); return false;">Remove</a></td>
-      <td class="total">{{ item.line_price | money }}</td>
-    </tr>
-    {% endfor %}
- <tr>
-      <td colspan="2">
-        <h4><a href="#collapseOne" data-toggle="collapse" class="accordion-toggle">
- Add a note to your order...</a></h4>
-
-  <div class="collapse" id="collapseOne" style="height: 0px;">
-        
-<textarea name="note" id="note" rows="3" class="input-xlarge">{{ cart.note }}</textarea>
-    
+<div class="page-header">
+	<h1>Shopping Cart</h1>
 </div>
-      </td>
-      <td colspan="4"> <h3 class="pull-right">Subtotal {{ cart.total_price | money }}</h3></td>
-   
-    </tr>
-  </table>
 
+<div class="row">
+	<div class="span12">
+		{% if cart.item_count == 0 %}
+		<p class="alert alert-info">Your shopping cart is empty. View <a href="/collections/all" title="View all products">all products</a>.</p>
+		{% else %}
+		<form action="/cart" method="post" id="cartform" class="form-horizontal">
+			<table class="table table-striped">
+				<tr>
+					<th class="hidden-phone"></th>
+					<th>Item Description</th>
+					<th>Price</th>
+					<th>Qty</th>
+					<th></th>
+					<th class="hidden-phone">Total</th>
+				</tr>
 
-<div class="form-actions">
+				{% for item in cart.items %}
+				<tr>
+					<td class="image hidden-phone"><a href="{{ item.product.url }}"><img src="{{ item.product.images.first | product_img_url: 'thumb' }}" /></a></td>
+					<td class="description">
+    					<p><a href="{{ item.product.url }}">{{ item.product.title }}</a> <small>{{ item.variant.title }}</small></p>
+						<p class="image hidden-phone">{{ item.product.description | strip_html | truncatewords: 20 }}</p>
+					</td>
+					<td class="price">{{ item.price | money | replace: ' ','&nbsp;' }}{% if item.product.compare_at_price > item.product.price %}<br /><s>{{ item.product.compare_at_price | money | replace: ' ','&nbsp;' }}</s> <span class="{{ settings.sale_icon }}">{{ settings.sale_text }}</span>{% endif %}</td>
+					<td class="quantity"><input type="text" class="span1" name="updates[{{item.variant.id}}]" id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" onfocus="this.select();"/></td>
+					<td class="delete"><a href="#" class="close" onclick="remove_item({{ item.variant.id }}); return false;">&times;</a></td>
+					<td class="total hidden-phone">{{ item.line_price | money | replace: ' ','&nbsp;' }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+             <table class="table table-striped">
+                  <tr>
+					<td><h3 class="pull-right">Subtotal {{ cart.total_price | money | replace: ' ','&nbsp;' }}</h3></td>
+				</tr>
+    </table>
+			<div class="form-actions">
+                <div class="pull-left">
+                    <p><a href="#collapseOne" data-toggle="collapse" class="accordion-toggle btn btn-small"><i class="icon-pencil"></i> Add a note to your order&hellip;</a></p>
 
-       <div class="btn-group pull-right">
-      <button type="submit" class="btn-large btn" name="update">Update</button>
-      <button class="btn-large btn btn-primary" name="checkout" type="submit">Checkout</button>            
-    </div>
- </div>
+					<div class="collapse" id="collapseOne" style="height: 0px;">    
+						<textarea name="note" id="note" rows="5" class="span6">{{ cart.note }}</textarea>  
+					</div>
+                </div>
+                
+				<div class="btn-group pull-right">
+					<button type="submit" class="btn-large btn" name="update">Update</button>
+					<button class="btn-large btn btn-primary" name="checkout" type="submit">Checkout</button>            
+		        	{% if settings.display_extra_checkout_buttons %}
+                    {% if additional_checkout_buttons %}
+                    <div class="additional-checkout-buttons">
+                    <p>- or -</p>
+                    {{ content_for_additional_checkout_buttons }}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+            </div>
+			</div>
 
-</form>
+		</form>
 
-{% endif %}
-    </div>
-  </div>
+		{% endif %}
+	</div>
+</div>

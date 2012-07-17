@@ -2,6 +2,7 @@
 {% include 'sidebar' %}
       <div class="span9">
 {% paginate collection.products by 8 %}
+
 <div class="page-header">
    <h1>{{ collection.title }}</h1>
 </div>
@@ -12,31 +13,39 @@
 {% if collection.products.size == 0 %}
 No products found in this collection.
 {% else %}
+<ul class="nav nav-pills">
+{% if collection.all_tags.size > 0 %}
+  <li{% unless current_tags %} class="active"{% endunless %}>
+    {% if collection.handle %}
+    {% comment %}Good for /collections/all collection and regular collections{% endcomment %}
+    <a href="/collections/{{ collection.handle }}">All</a>
+    {% comment %}Good for automatic type collections{% endcomment %}
+    {% elsif collection.products.first.type == collection.title %}
+    <a href="{{ collection.title | url_for_type }}">All</a>
+    {% comment %}Good for automatic vendor collections{% endcomment %}
+    {% elsif collection.products.first.vendor == collection.title %}
+    <a href="{{ collection.title | url_for_vendor }}">All</a>
+    {% endif %}
+  </li> 
+  {% endif %}
+  {% for tag in collection.all_tags %}
+  {% if current_tags contains tag %}
+  <li class="active">
+    {{ tag | link_to_remove_tag: tag }}
+  </li>
+  {% else %}
+  <li>
+    {{ tag | link_to_tag: tag }}
+  </li>
+  {% endif %}
+  {% endfor %}  
+
+</ul>
 {% assign collection = collection.handle %}
     {% include 'product-loop' %}
 
 {% endif %}
-{% if paginate.pages > 1 %}
-
-    <div class="pagination pagination-centered">
-<ul>
-      {% if paginate.previous %}
-    <li class="disabled">{{ paginate.previous.title | link_to: paginate.previous.url }}</li>
-  {% endif %}
-  {% for part in paginate.parts %}
-    {% if part.is_link %}
-      <li>{{ part.title | link_to: part.url }}</li>
-    {% else %}
-      <li class="active">{{ part.title | link_to: part.url }}</li>        
-    {% endif %}        
-  {% endfor %}      
-  {% if paginate.next %}
-   <li class="next">{{ paginate.next.title | link_to: paginate.next.url }}</li>
-  {% endif %}
-  </ul>
-    </div>
- 
-{% endif %}
+ {% include 'pagination' %}
 {% endpaginate %}
 </div>
 </div>

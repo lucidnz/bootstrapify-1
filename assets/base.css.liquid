@@ -1,0 +1,218 @@
+body {
+  padding-top: 60px; 
+  padding-bottom: 60px;
+  font-family: {{ settings.main_font }};
+  font-size: {{ settings.main_font_size }};
+}
+{% if settings.custom_background_image %}
+html, body {
+ {% if settings.background_image_style == "repeat" %}
+ background: {{ settings.main_background_color }} url('{{ 'background_image.png' | asset_url }}') repeat scroll; 
+{% endif %}
+{% if settings.background_image_style == "no-repeat" %}
+ background: {{ settings.main_background_color }} url('{{ 'background_image.png' | asset_url }}') no-repeat scroll; 
+{% endif %}
+}
+{% endif %}
+body {
+  padding-top: 60px; 
+  padding-bottom: 60px;
+}
+{% if settings.typeface_method == "google_webfonts" %}
+h1,h2,h3,h4,h5,h6,.nav,.brand {font-family:{{ settings.heading_font | replace: '+', ' ' }}; }
+{% else %} 
+h1,h2,h3,h4,h5,h6,.nav,.brand {font-family:{{ settings.heading_font }}; }
+{% endif %}   
+
+a {
+  color:{{ settings.link_color }};
+  text-decoration: none;
+}
+a:hover {
+  color:{{ settings.link_hover_color }};
+  text-decoration: underline;
+}
+h4 {
+    margin-bottom: 1em;   
+}
+.image-wrap {
+  text-align: center;
+}
+.thumbnail {
+    background-color: #FFF;
+}
+.carousel-control {
+    top:50%;
+}
+.logo {
+  text-align: center;
+}
+.logo img {
+ padding: 10px 0;
+}
+.brand {
+    margin-top: 2px;
+    color: #ffffff !important;
+}
+.credit-cards {
+  margin-right: -2px;
+}
+.credit-cards img {
+  padding: 0 2px 2px 0 ;
+}
+.social-buttons .twitter, .social-buttons .pinterest { margin-right:10px; }
+.social-buttons .pinterest iframe { width:43px !important; }
+#product .table td {
+      border-top: none;
+  border-bottom: 1px solid #dddddd;
+}
+.additional-checkout-buttons {
+  clear: both;
+  text-align: center;
+  padding-top: 10px;
+}
+.comment {
+    margin-bottom: 10px;    
+}
+.footer {
+margin-top: 45px;
+padding: 35px 0 36px;
+border-top: 1px solid #E5E5E5;
+}
+.footer p {
+    margin-bottom: 0;   
+}
+/*** Social Icons ***/
+@font-face {
+    font-family: 'zocial';
+	font-style: normal;
+	font-weight: normal;
+	src: url('{{ 'zocial-regular-webfont.eot' | asset_url }}');
+	src: url('{{ 'zocial-regular-webfont.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+		url('{{ 'zocial-regular-webfont.woff' | asset_url }}') format('woff'),
+		url('{{ 'zocial-regular-webfont.ttf' | asset_url }}') format('truetype'),
+		url('{{ 'zocial-regular-webfont.svg#ZocialRegular' | asset_url }}') format('svg');
+	unicode-range:U+0-U+10FFFF;
+}
+.zocial,
+a.zocial {
+	border: 1px solid #777;
+	border-color: rgba(0,0,0,0.2);
+	border-bottom-color: #333;
+	border-bottom-color: rgba(0,0,0,0.4);
+	color: #fff;
+	-moz-box-shadow: inset 0 0.08em 0 rgba(255,255,255,0.4), inset 0 0 0.1em rgba(255,255,255,0.9);
+	-webkit-box-shadow: inset 0 0.08em 0 rgba(255,255,255,0.4), inset 0 0 0.1em rgba(255,255,255,0.9);
+	box-shadow: inset 0 0.08em 0 rgba(255,255,255,0.4), inset 0 0 0.1em rgba(255,255,255,0.9);
+	cursor: pointer;
+	display: inline-block;
+	font: bold 100%/2.1 "Lucida Grande", Tahoma, sans-serif;
+	padding: 0 .95em 0 0;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+	position: relative;
+	z-index: 100;
+	-moz-border-radius: .3em;
+	-webkit-border-radius: .3em;
+	border-radius: .3em;
+}
+.zocial:before {
+	content: "";
+	border-right: 0.075em solid rgba(0,0,0,0.1);
+	float: left;
+	font: 120%/1.65 zocial;
+	font-style: normal;
+	font-weight: normal;
+	margin: 0 0.5em 0 0;
+	padding: 0 0.5em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;	
+	-moz-box-shadow: 0.075em 0 0 rgba(255,255,255,0.25);
+	-webkit-box-shadow: 0.075em 0 0 rgba(255,255,255,0.25);
+	box-shadow: 0.075em 0 0 rgba(255,255,255,0.25);
+	-webkit-font-smoothing: antialiased;
+}
+.zocial:active {
+	outline: none;
+}
+.zocial.icon {
+	overflow: hidden;
+	max-width: 2.4em;
+	padding-left: 0;
+	padding-right: 0;
+	max-height: 2.15em;
+	white-space: nowrap;
+}
+.zocial.icon:before {
+	padding: 0;
+	width: 2em;
+	height: 2em;
+	box-shadow: none;
+	border: none;
+}
+.zocial {
+	background-image: -moz-linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.05) 49%, rgba(0,0,0,.05) 51%, rgba(0,0,0,.1));
+	background-image: -ms-linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.05) 49%, rgba(0,0,0,.05) 51%, rgba(0,0,0,.1));
+	background-image: -o-linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.05) 49%, rgba(0,0,0,.05) 51%, rgba(0,0,0,.1));
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.1)), color-stop(49%, rgba(255,255,255,.05)), color-stop(51%, rgba(0,0,0,.05)), to(rgba(0,0,0,.1)));
+	background-image: -webkit-linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.05) 49%, rgba(0,0,0,.05) 51%, rgba(0,0,0,.1));
+	background-image: linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.05) 49%, rgba(0,0,0,.05) 51%, rgba(0,0,0,.1));
+}
+.zocial:hover, .zocial:focus {
+	background-image: -moz-linear-gradient(rgba(255,255,255,.15) 49%, rgba(0,0,0,.1) 51%, rgba(0,0,0,.15));
+	background-image: -ms-linear-gradient(rgba(255,255,255,.15) 49%, rgba(0,0,0,.1) 51%, rgba(0,0,0,.15));
+	background-image: -o-linear-gradient(rgba(255,255,255,.15) 49%, rgba(0,0,0,.1) 51%, rgba(0,0,0,.15));
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.15)), color-stop(49%, rgba(255,255,255,.15)), color-stop(51%, rgba(0,0,0,.1)), to(rgba(0,0,0,.15)));
+	background-image: -webkit-linear-gradient(rgba(255,255,255,.15) 49%, rgba(0,0,0,.1) 51%, rgba(0,0,0,.15));
+	background-image: linear-gradient(rgba(255,255,255,.15) 49%, rgba(0,0,0,.1) 51%, rgba(0,0,0,.15));
+}
+.zocial:active {
+	background-image: -moz-linear-gradient(bottom, rgba(255,255,255,.1), rgba(255,255,255,0) 30%, transparent 50%, rgba(0,0,0,.1));
+	background-image: -ms-linear-gradient(bottom, rgba(255,255,255,.1), rgba(255,255,255,0) 30%, transparent 50%, rgba(0,0,0,.1));
+	background-image: -o-linear-gradient(bottom, rgba(255,255,255,.1), rgba(255,255,255,0) 30%, transparent 50%, rgba(0,0,0,.1));
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.1)), color-stop(30%, rgba(255,255,255,0)), color-stop(50%, transparent), to(rgba(0,0,0,.1)));
+	background-image: -webkit-linear-gradient(bottom, rgba(255,255,255,.1), rgba(255,255,255,0) 30%, transparent 50%, rgba(0,0,0,.1));
+	background-image: linear-gradient(bottom, rgba(255,255,255,.1), rgba(255,255,255,0) 30%, transparent 50%, rgba(0,0,0,.1));
+}
+.zocial.twitter:focus {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.5)), color-stop(49%, rgba(255,255,255,0.2)), color-stop(51%, rgba(0,0,0,0.05)), to(rgba(0,0,0,0.15)));
+	background-image: -moz-linear-gradient(top, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 49%, rgba(0,0,0,0.05) 51%, rgba(0,0,0,0.15));
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 49%, rgba(0,0,0,0.05) 51%, rgba(0,0,0,0.15));
+	background-image: -o-linear-gradient(top, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 49%, rgba(0,0,0,0.05) 51%, rgba(0,0,0,0.15));
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 49%, rgba(0,0,0,0.05) 51%, rgba(0,0,0,0.15));
+	background-image: linear-gradient(top, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 49%, rgba(0,0,0,0.05) 51%, rgba(0,0,0,0.15));
+}
+.zocial.facebook:before {content: "\E045";}
+.zocial.googleplus:before {content: "\E00A";}
+.zocial.pinterest:before {content: "\E010";}
+.zocial.rss:before {content: "\E031";}
+.zocial.tumblr:before {content: "\E053";}
+.zocial.twitter:before {content: "\E033";}
+.zocial.youtube:before {content: "\E034";}
+.zocial.facebook {background-color: #4863ae;}
+.zocial.googleplus {background-color: #dd4b39;}
+.zocial.pinterest {background-color: #c91618;}
+.zocial.rss {background-color: #ff7f25;}
+.zocial.tumblr {background-color: #374a61;}
+.zocial.twitter {background-color: #46c0fb;}
+.zocial.youtube {background-color: #f00;}
+
+/*** Media Queries ***/
+@media (max-width: 980px) {
+body {
+  padding-top: 0!important; 
+  padding-bottom: 0!important;
+}
+}
+@media (max-width: 767px) {
+  .navbar-fixed-bottom p.navbar-text {
+    line-height: 18px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+  }
+}

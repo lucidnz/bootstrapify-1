@@ -1,171 +1,185 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<!-- CSS concatenated and minified via ant build script-->
-<style type="text/css">
-/* Override some defaults */
-body {
-	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-}
-.image-wrap {
-  text-align: center;
-
-}
-</style>
-
-{{ 'cloud-zoom.css' | asset_url | stylesheet_tag }}
-{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
-{{ 'bootstrap-responsive.min.css' | asset_url | stylesheet_tag }}
-<!-- end CSS-->
-<!-- JS-->
-{{ 'jquery-1.7.2.min.js' | asset_url | script_tag }}
-{{ 'bootstrap.min.js' | asset_url | script_tag }}
-
-{{ 'cloud-zoom.1.0.2.min.js' | asset_url | script_tag }}
-
-  {% unless settings.typekit == "" %}<script type="text/javascript" src="http://use.typekit.com/{{ settings.typekit }}.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>{% endunless %}
-<!-- end JS-->
+{% include 'head' %}
 {{ content_for_header }}
-
-{% if template == 'index' %}
-
-{% if settings.shop_tagline != '' %}
-<title>{{ shop.name }} | {{ settings.shop_tagline }}</title>{% else %}
-<title>{{ shop.name }}</title>{% endif %}
-{% elsif customer %}
-<title>Customer Account</title>
-{% else %}
-<title>{{ page_title }} | {{ shop.name }}</title>
-{% endif %}
-{% assign maxmeta = 155 %}
-{% if template contains 'product' %}
-<meta name="description" content="{{ product.description | strip_html | strip_newlines | truncate: maxmeta | escape }}" />
-{% elsif template contains 'page' %}
-<meta name="description" content="{{ page.content | strip_html | strip_newlines | truncate: maxmeta | escape }}" />
-{% elsif template == 'index' and shop.description != '' %}
-<meta name="description" content="{{ shop.description | strip_html | strip_newlines | truncate: maxmeta | escape}}" />
-{% endif %}
-{% if template contains 'product' %}
-<link rel="canonical" href="{{ shop.url | replace: 'https', 'http' }}{{ product.url }}" />
-{% endif %}
-
 </head>
 
 <body>
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
+    <div class="navbar navbar-fixed-top">
+    	<div class="navbar-inner">
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a href="#" class="brand">{{ shop.name }}</a>
-        
+                {% unless settings.use_logo_image %}
+				<a href="/" class="brand">{{ shop.name }}</a>
+                {% endunless %}
 				<div class="nav-collapse">
 					<ul class="nav">
-						{% for link in linklists.main-menu.links %}
-						<li {% if link.active %} class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% for link in linklists.main-menu.links %}
+                    
+                    {% capture child_list_handle %}{{ link.title | handle }}{% endcapture %}
+                    {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+						
+						<li class="dropdown" id="menu{{ forloop.index }}" {% if link.active %} class="active"{% endif %}>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#menu{{ forloop.index }}" title="View {{ link.title }}">
+                            {{ link.title }}
+                                <b class="caret"></b>
+							</a>
+                            {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+                                <ul class="dropdown-menu">
+								{% for l in linklists[child_list_handle].links %}
+								<li><a href="{{ l.url }}" title="View {{ l.title }}">{{ l.title }}</a></li>
+								{% endfor %}
+							</ul>
+                            {% endif %}
+						</li>
+                    {% else %}
+                    <li {% if link.active %} class="active"{% endif %}>
+    						<a href="{{ link.url }}" title="View {{ link.title }}">{{ link.title }}</a>        
+						</li>    
+                    {% endif %}
 						{% endfor %}
 					</ul>
 
-
 					<form class="navbar-search pull-right" action="/search" method="get">
 						{% assign col = settings.typeahead_collection %}
-						<input id="search-input" name="q" type="text" class="search-query span3" placeholder="Search" data-provide="typeahead" data-source="[{% for product in collections[settings.typeahead_collection].products %}{{ product.title | append: "&quot;" | prepend: "&quot;" }}{% unless forloop.last %},{% endunless %}{% endfor %}]">  
+						<input id="search-input" name="q" type="text" class="search-query" placeholder="Search" data-provide="typeahead" data-source="[{% for product in collections[settings.typeahead_collection].products %}{{ product.title | append: "&quot;" | prepend: "&quot;" }}{% unless forloop.last %},{% endunless %}{% endfor %}]">  
 					</form>
- <ul class="nav pull-right">
 
-                		{% if shop.customer_accounts_enabled %}
-                          <li class="divider-vertical"></li>
+					<ul class="nav pull-right">
+						{% if cart.item_count > 0 %}
+						<li><a href="/cart"><i class="icon-shopping-cart icon-white"></i> <span class="badge badge-info">{{ cart.item_count }}</span></a></li>
+						{% endif %}
+
+						{% if shop.customer_accounts_enabled %}
+						<li class="divider-vertical"></li>
 						{% if customer %}
 						<li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">
-						Welcome {{ customer.first_name }}<b class="caret"></b>
+							Welcome {{ customer.first_name }}<b class="caret"></b>
 						</a>
-    					 
-                         <ul class="dropdown-menu">
-    						<li><a href="/account">Account</a></li>
+
+						<ul class="dropdown-menu">
+							<li><a href="/account">Account</a></li>
 							<li>{{ "Logout" | customer_logout_link }}</li>
 						</ul>
-						</li>
-						
-						{% else %}
-                        
-						<li>{{ "Login" | customer_login_link }}</li>
-						{% endif %}
-                            <li class="divider-vertical"></li>
-						{% endif %}
-                     
-					</ul><!-- /.nav pull-right -->
-				</div><!-- /.nav-collapse -->
-			</div><!-- /.container-->
-		</div><!-- /.navbar-inner -->
-	</div><!-- /.navbar-fixed-top -->
+					</li>
 
-	<div class="container">
-
-			<ul class="breadcrumb">
-				<li><a href="/" class="homepage-link" title="Back to the frontpage">Home</a><span class="divider">/</span></li>
-				{% if template contains "product" %}
-				{% if collection %}            
-				<li>
-					{% if collection.handle %}
-					{% capture url %}/collections/{{ collection.handle }}{% endcapture %}
-					{{ collection.title | link_to: url }}
-					{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}
-					{{ collection.title | link_to_type }}
-					{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}
-					{{ collection.title | link_to_vendor }}
-					{% endif %}
-					<span class="divider">/</span></li>
 					{% else %}
 
-					<li>{{ product.type | link_to_type }}<span class="divider">/</span></li>
+					<li>{{ "Login" | customer_login_link }}</li>
 					{% endif %}
-					{% elsif template == "article" %}
-					<li>{{ blog.title | link_to: blog.url }}<span class="divider">/</span></li>
+					<li class="divider-vertical"></li>
 					{% endif %}
-					<li>{{ page_title }}</li>	
-					<ul class="pull-right">
-						{% if cart.item_count > 0 %}
-						<li><a href="/checkout">Checkout</a><span class="divider">/</span></li>
-							{% endif %}
-							<li><a href="/cart">Cart ({{ cart.item_count }})</a></li>
-						</ul>
 
+				</ul><!-- /.nav pull-right -->
+			</div><!-- /.nav-collapse -->
+		</div><!-- /.container-->
+	</div><!-- /.navbar-inner -->
+</div><!-- /.navbar-fixed-top -->
+
+<div class="container">
+	{% if settings.show_breadcrumb %}
+	<ul class="breadcrumb hidden-phone">
+		<li><a href="/" class="homepage-link" title="Back to the frontpage">Home</a><span class="divider">/</span></li>
+		{% if template contains "product" %}
+		{% if collection %}            
+		<li>
+			{% if collection.handle %}
+			{% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+			{{ collection.title | link_to: url }}
+			{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}
+			{{ collection.title | link_to_type }}
+			{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}
+			{{ collection.title | link_to_vendor }}
+			{% endif %}
+			<span class="divider">/</span></li>
+			{% else %}
+
+			<li>{{ product.type | link_to_type }}<span class="divider">/</span></li>
+			{% endif %}
+			{% elsif template == "article" %}
+			<li>{{ blog.title | link_to: blog.url }}<span class="divider">/</span></li>
+			{% endif %}
+			<li>{{ page_title }}</li>    
+
+		</ul>
+		{% endif %}
+{% if settings.use_logo_image %}
+<div class="logo visible-phone">
+<img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }} Logo">
+</div>
+<hr>
+{% endif %}
+	{% if template == 'list-collections' %}
+        {% include 'collection-listing' %}
+    {% else %}
+        {{ content_for_layout }}
+    {% endif %}
+<footer class="footer">
+<div class="row">
+<div class="span3">
+        <p><small>Copyright &copy;{{ 'now' | date: '%Y' }} {{ shop.name }}</small></p>
+        <p><small>{% if settings.show_store_credits != "" %}{{ settings.show_store_credits }}{% elsif settings.show_theme_credits %}<em>Bootstrapify</em> theme by <a href="http://luciddesign.co.nz" title="Lucid Design, beautiful, elegant design for web and print. Nelson, New Zealand">Lucid Design</a>.</small></p>
+        <p><small>Powered by <a href="http://www.shopify.com/?ref=lucid-design">Shopify</a>.{% endif %}</small></p>
+</div>
+<div class="span3">
+<ul class="nav">
+            			{% for link in linklists.footer.links %}
+						<li {% if link.active %} class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+						{% endfor %}
 					</ul>
-                 
-					{{ content_for_layout }}
-			
-				<footer class="footer">
-                <hr>
-					<p>Copyright &copy; 2012 {{ shop.name }}{% if settings.show_credits %} | Bootstrapify theme by Lucid Design. Powered by Shopify{% endif %}</p>
-				</footer>
-			</div><!--! end of .container -->
-
+        <p class="social-icons pull-left">
+        {% if settings.facebook-icon %}<a href="#" class="zocial icon facebook">Sign in with Facebook</a>{% endif %}
+        {% if settings.twitter-icon %}<a href="#" class="zocial icon twitter">Sign in with Twitter</a>{% endif %}
+        {% if settings.googleplus-icon %}<a href="#" class="zocial icon googleplus">Sign in with Google+</a>{% endif %}
+        {% if settings.pinterest-icon %}<a href="#" class="zocial pinterest icon">Follow me on Pinterest</a>{% endif %}
+        {% if settings.tumblr-icon %}<a href="#" class="zocial icon tumblr">Follow me on Tumblr</a>{% endif %}
+    	{% if settings.youtube-icon %}<a href="#" class="zocial icon youtube">Subscribe on YouTube</a>{% endif %}
+        {% if settings.rss-icon %}<a href="#" class="zocial icon rss">Subscribe to RSS</a>{% endif %}
+        </p>
+</div>
+<div class="span6">
+        <p class="credit-cards pull-right">
+        {% if settings.american_express %}<img src="{{ 'americanexpress.png' | asset_url }}" alt="We accept American Express"/>{% endif %}
+        {% if settings.visa %}<img src="{{ 'visa.png' | asset_url }}" alt="We accept Visa"/>{% endif %}
+        {% if settings.mastercard %}<img src="{{ 'mastercard.png' | asset_url }}" alt="We accept Mastercard"/>{% endif %}
+        {% if settings.discover %}<img src="{{ 'discover.png' | asset_url }}" alt="We accept Discover"/>{% endif %}
+        {% if settings.paypal %}<img src="{{ 'paypal.png' | asset_url }}" alt="We accept Paypal"/>{% endif %}  
+        {% if settings.google %}<img src="{{ 'googlecheckout.png' | asset_url }}" alt="We accept Google Checkout">{% endif %}
+        {% if settings.cirrus %}<img src="{{ 'cirrus.png' | asset_url }}" alt="We accept Cirrus">{% endif %}
+        {% if settings.delta %}<img src="{{ 'delta.png' | asset_url }}" alt="We accept Delta">{% endif %}
+        </p>
+</div>
+</div>
+    </footer>
+		
+	</div><!--! end of .container -->
+    
 <!--[if lt IE 7 ]>
 <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
 <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
 <![endif]-->
+{% if template contains "product" %}
+{{ 'jquery.fancybox.pack.js' | asset_url | script_tag }}
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+{% endif %}
 <!-- TWITTER JS -->
-
-{{ 'bootstrap-transition.js' | asset_url | script_tag }}
-{{ 'bootstrap-alert.js' | asset_url | script_tag }}
-{{ 'bootstrap-modal.js' | asset_url | script_tag }}
-{{ 'bootstrap-dropdown.js' | asset_url | script_tag }}
-{{ 'bootstrap-scrollspy.js' | asset_url | script_tag }}
-{{ 'bootstrap-tab.js' | asset_url | script_tag }}
-{{ 'bootstrap-tooltip.js' | asset_url | script_tag }}
-{{ 'bootstrap-popover.js' | asset_url | script_tag }}
-{{ 'bootstrap-button.js' | asset_url | script_tag }}
-{{ 'bootstrap-collapse.js' | asset_url | script_tag }}
-{{ 'bootstrap-carousel.js' | asset_url | script_tag }}
-{{ 'bootstrap-typeahead.js' | asset_url | script_tag }}
+{% if settings.include-transition %}{{ 'bootstrap-transition.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-alert %}{{ 'bootstrap-alert.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-modal %}{{ 'bootstrap-modal.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-dropdown %}{{ 'bootstrap-dropdown.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-scrollspy %}{{ 'bootstrap-scrollspy.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-tab %}{{ 'bootstrap-tab.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-tooltip %}{{ 'bootstrap-tooltip.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-popover %}{{ 'bootstrap-popover.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-button %}{{ 'bootstrap-button.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-collapse %}{{ 'bootstrap-collapse.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-carousel %}{{ 'bootstrap-carousel.js' | asset_url | script_tag }}{% endif %}
+{% if settings.include-typeahead %}{{ 'bootstrap-typeahead.js' | asset_url | script_tag }}{% endif %}
 {{ 'shop.js' | asset_url | script_tag }}
 </body>
 </html>

@@ -1,0 +1,15 @@
+<div class="row">
+{% include 'sidebar' %}
+
+<div class="span9">
+
+<hr>
+  <p>The page you were looking for does not exist. Maybe you want to try the search instead?</p>
+  <br>
+  <form class="well form-search" action="/search" method="get">
+    <input type="text" class="input-large search-query" name="q" value="{{search.terms  | escape}}" id="result-q">
+    <button type="submit" class="btn">Search</button>
+</form>
+
+</div>
+</div>

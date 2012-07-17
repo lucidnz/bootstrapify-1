@@ -6,69 +6,100 @@
 <div class="page-header">
    <h1>{{ article.title }}</h1>
 </div>
-  <p> posted {{ article.created_at | date: "%Y %h" }} by {{ article.author }}</p>
+  <p><small>Posted {{ article.published_at | date: "%B %d, %Y" }} by {{ article.author }}<br>{% if article.tags != blank %}<i class="icon-tag"></i>
+{% for tag in article.tags %}
+<a href="{{ shop.url}}/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" title="Articles tagged with {{ tag | escape }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+{% endfor %}
+{% endif %}</small></p>
     <hr>
   <div class="article-body textile">
     {{ article.content }}
-  </div>    
+  </div>  
+ <br>
+     <ul class="pager">           
+      {% if blog.next_article %}
+         {% capture next_url %}{{ blog.next_article }}#content{% endcapture %}
+      <li class="previous">
+        {{ '&larr; Next Post' | link_to: next_url }}
+      </li>
+      {% endif %}
+      {% if blog.previous_article %}
+  {% capture prev_url %}{{ blog.previous_article }}#content{% endcapture %}
+      <li class="next">
+        {{ 'Previous Post &rarr;' | link_to: prev_url }}
+      </li>
+      {% endif %}
+    </ul>
 </div>
 
 {% if blog.comments_enabled? %}
 <div id="comments">
-  <h3>Comments</h3>
-  <!-- List all comments -->
-
-  <ul>
-  {% for comment in article.comments %}
-    <li>
-      <div class="comment">
-        {{ comment.content }}
-      </div>
+{% paginate article.comments by 100 %}
+      {% if article.comments.size > 0 %}
+      <hr>
+      <h3 class="comment-title">Comments</h3>
+      <br>
+      {% for comment in article.comments reversed %}
+         {% include 'comments' %}
+      {% endfor %}      
+        {% if comment and comment.created_at %}
+           {% include 'comments' %}
+        {% endif %}
       
-  	  <div class="comment-details">
-  		  Posted by {{ comment.author }} on {{ comment.created_at | date: "%B %d, %Y" }}
-      </div>
-  	</li>
-  {% endfor %}
-  </ul>
-  
+
+      {% include 'pagination' %}
+
+      {% endif %}
+      {% endpaginate %}
+     <hr>
   <!-- Comment Form -->
   {% form article %}
-    <h3>Leave a comment</h3>
-    
-    <!-- Check if a comment has been submitted in the last request, and if yes display an appropriate message -->
-    {% if form.posted_successfully? %}
-      {% if blog.moderated? %}
-        <div class="notice">
-          Successfully posted your comment.<br />
-          It will have to be approved by the blog owner first before showing up.
-        </div>
-      {% else %}
-        <div class="notice">Successfully posted your comment.</div>
-      {% endif %}
+  <h3>Leave a comment</h3>
+  <hr>
+  {% if form.posted_successfully? %}
+        {% if blog.moderated? %}
+        <div class="alert alert-success">Successfully posted your comment. It will have to be approved by the blog owner first before showing up.</div>
+        {% else %}
+        <div class="alert alert-success">Successfully posted your comment.</div>
+        {% endif %}
+         <hr>
     {% endif %}
-    
     {% if form.errors %}
-      <div class="notice error">Not all the fields have been filled out correctly!</div>
-    {% endif %}
-    
-    <dl>
-      <dt class="{% if form.errors contains 'author' %}error{% endif %}"><label for="comment_author">Your name</label></dt>
-      <dd><input type="text" id="comment_author" name="comment[author]" size="40" value="{{form.author}}" class="{% if form.errors contains 'author' %}input-error{% endif %}" /></dd>
+      <div class="alert alert-error">Not all the fields have been filled out correctly!</div>
+   <hr>
+   {% endif %}
+      <fieldset>
 
-      <dt class="{% if form.errors contains 'email' %}error{% endif %}"><label for="comment_email">Your email</label></dt>
-      <dd><input type="text" id="comment_email" name="comment[email]" size="40" value="{{form.email}}" class="{% if form.errors contains 'email' %}input-error{% endif %}" /></dd>
+    	 <div class="control-group {% if form.errors contains 'author' %}error{% endif %}">
+          <label for="comment_author" class="control-label">Your name</label>
+          <div class="controls">
+            <input type="text" value="{{form.author}}" name="comment[author]" id="comment_author" class="input-xlarge">
+        </div>
+        </div>
+			 <div class="control-group {% if form.errors contains 'email' %}error{% endif %}">
+	          <label for="comment_email" class="control-label">Your email</label>
+	          <div class="controls">
+	            <input type="text" value="{{form.email}}" id="comment_email" name="comment[email]" class="input-xlarge">
+	          </div>
+	        </div>
+			 <div class="control-group {% if form.errors contains 'body' %}error{% endif %}">
+	          <label for="comment_body" class="control-label">Your comment</label>
+	          <div class="controls">
+	            <textarea rows="3" id="comment_body" name="comment[body]" class="input-xlarge">{{form.body}}</textarea>
+	          </div>
+	        </div>
 
-      <dt class="{% if form.errors contains 'body' %}error{% endif %}"><label for="comment_body">Your comment</label></dt>
-      <dd><textarea id="comment_body" name="comment[body]" cols="40" rows="5" class="{% if form.errors contains 'body' %}input-error{% endif %}">{{form.body}}</textarea></dd>
-    </dl>
     
     {% if blog.moderated? %}
-      <p class="hint">comments have to be approved before showing up</p>
+    <div class="alert alert-info">Comments have to be approved before showing up.</div>
     {% endif %}    
+    <div class="form-actions">
+                   <input type="submit" class="btn btn-primary" value="Post comment" />
 
-    <input type="submit" value="Post comment" />
-  {% endform %}
+          </div>
+
+    </fieldset>
+ {% endform %}
 </div>
 {% endif %}
 </div>

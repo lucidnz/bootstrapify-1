@@ -1,81 +1,256 @@
+<br />
+<div class="theme">
+    <h3>Bootstrapify</h3>
+    <p>You will find the theme customization settings below. For any assistance or further customization inquires, please go to http://support.luciddesign.co.nz/discussions/bootstrapify-shopify-theme.
+</p>
+</div>
+<br />
 <fieldset>
-    
-	<legend>Theme Settings</legend>
-	  <table>
-	   <tr>
-	      <th>
-	        <label for="typeahead_collection">Collection Titles for Search Typeahead</label>
-	      </th>
-	      <td>        
-	            <select class="collection" name="typeahead_collection" />
-	      </td>
-	    </tr>
-	   
-
-	  </table>
-	</fieldset>
-    <fieldset>
-    <legend>Typography</legend>
+    <legend>Theme Settings</legend>
     <table>
-        <tr>
-            <th><label for="typekit">Typekit ID</label></th>
-            <td><input type="text" id="typekit" name="typekit" value="" /></td>
-        </tr>
-    </table>
-</fieldset>
-	<fieldset>
+     <tr>
+       <th><label for="use_logo_image">Custom logo?</label></th>
+       <td><input type="checkbox" id="use_logo_image" name="use_logo_image" value="1"/></td>
+     </tr>
+     <tr>
+      <th><label for="logo_image">Logo<br />Maximum Width: 240px</label></th>
+      <td><input type="file" id="logo_image" name="logo.png" data-max-width="240" /></td>
+     </tr>
 
-    
-    <legend>Sidebar</legend>
-	  <table>
-      <tr>
-           <td><select class="blog" name="main_blog" /></td>
-	    </tr>
+		<tr>
+			<th><label for="logo_color">Logo color</label></th>
+			<td><input type="text" id="logo_color" name="logo_color" class="color" value="#ffffff" /></td>
+		</tr>
+		<tr>
+			<th><label for="logo_offset">Logo baseline offset</label></th>
+			<td><input type="text" id="logo_offset" name="logo_offset" value="0" /></td>
+		</tr>
         
-	   <tr>
-	       <td><select class="linklist" name="sidebar_linklist_1" /> </td>
-	    </tr>
-	      <tr>
-           <td><select class="linklist" name="sidebar_linklist_2" /> </td>
-	    </tr>
-   <tr>
-          <td> <select class="linklist" name="sidebar_linklist_3" /> </td>
-	    </tr>
-	  </table>
-	</fieldset>
-	<fieldset>
-  <legend>Home Page</legend>
-  <table>
-   <tr>
-      <th>
-        <label for="welcome_message">Welcome Message</label>
-      </th>
-      <td>        
-           <select class="page" name="welcome_message" />
+        <tr>
+      <th><label for="custom_background_image">Use a background image?</label></th>
+      <td>
+        <input type="checkbox" id="custom_background_image" name="custom_background_image" value="1" />
       </td>
     </tr>
     <tr>
-      <th>
-        <label for="frontpage_collection">Frontpage Collection</label>
-      </th>
-      <td>        
-        <select class="collection" name="frontpage_collection" />
+      <th><label for="background_image">Background Image</label></th>
+      <td>
+        <input type="file" id="background_image" name="background_image.png" />
       </td>
     </tr>
     <tr>
-      <th>
-        <label for="frontpage_collection_title">Frontpage Collection Title</label>
-      </th>
-      <td>        
-        <input type="text" id="frontpage_collection_title" name="frontpage_collection_title" class="text" value="" />
-      </td>
+       <th><label for="background_image_style">Background image style</label></th>
+       <td>
+         <input type="radio" name="background_image_style" value="repeat" /> Repeat
+         <input type="radio" name="background_image_style" value="no-repeat" /> No-repeat
+       </td>
+     </tr>
+      <tr>
+      <th><label for="main_background_color">Main Background Color</label></th>
+      <td><input id="main_background_color" name="main_background_color" class="color" value="#FFFFFF" /></td>
     </tr>
-       
-  </table>
+		<tr>
+			<th><label for="nav_dropdown_linklist">Main menu dropdown linklist</label></th>
+			<td><select class="linklist" name="nav_dropdown_linklist" /> </td>
+		</tr>
+		<tr>
+			<th><label for="show_breadcrumb">Show breadcrumb</label></th>
+			<td><input type="checkbox" id="show_breadcrumb" name="show_breadcrumb" checked="checked" /></td>
+		</tr>
+		<tr>
+			<th>
+				<label for="typeahead_collection">Collection for <br />search type-ahead</label>
+			</th>
+			<td>        
+				<select class="collection" name="typeahead_collection" />
+			</td>
+		</tr>
+	</table>
 </fieldset>
 <fieldset>
-    <legend>Slideshow</legend>
-    <table>
+	<legend>Product Settings</legend>
+	<table>
+		<tr>
+			<th><label for="sale_styling">On Sale badge styling</label></th>
+			<td>
+				<select name="sale_icon">
+					<option value="label">White on grey</option>
+					<option value="label label-success">White on green</option>
+					<option value="label label-warning">White on orange</option>
+					<option value="label label-important" selected="selected">White on red</option>
+					<option value="label label-info">White on blue</option>
+					<option value="label label-inverse">White on black</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="sale_text">Sale label</label></th>
+			<td><input type="text" id="sale_text" name="sale_text" value="On Sale" /></td>
+		</tr>
+         <tr>
+    	<th><label for="show_product_type">Show product type?</label></th>
+		<td><input type="checkbox" id="show_product_type" name="show_product_type" value="1" checked="checked" /></td>
+	</tr>
+        <tr>
+			<th><label for="type_text">Product type label</label></th>
+			<td><input type="text" id="type_text" name="type_text" value="Type" /></td>
+		</tr>
+                 <tr>
+        <th><label for="show_product_vendor">Show product vendor?</label></th>
+		<td><input type="checkbox" id="show_product_vendor" name="show_product_vendor" value="1" checked="checked" /></td>
+	</tr>
+        <tr>
+    		<th><label for="vendor_text">Product vendor label</label></th>
+			<td><input type="text" id="vendor_text" name="vendor_text" value="Vendor" /></td>
+		</tr>
+                         <tr>
+        <th><label for="show_product_tags">Show product tags?</label></th>
+    	<td><input type="checkbox" id="show_product_tags" name="show_product_tags" value="1" checked="checked" /></td>
+	</tr>
+        <tr>
+        	<th><label for="tags_text">Product tags label</label></th>
+			<td><input type="text" id="tags_text" name="tags_text" value="Tags" /></td>
+		</tr>
+		<tr>
+			<th><label for="show_low_stock">Show low stock level indicators</label></th>
+			<td>
+				<input type="checkbox" id="show_low_stock" name="show_low_stock" checked="checked" />
+			</td>
+		</tr>
+		<tr>
+			<th><label for="low_stock_trigger">Low stock trigger amount (i.e., 3)</label></th>
+			<td><input type="text" id="low_stock_trigger" name="low_stock_trigger" value="1" /></td>
+		</tr>
+     <tr>
+      <th><label for="show_social_button">Show Social Buttons?</label></th>
+      <td>
+        <input type="checkbox" id="show_social_button" name="show_social_button" value="1" checked="checked" />
+      </td>
+    </tr>
+
+  
+	</table>
+</fieldset>
+
+<fieldset>
+	<legend>Typography</legend>
+	<table>
+    <tr>
+      <th><label for="typeface_method">Which typeface method would you like to use for headings?</label></th>
+      <td>
+        <input type="radio" name="typeface_method" value="google_webfonts" /> Google WebFonts
+        <input type="radio" name="typeface_method" value="typekit" /> Typekit
+      </td>
+    </tr>
+		<tr>
+			<th><label for="typekit">Typekit ID</label></th>
+			<td><input type="text" id="typekit" name="typekit" value="" /></td>
+		</tr>
+            <tr>
+      <th><label for="link_color">Link Color</label></th>
+      <td><input id="link_color" name="link_color" class="color" value="#0088cc" /></td>
+    </tr>
+    <tr>
+      <th><label for="link_hover_color">Link Hover Color</label></th>
+      <td><input id="link_hover_color" name="link_hover_color" class="color" value="#005580" /></td>
+    </tr>
+    <tr>
+     <th><label for="heading_font">Heading Font<small> - title, nav, headings</small></label></th>
+      <td>
+        <select class="font" name="heading_font" id="heading_font">
+          <option value="BebasNeueRegular, arial, sans-serif" selected="selected">Bebas Neue</option>
+          <option value="Rancho, cursive">Rancho</option>       
+          <option value="'Amatic SC', cursive">Amatic SC</option>   
+          <option value="'Sancreek', cursive">Sancreek</option>  
+          <option value="'Ubuntu Condensed', sans-serif">Ubuntu Condensed</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="main_font">Main font</label></th>
+      <td>
+        <select class="font" name="main_font" id="main_font">
+          <option value="Helvetica, Arial, sans-serif" selected="selected">Helvetica/Arial</option>
+        </select>
+        <select id="main_font_size" name="main_font_size">
+          <optgroup label="Font Size">
+            <option value="10px">10px</option>
+            <option value="11px">11px</option>
+            <option value="12px">12px</option>
+            <option value="13px" selected="selected">13px</option>
+            <option value="14px">14px</option>
+            <option value="16px">16px</option>
+            <option value="18px">18px</option>
+            <option value="24px">24px</option>
+            <option value="30px">30px</option>
+            <option value="36px">36px</option>
+            <option value="48px">48px</option>
+            <option value="60px">60px</option>
+            <option value="72px">72px</option>
+          </optgroup>
+        </select>        
+      </td>
+    </tr>  
+	</table>
+</fieldset>
+
+<fieldset>
+	<legend>Sidebar</legend>
+	<table>
+		<tr>
+			<td><select class="blog" name="main_blog" /></td>
+		</tr>
+
+		<tr>
+			<td><select class="linklist" name="sidebar_linklist_1" /> </td>
+		</tr>
+		<tr>
+			<td><select class="linklist" name="sidebar_linklist_2" /> </td>
+		</tr>
+		<tr>
+			<td> <select class="linklist" name="sidebar_linklist_3" /> </td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Home Page</legend>
+	<table>
+		<tr>
+			<th>
+				<label for="welcome_message">Welcome Message</label>
+			</th>
+			<td>        
+				<select class="page" name="welcome_message" />
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<label for="frontpage_collection">Frontpage Collection</label>
+			</th>
+			<td>        
+				<select class="collection" name="frontpage_collection" />
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<label for="frontpage_collection_title">Frontpage Collection Title</label>
+			</th>
+			<td>        
+				<input type="text" id="frontpage_collection_title" name="frontpage_collection_title" class="text" value="" />
+			</td>
+		</tr>
+
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Slideshow</legend>
+	<table>
+    <tr>
+    		<th><label for="show_slideshow">Show Slideshow?</label></th>
+			<td>
+				<input type="checkbox" id="show_slideshow" name="show_slideshow" />
+			</td>
+		</tr>
 		<tr>
 			<th><label for="slideshow_speed">Show slideshow images for</label></th>
 			<td>
@@ -232,30 +407,159 @@
 	</table>
 </fieldset>
 <fieldset>
-    
-    <legend>Footer</legend>
-	  <table>
-	<tr>
-    		<th><label for="show_credits">Show credits in footer?</label></th>
+
+    <legend>Cart</legend>
+	<table>
+        <tr>
+			<th><label for="display_extra_checkout_buttons">Display Extra Checkout Buttons?</label></th>
 			<td>
-				<input type="checkbox" id="show_credits" name="show_credits" />
+				<input type="checkbox" id="display_extra_checkout_buttons" name="display_extra_checkout_buttons" checked="checked" />
 			</td>
 		</tr>
-	   
-
-	  </table>
-	</fieldset>
+    </table>
+</fieldset>
 <fieldset>
-  <legend>META data for homepage</legend>
-  <table>
+
+	<legend>Footer</legend>
+	<table>
+		<tr>
+			<th><label for="show_theme_credits">Show theme designer's credits in footer?</label></th>
+			<td>
+				<input type="checkbox" id="show_theme_credits" name="show_theme_credits" checked="checked" />
+			</td>
+		</tr>
+		<tr>
+			<th><label for="show_store_credits"><em>or</em> show store designer's credits?</label></th>
+			<td>
+				<input type="text" id="show_store_credits" name="show_store_credits" />
+			</td>
+		</tr>
+         <tr>
+        <td><label for="american_express">Show American Express</label></td>
+        <td><input type="checkbox" id="american_express" name="american_express" value="1" checked="checked"/></td>
+      </tr> 
+      <tr>
+        <td><label for="visa">Show Visa</label></td>
+        <td><input type="checkbox" id="visa" name="visa" value="1" checked="checked"/></td>
+      </tr>   
+      <tr>
+        <td><label for="mastercard">Show Mastercard</label></td>
+        <td><input type="checkbox" id="mastercard" name="mastercard" value="1" checked="checked"/></td>
+      </tr> 
+      <tr>
+        <td><label for="discover">Show Discover</label></td>
+        <td><input type="checkbox" id="discover" name="discover" value="1" checked="checked"/></td>
+      </tr> 
+      <tr>
+        <td><label for="paypal">Show Paypal</label></td>
+        <td><input type="checkbox" id="paypal" name="paypal" value="1" checked="checked"/></td>
+      </tr> 
+      <tr>
+        <td><label for="google">Show Google Checkout</label></td>
+        <td><input type="checkbox" id="google" name="google" value="1" checked="checked"/></td>
+      </tr> 
+      <tr>
+        <td><label for="cirrus">Show Cirrus</label></td>
+        <td><input type="checkbox" id="cirrus" name="cirrus" value="1" checked="checked"/></td>
+      </tr>
+      <tr>
+        <td><label for="delta">Show Delta</label></td>
+        <td><input type="checkbox" id="delta" name="delta" value="1" checked="checked"/></td>
+      </tr> 
+      <tr>
+        <td><label for="facebook-icon">Show Facebook?</label></td>
+        <td><input type="checkbox" id="facebook-icon" name="facebook-icon" value="1" checked="checked"/></td>
+      </tr>
+        <tr>
+        <td><label for="twitter-icon">Show Twitter?</label></td>
+        <td><input type="checkbox" id="twitter-icon" name="twitter-icon" value="1" checked="checked"/></td>
+      </tr>
+       <tr>
+        <td><label for="googleplus-icon">Show Google Plus?</label></td>
+        <td><input type="checkbox" id="googleplus-icon" name="googleplus-icon" value="1" checked="checked"/></td>
+      </tr>
+      <tr>
+        <td><label for="pinterest-icon">Show Pinterst?</label></td>
+        <td><input type="checkbox" id="pinterest-icon" name="pinterest-icon" value="1" checked="checked"/></td>
+      </tr>
+      <tr>
+        <td><label for="tumblr-icon">Show Tumblr?</label></td>
+        <td><input type="checkbox" id="tumblr-icon" name="tumblr-icon" value="1" checked="checked"/></td>
+      </tr>
+       <tr>
+        <td><label for="youtube-icon">Show YouTube?</label></td>
+        <td><input type="checkbox" id="youtube-icon" name="youtube-icon" value="1" checked="checked"/></td>
+      </tr>
+       <tr>
+        <td><label for="rss-icon">Show RSS?</label></td>
+        <td><input type="checkbox" id="rss-icon" name="rss-icon" value="1" checked="checked"/></td>
+      </tr>
+	</table>
+</fieldset>
+<fieldset>
+<legend>Developer Settings</legend>
+<table>
     <tr>
-      <th>
-        <label for="shop_tagline">Tagline</label>
-      </th>
-      <td>        
-        <textarea name="shop_tagline" cols="60" rows="2" id="shop_tagline"></textarea>
-        <span class="note">This will be used in your title tag on your home page. Do <strong>not</strong> include the name of your shop here.</span>
-      </td>
-    </tr>
-  </table>
+		<th><label for="include_transition">Include bootstrap-transition.js</label></th>
+		<td><input type="checkbox" id="include_transition" name="include_transition" /></td>
+	</tr>
+    <tr>
+		<th><label for="include_alert">Include bootstrap-alert.js</label></th>
+		<td><input type="checkbox" id="include_alert" name="include_alert" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-modal">Include bootstrap-modal.js</label></th>
+		<td><input type="checkbox" id="include-modal" name="include-modal" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-dropdown">Include bootstrap-dropdown.js</label></th>
+		<td><input type="checkbox" id="include-dropdown" name="include-dropdown" checked="checked" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-scrollspy">Include bootstrap-scrollspy.js</label></th>
+		<td><input type="checkbox" id="include-scrollspy" name="include-scrollspy" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-tab">Include bootstrap-tab.js</label></th>
+		<td><input type="checkbox" id="include-tab" name="include-tab" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-tooltip">Include bootstrap-tooltip.js</label></th>
+		<td><input type="checkbox" id="include-tooltip" name="include-tooltip" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-popover">Include bootstrap-popover.js</label></th>
+		<td><input type="checkbox" id="include-popover" name="include-popover" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-button">Include bootstrap-button.js</label></th>
+		<td><input type="checkbox" id="include-button" name="include-button" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-collapse">Include bootstrap-collapse.js</label></th>
+		<td><input type="checkbox" id="include-collapse" name="include-collapse" checked="checked" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-carousel">Include bootstrap-carousel.js</label></th>
+		<td><input type="checkbox" id="include-carousel" name="include-carousel" checked="checked" /></td>
+	</tr>
+    <tr>
+		<th><label for="include-typeahead">Include bootstrap-typeahead.js</label></th>
+		<td><input type="checkbox" id="include-typeahead" name="include-typeahead" checked="checked" /></td>
+	</tr>
+</table>
+</fieldset>
+<fieldset>
+	<legend>META data for homepage</legend>
+	<table>
+		<tr>
+			<th>
+				<label for="shop_tagline">Tagline</label>
+			</th>
+			<td>        
+				<textarea name="shop_tagline" cols="60" rows="2" id="shop_tagline"></textarea>
+				<span class="note">This will be used in your title tag on your home page. Do <strong>not</strong> include the name of your shop here.</span>
+			</td>
+		</tr>
+	</table>
 </fieldset>

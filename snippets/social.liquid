@@ -1,0 +1,10 @@
+{% if settings.show_social_button %}
+<hr>
+<div class="social-buttons clearfix">
+<div class="pull-left pinterest"><a href="http://pinterest.com/pin/create/button/?url={{ shop.url }}{{ pin.url }}&media={{ product.featured_image | product_img_url: 'large' }}" class="pin-it-button" count-layout="horizontal">Pin It</a>
+    <script type="text/javascript" src="http://assets.pinterest.com/js/pinit.js"></script></div>
+<div class="pull-left twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-url="{{ shop.url }}{{ product.url }}" data-count="none" {% if settings.twitter_account != "" %}data-via="{{ settings.twitter_account }}"{% endif %}>Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+<div class="pull-left facebook"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fgeezer.com&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=157947477614610" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div>
+</div>
+<hr>
+{% endif %}

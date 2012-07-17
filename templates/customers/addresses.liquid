@@ -1,0 +1,215 @@
+{% layout settings.customer_layout %}
+<div class="row">
+    {% include 'sidebar' %}
+<div class="span9 columns">
+
+<div id="admin_header">
+<a href="/account" class="btn btn-info pull-right" id='return_to_account'>Return to Account page</a>
+  <h2 class="title">Manage Account Address</h2>
+  <hr>
+  <a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a>
+</div>
+
+<div id="add_address" class="customer_address edit_address" style="display:none;">
+  {% form 'customer_address', customer.new_address %}
+<div class="form-horizontal">
+<hr>
+    <fieldset>
+<div class="control-group">
+    <label class="control-label" for="address_first_name_new">First Name</label>
+    <div class="controls">
+        <input type="text" id="address_first_name_new" class="address_form input-xlarge" name="address[first_name]" value="{{form.first_name}}">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="address_last_name_new">Last Name</label>
+    <div class="controls">
+    	<input type="text" id="address_last_name_new" class="address_form input-xlarge" name="address[last_name]" value="{{form.last_name}}">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="address_company_new">Company</label>
+    <div class="controls">
+    	<input type="text" id="address_company_new" class="address_form input-xlarge" name="address[company]" value="{{form.company}}">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="address_address1_new">Address1</label>
+    <div class="controls">
+    	<input type="text" id="address_address1_new" class="address_form input-xlarge" name="address[address1]" value="{{form.address1}}">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="address_address2_new">Address2</label>
+    <div class="controls">
+    	<input type="text" id="address_address2_new" class="address_form input-xlarge" name="address[address2]" value="{{form.address2}}">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="address_city_new">City</label>
+    <div class="controls">
+    	<input type="text" id="address_city_new" class="address_form input-xlarge" name="address[city]" value="{{form.city}}">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="address_country_new">Country</label>
+    <div class="controls">
+		<select id="address_country_new" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+    </div>
+</div>
+<div class="control-group" id="address_province_container_new" style="display:none">
+    <label class="control-label" for="address_province_new">Province</label>
+    <div class="controls">
+		<select id="address_province_new" class="address_form" name="address[province]" data-default="{{form.province}}"></select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="address_zip_new">Zip</label>
+    <div class="controls">
+		<input type="text" id="address_zip_new" class="address_form input-small" name="address[zip]" value="{{form.zip}}">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="address_phone_new">Phone</label>
+    <div class="controls">
+		<input type="text" id="address_phone_new" class="address_form input-xlarge" name="address[phone]" value="{{form.phone}}">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">Set as Default Address?</label>
+    <div class="controls">
+		{{ form.set_as_default_checkbox }}
+    </div>
+</div>
+<div class="form-actions">
+	            <button class="btn btn-primary" type="submit">Add Address</button>
+	            <a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Cancel</a>
+ </div>
+ </fieldset>
+</div>
+
+  {% endform %}
+</div>
+<hr>
+
+<div id="address_tables">  
+{% paginate customer.addresses by 10 %}
+  
+  {% for address in customer.addresses %}
+  <div class="address_table">
+    <div id="view_address_{{address.id}}" class="customer_address">
+      <h4 class="address_title">
+        {{ address.street }} 
+        {% if address == customer.default_address %}<span class="default_address note">(Default Address)</span>{% endif %}
+      </h4>
+      
+   
+     
+      <p class="address_actions">
+        <span class="action_link action_edit">{{ "Edit" | edit_customer_address_link: address.id }}</span>
+        <span class="action_link action_delete">{{ "Delete" | delete_customer_address_link: address.id }}</span>
+      </p>
+      <address>
+        <strong>{{ address.first_name }} {{address.last_name }}</strong><br>
+        {{ address.company }}</br>
+        {{ address.street }}</br>
+        {{ address.city }} {% if address.province_code %}, {{ address.province_code }}{% endif %}</br>
+        {{ address.country }} {{ address.zip }}</br>
+        <abbr title="Phone">P:</abbr> {{ address.phone }}
+     </address>
+    </div>   
+   
+    <div id="edit_address_{{address.id}}" class="customer_address edit_address" style="display:none;">
+      {% form 'customer_address', address %}
+    <div class="form-horizontal">
+	    <fieldset>
+    	<div class="control-group">
+		    <label class="control-label" for="address_first_name_{{form.id}}">First Name</label>
+		    <div class="controls">
+		    	<input type="text" id="address_first_name_{{form.id}}" class="address_form input-xlarge" name="address[first_name]" value="{{form.first_name}}">
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="address_last_name_{{form.id}}">Last Name</label>
+		    <div class="controls">
+		    	<input type="text" id="address_last_name_{{form.id}}" class="address_form input-xlarge" name="address[last_name]" value="{{form.last_name}}">
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="address_company_{{form.id}}">Company</label>
+		    <div class="controls">
+		    	<input type="text" id="address_company_{{form.id}}" class="address_form input-xlarge" name="address[company]" value="{{form.company}}">
+		    </div>
+		</div>     
+		<div class="control-group">
+		    <label class="control-label" for="address_address1_{{form.id}}">Address1</label>
+		    <div class="controls">
+		    	<input type="text" id="address_address1_{{form.id}}" class="address_form input-xlarge" name="address[address1]" value="{{form.address1}}">
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="address_address2_{{form.id}}">Address2</label>
+		    <div class="controls">
+		    	<input type="text" id="address_address2_{{form.id}}" class="address_form input-xlarge" name="address[address2]" value="{{form.address2}}">
+		    </div>
+		</div>
+        <div class="control-group">
+		    <label class="control-label" for="address_city_{{form.id}}">City</label>
+		    <div class="controls">
+		    	<input type="text" id="address_city_{{form.id}}" class="address_form input-xlarge" name="address[city]" value="{{form.city}}">
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="address_country_{{form.id}}">Country</label>
+		    <div class="controls">
+				<select id="address_country_{{form.id}}" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+			 </div>
+		</div>	
+		<div class="control-group" id="address_province_container_{{form.id}}" style="display:none">
+		    <label class="control-label" for="address_province_{{form.id}}">Province</label>
+		    <div class="controls">
+				<select id="address_province_{{form.id}}" class="address_form" name="address[province]" data-default="{{form.province}}"></select>
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="address_zip_{{form.id}}">Zip</label>
+		    <div class="controls">
+				<input type="text" id="address_zip_{{form.id}}" class="address_form input-small" name="address[zip]" value="{{form.zip}}">
+		    </div>
+		</div>
+      	<div class="control-group">
+		    <label class="control-label" for="address_phone_{{form.id}}">Phone</label>
+		    <div class="controls">
+				<input type="text" id="address_phone_{{form.id}}" class="address_form input-small" name="address[phone]" value="{{form.phone}}">
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label">Set as Default Address?</label>
+		    <div class="controls">
+				{{ form.set_as_default_checkbox }}
+		    </div>
+		</div>
+		<div class="form-actions">
+			            <button class="btn btn-primary" type="submit">Update Address</button>
+			            <a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">Cancel</a>
+		 </div>
+		 </fieldset>
+		</div>   
+      {% endform %}
+    </div>
+  </div><!-- end .address_table -->
+ <hr>
+  {% endfor %}
+  
+  <div id="address_pagination">{{ paginate | default_pagination }}</div>  
+{% endpaginate %}
+</div><!-- end #address_tables -->
+</div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  // initialize observers on address selectors
+  new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {hideElement: 'address_province_container_new'});  
+  {% for address in customer.addresses %}
+    new Shopify.CountryProvinceSelector('address_country_{{address.id}}', 'address_province_{{address.id}}', {hideElement: 'address_province_container_{{address.id}}'});
+  {% endfor %}
+</script>

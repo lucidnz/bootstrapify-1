@@ -3,31 +3,34 @@
 
 <div class="span9">
 <div class="page-header">
-   <h1>{{blog.title}}</h1>
+   <h1>{{blog.title}}{% if current_tags %} &rsaquo; {% for tag in current_tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% endif %}</h1>
 </div>
 {% paginate blog.articles by 20 %}
 
 {% for article in blog.articles  %}
 
 <h3 class="blog"><a href="{{article.url}}" title="{{ article.title }}">{{ article.title }}</a></h3>
-{% if blog.comments_enabled? %}
-{% if article.comments.size > 0 %}
-<p>
-    <a href="{{article.url}}#comments" title="View comments for {{ article.title }}">{{ article.comments.size }} {{ article.comments.size | pluralize: 'comment', 'comments'}}</a>
-</p>
-{% endif %}  
-{% endif %}  
-<div class="article-body-truncated textile">
-	{{ article.content | truncatewords: 25 }} [<a href="{{ article.url }}" title="{{ article.title }}">Details</a>]
-</div>    
+<p><small>Posted {{ article.published_at | date: "%B %d, %Y" }} by {{ article.author }}{% if blog.comments_enabled? %}
+{% if article.comments.size > 0 %}&ensp;| &ensp;<a href="{{article.url}}#comments" title="View comments for {{ article.title }}">{{ article.comments.size }} {{ article.comments.size | pluralize: 'comment', 'comments'}}</a>{% endif %}{% endif %}  
+<br>{% if article.tags != blank %}<i class="icon-tag"></i>
+{% for tag in article.tags %}
+<a href="{{ shop.url}}/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" title="Articles tagged with {{ tag | escape }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+{% endfor %}
+{% endif %}</small></p>
+<div>
+{% if article.excerpt.size > 0 %}
+  {{ article.excerpt }}
+{% else %}
+  <p>{{ article.content | truncatewords: 50 }} [<a href="{{ article.url }}" title="{{ article.title }}">Details</a>]</p>
+{% endif %}
+</div> 
+
 <hr>
 {% endfor %}
 
 
 {% if paginate.pages > 1 %}
-<div id="pagination" class="info" style="margin-top: 20px">
-	{{ paginate | default_pagination }}
-</div>
+{% include 'pagination' %}
 {% endif %}
 
 {% endpaginate %}

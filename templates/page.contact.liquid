@@ -1,0 +1,66 @@
+<div class="row">
+{% include 'sidebar' %}
+
+<div class="span9">
+
+  <div class="page-header">
+    <h1>{{ page.title }}</h1>
+  </div>
+
+  {{ page.content }}
+  
+  {% form 'contact' %}
+
+{% if form.posted_successfully? %}
+<hr>
+<div class="alert alert-success">
+  <p>Thanks for contacting us! We'll get back to you as soon as possible.</p>
+</div>
+{% endif %}
+
+{% if form.errors %}
+<hr>
+<div class="alert alert-error">
+  <!-- {{ form.errors.size }} or {{ form.errors | size }} -->
+  <p>Oops, sorry. We were unable to submit your inquiry because it contained {{ form.errors | size | pluralize: 'an error', 'a few errors' }}. Please correct the following and submit again:</p>
+  {% for field in form.errors %}
+    <p>The {{ field | capitalize | replace: 'Body', 'Message' }} field {{ form.errors.messages[field] }}.</p>
+  {% endfor %}
+</div>
+{% endif %}
+<hr>
+    <fieldset>
+  <div class="control-group">
+    <label class="control-label" for="contactFormName">Your Name</label>
+    <div class="controls">
+        <input type="text" id="contactFormName" class="input-xlarge" name="contact[name]">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="contactFormEmail">Email</label>
+    <div class="controls">
+        <input type="email" id="contactFormEmail" class="input-xlarge" name="contact[email]">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="contactFormTelephone">Phone</label>
+    <div class="controls">
+    	<input type="telephone" id="contactFormTelephone" class="input-xlarge" name="contact[phone]">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="contactFormMessage">Message</label>
+    <div class="controls">
+    <textarea rows="3" class="input-xlarge" id="contactFormMessage" name="contact[body]"></textarea>
+</div>
+</div>
+ <div class="form-actions">
+                <button class="btn btn-primary" id="contactFormSubmit" type="submit">Send</button>
+ </div>      	
+ </fieldset>
+
+
+{% endform %}
+
+</div>
+</div>

@@ -1,40 +1,136 @@
-<div class="row">
-<div class="span6">
-<h2>{{ product.title }}</h2>
-<hr>
-{{ product.description }}
-<hr>
-{% if product.available %}
+<div class="row" id="product">
+  <div class="span8">
+    <div class="page-header">
+    <h1>{{ product.title }}</h1>
+    </div>
+    {{ product.description }}
+    {% include 'social' %}
+  </div>
+  <div class="span4">
 
- <form action="/cart/add" method="post" class="well form-inline">
+    <ul class="thumbnails">
+      <li class="span4">
+        <a class="thumbnail fancybox" rel="gallery1" href="{{ product.featured_image | product_img_url: 'large' }}" title="{{ product.title }}">
+          <img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" />
+        </a>
+      </li>
+      {% for image in product.images | offset: 1 %}
+      {% if forloop.length > 0 %}
+      <li class="span2">
+        <a href="{{ image | product_img_url: 'original' }}" class="thumbnail fancybox" rel="gallery1" title="{{ product.title }}"><img src="{{ image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" /></a>
+      </li>
+      {% endif %}
+      {% endfor %}
+    
+    </ul>
 
-   <select id="mediumSelect" name='id' class="medium">
-     {% for variant in product.variants %}
-     <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-     {% endfor %}
-   </select>
-   <button type="submit" class="btn btn-primary pull-right" id="addtocart">Add to cart</button>
- </form>
+   
+    <form action="/cart/add" method="post" class="well">
+    <table class="table">
+    {% if settings.show_product_type %}
+    <tr><td><strong>{{ settings.type_text }}</strong></td><td>{{ product.type }}</td></tr>
+    {% endif %}
+    {% if settings.show_product_vendor %}<tr><td><strong>{{ settings.vendor_text }}</strong></td><td>{{ product.vendor }}</td></tr>
+    {% endif %}
+    {% if settings.show_product_tags and product.tags.size > 0 %}
+    <tr><td><strong>{{ settings.tags_text }}</strong></td><td class="tags">{% for tag in product.tags %}
+    <a href="/collections/{% if collection %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handle }}" title="Products tagged with {{ tag | escape }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+    {% endfor %}</td></tr>{% endif %}
+    </table>
+      {% if product.options.size > 1 %}
+       <div class="control-group">
+       <div class="controls">
+           <select class="span3" id="product-select" name='id'>
+             {% for variant in product.variants %}
+             <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+             {% endfor %}
+           </select>
+             </div>
+             </div>
+             <hr>
+         {% elsif product.options.size == 1 and product.variants.size > 1 %}
+         <div class="control-group">
+           <label for="product-select" class="control-label">{{ product.options[0] }}</label>
+             <div class="controls">
+           <select id="product-select" class="span3" name='id'>
+             {% for variant in product.variants %}
+             <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+             {% endfor %}
+           </select>
+           </div>
+        </div>
+        <hr>
+         {% else %}
+           <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+         {% endif %}
+      
+       {% unless product.available %}
+      <div class="purchase-sold"><div class="alert alert-info">Sorry, <strong>the {{ product.title | replace_first: 'The ','' }}</strong> is not currently available.</div></div>
+      {% else %}
+      <div class="clearfix purchase-buy">
+      <div id="price-field" class="pull-left">{{ product.variants.first.price | money_with_currency }}{% if product.price_min < product.compare_at_price_min %} <span class='{{ settings.sale_icon }}'>{{ settings.sale_text }}</span>&nbsp;<s><small>{{ product.compare_at_price_min | money }}</small></s>{% endif %}</div>
+      <button type="submit" class="btn btn-primary pull-right" id="addtocart">Add to cart</button>
+   </div>
+   {% endunless %}
+   </form>
  
-{% else %}
-Sorry, the product is not available
-{% endif %}
-</div>
-<div class="span6">
-<ul class="thumbnails">
-<li class="span6">
-   <a class="thumbnail" href="#" title="{{ product.title }}">
-    <img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" />
-   </a>
-</li>
-{% for image in product.images %}
-{% if forloop.length > 1 %}
-<li class="span2">
-   <a href="#" class="thumbnail" title="{{ product.title }}"><img src="{{ image | product_img_url: 'small' }}" alt="{{ product.title | escape }}" /></a>
-</li>
-{% endif %}
-{% endfor %}
-</ul>
-</div>
+
+    <ul class="pager">
+      {% if collection %}            
+      {% if collection.previous_product %}
+      <li class="previous">
+        {{ '&larr; Previous product' | link_to: collection.previous_product }}
+      </li>
+      {% endif %}
+      {% if collection.next_product %}
+      <li class="next">
+        {{ 'Next product &rarr;' | link_to: collection.next_product }}
+      </li>
+      {% endif %}
+      {% endif %}
+    </ul>
+
+  </div>
 
 </div>
+{% if product.available %}
+<script type="text/javascript">
+// <![CDATA[  
+var selectCallback = function(variant, selector) {
+  if (variant && variant.available == true) {
+     var low_stock_trigger = {{ settings.low_stock_trigger | times: 1 }};
+     var inventory_quantity = variant.inventory_quantity;
+    // selected a valid variant
+    jQuery('#addtocart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+    if (variant.compare_at_price > variant.price) {
+            jQuery('#price-field').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}") + "&nbsp;<span class='{{ settings.sale_icon }}'>{{ settings.sale_text }}</span>&nbsp;<s><small>" + Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}") + "</small></s>");  // update price field        
+    } else {
+           jQuery('#price-field').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}"));  // update price field        
+    }
+  } else {
+    // variant doesn't exist
+    jQuery('#addtocart').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+    var message = variant ? "Sold Out" : "Unavailable";    
+     jQuery('#price-field').text(message);
+  }
+};
+
+// initialize multi selector for product
+jQuery(function() {
+{% if product.variants.size > 1 or product.options.size > 1 %}
+  new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+{% assign found_one_in_stock = false %}
+{% for variant in product.variants %}
+  {% if variant.available and found_one_in_stock == false %}
+    {% assign found_one_in_stock = true %}
+    {% for option in product.options %}
+    jQuery('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+{% endif %}
+});
+// ]]>
+</script>
+
+{% endif %}
