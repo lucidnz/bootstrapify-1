@@ -1,13 +1,13 @@
 <div id="collection">
-    {% for product in collections[collection].products %}
+    {% for product in collection.products %}
     {% cycle 'product-loop-clear-start': '<div class="row-fluid"><ul class="thumbnails">', '', '' %}
 
     <li class="span4">
         <div class="thumbnail">
-            <a href= "{{ product.url | within: collections[collection] }}" title="View {{ product.title }}"><img src="{{ product.images.first | product_img_url: 'large' }}" alt="{{ product.title }}" /></a>
+            <a href= "{{ product.url }}" title="View {{ product.title }}"><img src="{{ product.images.first | product_img_url: 'large' }}" alt="{{ product.title }}" /></a>
             
             <div class="caption">
-                <h4><a href= "{{ product.url | within: collections[collection] }}" title="View {{ product.title }}">{{ product.title }}</a>{% unless product.available %} <span class="label">Out of stock</span>{% endunless %}</h4>
+                <h4><a href= "{{ product.url }}" title="View {{ product.title }}">{{ product.title }}</a>{% unless product.available %} <span class="label">Out of stock</span>{% endunless %}</h4>
                 {% if product.available %}
                 <hr>
                 <p>{{ product.price_min | money }}{% if product.price_varies %}&nbsp;to&nbsp;{{ product.price_max | money }}{% endif %}
