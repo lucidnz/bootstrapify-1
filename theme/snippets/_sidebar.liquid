@@ -1,0 +1,24 @@
+<aside class="span3 hidden-phone">
+{% if settings.logo-placement == 'sidebar' %}<header class="page-header">
+  <h1><a href="/">{{ shop.name }}</a></h1>
+</header>{% endif %}
+{% unless linklists[settings.sidebar-linklist] == empty %}
+<h3>{{ linklists[settings.sidebar-linklist].title }}</h3>
+
+<ul class="nav nav-pills nav-stacked">
+  {% for l_link in linklists[settings.sidebar-linklist].links %}
+  <li{% if l_link.active %} class="active"{% endif %}>{{ l_link.title | link_to: l_link.url, l_link.title }}</li>
+  {% endfor %}
+</ul>
+{% endunless %}
+
+{% unless blogs[settings.sidebar-blog] == empty %}
+<h3>{{ blogs[settings.sidebar-blog].title }}</h3>
+
+<ul class="nav nav-pills nav-stacked">
+  {% for l_article in blogs[settings.sidebar-blog].articles %}
+  <li{% if l_article.url == article.url %} class="active"{% endif %}>{{ l_article.title | link_to: l_article.url, l_article.title }}</li>
+  {% endfor %}
+</ul>
+{% endunless %}
+</aside>

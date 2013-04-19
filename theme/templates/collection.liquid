@@ -1,50 +1,15 @@
-<div class="row">
-{% include 'sidebar' %}
-      <div class="span9">
-{% paginate collection.products by 8 %}
+<h1>{{ collection.title }}</h1>
 
-<div class="page-header">
-   <h1>{{ collection.title }}</h1>
-</div>
-{{ collection.description }}
-{% unless collection.description == '' %}
-<hr>
-{% endunless %}
-{% if collection.products.size == 0 %}
-No products found in this collection.
+<ul class="thumbnails">
+
+{% if collection.all_product_count > 0 %}
+  {% for product in collection.products %}
+    {% include '_product-loop' %}
+  {% endfor %}
 {% else %}
-<ul class="nav nav-pills">
-{% if collection.all_tags.size > 0 %}
-  <li{% unless current_tags %} class="active"{% endunless %}>
-    {% if collection.handle %}
-    {% comment %}Good for /collections/all collection and regular collections{% endcomment %}
-    <a href="/collections/{{ collection.handle }}">All</a>
-    {% comment %}Good for automatic type collections{% endcomment %}
-    {% elsif collection.products.first.type == collection.title %}
-    <a href="{{ collection.title | url_for_type }}">All</a>
-    {% comment %}Good for automatic vendor collections{% endcomment %}
-    {% elsif collection.products.first.vendor == collection.title %}
-    <a href="{{ collection.title | url_for_vendor }}">All</a>
-    {% endif %}
-  </li> 
-  {% endif %}
-  {% for tag in collection.all_tags %}
-  {% if current_tags contains tag %}
-  <li class="active">
-    {{ tag | link_to_remove_tag: tag }}
-  </li>
-  {% else %}
-  <li>
-    {{ tag | link_to_tag: tag }}
-  </li>
-  {% endif %}
-  {% endfor %}  
+  {% for i in (1..4) %}
+    {% include '_product-loop' %}
+  {% endfor %}
+{% endif %}
 
 </ul>
-    {% include 'product-loop' %}
-
-{% endif %}
- {% include 'pagination' %}
-{% endpaginate %}
-</div>
-</div>

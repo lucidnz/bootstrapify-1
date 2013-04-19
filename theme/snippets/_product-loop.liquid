@@ -1,0 +1,17 @@
+{% if product.title == blank %}
+{% assign title = "Product title" %}
+{% assign image = "http://placehold.it/480x480&text=Product+thumbnail" %}
+{% assign price = 123.45 %}
+{% else %}
+{% assign title = "Product title" %}
+{% assign image = product.feature_image.url %}
+{% assign price = 123.45 %}
+{% endif %}
+<li class="span3">
+  <div class="thumbnail">
+    <img src="{{ image }}" alt="{{ title }} image">
+    <div class="caption">
+      <p><strong>{{ title }}</strong><span class="price pull-right">{{ price | money }}</span></p>
+    </div>
+  </div>
+</li>

@@ -1,1 +1,17 @@
-{"current":{"use_logo_image":false,"logo_color":"#ffffff","logo_offset":"2","custom_background_image":true,"background_image_style":"repeat","main_background_color":"#ffffff","nav_dropdown_linklist":"collections","show_breadcrumb":true,"typeahead_collection":"all","sale_icon":"label label-important","sale_text":"On Sale","show_product_type":true,"type_text":"Type","show_product_vendor":true,"vendor_text":"Vendor","show_product_tags":true,"tags_text":"Tags","show_low_stock":true,"low_stock_trigger":"1","show_social_button":true,"typeface_method":"typekit","typekit":"gor6epv","link_color":"#3a87ad","link_hover_color":"#2d6987","heading_font":"Helvetica, Arial, sans-serif","main_font":"Helvetica, Arial, sans-serif","main_font_size":"13px","main_blog":"news","sidebar_linklist_1":"pos-products","sidebar_linklist_2":"","sidebar_linklist_3":"","welcome_message":"welcome","frontpage_collection":"frontpage","frontpage_collection_title":"Feature Products","show_slideshow":true,"slideshow_speed":"5000","show_image_1":true,"image_1_link":"/collections","image_1_desc":"","show_image_2":true,"image_2_link":"","image_2_desc":"","show_image_3":true,"image_3_link":"","image_3_desc":"","show_image_4":true,"image_4_link":"","image_4_desc":"","show_image_5":false,"image_5_link":"","image_5_desc":"","display_extra_checkout_buttons":true,"show_theme_credits":true,"show_store_credits":"","american_express":false,"visa":true,"mastercard":true,"discover":false,"paypal":true,"google":false,"cirrus":false,"delta":false,"facebook-icon":false,"twitter-icon":true,"googleplus-icon":false,"pinterest-icon":false,"tumblr-icon":false,"youtube-icon":false,"rss-icon":true,"include_transition":false,"include_alert":false,"include-modal":false,"include-dropdown":true,"include-scrollspy":false,"include-tab":false,"include-tooltip":false,"include-popover":false,"include-button":false,"include-collapse":true,"include-carousel":true,"include-typeahead":true,"shop_tagline":"Mac-compatible POS hardware and software","customer_layout":"theme"}}
+{
+  "current": "Bootstrap",
+  "presets": {
+    "Bootstrap": {
+      "customer_layout": "customer_area",
+      "truncate-words": "25",
+      "sidebar-linklist": "sidebar-menu",
+      "show-author-on-article": true,
+      "show-author-on-index": true,
+      "show-sidebar": true,
+      "logo-alignment": "center",
+      "logo-placement": "sidebar",
+      "homepage-intro": "frontpage",
+      "sidebar-blog": "news"
+    }
+  }
+}

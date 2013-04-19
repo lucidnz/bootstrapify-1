@@ -1,0 +1,8 @@
+@import "sass-twitter-bootstrap/lib/bootstrap.scss";
+
+body {
+  padding-top: $navbarHeight + 20;
+  padding-bottom: $navbarHeight + 20;
+}
+
+@import "sass-twitter-bootstrap/lib/responsive.scss";

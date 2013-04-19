@@ -1,185 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>{% include '__variables' %}
+<html>
 <head>
-{% include 'head' %}
-{{ content_for_header }}
+  <title>{{ page_title }} | {{ shop.name }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  {{ 'bootstrap-collapse.js' | asset_url | script_tag }}
+  
+  {{ content_for_header }}
 </head>
 
 <body>
-    <div class="navbar navbar-fixed-top">
-    	<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-                {% unless settings.use_logo_image %}
-				<a href="/" class="brand">{{ shop.name }}</a>
-                {% endunless %}
-				<div class="nav-collapse">
-					<ul class="nav">
-                    {% for link in linklists.main-menu.links %}
-                    
-                    {% capture child_list_handle %}{{ link.title | handle }}{% endcapture %}
-                    {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
-						
-						<li class="dropdown" id="menu{{ forloop.index }}" {% if link.active %} class="active"{% endif %}>
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#menu{{ forloop.index }}" title="View {{ link.title }}">
-                            {{ link.title }}
-                                <b class="caret"></b>
-							</a>
-                            {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
-                                <ul class="dropdown-menu">
-								{% for l in linklists[child_list_handle].links %}
-								<li><a href="{{ l.url }}" title="View {{ l.title }}">{{ l.title }}</a></li>
-								{% endfor %}
-							</ul>
-                            {% endif %}
-						</li>
-                    {% else %}
-                    <li {% if link.active %} class="active"{% endif %}>
-    						<a href="{{ link.url }}" title="View {{ link.title }}">{{ link.title }}</a>        
-						</li>    
-                    {% endif %}
-						{% endfor %}
-					</ul>
-
-					<form class="navbar-search pull-right" action="/search" method="get">
-						{% assign col = settings.typeahead_collection %}
-						<input id="search-input" name="q" type="text" class="search-query" placeholder="Search" data-provide="typeahead" data-source="[{% for product in collections[settings.typeahead_collection].products %}{{ product.title | append: "&quot;" | prepend: "&quot;" }}{% unless forloop.last %},{% endunless %}{% endfor %}]">  
-					</form>
-
-					<ul class="nav pull-right">
-						{% if cart.item_count > 0 %}
-						<li><a href="/cart"><i class="icon-shopping-cart icon-white"></i> <span class="badge badge-info">{{ cart.item_count }}</span></a></li>
-						{% endif %}
-
-						{% if shop.customer_accounts_enabled %}
-						<li class="divider-vertical"></li>
-						{% if customer %}
-						<li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">
-							Welcome {{ customer.first_name }}<b class="caret"></b>
-						</a>
-
-						<ul class="dropdown-menu">
-							<li><a href="/account">Account</a></li>
-							<li>{{ "Logout" | customer_logout_link }}</li>
-						</ul>
-					</li>
-
-					{% else %}
-
-					<li>{{ "Login" | customer_login_link }}</li>
-					{% endif %}
-					<li class="divider-vertical"></li>
-					{% endif %}
-
-				</ul><!-- /.nav pull-right -->
-			</div><!-- /.nav-collapse -->
-		</div><!-- /.container-->
-	</div><!-- /.navbar-inner -->
-</div><!-- /.navbar-fixed-top -->
-
-<div class="container">
-	{% if settings.show_breadcrumb %}
-	<ul class="breadcrumb hidden-phone">
-		<li><a href="/" class="homepage-link" title="Back to the frontpage">Home</a><span class="divider">/</span></li>
-		{% if template contains "product" %}
-		{% if collection %}            
-		<li>
-			{% if collection.handle %}
-			{% capture url %}/collections/{{ collection.handle }}{% endcapture %}
-			{{ collection.title | link_to: url }}
-			{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}
-			{{ collection.title | link_to_type }}
-			{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}
-			{{ collection.title | link_to_vendor }}
-			{% endif %}
-			<span class="divider">/</span></li>
-			{% else %}
-
-			<li>{{ product.type | link_to_type }}<span class="divider">/</span></li>
-			{% endif %}
-			{% elsif template == "article" %}
-			<li>{{ blog.title | link_to: blog.url }}<span class="divider">/</span></li>
-			{% endif %}
-			<li>{{ page_title }}</li>    
-
-		</ul>
-		{% endif %}
-{% if settings.use_logo_image %}
-<div class="logo visible-phone">
-<img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }} Logo">
-</div>
-<hr>
-{% endif %}
-	{% if template == 'list-collections' %}
-        {% include 'collection-listing' %}
-    {% else %}
-        {{ content_for_layout }}
+  <nav class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        {% if settings.logo-placement == "navbar" %}
+        <a class="brand{% if settings.show-sidebar %} span3{% endif %}" href="/">{{ wordmark }}</a>
+        {% endif %}
+        <div class="nav-collapse collapse"> 
+          <ul class="nav">
+            {% for link in linklists.main-menu.links %}
+            <li{% if link.active %} class="active"{% endif %}><a href="{{ link.url }}" title="Go to {{ link.title }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+          
+          <form class="navbar-search pull-right">
+            <input type="text" class="search-query" placeholder="Search">
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container">
+    {% if settings.logo-placement != "sidebar" and settings.logo-placement != "navbar" %}
+    <header class="page-header">
+      <h1 class="text-{{ settings.logo-alignment }}"><a href="/">{{ shop.name | replace: ' ', '&nbsp;' }}</a></h1>
+    </header>
     {% endif %}
-<footer class="footer">
-<div class="row">
-<div class="span3">
-        <p><small>Copyright &copy;{{ 'now' | date: '%Y' }} {{ shop.name }}</small></p>
-        <p><small>{% if settings.show_store_credits != "" %}{{ settings.show_store_credits }}{% elsif settings.show_theme_credits %}<em>Bootstrapify</em> theme by <a href="http://luciddesign.co.nz" title="Lucid Design, beautiful, elegant design for web and print. Nelson, New Zealand">Lucid Design</a>.</small></p>
-        <p><small>Powered by <a href="http://www.shopify.com/?ref=lucid-design">Shopify</a>.{% endif %}</small></p>
-</div>
-<div class="span3">
-<ul class="nav">
-            			{% for link in linklists.footer.links %}
-						<li {% if link.active %} class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
-						{% endfor %}
-					</ul>
-        <p class="social-icons pull-left">
-        {% if settings.facebook-icon %}<a href="#" class="zocial icon facebook">Sign in with Facebook</a>{% endif %}
-        {% if settings.twitter-icon %}<a href="#" class="zocial icon twitter">Sign in with Twitter</a>{% endif %}
-        {% if settings.googleplus-icon %}<a href="#" class="zocial icon googleplus">Sign in with Google+</a>{% endif %}
-        {% if settings.pinterest-icon %}<a href="#" class="zocial pinterest icon">Follow me on Pinterest</a>{% endif %}
-        {% if settings.tumblr-icon %}<a href="#" class="zocial icon tumblr">Follow me on Tumblr</a>{% endif %}
-    	{% if settings.youtube-icon %}<a href="#" class="zocial icon youtube">Subscribe on YouTube</a>{% endif %}
-        {% if settings.rss-icon %}<a href="#" class="zocial icon rss">Subscribe to RSS</a>{% endif %}
-        </p>
-</div>
-<div class="span6">
-        <p class="credit-cards pull-right">
-        {% if settings.american_express %}<img src="{{ 'americanexpress.png' | asset_url }}" alt="We accept American Express"/>{% endif %}
-        {% if settings.visa %}<img src="{{ 'visa.png' | asset_url }}" alt="We accept Visa"/>{% endif %}
-        {% if settings.mastercard %}<img src="{{ 'mastercard.png' | asset_url }}" alt="We accept Mastercard"/>{% endif %}
-        {% if settings.discover %}<img src="{{ 'discover.png' | asset_url }}" alt="We accept Discover"/>{% endif %}
-        {% if settings.paypal %}<img src="{{ 'paypal.png' | asset_url }}" alt="We accept Paypal"/>{% endif %}  
-        {% if settings.google %}<img src="{{ 'googlecheckout.png' | asset_url }}" alt="We accept Google Checkout">{% endif %}
-        {% if settings.cirrus %}<img src="{{ 'cirrus.png' | asset_url }}" alt="We accept Cirrus">{% endif %}
-        {% if settings.delta %}<img src="{{ 'delta.png' | asset_url }}" alt="We accept Delta">{% endif %}
-        </p>
-</div>
-</div>
-    </footer>
-		
-	</div><!--! end of .container -->
     
-<!--[if lt IE 7 ]>
-<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-<![endif]-->
-{% if template contains "product" %}
-{{ 'jquery.fancybox.pack.js' | asset_url | script_tag }}
-{{ 'option_selection.js' | shopify_asset_url | script_tag }}
-{% endif %}
-<!-- TWITTER JS -->
-{% if settings.include-transition %}{{ 'bootstrap-transition.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-alert %}{{ 'bootstrap-alert.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-modal %}{{ 'bootstrap-modal.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-dropdown %}{{ 'bootstrap-dropdown.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-scrollspy %}{{ 'bootstrap-scrollspy.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-tab %}{{ 'bootstrap-tab.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-tooltip %}{{ 'bootstrap-tooltip.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-popover %}{{ 'bootstrap-popover.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-button %}{{ 'bootstrap-button.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-collapse %}{{ 'bootstrap-collapse.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-carousel %}{{ 'bootstrap-carousel.js' | asset_url | script_tag }}{% endif %}
-{% if settings.include-typeahead %}{{ 'bootstrap-typeahead.js' | asset_url | script_tag }}{% endif %}
-{{ 'shop.js' | asset_url | script_tag }}
+    <div class="row">
+      {% if settings.show-sidebar %}{% include '_sidebar' %}{% endif %}
+      <div class="{{ main_span }}">
+        {{ content_for_layout }}
+      </div>
+    </div>
+  </div>
+  
+  <div class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          {% for link in linklists.footer.links %}
+          <li{% if link.active %} class="active"{% endif %}><a href="{{ link.url }}" title="Go to {{ link.title }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  
 </body>
 </html>

@@ -1,45 +1,5 @@
-<div class="row">
-    {% include 'sidebar' %}
-    <div class="span9 columns">
-    {% if settings.show_slideshow %}
-        <div class="carousel slide" id="myCarousel">
-            <div class="carousel-inner">
-            {% for i in (1..5) %}
-                {% assign show_image = 'show_image_' | append: i %}
-                {% capture slideshow %}{{ 'slideshow_' | append: i | append: '.jpg' }}{% endcapture %}
-                
-                {% assign image_link = 'image_' | append: i | append: '_link' %}
-                {% assign image_desc = 'image_' | append: i | append: '_desc' %}
-                {% if settings.[show_image] %}       
-                <div class="item {% if forloop.first %}active item{% endif %}">
-                <a href="{{ settings.[image_link] }}">
-                    <img src="{{ slideshow | asset_url }}" alt="{{ settings.[image_desc] }}">
-                  </a>
-                 {% if settings.[image_desc] != '' %}
-                    <div class="carousel-caption">
-                        <p>{{ settings.[image_desc] }}</p>
-                    </div>
-                    {% endif %}
-                </div>
-                {% endif %}
-            {% endfor %}
-            </div>
-            
-            <a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
-            <a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
-        </div>
-        {% endif %}
-        <hr />
-        <div class="page-header">
-            <h1>{{ pages[settings.welcome_message].title }}</h1>
-        </div>
-        
-        {{ pages[settings.welcome_message].content }}
-        
-        <hr />
-        
-        {% assign col_group = collections[settings.frontpage_collection] %}
-        {% include 'product-loop' %}
+<h1>{{ page_title }}</h1>
 
-    </div>
+<div>
+  {{ pages[settings.homepage-intro].content }}
 </div>
