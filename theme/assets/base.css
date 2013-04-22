@@ -5818,3 +5818,10 @@ body {
   .nav-collapse.collapse {
     height: auto !important;
     overflow: visible !important; } }
+.image_placeholder {
+  background-color: #eee;
+  padding: 60px 20px;
+  color: #ccc;
+  text-shadow: 1px 0px 1px white;
+  text-align: center;
+  font-size: 1.5em; }

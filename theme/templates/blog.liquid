@@ -1,5 +1,3 @@
-<h1>{{ blog.title }}</h1>
-
 {% for l_article in blog.articles %}
 <article>
   <h2>{{ l_article.title | link_to: l_article.url, l_article.title }}</h2>

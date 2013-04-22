@@ -6,6 +6,14 @@
   
   <table>
     <tr>
+      <th><label for="show-author-bios">Show author bios</label></th>
+      <td>
+        <input type="checkbox" name="show-author-bios" id="show-author-bios" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
       <th><label for="show-author-on-article">Show author on article</label></th>
       <td>
         <input type="checkbox" name="show-author-on-article" id="show-author-on-article" value="1" /> Yes
@@ -75,13 +83,72 @@
   </table>
 </fieldset>
 <fieldset>
+  <legend>General</legend>
+  
+  <table>
+    <tr>
+      <th><label for="setup-mode">Setup mode</label></th>
+      <td>
+        <input type="checkbox" name="setup-mode" id="setup-mode" value="1" /> Yes
+        <small><p>Uncheck this to remove instructional text and dummy text to help get you started with your theme.</p></small>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <th><label for="show-search-in-navbar">Show search in navbar</label></th>
+      <td>
+        <input type="checkbox" name="show-search-in-navbar" id="show-search-in-navbar" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <th><label for="thumbnail-span">Thumbnail size (column spans)</label></th>
+      <td>
+        <input type="radio" name="thumbnail-span" id="thumbnail-span" value="3" checked="checked" /> 3
+          <input type="radio" name="thumbnail-span" id="thumbnail-span" value="4" /> 4
+        <small></small>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
   <legend>Homepage</legend>
   
+  <table>
+    <tr>
+      <th><label for="featured-collections-linklist">Featured collections linklist</label></th>
+      <td>
+        <select class="linklist" name="featured-collections-linklist" />
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <th><label for="homepage-featured-products-collection">Homepage featured products collection</label></th>
+      <td>
+        <select class="collection" name="homepage-featured-products-collection" />
+      </td>
+    </tr>
+  </table>
   <table>
     <tr>
       <th><label for="homepage-intro">Homepage intro</label></th>
       <td>
         <select class="page" name="homepage-intro" />
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Localization</legend>
+  
+  <table>
+    <tr>
+      <th><label for="comments-posted-awaiting-moderation">Comments posted. Awaiting moderation.</label></th>
+      <td>
+        <input type="text" name="comments-posted-awaiting-moderation" id="comments-posted-awaiting-moderation" class="text" value="" />
       </td>
     </tr>
   </table>
@@ -109,9 +176,7 @@
     <tr>
       <th><label for="sidebar-linklist">Sidebar linklist</label></th>
       <td>
-        <select class="linklist" name="sidebar-linklist">
-          <option value="main-menu" selected="selected">Main menu</option>
-        </select>
+        <select class="linklist" name="sidebar-linklist" />
       </td>
     </tr>
   </table>

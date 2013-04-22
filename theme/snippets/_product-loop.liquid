@@ -1,17 +1,15 @@
-{% if product.title == blank %}
-{% assign title = "Product title" %}
-{% assign image = "http://placehold.it/480x480&text=Product+thumbnail" %}
-{% assign price = 123.45 %}
+{% capture vars %}
+{% if l_product.featured_image == blank %}
+{% assign image = '<div class="image_placeholder">Product Image</div>' %}
 {% else %}
-{% assign title = "Product title" %}
-{% assign image = product.feature_image.url %}
-{% assign price = 123.45 %}
+{% assign image = l_product.featured_image.src | product_img_url: 'large' %}
 {% endif %}
-<li class="span3">
+{% endcapture %}
+<li class="{% include '__thumbnail-span' %}">
   <div class="thumbnail">
-    <img src="{{ image }}" alt="{{ title }} image">
+    {{ image }}
     <div class="caption">
-      <p><strong>{{ title }}</strong><span class="price pull-right">{{ price | money }}</span></p>
+      <p><strong>{{ l_product.title | link_to: product.url | within: collection }}</strong><span class="price pull-right">{% include '__product-price' %}</span></p>
     </div>
   </div>
 </li>

@@ -1,5 +1,31 @@
-<h1>{{ page_title }}</h1>
-
-<div>
+<div class="well">
+  {% if settings.setup-mode %}
+  <div class="alert alert-info">{% include '__tip-label' %}Choose which page (if any) shows here in the <a href="/admin/themes/{{ theme.id }}/settings" target="_blank">theme settings</a>. Currently showing content of the &ldquo;{{ pages[settings.homepage-intro].title }}&rdquo; page.</div>
+  {% endif %}
   {{ pages[settings.homepage-intro].content }}
 </div>
+
+{% unless settings.featured-collections-linklist == empty %}
+<h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
+{% if settings.setup-mode %}
+<div class="alert alert-info">{% include '__tip-label' %}Set which collections (if any) show here in the <a href="/admin/themes/{{ theme.id }}/settings" target="_blank">theme settings</a> <em>after</em> creating a link list of <em>collections</em> in the <a href="/admin/links" target="_blank">Links admin</a>.</div>
+{% endif %}
+<ul class="thumbnails">
+  {% for link in linklists[settings.featured-collections-linklist].links %}
+    {% assign l_collection = link.object %}
+    {% include '_collection-loop' %}
+  {% endfor %}
+</ul>
+{% endunless %}
+
+{% unless settings.homepage-featured-products-collection == empty %}
+<h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
+{% if settings.setup-mode %}
+<div class="alert alert-info">{% include '__tip-label' %}Set which collection (if any) to show here in the <a href="/admin/themes/{{ theme.id }}/settings" target="_blank">theme settings</a> <em>after</em> creating a collection in the <a href="/admin/collections" target="_blank">Collections admin</a>.</div>
+{% endif %}
+<ul class="thumbnails">
+  {% for l_product in collections[settings.homepage-featured-products-collection].products %}
+    {% include '_product-loop' %}
+  {% endfor %}
+</ul>
+{% endunless %}

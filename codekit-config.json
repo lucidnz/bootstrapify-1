@@ -24,6 +24,17 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/bootstrap-tooltip-ck.js",
       "fileType" : 64
     },
+    "\/sass-twitter-bootstrap\/docs\/assets\/img\/bootstrap-docs-readme.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/bootstrap-docs-readme.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/bootstrap-docs-readme.png",
+      "initialSize" : 30612,
+      "fileType" : 8192
+    },
     "\/sass-twitter-bootstrap\/lib\/bootstrap.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -35,17 +46,6 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/bootstrap.css",
       "fileType" : 4,
       "debugStyle" : 0
-    },
-    "\/sass-twitter-bootstrap\/docs\/assets\/img\/bootstrap-docs-readme.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/bootstrap-docs-readme.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/bootstrap-docs-readme.png",
-      "initialSize" : 30612,
-      "fileType" : 8192
     },
     "\/sass-twitter-bootstrap\/docs\/assets\/img\/example-sites\/breakingnews.png" : {
       "ignoreWasSetByUser" : 0,
@@ -249,15 +249,6 @@
       "initialSize" : 12824,
       "fileType" : 8192
     },
-    "\/sass-twitter-bootstrap\/docs\/base-css.html" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/base-css.html",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
-    },
     "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-popover.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -269,27 +260,14 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-popover-ck.js",
       "fileType" : 64
     },
-    "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.5\/hogan-1.0.5.js" : {
+    "\/sass-twitter-bootstrap\/docs\/base-css.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.5\/hogan-1.0.5.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.5\/hogan-1.0.5-ck.js",
-      "fileType" : 64
-    },
-    "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-justified-nav.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-justified-nav.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-justified-nav.png",
-      "initialSize" : 136021,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/base-css.html",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
     },
     "\/sass-twitter-bootstrap\/lib\/_modals.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -303,6 +281,17 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
+    "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-justified-nav.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-justified-nav.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-justified-nav.png",
+      "initialSize" : 136021,
+      "fileType" : 8192
+    },
     "\/sass-twitter-bootstrap\/lib\/_progress-bars.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -315,6 +304,17 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
+    "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.5\/hogan-1.0.5.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.5\/hogan-1.0.5.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.5\/hogan-1.0.5-ck.js",
+      "fileType" : 64
+    },
     "\/sass-twitter-bootstrap\/js\/bootstrap-transition.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -325,18 +325,6 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/bootstrap-transition-ck.js",
       "fileType" : 64
-    },
-    "\/sass-twitter-bootstrap\/lib\/_alerts.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/lib\/_alerts.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/_alerts.css",
-      "fileType" : 4,
-      "debugStyle" : 0
     },
     "\/sass-twitter-bootstrap\/lib\/_breadcrumbs.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -350,16 +338,17 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/sass-twitter-bootstrap\/js\/bootstrap-button.js" : {
+    "\/sass-twitter-bootstrap\/lib\/_alerts.scss" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/bootstrap-button.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/bootstrap-button-ck.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/lib\/_alerts.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/_alerts.css",
+      "fileType" : 4,
+      "debugStyle" : 0
     },
     "\/sass-twitter-bootstrap\/docs\/assets\/img\/bs-docs-responsive-illustrations.png" : {
       "ignoreWasSetByUser" : 0,
@@ -382,6 +371,17 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/example-sites\/jshint.png",
       "initialSize" : 7258,
       "fileType" : 8192
+    },
+    "\/sass-twitter-bootstrap\/js\/bootstrap-button.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/bootstrap-button.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/bootstrap-button-ck.js",
+      "fileType" : 64
     },
     "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-sticky-footer.png" : {
       "ignoreWasSetByUser" : 0,
@@ -457,17 +457,6 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/lib\/hogan-ck.js",
       "fileType" : 64
     },
-    "\/sass-twitter-bootstrap\/docs\/assets\/js\/bootstrap.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/bootstrap.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/bootstrap-ck.js",
-      "fileType" : 64
-    },
     "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-phantom.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -479,6 +468,29 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-phantom-ck.js",
       "fileType" : 64
     },
+    "\/sass-twitter-bootstrap\/docs\/assets\/js\/bootstrap.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/bootstrap.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/bootstrap-ck.js",
+      "fileType" : 64
+    },
+    "\/sass-twitter-bootstrap\/lib\/_popovers.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/lib\/_popovers.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/_popovers.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
     "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-affix.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -488,17 +500,6 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-affix-ck.js",
-      "fileType" : 64
-    },
-    "\/sass-twitter-bootstrap\/docs\/assets\/js\/google-code-prettify\/prettify.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/google-code-prettify\/prettify.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/google-code-prettify\/prettify-ck.js",
       "fileType" : 64
     },
     "\/sass-twitter-bootstrap\/docs\/assets\/img\/bootstrap-mdo-sfmoma-02.jpg" : {
@@ -512,17 +513,16 @@
       "initialSize" : 81284,
       "fileType" : 4096
     },
-    "\/sass-twitter-bootstrap\/lib\/_popovers.scss" : {
+    "\/sass-twitter-bootstrap\/docs\/assets\/js\/google-code-prettify\/prettify.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/lib\/_popovers.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/_popovers.css",
-      "fileType" : 4,
-      "debugStyle" : 0
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/google-code-prettify\/prettify.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/google-code-prettify\/prettify-ck.js",
+      "fileType" : 64
     },
     "\/sass-twitter-bootstrap\/lib\/_wells.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -567,18 +567,6 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/bootstrap-carousel-ck.js",
       "fileType" : 64
     },
-    "\/sass-twitter-bootstrap\/lib\/_tables.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/lib\/_tables.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/_tables.css",
-      "fileType" : 4,
-      "debugStyle" : 0
-    },
     "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.5\/hogan-1.0.5.min.common.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -598,6 +586,18 @@
       "inputAbbreviatedPath" : "\/theme\/assets\/base.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
+    },
+    "\/sass-twitter-bootstrap\/lib\/_tables.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/lib\/_tables.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/_tables.css",
+      "fileType" : 4,
+      "debugStyle" : 0
     },
     "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/1.0.0\/hogan.js" : {
       "ignoreWasSetByUser" : 0,
@@ -687,17 +687,6 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/test\/mustache-ck.js",
       "fileType" : 64
     },
-    "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-carousel.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-carousel.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-carousel.png",
-      "initialSize" : 339980,
-      "fileType" : 8192
-    },
     "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/test\/index.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -708,6 +697,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/test\/index-ck.js",
       "fileType" : 64
+    },
+    "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-carousel.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-carousel.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-carousel.png",
+      "initialSize" : 339980,
+      "fileType" : 8192
     },
     "\/styles.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -743,17 +743,6 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-collapse-ck.js",
       "fileType" : 64
     },
-    "\/sass-twitter-bootstrap\/docs\/assets\/ico\/apple-touch-icon-114-precomposed.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/ico\/apple-touch-icon-114-precomposed.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/ico\/apple-touch-icon-114-precomposed.png",
-      "initialSize" : 11392,
-      "fileType" : 8192
-    },
     "\/sass-twitter-bootstrap\/docs\/assets\/js\/application.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -764,6 +753,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/application-ck.js",
       "fileType" : 64
+    },
+    "\/sass-twitter-bootstrap\/docs\/assets\/ico\/apple-touch-icon-114-precomposed.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/ico\/apple-touch-icon-114-precomposed.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/ico\/apple-touch-icon-114-precomposed.png",
+      "initialSize" : 11392,
+      "fileType" : 8192
     },
     "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/lib\/compiler.js" : {
       "ignoreWasSetByUser" : 0,
@@ -1027,14 +1027,16 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/sass-twitter-bootstrap\/docs\/scaffolding.html" : {
+    "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.3\/hogan.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/scaffolding.html",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.3\/hogan.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.3\/hogan-ck.js",
+      "fileType" : 64
     },
     "\/sass-twitter-bootstrap\/lib\/_utilities.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -1060,16 +1062,14 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.3\/hogan.js" : {
+    "\/sass-twitter-bootstrap\/docs\/scaffolding.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.3\/hogan.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.3\/hogan-ck.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/scaffolding.html",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
     },
     "\/sass-twitter-bootstrap\/docs\/examples\/sticky-footer.html" : {
       "ignoreWasSetByUser" : 0,
@@ -1365,6 +1365,17 @@
       "initialSize" : 137070,
       "fileType" : 4096
     },
+    "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/images\/noise.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/images\/noise.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/images\/noise.png",
+      "initialSize" : 4594,
+      "fileType" : 8192
+    },
     "\/sass-twitter-bootstrap\/lib\/_accordion.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -1376,17 +1387,6 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/_accordion.css",
       "fileType" : 4,
       "debugStyle" : 0
-    },
-    "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/images\/noise.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/images\/noise.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/images\/noise.png",
-      "initialSize" : 4594,
-      "fileType" : 8192
     },
     "\/sass-twitter-bootstrap\/lib\/_reset.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -1411,16 +1411,14 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/1.0.0\/hogan.min-ck.js",
       "fileType" : 64
     },
-    "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-fluid.png" : {
+    "\/sass-twitter-bootstrap\/docs\/assets\/css\/docs.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-fluid.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-fluid.png",
-      "initialSize" : 209039,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/css\/docs.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/sass-twitter-bootstrap\/docs\/assets\/img\/bs-docs-twitter-github.png" : {
       "ignoreWasSetByUser" : 0,
@@ -1431,6 +1429,17 @@
       "processed" : 0,
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/bs-docs-twitter-github.png",
       "initialSize" : 30968,
+      "fileType" : 8192
+    },
+    "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-fluid.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-fluid.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/examples\/bootstrap-example-fluid.png",
+      "initialSize" : 209039,
       "fileType" : 8192
     },
     "\/sass-twitter-bootstrap\/lib\/_variables.scss" : {
@@ -1444,15 +1453,6 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/_variables.css",
       "fileType" : 4,
       "debugStyle" : 0
-    },
-    "\/sass-twitter-bootstrap\/docs\/assets\/css\/docs.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/css\/docs.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
     },
     "\/sass-twitter-bootstrap\/lib\/_navs.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -1641,17 +1641,6 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/bootstrap-dropdown-ck.js",
       "fileType" : 64
     },
-    "\/sass-twitter-bootstrap\/js\/bootstrap-popover.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/bootstrap-popover.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/bootstrap-popover-ck.js",
-      "fileType" : 64
-    },
     "\/sass-twitter-bootstrap\/docs\/examples\/carousel.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1682,6 +1671,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.5\/hogan-1.0.5.common-ck.js",
+      "fileType" : 64
+    },
+    "\/sass-twitter-bootstrap\/js\/bootstrap-popover.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/bootstrap-popover.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/bootstrap-popover-ck.js",
       "fileType" : 64
     },
     "\/sass-twitter-bootstrap\/docs\/assets\/js\/jquery.js" : {
@@ -1926,28 +1926,6 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/tools\/release-ck.js",
       "fileType" : 64
     },
-    "\/sass-twitter-bootstrap\/docs\/assets\/img\/example-sites\/gathercontent.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/example-sites\/gathercontent.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/example-sites\/gathercontent.png",
-      "initialSize" : 76560,
-      "fileType" : 8192
-    },
-    "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-tooltip.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-tooltip.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-tooltip-ck.js",
-      "fileType" : 64
-    },
     "\/sass-twitter-bootstrap\/docs\/assets\/js\/html5shiv.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1958,6 +1936,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/js\/html5shiv-ck.js",
       "fileType" : 64
+    },
+    "\/sass-twitter-bootstrap\/docs\/assets\/img\/example-sites\/gathercontent.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/example-sites\/gathercontent.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/assets\/img\/example-sites\/gathercontent.png",
+      "initialSize" : 76560,
+      "fileType" : 8192
     },
     "\/sass-twitter-bootstrap\/lib\/_responsive-utilities.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -1970,6 +1959,17 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/css\/_responsive-utilities.css",
       "fileType" : 4,
       "debugStyle" : 0
+    },
+    "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-tooltip.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-tooltip.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-tooltip-ck.js",
+      "fileType" : 64
     },
     "\/sass-twitter-bootstrap\/docs\/build\/node_modules\/hogan.js\/web\/builds\/1.0.5\/hogan-1.0.5.amd.js" : {
       "ignoreWasSetByUser" : 0,
@@ -2170,12 +2170,12 @@
       "initialSize" : 4026,
       "fileType" : 8192
     },
-    "\/sass-twitter-bootstrap\/docs\/javascript.html" : {
+    "\/sass-twitter-bootstrap\/docs\/customize.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/javascript.html",
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/customize.html",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
@@ -2190,12 +2190,12 @@
       "outputAbbreviatedPath" : "\/sass-twitter-bootstrap\/js\/tests\/unit\/bootstrap-scrollspy-ck.js",
       "fileType" : 64
     },
-    "\/sass-twitter-bootstrap\/docs\/customize.html" : {
+    "\/sass-twitter-bootstrap\/docs\/javascript.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/customize.html",
+      "inputAbbreviatedPath" : "\/sass-twitter-bootstrap\/docs\/javascript.html",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },

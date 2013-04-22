@@ -1,5 +1,75 @@
-<h1>{{ article.title }}</h1>
-
 <p class="muted">{{ article.published_at | date: settings.long-date-format }}{% if settings.show-author-on-index %} by {{ article.author }}{% endif %}</p>
 
 {{ article.content }}
+
+{% if article.user.bio != blank and settings.show-author-bios == true %}
+<div class="well muted">
+  <strong>By {{ article.author }}</strong><br>{{ article.user.bio }}
+</div>
+{% endif %}
+
+{% if article.comments_enabled? %}
+
+{% if article.comments.size > 0 %}
+<hr>
+<h3>Comments</h3>
+{% paginate article.comments by 25 %}
+{% for l_comment in article.comments reversed %}
+{% include '_comment' %}
+{% endfor %}
+
+{% include '_pagination' %}
+
+{% endpaginate %}
+{% else %}
+<p>There are currently no comments. Be the first.</p>
+{% endif %}
+<hr>
+<h4>Leave a comment</h4>
+<div class="form-horizontal">
+  {% form article %}
+  {% if form.posted_successfully? %}
+  {% if blog.moderated? %}
+  <div class="alert alert-success">Comment posted. Awaiting moderation.</div>
+  {% else %}
+  <div class="alert alert-success">Comment posted.</div>
+  {% endif %}
+  {% else %}
+  {% if form.errors %}
+  <div class="alert alert-error">Please fix the errors below before submitting your comment.</div>
+  {% endif %}
+	
+  <fieldset>
+    <div class="control-group {% if form.errors contains 'author' %}error{% endif %}">
+      <label for="comment_author" class="control-label">Your name</label>
+      <div class="controls">
+        <input type="text" value="{{form.author}}" name="comment[author]" id="comment_author" class="input-xlarge" placeholder="First Last">
+      </div>
+    </div>
+    <div class="control-group {% if form.errors contains 'email' %}error{% endif %}">
+      <label for="comment_email" class="control-label">Email</label>
+      <div class="controls">
+        <input type="text" value="{{form.email}}" id="comment_email" name="comment[email]" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group {% if form.errors contains 'body' %}error{% endif %}">
+      <label for="comment_body" class="control-label">Comment</label>
+      <div class="controls">
+        <textarea rows="3" id="comment_body" name="comment[body]" class="input-xlarge">{{form.body}}</textarea>
+      </div>
+    </div>
+
+    <div class="controls">
+      {% if blog.moderated? %}
+      <div class="alert alert-info">All comments are held for approval before being published.</div>
+      {% endif %}  
+      <input type="submit" class="btn btn-primary" value="Post comment" />
+    </div>
+  </fieldset>
+  
+  {% endif %}
+	
+  {% endform %}
+</div>
+
+{% endif %}

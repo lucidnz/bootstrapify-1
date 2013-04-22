@@ -1,0 +1,38 @@
+<nav class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+        
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      {% if settings.logo-placement == "navbar" %}
+      <a class="brand{% if settings.show-sidebar %} span3{% endif %}" href="/">{{ wordmark }}</a>
+      {% endif %}
+      <div class="nav-collapse collapse"> 
+        <ul class="nav">
+          {% for link in linklists.main-menu.links %}
+          <li{% if link.active %} class="active"{% endif %}><a href="{{ link.url }}" title="Go to {{ link.title }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+        {% if settings.show-search-in-navbar %}
+        <form class="navbar-search pull-right">
+          <input type="text" class="search-query" placeholder="Search">
+        </form>{% endif %}
+        
+        {% if shop.customer_accounts_enabled %}
+        <ul class="nav pull-right">
+          {% if customer %}
+            <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
+            <li>{{ "Sign out" | customer_logout_link }}</li>
+          {% else %}
+          <li>{{ "Register" | customer_register_link }}</li>
+          <li>{{ "<strong>Have an account?</strong> Sign in" | customer_login_link }}</li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>

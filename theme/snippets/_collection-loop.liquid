@@ -1,0 +1,15 @@
+{% capture vars %}
+{% if l_collection.featured_image == blank %}
+{% assign image = '<div class="image_placeholder">Collection Image</div>' %}
+{% else %}
+{% assign image = l_product.featured_image.src | product_img_url: 'large' %}
+{% endif %}
+{% endcapture %}
+<li class="{% include '__thumbnail-span' %}">
+  <div class="thumbnail">
+    {{ image }}
+    <div class="caption">
+      <strong>{{ l_collection.title | link_to: l_collection.url, l_collection.title }}</strong><span class="pull-right">{{ l_collection.all_products_count }}&nbsp;{{ l_collection.all_products_count | pluralize: 'product','products' }}</span>
+    </div>
+  </div>
+</li>

@@ -1,15 +1,15 @@
-<h1>{{ collection.title }}</h1>
+{% if collection.all_products_count == 0 %}
 
-<ul class="thumbnails">
+<p>Sorry, no products were found in the {{ collection.title }} collection.</p>
 
-{% if collection.all_product_count > 0 %}
-  {% for product in collection.products %}
-    {% include '_product-loop' %}
-  {% endfor %}
-{% else %}
-  {% for i in (1..4) %}
-    {% include '_product-loop' %}
-  {% endfor %}
+{% if settings.setup-mode %}
+<div class="alert alert-info">{% include '__tip-label' %}If you haven&rsquo;t already done so, you can add your first products <a href="/admin/products/" title="Add some products" target="_blank">in the products admin area</a>.</div>
 {% endif %}
 
+{% else %}
+<ul class="thumbnails">
+  {% for l_product in collection.products %}
+  {% include '_product-loop' %}
+  {% endfor %}
 </ul>
+{% endif %}
