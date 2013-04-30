@@ -7,7 +7,7 @@
       "sidebar-linklist": "sidebar-menu",
       "show-author-on-article": true,
       "show-author-on-index": true,
-      "show-sidebar": true,
+      "show-sidebar": false,
       "logo-alignment": "center",
       "logo-placement": "sidebar",
       "homepage-intro": "frontpage",
