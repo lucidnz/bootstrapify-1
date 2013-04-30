@@ -6,10 +6,19 @@
 {% endif %}
 {% endcapture %}
 <div class="row">
-  <div class="span{% if settings.show-sidebar %}5{% else %}6{% endif %}">{{ product.description }}</div>
+  <div class="span{% if settings.show-sidebar %}5{% else %}6{% endif %}">    
+    {% include '_product-add-to-cart-form' %}
+    
+    {{ product.description }}
+    
+  </div>
   <ul class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">
     <ul class="thumbnails">
-      <li><div class="thumbnail">{{ image }}</div></li>
+      <li class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">
+        <div class="thumbnail">
+          {{ image }}
+        </div>
+      </li>
       {% if product.images.size > 1 %}
       {% for image in product.images %}
       <li class="span2">

@@ -1,0 +1,60 @@
+<p class="lead">
+  <del id="compare-at-price-field"></del>
+  <strong id="price-field"></strong>
+  <span id="sale-field" class="label label-success">On Sale!</span>
+  <span id="sold-out-field" class="label label-important">Sold Out</span>
+  <span id="unavailable-field" class="label">Unavailable</span>
+</p>
+
+<hr>
+<form action="/cart/add" method="post">
+  <div id="product-variants">
+    <select id="product-select" name="id">
+      {% for variant in product.variants %}
+      <option value="{{ variant.id }}">{{ variant.title }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <input type="submit" name="add" value="Add to cart" id="purchase" class="btn btn-primary" data-loading-text="Added" />
+</form>
+  
+<script type="text/javascript">
+// <![CDATA[  
+var selectCallback = function(variant, selector) {
+  jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+  jQuery('#price-field').addClass('muted');      // set add-to-cart button to unavailable class and disable button
+  if (variant) {
+    jQuery('#unavailable-field').hide(); // update sold-out-field message
+    jQuery('#price-field').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}"));  // update price field
+    if (variant.compare_at_price > 0) {
+      jQuery('#compare-at-price-field').html(Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}"));  // update compare-at-price field
+      jQuery('#sale-field').show(); // update sale-field message
+    } else {
+      jQuery('#compare-at-price-field').text('');  // clear compare-at-price field
+      jQuery('#sale-field').hide(); // clear sale-field message
+    }
+      
+    if (variant.available == true) {
+      jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+      jQuery('#price-field').removeClass('muted');      // set add-to-cart button to unavailable class and disable button
+      jQuery('#sold-out-field').hide(); // update sold-out-field message
+    } else {
+      jQuery('#sold-out-field').show(); // update sold-out-field message
+    }
+  } else {
+    jQuery('#compare-at-price-field').text('');  // clear compare-at-price field
+    jQuery('#price-field').text('');  // update price field
+    jQuery('#sale-field').hide(); // clear sale-field message
+    jQuery('#sold-out-field').hide(); // update sold-out-field message
+    jQuery('#unavailable-field').show(); // update sold-out-field message
+  } 
+};
+
+// initialize multi-selector for product
+jQuery(function() {
+  new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+});
+// ]]>
+</script>
+<hr>
