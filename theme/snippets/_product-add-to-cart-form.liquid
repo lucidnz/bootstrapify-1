@@ -1,9 +1,9 @@
 <p class="lead">
   <del id="compare-at-price-field" class="muted"></del>
-  <strong id="price-field"></strong>
-  <span id="sale-field" class="label label-success">On Sale!</span>
-  <span id="sold-out-field" class="label label-important">Sold Out</span>
-  <span id="unavailable-field" class="label">Unavailable</span>
+  <span id="price-field"></span>
+  <span id="sale-field" class="label label-success">{% include '_localize' with 'on-sale' %}</span>
+  <span id="sold-out-field" class="label label-important">{% include '_localize' with 'sold-out' %}</span>
+  <span id="unavailable-field" class="label">{% include '_localize' with 'unavailable' %}</span>
 </p>
 
 <hr>

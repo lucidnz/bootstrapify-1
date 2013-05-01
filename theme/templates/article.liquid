@@ -30,7 +30,7 @@
   {% form article %}
   {% if form.posted_successfully? %}
   {% if blog.moderated? %}
-  <div class="alert alert-success">Comment posted. Awaiting moderation.</div>
+  <div class="alert alert-success">{% include '_localize' with 'comments-posted-awaiting-moderation' %}</div>
   {% else %}
   <div class="alert alert-success">Comment posted.</div>
   {% endif %}
