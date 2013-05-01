@@ -6,8 +6,8 @@
 
 {% else %}
 <ul class="thumbnails">
-  {% for l_product in collection.products %}
-  {% include '_product-loop' %}
+  {% for product in collection.products %}
+  {% include '_product-loop' with product %}
   {% endfor %}
 </ul>
 {% endif %}

@@ -8,8 +8,8 @@
 {% capture tip %}Set which collections (if any) show here in the <a href="/admin/themes/{{ theme.id }}/settings" target="_blank">theme settings</a> <em>after</em> creating a <strong>link list</strong> of <em>collections</em> in the <a href="/admin/links" target="_blank">Links admin</a>.{% endcapture %}{% include '__tip' with tip %}
 <ul class="thumbnails">
   {% for link in linklists[settings.featured-collections-linklist].links %}
-    {% assign l_collection = link.object %}
-    {% include '_collection-loop' %}
+    {% assign collection = link.object %}
+    {% include '_collection-loop' with collection %}
   {% endfor %}
 </ul>
 {% endunless %}
@@ -18,8 +18,8 @@
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
 {% capture tip %}Set which collection (if any) to show here in the <a href="/admin/themes/{{ theme.id }}/settings" target="_blank">theme settings</a> <em>after</em> creating a <strong>collection</strong> in the <a href="/admin/collections" target="_blank">Collections admin</a>.{% endcapture %}{% include '__tip' with tip %}
 <ul class="thumbnails">
-  {% for l_product in collections[settings.homepage-featured-products-collection].products %}
-    {% include '_product-loop' %}
+  {% for product in collections[settings.homepage-featured-products-collection].products %}
+    {% include '_product-loop' with product %}
   {% endfor %}
 </ul>
 {% endunless %}

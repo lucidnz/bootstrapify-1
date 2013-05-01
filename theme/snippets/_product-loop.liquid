@@ -1,15 +1,15 @@
 {% capture vars %}
-{% if l_product.featured_image == blank %}
+{% if _product-loop.featured_image == blank %}
 {% assign image = '<div class="image_placeholder">Product Image</div>' %}
 {% else %}
-{% assign image = l_product.featured_image.src | product_img_url: 'large' | img_tag %}
+{% assign image = _product-loop.featured_image.src | product_img_url: 'large' | img_tag %}
 {% endif %}
 {% endcapture %}
 <li class="{% include '__thumbnail-span' %}">
   <div class="thumbnail">
     {{ image }}
-    <div class="caption">
-      <p><strong>{{ l_product.title | link_to: l_product.url | within: collection }}</strong><span class="price pull-right">{% include '__product-price' %}</span></p>
+    <div class="caption">{% assign product_url = _product-loop.url | within: collection %}
+      <p><strong>{{ _product-loop.title | link_to: product_url }}</strong><span class="price pull-right">{% include '__product-price' with _product-loop %}</span></p>
     </div>
   </div>
 </li>

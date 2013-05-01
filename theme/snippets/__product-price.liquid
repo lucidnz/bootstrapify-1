@@ -1,1 +1,1 @@
-{% if l_product.price_varies %}from&nbsp;{{ l_product.price_min }}{% else %}{{ l_product.price | money }}{% endif %}
+{% if __product-price.price_varies %}from&nbsp;{{ __product-price.price_min | money }}{% else %}{{ __product-price.price | money }}{% endif %}
