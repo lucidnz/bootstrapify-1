@@ -11,6 +11,14 @@
     
     {{ product.description }}
     
+    {% if collection %}
+    <hr>
+    <ul class="nav nav-pills">      
+      <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
+      <li>{{ collection.title | link_to: collection.url }}</li>
+      <li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: collection.next_product }}</li>
+    </ul>
+    {% endif %}
   </div>
   <ul class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">
     <ul class="thumbnails">
