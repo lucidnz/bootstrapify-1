@@ -3,9 +3,11 @@
 <head>
   <title>{{ page_title }} | {{ shop.name }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ '_base.css' | asset_url | stylesheet_tag }}
+  {{ '_settings.css' | asset_url | stylesheet_tag }}
   
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  {{ '_base.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
   
   {{ 'bootstrap-button.js' | asset_url | script_tag }}
@@ -13,6 +15,8 @@
   {{ 'bootstrap-collapse.js' | asset_url | script_tag }}
   {{ 'bootstrap-dropdown.js' | asset_url | script_tag }}
   {{ 'bootstrap-modal.js' | asset_url | script_tag }}
+  {{ 'bootstrap-tooltip.js' | asset_url | script_tag }}
+  {{ 'bootstrap-popover.js' | asset_url | script_tag }}
   {{ 'bootstrap-typeahead.js' | asset_url | script_tag }}
   
   {{ content_for_header }}

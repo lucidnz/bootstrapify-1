@@ -1,2 +1,2 @@
 {% capture translation %}{% if settings.[_localize] == blank %}{{ _localize | replace: '-',' ' | replace: '_', ' ' }}{% else %}{{ settings.[_localize] }}{% endif %}{% endcapture %}
-{{ translation }}{% if settings.setup-mode %} <a href="#" data-toggle="tooltip" title="You can edit the wording in /admin/themes/{{ theme.id }}/settings">?</a>{% endif %}
+{{ translation }}{% if settings.setup-mode %} <a href="#" class="localize" data-toggle="tooltip" title="Edit wording in Theme Settings"><i class="icon-question-sign"></i></a>{% endif %}

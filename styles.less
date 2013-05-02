@@ -1,5 +1,7 @@
 @import "bootstrap/less/bootstrap.less";
 
+@import "font-awesome/less/font-awesome.less";
+
 body {
   padding-top: @navbarHeight + 20;
   padding-bottom: @navbarHeight + 20;
@@ -24,4 +26,14 @@ body {
   .lead & {
    font-weight: normal; 
   }
+}
+
+a {
+  .label & {
+    color: inherit !important;
+  }
+  
+  &:hover, &.localize:hover {
+    text-decoration: none;
+  };
 }
