@@ -1,2 +1,1 @@
-{% capture translation %}{% if settings.[_localize] == blank %}{{ _localize | replace: '-',' ' | replace: '_', ' ' }}{% else %}{{ settings.[_localize] }}{% endif %}{% endcapture %}
-{{ translation }}{% if settings.setup-mode %} <a href="#" class="localize" data-toggle="tooltip" title="Edit wording in Theme Settings"><i class="icon-question-sign"></i></a>{% endif %}
+{% capture translation %}{% if settings.[_localize] == blank %}{{ _localize | replace: '-',' ' | replace: '_', ' ' | capitalize }}{% else %}{{ settings.[_localize] }}{% endif %}{% endcapture %}{{ translation }}{% if settings.setup-mode %} <a href="#" class="localize" data-toggle="tooltip" title="Customizable in theme settings"><i class="icon-info-sign muted"></i></a>{% endif %}

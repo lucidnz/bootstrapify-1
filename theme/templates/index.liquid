@@ -1,10 +1,10 @@
 <div class="well">
-  {% capture tip %}Choose which page (if any) shows here in the <a href="/admin/themes/{{ theme.id }}/settings" target="_blank">theme settings</a> under Homepage &raquo; Homepage Intro. Currently showing content of the &ldquo;{{ pages[settings.homepage-intro].title }}&rdquo; page.{% endcapture %}{% include '__tip' with tip %}
+  {% capture tip %}Showing contents of <em>{{ pages[settings.homepage-intro].title }}</em> (<a href="/admin/pages/{{ pages[settings.homepage-intro].id }}">edit page</a>).{% endcapture %}{% assign tip_title = 'Homepage intro' %}{% include '__tip' %}
   {{ pages[settings.homepage-intro].content }}
 </div>
 
 {% unless settings.featured-collections-linklist == empty %}
-{% capture tip %}Set which collections (if any) show here in the <a href="/admin/themes/{{ theme.id }}/settings" target="_blank">theme settings</a> <em>after</em> creating a <strong>link list</strong> of <em>collections</em> in the <a href="/admin/links" target="_blank">Links admin</a>.{% endcapture %}{% include '__tip' with tip %}
+{% capture tip %}Showing collections from the <em>{{ linklists[settings.featured-collections-linklist].title }}</em> link list (<a href="/admin/link_lists/{{ linklists[settings.featured-collections-linklist].id }}">edit link list</a>). The heading is the name of the linklist (and can be changed).{% endcapture %}{% assign tip_title = "Featured collections linklist" %}{% include '__tip' %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
 <ul class="thumbnails">
   {% for link in linklists[settings.featured-collections-linklist].links %}
@@ -15,7 +15,7 @@
 {% endunless %}
 
 {% unless settings.homepage-featured-products-collection == empty %}
-{% capture tip %}Set which collection (if any) to show here in the <a href="/admin/themes/{{ theme.id }}/settings" target="_blank">theme settings</a> <em>after</em> creating a <strong>collection</strong> in the <a href="/admin/collections" target="_blank">Collections admin</a>.{% endcapture %}{% include '__tip' with tip %}
+{% capture tip %}Showing products from the <em>{{ collections[settings.homepage-featured-products-collection].title }}</em> collection (<a href="/admin/collections/{{ collections[settings.homepage-featured-products-collection].id }}">edit collection</a>). The heading is the name of the collection (and can be changed).{% endcapture %}{% assign tip_title = "Homepage featured products collection" %}{% include '__tip' %}
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
 <ul class="thumbnails">
   {% for product in collections[settings.homepage-featured-products-collection].products %}

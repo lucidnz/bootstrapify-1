@@ -1,4 +1,8 @@
 $(function() {
   $('.localize').tooltip();
-  $('.tip').popover()
+  $('.tip').popover({
+    trigger: 'click',
+    placement: 'left',
+    html: true
+  });
 });

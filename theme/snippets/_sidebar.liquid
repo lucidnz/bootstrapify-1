@@ -3,6 +3,7 @@
   <h1><a href="/">{{ shop.name }}</a></h1>
 </header>{% endif %}
 {% unless linklists[settings.sidebar-linklist] == empty %}
+{% capture tip %}Showing <em>{{ linklists[settings.sidebar-linklist].title }}</em> link list (<a href="/admin/linklists/{{ linklists[settings.sidebar-linklist].id }}">edit link list</a>).{% endcapture %}{% assign tip_title = "Sidebar link list" %}{% include '__tip' %}
 <h3>{{ linklists[settings.sidebar-linklist].title }}</h3>
 
 <ul class="nav nav-pills nav-stacked">
@@ -13,6 +14,7 @@
 {% endunless %}
 
 {% unless blogs[settings.sidebar-blog] == empty %}
+{% capture tip %}Showing <em>{{ blogs[settings.sidebar-blog].title }}</em> blog articles (<a href="/admin/blogs/{{ blogs[settings.sidebar-blog].id }}">edit blog</a>).{% endcapture %}{% assign tip_title = "Sidebar blog" %}{% include '__tip' %}
 <h3>{{ blogs[settings.sidebar-blog].title }}</h3>
 
 <ul class="nav nav-pills nav-stacked">
