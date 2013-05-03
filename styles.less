@@ -20,13 +20,13 @@ body {
 
 /*
 .label {
-  font-size: .9em;
-  line-height: 1em;
-  padding: .3em;
+font-size: .9em;
+line-height: 1em;
+padding: .3em;
   
-  .lead & {
-   font-weight: normal; 
-  }
+.lead & {
+font-weight: normal; 
+}
 }
 */
 
@@ -34,7 +34,7 @@ body {
   & span,
   & del,
   & .label {
-   vertical-align: middle; 
+    vertical-align: middle; 
   }
 
   .form-actions & {
@@ -50,4 +50,16 @@ a {
   &:hover, &.localize:hover {
     text-decoration: none;
   };
+}
+
+td,
+th {
+  &.money,
+  &.text-right {
+    text-align: right;
+  }
+  
+  &.text-center {
+    text-align: center;
+  }
 }

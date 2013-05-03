@@ -1309,3 +1309,5 @@ body{padding-top:60px;padding-bottom:60px;}
 .form-actions .lead{margin-bottom:0;}
 .label a{color:inherit !important;}
 a:hover,a.localize:hover{text-decoration:none;}
+td.money,th.money,td.text-right,th.text-right{text-align:right;}
+td.text-center,th.text-center{text-align:center;}
