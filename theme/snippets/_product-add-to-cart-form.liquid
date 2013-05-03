@@ -1,12 +1,3 @@
-<p class="lead">
-  <del id="compare-at-price-field" class="muted"></del>
-  <span id="price-field"></span>
-  <span id="sale-field" class="label label-success">{% include '_localize' with 'on-sale' %}</span>
-  <span id="sold-out-field" class="label label-important">{% include '_localize' with 'sold-out' %}</span>
-  <span id="unavailable-field" class="label">{% include '_localize' with 'unavailable' %}</span>
-</p>
-
-<hr>
 <form action="/cart/add" method="post">
   <div id="product-variants">
     <select id="product-select" name="id">
@@ -15,14 +6,25 @@
       {% endfor %}
     </select>
   </div>
-
-  <input type="submit" name="add" value="Add to cart" id="purchase" class="btn btn-primary" data-loading-text="Added" />
+  
+  <p class="lead">
+    <del id="compare-at-price-field" class="muted"></del>
+    <span id="price-field"></span>
+    <span id="sale-field" class="label label-success">{% include '_localize' with 'on-sale' %}</span>
+    <span id="sold-out-field" class="label label-important">{% include '_localize' with 'sold-out' %}</span>
+    <span id="unavailable-field" class="label">{% include '_localize' with 'unavailable' %}</span>
+  
+    <input type="submit" name="add" value="Add to cart" id="purchase" class="btn" data-loading-text="Added" />
+  </p>
+  
 </form>
   
 <script type="text/javascript">
 // <![CDATA[  
 var selectCallback = function(variant, selector) {
   jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+  jQuery('#purchase').removeClass('btn-primary');
+  jQuery('#purchase').hide();
   jQuery('#price-field').addClass('muted');      // set add-to-cart button to unavailable class and disable button
   if (variant) {
     jQuery('#unavailable-field').hide(); // update sold-out-field message
@@ -36,6 +38,8 @@ var selectCallback = function(variant, selector) {
     }
       
     if (variant.available == true) {
+      jQuery('#purchase').show();
+      jQuery('#purchase').addClass('btn-primary');
       jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
       jQuery('#price-field').removeClass('muted');      // set add-to-cart button to unavailable class and disable button
       jQuery('#sold-out-field').hide(); // update sold-out-field message
