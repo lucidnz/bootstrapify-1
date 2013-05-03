@@ -1,30 +1,20 @@
-<form action="/cart/add" method="post">
-  <div id="product-variants">
-    <select id="product-select" name="id">
-      {% for variant in product.variants %}
-      <option value="{{ variant.id }}">{{ variant.title }}</option>
-      {% endfor %}
-    </select>
-  </div>
+{% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include '_product-add-to-cart-button' with ' style="margin-top: 0;"' %}{% endif %}
+<div id="product-variants">
+  <select id="product-select" name="id">
+    {% for variant in product.variants %}
+    <option value="{{ variant.id }}">{{ variant.title }}</option>
+    {% endfor %}
+  </select>
+</div>
   
-  <p class="lead">
-    <del id="compare-at-price-field" class="muted"></del>
-    <span id="price-field"></span>
-    <span id="sale-field" class="label label-success">{% include '_localize' with 'on-sale' %}</span>
-    <span id="sold-out-field" class="label label-important">{% include '_localize' with 'sold-out' %}</span>
-    <span id="unavailable-field" class="label">{% include '_localize' with 'unavailable' %}</span>
-  
-    <input type="submit" name="add" value="Add to cart" id="purchase" class="btn" data-loading-text="Added" />
-  </p>
-  
-</form>
-  
+{% if settings.placement-of-add-to-cart-button == "below-variant-options" %}{% include '_product-add-to-cart-button' %}{% endif %}
+    
 <script type="text/javascript">
 // <![CDATA[  
 var selectCallback = function(variant, selector) {
   jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
   jQuery('#purchase').removeClass('btn-primary');
-  jQuery('#purchase').hide();
+  // jQuery('#purchase').hide();
   jQuery('#price-field').addClass('muted');      // set add-to-cart button to unavailable class and disable button
   if (variant) {
     jQuery('#unavailable-field').hide(); // update sold-out-field message
@@ -38,7 +28,7 @@ var selectCallback = function(variant, selector) {
     }
       
     if (variant.available == true) {
-      jQuery('#purchase').show();
+      // jQuery('#purchase').show();
       jQuery('#purchase').addClass('btn-primary');
       jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
       jQuery('#price-field').removeClass('muted');      // set add-to-cart button to unavailable class and disable button
@@ -61,4 +51,3 @@ jQuery(function() {
 });
 // ]]>
 </script>
-<hr>

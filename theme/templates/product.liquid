@@ -5,39 +5,56 @@
 {% assign image = product.featured_image.src | product_img_url: 'grande' | img_tag %}
 {% endif %}
 {% endcapture %}
-<div class="row">
-  <div class="span{% if settings.show-sidebar %}5{% else %}6{% endif %}">    
-    {% include '_product-add-to-cart-form' %}
-    {% if settings.striped-tables %}{% assign table_striped = " table-striped" %}{% endif %}
-    {% if settings.table-borders %}{% assign table_borders = " table-bordered" %}{% endif %}
-    {% assign table_class = '<table class="table table-hover table-condensed' | append: table_striped | append: table_borders | append: '"' %}
-    {{ product.description | replace_first: '<table',table_class }}
+<form action="/cart/add" method="post">
+  <div class="row">
+    <div class="span{% if settings.show-sidebar %}5{% else %}6{% endif %}">    
+      {% include '_product-add-to-cart-form' %}
+      {% if settings.striped-tables %}{% assign table_striped = " table-striped" %}{% endif %}
+      {% if settings.table-borders %}{% assign table_borders = " table-bordered" %}{% endif %}
+      {% assign table_class = '<table class="table table-hover table-condensed' | append: table_striped | append: table_borders | append: '"' %}
+      {{ product.description | replace_first: '<table',table_class }}
+      
+      {% if settings.placement-of-add-to-cart-button == "below-description-above-meta-data" %}{% include '_product-add-to-cart-button' %}{% endif %}
     
-    {% if collection %}
-    <hr>
-    <ul class="nav nav-pills">      
-      <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
-      <li>{{ collection.title | link_to: collection.url }}</li>
-      <li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: collection.next_product }}</li>
-    </ul>
-    {% endif %}
-  </div>
-  <ul class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">
-    <ul class="thumbnails">
-      <li class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">
-        <div class="thumbnail">
-          {{ image }}
-        </div>
-      </li>
-      {% if product.images.size > 1 %}
-      {% for image in product.images %}
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          {{ image.src | product_img_url: 'medium' | img_tag }}
-        </a>
-      </li>
-      {% endfor %}
+      <dl class="dl-horizontal">
+        <dt>Vendor</dt>
+        <dd>{{ product.vendor | link_to_vendor }}</dd>
+        <dt>Type</dt>
+        <dd>{{ product.type | link_to_type }}</dd>
+        <dt>Collections</dt>
+        <dd>{% for collection in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ collection.title | link_to: collection.url }}{% endfor %}</dd>
+        <dt>Tags</dt>
+        <dd>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</dd>
+      </dl>
+      
+      {% if settings.placement-of-add-to-cart-button == "at-bottom-of-page" %}{% include '_product-add-to-cart-button' %}{% endif %}
+    
+      {% if collection %}
+      <hr>
+      <ul class="nav nav-pills">      
+        <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
+        <li>{{ collection.title | link_to: collection.url }}</li>
+        <li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: collection.next_product }}</li>
+      </ul>
       {% endif %}
-    </ul>
+    </div>
+    <ul class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">
+      <ul class="thumbnails">
+        <li class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">
+          <div class="thumbnail">
+            {{ image }}
+          </div>
+        </li>
+        {% if product.images.size > 1 %}
+        {% for image in product.images %}
+        <li class="span2">
+          <a href="#" class="thumbnail">
+            {{ image.src | product_img_url: 'medium' | img_tag }}
+          </a>
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
   </div>
-</div>
+</form>
