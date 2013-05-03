@@ -18,6 +18,7 @@ body {
   font-size: 1.5em;
 }
 
+/*
 .label {
   font-size: .9em;
   line-height: 1em;
@@ -25,6 +26,15 @@ body {
   
   .lead & {
    font-weight: normal; 
+  }
+}
+*/
+
+.lead {
+  & span,
+  & del,
+  & .label {
+   vertical-align: middle; 
   }
 }
 
