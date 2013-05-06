@@ -9,8 +9,8 @@
 {% capture tip %}Showing collections from the <em>{{ linklists[settings.featured-collections-linklist].title }}</em> link list (<a href="/admin/link_lists/{{ linklists[settings.featured-collections-linklist].id }}">edit link list</a>). The heading is the name of the linklist (and can be changed).{% endcapture %}{% assign tip_title = "Featured collections linklist" %}{% include '__tip' %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
 <ul class="thumbnails">
-  {% for link in linklists[settings.featured-collections-linklist].links %}
-    {% assign collection = link.object %}
+  {% for l in linklists[settings.featured-collections-linklist].links %}
+    {% assign collection = l.object %}
     {% include '_collection-loop' with collection %}
   {% endfor %}
 </ul>
@@ -20,8 +20,8 @@
 {% capture tip %}Showing products from the <em>{{ collections[settings.homepage-featured-products-collection].title }}</em> collection (<a href="/admin/collections/{{ collections[settings.homepage-featured-products-collection].id }}">edit collection</a>). The heading is the name of the collection (and can be changed).{% endcapture %}{% assign tip_title = "Homepage featured products collection" %}{% include '__tip' %}
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
 <ul class="thumbnails">
-  {% for product in collections[settings.homepage-featured-products-collection].products %}
-    {% include '_product-loop' with product %}
+  {% for p in collections[settings.homepage-featured-products-collection].products %}
+    {% include '_product' with p %}
   {% endfor %}
 </ul>
 {% endunless %}

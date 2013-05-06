@@ -1,7 +1,7 @@
-{% for l_article in blog.articles %}
+{% for a in blog.articles %}
 <article>
-  <h2>{{ l_article.title | link_to: l_article.url, l_article.title }}</h2>
-  <p class="muted">{{ l_article.published_at | date: settings.short-date-format }}{% if settings.show-author-on-index %} by {{ l_article.author }}{% endif %}</p>
-  {{ l_article.content | truncatewords: settings.truncate-words }}
+  <h2>{{ a.title | link_to: a.url, a.title }}</h2>
+  <p class="muted">{{ a.published_at | date: settings.short-date-format }}{% if settings.show-author-on-index %} by {{ a.author }}{% endif %}</p>
+  {{ a.content | truncatewords: settings.truncate-words }}
 </article>
 {% endfor %}

@@ -12,8 +12,8 @@
       {% endif %}
       <div class="nav-collapse collapse"> 
         <ul class="nav">
-          {% for link in linklists.main-menu.links %}
-          <li{% if link.active %} class="active"{% endif %}><a href="{{ link.url }}" title="Go to {{ link.title }}">{{ link.title }}</a></li>
+          {% for l in linklists.main-menu.links %}
+          <li{% if l.active %} class="active"{% endif %}><a href="{{ l.url }}" title="Go to {{ l.title }}">{{ l.title }}</a></li>
           {% endfor %}
         </ul>
         {% if settings.show-search-in-navbar %}

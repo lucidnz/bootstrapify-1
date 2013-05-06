@@ -14,7 +14,7 @@
       {% assign table_class = '<table class="table table-hover table-condensed' | append: table_striped | append: table_borders | append: '"' %}
       {{ product.description | replace_first: '<table',table_class }}
       
-      {% if settings.placement-of-add-to-cart-button == "below-description-above-meta-data" %}{% include '_product-add-to-cart-button' %}{% endif %}
+      {% if settings.placement-of-add-to-cart-button == "below-description-above-meta-data" %}{% include 'product-add-to-cart-button' %}{% endif %}
     
       <dl class="dl-horizontal">
         <dt>Vendor</dt>
@@ -22,19 +22,19 @@
         <dt>Type</dt>
         <dd>{{ product.type | link_to_type }}</dd>
         <dt>Collections</dt>
-        <dd>{% for collection in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ collection.title | link_to: collection.url }}{% endfor %}</dd>
+        <dd>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</dd>
         <dt>Tags</dt>
         <dd>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</dd>
       </dl>
       
-      {% if settings.placement-of-add-to-cart-button == "at-bottom-of-page" %}{% include '_product-add-to-cart-button' %}{% endif %}
+      {% if settings.placement-of-add-to-cart-button == "at-bottom-of-page" %}{% include 'product-add-to-cart-button' %}{% endif %}
     
       {% if collection %}
       <hr>
       <ul class="nav nav-pills">      
-        <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
-        <li>{{ collection.title | link_to: collection.url }}</li>
-        <li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: collection.next_product }}</li>
+        <li{% unless c.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: c.previous_product }}</li>
+        <li>{{ c.title | link_to: c.url }}</li>
+        <li{% unless c.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: c.next_product }}</li>
       </ul>
       {% endif %}
     </div>

@@ -3,6 +3,9 @@
 <head>
   <title>{{ page_title }} | {{ shop.name }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  {% include 'meta' %}
+  
   {{ '_base.css' | asset_url | stylesheet_tag }}
   {{ '_settings.css' | asset_url | stylesheet_tag }}
   
@@ -23,7 +26,7 @@
 </head>
 
 <body>
-  {% include '_navbar' %}
+  {% include 'navbar' %}
   
   <div class="container">
     {% if settings.logo-placement != "sidebar" and settings.logo-placement != "navbar" %}
@@ -33,7 +36,7 @@
     {% endif %}
     
     <div class="row">
-      {% if settings.show-sidebar %}{% include '_sidebar' %}{% endif %}
+      {% if settings.show-sidebar %}{% include 'sidebar' %}{% endif %}
       <div class="{% include '__main-span' %}">
         <h1 class="page-header">{{ page_title }}</h1>
         {{ content_for_layout }}
@@ -41,18 +44,7 @@
     </div>
   </div>
   
-  <div class="navbar navbar-fixed-bottom">
-    <div class="navbar-inner">
-      <div class="container">
-        <ul class="nav">
-          {% for link in linklists.footer.links %}
-          <li{% if link.active %} class="active"{% endif %}><a href="{{ link.url }}" title="Go to {{ link.title }}">{{ link.title }}</a></li>
-          {% endfor %}
-        </ul>
-        <div class="pull-right navbar-text"><small class="muted"><strong>&copy;{{ 'now' | date: '%Y' }}&nbsp;<a href="/" title="Homepage of {{ shop.name }}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. <em>Boostrapify</em>&nbsp;theme&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid&nbsp;Design</a>. Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.</small></div>
-      </div>
-    </div>
-  </div>
+  {% include 'footer' %}
   
 </body>
 </html>

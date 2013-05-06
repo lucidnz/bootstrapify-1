@@ -1,23 +1,23 @@
 <table class="table table-striped">
-{% for item in cart.items %}
+{% for i in cart.items %}
 <thead>
   <tr>
     <th>&nbsp;</th>
-    <th colspan="2">{% include '_localize' with 'item' %}</th>
-    <th class="money span2">{% include '_localize' with 'line-total' %}</th>
+    <th colspan="2">{% include '__localize' with 'item' %}</th>
+    <th class="money span2">{% include '__localize' with 'line-total' %}</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="span2"><img src="{{ item.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
-    <td colspan="2"><strong>{{ item.title | link_to: item.product.url }}</strong></td>
-    <td class="money">{{ item.price | money_with_currency }}</td>
+    <td class="span2"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
+    <td colspan="2"><strong>{{ i.title | link_to: i.product.url }}</strong></td>
+    <td class="money">{{ i.price | money_with_currency }}</td>
   </tr>
 </tbody>
 {% endfor %}
 <tfoot>
   <td colspan="2">&nbsp;</td>
-  <td class="span2 text-right">{% include '_localize' with 'sub-total' %}</td>
+  <td class="span2 text-right">{% include '__localize' with 'sub-total' %}</td>
   <td class="money"><strong>{{ cart.total_price | money_with_currency }}</strong></td>
 </tfoot>
 </table>

@@ -1,40 +1,40 @@
-{% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include '_product-add-to-cart-button' with ' style="margin-top: 0;"' %}{% endif %}
+{% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include 'product-add-to-cart-button' with ' style="margin-top: 0;"' %}{% endif %}
 <div id="product-variants">
   <select id="product-select" name="id">
-    {% for variant in product.variants %}
-    <option value="{{ variant.id }}">{{ variant.title }}</option>
+    {% for v in product.variants %}
+    <option value="{{ v.id }}">{{ v.title }}</option>
     {% endfor %}
   </select>
 </div>
   
-{% if settings.placement-of-add-to-cart-button == "below-variant-options" %}{% include '_product-add-to-cart-button' %}{% endif %}
+{% if settings.placement-of-add-to-cart-button == "below-variant-options" %}{% include 'product-add-to-cart-button' %}{% endif %}
     
 <script type="text/javascript">
 // <![CDATA[  
 var selectCallback = function(variant, selector) {
   jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
   jQuery('#purchase').removeClass('btn-primary');
-  jQuery('#purchase').val('{% include '_localize' with 'unavailable' %}');
+  jQuery('#purchase').val('{% include '__localize' with 'unavailable' %}');
   // jQuery('#purchase').hide();
   jQuery('#price-field').addClass('muted');      // set add-to-cart button to unavailable class and disable button
   if (variant) {
-    jQuery('#price-field').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}"));  // update price field
-    if (variant.compare_at_price > 0) {
-      jQuery('#compare-at-price-field').html(Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}"));  // update compare-at-price field
+    jQuery('#price-field').html(Shopify.formatMoney(v.price, "{{shop.money_with_currency_format}}"));  // update price field
+    if (v.compare_at_price > 0) {
+      jQuery('#compare-at-price-field').html(Shopify.formatMoney(v.compare_at_price, "{{shop.money_with_currency_format}}"));  // update compare-at-price field
       jQuery('#sale-field').show(); // update sale-field message
     } else {
       jQuery('#compare-at-price-field').text('');  // clear compare-at-price field
       jQuery('#sale-field').hide(); // clear sale-field message
     }
       
-    if (variant.available == true) {
+    if (v.available == true) {
       // jQuery('#purchase').show();
       jQuery('#purchase').addClass('btn-primary');
       jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
-      jQuery('#purchase').val('{% include '_localize' with 'add-to-cart' %}');
+      jQuery('#purchase').val('{% include '__localize' with 'add-to-cart' %}');
       jQuery('#price-field').removeClass('muted');      // set add-to-cart button to unavailable class and disable button
     } else {
-      jQuery('#purchase').val('{% include '_localize' with 'sold-out' %}');
+      jQuery('#purchase').val('{% include '__localize' with 'sold-out' %}');
     }
   } else {
     jQuery('#compare-at-price-field').text('');  // clear compare-at-price field

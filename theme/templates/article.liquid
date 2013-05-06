@@ -14,11 +14,11 @@
 <hr>
 <h3>Comments</h3>
 {% paginate article.comments by 25 %}
-{% for l_comment in article.comments reversed %}
-{% include '_comment' %}
+{% for c in article.comments reversed %}
+{% include '_comment' with c %}
 {% endfor %}
 
-{% include '_pagination' %}
+{% include 'pagination' %}
 
 {% endpaginate %}
 {% else %}
@@ -30,7 +30,7 @@
   {% form article %}
   {% if form.posted_successfully? %}
   {% if blog.moderated? %}
-  <div class="alert alert-success">{% include '_localize' with 'comments-posted-awaiting-moderation' %}</div>
+  <div class="alert alert-success">{% include '__localize' with 'comments-posted-awaiting-moderation' %}</div>
   {% else %}
   <div class="alert alert-success">Comment posted.</div>
   {% endif %}

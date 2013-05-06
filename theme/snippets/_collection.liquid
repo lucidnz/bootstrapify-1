@@ -1,5 +1,5 @@
 {% capture vars %}
-{% if _collection-loop.featured_image == blank %}
+{% if _collection.featured_image == blank %}
 {% assign image = '<div class="image_placeholder">Collection Image</div>' %}
 {% else %}
 {% assign image = l_product.featured_image.src | product_img_url: 'large' %}
@@ -9,7 +9,7 @@
   <div class="thumbnail">
     {{ image }}
     <div class="caption">
-      <strong>{{ _collection-loop.title | link_to: _collection-loop.url, _collection-loop.title }}</strong><span class="pull-right">{{ _collection-loop.all_products_count }}&nbsp;{{ _collection-loop.all_products_count | pluralize: 'product','products' }}</span>
+      <strong>{{ _collection.title | link_to: _collection.url, _collection.title }}</strong><span class="pull-right">{{ _collection.all_products_count }}&nbsp;{{ _collection.all_products_count | pluralize: 'product','products' }}</span>
     </div>
   </div>
 </li>

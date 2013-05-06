@@ -1,0 +1,9 @@
+<div class="form-actions"{{ product-add-to-cart-button }}>
+  <p class="lead">
+    <span id="price-field"></span>
+    <span id="sale-field" class="label label-success">{% include '__localize' with 'on-sale' %}</span>
+    <del id="compare-at-price-field" class="muted"></del>
+
+    <input type="submit" name="add" value="{% include '__localize' with 'add-to-cart' %}" id="purchase" class="btn pull-right" />
+  </p>
+</div>
