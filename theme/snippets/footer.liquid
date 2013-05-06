@@ -3,13 +3,13 @@
     <div class="container">
       <div class=" pull-right navbar-text">
         {% for l in linklists.footer.links %}
-        {% if forloop.index > 1 %}<span class="divider">|</span>{% endif %}
-        {% if l.active %}<strong>{% endif %}<a href="{{ l.url }}" title="Go to {{ l.title }}">{{ l.title }}</a>{% if l.active %}</strong>{% endif %}
+        {% if forloop.index > 1 %}<span class="divider muted">|</span>{% endif %}
+        {% if l.active %}<strong>{% endif %}<a href="{{ l.url }}"{% unless l.active %} class="muted"{% endunless %} title="Go to {{ l.title }}">{{ l.title }}</a>{% if l.active %}</strong>{% endif %}
         {% endfor %}
       </div>
       <div class="pull-left navbar-text">
-        &copy;{{ 'now' | date: '%Y' }}&nbsp;<a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a>. 
         <small class="muted">
+          &copy;{{ 'now' | date: '%Y' }}&nbsp;<strong><a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. 
           <a href="https://github.com/luciddesign/bootstrapify/" title="Bootstrapify, open-source Shopify theme on GitHub">Boostrapify</a>&nbsp;theme&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid&nbsp;Design</a>.&nbsp;Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.
         </small>
       </div>
