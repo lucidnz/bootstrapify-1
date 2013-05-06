@@ -1,23 +1,54 @@
-<table class="table table-striped">
-{% for i in cart.items %}
-<thead>
-  <tr>
-    <th>&nbsp;</th>
-    <th colspan="2">{% include '__localize' with 'item' %}</th>
-    <th class="money span2">{% include '__localize' with 'line-total' %}</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td class="span2"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
-    <td colspan="2"><strong>{{ i.title | link_to: i.product.url }}</strong></td>
-    <td class="money">{{ i.price | money_with_currency }}</td>
-  </tr>
-</tbody>
-{% endfor %}
-<tfoot>
-  <td colspan="2">&nbsp;</td>
-  <td class="span2 text-right">{% include '__localize' with 'sub-total' %}</td>
-  <td class="money"><strong>{{ cart.total_price | money_with_currency }}</strong></td>
-</tfoot>
-</table>
+{% if cart.item_count == 0 %}
+<p class="lead">
+  {% include '_localize' with 'your-cart-is-empty' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'browse-all-products' %}</a>.{% endunless %}
+</p>
+{% else %}
+<script type="text/javascript">
+function remove_item(id) {
+  document.getElementById('updates_'+id).value = 0;
+  document.getElementById('cart').submit();
+}
+</script>
+
+<form action="/cart" method="post" id="cart">
+  <table class="table table-striped">
+    {% for i in cart.items %}
+    <thead>
+      <tr>
+        <th class="hidden-phone">&nbsp;</th>
+        <th>{% include '__localize' with 'item' %}</th>
+        <th class="money hidden-phone">{% include '__localize' with 'price' %}</th>
+        <th class="text-center">{% include '__localize' with 'qty' %}</th>
+        <th class="hidden-phone">&nbsp;</th>
+        <th class="money">{% include '__localize' with 'line-total' %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="span2 hidden-phone"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
+        <td>
+          <strong>{{ i.product.title | link_to: i.product.url }}</strong>
+          <small class="muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
+        </td>
+        <td class="money hidden-phone">{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</td>
+        <td class="text-center">
+            <input type="text" class="span1" name="updates[{{ i.variant.id }}]" id="updates_{{ i.variant.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
+        </td>
+        <td class="hidden-phone"><a class="muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="icon-trash"></i></a></td>
+        <td class="money">
+          {{ i.line_price | money_with_currency | replace: ' ','&nbsp' }}
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  
+  <div class="form-actions text-right">
+    <h3><small>{% include '__localize' with 'sub-total' %}</small> {{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</h3>
+    <div class="btn-group">
+      <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'update' %}" class="btn" />
+      <input type="submit" name="checkout" value="{% include '__localize' with 'checkout' %}" class="btn btn-primary" />
+    </div>
+  </div>
+</form>
+{% endif %}

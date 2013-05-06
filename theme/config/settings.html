@@ -46,8 +46,8 @@
       <th><label for="logo-alignment">Logo alignment</label></th>
       <td>
         <input type="radio" name="logo-alignment" id="logo-alignment" value="center" checked="checked" /> Center
-          <input type="radio" name="logo-alignment" id="logo-alignment" value="left" /> Left
-          <input type="radio" name="logo-alignment" id="logo-alignment" value="right" /> Right
+        <input type="radio" name="logo-alignment" id="logo-alignment" value="left" /> Left
+        <input type="radio" name="logo-alignment" id="logo-alignment" value="right" /> Right
       </td>
     </tr>
   </table>
@@ -56,8 +56,20 @@
       <th><label for="logo-placement">Logo placement</label></th>
       <td>
         <input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar
-          <input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar
-          <input type="radio" name="logo-placement" id="logo-placement" value="header" /> Header
+        <input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar
+        <input type="radio" name="logo-placement" id="logo-placement" value="header" /> Header
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Cart</legend>
+  
+  <table>
+    <tr>
+      <th><label for="collection-to-link-to-if-cart-empty">Collection to link to if cart empty</label></th>
+      <td>
+        <select class="collection" name="collection-to-link-to-if-cart-empty" />
       </td>
     </tr>
   </table>
@@ -127,7 +139,7 @@
       <th><label for="thumbnail-span">Thumbnail size (column spans)</label></th>
       <td>
         <input type="radio" name="thumbnail-span" id="thumbnail-span" value="3" checked="checked" /> 3
-          <input type="radio" name="thumbnail-span" id="thumbnail-span" value="4" /> 4
+        <input type="radio" name="thumbnail-span" id="thumbnail-span" value="4" /> 4
         <small></small>
       </td>
     </tr>
@@ -196,10 +208,10 @@
     <tr>
       <th><label for="placement-of-add-to-cart-button">Placement of add to cart button</label></th>
       <td>
-        <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-top-of-page" checked="checked" /> At top of page
-          <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-variant-options" /> Below variant options
-          <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-description-above-meta-data" /> Below description (above meta data)
-          <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-bottom-of-page" /> At bottom of page
+        <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-variant-options" checked="checked" /> Below variant options
+        <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-top-of-page" /> At top of page
+        <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-description-above-meta-data" /> Below description (above meta data)
+        <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-bottom-of-page" /> At bottom of page
       </td>
     </tr>
   </table>

@@ -9,6 +9,12 @@ body {
 
 @import "bootstrap/less/responsive.less";
 
+h3 {
+  .form-actions & {
+   margin-top: 0; 
+  }
+}
+
 .image_placeholder {
   background-color: #eee;
   padding: (@gridGutterWidth * 3) @gridGutterWidth;
@@ -17,18 +23,6 @@ body {
   text-align: center;
   font-size: 1.5em;
 }
-
-/*
-.label {
-font-size: .9em;
-line-height: 1em;
-padding: .3em;
-  
-.lead & {
-font-weight: normal; 
-}
-}
-*/
 
 .lead {
   & span,

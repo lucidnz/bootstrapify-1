@@ -1,14 +1,15 @@
 <nav class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-        
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
+      <div class="pull-right"><a href="/cart" class="btn{% if cart.item_count > 0 %} btn-inverse{% endif %}"><i class="icon-shopping-cart"></i> {{ cart.item_count }}</a></div>
+      
       {% if settings.logo-placement == "navbar" %}
-      <a class="brand{% if settings.show-sidebar %} span3{% endif %}" href="/">{{ shop.name }}</a>
+      <a class="brand" href="/">{{ shop.name }}</a>
       {% endif %}
       <div class="nav-collapse collapse"> 
         <ul class="nav">
@@ -24,8 +25,8 @@
         {% if shop.customer_accounts_enabled %}
         <ul class="nav pull-right">
           {% if customer %}
-            <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
-            <li>{{ "Sign out" | customer_logout_link }}</li>
+          <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
+          <li>{{ "Sign out" | customer_logout_link }}</li>
           {% else %}
           <li>{{ "Register" | customer_register_link }}</li>
           <li>{{ "<strong>Have an account?</strong> Sign in" | customer_login_link }}</li>
