@@ -1,12 +1,18 @@
-  <div class="navbar navbar-fixed-bottom">
-    <div class="navbar-inner">
-      <div class="container">
-        <ul class="nav">
-          {% for l in linklists.footer.links %}
-          <li{% if l.active %} class="active"{% endif %}><a href="{{ l.url }}" title="Go to {{ l.title }}">{{ l.title }}</a></li>
-          {% endfor %}
-        </ul>
-        <div class="pull-right navbar-text"><small class="muted"><strong>&copy;{{ 'now' | date: '%Y' }}&nbsp;<a href="/" title="Homepage of {{ shop.name }}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. <em>Boostrapify</em>&nbsp;theme&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid&nbsp;Design</a>. Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.</small></div>
+<div class="navbar navbar-fixed-bottom">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class=" pull-right navbar-text">
+        {% for l in linklists.footer.links %}
+        {% if forloop.index > 1 %}<span class="divider">|</span>{% endif %}
+        {% if l.active %}<strong>{% endif %}<a href="{{ l.url }}" title="Go to {{ l.title }}">{{ l.title }}</a>{% if l.active %}</strong>{% endif %}
+        {% endfor %}
+      </div>
+      <div class="pull-left navbar-text">
+        &copy;{{ 'now' | date: '%Y' }}&nbsp;<a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a>. 
+        <small class="muted">
+          <a href="https://github.com/luciddesign/bootstrapify/" title="Bootstrapify, open-source Shopify theme on GitHub">Boostrapify</a>&nbsp;theme&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid&nbsp;Design</a>.&nbsp;Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.
+        </small>
       </div>
     </div>
   </div>
+</div>
