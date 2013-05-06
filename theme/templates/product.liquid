@@ -31,11 +31,13 @@
     
       {% if collection %}
       <hr>
-      <ul class="nav nav-pills">      
-        <li{% unless c.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: c.previous_product }}</li>
-        <li>{{ c.title | link_to: c.url }}</li>
-        <li{% unless c.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: c.next_product }}</li>
-      </ul>
+      <div class="pagination pagination-mini pagination-centered">
+        <ul>
+          <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
+          <li>{{ collection.title | link_to: collection.url }}</li>
+          <li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: collection.next_product }}</li>
+        </ul>
+      </div>
       {% endif %}
     </div>
     <ul class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">

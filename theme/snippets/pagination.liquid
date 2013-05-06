@@ -1,6 +1,6 @@
 {% if paginate.pages > 1 %}
 
-<div class="pagination pagination-centered">
+<div class="pagination pagination-mini pagination-centered">
   <ul>
     {% if paginate.previous %}
     <li class="disabled">{{ paginate.previous.title | link_to: paginate.previous.url }}</li>
