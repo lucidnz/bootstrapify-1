@@ -6,7 +6,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <div class="pull-right"><a href="/cart" class="btn{% if cart.item_count > 0 %} btn-inverse{% endif %}"><i class="icon-shopping-cart"></i> {{ cart.item_count }}</a></div>
+
+      <ul class="nav pull-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-shopping-cart"></i>
+          </a>
+          {% if cart.item_count > 0 %}
+          <ul class="dropdown-menu">
+            <li><a href="/cart" title="{% include '__localize' with 'view-cart' %}"><strong>{% include '_localize' with 'view-cart' %}</strong> ({% capture items %}{% include '__localize' with 'items' %}{% endcapture %}{% capture item %}{% include '__localize' with 'item' %}{% endcapture %}{{ cart.item_count }} {{ cart.item_count | pluralize: item, items }})</a></li>
+            <li><a href="/checkout" title="{% include '__localize' with 'checkout' %}">{% include '__localize' with 'checkout' %}</a></li>
+          </ul>
+          {% endif %}
+        </li>
+      </ul>
       
       {% if settings.logo-placement == "navbar" %}
       <a class="brand" href="/">{{ shop.name }}</a>
@@ -24,13 +37,21 @@
         
         {% if shop.customer_accounts_enabled %}
         <ul class="nav pull-right">
-          {% if customer %}
-          <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
-          <li>{{ "Sign out" | customer_logout_link }}</li>
-          {% else %}
-          <li>{{ "Register" | customer_register_link }}</li>
-          <li>{{ "<strong>Have an account?</strong> Sign in" | customer_login_link }}</li>
-          {% endif %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="visible-phone">{% include '__localize' with 'account' %}</span>
+              <span class="hidden-phone"><i class="icon-user"></i></span>
+            </a>
+            <ul class="dropdown-menu">
+              {% if customer %}
+              <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
+              <li>{% capture logout %}{% include '__localize' with 'log-out' %}{% endcapture %}{{ logout | customer_logout_link }}</li>
+              {% else %}
+              <li>{% capture register %}{% include '__localize' with 'register' %}{% endcapture %}{{ register | customer_register_link }}</li>
+              <li>{% capture login %}{% include '__localize' with 'log-in' %}{% endcapture %}{{ login | customer_login_link }}</li>
+              {% endif %}
+            </ul>
+          </li>
         </ul>
         {% endif %}
       </div>
