@@ -1,8 +1,12 @@
 {% capture vars %}
-{% if _collection.featured_image == blank %}
-{% assign image = '<div class="image_placeholder">Collection Image</div>' %}
+{% if _collection.featured_image == blank and _collection.products.first.featured_image == blank %}
+  {% assign image = '<div class="image_placeholder">Collection Image</div>' %}
 {% else %}
-{% assign image = l_product.featured_image.src | product_img_url: 'large' %}
+  {% if _collection.featured_image == blank %}
+    {% assign image = _collection.products.first.featured_image.src | product_img_url: 'large' | img_tag %}
+  {% else %}
+    {% assign image = _collection.featured_image.src | product_img_url: 'large' | img_tag %}
+  {% endif %}
 {% endif %}
 {% endcapture %}
 <li class="{% include '__thumbnail-span' %}">
