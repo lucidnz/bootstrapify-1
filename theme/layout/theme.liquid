@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{ page_title }} | {{ shop.name }}</title>
+  {% capture homepage_title %}{% include '__localize' with 'homepage-title' %}{% endcapture %}{% if template == 'index' %}{% assign page_title = homepage_title %}{% endif %}
+  <title>{{ page_title }}{% if collection.title != blank and collection.title != page_title and template != 'index' and settings.show-collection-title-in-meta-title %} | {{ collection.title }}{% elsif blog.title != blank and blog.title != page_title %} | {{ blog.title }}{% endif %} | {{ shop.name }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   {% include 'meta' %}
@@ -38,6 +39,9 @@
     <div class="row">
       {% if settings.show-sidebar %}{% include 'sidebar' %}{% endif %}
       <div class="{% include '__main-span' %}">
+        {% if settings.show-breadcrumbs %}
+        {% include 'breadcrumbs' %}
+        {% endif %}
         <h1 class="page-header">{{ page_title }}</h1>
         {{ content_for_layout }}
       </div>

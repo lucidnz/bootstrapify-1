@@ -1,6 +1,6 @@
 {% include '__variables' %}
 {% unless pages[settings.homepage-intro] == empty %}
-<div class="hero-unit">
+<div class="lead">
   {% capture tip %}Showing contents of <em>{{ pages[settings.homepage-intro].title }}</em> (<a href="/admin/pages/{{ pages[settings.homepage-intro].id }}">edit page</a>).{% endcapture %}{% assign tip_title = 'Homepage intro' %}{% include '__tip' %}
   {{ pages[settings.homepage-intro].content }}
 </div>

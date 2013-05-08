@@ -45,9 +45,9 @@
     <tr>
       <th><label for="logo-alignment">Logo alignment</label></th>
       <td>
-        <input type="radio" name="logo-alignment" id="logo-alignment" value="center" checked="checked" /> Center
-          <input type="radio" name="logo-alignment" id="logo-alignment" value="left" /> Left
-          <input type="radio" name="logo-alignment" id="logo-alignment" value="right" /> Right
+        <div><input type="radio" name="logo-alignment" id="logo-alignment" value="center" checked="checked" /> Center</div>
+<div><input type="radio" name="logo-alignment" id="logo-alignment" value="left" /> Left</div>
+<div><input type="radio" name="logo-alignment" id="logo-alignment" value="right" /> Right</div>
       </td>
     </tr>
   </table>
@@ -55,9 +55,9 @@
     <tr>
       <th><label for="logo-placement">Logo placement</label></th>
       <td>
-        <input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar
-          <input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar
-          <input type="radio" name="logo-placement" id="logo-placement" value="header" /> Header
+        <div><input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar</div>
+<div><input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar</div>
+<div><input type="radio" name="logo-placement" id="logo-placement" value="header" /> Header</div>
       </td>
     </tr>
   </table>
@@ -128,6 +128,14 @@
   </table>
   <table>
     <tr>
+      <th><label for="show-breadcrumbs">Show breadcrumbs</label></th>
+      <td>
+        <input type="checkbox" name="show-breadcrumbs" id="show-breadcrumbs" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
       <th><label for="show-search-in-navbar">Show search in navbar</label></th>
       <td>
         <input type="checkbox" name="show-search-in-navbar" id="show-search-in-navbar" value="1" /> Yes
@@ -138,8 +146,8 @@
     <tr>
       <th><label for="thumbnails-per-row">Thumbnails per row</label></th>
       <td>
-        <input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="3" checked="checked" /> 3
-          <input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="4" /> 4
+        <div><input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="3" checked="checked" /> 3</div>
+<div><input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="4" /> 4</div>
         <small></small>
       </td>
     </tr>
@@ -152,10 +160,10 @@
     <tr>
       <th><label for="homepage-featured-collections-limit">Featured collections limit</label></th>
       <td>
-        <input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="1-row" checked="checked" /> 1 row
-          <input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="2-rows" /> 2 rows
-          <input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="3-rows" /> 3 rows
-          <input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="unlimited" /> Unlimited
+        <div><input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="1-row" checked="checked" /> 1 row</div>
+<div><input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="2-rows" /> 2 rows</div>
+<div><input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="3-rows" /> 3 rows</div>
+<div><input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="unlimited" /> Unlimited</div>
       </td>
     </tr>
   </table>
@@ -171,11 +179,11 @@
     <tr>
       <th><label for="featured-products-limit">Featured products limit</label></th>
       <td>
-        <input type="radio" name="featured-products-limit" id="featured-products-limit" value="1-row" checked="checked" /> 1 row
-          <input type="radio" name="featured-products-limit" id="featured-products-limit" value="2-rows" /> 2 rows
-          <input type="radio" name="featured-products-limit" id="featured-products-limit" value="3-rows" /> 3 rows
-          <input type="radio" name="featured-products-limit" id="featured-products-limit" value="4-rows" /> 4 rows
-          <input type="radio" name="featured-products-limit" id="featured-products-limit" value="unlimited" /> Unlimited
+        <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="1-row" checked="checked" /> 1 row</div>
+<div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="2-rows" /> 2 rows</div>
+<div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="3-rows" /> 3 rows</div>
+<div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="4-rows" /> 4 rows</div>
+<div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="unlimited" /> Unlimited</div>
       </td>
     </tr>
   </table>
@@ -209,6 +217,14 @@
   </table>
   <table>
     <tr>
+      <th><label for="breadcrumb-separator">Breadcrumb separator</label></th>
+      <td>
+        <input type="text" name="breadcrumb-separator" id="breadcrumb-separator" class="text" value="»" />
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
       <th><label for="comments-posted-awaiting-moderation">Comments posted. Awaiting moderation.</label></th>
       <td>
         <input type="text" name="comments-posted-awaiting-moderation" id="comments-posted-awaiting-moderation" class="text" value="Comments posted. Awaiting moderation." />
@@ -231,10 +247,10 @@
     <tr>
       <th><label for="placement-of-add-to-cart-button">Placement of add to cart button</label></th>
       <td>
-        <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-variant-options" checked="checked" /> Below variant options
-          <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-top-of-page" /> At top of page
-          <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-description-above-meta-data" /> Below description (above meta data)
-          <input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-bottom-of-page" /> At bottom of page
+        <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-variant-options" checked="checked" /> Below variant options</div>
+<div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-top-of-page" /> At top of page</div>
+<div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-description-above-meta-data" /> Below description (above meta data)</div>
+<div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-bottom-of-page" /> At bottom of page</div>
       </td>
     </tr>
   </table>
