@@ -1,11 +1,50 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      {% assign footer_columns = settings.footer-columns | plus: 0 %}
+      {% for i in (1..footer_columns) %}
+      <div class="span{{ 12 | divided_by: footer_columns }}">
+        {% assign footer_blog = 'column-' | append: i | append: '-blog' %}{% assign footer_blog = settings[footer_blog] %}
+        {% unless blogs[footer_blog] == empty %}
+        {% capture tip %}Showing <em>{{ blogs[footer_blog].title }}</em> blog articles (<a href="/admin/blogs/{{ blogs[footer_blog].id }}">edit blog</a>).{% endcapture %}{% assign tip_title = "Footer blog, column " | append: i %}{% include 'tip' %}
+        <h5>{{ blogs[footer_blog].title }}</h5>
+
+        <ul class="nav nav-pills nav-stacked">
+          {% for a in blogs[footer_blog].articles %}
+          <li{% if a.url == article.url %} class="active"{% endif %}>{{ a.title | link_to: a.url, a.title }}</li>
+          {% endfor %}
+        </ul>
+        {% endunless %}
+        
+        {% assign footer_menu = 'column-' | append: i | append: '-menu' %}{% assign footer_menu = settings[footer_menu] %}
+        {% unless linklists[footer_menu] == empty %}
+        {% capture tip %}Showing <em>{{ linklists[footer_menu].title }}</em> link list (<a href="/admin/linklists/{{ linklists[footer_menu].id }}">edit link list</a>).{% endcapture %}{% assign tip_title = "Footer menu, column " | append: i %}{% include 'tip' %}
+        <h5>{{ linklists[footer_menu].title }}</h5>
+
+        <ul class="nav nav-pills nav-stacked">
+          {% for l in linklists[footer_menu].links %}
+          <li{% if l.active %} class="active"{% endif %}>{{ l.title | link_to: l.url, l.title }}</li>
+          {% endfor %}
+        </ul>
+        {% endunless %}
+        
+        {% assign footer_text = 'column-' | append: i | append: '-text' %}{% assign footer_text = settings[footer_text] %}
+        {% unless footer_text == blank %}
+          {{ footer_text }}
+        {% endunless %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</footer>
+
 <div class="navbar navbar-fixed-bottom">
   <div class="navbar-inner">
     <div class="container">
       <div class=" pull-right navbar-text">
-        {% for l in linklists.footer.links %}
-        {% if forloop.index > 1 %}<span class="divider muted">|</span>{% endif %}
-        {% if l.active %}<strong>{% endif %}<a href="{{ l.url }}"{% unless l.active %} class="muted"{% endunless %} title="Go to {{ l.title }}">{{ l.title }}</a>{% if l.active %}</strong>{% endif %}
-        {% endfor %}
+        <ul class="footer-links">
+          {% for l in linklists.footer.links %}<li>{% if l.active %}<strong>{% endif %}<a href="{{ l.url }}"{% unless l.active %} class="muted"{% endunless %} title="Go to {{ l.title }}">{{ l.title }}</a>{% if l.active %}</strong>{% endif %}</li>{% endfor %}
+        </ul>
       </div>
       <div class="pull-left navbar-text">
         <small class="muted">

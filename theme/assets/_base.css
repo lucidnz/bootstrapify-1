@@ -1293,7 +1293,7 @@ ul.icons{list-style-type:none;text-indent:-0.75em;}ul.icons li [class^="icon-"],
 .icon-github-alt:before{content:"\f113";}
 .icon-folder-close-alt:before{content:"\f114";}
 .icon-folder-open-alt:before{content:"\f115";}
-body{padding-top:60px;padding-bottom:60px;}
+body{padding-top:62px;padding-bottom:42px;}
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
 .clearfix:after{clear:both;}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
@@ -1313,3 +1313,7 @@ a:hover,a.localize:hover{text-decoration:none;}
 td.money,th.money,td.text-right,th.text-right{text-align:right;}
 td.text-center,th.text-center{text-align:center;}
 .navbar .divider{margin-left:.5em;margin-right:.5em;}
+.footer{padding:20px 0;margin-top:40px;border-top:1px solid #e5e5e5;background-color:#f5f5f5;}
+.footer p{margin-bottom:0;color:#777;}
+.footer-links{margin:0;}.footer-links li{display:inline;}
+.footer-links li+li{margin-left:1em;padding-left:1em;border-left:1px solid #e5e5e5;}

@@ -3,15 +3,15 @@
 @import "font-awesome/less/font-awesome.less";
 
 body {
-  padding-top: @navbarHeight + 20;
-  padding-bottom: @navbarHeight + 20;
+  padding-top: @navbarHeight + 22;
+  padding-bottom: @navbarHeight + 2;
 }
 
 @import "bootstrap/less/responsive.less";
 
 h3 {
   .form-actions & {
-   margin-top: 0; 
+    margin-top: 0; 
   }
 }
 
@@ -61,4 +61,26 @@ th {
 .navbar .divider {
   margin-left: .5em;
   margin-right: .5em;
+}
+
+.footer {
+  padding: @gridGutterWidth 0;
+  margin-top: (@gridGutterWidth * 2);
+  border-top: 1px solid @dropdownDividerTop;
+  background-color: @wellBackground;
+}
+.footer p {
+  margin-bottom: 0;
+  color: #777;
+}
+.footer-links {
+  margin: 0;
+  & li {
+    display: inline;
+  }
+  & li + li {
+    margin-left: 1em;
+    padding-left: 1em;
+    border-left: 1px solid @dropdownDividerTop;
+  }
 }
