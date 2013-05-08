@@ -9,6 +9,28 @@ body {
 
 @import "bootstrap/less/responsive.less";
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1em;
+}
+
+div {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
 h3 {
   .form-actions & {
     margin-top: 0; 
@@ -87,4 +109,23 @@ th {
 
 .nav-simple .active {
   font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  .navbar-fixed-bottom {
+    margin-top: 0;
+  }
+  
+  .footer {
+    margin-left: 0 - @gridGutterWidth;
+    margin-right: 0 - @gridGutterWidth;
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
+   
+    & .span2,
+    & .span3,
+    & .span4 {
+      margin-bottom: @gridGutterWidth;
+    } 
+  }
 }
