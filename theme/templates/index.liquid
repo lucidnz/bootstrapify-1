@@ -1,10 +1,17 @@
-{% include '__variables' %}
 {% unless pages[settings.homepage-intro] == empty %}
 <div class="lead">
   {% capture tip %}Showing contents of <em>{{ pages[settings.homepage-intro].title }}</em> (<a href="/admin/pages/{{ pages[settings.homepage-intro].id }}">edit page</a>).{% endcapture %}{% assign tip_title = 'Homepage intro' %}{% include '__tip' %}
   {{ pages[settings.homepage-intro].content }}
 </div>
 {% endunless %}
+
+{% capture strip_space %}
+{% if settings.thumbnails-per-row == '3' or settings.show-sidebar == true %}
+ {% assign per-row = 3 %}
+{% else %}
+  {% assign per-row = 4 %}
+{% endif %}
+{% endcapture %}
 
 {% unless settings.featured-collections-linklist == empty %}
 {% capture tip %}Showing collections from the <em>{{ linklists[settings.featured-collections-linklist].title }}</em> link list (<a href="/admin/link_lists/{{ linklists[settings.featured-collections-linklist].id }}">edit link list</a>). The heading is the name of the linklist (and can be changed).{% endcapture %}{% assign tip_title = "Featured collections linklist" %}{% include '__tip' %}

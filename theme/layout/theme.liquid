@@ -29,7 +29,11 @@
 <body>
   {% include 'navbar' %}
   
+  {% if settings.slider-placement == "full-width" and template == "index" %}{% include 'slider' %}{% endif %}
+  
   <div class="container">
+    {% if settings.slider-placement == "within-container" and template == "index" %}{% include 'slider' %}{% endif %}
+    
     {% if settings.logo-placement != "sidebar" and settings.logo-placement != "navbar" %}
     <header class="page-header">
       <h1 class="text-{{ settings.logo-alignment }}"><a href="/">{{ shop.name | replace: ' ', '&nbsp;' }}</a></h1>
@@ -39,6 +43,8 @@
     <div class="row">
       {% if settings.show-sidebar %}{% include 'sidebar' %}{% endif %}
       <div class="{% include '__main-span' %}">
+        {% if settings.slider-placement == "next-to-sidebar" and settings.show-sidebar and template == "index" %}{% include 'slider' %}{% endif %}
+        
         {% if settings.show-breadcrumbs %}
         {% include 'breadcrumbs' %}
         {% endif %}
