@@ -16,16 +16,24 @@
       
       {% if settings.placement-of-add-to-cart-button == "below-description-above-meta-data" %}{% include 'product-add-to-cart-button' %}{% endif %}
     
-      <dl class="dl-horizontal">
-        <dt>Vendor</dt>
-        <dd>{{ product.vendor | link_to_vendor }}</dd>
-        <dt>Type</dt>
-        <dd>{{ product.type | link_to_type }}</dd>
-        <dt>Collections</dt>
-        <dd>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</dd>
-        <dt>Tags</dt>
-        <dd>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</dd>
-      </dl>
+      <table class="table table-compact table-bordered">
+        <tr>
+          <th>Vendor</th>
+          <td>{{ product.vendor | link_to_vendor }}</td>
+        </tr>
+        <tr>
+          <th>Type</th>
+          <td>{{ product.type | link_to_type }}</td>
+        </tr>
+        <tr>
+          <th>Collections</th>
+          <td>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</td>
+        </tr>
+        <tr>
+          <th>Tags</th>
+          <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</td>
+        </tr>
+      </table>
       
       {% if settings.placement-of-add-to-cart-button == "at-bottom-of-page" %}{% include 'product-add-to-cart-button' %}{% endif %}
     
