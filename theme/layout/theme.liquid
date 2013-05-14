@@ -26,7 +26,7 @@
   {{ content_for_header }}
 </head>
 
-<body>
+<body class="{% if settings.show-multiple-currencies %} currencies{% endif %}">
   {% include 'navbar' %}
   
   {% if settings.slider-placement == "full-width" and template == "index" %}{% include 'slider' %}{% endif %}
@@ -55,6 +55,6 @@
   </div>
   
   {% include 'footer' %}
-  
+  {% include 'currencies' %}
 </body>
 </html>

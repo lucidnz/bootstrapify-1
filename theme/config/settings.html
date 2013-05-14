@@ -539,6 +539,50 @@
   
 </fieldset>
 <fieldset>
+  <legend>Money</legend>
+  
+  <table>
+    <tr>
+      <th><label for="default-currency">Default currency</label></th>
+      <td>
+        <input type="text" name="default-currency" id="default-currency" class="text" value="" />
+        <small><p>E.g., NZD</p></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-currency-with-prices">Show currency with prices</label></th>
+      <td>
+        <input type="checkbox" name="show-currency-with-prices" id="show-currency-with-prices" value="1" /> Yes
+        <small><p>E.g., <strong>$123.45 NZD</strong></p></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-multiple-currencies">Show multiple currencies</label></th>
+      <td>
+        <input type="checkbox" name="show-multiple-currencies" id="show-multiple-currencies" value="1" /> Yes
+        <small><p>Although you will be able to display prices on your store front in different currencies, Shopify will still process orders in your shop's currency.</p></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="supported-currencies">Supported currencies</label></th>
+      <td>
+        <input type="text" name="supported-currencies" id="supported-currencies" class="text" value="" />
+        <small><p>Separate your currency codes with a space. Use the ISO 4217 3-letter currency code—click <a href="http://www.xe.com/iso4217.php" target="_blank">here</a> for a complete list of currency codes. <strong>E.g., NZD, USD, CAD</strong></p></small>
+      </td>
+    </tr>
+  </table>
+  
+</fieldset>
+<fieldset>
   <legend>Products</legend>
   
   <table>
@@ -585,3 +629,4 @@
   </table>
   
 </fieldset>
+

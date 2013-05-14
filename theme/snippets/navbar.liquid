@@ -6,20 +6,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-
-      <ul class="nav pull-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="icon-shopping-cart"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="/cart" title="{% include '__localize' with 'view-cart' %}"><strong>{% include '_localize' with 'view-cart' %}</strong> ({% capture items %}{% include '__localize' with 'items' %}{% endcapture %}{% capture item %}{% include '__localize' with 'item' %}{% endcapture %}{{ cart.item_count }} {{ cart.item_count | pluralize: item, items }})</a></li>
-            {% if cart.item_count > 0 %}
-            <li><a href="/checkout" title="{% include '__localize' with 'checkout' %}">{% include '__localize' with 'checkout' %}</a></li>
-            {% endif %}
-          </ul>
-        </li>
-      </ul>
       
       {% if settings.logo-placement == "navbar" %}
       <a class="brand" href="/">{{ shop.name }}</a>
@@ -34,6 +20,20 @@
         <form class="navbar-search pull-right">
           <input type="text" class="search-query span2" placeholder="Search">
         </form>{% endif %}
+        
+        <ul class="nav pull-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-shopping-cart"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/cart" title="{% include '__localize' with 'view-cart' %}"><strong>{% include '__localize' with 'view-cart' %}</strong> ({% capture items %}{% include '__localize' with 'items' %}{% endcapture %}{% capture item %}{% include '__localize' with 'item' %}{% endcapture %}{{ cart.item_count }} {{ cart.item_count | pluralize: item, items }})</a></li>
+              {% if cart.item_count > 0 %}
+              <li><a href="/checkout" title="{% include '__localize' with 'checkout' %}">{% include '__localize' with 'checkout' %}</a></li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
         
         {% if shop.customer_accounts_enabled %}
         <ul class="nav pull-right">
@@ -54,6 +54,9 @@
           </li>
         </ul>
         {% endif %}
+        
+        {% include 'currency_switcher' %}
+        
       </div>
     </div>
   </div>

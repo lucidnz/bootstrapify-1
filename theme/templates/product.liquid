@@ -7,8 +7,14 @@
 {% endcapture %}
 <form action="/cart/add" method="post">
   <div class="row">
-    <div class="span{% if settings.show-sidebar %}5{% else %}6{% endif %}">    
-      {% include '_product-add-to-cart-form' %}
+    <div class="span{% if settings.show-sidebar %}5{% else %}6{% endif %}">
+      <div class="lead">
+        <span id="price-field"></span>
+        <span id="sale-field" class="label label-success">{% include '__localize' with 'on-sale' %}</span>
+        <del id="compare-at-price-field" class="muted"></del>
+      </div>
+      
+      {% include 'product-add-to-cart-form' %}
       {% if settings.striped-tables %}{% assign table_striped = " table-striped" %}{% endif %}
       {% if settings.table-borders %}{% assign table_borders = " table-bordered" %}{% endif %}
       {% assign table_class = '<table class="table table-hover table-condensed' | append: table_striped | append: table_borders | append: '"' %}
