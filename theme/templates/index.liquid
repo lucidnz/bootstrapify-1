@@ -1,3 +1,5 @@
+<h1 class="page-header">{{ page_title }}</h1>
+
 {% unless pages[settings.homepage-intro] == empty %}
 <div class="lead">
   {% capture tip %}Showing contents of <em>{{ pages[settings.homepage-intro].title }}</em> (<a href="/admin/pages/{{ pages[settings.homepage-intro].id }}">edit page</a>).{% endcapture %}{% assign tip_title = 'Homepage intro' %}{% include '__tip' %}

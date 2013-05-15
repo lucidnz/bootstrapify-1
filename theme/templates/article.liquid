@@ -1,3 +1,5 @@
+<h1 class="page-header">{{ page_title }}</h1>
+
 <p class="muted">{{ article.published_at | date: settings.long-date-format }}{% if settings.show-author-on-index %} by {{ article.author }}{% endif %}</p>
 
 {{ article.content }}

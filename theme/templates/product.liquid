@@ -8,6 +8,8 @@
 <form action="/cart/add" method="post">
   <div class="row">
     <div class="span{% if settings.show-sidebar %}5{% else %}6{% endif %}">
+      <h1 class="page-header">{{ page_title }}</h1>
+      
       <div class="lead">
         <span id="price-field"></span>
         <span id="sale-field" class="label label-success">{% include '__localize' with 'on-sale' %}</span>

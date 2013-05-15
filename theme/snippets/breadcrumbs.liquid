@@ -5,5 +5,10 @@
   {% if article.title != blank and article.title != page_title %}<li><a href="{{ article.url }}">{{ article.title }}</a> <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>{% endif %}
   {% if page.title != blank and page.title != page_title %}<li><a href="{{ page.url }}">{{ page.title }}</a> <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>{% endif %}
   {% if product.title != blank and product.title != page_title %}<li><a href="{{ product.url | within: collection }}">{{ product.title }}</a> <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>{% endif %}
-  <li class="active">{{ page_title }}</li>
+  {% if current_tags == blank %}
+    <li class="active">{{ page_title }}</li>
+  {% else %}
+    <li>{{ page_title | link_to: './' }} <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>
+    <li class="active">{% include '__localize' with 'tagged-with' %}&nbsp;{{ current_tags | join: ' and ' }}</li>
+  {% endif %}
 </ul>

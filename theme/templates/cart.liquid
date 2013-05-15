@@ -1,3 +1,5 @@
+<h1 class="page-header">{{ page_title }}</h1>
+
 {% if cart.item_count == 0 %}
 <p class="lead">
   {% include '__localize' with 'your-cart-is-empty' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'browse-all-products' %}</a>.{% endunless %}
