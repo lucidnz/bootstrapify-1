@@ -1,1 +1,8 @@
-{% capture translation %}{% if settings.[__localize] == blank %}{{ __localize | replace: '-',' ' | replace: '_', ' ' | capitalize }}{% else %}{{ settings.[__localize] }}{% endif %}{% endcapture %}{{ translation }}{% comment %}{% assign tip = "You can modify/translate these words under Localization in the Theme Settings" %}{% assign tip_title = "Localization" %}{% include 'tip' %}{% endcomment %}
+{% capture translation %}
+  {% if settings.[__localize] == blank %}
+    {{ __localize | replace: '-',' ' | replace: '_', ' ' | capitalize }}
+  {% else %}
+    {{ settings.[__localize] }}
+  {% endif %}
+{% endcapture %}
+{{ translation }}
