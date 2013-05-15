@@ -1,8 +1,1 @@
-{% capture translation %}
-  {% if settings.[__localize] == blank %}
-    {{ __localize | replace: '-',' ' | replace: '_', ' ' | capitalize }}
-  {% else %}
-    {{ settings.[__localize] }}
-  {% endif %}
-{% endcapture %}
-{{ translation }}
+{% capture translation %}{% if settings.[__localize] == blank %}{{ __localize | replace: '-',' ' | replace: '_', ' ' | capitalize }}{% else %}{{ settings.[__localize] }}{% endif %}{% endcapture %}{{ translation }}

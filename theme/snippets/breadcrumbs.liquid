@@ -9,6 +9,6 @@
     <li class="active">{{ page_title }}</li>
   {% else %}
     <li>{{ page_title | link_to: './' }} <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>
-    <li class="active">{% include '__localize' with 'tagged-with' %}&nbsp;{{ current_tags | join: ' and ' }}</li>
+    <li class="active">{% include '__localize' with 'filtered-by' %} {{ current_tags | join: ' + ' }}</li>
   {% endif %}
 </ul>

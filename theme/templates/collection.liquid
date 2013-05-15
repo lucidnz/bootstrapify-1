@@ -1,6 +1,13 @@
-{% include 'collection-tags' %}
+{% assign max_tags = settings.maximum-tag-buttons | plus: 0 %}
+{% if settings.tag-format == "dropdown" or collection.all_tags.size > max_tags %}
+  {% include 'collection-tags-menu' %}
+{% endif %}
 
 <h1 class="page-header">{{ page_title }}</h1>
+
+{% if settings.tag-format != "dropdown" and collection.all_tags.size < max_tags %}
+  {% include 'collection-tags-buttons' %}
+{% endif %}
 
 {% if collection.all_products_count == 0 %}
 
