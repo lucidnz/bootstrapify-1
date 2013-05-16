@@ -1,7 +1,5 @@
 @import "bootstrap/less/bootstrap.less";
 
-@import "font-awesome/less/font-awesome.less";
-
 body {
   padding-top: @navbarHeight + 22;
   padding-bottom: @navbarHeight + 2;
@@ -18,16 +16,14 @@ h6 {
   margin-top: 1em;
 }
 
-div {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    &:first-child {
-      margin-top: 0;
-    }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &:first-child {
+    margin-top: 0;
   }
 }
 
@@ -74,6 +70,10 @@ a {
   &:hover, &.localize:hover {
     text-decoration: none;
   };
+  
+  & i {
+    text-decoration: none !important;
+  }
 }
 
 td,
@@ -98,11 +98,13 @@ th {
   margin-top: (@gridGutterWidth * 2);
   border-top: 1px solid @dropdownDividerTop;
   background-color: @wellBackground;
+  
+  & p {
+    margin-bottom: 0;
+    color: #777;
+  }
 }
-.footer p {
-  margin-bottom: 0;
-  color: #777;
-}
+
 .footer-links {
   margin: 0;
   & li {

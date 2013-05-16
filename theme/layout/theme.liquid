@@ -9,8 +9,11 @@
   
   {{ '_base.css' | asset_url | stylesheet_tag }}
   {{ '_settings.css' | asset_url | stylesheet_tag }}
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  
   {{ '_base.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
   
@@ -31,7 +34,7 @@
   
   {% if settings.slider-placement == "full-width" and template == "index" %}{% include 'slider' %}{% endif %}
   
-  <div class="container">
+  <div class="container">    
     {% if settings.slider-placement == "within-container" and template == "index" %}{% include 'slider' %}{% endif %}
     
     {% if settings.logo-placement != "sidebar" and settings.logo-placement != "navbar" %}
@@ -42,7 +45,7 @@
     
     <div class="row">
       {% if settings.show-sidebar %}{% include 'sidebar' %}{% endif %}
-      <div class="{% include '__main-span' %}">
+      <div class="{% include '__main-span' %}">        
         {% if settings.slider-placement == "next-to-sidebar" and settings.show-sidebar and template == "index" %}{% include 'slider' %}{% endif %}
         
         {% if settings.show-breadcrumbs %}
