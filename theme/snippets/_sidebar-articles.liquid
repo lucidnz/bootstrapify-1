@@ -1,3 +1,3 @@
 <h5>{{ a.title | link_to: a.url, a.title }}</h5>
 <p class="muted">{{ a.published_at | date: settings.long-date-format }}</p>
-<p>{{ a.content | strip_html | truncatewords: 25 }} <a href="{{ a.url }}">{% include '__localize' with 'read-more' %}&nbsp;&rarr;</a></p>
+<p>{{ a.content | strip_html | truncatewords: settings.truncate-blog-articles }} <a href="{{ a.url }}">{% include '__localize' with 'read-more' %}&nbsp;&rarr;</a></p>
