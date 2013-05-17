@@ -1,32 +1,42 @@
+{% if settings.slide-active-1 or settings.slide-active-2 or settings.slide-active-3 or settings.slide-active-4 or settings.slide-active-5 %}
 <div id="myCarousel" class="carousel slide">
   <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-    <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-    <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+    {% for i in (i..4) %}{% capture vars %}
+    {% assign c = forloop.index %}
+    {% assign s = i | plus: 1 %}
+    {% assign show = 'slide-active-' | append: s %}{% endcapture %}
+    {% if settings[show] %}
+    <li data-target="#myCarousel" data-slide-to="{{ c }}" class="{% if c == 1 %}active{% endif %}"></li>
+    {% endif %}
+    {% endfor %}
   </ol>
   <div class="carousel-inner">
-    <div class="item">
-      <img src="http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
-      <div class="carousel-caption">
-        <h4>First Thumbnail label</h4>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+    {% for i in (i..4) %}{% capture vars %}
+    {% assign s = i | plus: 1 %}
+    {% assign title = 'slide-heading-' | append: s %}
+    {% assign image = 'slide-image-' | append: s %}
+    {% assign show = 'slide-active-' | append: s %}
+    {% assign link = 'slide-link-' | append: s %}
+    {% assign cta = 'slide-call-to-action-' | append: s %}
+    {% assign caption = 'slide-caption-' | append: s %}{% endcapture %}
+    {% if settings[show] %}
+    {% assign c = forloop.index %}
+    <div class="item{% if c == 1 %} active{% endif %}">
+      <img src="{{ image | append: '.png' | asset_url }}" alt="">
+      <div class="carousel-caption clearfix">
+        <div class="pull-left">
+          <h4>{{ settings[title] }}</h4>
+          <p>
+            {{ settings[caption] }}
+          </p>
+        </div>
+        {% unless settings[link] == blank or settings[cta] == blank %}<a href="{{ settings[link] }}" class="btn btn-primary btn-large pull-right span2">{{ settings[cta] }}</a>{% endunless %}
       </div>
     </div>
-    <div class="item">
-      <img src="http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
-      <div class="carousel-caption">
-        <h4>Second Thumbnail label</h4>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-      </div>
-    </div>
-    <div class="item active">
-      <img src="http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
-      <div class="carousel-caption">
-        <h4>Third Thumbnail label</h4>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-      </div>
-    </div>
+    {% endif %}
+    {% endfor %}
   </div>
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
   <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
 </div>
+{% endif %}
