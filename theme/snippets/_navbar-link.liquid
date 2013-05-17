@@ -1,0 +1,18 @@
+{% assign submenu = l.title | submenuize %}
+<li class="{% if l.active %}active{% endif %}{% if linklists[submenu].links.size > 0 %} dropdown{% unless _navbar-link == 'top' %}-submenu{% endunless %}{% endif %}">
+  {% if linklists[submenu].links.size > 0 %}
+  <a href="#" title="{{ l.title }}" class="dropdown-toggle" data-toggle="dropdown">
+    {{ l.title }}{% if _navbar-link == 'top' %}
+    <b class="caret"></b>{% endif %}
+  </a>
+  <ul class="dropdown-menu">
+    {% for l in linklists[submenu].links %}
+    {% include '_navbar-link' with 'child' %}
+    {% endfor %}
+  </ul>
+  {% else %}
+  <a href="{{ l.url }}" title="{{ l.title }}">
+    {{ l.title }}
+  </a>
+  {% endif %}
+</li>

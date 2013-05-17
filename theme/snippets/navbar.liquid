@@ -13,7 +13,7 @@
       <div class="nav-collapse collapse"> 
         <ul class="nav">
           {% for l in linklists.main-menu.links %}
-          <li{% if l.active %} class="active"{% endif %}><a href="{{ l.url }}" title="Go to {{ l.title }}">{{ l.title }}</a></li>
+          {% include '_navbar-link' with 'top' %}
           {% endfor %}
         </ul>
         {% if settings.show-search-in-navbar %}
