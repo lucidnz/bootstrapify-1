@@ -2,7 +2,6 @@
 
 {% unless pages[settings.homepage-intro] == empty %}
 <div class="lead">
-  {% capture tip %}Showing contents of <em>{{ pages[settings.homepage-intro].title }}</em> (<a href="/admin/pages/{{ pages[settings.homepage-intro].id }}">edit page</a>).{% endcapture %}{% assign tip_title = 'Homepage intro' %}{% include '__tip' %}
   {{ pages[settings.homepage-intro].content }}
 </div>
 {% endunless %}
@@ -16,7 +15,6 @@
 {% endcapture %}
 
 {% unless settings.featured-collections-linklist == empty %}
-{% capture tip %}Showing collections from the <em>{{ linklists[settings.featured-collections-linklist].title }}</em> link list (<a href="/admin/link_lists/{{ linklists[settings.featured-collections-linklist].id }}">edit link list</a>). The heading is the name of the linklist (and can be changed).{% endcapture %}{% assign tip_title = "Featured collections linklist" %}{% include '__tip' %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
 <ul class="thumbnails">{% if settings.homepage-featured-collections-limit contains 'row' %}{% assign limit = settings.homepage-featured-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
   {% for l in linklists[settings.featured-collections-linklist].links | limit: limit %}
@@ -26,7 +24,6 @@
 </ul>
 {% endunless %}
 {% unless settings.homepage-featured-products-collection == empty %}
-{% capture tip %}Showing products from the <em>{{ collections[settings.homepage-featured-products-collection].title }}</em> collection (<a href="/admin/collections/{{ collections[settings.homepage-featured-products-collection].id }}">edit collection</a>). The heading is the name of the collection (and can be changed).{% endcapture %}{% assign tip_title = "Homepage featured products collection" %}{% include '__tip' %}
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
 <ul class="thumbnails">{% if settings.featured-products-limit contains 'row' %}{% assign limit = settings.featured-products-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
   {% for p in collections[settings.homepage-featured-products-collection].products | limit: limit %}

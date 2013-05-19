@@ -12,9 +12,6 @@
 {% if collection.all_products_count == 0 %}
 
 <p>Sorry, no products were found in the {{ collection.title }} collection.</p>
-
-{% capture tip %}If you haven&rsquo;t already done so, you can add your first products <a href="/admin/products/" title="Add some products" target="_blank">in the products admin area</a>.{% endcapture %}{% include '__tip' with tip %}
-
 {% else %}
 
 <ul class="thumbnails">

@@ -6,7 +6,6 @@
       <div class="span{{ 12 | divided_by: footer_columns }}">
         {% assign footer_blog = 'column-' | append: i | append: '-blog' %}{% assign footer_blog = settings[footer_blog] %}
         {% unless blogs[footer_blog] == empty %}
-        {% capture tip %}Showing <em>{{ blogs[footer_blog].title }}</em> blog articles (<a href="/admin/blogs/{{ blogs[footer_blog].id }}">edit blog</a>).{% endcapture %}{% assign tip_title = "Footer blog, column " | append: i %}{% include 'tip' %}
         <h4>{{ blogs[footer_blog].title }}</h4>
 
         <ul class="nav nav-simple nav-stacked">
@@ -18,7 +17,6 @@
         
         {% assign footer_menu = 'column-' | append: i | append: '-menu' %}{% assign footer_menu = settings[footer_menu] %}
         {% unless linklists[footer_menu] == empty %}
-        {% capture tip %}Showing <em>{{ linklists[footer_menu].title }}</em> link list (<a href="/admin/linklists/{{ linklists[footer_menu].id }}">edit link list</a>).{% endcapture %}{% assign tip_title = "Footer menu, column " | append: i %}{% include 'tip' %}
         <h4>{{ linklists[footer_menu].title }}</h4>
 
         <ul class="nav nav-simple nav-stacked">
