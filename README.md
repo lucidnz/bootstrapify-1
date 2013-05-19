@@ -1,7 +1,9 @@
 Bootstrapify
 =================
 
-Bootstrapify is an open-source base theme for Shopify that makes it super quick and easy for developers to start building amazing, responsive themes without having to do all the fiddly, repetitive setup work when starting from scratch.
+**Note:** 2.0, a ground-up rewrite, is a work-in-progress and is available at https://github.com/luciddesign/bootstrapify/tree/2.0. Feel free to fork and submit pull-requests.
+
+Bootstrapify is an open-source base theme for [Shopify](http://www.shopify.com?ref=lucid-design) that makes it super quick and easy for developers to start building amazing, responsive themes without having to do all the fiddly, repetitive setup work when starting from scratch.
 
 While the open-source base has the full Twitter Bootstrap look-and-feel, this theme actually forms the foundation for Lucid One, our first premium responsive theme available in the Theme Store at http://themes.shopify.com/themes/lucid-one?ref=lucid-design
 
