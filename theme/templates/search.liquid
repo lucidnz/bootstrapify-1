@@ -1,15 +1,7 @@
 <h1 class="page-header">{% include 'smart-title' %}</h1>
 {% paginate search.results by settings.default-pagination %}
-{% for item in search.results %}    
-<h4><strong>{{ item.title | link_to: item.url }}</strong></h4>
-<div class="media">
-  {% if item.featured_image %}
-  <a href="{{item.url}}" class="pull-left"><img src="{{ item.featured_image | product_img_url: 'small' }}" class="media-object"></a>
-  {% endif %}
-  <div class="media-body">
-    <p>{{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }} <a href="{{ item.url }}">{% include '__localize' with 'read-more' %}</a></p>
-  </div>
-</div>
+{% for i in search.results %}    
+{% include '_search-item' %}
 {% endfor %}
 
 {% include 'pagination' %}
