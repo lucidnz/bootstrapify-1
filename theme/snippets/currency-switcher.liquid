@@ -1,10 +1,10 @@
 {% if settings.show-multiple-currencies %}
 <ul class="nav pull-right muted">
   <li class="navbar-text">
-    <span id="current-currency">
+    <small id="current-currency">
       All prices in <strong><span class="selected-currency">&nbsp;&nbsp;&nbsp;</span></strong> 
       <span id="currency-picker-toggle">(<a href="#" class="muted">change</a>)</span>
-    </span>
+    </small>
   </li>
   <li id="currencies-picker" class="navbar-form">
     &nbsp;<select id="currencies" class="input-auto" name="currencies">
@@ -18,5 +18,6 @@
       {% endfor %}
     </select>
   </li>
+  <li class="divider"></li>
 </ul>
 {% endif %}

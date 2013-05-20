@@ -3,9 +3,9 @@
   {% assign image = '<div class="image_placeholder">Collection Image</div>' %}
 {% else %}
   {% if _collection.featured_image == blank %}
-    {% assign image = _collection.products.first.featured_image.src | product_img_url: 'large' | img_tag %}
+    {% assign image = _collection.products.first.featured_image.src | product_img_url: 'large' | img_tag | link_to: _collection.url %}
   {% else %}
-    {% assign image = _collection.featured_image.src | product_img_url: 'large' | img_tag %}
+    {% assign image = _collection.featured_image.src | product_img_url: 'large' | img_tag | link_to: _collection.url %}
   {% endif %}
 {% endif %}
 {% endcapture %}
