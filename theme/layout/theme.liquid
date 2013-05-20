@@ -2,7 +2,7 @@
 <html>
 <head>
   {% capture homepage_title %}{% include '__localize' with 'homepage-title' %}{% endcapture %}{% if template == 'index' %}{% assign page_title = homepage_title %}{% endif %}
-  <title>{{ page_title }}{% if collection.title != blank and collection.title != page_title and template != 'index' and settings.show-collection-title-in-meta-title %} | {{ collection.title }}{% elsif blog.title != blank and blog.title != page_title %} | {{ blog.title }}{% endif %} | {{ shop.name }}</title>
+  <title>{% include 'smart-title' %} | {{ shop.name }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   {% include 'meta' %}
