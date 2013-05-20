@@ -26,20 +26,24 @@
         </ul>
         {% endunless %}
         
-        {% assign footer_text = 'column-' | append: i | append: '-text' %}{% assign footer_text = settings[footer_text] %}
-        {% unless footer_text == blank %}
-          {{ footer_text }}
-        {% endunless %}
-        
         {% assign newsletter_column = 'column-' | append: i %}
         {% if settings.newsletter-signup-placement == newsletter_column %}
+        <div class="footer-form">
           {% include 'newsletter-signup-form' %}
+        </div>
         {% endif %}
                 
         {% assign social_links_column = 'column-' | append: i %}
         {% if settings.social-links-placement == social_links_column %}
+        <div class="clearfix social-icons">
           {% include 'footer-social-links' %}
+        </div>
         {% endif %}
+        
+        {% assign footer_text = 'column-' | append: i | append: '-text' %}{% assign footer_text = settings[footer_text] %}
+        {% unless footer_text == blank %}
+          {{ footer_text }}
+        {% endunless %}
       </div>
       {% endfor %}
     </div>

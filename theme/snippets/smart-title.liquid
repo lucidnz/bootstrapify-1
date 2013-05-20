@@ -2,6 +2,10 @@
   {% if search.performed %}
     {% capture title %}{% include '__localize' with 'search-results-for' %} {% include '__localize' with 'left-quote' %}{{ page_title }}{% include '__localize' with 'right-quote' %}{% endcapture %}
   {% else %}
+    {% if template == 'index' %}
+      {% capture homepage_title %}{% include '__localize' with 'homepage-title' %}{% endcapture %}
+      {% assign page_title = homepage_title %}
+    {% endif %}
     {% assign title = page_title %}
     {% if collection.title != blank and collection.title != page_title and template != 'index' and settings.show-collection-title-in-meta-title %}
        {% assign title = title | append: ' | ' | append: collection.title %}

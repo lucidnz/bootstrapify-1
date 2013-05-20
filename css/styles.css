@@ -7980,9 +7980,8 @@ th.text-center {
   padding-left: 1em;
   border-left: 1px solid #e5e5e5;
 }
-.social-icons,
-.footer-form {
-  margin-bottom: 1em;
+.footer-text {
+  margin-top: 1em;
 }
 .nav-simple .active {
   font-weight: bold;
