@@ -1,5 +1,16 @@
 {% if settings.slide-active-1 or settings.slide-active-2 or settings.slide-active-3 or settings.slide-active-4 or settings.slide-active-5 %}
 <div id="myCarousel" class="carousel slide">
+  {% capture vars %}
+  {% assign slide_count = 0 %}
+  {% for i in (i..4) %}
+    {% assign s = i | plus: 1 %}
+    {% assign show = 'slide-active-' | append: s %}
+    {% if settings[show] %}
+      {% assign slide_count = slide_count | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+  {% endcapture %}
+  {% if slide_count > 1 %}
   <ol class="carousel-indicators">
     {% for i in (i..4) %}{% capture vars %}
     {% assign c = forloop.index %}
@@ -10,6 +21,7 @@
     {% endif %}
     {% endfor %}
   </ol>
+  {% endif %}
   <div class="carousel-inner">
     {% for i in (i..4) %}{% capture vars %}
     {% assign s = i | plus: 1 %}
@@ -22,21 +34,25 @@
     {% if settings[show] %}
     {% assign c = forloop.index %}
     <div class="item{% if c == 1 %} active{% endif %}">
+      {% unless settings[link] == blank %}<a href="{{ settings[link] }}">{% endunless %}
       <img src="{{ image | append: '.png' | asset_url }}" alt="">
+      {% unless settings[link] == blank %}</a>{% endunless %}
+      {% if settings[title] != blank or settings[cta] != blank or settings[caption] != blank %}
       <div class="carousel-caption clearfix">
-        <div class="pull-left">
-          <h4>{{ settings[title] }}</h4>
-          <p>
-            {{ settings[caption] }}
-          </p>
-        </div>
+        <h4>{{ settings[title] }}</h4>
         {% unless settings[link] == blank or settings[cta] == blank %}<a href="{{ settings[link] }}" class="btn btn-primary btn-large pull-right span2">{{ settings[cta] }}</a>{% endunless %}
+        <p>
+          {{ settings[caption] }}
+        </p>
       </div>
+      {% endif %}
     </div>
     {% endif %}
     {% endfor %}
   </div>
+  {% if slide_count > 1 %}
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
   <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+  {% endif %}
 </div>
 {% endif %}
