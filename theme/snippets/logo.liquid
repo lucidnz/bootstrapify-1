@@ -1,0 +1,5 @@
+{% if settings.use-logo-image %}
+  <img src="{{ 'logo-file.png' | asset_url }}" alt="{{ shop.name }} {% include '__localize' with 'logo' %}">
+{% else %}
+  {{ shop.name }}
+{% endif %}

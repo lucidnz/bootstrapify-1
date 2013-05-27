@@ -37,7 +37,7 @@
     
     {% if settings.logo-placement != "sidebar" and settings.logo-placement != "navbar" %}
     <header class="page-header">
-      <h1 class="text-{{ settings.logo-alignment }}"><a href="/">{{ shop.name | replace: ' ', '&nbsp;' }}</a></h1>
+      <h1 class="text-{{ settings.logo-alignment }}"><a href="/">{% include 'logo' %}</a></h1>
     </header>
     {% endif %}
     

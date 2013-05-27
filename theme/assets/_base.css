@@ -7980,6 +7980,12 @@ th.text-center {
   padding-left: 1em;
   border-left: 1px solid #e5e5e5;
 }
+.brand img {
+  max-height: 20px;
+  height: auto !important;
+  height: 20px;
+  margin-top: -5px;
+}
 .social-icons,
 .footer-form {
   margin-bottom: 1em;
