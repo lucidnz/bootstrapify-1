@@ -1,4 +1,4 @@
-{% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include '_product-add-to-cart-button' with ' style="margin-top: 0;"' %}{% endif %}
+{% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include 'product-add-to-cart-button' with ' style="margin-top: 0;"' %}{% endif %}
 <div id="product-variants">
   <select id="product-select" name="id">
     {% for v in product.variants %}
