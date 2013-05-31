@@ -1,3 +1,6 @@
 <h1 class="page-header">{{ page_title }}</h1>
 
-{{ page.content }}
+{% if settings.striped-tables %}{% assign table_striped = " table-striped" %}{% endif %}
+{% if settings.table-borders %}{% assign table_borders = " table-bordered" %}{% endif %}
+{% assign table_class = '<table class="table table-hover table-condensed' | append: table_striped | append: table_borders | append: '"' %}
+{{ page.content | replace_first: '<table',table_class }}

@@ -7,8 +7,10 @@
   {% include 'meta' %}
   
   {{ '_base.css' | asset_url | stylesheet_tag }}
-  {{ '_settings.css' | asset_url | stylesheet_tag }}
+  {{ '_settings.scss.css' | asset_url | stylesheet_tag }}
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+  
+  {% include 'fonts' %}
   
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   
