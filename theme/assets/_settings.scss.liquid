@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('{{ 'fontawesome-webfont.eot' | asset_url }}');
+  src: url('{{ 'font/fontawesome-webfont.eot' | asset_url }}') format('embedded-opentype'),
+  url('{{ 'fontawesome-webfont.woff' | asset_url }}') format('woff'),
+  url('{{ 'font/fontawesome-webfont.ttf' | asset_url }}') format('truetype');
+}
+
+body {
+  font-family: {% if settings.body-font-custom != blank %}{{ settings.body-font-custom }}{% elsif settings.body-font != blank %}{{ settings.body-font }}{% endif %};
+  {% unless settings.body-text-size == blank %}font-size: {{ settings.body-text-size }};{% endunless %}
+  
+  & a {
+    {% unless settings.body-link-color == blank %}color: {{ settings.body-link-color }};{% endunless %}
+    
+    &:hover {
+      {% unless settings.body-link-hover-color == blank %}color: {{ settings.body-link-hover-color }};{% endunless %}
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: {% if settings.heading-font-custom != blank %}{{ settings.heading-font-custom }}{% elsif settings.heading-font != blank %}{{ settings.heading-font }}{% endif %};
+  text-transform: {{ settings.heading-case }};
+  font-weight: {{ settings.heading-weight }};
+  font-style: {{ settings.heading-style }};
+  color: {{ settings.heading-text-color }};
+  
+  & a {
+    color: {{ settings.heading-text-color }};
+    
+    &:hover {
+      color: darken({{ settings.heading-text-color }}, 10%);
+    }
+  }
+}
+
+h1 {
+  font-size: {{ settings.heading-1-size }};
+}
+
+h2 {
+  font-size: {{ settings.heading-2-size }};
+}
+
+h3 {
+  font-size: {{ settings.heading-3-size }};
+}
+
+h4 {
+  font-size: {{ settings.heading-4-size }};
+}
+
+h5 {
+  font-size: {{ settings.heading-5-size }};
+}
+
+h6 {
+  font-size: {{ settings.heading-6-size }};
+}
+
+.navbar {
+  font-family: {% if settings.navbar-font-custom != blank %}{{ settings.navbar-font-custom }}{% elsif settings.navbar-font != blank %}{{ settings.navbar-font }}{% endif %};
+  color: {{ settings.navbar-color }};
+  {% unless settings.navbar-size == blank %}font-size: {{ settings.navbar-size }};{% endunless %}
+  
+  & .nav li {
+    & a {
+      color: {{ settings.navbar-link-color }};
+    
+      &:hover {
+        color: {{ settings.navbar-link-hover-color }};    
+      }
+    }
+  }
+}
+
+.nav {
+  text-transform: {{ settings.nav-case }};
+  font-weight: {{ settings.nav-weight }};
+  font-style: {{ settings.nav-style }};
+}
+
+aside {
+  font-family: {% if settings.sidebar-font-custom != blank %}{{ settings.sidebar-font-custom }}{% elsif settings.sidebar-font != blank %}{{ settings.sidebar-font }}{% endif %};
+  color: {{ settings.sidebar-text-color }};
+  {% unless settings.sidebar-size == blank %}font-size: {{ settings.sidebar-size }};{% endunless %}
+}
+
+aside .nav {
+  & a {
+    color: {{ settings.sidebar-link-color }};
+    
+    &:hover {
+      color: {{ settings.sidebar-link-hover-color }};    
+    }
+  }
+}
+
+.navbar-fixed-bottom {
+  font-family: {% if settings.footer-font-custom != blank %}{{ settings.footer-font-custom }}{% elsif settings.footer-font != blank %}{{ settings.footer-font }}{% endif %};
+  color: {{ settings.footer-text-color }};
+  {% unless settings.footer-size == blank %}font-size: {{ settings.footer-size }};{% endunless %}
+  
+  & a {
+    color: {{ settings.footer-link-color }};
+    
+    &:hover {
+      color: {{ settings.footer-link-hover-color }};    
+    }
+  }
+}
+
+.carousel-caption a {
+  color: darken(#fff,15%);
+  
+  &:hover {
+    color: darken(#fff,25%);
+  }
+}
