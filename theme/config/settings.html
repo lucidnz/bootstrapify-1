@@ -166,6 +166,15 @@
   
   <table>
     <tr>
+      <th><label for="site-background-color">Site background color</label></th>
+      <td>
+        <input type="text" name="site-background-color" id="site-background-color" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="striped-tables">Striped tables</label></th>
       <td>
         <input type="checkbox" name="striped-tables" id="striped-tables" value="1" /> Yes
@@ -325,29 +334,16 @@
   
 </fieldset>
 <fieldset>
-  <legend>Formatting</legend>
-  
-  <table>
-    <tr>
-      <th><label for="long-date-format">Long date format</label></th>
-      <td>
-        <input type="text" name="long-date-format" id="long-date-format" class="text" value="%d %B %Y at %H:%M" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="short-date-format">Short date format</label></th>
-      <td>
-        <input type="text" name="short-date-format" id="short-date-format" class="text" value="%d %B %Y" />
-      </td>
-    </tr>
-  </table>
-  
-</fieldset>
-<fieldset>
   <legend>General</legend>
+  
+  <table>
+    <tr>
+      <th><label for="breadcrumb-separator">Breadcrumb separator</label></th>
+      <td>
+        <input type="text" name="breadcrumb-separator" id="breadcrumb-separator" class="text" value="»" />
+      </td>
+    </tr>
+  </table>
   
   <table>
     <tr>
@@ -769,15 +765,6 @@
   
   <table>
     <tr>
-      <th><label for="breadcrumb-separator">Breadcrumb separator</label></th>
-      <td>
-        <input type="text" name="breadcrumb-separator" id="breadcrumb-separator" class="text" value="»" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="left-quote">Left quote</label></th>
       <td>
         <input type="text" name="left-quote" id="left-quote" class="text" value="“" />
@@ -787,9 +774,27 @@
   
   <table>
     <tr>
+      <th><label for="long-date-format">Long date format</label></th>
+      <td>
+        <input type="text" name="long-date-format" id="long-date-format" class="text" value="%d %B %Y at %H:%M" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="right-quote">Right quote</label></th>
       <td>
         <input type="text" name="right-quote" id="right-quote" class="text" value="”" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="short-date-format">Short date format</label></th>
+      <td>
+        <input type="text" name="short-date-format" id="short-date-format" class="text" value="%d %B %Y" />
       </td>
     </tr>
   </table>
@@ -833,7 +838,7 @@
       <th><label for="supported-currencies">Supported currencies</label></th>
       <td>
         <input type="text" name="supported-currencies" id="supported-currencies" class="text" value="" />
-        <small><p>Separate your currency codes with a space. Use the ISO 4217 3-letter currency code—click <a href="http://www.xe.com/iso4217.php" target="_blank">here</a> for a complete list of currency codes. <strong>E.g., NZD, USD, CAD</strong></p></small>
+        <small><p>Separate your currency codes with a space. Use the ISO 4217 3-letter currency code—click <a href="http://www.xe.com/iso4217.php" target="_blank">here</a> for a complete list of currency codes. <strong>E.g., NZD USD CAD</strong></p></small>
       </td>
     </tr>
   </table>
@@ -1209,6 +1214,15 @@
       <td>
         <div><input type="radio" name="heading-weight" id="heading-weight" value="normal" checked="checked" /> Normal</div>
 <div><input type="radio" name="heading-weight" id="heading-weight" value="bold" /> Bold</div>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="heading-letterpress">Heading “letterpress”</label></th>
+      <td>
+        <input type="checkbox" name="heading-letterpress" id="heading-letterpress" value="1" /> Yes
       </td>
     </tr>
   </table>
