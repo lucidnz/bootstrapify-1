@@ -51,8 +51,8 @@
     {% endfor %}
   </div>
   {% if slide_count > 1 %}
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="{{ settings.slide-navigation-icon | remove: '-left' | remove: '-right' }}-left"></i></a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="{{ settings.slide-navigation-icon | remove: '-left' | remove: '-right' }}-right"></i></a>
   {% endif %}
 </div>
 {% endif %}
