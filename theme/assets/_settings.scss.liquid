@@ -66,7 +66,7 @@ h6 {
 
 .navbar {
   font-family: {% if settings.navbar-font-custom != blank %}{{ settings.navbar-font-custom }}{% elsif settings.navbar-font != blank %}{{ settings.navbar-font }}{% endif %};
-  {% unless settings.navbar-color == blank %}color: {{ settings.navbar-color }};{% endunless %}
+  {% unless settings.navbar-link-color == blank %}color: {{ settings.navbar-link-color }};{% endunless %}
   {% unless settings.navbar-size == blank %}font-size: {{ settings.navbar-size }};{% endunless %}
   
   & .nav li {
