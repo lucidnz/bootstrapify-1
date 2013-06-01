@@ -17,14 +17,12 @@
       </div>
       
       {% include 'product-add-to-cart-form' %}
-      {% if settings.striped-tables %}{% assign table_striped = " table-striped" %}{% endif %}
-      {% if settings.table-borders %}{% assign table_borders = " table-bordered" %}{% endif %}
-      {% assign table_class = '<table class="table table-hover table-condensed' | append: table_striped | append: table_borders | append: '"' %}
-      {{ product.description | replace_first: '<table',table_class }}
+      
+      {% include '__formatted-content' with product.description %}
       
       {% if settings.placement-of-add-to-cart-button == "below-description-above-meta-data" %}{% include 'product-add-to-cart-button' %}{% endif %}
     
-      <table class="table table-compact table-bordered">
+      <table class="table {% include '__table-formatting' %}">
         <tr>
           <th>Vendor</th>
           <td>{{ product.vendor | link_to_vendor }}</td>

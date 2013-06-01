@@ -13,7 +13,7 @@ function remove_item(id) {
 </script>
 
 <form action="/cart" method="post" id="cart">
-  <table class="table table-striped">
+  <table class="table {% include '__table-formatting' %}">
     {% for i in cart.items %}
     <thead>
       <tr>

@@ -1,0 +1,2 @@
+{% capture table_replace %}<table class="table{% include '__table-formatting' %}"{% endcapture %}
+{{ __formatted-content | replace_first: '<table',table_replace }}

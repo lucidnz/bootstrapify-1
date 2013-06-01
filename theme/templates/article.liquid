@@ -2,7 +2,7 @@
 
 <p class="muted">{{ article.published_at | date: settings.long-date-format }}{% if settings.show-author-on-index %} by {{ article.author }}{% endif %}</p>
 
-{{ article.content }}
+{% include '__formatted-content' with article.content %}
 
 {% if article.user.bio != blank and settings.show-author-bios == true %}
 <div class="well muted">
