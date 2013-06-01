@@ -14,14 +14,7 @@ h4,
 h5,
 h6 {
   margin-top: 1em;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+  
   &:first-child {
     margin-top: 0;
   }
@@ -48,6 +41,8 @@ h3 {
   & .label {
     vertical-align: middle; 
   }
+  
+  margin-bottom: 1em;
 
   .form-actions & {
     margin-bottom: 0;
@@ -146,6 +141,10 @@ th {
   background: none;
   border: none;
   .opacity(10);
+}
+
+.thumbnail {
+  background-color: white;
 }
 
 @media (max-width: 767px) {

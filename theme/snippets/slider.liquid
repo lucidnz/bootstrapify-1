@@ -35,7 +35,7 @@
     {% assign c = forloop.index %}
     <div class="item{% if c == 1 %} active{% endif %}">
       {% unless settings[link] == blank %}<a href="{{ settings[link] }}">{% endunless %}
-      <img src="{{ image | append: '.png' | asset_url }}" alt="">
+      <img src="{{ image | append: '.jpg' | asset_url }}" alt="">
       {% unless settings[link] == blank %}</a>{% endunless %}
       {% if settings[title] != blank or settings[cta] != blank or settings[caption] != blank %}
       <div class="carousel-caption clearfix">

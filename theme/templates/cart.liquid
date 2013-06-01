@@ -2,7 +2,7 @@
 
 {% if cart.item_count == 0 %}
 <p class="lead">
-  {% include '__localize' with 'your-cart-is-empty' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all products' %}</a>.{% endunless %}
+  {% include '__localize' with 'Your cart is empty' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all products' %}</a>.{% endunless %}
 </p>
 {% else %}
 <script type="text/javascript">
