@@ -2,7 +2,7 @@
 
 {% if cart.item_count == 0 %}
 <p class="lead">
-  {% include '__localize' with 'your-cart-is-empty' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'browse-all-products' %}</a>.{% endunless %}
+  {% include '__localize' with 'your-cart-is-empty' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all products' %}</a>.{% endunless %}
 </p>
 {% else %}
 <script type="text/javascript">
@@ -18,11 +18,11 @@ function remove_item(id) {
     <thead>
       <tr>
         <th class="hidden-phone">&nbsp;</th>
-        <th>{% include '__localize' with 'item' %}</th>
-        <th class="money hidden-phone">{% include '__localize' with 'price' %}</th>
-        <th class="text-center">{% include '__localize' with 'qty' %}</th>
+        <th>{% include '__localize' with 'Item' %}</th>
+        <th class="money hidden-phone">{% include '__localize' with 'Price' %}</th>
+        <th class="text-center">{% include '__localize' with 'QTY' %}</th>
         <th class="hidden-phone">&nbsp;</th>
-        <th class="money">{% include '__localize' with 'line-total' %}</th>
+        <th class="money">{% include '__localize' with 'Line total' %}</th>
       </tr>
     </thead>
     <tbody>
@@ -46,10 +46,10 @@ function remove_item(id) {
   </table>
   
   <div class="form-actions text-right">
-    <h3><small>{% include '__localize' with 'sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></h3>
+    <h3><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></h3>
     <div class="btn-group">
-      <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'update' %}" class="btn" />
-      <input type="submit" name="checkout" value="{% include '__localize' with 'checkout' %}" class="btn btn-primary" />
+      <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'Update' %}" class="btn" />
+      <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary" />
     </div>
   </div>
 </form>

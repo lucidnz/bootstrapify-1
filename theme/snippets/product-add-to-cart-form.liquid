@@ -14,7 +14,7 @@
 var selectCallback = function(variant, selector) {
   jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
   jQuery('#purchase').removeClass('btn-primary');
-  jQuery('#purchase').val('{% include '__localize' with 'unavailable' %}');
+  jQuery('#purchase').val('{% include '__localize' with 'Unavailable' %}');
   // jQuery('#purchase').hide();
   jQuery('#price-field').addClass('muted');      // set add-to-cart button to unavailable class and disable button
   if (variant) {
@@ -31,10 +31,10 @@ var selectCallback = function(variant, selector) {
       // jQuery('#purchase').show();
       jQuery('#purchase').addClass('btn-primary');
       jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
-      jQuery('#purchase').val('{% include '__localize' with 'add-to-cart' %}');
+      jQuery('#purchase').val('{% include '__localize' with 'Add to cart' %}');
       jQuery('#price-field').removeClass('muted');      // set add-to-cart button to unavailable class and disable button
     } else {
-      jQuery('#purchase').val('{% include '__localize' with 'sold-out' %}');
+      jQuery('#purchase').val('{% include '__localize' with 'Sold out' %}');
     }
   } else {
     jQuery('#compare-at-price-field').text('');  // clear compare-at-price field

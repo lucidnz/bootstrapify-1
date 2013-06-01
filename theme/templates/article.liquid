@@ -11,10 +11,9 @@
 {% endif %}
 
 {% if article.comments_enabled? %}
-
-{% if article.comments.size > 0 %}
 <hr>
 <h3>Comments</h3>
+{% if article.comments.size > 0 %}
 {% paginate article.comments by 25 %}
 {% for c in article.comments reversed %}
 {% include '_comment' with c %}
@@ -24,38 +23,38 @@
 
 {% endpaginate %}
 {% else %}
-<p>There are currently no comments. Be the first.</p>
+<p>{% include '__localize' with 'No comments. Please feel free to be the first.' %}</p>
 {% endif %}
 <hr>
-<h4>Leave a comment</h4>
+<h4>{% include '__localize' with 'Leave a comment' %}</h4>
 <div class="form-horizontal">
   {% form article %}
   {% if form.posted_successfully? %}
   {% if blog.moderated? %}
-  <div class="alert alert-success">{% include '__localize' with 'comments-posted-awaiting-moderation' %}</div>
+  <div class="alert alert-success">{% include '__localize' with 'Comment posted. Awaiting moderation.' %}</div>
   {% else %}
-  <div class="alert alert-success">Comment posted.</div>
+  <div class="alert alert-success">{% include '__localize' with 'Comment posted.' %}</div>
   {% endif %}
   {% else %}
   {% if form.errors %}
-  <div class="alert alert-error">Please fix the errors below before submitting your comment.</div>
+  <div class="alert alert-error">{% include '__localize' with 'Sorry, you appear to have missed something. Please see below.' %}</div>
   {% endif %}
 	
   <fieldset>
     <div class="control-group {% if form.errors contains 'author' %}error{% endif %}">
-      <label for="comment_author" class="control-label">Your name</label>
+      <label for="comment_author" class="control-label">{% include '__localize' with 'Your name' %}</label>
       <div class="controls">
-        <input type="text" value="{{form.author}}" name="comment[author]" id="comment_author" class="input-xlarge" placeholder="First Last">
+        <input type="text" value="{{form.author}}" name="comment[author]" id="comment_author" class="input-xlarge" placeholder="{% include '__localize' with 'First Last' %}">
       </div>
     </div>
     <div class="control-group {% if form.errors contains 'email' %}error{% endif %}">
-      <label for="comment_email" class="control-label">Email</label>
+      <label for="comment_email" class="control-label">{% include '__localize' with 'Email' %}</label>
       <div class="controls">
         <input type="text" value="{{form.email}}" id="comment_email" name="comment[email]" class="input-xlarge">
       </div>
     </div>
     <div class="control-group {% if form.errors contains 'body' %}error{% endif %}">
-      <label for="comment_body" class="control-label">Comment</label>
+      <label for="comment_body" class="control-label">{% include '__localize' with 'Your comment' %}</label>
       <div class="controls">
         <textarea rows="3" id="comment_body" name="comment[body]" class="input-xlarge">{{form.body}}</textarea>
       </div>
@@ -63,9 +62,9 @@
 
     <div class="controls">
       {% if blog.moderated? %}
-      <div class="alert alert-info">All comments are held for approval before being published.</div>
+      <div class="alert alert-info">{% include '__localize' with 'All comments are held for moderation. Your comment will be posted shortly.' %}</div>
       {% endif %}  
-      <input type="submit" class="btn btn-primary" value="Post comment" />
+      <input type="submit" class="btn btn-primary" value="{% include '__localize' with 'Post comment' %}" />
     </div>
   </fieldset>
   

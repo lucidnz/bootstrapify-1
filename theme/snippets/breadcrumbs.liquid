@@ -1,14 +1,14 @@
 <ul class="breadcrumb">
-  <li><a href="/"><i class="icon-home"></i></a> <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>
-  {% if collection.title != blank and collection.title != page_title and template != 'index' %}<li><a href="{{ collection.url }}">{{ collection.title }}</a> <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>{% endif %}
-  {% if blog.title != blank and blog.title != page_title %}<li><a href="{{ blog.url }}">{{ blog.title }}</a> <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>{% endif %}
-  {% if article.title != blank and article.title != page_title %}<li><a href="{{ article.url }}">{{ article.title }}</a> <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>{% endif %}
-  {% if page.title != blank and page.title != page_title %}<li><a href="{{ page.url }}">{{ page.title }}</a> <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>{% endif %}
-  {% if product.title != blank and product.title != page_title %}<li><a href="{{ product.url | within: collection }}">{{ product.title }}</a> <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>{% endif %}
+  <li><a href="/"><i class="icon-home"></i></a> <span class="divider">{{ settings.breadcrumb-separator }}</span></li>
+  {% if collection.title != blank and collection.title != page_title and template != 'index' %}<li><a href="{{ collection.url }}">{{ collection.title }}</a> <span class="divider">{{ settings.breadcrumb-separator }}</span></li>{% endif %}
+  {% if blog.title != blank and blog.title != page_title %}<li><a href="{{ blog.url }}">{{ blog.title }}</a> <span class="divider">{{ settings.breadcrumb-separator }}</span></li>{% endif %}
+  {% if article.title != blank and article.title != page_title %}<li><a href="{{ article.url }}">{{ article.title }}</a> <span class="divider">{{ settings.breadcrumb-separator }}</span></li>{% endif %}
+  {% if page.title != blank and page.title != page_title %}<li><a href="{{ page.url }}">{{ page.title }}</a> <span class="divider">{{ settings.breadcrumb-separator }}</span></li>{% endif %}
+  {% if product.title != blank and product.title != page_title %}<li><a href="{{ product.url | within: collection }}">{{ product.title }}</a> <span class="divider">{{ settings.breadcrumb-separator }}</span></li>{% endif %}
   {% if current_tags == blank %}
     <li class="active">{{ page_title }}</li>
   {% else %}
-    <li>{{ page_title | link_to: './' }} <span class="divider">{% include '__localize' with 'breadcrumb-separator' %}</span></li>
-    <li class="active">{% include '__localize' with 'filtered-by' %} {{ current_tags | join: ' + ' }}</li>
+    <li>{{ page_title | link_to: './' }} <span class="divider">{{ settings.breadcrumb-separator }}</span></li>
+    <li class="active">{% include '__localize' with 'Filtered by' %} {{ current_tags | join: ' + ' }}</li>
   {% endif %}
 </ul>

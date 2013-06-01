@@ -1,9 +1,9 @@
 {% capture vars %}
   {% if search.performed %}
-    {% capture title %}{% include '__localize' with 'search-results-for' %} {% include '__localize' with 'left-quote' %}{{ page_title }}{% include '__localize' with 'right-quote' %}{% endcapture %}
+    {% capture title %}{% include '__localize' with 'Search results for' %} {{ settings.left-quote }}{{ page_title }}{{ settings.right-quote }}{% endcapture %}
   {% else %}
     {% if template == 'index' %}
-      {% capture homepage_title %}{% include '__localize' with 'homepage-title' %}{% endcapture %}
+      {% capture homepage_title %}{% include '__localize' with 'Homepage title' %}{% endcapture %}
       {% assign page_title = homepage_title %}
     {% endif %}
     {% assign title = page_title %}
