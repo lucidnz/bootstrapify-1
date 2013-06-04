@@ -8,7 +8,7 @@
 
 body {
   {% unless settings.site-background-color == blank %}background-color: {{ settings.site-background-color }};{% endunless %}
-  font-family: {% if settings.body-font-custom != blank %}{{ settings.body-font-custom }}{% elsif settings.body-font != blank %}{{ settings.body-font }}{% endif %};
+  {% unless settings.body-font-custom == blank and settings.body-font == blank %}font-family: {% unless settings.body-font-custom == blank %}{{ settings.body-font-custom }}{% endunless %}{% unless settings.body-font == blank %}{% unless settings.body-font-custom == blank %}, {% endunless %}{{ settings.body-font }}{% endunless %}{% endunless %};
   {% unless settings.body-text-size == blank %}font-size: {{ settings.body-text-size }};{% endunless %}
   
   & a {
@@ -26,9 +26,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: {% if settings.heading-font-custom != blank %}{{ settings.heading-font-custom }}{% elsif settings.heading-font != blank %}{{ settings.heading-font }}{% endif %};
+  {% unless settings.heading-font-custom == blank and settings.heading-font == blank %}font-family: {% unless settings.heading-font-custom == blank %}{{ settings.heading-font-custom }}{% endunless %}{% unless settings.heading-font == blank %}{% unless settings.heading-font-custom == blank %}, {% endunless %}{{ settings.heading-font }}{% endunless %}{% endunless %};
   {% unless settings.heading-case == blank %}text-transform: {{ settings.heading-case }};{% endunless %}
-  {% unless settings.heading-weight == blank %}font-weight: {{ settings.heading-weight }};{% endunless %}
+  {% unless settings.heading-font-weight == blank %}font-weight: {{ settings.heading-font-weight }};{% endunless %}
   {% unless settings.heading-style == blank %}font-style: {{ settings.heading-style }};{% endunless %}
   {% unless settings.heading-text-color == blank %}color: {{ settings.heading-text-color }};{% endunless %}
   
@@ -68,7 +68,7 @@ h6 {
 }
 
 .navbar {
-  font-family: {% if settings.navbar-font-custom != blank %}{{ settings.navbar-font-custom }}{% elsif settings.navbar-font != blank %}{{ settings.navbar-font }}{% endif %};
+  {% unless settings.navbar-font-custom == blank and settings.navbar-font == blank %}font-family: {% unless settings.navbar-font-custom == blank %}{{ settings.navbar-font-custom }}{% endunless %}{% unless settings.navbar-font == blank %}{% unless settings.navbar-font-custom == blank %}, {% endunless %}{{ settings.navbar-font }}{% endunless %}{% endunless %};
   {% unless settings.navbar-link-color == blank %}color: {{ settings.navbar-link-color }};{% endunless %}
   {% unless settings.navbar-size == blank %}font-size: {{ settings.navbar-size }};{% endunless %}
   
@@ -85,17 +85,20 @@ h6 {
 
 .nav {
   {% unless settings.nav-case == blank %}text-transform: {{ settings.nav-case }};{% endunless %}
-  {% unless settings.nav-weight == blank %}font-weight: {{ settings.nav-weight }};{% endunless %}
+  {% unless settings.nav-font-weight == blank %}font-weight: {{ settings.nav-font-weight }};{% endunless %}
   {% unless settings.nav-style == blank %}font-style: {{ settings.nav-style }};{% endunless %}
 }
 
 aside {
-  font-family: {% if settings.sidebar-font-custom != blank %}{{ settings.sidebar-font-custom }}{% elsif settings.sidebar-font != blank %}{{ settings.sidebar-font }}{% endif %};
+  {% unless settings.sidebar-font-custom == blank and settings.sidebar-font == blank %}font-family: {% unless settings.sidebar-font-custom == blank %}{{ settings.sidebar-font-custom }}{% endunless %}{% unless settings.sidebar-font == blank %}{% unless settings.sidebar-font-custom == blank %}, {% endunless %}{{ settings.sidebar-font }}{% endunless %}{% endunless %};
   {% unless settings.sidebar-text-color == blank %}color: {{ settings.sidebar-text-color }};{% endunless %}
   {% unless settings.sidebar-size == blank %}font-size: {{ settings.sidebar-size }};{% endunless %}
 }
 
 aside .nav {
+  {% unless settings.sidebar-nav-font-custom == blank and settings.sidebar-nav-font == blank %}font-family: {% unless settings.sidebar-nav-font-custom == blank %}{{ settings.sidebar-nav-font-custom }}{% endunless %}{% unless settings.sidebar-nav-font == blank %}{% unless settings.sidebar-nav-font-custom == blank %}, {% endunless %}{{ settings.sidebar-nav-font }}{% endunless %}{% endunless %};
+  {% unless settings.sidebar-nav-case == blank %}text-transform: {{ settings.sidebar-nav-case }};{% endunless %}
+  
   & a {
     {% unless settings.sidebar-link-color == blank %}color: {{ settings.sidebar-link-color }};{% endunless %}
     
@@ -106,7 +109,7 @@ aside .nav {
 }
 
 .navbar-fixed-bottom {
-  font-family: {% if settings.footer-font-custom != blank %}{{ settings.footer-font-custom }}{% elsif settings.footer-font != blank %}{{ settings.footer-font }}{% endif %};
+  {% unless settings.footer-font-custom == blank and settings.footer-font == blank %}font-family: {% unless settings.footer-font-custom == blank %}{{ settings.footer-font-custom }}{% endunless %}{% unless settings.footer-font == blank %}{% unless settings.footer-font-custom == blank %}, {% endunless %}{{ settings.footer-font }}{% endunless %}{% endunless %};
   {% unless settings.footer-text-color == blank %}color: {{ settings.footer-text-color }};{% endunless %}
   {% unless settings.footer-size == blank %}font-size: {{ settings.footer-size }};{% endunless %}
   

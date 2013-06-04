@@ -994,14 +994,21 @@
     <tr>
       <th><label for="body-font">Font</label></th>
       <td>
+        <p><strong>Custom font name</strong></p>
         <p>
           <input type="text" name="body-font-custom" id="body-font-custom" class="text" value="" />
-          <input type="checkbox" name="body-font-custom-google" id="body-font-custom-google" value="1" />Google?
+          <input type="checkbox" name="body-font-google" id="body-font-google" value="1" />Google?
         </p>
+        <p><strong>Fallback/default</strong></p>
         <p>
           <select class="font" name="body-font" id="body-font">
-          </select> (Fallback/default)
+            <option value="" selected="selected"></option>
+          </select>
         </p>
+        <p><strong>Weight</strong></p>
+		<p>
+          <input type="text" name="body-font-weight" id="body-font-weight" class="text" value="" />
+		</p>
       </td>
     </tr>
   </table>
@@ -1049,14 +1056,21 @@
     <tr>
       <th><label for="footer-font">Font</label></th>
       <td>
+        <p><strong>Custom font name</strong></p>
         <p>
           <input type="text" name="footer-font-custom" id="footer-font-custom" class="text" value="" />
-          <input type="checkbox" name="footer-font-custom-google" id="footer-font-custom-google" value="1" />Google?
+          <input type="checkbox" name="footer-font-google" id="footer-font-google" value="1" />Google?
         </p>
+        <p><strong>Fallback/default</strong></p>
         <p>
           <select class="font" name="footer-font" id="footer-font">
-          </select> (Fallback/default)
+            <option value="" selected="selected"></option>
+          </select>
         </p>
+        <p><strong>Weight</strong></p>
+		<p>
+          <input type="text" name="footer-font-weight" id="footer-font-weight" class="text" value="" />
+		</p>
       </td>
     </tr>
   </table>
@@ -1177,14 +1191,21 @@
     <tr>
       <th><label for="heading-font">Heading font</label></th>
       <td>
+        <p><strong>Custom font name</strong></p>
         <p>
           <input type="text" name="heading-font-custom" id="heading-font-custom" class="text" value="" />
-          <input type="checkbox" name="heading-font-custom-google" id="heading-font-custom-google" value="1" />Google?
+          <input type="checkbox" name="heading-font-google" id="heading-font-google" value="1" />Google?
         </p>
+        <p><strong>Fallback/default</strong></p>
         <p>
           <select class="font" name="heading-font" id="heading-font">
-          </select> (Fallback/default)
+            <option value="" selected="selected"></option>
+          </select>
         </p>
+        <p><strong>Weight</strong></p>
+		<p>
+          <input type="text" name="heading-font-weight" id="heading-font-weight" class="text" value="" />
+		</p>
       </td>
     </tr>
   </table>
@@ -1204,16 +1225,6 @@
       <th><label for="heading-text-color">Heading text color</label></th>
       <td>
         <input type="text" name="heading-text-color" id="heading-text-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="heading-weight">Heading weight</label></th>
-      <td>
-        <div><input type="radio" name="heading-weight" id="heading-weight" value="normal" checked="checked" /> Normal</div>
-<div><input type="radio" name="heading-weight" id="heading-weight" value="bold" /> Bold</div>
       </td>
     </tr>
   </table>
@@ -1253,26 +1264,23 @@
   
   <table>
     <tr>
-      <th><label for="nav-weight">Weight</label></th>
-      <td>
-        <div><input type="radio" name="nav-weight" id="nav-weight" value="normal" checked="checked" /> Normal</div>
-<div><input type="radio" name="nav-weight" id="nav-weight" value="bold" /> Bold</div>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="navbar-font">Navbar font</label></th>
       <td>
+        <p><strong>Custom font name</strong></p>
         <p>
           <input type="text" name="navbar-font-custom" id="navbar-font-custom" class="text" value="" />
-          <input type="checkbox" name="navbar-font-custom-google" id="navbar-font-custom-google" value="1" />Google?
+          <input type="checkbox" name="navbar-font-google" id="navbar-font-google" value="1" />Google?
         </p>
+        <p><strong>Fallback/default</strong></p>
         <p>
           <select class="font" name="navbar-font" id="navbar-font">
-          </select> (Fallback/default)
+            <option value="" selected="selected"></option>
+          </select>
         </p>
+        <p><strong>Weight</strong></p>
+		<p>
+          <input type="text" name="navbar-font-weight" id="navbar-font-weight" class="text" value="" />
+		</p>
       </td>
     </tr>
   </table>
@@ -1318,16 +1326,23 @@
   
   <table>
     <tr>
-      <th><label for="sidebar-font">Font</label></th>
+      <th><label for="sidebar-base-font">Base font</label></th>
       <td>
+        <p><strong>Custom font name</strong></p>
         <p>
-          <input type="text" name="sidebar-font-custom" id="sidebar-font-custom" class="text" value="" />
-          <input type="checkbox" name="sidebar-font-custom-google" id="sidebar-font-custom-google" value="1" />Google?
+          <input type="text" name="sidebar-base-font-custom" id="sidebar-base-font-custom" class="text" value="" />
+          <input type="checkbox" name="sidebar-base-font-google" id="sidebar-base-font-google" value="1" />Google?
         </p>
+        <p><strong>Fallback/default</strong></p>
         <p>
-          <select class="font" name="sidebar-font" id="sidebar-font">
-          </select> (Fallback/default)
+          <select class="font" name="sidebar-base-font" id="sidebar-base-font">
+            <option value="" selected="selected"></option>
+          </select>
         </p>
+        <p><strong>Weight</strong></p>
+		<p>
+          <input type="text" name="sidebar-base-font-weight" id="sidebar-base-font-weight" class="text" value="" />
+		</p>
       </td>
     </tr>
   </table>
@@ -1346,6 +1361,41 @@
       <th><label for="sidebar-link-hover-color">Link hover color</label></th>
       <td>
         <input type="text" name="sidebar-link-hover-color" id="sidebar-link-hover-color" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="sidebar-nav-case">Nav case</label></th>
+      <td>
+        <div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="normal-as-typed" checked="checked" /> Normal (as typed)</div>
+<div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="lowercase" /> lowercase</div>
+<div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="uppercase" /> UPPERCASE</div>
+<div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="capitalize" /> Title Case</div>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="sidebar-nav-font">Nav font</label></th>
+      <td>
+        <p><strong>Custom font name</strong></p>
+        <p>
+          <input type="text" name="sidebar-nav-font-custom" id="sidebar-nav-font-custom" class="text" value="" />
+          <input type="checkbox" name="sidebar-nav-font-google" id="sidebar-nav-font-google" value="1" />Google?
+        </p>
+        <p><strong>Fallback/default</strong></p>
+        <p>
+          <select class="font" name="sidebar-nav-font" id="sidebar-nav-font">
+            <option value="" selected="selected"></option>
+          </select>
+        </p>
+        <p><strong>Weight</strong></p>
+		<p>
+          <input type="text" name="sidebar-nav-font-weight" id="sidebar-nav-font-weight" class="text" value="" />
+		</p>
       </td>
     </tr>
   </table>

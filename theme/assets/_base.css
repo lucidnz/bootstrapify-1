@@ -1045,6 +1045,7 @@ td.text-center,th.text-center{text-align:center;}
 .footer{padding:20px 0;margin-top:40px;border-top:1px solid #e5e5e5;background-color:#f5f5f5;}.footer p{margin-bottom:0;color:#777;}
 .footer-links{margin:0;}.footer-links li{display:inline;}
 .footer-links li+li{margin-left:1em;padding-left:1em;border-left:1px solid #e5e5e5;}
+.navbar-inverse .footer-links li+li{border-left-color:#222222;}
 .brand img{max-height:20px;height:auto !important;height:20px;margin-top:-5px;}
 .social-icons,.footer-form{margin-bottom:1em;}
 .nav-simple .active{font-weight:bold;}
