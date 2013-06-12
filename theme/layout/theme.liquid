@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>{% include 'smart-title' %} | {{ shop.name }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   {% include 'meta' %}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   
   {{ '_base.css' | asset_url | stylesheet_tag }}
   {{ '_settings.scss.css' | asset_url | stylesheet_tag }}

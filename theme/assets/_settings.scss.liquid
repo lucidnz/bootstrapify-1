@@ -32,7 +32,7 @@ h6 {
   {% unless settings.heading-style == blank %}font-style: {{ settings.heading-style }};{% endunless %}
   {% unless settings.heading-text-color == blank %}color: {{ settings.heading-text-color }};{% endunless %}
   
-  {% unless settings.heading-letterpress == blank %}text-shadow: 1px 1px 0 #fff;{% endunless %}
+  {% unless settings.heading-letterpress == blank %}text-shadow: 1px 2px 0px #fff;{% endunless %}
   
   & a {
     {% unless settings.heading-text-color == blank %}color: {{ settings.heading-text-color }};{% endunless %}
@@ -81,12 +81,38 @@ h6 {
       }
     }
   }
+  
+{% unless settings.navbar-background-color == blank %}  & .navbar-inner,
+  &.navbar-inverse .navbar-inner  {
+    background-color: {{ settings.navbar-background-color }};
+    background-image: none !important;
+  }{% endunless %}
 }
 
 .nav {
   {% unless settings.nav-case == blank %}text-transform: {{ settings.nav-case }};{% endunless %}
   {% unless settings.nav-font-weight == blank %}font-weight: {{ settings.nav-font-weight }};{% endunless %}
   {% unless settings.nav-style == blank %}font-style: {{ settings.nav-style }};{% endunless %}
+  
+{% unless settings.navbar-active-background-color == blank %}
+  .navbar & li.active a {
+    background-color: {{ settings.navbar-active-background-color }} !important;
+  }{% endunless %}
+  
+{% unless settings.navbar-hover-background-color == blank %}
+  .navbar & li a:hover {
+    background-color: {{ settings.navbar-hover-background-color }} !important;
+  }{% endunless %}
+  
+{% unless settings.sidebar-nav-active-background-color == blank %}
+  aside & li.active a {
+    background-color: {{ settings.sidebar-nav-active-background-color }} !important;
+  }{% endunless %}
+
+{% unless settings.sidebar-nav-hover-background-color == blank %}
+  aside & li a:hover {
+    background-color: {{ settings.sidebar-nav-hover-background-color }} !important;
+  }{% endunless %}
 }
 
 aside {
@@ -129,3 +155,15 @@ aside .nav {
     {% unless settings.heading-case == blank %}color: darken(#fff,25%);{% endunless %}
   }
 }
+
+{% assign colors = 'default success inverse warning alert info' | split: ' ' %}{% for c in colors %}
+{% assign color_setting = c | prepend: 'labels-' | append: '-color' %}
+.label-{{ color }},
+.alert-{{ color }},
+.badge-{{ color }} {
+    background-color: {{ settings[color_setting] }};
+  }
+}{% endfor %}
+
+
+{% unless settings.custom-css == blank %}{{ settings.custom-css }}{% endunless %}
