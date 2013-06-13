@@ -6,17 +6,36 @@
   url('{{ 'font/fontawesome-webfont.ttf' | asset_url }}') format('truetype');
 }
 
+$primary_color: {{ settings.primary-color }};
+$primary_color_hover: if(lightness($primary_color) > 50%, lighten($primary_color, 3%), darken($primary_color, 3%));
+$primary_color_active: if(lightness($primary_color) > 50%, lighten($primary_color, 6%), darken($primary_color, 6%));
+$primary_color_inverse: if(lightness($primary_color) > 30%, darken($primary_color, 50%), lighten($primary_color, 50%));
+$primary_color_inverse_hover: if(lightness($primary_color_inverse) > 30%, lighten($primary_color_inverse, 10%), darken($primary_color_inverse, 10%));
+$secondary_color: {{ settings.secondary-color }};
+$background_color: {{ settings.site-background-color }};
+$background_dark: darken($background_color, 90%);
+$background_light: lighten($background_color, 90%);
+
 body {
-  {% unless settings.site-background-color == blank %}background-color: {{ settings.site-background-color }};{% endunless %}
-  {% unless settings.body-font-custom == blank and settings.body-font == blank %}font-family: {% unless settings.body-font-custom == blank %}{{ settings.body-font-custom }}{% endunless %}{% unless settings.body-font == blank %}{% unless settings.body-font-custom == blank %}, {% endunless %}{{ settings.body-font }}{% endunless %}{% endunless %};
+  @if $background_color != nil {
+    background-color: $background_color;
+  }
+  
+  {% if settings.site-background-image %}background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');{% endif %}
+  {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
+  {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
+  {% unless settings.body-font-custom == blank and settings.body-font == blank %}font-family: {% unless settings.body-font-custom == blank %}{{ settings.body-font-custom }}{% endunless %}{% unless settings.body-font == blank %}{% unless settings.body-font-custom == blank %}, {% endunless %}{{ settings.body-font }}{% endunless %};{% endunless %}
   {% unless settings.body-text-size == blank %}font-size: {{ settings.body-text-size }};{% endunless %}
   
-  & a {
-    {% unless settings.body-link-color == blank %}color: {{ settings.body-link-color }};{% endunless %}
-    
-    &:hover {
-      {% unless settings.body-link-hover-color == blank %}color: {{ settings.body-link-hover-color }};{% endunless %}
-    }
+  & a:link,
+  & a:visited {
+    @if $primary_color != nil {
+      color: $primary_color;
+      
+      &:hover {
+        color: $primary_color_hover;
+      }
+    }    
   }
 }
 
@@ -26,21 +45,14 @@ h3,
 h4,
 h5,
 h6 {
-  {% unless settings.heading-font-custom == blank and settings.heading-font == blank %}font-family: {% unless settings.heading-font-custom == blank %}{{ settings.heading-font-custom }}{% endunless %}{% unless settings.heading-font == blank %}{% unless settings.heading-font-custom == blank %}, {% endunless %}{{ settings.heading-font }}{% endunless %}{% endunless %};
+  {% unless settings.heading-font-custom == blank and settings.heading-font == blank %}font-family: {% unless settings.heading-font-custom == blank %}{{ settings.heading-font-custom }}{% endunless %}{% unless settings.heading-font == blank %}{% unless settings.heading-font-custom == blank %}, {% endunless %}{{ settings.heading-font }}{% endunless %};{% endunless %}
   {% unless settings.heading-case == blank %}text-transform: {{ settings.heading-case }};{% endunless %}
   {% unless settings.heading-font-weight == blank %}font-weight: {{ settings.heading-font-weight }};{% endunless %}
   {% unless settings.heading-style == blank %}font-style: {{ settings.heading-style }};{% endunless %}
-  {% unless settings.heading-text-color == blank %}color: {{ settings.heading-text-color }};{% endunless %}
   
-  {% unless settings.heading-letterpress == blank %}text-shadow: 1px 2px 0px #fff;{% endunless %}
-  
-  & a {
-    {% unless settings.heading-text-color == blank %}color: {{ settings.heading-text-color }};{% endunless %}
-    
-    &:hover {
-      {% unless settings.heading-text-color == blank %}color: darken({{ settings.heading-text-color }}, 10%);{% endunless %}
-    }
-  }
+  {% unless settings.heading-letterpress == blank %}
+    text-shadow: 1px 1px 0px if(lightness($background_color) > 80%, #fff, rgba(#000, 0.5));
+  {% endunless %}
 }
 
 h1 {
@@ -67,103 +79,101 @@ h6 {
   {% unless settings.heading-6-size == blank %}font-size: {{ settings.heading-6-size }};{% endunless %}
 }
 
-.navbar {
-  {% unless settings.navbar-font-custom == blank and settings.navbar-font == blank %}font-family: {% unless settings.navbar-font-custom == blank %}{{ settings.navbar-font-custom }}{% endunless %}{% unless settings.navbar-font == blank %}{% unless settings.navbar-font-custom == blank %}, {% endunless %}{{ settings.navbar-font }}{% endunless %}{% endunless %};
-  {% unless settings.navbar-link-color == blank %}color: {{ settings.navbar-link-color }};{% endunless %}
+ul.breadcrumb,
+aside .nav a:hover,
+.footer {
+  background: rgba(if(lightness($background_color) > 50%, $background_dark, $background_light), 0.05);
+}
+
+aside .nav li.active a {
+  background: rgba(if(lightness($background_color) > 50%, $background_dark, $background_light), 0.15);
+  
+  &:hover {
+    background: rgba(if(lightness($background_color) > 50%, $background_dark, $background_light), 0.1);
+  }
+}
+
+.navbar {  
+  {% unless settings.navbar-font-custom == blank and settings.navbar-font == blank %}font-family: {% unless settings.navbar-font-custom == blank %}{{ settings.navbar-font-custom }}{% endunless %}{% unless settings.navbar-font == blank %}{% unless settings.navbar-font-custom == blank %}, {% endunless %}{{ settings.navbar-font }}{% endunless %};{% endunless %}
   {% unless settings.navbar-size == blank %}font-size: {{ settings.navbar-size }};{% endunless %}
   
-  & .nav li {
-    & a {
-      {% unless settings.navbar-link-color == blank %}color: {{ settings.navbar-link-color }};{% endunless %}
+  .navbar-inner {
+    background: $primary_color;
+    background-image: none !important;
     
-      &:hover {
-        {% unless settings.navbar-link-hover-color == blank %}color: {{ settings.navbar-link-hover-color }};{% endunless %}
+    & .nav li a,
+    & .brand {
+      text-shadow: if(lightness($primary_color) > 50%, 1px 1px 0px #fff, none);
+    }
+    
+    & .nav li {
+      & a {
+        color: $primary_color_inverse;
+      
+        &:hover {
+          background-color: $primary_color_hover;
+          color: $primary_color_inverse_hover;
+        }
+        
+        & .caret {
+          border-top-color: $primary_color_inverse !important;
+          border-bottom-color: $primary_color_inverse !important;
+        }
+      }
+      
+      &.active a {
+        background-color: $primary_color_active;
+      }
+      
+      &.dropdown.open > .dropdown-toggle {
+        background-color: $primary_color_hover !important;
+        color: $primary_color_inverse_hover;
+      }
+      
+      & ul.dropdown-menu {
+        & li a:hover,
+        & li.active,
+        & li.active a:hover {
+          color: $primary_color_inverse;
+          background-color: $primary_color;
+        }
+        
+        & a {
+          color: $primary_color;
+        }
       }
     }
+    
+    & .brand {
+      color: #fff;
+    }
   }
-  
-{% unless settings.navbar-background-color == blank %}  & .navbar-inner,
-  &.navbar-inverse .navbar-inner  {
-    background-color: {{ settings.navbar-background-color }};
-    background-image: none !important;
-  }{% endunless %}
 }
 
 .nav {
   {% unless settings.nav-case == blank %}text-transform: {{ settings.nav-case }};{% endunless %}
   {% unless settings.nav-font-weight == blank %}font-weight: {{ settings.nav-font-weight }};{% endunless %}
   {% unless settings.nav-style == blank %}font-style: {{ settings.nav-style }};{% endunless %}
-  
-{% unless settings.navbar-active-background-color == blank %}
-  .navbar & li.active a {
-    background-color: {{ settings.navbar-active-background-color }} !important;
-  }{% endunless %}
-  
-{% unless settings.navbar-hover-background-color == blank %}
-  .navbar & li a:hover {
-    background-color: {{ settings.navbar-hover-background-color }} !important;
-  }{% endunless %}
-  
-{% unless settings.sidebar-nav-active-background-color == blank %}
-  aside & li.active a {
-    background-color: {{ settings.sidebar-nav-active-background-color }} !important;
-  }{% endunless %}
-
-{% unless settings.sidebar-nav-hover-background-color == blank %}
-  aside & li a:hover {
-    background-color: {{ settings.sidebar-nav-hover-background-color }} !important;
-  }{% endunless %}
 }
 
 aside {
-  {% unless settings.sidebar-font-custom == blank and settings.sidebar-font == blank %}font-family: {% unless settings.sidebar-font-custom == blank %}{{ settings.sidebar-font-custom }}{% endunless %}{% unless settings.sidebar-font == blank %}{% unless settings.sidebar-font-custom == blank %}, {% endunless %}{{ settings.sidebar-font }}{% endunless %}{% endunless %};
-  {% unless settings.sidebar-text-color == blank %}color: {{ settings.sidebar-text-color }};{% endunless %}
+  {% unless settings.sidebar-font-custom == blank and settings.sidebar-font == blank %}font-family: {% unless settings.sidebar-font-custom == blank %}{{ settings.sidebar-font-custom }}{% endunless %}{% unless settings.sidebar-font == blank %}{% unless settings.sidebar-font-custom == blank %}, {% endunless %}{{ settings.sidebar-font }}{% endunless %};{% endunless %}
   {% unless settings.sidebar-size == blank %}font-size: {{ settings.sidebar-size }};{% endunless %}
 }
 
 aside .nav {
-  {% unless settings.sidebar-nav-font-custom == blank and settings.sidebar-nav-font == blank %}font-family: {% unless settings.sidebar-nav-font-custom == blank %}{{ settings.sidebar-nav-font-custom }}{% endunless %}{% unless settings.sidebar-nav-font == blank %}{% unless settings.sidebar-nav-font-custom == blank %}, {% endunless %}{{ settings.sidebar-nav-font }}{% endunless %}{% endunless %};
+  {% unless settings.sidebar-nav-font-custom == blank and settings.sidebar-nav-font == blank %}font-family: {% unless settings.sidebar-nav-font-custom == blank %}{{ settings.sidebar-nav-font-custom }}{% endunless %}{% unless settings.sidebar-nav-font == blank %}{% unless settings.sidebar-nav-font-custom == blank %}, {% endunless %}{{ settings.sidebar-nav-font }}{% endunless %};{% endunless %}
   {% unless settings.sidebar-nav-case == blank %}text-transform: {{ settings.sidebar-nav-case }};{% endunless %}
-  
-  & a {
-    {% unless settings.sidebar-link-color == blank %}color: {{ settings.sidebar-link-color }};{% endunless %}
-    
-    &:hover {
-      {% unless settings.sidebar-link-hover-color == blank %}color: {{ settings.sidebar-link-hover-color }};{% endunless %}
-    }
-  }
 }
 
 .navbar-fixed-bottom {
-  {% unless settings.footer-font-custom == blank and settings.footer-font == blank %}font-family: {% unless settings.footer-font-custom == blank %}{{ settings.footer-font-custom }}{% endunless %}{% unless settings.footer-font == blank %}{% unless settings.footer-font-custom == blank %}, {% endunless %}{{ settings.footer-font }}{% endunless %}{% endunless %};
-  {% unless settings.footer-text-color == blank %}color: {{ settings.footer-text-color }};{% endunless %}
+  {% unless settings.footer-font-custom == blank and settings.footer-font == blank %}font-family: {% unless settings.footer-font-custom == blank %}{{ settings.footer-font-custom }}{% endunless %}{% unless settings.footer-font == blank %}{% unless settings.footer-font-custom == blank %}, {% endunless %}{{ settings.footer-font }}{% endunless %};{% endunless %}
   {% unless settings.footer-size == blank %}font-size: {{ settings.footer-size }};{% endunless %}
   
-  & a {
-    {% unless settings.footer-link-color == blank %}color: {{ settings.footer-link-color }};{% endunless %}
-    
-    &:hover {
-      {% unless settings.footer-link-hover-color == blank %}color: {{ settings.footer-link-hover-color }};{% endunless %}
-    }
-  }
 }
 
 .carousel-caption a {
-  {% unless settings.heading-case == blank %}color: darken(#fff,15%);{% endunless %}
   
-  &:hover {
-    {% unless settings.heading-case == blank %}color: darken(#fff,25%);{% endunless %}
-  }
 }
-
-{% assign colors = 'default success inverse warning alert info' | split: ' ' %}{% for c in colors %}
-{% assign color_setting = c | prepend: 'labels-' | append: '-color' %}
-.label-{{ color }},
-.alert-{{ color }},
-.badge-{{ color }} {
-    background-color: {{ settings[color_setting] }};
-  }
-}{% endfor %}
-
 
 {% unless settings.custom-css == blank %}{{ settings.custom-css }}{% endunless %}

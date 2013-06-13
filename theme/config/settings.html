@@ -137,17 +137,6 @@
   
   <table>
     <tr>
-      <th><label for="color-scheme">Color scheme</label></th>
-      <td>
-        <div><input type="radio" name="color-scheme" id="color-scheme" value="light" checked="checked" /> Light</div>
-<div><input type="radio" name="color-scheme" id="color-scheme" value="dark" /> Dark</div>
-        <small><p>This will determine if the navbars and buttons are light or dark.</p></small>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="condensed-tables">Condensed tables</label></th>
       <td>
         <input type="checkbox" name="condensed-tables" id="condensed-tables" value="1" /> Yes
@@ -178,99 +167,28 @@
   
   <table>
     <tr>
-      <th><label for="labels-default-color">Default color</label></th>
+      <th><label for="color-scheme">Navbar color scheme</label></th>
       <td>
-        <input type="text" name="labels-default-color" id="labels-default-color" class="color" value="" />
+        <div><input type="radio" name="color-scheme" id="color-scheme" value="light" checked="checked" /> Light</div>
+<div><input type="radio" name="color-scheme" id="color-scheme" value="dark" /> Dark</div>
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="labels-important-color">Important color</label></th>
+      <th><label for="primary-color">Primary color</label></th>
       <td>
-        <input type="text" name="labels-important-color" id="labels-important-color" class="color" value="" />
+        <input type="text" name="primary-color" id="primary-color" class="color" value="" />
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="labels-info-color">Info color</label></th>
+      <th><label for="secondary-color">Secondary color</label></th>
       <td>
-        <input type="text" name="labels-info-color" id="labels-info-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="labels-inverse-color">Inverse color</label></th>
-      <td>
-        <input type="text" name="labels-inverse-color" id="labels-inverse-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="labels-success-color">Success color</label></th>
-      <td>
-        <input type="text" name="labels-success-color" id="labels-success-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="labels-warning-color">Warning color</label></th>
-      <td>
-        <input type="text" name="labels-warning-color" id="labels-warning-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="navbar-active-background-color">Navbar active background color</label></th>
-      <td>
-        <input type="text" name="navbar-active-background-color" id="navbar-active-background-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="navbar-background-color">Navbar background color</label></th>
-      <td>
-        <input type="text" name="navbar-background-color" id="navbar-background-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="navbar-hover-background-color">Navbar hover background color</label></th>
-      <td>
-        <input type="text" name="navbar-hover-background-color" id="navbar-hover-background-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="sidebar-nav-active-background-color">Sidebar nav active background color</label></th>
-      <td>
-        <input type="text" name="sidebar-nav-active-background-color" id="sidebar-nav-active-background-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="sidebar-nav-hover-background-color">Sidebar nav hover background color</label></th>
-      <td>
-        <input type="text" name="sidebar-nav-hover-background-color" id="sidebar-nav-hover-background-color" class="color" value="" />
+        <input type="text" name="secondary-color" id="secondary-color" class="color" value="" />
       </td>
     </tr>
   </table>
@@ -280,6 +198,57 @@
       <th><label for="site-background-color">Site background color</label></th>
       <td>
         <input type="text" name="site-background-color" id="site-background-color" class="color" value="" />
+        <small><p><strong>Note: </strong>if using an image, it’s a good idea to still set the background color (as a fallback but it will also be used to calculate colors for the breadcrumb background etc).</p></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="site-background-image">Site background image</label></th>
+      <td>
+        <input type="checkbox" name="site-background-image" id="site-background-image" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="site-background-image-file">Site background image file</label></th>
+      <td>
+        <input type="file" name="site-background-image-file.jpg" id="site-background-image-file"  />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="site-background-image-position">Site background image position</label></th>
+      <td>
+        <input type="text" name="site-background-image-position" id="site-background-image-position" class="text" value="center top" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="site-background-image-repeat">Site background image repeat</label></th>
+      <td>
+        <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat" checked="checked" /> repeat</div>
+<div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat-x" /> repeat-x</div>
+<div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat-y" /> repeat-y</div>
+<div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="no-repeat" /> no-repeat</div>
+<div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="inherit" /> inherit</div>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="site-color-scheme">Site color scheme</label></th>
+      <td>
+        <div><input type="radio" name="site-color-scheme" id="site-color-scheme" value="light" checked="checked" /> Light</div>
+<div><input type="radio" name="site-color-scheme" id="site-color-scheme" value="dark" /> Dark</div>
       </td>
     </tr>
   </table>
@@ -1126,37 +1095,10 @@
   
   <table>
     <tr>
-      <th><label for="body-link-color">Link color</label></th>
-      <td>
-        <input type="text" name="body-link-color" id="body-link-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="body-link-hover-color">Link hover color</label></th>
-      <td>
-        <input type="text" name="body-link-hover-color" id="body-link-hover-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="body-size">Size</label></th>
       <td>
         <input type="text" name="body-size" id="body-size" class="text" value="" />
         <small><p><strong>Important: </strong>Be sure to use units—e.g., <em>12px </em>or <em>1.1em</em></p></small>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="body-text-color">Text color</label></th>
-      <td>
-        <input type="text" name="body-text-color" id="body-text-color" class="color" value="" />
       </td>
     </tr>
   </table>
@@ -1188,37 +1130,10 @@
   
   <table>
     <tr>
-      <th><label for="footer-link-color">Link color</label></th>
-      <td>
-        <input type="text" name="footer-link-color" id="footer-link-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="footer-link-hover-color">Link hover color</label></th>
-      <td>
-        <input type="text" name="footer-link-hover-color" id="footer-link-hover-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="footer-size">Size</label></th>
       <td>
         <input type="text" name="footer-size" id="footer-size" class="text" value="" />
         <small><p><strong>Important: </strong>Be sure to use units—e.g., <em>12px </em>or <em>1.1em</em></p></small>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="footer-text-color">Text color</label></th>
-      <td>
-        <input type="text" name="footer-text-color" id="footer-text-color" class="color" value="" />
       </td>
     </tr>
   </table>
@@ -1290,7 +1205,7 @@
     <tr>
       <th><label for="heading-case">Heading case</label></th>
       <td>
-        <div><input type="radio" name="heading-case" id="heading-case" value="normal-as-typed" checked="checked" /> Normal (as typed)</div>
+        <div><input type="radio" name="heading-case" id="heading-case" value="normal" checked="checked" /> Normal (as typed)</div>
 <div><input type="radio" name="heading-case" id="heading-case" value="lowercase" /> lowercase</div>
 <div><input type="radio" name="heading-case" id="heading-case" value="uppercase" /> UPPERCASE</div>
 <div><input type="radio" name="heading-case" id="heading-case" value="capitalize" /> Title Case</div>
@@ -1333,15 +1248,6 @@
   
   <table>
     <tr>
-      <th><label for="heading-text-color">Heading text color</label></th>
-      <td>
-        <input type="text" name="heading-text-color" id="heading-text-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="heading-letterpress">Heading “letterpress”</label></th>
       <td>
         <input type="checkbox" name="heading-letterpress" id="heading-letterpress" value="1" /> Yes
@@ -1355,7 +1261,7 @@
     <tr>
       <th><label for="nav-case">Case</label></th>
       <td>
-        <div><input type="radio" name="nav-case" id="nav-case" value="normal-as-typed" checked="checked" /> Normal (as typed)</div>
+        <div><input type="radio" name="nav-case" id="nav-case" value="normal" checked="checked" /> Normal (as typed)</div>
 <div><input type="radio" name="nav-case" id="nav-case" value="lowercase" /> lowercase</div>
 <div><input type="radio" name="nav-case" id="nav-case" value="uppercase" /> UPPERCASE</div>
 <div><input type="radio" name="nav-case" id="nav-case" value="capitalize" /> Title Case</div>
@@ -1398,37 +1304,10 @@
   
   <table>
     <tr>
-      <th><label for="navbar-link-color">Navbar link color</label></th>
-      <td>
-        <input type="text" name="navbar-link-color" id="navbar-link-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="navbar-link-hover-color">Navbar link hover color</label></th>
-      <td>
-        <input type="text" name="navbar-link-hover-color" id="navbar-link-hover-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="navbar-size">Navbar size</label></th>
       <td>
         <input type="text" name="navbar-size" id="navbar-size" class="text" value="" />
         <small><p><strong>Important: </strong>Be sure to use units—e.g., <em>12px </em>or <em>1.1em</em></p></small>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="navbar-text-color">Navbar text color</label></th>
-      <td>
-        <input type="text" name="navbar-text-color" id="navbar-text-color" class="color" value="" />
       </td>
     </tr>
   </table>
@@ -1460,27 +1339,9 @@
   
   <table>
     <tr>
-      <th><label for="sidebar-link-color">Link color</label></th>
-      <td>
-        <input type="text" name="sidebar-link-color" id="sidebar-link-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="sidebar-link-hover-color">Link hover color</label></th>
-      <td>
-        <input type="text" name="sidebar-link-hover-color" id="sidebar-link-hover-color" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="sidebar-nav-case">Nav case</label></th>
       <td>
-        <div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="normal-as-typed" checked="checked" /> Normal (as typed)</div>
+        <div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="normal" checked="checked" /> Normal (as typed)</div>
 <div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="lowercase" /> lowercase</div>
 <div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="uppercase" /> UPPERCASE</div>
 <div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="capitalize" /> Title Case</div>
@@ -1517,15 +1378,6 @@
       <td>
         <input type="text" name="sidebar-size" id="sidebar-size" class="text" value="" />
         <small><p><strong>Important: </strong>Be sure to use units—e.g., <em>12px </em>or <em>1.1em</em></p></small>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="sidebar-text-color">Text color</label></th>
-      <td>
-        <input type="text" name="sidebar-text-color" id="sidebar-text-color" class="color" value="" />
       </td>
     </tr>
   </table>
