@@ -6,20 +6,29 @@
   url('{{ 'font/fontawesome-webfont.ttf' | asset_url }}') format('truetype');
 }
 
+$inverse_threshhold: 50%;
+
 $primary_color: {{ settings.primary-color }};
-$primary_color_hover: if(lightness($primary_color) > 50%, lighten($primary_color, 3%), darken($primary_color, 3%));
-$primary_color_active: if(lightness($primary_color) > 50%, lighten($primary_color, 6%), darken($primary_color, 6%));
-$primary_color_inverse: if(lightness($primary_color) > 30%, darken($primary_color, 50%), lighten($primary_color, 50%));
-$primary_color_inverse_hover: if(lightness($primary_color_inverse) > 30%, lighten($primary_color_inverse, 10%), darken($primary_color_inverse, 10%));
-$secondary_color: {{ settings.secondary-color }};
+$primary_color_hover: if(lightness($primary_color) > $inverse_threshhold, lighten($primary_color, 4%), darken($primary_color, 4%));
+$primary_color_active: if(lightness($primary_color) > $inverse_threshhold, lighten($primary_color, 3%), darken($primary_color, 3%));
+
+$primary_color_inverse: if(lightness($primary_color) > $inverse_threshhold, darken($primary_color, 50%), lighten($primary_color, 50%));
+$primary_color_inverse_hover: if(lightness($primary_color_inverse) > $inverse_threshhold, lighten($primary_color_inverse, 10%), darken($primary_color_inverse, 10%));
+
+$primary_shadow: rgba(if(lightness($primary_color) > $inverse_threshhold, lighten($primary_color, 100%), darken($primary_color, 100%)),0.3);
+
 $background_color: {{ settings.site-background-color }};
-$background_dark: darken($background_color, 90%);
-$background_light: lighten($background_color, 90%);
+$background_color_hover: if(lightness($background_color) > $inverse_threshhold, lighten($background_color, 4%), darken($background_color, 4%));
+$background_color_active: if(lightness($background_color) > $inverse_threshhold, lighten($background_color, 3%), darken($background_color, 3%));
+
+$background_color_inverse: if(lightness($background_color) > $inverse_threshhold, darken($background_color, 50%), lighten($background_color, 50%));
+$background_color_inverse_hover: if(lightness($background_color_inverse) > $inverse_threshhold, darken($background_color_inverse, 4%), lighten($background_color_inverse, 4%));
+
+$background_shadow: rgba(if(lightness($background_color) > $inverse_threshhold, lighten($background_color, 100%), darken($background_color, 100%)),0.3);
 
 body {
-  @if $background_color != nil {
-    background-color: $background_color;
-  }
+  background-color: $background_color;
+  color: if(lightness($background_color) > $inverse_threshhold, lighten($background_color_inverse, 20%), darken($background_color_inverse, 20%));
   
   {% if settings.site-background-image %}background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');{% endif %}
   {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
@@ -29,13 +38,11 @@ body {
   
   & a:link,
   & a:visited {
-    @if $primary_color != nil {
-      color: $primary_color;
+    color: $background_color_inverse;
       
-      &:hover {
-        color: $primary_color_hover;
-      }
-    }    
+    &:hover {
+      color: $background_color_inverse_hover;
+    }
   }
 }
 
@@ -45,13 +52,15 @@ h3,
 h4,
 h5,
 h6 {
+  color: $primary_color;
+  
   {% unless settings.heading-font-custom == blank and settings.heading-font == blank %}font-family: {% unless settings.heading-font-custom == blank %}{{ settings.heading-font-custom }}{% endunless %}{% unless settings.heading-font == blank %}{% unless settings.heading-font-custom == blank %}, {% endunless %}{{ settings.heading-font }}{% endunless %};{% endunless %}
   {% unless settings.heading-case == blank %}text-transform: {{ settings.heading-case }};{% endunless %}
   {% unless settings.heading-font-weight == blank %}font-weight: {{ settings.heading-font-weight }};{% endunless %}
   {% unless settings.heading-style == blank %}font-style: {{ settings.heading-style }};{% endunless %}
   
   {% unless settings.heading-letterpress == blank %}
-    text-shadow: 1px 1px 0px if(lightness($background_color) > 80%, #fff, rgba(#000, 0.5));
+  text-shadow: 0 1px 0 $background_shadow;
   {% endunless %}
 }
 
@@ -79,31 +88,53 @@ h6 {
   {% unless settings.heading-6-size == blank %}font-size: {{ settings.heading-6-size }};{% endunless %}
 }
 
-ul.breadcrumb,
-aside .nav a:hover,
-.footer {
-  background: rgba(if(lightness($background_color) > 50%, $background_dark, $background_light), 0.05);
+.breadcrumb > li {
+  text-shadow: 0 1px 0 $background_shadow;
 }
 
-aside .nav li.active a {
-  background: rgba(if(lightness($background_color) > 50%, $background_dark, $background_light), 0.15);
-  
-  &:hover {
-    background: rgba(if(lightness($background_color) > 50%, $background_dark, $background_light), 0.1);
-  }
+.navbar,
+.dropdown-menu,
+.dropdown-menu li,
+.dropdown-menu li a {
+  {% unless settings.navbar-font-weight == blank %}font-weight: {{ settings.navbar-font-weight }};{% endunless %}
 }
 
 .navbar {  
   {% unless settings.navbar-font-custom == blank and settings.navbar-font == blank %}font-family: {% unless settings.navbar-font-custom == blank %}{{ settings.navbar-font-custom }}{% endunless %}{% unless settings.navbar-font == blank %}{% unless settings.navbar-font-custom == blank %}, {% endunless %}{{ settings.navbar-font }}{% endunless %};{% endunless %}
   {% unless settings.navbar-size == blank %}font-size: {{ settings.navbar-size }};{% endunless %}
+    
+  & .brand {
+    color: $primary_color_inverse;
+    
+    &:hover {
+      color: $primary_color_inverse_hover;
+    }
+  }
   
-  .navbar-inner {
+  & .btn-navbar .icon-bar {
+    background-color: $primary_color_inverse;
+  }
+  
+  & .btn-navbar,
+  & .btn-navbar:hover,
+  & .btn-navbar:focus,
+  & .btn-navbar:active,
+  & .btn-navbar.active,
+  & .btn-navbar.disabled,
+  & .btn-navbar[disabled] {
+    background-color: $primary_color_hover;
+    background-image: none !important;
+    color: $primary_color_inverse;
+  }
+  
+  & .navbar-inner {
     background: $primary_color;
     background-image: none !important;
+    border-color: $background_color_hover;
     
     & .nav li a,
     & .brand {
-      text-shadow: if(lightness($primary_color) > 50%, 1px 1px 0px #fff, none);
+      text-shadow: 0 1px 0 $primary_shadow;
     }
     
     & .nav li {
@@ -131,6 +162,8 @@ aside .nav li.active a {
       }
       
       & ul.dropdown-menu {
+        background-color: $primary_color_hover;
+        
         & li a:hover,
         & li.active,
         & li.active a:hover {
@@ -139,15 +172,15 @@ aside .nav li.active a {
         }
         
         & a {
-          color: $primary_color;
+          color: $primary_color_inverse;
         }
       }
     }
-    
-    & .brand {
-      color: #fff;
-    }
   }
+}
+
+.navbar .nav > li > .dropdown-menu::after {
+  border-bottom-color: $primary_color_hover;
 }
 
 .nav {
@@ -166,10 +199,58 @@ aside .nav {
   {% unless settings.sidebar-nav-case == blank %}text-transform: {{ settings.sidebar-nav-case }};{% endunless %}
 }
 
+.nav-collapse .navbar-form,
+.nav-collapse .navbar-search {
+  border-color: $primary_color_hover;
+}
+
 .navbar-fixed-bottom {
   {% unless settings.footer-font-custom == blank and settings.footer-font == blank %}font-family: {% unless settings.footer-font-custom == blank %}{{ settings.footer-font-custom }}{% endunless %}{% unless settings.footer-font == blank %}{% unless settings.footer-font-custom == blank %}, {% endunless %}{{ settings.footer-font }}{% endunless %};{% endunless %}
   {% unless settings.footer-size == blank %}font-size: {{ settings.footer-size }};{% endunless %}
   
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  box-shadow: none !important;
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus,
+.dropdown-submenu:hover>a,
+.dropdown-submenu:focus>a,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-image: none;
+  background-color: $background_color_active !important;
+  color: $background_color_inverse_hover !important;
+}
+
+.table th,
+.table td,
+blockquote,
+.page-header,
+hr,
+.footer {
+  border-color: rgba($background_color_inverse,0.06);
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th,
+aside .nav li.active a,
+.footer {
+  background-color: rgba($background_color_inverse,0.03);
+}
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th,
+ul.breadcrumb,
+aside .nav .active a:hover,
+aside .nav a:hover,
+.footer .nav a:hover {
+  background-color: rgba($background_color_inverse,0.04);
 }
 
 .carousel-caption a {
