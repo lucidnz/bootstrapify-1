@@ -6,29 +6,33 @@
   url('{{ 'font/fontawesome-webfont.ttf' | asset_url }}') format('truetype');
 }
 
-$inverse_threshhold: 50%;
+$inverse_threshhold: 65%;
+$hover_strength: 5%;
+$active_strength: 3%;
+
+@function stronger( $color, $strength ) {
+  @return if(lightness($color) > $inverse_threshhold, lighten($color, $strength), darken($color, $strength));
+}
+
+@function weaker( $color, $strength ) {
+  @return if(lightness($color) > $inverse_threshhold, darken($color, $strength), lighten($color, $strength));
+}
 
 $primary_color: {{ settings.primary-color }};
-$primary_color_hover: if(lightness($primary_color) > $inverse_threshhold, lighten($primary_color, 4%), darken($primary_color, 4%));
-$primary_color_active: if(lightness($primary_color) > $inverse_threshhold, lighten($primary_color, 3%), darken($primary_color, 3%));
-
 $primary_color_inverse: if(lightness($primary_color) > $inverse_threshhold, darken($primary_color, 50%), lighten($primary_color, 50%));
-$primary_color_inverse_hover: if(lightness($primary_color_inverse) > $inverse_threshhold, lighten($primary_color_inverse, 10%), darken($primary_color_inverse, 10%));
-
 $primary_shadow: rgba(if(lightness($primary_color) > $inverse_threshhold, lighten($primary_color, 100%), darken($primary_color, 100%)),0.3);
 
-$background_color: {{ settings.site-background-color }};
-$background_color_hover: if(lightness($background_color) > $inverse_threshhold, lighten($background_color, 4%), darken($background_color, 4%));
-$background_color_active: if(lightness($background_color) > $inverse_threshhold, lighten($background_color, 3%), darken($background_color, 3%));
-
-$background_color_inverse: if(lightness($background_color) > $inverse_threshhold, darken($background_color, 50%), lighten($background_color, 50%));
-$background_color_inverse_hover: if(lightness($background_color_inverse) > $inverse_threshhold, darken($background_color_inverse, 4%), lighten($background_color_inverse, 4%));
-
-$background_shadow: rgba(if(lightness($background_color) > $inverse_threshhold, lighten($background_color, 100%), darken($background_color, 100%)),0.3);
+$secondary_color: {{ settings.secondary-color }};
+$secondary_color_inverse: if(lightness($secondary_color) > $inverse_threshhold, darken($secondary_color, 50%), lighten($secondary_color, 50%));
+$secondary_shadow: rgba(if(lightness($secondary_color) > $inverse_threshhold, lighten($secondary_color, 100%), darken($secondary_color, 100%)),0.3);
 
 body {
-  background-color: $background_color;
-  color: if(lightness($background_color) > $inverse_threshhold, lighten($background_color_inverse, 20%), darken($background_color_inverse, 20%));
+  background-color: $secondary_color;
+  color: $secondary_color_inverse;
+  
+  strong {
+    font-weight: 400;
+  }
   
   {% if settings.site-background-image %}background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');{% endif %}
   {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
@@ -36,14 +40,17 @@ body {
   {% unless settings.body-font-custom == blank and settings.body-font == blank %}font-family: {% unless settings.body-font-custom == blank %}{{ settings.body-font-custom }}{% endunless %}{% unless settings.body-font == blank %}{% unless settings.body-font-custom == blank %}, {% endunless %}{{ settings.body-font }}{% endunless %};{% endunless %}
   {% unless settings.body-text-size == blank %}font-size: {{ settings.body-text-size }};{% endunless %}
   
-  & a:link,
-  & a:visited {
-    color: $background_color_inverse;
+  & a {
+    color: $secondary_color_inverse;
       
     &:hover {
-      color: $background_color_inverse_hover;
+      color: stronger($secondary_color_inverse, $hover_strength);
     }
   }
+}
+
+p a {
+  text-decoration: underline;
 }
 
 h1,
@@ -60,7 +67,7 @@ h6 {
   {% unless settings.heading-style == blank %}font-style: {{ settings.heading-style }};{% endunless %}
   
   {% unless settings.heading-letterpress == blank %}
-  text-shadow: 0 1px 0 $background_shadow;
+  text-shadow: 0 1px 0 $secondary_shadow;
   {% endunless %}
 }
 
@@ -89,7 +96,7 @@ h6 {
 }
 
 .breadcrumb > li {
-  text-shadow: 0 1px 0 $background_shadow;
+  text-shadow: 0 1px 0 $secondary_shadow;
 }
 
 .navbar,
@@ -97,6 +104,23 @@ h6 {
 .dropdown-menu li,
 .dropdown-menu li a {
   {% unless settings.navbar-font-weight == blank %}font-weight: {{ settings.navbar-font-weight }};{% endunless %}
+}
+
+footer .navbar,
+.navbar-text {
+  &,
+  & small,
+  & a {
+    color: $primary_color_inverse;
+  }
+  
+  & a:hover {
+    color: weaker($primary_color, 100-$hover_strength);
+  }
+  
+  & .muted {
+    color: weaker($primary_color, 50%);
+  }
 }
 
 .navbar {  
@@ -107,7 +131,7 @@ h6 {
     color: $primary_color_inverse;
     
     &:hover {
-      color: $primary_color_inverse_hover;
+      color: stronger($primary_color_inverse, $hover_strength);
     }
   }
   
@@ -122,7 +146,7 @@ h6 {
   & .btn-navbar.active,
   & .btn-navbar.disabled,
   & .btn-navbar[disabled] {
-    background-color: $primary_color_hover;
+    background-color: weaker($primary_color, $hover_strength);
     background-image: none !important;
     color: $primary_color_inverse;
   }
@@ -130,7 +154,7 @@ h6 {
   & .navbar-inner {
     background: $primary_color;
     background-image: none !important;
-    border-color: $background_color_hover;
+    border-color: stronger($primary_color, 10%);
     
     & .nav li a,
     & .brand {
@@ -142,8 +166,8 @@ h6 {
         color: $primary_color_inverse;
       
         &:hover {
-          background-color: $primary_color_hover;
-          color: $primary_color_inverse_hover;
+          background-color: stronger($primary_color, $hover_strength);
+          color: stronger($primary_color_inverse, $hover_strength);
         }
         
         & .caret {
@@ -153,16 +177,16 @@ h6 {
       }
       
       &.active a {
-        background-color: $primary_color_active;
+        background-color: stronger($primary_color, $active_strength);
       }
       
       &.dropdown.open > .dropdown-toggle {
-        background-color: $primary_color_hover !important;
-        color: $primary_color_inverse_hover;
+        background-color: stronger($primary_color, $hover_strength) !important;
+        color: stronger($primary_color_inverse, $hover_strength);
       }
       
       & ul.dropdown-menu {
-        background-color: $primary_color_hover;
+        background-color: stronger($primary_color, $hover_strength);
         
         & li a:hover,
         & li.active,
@@ -180,7 +204,7 @@ h6 {
 }
 
 .navbar .nav > li > .dropdown-menu::after {
-  border-bottom-color: $primary_color_hover;
+  border-bottom-color: stronger($primary_color, 10%);
 }
 
 .nav {
@@ -201,7 +225,7 @@ aside .nav {
 
 .nav-collapse .navbar-form,
 .nav-collapse .navbar-search {
-  border-color: $primary_color_hover;
+  border-color: stronger($primary_color, 10%);
 }
 
 .navbar-fixed-bottom {
@@ -224,8 +248,8 @@ aside .nav {
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
   background-image: none;
-  background-color: $background_color_active !important;
-  color: $background_color_inverse_hover !important;
+  background-color: stronger($primary_color, $active_strength) !important;
+  color: stronger($primary_color_inverse, $active_strength) !important;
 }
 
 .table th,
@@ -234,14 +258,14 @@ blockquote,
 .page-header,
 hr,
 .footer {
-  border-color: rgba($background_color_inverse,0.06);
+  border-color: rgba($secondary_color_inverse,0.06);
 }
 
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th,
 aside .nav li.active a,
 .footer {
-  background-color: rgba($background_color_inverse,0.03);
+  background-color: rgba($secondary_color_inverse,0.03);
 }
 
 .table-hover tbody tr:hover > td,
@@ -250,7 +274,15 @@ ul.breadcrumb,
 aside .nav .active a:hover,
 aside .nav a:hover,
 .footer .nav a:hover {
-  background-color: rgba($background_color_inverse,0.04);
+  background-color: rgba($secondary_color_inverse,0.04);
+}
+
+aside .nav li.active a {
+  color: stronger($secondary_color_inverse, 10%);
+  
+  &:hover {
+    color: weaker($secondary_color_inverse, 10%);
+  }
 }
 
 .carousel-caption a {
