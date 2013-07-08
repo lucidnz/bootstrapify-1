@@ -1,11 +1,11 @@
-@import "bootstrap/less/bootstrap.less";
+@import "bootstrap/lib/bootstrap.scss";
 
 body {
-  padding-top: @navbarHeight + 22;
-  padding-bottom: @navbarHeight + 2;
+  padding-top: $navbarHeight + 22;
+  padding-bottom: $navbarHeight + 2;
 }
 
-@import "bootstrap/less/responsive.less";
+@import "bootstrap/lib/responsive.scss";
 
 h1,
 h2,
@@ -28,7 +28,7 @@ h3 {
 
 .image_placeholder {
   background-color: #eee;
-  padding: (@gridGutterWidth * 3) @gridGutterWidth;
+  padding: ($gridGutterWidth * 3) $gridGutterWidth;
   color: #ccc;
   text-shadow: 1px 0px 1px #fff;
   text-align: center;
@@ -89,10 +89,10 @@ th {
 }
 
 .footer {
-  padding: @gridGutterWidth 0;
-  margin-top: (@gridGutterWidth * 2);
-  border-top: 1px solid @dropdownDividerTop;
-  background-color: @wellBackground;
+  padding: $gridGutterWidth 0;
+  margin-top: ($gridGutterWidth * 2);
+  border-top: 1px solid $dropdownDividerTop;
+  background-color: $wellBackground;
   
   & p {
     margin-bottom: 0;
@@ -108,11 +108,11 @@ th {
   & li + li {
     margin-left: 1em;
     padding-left: 1em;
-    border-left: 1px solid @dropdownDividerTop;
+    border-left: 1px solid $dropdownDividerTop;
   }
   
   .navbar-inverse & li + li {
-    border-left-color: @navbarInverseBackgroundHighlight;
+    border-left-color: $navbarInverseBackgroundHighlight;
   }
 }
 
@@ -144,7 +144,7 @@ th {
   text-align: center;
   background: none;
   border: none;
-  .opacity(10);
+  @include opacity(10);
 }
 
 .thumbnail {
@@ -157,15 +157,15 @@ th {
   }
   
   .footer {
-    margin-left: 0 - @gridGutterWidth;
-    margin-right: 0 - @gridGutterWidth;
-    padding-left: @gridGutterWidth;
-    padding-right: @gridGutterWidth;
+    margin-left: 0 - $gridGutterWidth;
+    margin-right: 0 - $gridGutterWidth;
+    padding-left: $gridGutterWidth;
+    padding-right: $gridGutterWidth;
    
     & .span2,
     & .span3,
     & .span4 {
-      margin-bottom: @gridGutterWidth;
+      margin-bottom: $gridGutterWidth;
     } 
   }
 }
