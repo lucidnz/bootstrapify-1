@@ -1,4 +1,4 @@
-{% assign submenu = l.title | submenuize %}
+{% assign submenu = l.title | handleize %}
 <li class="{% if l.active %}active{% endif %}{% if linklists[submenu].links.size > 0 %} dropdown{% unless _navbar-link == 'top' %}-submenu{% endunless %}{% endif %}">
   {% if linklists[submenu].links.size > 0 %}
   <a href="#" title="{{ l.title }}" class="dropdown-toggle" data-toggle="dropdown">
