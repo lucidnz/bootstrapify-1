@@ -2,7 +2,7 @@
   <img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-docs-readme.png" width="100px">
 </a>
 
-# [Bootstrap v2.3.1](http://twitter.github.com/bootstrap) [![Build Status](https://secure.travis-ci.org/twitter/bootstrap.png)](http://travis-ci.org/twitter/bootstrap)
+# [Bootstrap v2.3.2](http://twitter.github.com/bootstrap) [![Build Status](https://secure.travis-ci.org/twitter/bootstrap.png)](http://travis-ci.org/twitter/bootstrap)
 
 Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web development, created and maintained by [Mark Otto](http://twitter.com/mdo) and [Jacob Thornton](http://twitter.com/fat).
 
@@ -14,9 +14,31 @@ To get started, checkout [http://getbootstrap.com](http://getbootstrap.com)!
 
 Three quick start options are available:
 
-* [Download the latest release](https://github.com/twitter/bootstrap/zipball/master).
-* Clone the repo: `git clone git://github.com/twitter/bootstrap.git`.
-* Install with Twitter's [Bower](http://twitter.github.com/bower): `bower install bootstrap`.
+* [Download the latest release](https://github.com/jlong/sass-twitter-bootstrap/zipball/master).
+* Clone the repo: `git clone git://github.com/jlong/sass-twitter-bootstrap.git`.
+* Install with [Bower](http://bower.io): `bower install --save sass-bootstrap`.
+
+
+
+## SASS: Usage
+
+You can use the SASS Twitter Bootstrap by dropping the compiled CSS into any new project and start cranking.
+
+Because SASS always outputs standard css, just link to the final output like normal:
+
+`<link rel="stylesheet" type="text/css" href="bootstrap-2.3.2.css">`
+
+For more info, refer to the docs!
+
+
+
+## SASS: Basic modification
+
+You can learn more about SASS at:
+
+[sass-lang.com](http://sass-lang.com)
+
+SASS runs as a local GEM on your system. You can run `sass --watch lib/bootstrap.scss:bootstrap-2.3.2.css`
 
 
 
@@ -52,6 +74,19 @@ Keep track of development and community news.
 * Read and subscribe to the [The Official Twitter Bootstrap Blog](http://blog.getbootstrap.com).
 * Have a question that's not a feature request or bug report? [Ask on the mailing list.](http://groups.google.com/group/twitter-bootstrap)
 * Chat with fellow Bootstrappers in IRC. On the `irc.freenode.net` server, in the `##twitter-bootstrap` channel.
+
+
+
+## SASS: Developers
+
+We have included a Rakefile with convenience methods for working with the SASS Bootstrap library.
+
++ **build** - `rake build`
+This will run the less compiler on the bootstrap lib and regenerate the docs dir.
+The lessc compiler is required for this command to run.
+
++ **watch** - `rake watch`
+This is a convenience method for watching your Sass files and automatically building them whenever you save.
 
 
 
@@ -97,6 +132,71 @@ Thanks!
 
 + [http://twitter.com/fat](http://twitter.com/fat)
 + [http://github.com/fat](http://github.com/fat)
+
+
+
+## SASS: Conversion less to Sass
+
+The Twitter Bootstrap was lovingly converted to Sass by:
+
+**John W. Long**
+
++ http://twitter.com/johnwlong
++ http://github.com/jlong
+
+**Jeremy Hinegardner**
+
++ http://twitter.com/copiousfreetime
++ http://github.com/copiousfreetime
+
+**m5o**
+
++ http://twitter.com/m5o
++ http://github.com/m5o
+
+**smt**
+
++ http://twitter.com/tudorstudio
++ http://github.com/smt
+
+And [others](https://github.com/jlong/sass-twitter-bootstrap/contributors)
+
+
+
+## SASS: Conversion Quick Tips
+
+* replace @ with $
+* replace . with @include for mixins
+* replace `spin` with `adjust-hue`
+* add !default to variable definitions
+* replace #gradient > .vertical with @include gradient-vertical
+* replace #grid > .style with @include grid-style
+* use grid-core and grid-fluid mixins instead of #grid > .core and #grid > .fluid
+* use font-shorthand instead of #font > .shorthand
+* replace fadein with fade-in
+* move @import for reset below mixins, because it uses tab-focus mixin in bootstrap.scss
+* explicitly provide .clearfix, .hide-text and .input-block-level for compatibility with LESS output
+* pass grid-* mixin arguments to generators, because otherwise the generator mixins will use the default variables pull transition definition into variable
+
+
+
+## SASS: Installation via Composer
+
+If you already use Composer, the php dependency manager, installing
+sass-twitter-bootstrap is as simple as typing :
+```shell
+composer.phar require jlong/sass-twitter-bootstrap:x.y.z
+```
+This will install version x.y.z from packagist.org
+
+You'll probably want to make sure you get minor updates, like this:
+```shell
+composer.phar require jlong/sass-twitter-bootstrap:~x.y.z
+```
+or like this:
+```shell
+composer.phar require jlong/sass-twitter-bootstrap:x.y.*
+```
 
 
 
