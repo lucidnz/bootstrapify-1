@@ -4,7 +4,6 @@
 <a href="{% if settings[i] contains '@' %}mailto:{% endif %}{{ settings[i] }}" class="icon-stack muted"{% unless settings[i] contains '@' %} target="_blank"{% endunless %}>
   <i class="icon-circle icon-stack-base"></i>
   <i class="icon-{{ i }} icon-light"></i>
-  </a>
 </a>{% endunless %}
 {% endfor %}
 
