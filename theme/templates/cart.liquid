@@ -14,7 +14,6 @@ function remove_item(id) {
 
 <form action="/cart" method="post" id="cart">
   <table class="table {% include '__table-formatting' %}">
-    {% for i in cart.items %}
     <thead>
       <tr>
         <th class="hidden-phone">&nbsp;</th>
@@ -26,6 +25,7 @@ function remove_item(id) {
       </tr>
     </thead>
     <tbody>
+      {% for i in cart.items %}
       <tr>
         <td class="span2 hidden-phone"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
         <td>
@@ -41,8 +41,8 @@ function remove_item(id) {
           <span class='money'>{{ i.line_price | money_with_currency | replace: ' ','&nbsp' }}</span>
         </td>
       </tr>
+      {% endfor %}
     </tbody>
-    {% endfor %}
   </table>
   
   <div class="form-actions text-right">
