@@ -1,17 +1,16 @@
 <nav class="navbar navbar-fixed-top{% include '__color-scheme' with 'navbar' %}">
-  <div class="navbar-inner">
     <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </a>
+      </button>
       
       {% if settings.logo-placement == "navbar" %}
-      <a class="brand" href="/">{% include 'logo' %}</a>
+      <a class="navbar-brand" href="/">{% include 'logo' %}</a>
       {% endif %}
-      <div class="nav-collapse collapse"> 
-        <ul class="nav">
+      <div class="nav-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
           {% for l in linklists.main-menu.links %}
           {% include '_navbar-link' with 'top' %}
           {% endfor %}
@@ -21,7 +20,7 @@
           <input type="text" name="q" class="search-query col-12" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ settings.default-pagination }}">
         </form>{% endif %}
         
-        <ul class="nav pull-right">
+        <ul class="nav navbar-nav pull-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="icon-shopping-cart"></i>
@@ -36,7 +35,7 @@
         </ul>
         
         {% if shop.customer_accounts_enabled %}
-        <ul class="nav pull-right">
+        <ul class="nav navbar-nav pull-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="visible-phone">{% include '__localize' with 'Account' %}</span>
@@ -57,5 +56,4 @@
                 
       </div>
     </div>
-  </div>
 </nav>

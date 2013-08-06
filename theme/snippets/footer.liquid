@@ -53,12 +53,10 @@
 <div class="navbar navbar-fixed-bottom{% include '__color-scheme' with 'navbar' %}">
   <div class="navbar-inner">
     <div class="container">
-      <div class=" pull-right navbar-text">
-        <ul class="footer-links">
-          {% for l in linklists.footer.links %}<li>{% if l.active %}<strong>{% endif %}<a href="{{ l.url }}"{% unless l.active %} class="muted"{% endunless %} title="Go to {{ l.title }}">{{ l.title }}</a>{% if l.active %}</strong>{% endif %}</li>{% endfor %}
+        <ul class="nav navbar-nav pull-right">
+          {% for l in linklists.footer.links %}<li{% if l.active %} class="active"{% endif %}><a href="{{ l.url }}"{% unless l.active %} class="muted"{% endunless %} title="Go to {{ l.title }}">{{ l.title }}</a></li>{% endfor %}
         </ul>
-      </div>
-      {% include 'currency-switcher' %}
+        {% include 'currency-switcher' %}
       <div class="pull-left navbar-text">
         <small class="muted">
           &copy;{{ 'now' | date: '%Y' }}&nbsp;<strong><a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. 
