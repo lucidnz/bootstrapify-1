@@ -3,7 +3,7 @@
   {% form 'customer' %}
   <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
   <div class="input-append">
-    <input type="text" class="span2" id="contact_email" name="contact[email]" placeholder="{% include '__localize' with 'Your email address' %}">
+    <input type="text" class="col-2" id="contact_email" name="contact[email]" placeholder="{% include '__localize' with 'Your email address' %}">
     <button type="submit" class="btn">{% include '__localize' with 'Sign up!' %}</button>
   </div>
   {% endform %}

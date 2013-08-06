@@ -18,7 +18,7 @@
         </ul>
         {% if settings.show-search-in-navbar %}
         <form class="navbar-search pull-right" action="/search">
-          <input type="text" name="q" class="search-query span2" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ settings.default-pagination }}">
+          <input type="text" name="q" class="search-query col-12" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ settings.default-pagination }}">
         </form>{% endif %}
         
         <ul class="nav pull-right">

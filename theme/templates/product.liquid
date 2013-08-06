@@ -63,7 +63,7 @@
         </li>
         {% if product.images.size > 1 %}
         {% for image in product.images | offset: 1 %}
-        <li class="span2">
+        <li class="col-2">
           <a href="#" class="thumbnail">
             {{ image.src | product_img_url: 'medium' | img_tag }}
           </a>

@@ -27,7 +27,7 @@ function remove_item(id) {
     <tbody>
       {% for i in cart.items %}
       <tr>
-        <td class="span2 hidden-phone"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
+        <td class="col-2 hidden-phone"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
         <td>
           <strong>{{ i.product.title | link_to: i.product.url }}</strong>
           <small class="muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
