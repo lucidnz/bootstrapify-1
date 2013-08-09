@@ -3,7 +3,7 @@
     <div class="row">
       {% assign footer_columns = settings.footer-columns | plus: 0 %}
       {% for i in (1..footer_columns) %}
-      <div class="span{{ 12 | divided_by: footer_columns }}">
+      <div class="col-sm-{{ 12 | divided_by: footer_columns }} col-lg-{{ 12 | divided_by: footer_columns }}">
         {% assign footer_blog = 'column-' | append: i | append: '-blog' %}{% assign footer_blog = settings[footer_blog] %}
         {% unless blogs[footer_blog] == empty %}
         <h4>{{ blogs[footer_blog].title }}</h4>

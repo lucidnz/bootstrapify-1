@@ -1,9 +1,9 @@
-<aside class="col-3 hidden-phone">
+<aside class="col-3 hidden-sm">
   {% if settings.logo-placement == 'sidebar' %}<header class="page-header">
     <h1 class="text-{{ settings.logo-alignment }}"><a href="/">{% include 'logo' %}</a></h1>
   </header>{% endif %}
   {% unless linklists[settings.sidebar-linklist] == empty %}
-  <h4>{{ linklists[settings.sidebar-linklist].title }}</h4>
+  <h4 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h4>
 
   <ul class="nav nav-pills nav-stacked">
     {% for l in linklists[settings.sidebar-linklist].links %}
@@ -13,7 +13,7 @@
   {% endunless %}
 
   {% unless blogs[settings.sidebar-blog] == empty %}
-  <h4>{{ blogs[settings.sidebar-blog].title }}</h4>
+  <h4 class="page-header">{{ blogs[settings.sidebar-blog].title }}</h4>
 
   {% for a in blogs[settings.sidebar-blog].articles %}
   {% include '_sidebar-articles' %}

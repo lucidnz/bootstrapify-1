@@ -14,11 +14,11 @@
 <p>Sorry, no products were found in the {{ collection.title }} collection.</p>
 {% else %}
 {% paginate collection.products by settings.default-pagination %}
-<ul class="thumbnails">
+<div class="row">
   {% for p in collection.products %}
   {% include '_product' with p %}
   {% endfor %}
-</ul>
+</div>
 {% include 'pagination' %}
 {% endpaginate %}
 

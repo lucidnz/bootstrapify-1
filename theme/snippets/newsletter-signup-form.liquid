@@ -2,9 +2,9 @@
 <div class="form-inline">
   {% form 'customer' %}
   <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
-  <div class="input-append">
-    <input type="text" class="col-2" id="contact_email" name="contact[email]" placeholder="{% include '__localize' with 'Your email address' %}">
-    <button type="submit" class="btn">{% include '__localize' with 'Sign up!' %}</button>
+  <div class="input-group">
+    <input type="text" id="contact_email" name="contact[email]" class="form-control" placeholder="{% include '__localize' with 'Your email address' %}">
+    <span class="input-group-btn"><button type="submit" class="btn btn-default">{% include '__localize' with 'Sign up!' %}</button></span>
   </div>
   {% endform %}
 </div>

@@ -7,7 +7,7 @@
 {% endcapture %}
 <form action="/cart/add" method="post">
   <div class="row">
-    <div class="span{% if settings.show-sidebar %}5{% else %}6{% endif %}">
+    <div class="col-sm-6 col-lg-6">
       <h1 class="page-header">{{ page_title }}</h1>
       
       <div class="lead">
@@ -54,20 +54,20 @@
       </div>
       {% endif %}
     </div>
-    <div class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">
-      <ul class="thumbnails">
-        <li class="span{% if settings.show-sidebar %}4{% else %}6{% endif %}">
+    <div class="col-sm-6 col-lg-6">
+      <div class="row">
+        <div class="col-12">
           <div class="thumbnail">
             {{ image }}
           </div>
-        </li>
+        </div>
         {% if product.images.size > 1 %}
         {% for image in product.images | offset: 1 %}
-        <li class="col-2">
+        <div class="col-4">
           <a href="#" class="thumbnail">
             {{ image.src | product_img_url: 'medium' | img_tag }}
           </a>
-        </li>
+        </div>
         {% endfor %}
         {% endif %}
       </ul>
