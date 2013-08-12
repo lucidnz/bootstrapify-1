@@ -1,8 +1,5 @@
 <div class="btn-group pull-right">
-  <a class="btn{% if current_tags %} btn-inverse{% endif %} dropdown-toggle" data-toggle="dropdown" href="#">
-      <i class="icon-filter"></i>
-      <span class="caret"></span>
-    </a>
+  <a class="btn {% if current_tags %}btn-info{% else %}btn-default{% endif %} dropdown-toggle" data-toggle="dropdown" href="#">{% include '__localize' with 'Filter by' %}</a>
   <ul class="dropdown-menu">
     {% if current_tags %}<li><a href="./"><em>{% include '__localize' with 'Clear filters' %}</em></a></li>{% endif %}
     {% for t in collection.all_tags %}

@@ -1,5 +1,5 @@
 <ul class="nav nav-pills">
-  <li class="disabled"><a href="#"><i class="icon-filter"></i></a></li>
+  <li class="disabled"><a href="#">{% include '__localize' with 'Filter by:' %}</a></li>
   {% for t in collection.all_tags %}
   {% if current_tags contains t %}
   <li class="active">{{ t | link_to_remove_tag: t }}</li>
@@ -9,3 +9,4 @@
   {% endfor %}
   {% if current_tags %}<li><a href="./"><em>{% include '__localize' with 'Clear filters' %}</em></a></li>{% endif %}
 </ul>
+<hr>
