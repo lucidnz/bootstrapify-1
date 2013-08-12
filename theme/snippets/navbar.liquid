@@ -17,12 +17,7 @@
       </ul>
       {% if settings.show-search-in-navbar %}
       <form class="navbar-form col-sm-2 col-lg-2 pull-right" action="/search">
-        <div class="input-group">
-          <input type="search" name="q" class="form-control" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ settings.default-pagination }}">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">{% include '__localize' with 'Go!' %}</button>
-          </span>
-        </div>
+        <input type="search" name="q" class="form-control" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ settings.default-pagination }}">
       </form>{% endif %}
         
       <ul class="nav navbar-nav pull-right">
