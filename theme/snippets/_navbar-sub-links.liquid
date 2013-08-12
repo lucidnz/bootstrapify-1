@@ -1,0 +1,9 @@
+{% assign submenu = l.title | handleize %}
+<li><a tabindex="-1" href="{{ l.url }}" title="{{ l.title }}">{{ l.title }}</a></li>
+{% if linklists[submenu].links.size > 0 %}
+<li class="divider"></li>
+<li class="dropdown-header">{{ l.title }}</li>
+{% for l in linklists[submenu].links %}
+{% include '_navbar-sub-links' %}
+{% endfor %}
+{% endif %}
