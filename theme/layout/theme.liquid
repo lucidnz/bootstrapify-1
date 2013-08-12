@@ -46,7 +46,7 @@
     <div class="row">
       {% if settings.show-sidebar %}{% include 'sidebar' %}{% endif %}
       <div class="{% include '__main-span' %}">
-        {% if settings.show-breadcrumbs %}
+        {% if settings.show-breadcrumbs and template != 'index' %}
         {% include 'breadcrumbs' %}
         {% endif %}
             
