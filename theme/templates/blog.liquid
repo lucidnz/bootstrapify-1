@@ -3,7 +3,7 @@
 {% for a in blog.articles %}
 <article>
   <h2>{{ a.title | link_to: a.url, a.title }}</h2>
-  <p class="muted">{{ a.published_at | date: settings.short-date-format }}{% if settings.show-author-on-index %} by {{ a.author }}{% endif %}</p>
+  <p class="text-muted">{{ a.published_at | date: settings.short-date-format }}{% if settings.show-author-on-index %} by {{ a.author }}{% endif %}</p>
   {{ a.content | truncatewords: settings.truncate-words }}
 </article>
 {% endfor %}
