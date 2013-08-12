@@ -549,3 +549,4 @@ th.hidden-lg,td.hidden-lg{display:table-cell !important}
 th.visible-print,td.visible-print{display:none !important}
 @media print{.visible-print{display:block !important}tr.visible-print{display:table-row !important} th.visible-print,td.visible-print{display:table-cell !important} .hidden-print{display:none !important}tr.hidden-print{display:none !important} th.hidden-print,td.hidden-print{display:none !important}}
 body{padding-top:80px;padding-bottom:80px}
+a.icon:hover{text-decoration:none}
