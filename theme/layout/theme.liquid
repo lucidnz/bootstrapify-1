@@ -43,12 +43,13 @@
     </header>
     {% endif %}
     
+    {% if settings.show-breadcrumbs and template != 'index' %}
+    {% include 'breadcrumbs' %}
+    {% endif %}
+    
     <div class="row">
       {% if settings.show-sidebar %}{% include 'sidebar' %}{% endif %}
       <div class="{% include '__main-span' %}">
-        {% if settings.show-breadcrumbs and template != 'index' %}
-        {% include 'breadcrumbs' %}
-        {% endif %}
             
         {% if settings.slider-placement == "next-to-sidebar" and settings.show-sidebar and template == "index" %}{% include 'slider' %}{% endif %}
 
