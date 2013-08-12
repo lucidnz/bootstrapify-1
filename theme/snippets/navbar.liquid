@@ -1,6 +1,6 @@
 <nav class="navbar navbar-fixed-top{% include '__color-scheme' with 'navbar' %}">
   <div class="container">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -9,7 +9,7 @@
     {% if settings.logo-placement == "navbar" %}
     <a class="navbar-brand" href="/">{% include 'logo' %}</a>
     {% endif %}
-    <div class="nav-collapse collapse navbar-responsive-collapse">
+    <div class="nav-collapse collapse navbar-responsive-collapse" id="main-nav">
       <ul class="nav navbar-nav">
         {% for l in linklists.main-menu.links %}
         {% include '_navbar-link' with 0 %}
