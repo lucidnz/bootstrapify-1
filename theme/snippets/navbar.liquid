@@ -1,59 +1,64 @@
 <nav class="navbar navbar-fixed-top{% include '__color-scheme' with 'navbar' %}">
-    <div class="container">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+  <div class="container">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
       
-      {% if settings.logo-placement == "navbar" %}
-      <a class="navbar-brand" href="/">{% include 'logo' %}</a>
+    {% if settings.logo-placement == "navbar" %}
+    <a class="navbar-brand" href="/">{% include 'logo' %}</a>
+    {% endif %}
+    <div class="nav-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav">
+        {% for l in linklists.main-menu.links %}
+        {% include '_navbar-link' with 'top' %}
+        {% endfor %}
+      </ul>
+      {% if settings.show-search-in-navbar %}
+      <form class="navbar-form col-sm-2 col-lg-2 pull-right" action="/search">
+        <div class="input-group">
+          <input type="search" name="q" class="form-control" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ settings.default-pagination }}">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">{% include '__localize' with 'Go!' %}</button>
+          </span>
+        </div>
+      </form>{% endif %}
+        
+      <ul class="nav navbar-nav pull-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-shopping-cart"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> ({% capture items %}{% include '__localize' with 'items' %}{% endcapture %}{% capture item %}{% include '__localize' with 'item' %}{% endcapture %}{{ cart.item_count }} {{ cart.item_count | pluralize: item, items }})</a></li>
+            {% if cart.item_count > 0 %}
+            <li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
+        
+      {% if shop.customer_accounts_enabled %}
+      <ul class="nav navbar-nav pull-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="visible-phone">{% include '__localize' with 'Account' %}</span>
+            <span class="hidden-phone"><i class="icon-user"></i></span>
+          </a>
+          <ul class="dropdown-menu">
+            {% if customer %}
+            <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
+            <li>{% capture logout %}{% include '__localize' with 'Log out' %}{% endcapture %}{{ logout | customer_logout_link }}</li>
+            {% else %}
+            <li>{% capture register %}{% include '__localize' with 'Register' %}{% endcapture %}{{ register | customer_register_link }}</li>
+            <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
       {% endif %}
-      <div class="nav-collapse collapse navbar-responsive-collapse">
-        <ul class="nav navbar-nav">
-          {% for l in linklists.main-menu.links %}
-          {% include '_navbar-link' with 'top' %}
-          {% endfor %}
-        </ul>
-        {% if settings.show-search-in-navbar %}
-        <form class="navbar-search pull-right" action="/search">
-          <input type="text" name="q" class="search-query col-12" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ settings.default-pagination }}">
-        </form>{% endif %}
-        
-        <ul class="nav navbar-nav pull-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="icon-shopping-cart"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> ({% capture items %}{% include '__localize' with 'items' %}{% endcapture %}{% capture item %}{% include '__localize' with 'item' %}{% endcapture %}{{ cart.item_count }} {{ cart.item_count | pluralize: item, items }})</a></li>
-              {% if cart.item_count > 0 %}
-              <li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>
-              {% endif %}
-            </ul>
-          </li>
-        </ul>
-        
-        {% if shop.customer_accounts_enabled %}
-        <ul class="nav navbar-nav pull-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="visible-phone">{% include '__localize' with 'Account' %}</span>
-              <span class="hidden-phone"><i class="icon-user"></i></span>
-            </a>
-            <ul class="dropdown-menu">
-              {% if customer %}
-              <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
-              <li>{% capture logout %}{% include '__localize' with 'Log out' %}{% endcapture %}{{ logout | customer_logout_link }}</li>
-              {% else %}
-              <li>{% capture register %}{% include '__localize' with 'Register' %}{% endcapture %}{{ register | customer_register_link }}</li>
-              <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
-              {% endif %}
-            </ul>
-          </li>
-        </ul>
-        {% endif %}
                 
-      </div>
     </div>
+  </div>
 </nav>
