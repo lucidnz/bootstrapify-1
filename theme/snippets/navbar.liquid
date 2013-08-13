@@ -11,7 +11,7 @@
     {% endif %}
     <div class="nav-collapse collapse navbar-responsive-collapse" id="main-nav">
       <ul class="nav navbar-nav">
-        {% for l in linklists.main-menu.links %}
+        {% for l in linklists[settings.main-menu-linklist].links %}
         {% include '_navbar-link' with 0 %}
         {% endfor %}
       </ul>
