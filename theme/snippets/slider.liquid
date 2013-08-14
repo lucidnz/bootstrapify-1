@@ -40,7 +40,7 @@
       {% if settings[title] != blank or settings[cta] != blank or settings[caption] != blank %}
       <div class="carousel-caption clearfix">
         <h4>{{ settings[title] }}</h4>
-        {% unless settings[link] == blank or settings[cta] == blank %}<a href="{{ settings[link] }}" class="btn btn-primary btn-large pull-right col-2">{{ settings[cta] }}</a>{% endunless %}
+        {% unless settings[link] == blank or settings[cta] == blank %}<a href="{{ settings[link] }}" class="btn btn-primary btn-large pull-right col-xs-2 col-sm-2">{{ settings[cta] }}</a>{% endunless %}
         <p>
           {{ settings[caption] }}
         </p>

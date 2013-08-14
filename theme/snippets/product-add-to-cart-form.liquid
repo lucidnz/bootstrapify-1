@@ -1,16 +1,16 @@
-<div class="well">
-  <div class="row">
-    {% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include 'product-add-to-cart-button' %}{% endif %}
-    <div id="product-variants" class="col-6">
-      <select id="product-select" name="id" class="form-control">
-        {% for v in product.variants %}
-        <option value="{{ v.id }}">{{ v.title }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    {% if settings.placement-of-add-to-cart-button == "below-variant-options" %}{% include 'product-add-to-cart-button' %}{% endif %}
+<hr>
+<div class="row">
+  {% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include 'product-add-to-cart-button' %}{% endif %}
+  <div id="product-variants" class="col-sm-6">
+    <select id="product-select" name="id" class="form-control">
+      {% for v in product.variants %}
+      <option value="{{ v.id }}">{{ v.title }}</option>
+      {% endfor %}
+    </select>
   </div>
+  {% if settings.placement-of-add-to-cart-button == "below-variant-options" %}{% include 'product-add-to-cart-button' %}{% endif %}
 </div>
+<hr>
     
 <script type="text/javascript">
 // <![CDATA[  
@@ -42,7 +42,7 @@ var selectCallback = function(variant, selector) {
     }
   } else {
     $('#compare-at-price-field').text('');  // clear compare-at-price field
-    $('#price-field').text('');  // update price field
+    $('#price-field').text('{% include '__localize' with 'Unavailable' %}');  // update price field
     $('#sale-field').hide(); // clear sale-field message
   } 
 };

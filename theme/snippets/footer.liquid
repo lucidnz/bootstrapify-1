@@ -10,26 +10,28 @@
   </div>
 </footer>
 
-<div class="navbar navbar-fixed-bottom{% include '__color-scheme' with 'navbar' %}">
+<div class="navbar navbar-fixed-bottom{% include '__color-scheme' with 'navbar' %}" role="navigation">
   <div class="container">
-    <div class="nav-collapse collapse navbar-responsive-collapse" id="footer-nav">
-      <ul class="nav navbar-nav pull-right">
+    <div class="collapse navbar-collapse" id="footer-nav">
+      <ul class="nav navbar-nav navbar-right">
         {% for l in linklists.footer.links %}<li{% if l.active %} class="active"{% endif %}><a href="{{ l.url }}"{% unless l.active %} class="text-muted"{% endunless %} title="Go to {{ l.title }}">{{ l.title }}</a></li>{% endfor %}
       </ul>
       {% include 'currency-switcher' %}
-      <div class="pull-left navbar-text">
+      <div class="navbar-left navbar-text">
         <small class="text-muted">
           &copy;{{ 'now' | date: '%Y' }}&nbsp;<strong><a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. <br class="visible-sm">
           {% unless settings.hide-theme-designer-credits %}<a href="https://github.com/luciddesign/bootstrapify/" title="Bootstrapify, open-source Shopify theme on GitHub">Boostrapify</a>&nbsp;theme&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid&nbsp;Design</a>. <br class="visible-sm">
           {% endunless %}Powered&nbsp;by&nbsp;<a href="http://www.shopify.com{% unless settings.shopify-affiliate-code == blank %}?ref={{ settings.shopify-affiliate-code }}{% endunless %}" target="_blank">Shopify</a>.
         </small>
-      </div>      
+      </div>
     </div>
-    
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-nav">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-nav">
+        <span class="sr-only">Toggle main navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
   </div>
 </div>

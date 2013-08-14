@@ -1,32 +1,37 @@
-<nav class="navbar navbar-fixed-top{% include '__color-scheme' with 'navbar' %}">
+<nav class="navbar navbar-fixed-top{% include '__color-scheme' with 'navbar' %}" role="navigation">
   <div class="container">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+        <span class="sr-only">Toggle main navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       
-    {% if settings.logo-placement == "navbar" %}
-    <a class="navbar-brand" href="/">{% include 'logo' %}</a>
-    {% endif %}
-    <div class="nav-collapse collapse navbar-responsive-collapse" id="main-nav">
+      {% if settings.logo-placement == "navbar" %}
+      <a class="navbar-brand" href="/">{% include 'logo' %}</a>
+      {% endif %}
+    </div>
+  
+    <div class="collapse navbar-collapse" id="main-nav">
       <ul class="nav navbar-nav">
         {% for l in linklists[settings.main-menu-linklist].links %}
         {% include '_navbar-link' with 0 %}
         {% endfor %}
       </ul>
       {% if settings.show-search-in-navbar %}
-      <form class="navbar-form col-sm-2 col-lg-2 pull-right" action="/search">
+      <form class="navbar-form col-sm-2 navbar-right" action="/search">
         <input type="search" name="q" class="form-control" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ settings.default-pagination }}">
       </form>{% endif %}
         
-      <ul class="nav navbar-nav pull-right">
+      <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="icon-shopping-cart"></i>
+            <span class="visible-xs">{% include '__localize' with 'View cart' %} <span class="badge">{% include 'cart-count' %}</span></span>
+            <span class="hidden-xs"><i class="icon-shopping-cart"></i></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> ({% capture items %}{% include '__localize' with 'items' %}{% endcapture %}{% capture item %}{% include '__localize' with 'item' %}{% endcapture %}{{ cart.item_count }} {{ cart.item_count | pluralize: item, items }})</a></li>
+            <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> <span class="badge">{% include 'cart-count' %}</span></a></li>
             {% if cart.item_count > 0 %}
             <li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>
             {% endif %}
@@ -35,11 +40,11 @@
       </ul>
         
       {% if shop.customer_accounts_enabled %}
-      <ul class="nav navbar-nav pull-right">
+      <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class="visible-sm">{% include '__localize' with 'Account' %}</span>
-            <span class="hidden-sm"><i class="icon-user"></i></span>
+            <span class="visible-xs">{% include '__localize' with 'Account' %}</span>
+            <span class="hidden-xs"><i class="icon-user"></i></span>
           </a>
           <ul class="dropdown-menu">
             {% if customer %}
@@ -53,7 +58,6 @@
         </li>
       </ul>
       {% endif %}
-                
     </div>
   </div>
 </nav>
