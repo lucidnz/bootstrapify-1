@@ -4044,6 +4044,7 @@ button.close {
 }
 .thumbnail {
   display: block;
+  margin-bottom: 30px;
 }
 .thumbnail > img,
 .img-thumbnail {
@@ -4937,4 +4938,16 @@ a.icon:hover {
 }
 .money {
   text-align: right;
+}
+.loader {
+  position: absolute;
+  margin: 0 auto;
+  z-index: 9999;
+  cursor: wait;
+  width: 25px;
+  height: 25px;
+  top: 150px;
+  left: 280px;
+  background: url('load.gif') no-repeat;
+  display: none;
 }
