@@ -60,5 +60,7 @@
   
   {% include 'footer' %}
   {% include 'currencies' %}
+  
+  {{ 'app.js' | asset_url | script_tag }}
 </body>
 </html>
