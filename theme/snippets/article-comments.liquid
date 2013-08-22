@@ -1,18 +1,16 @@
 <hr>
 <h3>Comments</h3>
 
-{% if article.comments.size > 0 %}
-{% paginate article.comments by 25 %}
-{% for c in article.comments reversed %}
-{% include '_comment' with c %}
-{% endfor %}
-
-{% include 'pagination' %}
-
+{% paginate article.comments by settings.default-pagination %}
+  {% if article.comments.size > 0 %}
+    {% for c in article.comments reversed %}
+      {% include '_comment' with c %}
+    {% endfor %}
+    {% include 'pagination' %}
+  {% else %}
+    <p>{% include '__localize' with 'No comments. Please feel free to be the first.' %}</p>
+  {% endif %}
 {% endpaginate %}
-{% else %}
-<p>{% include '__localize' with 'No comments. Please feel free to be the first.' %}</p>
-{% endif %}
 <hr>
 <h4>{% include '__localize' with 'Leave a comment' %}</h4>
 
