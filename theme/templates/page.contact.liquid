@@ -1,1 +1,60 @@
 <h1 class="page-header">{{ page_title }}</h1>
+
+{% include '__formatted-content' with page.content %}
+
+<div class="row">
+
+	<div class="col-md-6">
+		<!-- CONTACT FORM -->
+		{% form 'contact' %}
+
+		<!-- CONTACT FORM CONFIRMATION -->
+		{% if form.posted_successfully? %}
+		<p class="alert alert-success">
+			Thanks for contacting us! We'll get back to you as soon as possible.
+		</p>
+		{% endif %}
+
+		<!-- CONTACT FORM ERROR -->
+		{% if form.errors %}
+		<p class="alert alert-error">
+			<!-- {{ form.errors.size }} or {{ form.errors | size }} -->
+			Oops, sorry. We were unable to submit your inquiry because it contained {{ form.errors | size | pluralize: 'an error', 'a few errors' }}. Please correct the following and submit again:<br>
+			{% for field in form.errors %}
+			The {{ field | capitalize | replace: 'Body', 'Message' }} field {{ form.errors.messages[field] }}.
+			{% endfor %}
+		</p>
+		{% endif %}
+		
+		<!-- CONTACT FORM INPUTS -->
+		<fieldset>
+			<div class="form-group">
+				<label class="control-label" for="contactFormName">Your Name</label>
+				<div class="controls">
+					<input type="text" id="contactFormName" class="input-xlarge form-control" name="contact[name]">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="contactFormEmail">Email</label>
+				<div class="controls">
+					<input type="email" id="contactFormEmail" class="input-xlarge form-control" name="contact[email]">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="contactFormTelephone">Phone</label>
+				<div class="controls">
+					<input type="tel" id="contactFormTelephone" class="input-xlarge form-control" name="contact[phone]">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="contactFormMessage">Message</label>
+				<div class="controls">
+					<textarea rows="3" class="input-xlarge form-control" id="contactFormMessage" name="contact[body]"></textarea>
+				</div>
+			</div>
+			<button class="btn btn-primary" id="contactFormSubmit" type="submit">Send</button>
+		</fieldset>
+
+		{% endform %}
+	</div>
+</div>
