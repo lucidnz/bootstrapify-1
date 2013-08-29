@@ -10,11 +10,6 @@
     </div>
   
     {% if form.password_needed %}
-  
-      {% comment %}
-        Customer Account Login
-      {% endcomment %}
-  
       <div id="login_password" class="form-group">
         <label for="customer_password" class="col-lg-2 control-label">Password</label>
         <div class="col-lg-10">
@@ -27,7 +22,6 @@
           <a href="{{ shop.url }}" class="show-recover-password-form">Forgot your password?</a>
         </div>
       </div>
-  
     {% endif %}
   
     <div class="form-group">

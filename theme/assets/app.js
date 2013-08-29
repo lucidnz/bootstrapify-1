@@ -16,13 +16,13 @@ var recoverForm = document.getElementById('customer-recover-password-form'),
   loginForm = document.getElementById('customer-login-form');
 
 function showRecoverPasswordForm() {
-  $(recoverForm).closest('.customer-recover-password-form').show();
-  $(loginForm).closest('.customer-login-form').hide();
+  $(recoverForm).parent().show();
+  $(loginForm).parent().hide();
 }
 
 function hideRecoverPasswordForm() {
-  $(recoverForm).closest('.customer-recover-password-form').hide();
-  $(loginForm).closest('.customer-login-form').show();
+  $(recoverForm).parent().hide();
+  $(loginForm).parent().show();
 }
 
 $('.hide-recover-password-form').on('click', function(e){
