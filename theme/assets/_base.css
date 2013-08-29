@@ -1774,48 +1774,48 @@ textarea.input-lg {
 .form-horizontal .checkbox,
 .form-horizontal .radio-inline,
 .form-horizontal .checkbox-inline,
-#customer-register-form form .control-label,
-#customer-register-form form .radio,
-#customer-register-form form .checkbox,
-#customer-register-form form .radio-inline,
-#customer-register-form form .checkbox-inline,
-#customer-login-form form .control-label,
-#customer-login-form form .radio,
-#customer-login-form form .checkbox,
-#customer-login-form form .radio-inline,
-#customer-login-form form .checkbox-inline,
-#customer-recover-password-form form .control-label,
-#customer-recover-password-form form .radio,
-#customer-recover-password-form form .checkbox,
-#customer-recover-password-form form .radio-inline,
-#customer-recover-password-form form .checkbox-inline,
-#guest form .control-label,
-#guest form .radio,
-#guest form .checkbox,
-#guest form .radio-inline,
-#guest form .checkbox-inline {
+.horizontal #customer-register-form form .control-label,
+.horizontal #customer-register-form form .radio,
+.horizontal #customer-register-form form .checkbox,
+.horizontal #customer-register-form form .radio-inline,
+.horizontal #customer-register-form form .checkbox-inline,
+.horizontal #customer-login-form form .control-label,
+.horizontal #customer-login-form form .radio,
+.horizontal #customer-login-form form .checkbox,
+.horizontal #customer-login-form form .radio-inline,
+.horizontal #customer-login-form form .checkbox-inline,
+.horizontal #customer-recover-password-form form .control-label,
+.horizontal #customer-recover-password-form form .radio,
+.horizontal #customer-recover-password-form form .checkbox,
+.horizontal #customer-recover-password-form form .radio-inline,
+.horizontal #customer-recover-password-form form .checkbox-inline,
+.horizontal #guest form .control-label,
+.horizontal #guest form .radio,
+.horizontal #guest form .checkbox,
+.horizontal #guest form .radio-inline,
+.horizontal #guest form .checkbox-inline {
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 7px;
 }
 .form-horizontal .form-group,
-#customer-register-form form .form-group,
-#customer-login-form form .form-group,
-#customer-recover-password-form form .form-group,
-#guest form .form-group {
+.horizontal #customer-register-form form .form-group,
+.horizontal #customer-login-form form .form-group,
+.horizontal #customer-recover-password-form form .form-group,
+.horizontal #guest form .form-group {
   margin-left: -15px;
   margin-right: -15px;
 }
 .form-horizontal .form-group:before,
 .form-horizontal .form-group:after,
-#customer-register-form form .form-group:before,
-#customer-register-form form .form-group:after,
-#customer-login-form form .form-group:before,
-#customer-login-form form .form-group:after,
-#customer-recover-password-form form .form-group:before,
-#customer-recover-password-form form .form-group:after,
-#guest form .form-group:before,
-#guest form .form-group:after {
+.horizontal #customer-register-form form .form-group:before,
+.horizontal #customer-register-form form .form-group:after,
+.horizontal #customer-login-form form .form-group:before,
+.horizontal #customer-login-form form .form-group:after,
+.horizontal #customer-recover-password-form form .form-group:before,
+.horizontal #customer-recover-password-form form .form-group:after,
+.horizontal #guest form .form-group:before,
+.horizontal #guest form .form-group:after {
   content: " ";
   /* 1 */
 
@@ -1824,22 +1824,22 @@ textarea.input-lg {
 
 }
 .form-horizontal .form-group:after,
-#customer-register-form form .form-group:after,
-#customer-login-form form .form-group:after,
-#customer-recover-password-form form .form-group:after,
-#guest form .form-group:after {
+.horizontal #customer-register-form form .form-group:after,
+.horizontal #customer-login-form form .form-group:after,
+.horizontal #customer-recover-password-form form .form-group:after,
+.horizontal #guest form .form-group:after {
   clear: both;
 }
 .form-horizontal .form-group:before,
 .form-horizontal .form-group:after,
-#customer-register-form form .form-group:before,
-#customer-register-form form .form-group:after,
-#customer-login-form form .form-group:before,
-#customer-login-form form .form-group:after,
-#customer-recover-password-form form .form-group:before,
-#customer-recover-password-form form .form-group:after,
-#guest form .form-group:before,
-#guest form .form-group:after {
+.horizontal #customer-register-form form .form-group:before,
+.horizontal #customer-register-form form .form-group:after,
+.horizontal #customer-login-form form .form-group:before,
+.horizontal #customer-login-form form .form-group:after,
+.horizontal #customer-recover-password-form form .form-group:before,
+.horizontal #customer-recover-password-form form .form-group:after,
+.horizontal #guest form .form-group:before,
+.horizontal #guest form .form-group:after {
   content: " ";
   /* 1 */
 
@@ -1848,18 +1848,18 @@ textarea.input-lg {
 
 }
 .form-horizontal .form-group:after,
-#customer-register-form form .form-group:after,
-#customer-login-form form .form-group:after,
-#customer-recover-password-form form .form-group:after,
-#guest form .form-group:after {
+.horizontal #customer-register-form form .form-group:after,
+.horizontal #customer-login-form form .form-group:after,
+.horizontal #customer-recover-password-form form .form-group:after,
+.horizontal #guest form .form-group:after {
   clear: both;
 }
 @media (min-width: 768px) {
   .form-horizontal .control-label,
-  #customer-register-form form .control-label,
-  #customer-login-form form .control-label,
-  #customer-recover-password-form form .control-label,
-  #guest form .control-label {
+  .horizontal #customer-register-form form .control-label,
+  .horizontal #customer-login-form form .control-label,
+  .horizontal #customer-recover-password-form form .control-label,
+  .horizontal #guest form .control-label {
     text-align: right;
   }
 }
@@ -6029,4 +6029,10 @@ a.icon:hover {
   left: 280px;
   background: url('load.gif') no-repeat;
   display: none;
+}
+#signinModal .modal-header {
+  border-bottom: none;
+}
+#signinModal .modal-body .col:last-child {
+  border-left: #eeeeee solid 1px;
 }

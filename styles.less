@@ -30,9 +30,20 @@ a.icon:hover {
 	display: none;
 }
 
-#customer-register-form form,
-#customer-login-form form,
-#customer-recover-password-form form,
-#guest form{
-  &:extend(.form-horizontal all);
+.horizontal{
+  #customer-register-form form,
+  #customer-login-form form,
+  #customer-recover-password-form form,
+  #guest form{
+    &:extend(.form-horizontal all);
+  }
+}
+
+#signinModal{
+  .modal-header{
+    border-bottom: none;
+  }
+  .modal-body .col:last-child{
+    border-left: @hr-border solid 1px;
+  }
 }

@@ -5,17 +5,43 @@
 <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+    
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Register or Sign-in</h4>
       </div>
       <div class="modal-body">
-        ...
+        
+        <div class="row">
+          <div class="col col-md-6">
+            <fieldset class="customer-login-form">
+              <legend>Sign-in</legend>
+              {% include '_form-login' %}
+            </fieldset>
+            
+            <fieldset class="customer-recover-password-form">
+              <legend>Reset Password</legend>
+              {% include '_form-recover-password' %}
+            </fieldset>
+          </div>
+          <div class="col col-md-6">
+            <fieldset class="customer-register-form">
+              <legend>Register</legend>
+              {% include '_form-register' %}
+            </fieldset>
+          </div>
+        </div>
+        
+        
       </div>
+      
+<!--
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Sign-up</button>
       </div>
+-->
+      
+      
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

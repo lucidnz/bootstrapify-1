@@ -1,9 +1,10 @@
-<div class="customer-login-form">
+{% assign form-type = 'horizontal' %}
+<div class="customer-login-form horizontal">
   <h1 class="page-header">Customer Login</h1>
   {% include '_form-login' %}
 </div>
 
-<div class="customer-recover-password-form">
+<div class="customer-recover-password-form horizontal">
   <h1 class="page-header">Reset Password</h1>
   {% include '_form-recover-password' %}
 </div>
