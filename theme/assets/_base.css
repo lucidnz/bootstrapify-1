@@ -1663,11 +1663,26 @@ textarea.input-lg {
 }
 .form-horizontal .control-label,
 .form-horizontal .radio-inline,
-.form-horizontal .checkbox-inline {
+.form-horizontal .checkbox-inline,
+#customer form .control-label,
+#customer form .radio-inline,
+#customer form .checkbox-inline,
+#recover-password form .control-label,
+#recover-password form .radio-inline,
+#recover-password form .checkbox-inline,
+#guest form .control-label,
+#guest form .radio-inline,
+#guest form .checkbox-inline {
   padding-top: 6px;
 }
 .form-horizontal .form-group:before,
-.form-horizontal .form-group:after {
+.form-horizontal .form-group:after,
+#customer form .form-group:before,
+#customer form .form-group:after,
+#recover-password form .form-group:before,
+#recover-password form .form-group:after,
+#guest form .form-group:before,
+#guest form .form-group:after {
   content: " ";
   /* 1 */
 
@@ -1675,11 +1690,20 @@ textarea.input-lg {
   /* 2 */
 
 }
-.form-horizontal .form-group:after {
+.form-horizontal .form-group:after,
+#customer form .form-group:after,
+#recover-password form .form-group:after,
+#guest form .form-group:after {
   clear: both;
 }
 .form-horizontal .form-group:before,
-.form-horizontal .form-group:after {
+.form-horizontal .form-group:after,
+#customer form .form-group:before,
+#customer form .form-group:after,
+#recover-password form .form-group:before,
+#recover-password form .form-group:after,
+#guest form .form-group:before,
+#guest form .form-group:after {
   content: " ";
   /* 1 */
 
@@ -1687,21 +1711,33 @@ textarea.input-lg {
   /* 2 */
 
 }
-.form-horizontal .form-group:after {
+.form-horizontal .form-group:after,
+#customer form .form-group:after,
+#recover-password form .form-group:after,
+#guest form .form-group:after {
   clear: both;
 }
 @media (min-width: 768px) {
-  .container .form-horizontal .form-group {
+  .container .form-horizontal .form-group,
+  .container #customer form .form-group,
+  .container #recover-password form .form-group,
+  .container #guest form .form-group {
     margin-left: -15px;
     margin-right: -15px;
   }
 }
-.form-horizontal .form-group .row {
+.form-horizontal .form-group .row,
+#customer form .form-group .row,
+#recover-password form .form-group .row,
+#guest form .form-group .row {
   margin-left: -15px;
   margin-right: -15px;
 }
 @media (min-width: 768px) {
-  .form-horizontal .control-label {
+  .form-horizontal .control-label,
+  #customer form .control-label,
+  #recover-password form .control-label,
+  #guest form .control-label {
     text-align: right;
   }
 }
@@ -4044,6 +4080,7 @@ button.close {
 }
 .thumbnail {
   display: block;
+  margin-bottom: 30px;
 }
 .thumbnail > img,
 .img-thumbnail {
@@ -4937,4 +4974,16 @@ a.icon:hover {
 }
 .money {
   text-align: right;
+}
+.loader {
+  position: absolute;
+  margin: 0 auto;
+  z-index: 9999;
+  cursor: wait;
+  width: 25px;
+  height: 25px;
+  top: 150px;
+  left: 280px;
+  background: url('load.gif') no-repeat;
+  display: none;
 }
