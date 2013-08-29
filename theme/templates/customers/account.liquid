@@ -1,3 +1,12 @@
+<div id="admin_header">
+  <h1 class="page-header">Account Details and Order History</h1>
+  <div class="action_link action_return note" id='return_to_store'><a href="{{ shop.url }}">Return to Store</a></div>
+</div>
+
+<div id="customer_sidebar">
+</div>
+
+{% comment %}
 {% layout settings.customer_layout %}
 
 <div id="admin_header">
@@ -53,3 +62,4 @@
     <p>You haven't placed any orders yet.</p>
   {% endif %}
 </div>
+{% endcomment %}

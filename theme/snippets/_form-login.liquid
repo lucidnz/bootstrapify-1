@@ -1,0 +1,40 @@
+<div id="customer-login-form">
+  {% form 'customer_login' %}
+    {% include '_form-error' %}
+  
+    <div id="login_email" class="form-group">
+      <label for="customer_email" class="col-lg-2 control-label">Email Address</label>
+      <div class="col-lg-10">
+        <input type="email" value="" name="customer[email]" id="customer_email" class="form-control" placeholder="Email" />
+      </div>
+    </div>
+  
+    {% if form.password_needed %}
+  
+      {% comment %}
+        Customer Account Login
+      {% endcomment %}
+  
+      <div id="login_password" class="form-group">
+        <label for="customer_password" class="col-lg-2 control-label">Password</label>
+        <div class="col-lg-10">
+          <input type="password" value="" name="customer[password]" id="customer_password" class="form-control" placeholder="Passsword" />
+        </div>
+      </div>
+      
+      <div id="forgotten-password-link" class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <a href="{{ shop.url }}" class="show-recover-password-form">Forgot your password?</a>
+        </div>
+      </div>
+  
+    {% endif %}
+  
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <input class="btn btn-default" type="submit" value="Sign In" />
+        <span class="note">or <a href="{{ shop.url }}">Return to Store</a></span>
+      </div>
+    </div>
+  {% endform %}
+</div>

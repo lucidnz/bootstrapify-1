@@ -1,70 +1,11 @@
-<div id="customer">
+<div class="customer-login-form">
   <h1 class="page-header">Customer Login</h1>
-  {% form 'customer_login' %}
-    {% include '_form-error' %}
-  
-    <div id="login_email" class="form-group">
-      <label for="customer_email" class="col-lg-2 control-label">Email Address</label>
-      <div class="col-lg-10">
-        <input type="email" value="" name="customer[email]" id="customer_email" class="form-control" placeholder="Email" />
-      </div>
-    </div>
-  
-    {% if form.password_needed %}
-  
-      {% comment %}
-        Customer Account Login
-      {% endcomment %}
-  
-      <div id="login_password" class="form-group">
-        <label for="customer_password" class="col-lg-2 control-label">Password</label>
-        <div class="col-lg-10">
-          <input type="password" value="" name="customer[password]" id="customer_password" class="form-control" placeholder="Passsword" />
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <div class="col-lg-10 col-lg-offset-2">
-          <a href="#" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
-        </div>
-      </div>
-  
-    {% endif %}
-  
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <input class="btn btn-default" type="submit" value="Sign In" />
-        <span class="note">or <a href="{{ shop.url }}">Return to Store</a></span>
-      </div>
-    </div>
-  {% endform %}
+  {% include '_form-login' %}
 </div>
-    
-{% comment %}
-  Recover Password Form
-{% endcomment %}
 
-<div id="recover-password" style='display:none'>
+<div class="customer-recover-password-form">
   <h1 class="page-header">Reset Password</h1>
-  <p class="note">We will send you an email to reset your password.</p>
-
-  {% form 'recover_customer_password' %}
-    {% include '_form-error' %}
-    
-    <div id="login_email" class="form-group">
-      <label for="customer_email" class="col-lg-2 control-label">Email Address</label>
-      <div class="col-lg-10">
-        <input type="email" value="" name="email" id="recover-email" class="form-control" placeholder="Email" />
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <input class="btn btn-default" type="submit" value="Submit" />
-        <span class="note">or <a href="#" onclick="hideRecoverPasswordForm();return false;">Cancel</a></span>
-      </div>
-    </div>
-  {% endform %}
+  {% include '_form-recover-password' %}
 </div>
     
 {% comment %}
@@ -85,17 +26,3 @@
   {% endform %}
 </div>
 {% endif %}
-
-<script type="text/javascript">
-  function showRecoverPasswordForm() {
-    document.getElementById('recover-password').style.display = 'block';
-    document.getElementById('customer').style.display='none';
-  }
-
-  function hideRecoverPasswordForm() {
-    document.getElementById('recover-password').style.display = 'none';
-    document.getElementById('customer').style.display = 'block';
-  }
-
-  if (window.location.hash == '#recover') { showRecoverPasswordForm() }
-</script>
