@@ -10,8 +10,8 @@
 {% endif %}
 
 {% if collection.all_products_count == 0 %}
-
 <p>Sorry, no products were found in the {{ collection.title }} collection.</p>
+
 {% else %}
 {% paginate collection.products by settings.default-pagination %}
 <div class="row">
@@ -23,3 +23,5 @@
 {% endpaginate %}
 
 {% endif %}
+
+{% include '_signin-modal' %}
