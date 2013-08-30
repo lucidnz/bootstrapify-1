@@ -1,3 +1,7 @@
+function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
+  return jQuery(document.getElementById(id));
+}
+
 /* Product Image Switcher */
 $('.thumbnail').click(function() {
 	var targetImage = $(this).attr('data-main-image');
@@ -10,19 +14,61 @@ $('.thumbnail').click(function() {
 	});
 });
 
+/* modal signin forms */
+var modalForm = getID('signinModal');
+modalForm.on('submit', 'form', function(e){
+  // collect form data and validate
+  var form = $(this),
+    inputArray = [],
+    valid = true;
+  form.find('input').each(function(){
+    var input = $(this);
+    if(input.attr('name')){
+      if(input.val() === ''){
+        valid = false;
+        input.closest('.form-group').addClass('has-error').append('<p class="help-block">Field can\'t be blank.</p>');
+      }
+      inputArray.push(input.attr('name') +'='+ input.val());
+    }
+  });
+  var dataString = inputArray.join('&');
+  
+  // POST form data
+  if(valid){
+    $.ajax({
+      type: "POST",
+      url: $(this).attr('action'),
+      data: dataString,
+      success: function(data) {
+        // check for error and refresh page if none found
+        var formAlert = $(data).find('form .alert');
+        if(formAlert.length > 0){
+          form.prepend('<div class="alert alert-danger">'+formAlert.html()+'</div>');
+        } else {
+          window.location.reload();
+        }
+      },
+      error: function(data) {
+        console.log('Form post error:');
+        console.log(data);
+      }
+    });
+  }
+  e.preventDefault();
+});
 
 /* Recover password form */
-var recoverForm = document.getElementById('customer-recover-password-form'),
-  loginForm = document.getElementById('customer-login-form');
+var recoverForm = getID('customer-recover-password-form'),
+  loginForm = getID('customer-login-form');
 
 function showRecoverPasswordForm() {
-  $(recoverForm).parent().show();
-  $(loginForm).parent().hide();
+  recoverForm.parent().show();
+  loginForm.parent().hide();
 }
 
 function hideRecoverPasswordForm() {
-  $(recoverForm).parent().hide();
-  $(loginForm).parent().show();
+  recoverForm.parent().hide();
+  loginForm.parent().show();
 }
 
 $('.hide-recover-password-form').on('click', function(e){
@@ -36,8 +82,8 @@ $('.show-recover-password-form').on('click', function(e){
 });
 
 // dont show links if we dont have both includes present
-if(recoverForm === null){ document.getElementById('forgotten-password-link').style.display='none'; }
-if(loginForm === null){ document.getElementById('recover-password-link').style.display='none'; }
+if(recoverForm === null){ getID('forgotten-password-link').style.display='none'; }
+if(loginForm === null){ getID('recover-password-link').style.display='none'; }
 
 hideRecoverPasswordForm();
 if (window.location.hash === '#recover') { showRecoverPasswordForm(); }
