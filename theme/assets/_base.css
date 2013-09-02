@@ -1797,6 +1797,11 @@ textarea.input-lg {
 .form-wrapper-horizontal #customer-recover-password-form form .checkbox,
 .form-wrapper-horizontal #customer-recover-password-form form .radio-inline,
 .form-wrapper-horizontal #customer-recover-password-form form .checkbox-inline,
+.form-wrapper-horizontal #customer-password-form form .control-label,
+.form-wrapper-horizontal #customer-password-form form .radio,
+.form-wrapper-horizontal #customer-password-form form .checkbox,
+.form-wrapper-horizontal #customer-password-form form .radio-inline,
+.form-wrapper-horizontal #customer-password-form form .checkbox-inline,
 .form-wrapper-horizontal #customer-address-form form .control-label,
 .form-wrapper-horizontal #customer-address-form form .radio,
 .form-wrapper-horizontal #customer-address-form form .checkbox,
@@ -1810,6 +1815,7 @@ textarea.input-lg {
 .form-wrapper-horizontal #customer-register-form form .form-group,
 .form-wrapper-horizontal #customer-login-form form .form-group,
 .form-wrapper-horizontal #customer-recover-password-form form .form-group,
+.form-wrapper-horizontal #customer-password-form form .form-group,
 .form-wrapper-horizontal #customer-address-form form .form-group {
   margin-left: -15px;
   margin-right: -15px;
@@ -1822,6 +1828,8 @@ textarea.input-lg {
 .form-wrapper-horizontal #customer-login-form form .form-group:after,
 .form-wrapper-horizontal #customer-recover-password-form form .form-group:before,
 .form-wrapper-horizontal #customer-recover-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-password-form form .form-group:before,
+.form-wrapper-horizontal #customer-password-form form .form-group:after,
 .form-wrapper-horizontal #customer-address-form form .form-group:before,
 .form-wrapper-horizontal #customer-address-form form .form-group:after {
   content: " ";
@@ -1835,6 +1843,7 @@ textarea.input-lg {
 .form-wrapper-horizontal #customer-register-form form .form-group:after,
 .form-wrapper-horizontal #customer-login-form form .form-group:after,
 .form-wrapper-horizontal #customer-recover-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-password-form form .form-group:after,
 .form-wrapper-horizontal #customer-address-form form .form-group:after {
   clear: both;
 }
@@ -1846,6 +1855,8 @@ textarea.input-lg {
 .form-wrapper-horizontal #customer-login-form form .form-group:after,
 .form-wrapper-horizontal #customer-recover-password-form form .form-group:before,
 .form-wrapper-horizontal #customer-recover-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-password-form form .form-group:before,
+.form-wrapper-horizontal #customer-password-form form .form-group:after,
 .form-wrapper-horizontal #customer-address-form form .form-group:before,
 .form-wrapper-horizontal #customer-address-form form .form-group:after {
   content: " ";
@@ -1859,6 +1870,7 @@ textarea.input-lg {
 .form-wrapper-horizontal #customer-register-form form .form-group:after,
 .form-wrapper-horizontal #customer-login-form form .form-group:after,
 .form-wrapper-horizontal #customer-recover-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-password-form form .form-group:after,
 .form-wrapper-horizontal #customer-address-form form .form-group:after {
   clear: both;
 }
@@ -1867,6 +1879,7 @@ textarea.input-lg {
   .form-wrapper-horizontal #customer-register-form form .control-label,
   .form-wrapper-horizontal #customer-login-form form .control-label,
   .form-wrapper-horizontal #customer-recover-password-form form .control-label,
+  .form-wrapper-horizontal #customer-password-form form .control-label,
   .form-wrapper-horizontal #customer-address-form form .control-label {
     text-align: right;
   }
