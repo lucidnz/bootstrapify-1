@@ -1,0 +1,18 @@
+<div class="form-wrapper-horizontal">
+  {% if address %}
+    <h4 id="add_address_title">Edit address</h4>
+    <div id="customer-address-form">
+      {% form 'customer_address', address %}
+        {% include '_form-address-fields' %}
+      {% endform %}
+    </div>
+    
+  {% else %}
+    <h4 id="add_address_title">Add a new address</h4>
+    <div id="customer-address-form">
+      {% form 'customer_address', customer.new_address %}
+        {% include '_form-address-fields' %}
+      {% endform %}
+    </div>
+  {% endif %}
+</div>

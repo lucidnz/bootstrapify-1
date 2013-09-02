@@ -1,0 +1,10 @@
+{% if form.errors %}
+  <div class="alert alert-danger">
+    We could not process the form because of the following errors:
+    <ul>
+      {% for field in form.errors %}
+        <li>{{ field }} - {{ form.errors.messages[field] }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
