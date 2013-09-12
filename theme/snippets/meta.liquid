@@ -1,1 +1,34 @@
-{% if template == 'index' and shop.description != blank %}<meta name="description" content="{{ shop.description }}" />{% endif %}
+{% if template == 'index' and shop.description != blank %}
+	<meta name="description" content="{{ shop.description }}" />
+{% elsif template contains 'list-collections' %}
+	<meta name="description" content="Product collections from {{ shop.name }} - Page {{ current_page }}" />
+{% elsif page_description != '' %}
+	<meta name="description" content="{{ page_description }}" />
+{% endif %}
+
+{% if template contains 'product' %}
+	<meta property="og:url" content="{{ shop.url }}{{ product.url }}" />
+	<meta property="og:title" content="{{ page_title | escape }}" />
+	<meta property="og:description" content="{{ page_description | escape }}" />
+	<meta property="og:image" content="{{ product.featured_image | product_img_url: 'medium' }}" />
+	<meta property="og:type" content="product" />
+	<meta property="og:price:amount" content="{{ product.price | money_without_currency }}" />
+	<meta property="og:price:currency" content="{{ shop.currency }}" />
+	<meta property="og:availability" content="{% if product.available %}instock{% else %}out of stock{% endif %}" />
+{% elsif template contains 'article' %}
+	<meta property="og:url" content="{{ shop.url }}{{ article.url }}" />
+	<meta property="og:title" content="{{ page_title | escape }}" />
+	<meta property="og:description" content="{{ page_description | escape }}" />
+	<meta property="og:type" content="article" />
+{% else %}
+	{% if settings.use-logo-image %}
+	<meta property="og:image" content="{{ 'logo-file.png' | asset_url }}" />
+	{% endif %}
+	<meta property="og:url" content="{{ canonical_url }}" />
+	<meta property="og:title" content="{{ page_title | escape }}" />
+	<meta property="og:description" content="{{ page_description | escape }}" />
+	<meta property="og:type" content="website" />
+{% endif %}
+
+<meta property="og:site_name" content="{{ shop.name }}" />
+<meta name="author" content="{{ shop.name }}">
