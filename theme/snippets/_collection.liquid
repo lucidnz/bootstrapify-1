@@ -1,19 +1,21 @@
 {% capture vars %}
-{% if _collection.featured_image == blank and _collection.products.first.featured_image == blank %}
-  {% assign image = '<div class="image_placeholder">Collection Image</div>' %}
-{% else %}
-  {% if _collection.featured_image == blank %}
-    {% assign image = _collection.products.first.featured_image.src | product_img_url: 'large' | img_tag | link_to: _collection.url %}
-  {% else %}
-    {% assign image = _collection.featured_image.src | product_img_url: 'large' | img_tag | link_to: _collection.url %}
-  {% endif %}
-{% endif %}
+	{% if _collection.featured_image == '' and _collection.products.first.featured_image == '' %}
+		{% assign image = '<div class="image_placeholder">Collection Image</div>' %}
+	{% else %}
+		{% if _collection.featured_image == '' %}
+			{% capture image %}{{ _collection.products.first.featured_image.src | product_img_url: 'large' | img_tag | link_to: _collection.url }}{% endcapture %}
+		{% else %}
+			{% capture image %}{{ _collection.image.src | collection_img_url: 'large' | img_tag | link_to: _collection.url }}{% endcapture %}
+		{% endif %}
+	{% endif %}
 {% endcapture %}
 <div class="{% include '__thumbnail-span' %}">
-  <div class="thumbnail">
-    {{ image }}
-    <div class="caption clearfix">
-      <strong>{{ _collection.title | link_to: _collection.url, _collection.title }}</strong><span class="pull-right">{{ _collection.all_products_count }}&nbsp;{{ _collection.all_products_count | pluralize: 'product','products' }}</span>
-    </div>
-  </div>
+	<div class="thumbnail">
+		{{ image }}
+		{% comment %}
+		<div class="caption clearfix">
+			<strong>{{ _collection.title | link_to: _collection.url, _collection.title }}</strong><span class="pull-right">{{ _collection.all_products_count }}&nbsp;{{ _collection.all_products_count | pluralize: 'product','products' }}</span>
+		</div>
+		{% endcomment %}
+	</div>
 </div>
