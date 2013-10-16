@@ -3,11 +3,11 @@
   {% capture vars %}
   {% assign slide_count = 0 %}
   {% for i in (i..4) %}
-    {% assign s = i | plus: 1 %}
-    {% assign show = 'slide-active-' | append: s %}
-    {% if settings[show] %}
-      {% assign slide_count = slide_count | plus: 1 %}
-    {% endif %}
+  {% assign s = i | plus: 1 %}
+  {% assign show = 'slide-active-' | append: s %}
+  {% if settings[show] %}
+  {% assign slide_count = slide_count | plus: 1 %}
+  {% endif %}
   {% endfor %}
   {% endcapture %}
   {% if slide_count > 1 %}
@@ -34,16 +34,18 @@
     {% if settings[show] %}
     {% assign c = forloop.index %}
     <div class="item{% if c == 1 %} active{% endif %}">
-      {% unless settings[link] == blank %}<a href="{{ settings[link] }}">{% endunless %}
-      <img src="{{ image | append: '.jpg' | asset_url }}" alt="">
-      {% unless settings[link] == blank %}</a>{% endunless %}
+      {% unless settings[link] == blank %}
+      <a href="{{ settings[link] }}">
+        {% endunless %}
+        <img src="{{ image | append: '.jpg' | asset_url }}" alt="">
+        {% unless settings[link] == blank %}
+      </a>
+      {% endunless %}
       {% if settings[title] != blank or settings[cta] != blank or settings[caption] != blank %}
       <div class="carousel-caption clearfix">
-        <h4>{{ settings[title] }}</h4>
-        {% unless settings[link] == blank or settings[cta] == blank %}<a href="{{ settings[link] }}" class="btn btn-primary btn-large pull-right col-xs-2 col-sm-2">{{ settings[cta] }}</a>{% endunless %}
-        <p>
-          {{ settings[caption] }}
-        </p>
+        <h2>{{ settings[title] }}</h2>
+        <h3>{{ settings[caption] }}</h3>
+        {% unless settings[link] == blank or settings[cta] == blank %}<p><a href="{{ settings[link] }}" class="btn btn-primary btn-large">{{ settings[cta] }}</a></p>{% endunless %}
       </div>
       {% endif %}
     </div>
@@ -52,12 +54,11 @@
   </div>
   {% if slide_count > 1 %}
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="icon-prev"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="icon-next"></span>
-    </a>
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
   {% endif %}
 </div>
-<hr>
 {% endif %}
