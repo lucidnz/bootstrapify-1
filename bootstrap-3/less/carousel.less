@@ -98,12 +98,17 @@
 
   // Toggles
   .icon-prev,
-  .icon-next {
+  .icon-next,
+  .glyphicon-chevron-left,
+  .glyphicon-chevron-right {
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 5;
     display: inline-block;
+  }
+  .icon-prev,
+  .icon-next {
     width:  20px;
     height: 20px;
     margin-top: -10px;
@@ -178,7 +183,7 @@
 
 
 // Scale up controls for tablets and up
-@media screen and (min-width: @screen-tablet) {
+@media screen and (min-width: @screen-sm) {
 
   // Scale up the controls a smidge
   .carousel-control .icon-prev,

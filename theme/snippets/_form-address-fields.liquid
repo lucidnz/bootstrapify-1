@@ -1,0 +1,93 @@
+{% assign form_id = 'new' %}
+{% if address %}
+  {% assign form_id = form.id %}
+{% endif %}
+
+{% include '_form-error' %}
+
+<div class="form-group">
+  <label for="address_first_name_{{form_id}}" class="{% include '__form-horizontal-label' %} control-label">First Name</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <input type="text" id="address_first_name_{{form_id}}" class="form-control" name="address[first_name]" placeholder="First Name" value="{{form.first_name}}"></input>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="address_last_name_{{form_id}}" class="{% include '__form-horizontal-label' %} control-label">Last Name</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <input type="text" id="address_last_name_{{form_id}}" class="form-control" name="address[last_name]" placeholder="Last Name" value="{{form.last_name}}"></input>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="address_company_{{form_id}}" class="{% include '__form-horizontal-label' %} control-label">Company</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <input type="text" id="address_company_{{form_id}}" class="form-control" name="address[company]" placeholder="Company" value="{{form.company}}"></input>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="address_address1_{{form_id}}" class="{% include '__form-horizontal-label' %} control-label">Address1</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <input type="text" id="address_address1_{{form_id}}" class="form-control" name="address[address1]" placeholder="Address1" value="{{form.address1}}"></input>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="address_address2_{{form_id}}" class="{% include '__form-horizontal-label' %} control-label">Address2</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <input type="text" id="address_address2_{{form_id}}" class="form-control" name="address[address2]" placeholder="Address2" value="{{form.address2}}"></input>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="address_city_{{form_id}}" class="{% include '__form-horizontal-label' %} control-label">City</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <input type="text" id="address_city_{{form_id}}" class="form-control" name="address[city]" placeholder="City" value="{{form.city}}"></input>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="address_country_{{form_id}}" class="{% include '__form-horizontal-label' %} control-label">Country</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <select id="address_country_{{form_id}}" class="form-control" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+  </div>
+</div>
+
+<div id="address_province_container_{{form_id}}" class="form-group" style="display:none">
+  <label for="address_province_new" class="{% include '__form-horizontal-label' %} control-label">Province</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <input type="text" id="address_province_{{form_id}}" class="form-control" name="address[province]" placeholder="Province" value="{{form.province}}"></input>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="address_zip_{{form_id}}" class="{% include '__form-horizontal-label' %} control-label">Zip</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <input type="text" id="address_zip_{{form_id}}" class="form-control" name="address[zip]" placeholder="Zip" value="{{form.zip}}"></input>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="address_phone_{{form_id}}" class="{% include '__form-horizontal-label' %} control-label">Phone</label>
+  <div class="{% include '__form-horizontal-input' %}">
+    <input type="text" id="address_phone_{{form_id}}" class="form-control" name="address[phone]" placeholder="Phone" value="{{form.phone}}"></input>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="{% include '__form-horizontal-offset' %}">
+    <div class="checkbox">
+      <label>
+        {{ form.set_as_default_checkbox }} Set as Default Address?
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="{% include '__form-horizontal-offset' %}">
+    <input class="btn btn-primary" type="submit" value="{% if address %}Update{% else %}Add{% endif %} Address" />
+    <span class="note">or <a href="#" onclick="{% if address %}Shopify.CustomerAddress.toggleForm({{form.id}});{% else %}Shopify.CustomerAddress.toggleNewForm();{% endif %} return false;">Cancel</a></span>
+  </div>
+</div>
