@@ -6039,6 +6039,9 @@ a.icon:hover {
 .money {
   text-align: right;
 }
+#currencies-picker {
+  padding: 0;
+}
 .loader {
   position: absolute;
   margin: 0 auto;
