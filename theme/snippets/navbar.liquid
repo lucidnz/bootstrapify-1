@@ -23,6 +23,14 @@
       <form class="navbar-form col-sm-2 navbar-right" action="/search">
         <input type="search" name="q" class="form-control" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ settings.default-pagination }}">
       </form>{% endif %}
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="visible-xs">Search</span>
+            <span class="hidden-xs"><i class="icon-search"></i></span>
+          </a>
+        </li>
+      </ul>
         
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

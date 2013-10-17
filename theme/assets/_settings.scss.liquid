@@ -1,0 +1,287 @@
+<<<<<<< HEAD
+=======
+$inverse_threshhold: 50%;
+$hover_strength: 5%;
+$active_strength: 3%;
+
+@function stronger( $color, $strength ) {
+  @return if(lightness($color) > $inverse_threshhold, lighten($color, $strength), darken($color, $strength));
+}
+
+@function weaker( $color, $strength ) {
+  @return if(lightness($color) > $inverse_threshhold, darken($color, $strength), lighten($color, $strength));
+}
+
+$primary_color: {{ settings.primary-color }};
+$primary_color_inverse: if(lightness($primary_color) > $inverse_threshhold, darken($primary_color, 50%), lighten($primary_color, 50%));
+$primary_shadow: rgba(if(lightness($primary_color) > $inverse_threshhold, lighten($primary_color, 100%), darken($primary_color, 100%)),0.3);
+
+$secondary_color: {{ settings.secondary-color }};
+$secondary_color_inverse: if(lightness($secondary_color) > $inverse_threshhold, darken($secondary_color, 50%), lighten($secondary_color, 50%));
+$secondary_shadow: rgba(if(lightness($secondary_color) > $inverse_threshhold, lighten($secondary_color, 100%), darken($secondary_color, 100%)),0.3);
+
+body {
+  background-color: $secondary_color;
+  color: $secondary_color_inverse;
+  
+  strong {
+    font-weight: 400;
+  }
+  
+  {% if settings.site-background-image %}background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');{% endif %}
+  {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
+  {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
+  {% unless settings.body-font-custom == blank and settings.body-font == blank %}font-family: {% unless settings.body-font-custom == blank %}{{ settings.body-font-custom }}{% endunless %}{% unless settings.body-font == blank %}{% unless settings.body-font-custom == blank %}, {% endunless %}{{ settings.body-font }}{% endunless %};{% endunless %}
+  {% unless settings.body-text-size == blank %}font-size: {{ settings.body-text-size }};{% endunless %}
+  
+  & a {
+    color: $secondary_color_inverse;
+      
+    &:hover {
+      color: stronger($secondary_color_inverse, $hover_strength);
+    }
+  }
+}
+
+p a {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $primary_color;
+  
+  {% unless settings.heading-font-custom == blank and settings.heading-font == blank %}font-family: {% unless settings.heading-font-custom == blank %}{{ settings.heading-font-custom }}{% endunless %}{% unless settings.heading-font == blank %}{% unless settings.heading-font-custom == blank %}, {% endunless %}{{ settings.heading-font }}{% endunless %};{% endunless %}
+  {% unless settings.heading-case == blank %}text-transform: {{ settings.heading-case }};{% endunless %}
+  {% unless settings.heading-font-weight == blank %}font-weight: {{ settings.heading-font-weight }};{% endunless %}
+  {% unless settings.heading-style == blank %}font-style: {{ settings.heading-style }};{% endunless %}
+  
+  {% unless settings.heading-letterpress == blank %}
+  text-shadow: 0 1px 0 $secondary_shadow;
+  {% endunless %}
+}
+
+h1 {
+  {% unless settings.heading-1-size == blank %}font-size: {{ settings.heading-1-size }};{% endunless %}
+}
+
+h2 {
+  {% unless settings.heading-2-size == blank %}font-size: {{ settings.heading-2-size }};{% endunless %}
+}
+
+h3 {
+  {% unless settings.heading-3-size == blank %}font-size: {{ settings.heading-3-size }};{% endunless %}
+}
+
+h4 {
+  {% unless settings.heading-4-size == blank %}font-size: {{ settings.heading-4-size }};{% endunless %}
+}
+
+h5 {
+  {% unless settings.heading-5-size == blank %}font-size: {{ settings.heading-5-size }};{% endunless %}
+}
+
+h6 {
+  {% unless settings.heading-6-size == blank %}font-size: {{ settings.heading-6-size }};{% endunless %}
+}
+
+.breadcrumb > li {
+  text-shadow: 0 1px 0 $secondary_shadow;
+}
+
+.navbar,
+.dropdown-menu,
+.dropdown-menu li,
+.dropdown-menu li a {
+  {% unless settings.navbar-font-weight == blank %}font-weight: {{ settings.navbar-font-weight }};{% endunless %}
+}
+
+footer .navbar,
+.navbar-text {
+  &,
+  & small,
+  & a {
+    color: $primary_color_inverse;
+  }
+  
+  & a:hover {
+    color: weaker($primary_color, 100-$hover_strength);
+  }
+  
+  & .muted {
+    color: weaker($primary_color, 50%);
+  }
+}
+
+.navbar {  
+  {% unless settings.navbar-font-custom == blank and settings.navbar-font == blank %}font-family: {% unless settings.navbar-font-custom == blank %}{{ settings.navbar-font-custom }}{% endunless %}{% unless settings.navbar-font == blank %}{% unless settings.navbar-font-custom == blank %}, {% endunless %}{{ settings.navbar-font }}{% endunless %};{% endunless %}
+  {% unless settings.navbar-size == blank %}font-size: {{ settings.navbar-size }};{% endunless %}
+    
+  & .brand {
+    color: $primary_color_inverse;
+    
+    &:hover {
+      color: stronger($primary_color_inverse, $hover_strength);
+    }
+  }
+  
+  & .btn-navbar .icon-bar {
+    background-color: $primary_color_inverse;
+  }
+  
+  & .btn-navbar,
+  & .btn-navbar:hover,
+  & .btn-navbar:focus,
+  & .btn-navbar:active,
+  & .btn-navbar.active,
+  & .btn-navbar.disabled,
+  & .btn-navbar[disabled] {
+    background-color: weaker($primary_color, $hover_strength);
+    background-image: none !important;
+    color: $primary_color_inverse;
+  }
+  
+  & .navbar-inner {
+    background: $primary_color;
+    background-image: none !important;
+    border-color: stronger($primary_color, 10%);
+    
+    & .nav li a,
+    & .brand {
+      text-shadow: 0 1px 0 $primary_shadow;
+    }
+    
+    & .nav li {
+      & a {
+        color: $primary_color_inverse;
+      
+        &:hover {
+          background-color: stronger($primary_color, $hover_strength);
+          color: stronger($primary_color_inverse, $hover_strength);
+        }
+        
+        & .caret {
+          border-top-color: $primary_color_inverse !important;
+          border-bottom-color: $primary_color_inverse !important;
+        }
+      }
+      
+      &.active a {
+        background-color: stronger($primary_color, $active_strength);
+      }
+      
+      &.dropdown.open > .dropdown-toggle {
+        background-color: stronger($primary_color, $hover_strength) !important;
+        color: stronger($primary_color_inverse, $hover_strength);
+      }
+      
+      & ul.dropdown-menu {
+        background-color: stronger($primary_color, $hover_strength);
+        
+        & li a:hover,
+        & li.active,
+        & li.active a:hover {
+          color: $primary_color_inverse;
+          background-color: $primary_color;
+        }
+        
+        & a {
+          color: $primary_color_inverse;
+        }
+      }
+    }
+  }
+}
+
+.navbar .nav > li > .dropdown-menu::after {
+  border-bottom-color: stronger($primary_color, 10%);
+}
+
+.nav {
+  {% unless settings.nav-case == blank %}text-transform: {{ settings.nav-case }};{% endunless %}
+  {% unless settings.nav-font-weight == blank %}font-weight: {{ settings.nav-font-weight }};{% endunless %}
+  {% unless settings.nav-style == blank %}font-style: {{ settings.nav-style }};{% endunless %}
+}
+
+aside {
+  {% unless settings.sidebar-font-custom == blank and settings.sidebar-font == blank %}font-family: {% unless settings.sidebar-font-custom == blank %}{{ settings.sidebar-font-custom }}{% endunless %}{% unless settings.sidebar-font == blank %}{% unless settings.sidebar-font-custom == blank %}, {% endunless %}{{ settings.sidebar-font }}{% endunless %};{% endunless %}
+  {% unless settings.sidebar-size == blank %}font-size: {{ settings.sidebar-size }};{% endunless %}
+}
+
+aside .nav {
+  {% unless settings.sidebar-nav-font-custom == blank and settings.sidebar-nav-font == blank %}font-family: {% unless settings.sidebar-nav-font-custom == blank %}{{ settings.sidebar-nav-font-custom }}{% endunless %}{% unless settings.sidebar-nav-font == blank %}{% unless settings.sidebar-nav-font-custom == blank %}, {% endunless %}{{ settings.sidebar-nav-font }}{% endunless %};{% endunless %}
+  {% unless settings.sidebar-nav-case == blank %}text-transform: {{ settings.sidebar-nav-case }};{% endunless %}
+}
+
+.nav-collapse .navbar-form,
+.nav-collapse .navbar-search {
+  border-color: stronger($primary_color, 10%);
+}
+
+.navbar-fixed-bottom {
+  {% unless settings.footer-font-custom == blank and settings.footer-font == blank %}font-family: {% unless settings.footer-font-custom == blank %}{{ settings.footer-font-custom }}{% endunless %}{% unless settings.footer-font == blank %}{% unless settings.footer-font-custom == blank %}, {% endunless %}{{ settings.footer-font }}{% endunless %};{% endunless %}
+  {% unless settings.footer-size == blank %}font-size: {{ settings.footer-size }};{% endunless %}
+  
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  box-shadow: none !important;
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus,
+.dropdown-submenu:hover>a,
+.dropdown-submenu:focus>a,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-image: none;
+  background-color: stronger($primary_color, $active_strength) !important;
+  color: stronger($primary_color_inverse, $active_strength) !important;
+}
+
+.table th,
+.table td,
+blockquote,
+.page-header,
+hr,
+.footer {
+  border-color: rgba($secondary_color_inverse,0.06);
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th,
+aside .nav li.active a,
+.footer {
+  background-color: rgba($secondary_color_inverse,0.03);
+}
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th,
+ul.breadcrumb,
+aside .nav .active a:hover,
+aside .nav a:hover,
+.footer .nav a:hover {
+  background-color: rgba($secondary_color_inverse,0.04);
+}
+
+aside .nav li.active a {
+  color: stronger($secondary_color_inverse, 10%);
+  
+  &:hover {
+    color: weaker($secondary_color_inverse, 10%);
+  }
+}
+
+.carousel-caption a {
+  
+}
+
+{% unless settings.custom-css == blank %}{{ settings.custom-css }}{% endunless %}
+>>>>>>> bootstrap3/darryn

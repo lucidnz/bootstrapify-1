@@ -15,9 +15,9 @@
 {% else %}
 {% paginate collection.products by settings.default-pagination %}
 <div class="row">
-  {% for p in collection.products %}
-  {% include '_product' with p %}
-  {% endfor %}
+	{% for p in collection.products %}
+		{% include '_product' with p %}
+	{% endfor %}
 </div>
 {% include 'pagination' %}
 {% endpaginate %}
