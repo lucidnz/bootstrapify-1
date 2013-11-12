@@ -503,7 +503,8 @@ dd {
   margin-left: 0;
 }
 @media (min-width: 768px) {
-  .dl-horizontal dt {
+  .dl-horizontal dt,
+  .dl-horizontal-left dt {
     float: left;
     width: 160px;
     clear: left;
@@ -512,11 +513,14 @@ dd {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .dl-horizontal dd {
+  .dl-horizontal dd,
+  .dl-horizontal-left dd {
     margin-left: 180px;
   }
   .dl-horizontal dd:before,
-  .dl-horizontal dd:after {
+  .dl-horizontal dd:after,
+  .dl-horizontal-left dd:before,
+  .dl-horizontal-left dd:after {
     content: " ";
     /* 1 */
   
@@ -524,11 +528,14 @@ dd {
     /* 2 */
   
   }
-  .dl-horizontal dd:after {
+  .dl-horizontal dd:after,
+  .dl-horizontal-left dd:after {
     clear: both;
   }
   .dl-horizontal dd:before,
-  .dl-horizontal dd:after {
+  .dl-horizontal dd:after,
+  .dl-horizontal-left dd:before,
+  .dl-horizontal-left dd:after {
     content: " ";
     /* 1 */
   
@@ -536,7 +543,8 @@ dd {
     /* 2 */
   
   }
-  .dl-horizontal dd:after {
+  .dl-horizontal dd:after,
+  .dl-horizontal-left dd:after {
     clear: both;
   }
 }
@@ -1773,17 +1781,57 @@ textarea.input-lg {
 .form-horizontal .radio,
 .form-horizontal .checkbox,
 .form-horizontal .radio-inline,
-.form-horizontal .checkbox-inline {
+.form-horizontal .checkbox-inline,
+.form-wrapper-horizontal #customer-register-form form .control-label,
+.form-wrapper-horizontal #customer-register-form form .radio,
+.form-wrapper-horizontal #customer-register-form form .checkbox,
+.form-wrapper-horizontal #customer-register-form form .radio-inline,
+.form-wrapper-horizontal #customer-register-form form .checkbox-inline,
+.form-wrapper-horizontal #customer-login-form form .control-label,
+.form-wrapper-horizontal #customer-login-form form .radio,
+.form-wrapper-horizontal #customer-login-form form .checkbox,
+.form-wrapper-horizontal #customer-login-form form .radio-inline,
+.form-wrapper-horizontal #customer-login-form form .checkbox-inline,
+.form-wrapper-horizontal #customer-recover-password-form form .control-label,
+.form-wrapper-horizontal #customer-recover-password-form form .radio,
+.form-wrapper-horizontal #customer-recover-password-form form .checkbox,
+.form-wrapper-horizontal #customer-recover-password-form form .radio-inline,
+.form-wrapper-horizontal #customer-recover-password-form form .checkbox-inline,
+.form-wrapper-horizontal #customer-password-form form .control-label,
+.form-wrapper-horizontal #customer-password-form form .radio,
+.form-wrapper-horizontal #customer-password-form form .checkbox,
+.form-wrapper-horizontal #customer-password-form form .radio-inline,
+.form-wrapper-horizontal #customer-password-form form .checkbox-inline,
+.form-wrapper-horizontal #customer-address-form form .control-label,
+.form-wrapper-horizontal #customer-address-form form .radio,
+.form-wrapper-horizontal #customer-address-form form .checkbox,
+.form-wrapper-horizontal #customer-address-form form .radio-inline,
+.form-wrapper-horizontal #customer-address-form form .checkbox-inline {
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 7px;
 }
-.form-horizontal .form-group {
+.form-horizontal .form-group,
+.form-wrapper-horizontal #customer-register-form form .form-group,
+.form-wrapper-horizontal #customer-login-form form .form-group,
+.form-wrapper-horizontal #customer-recover-password-form form .form-group,
+.form-wrapper-horizontal #customer-password-form form .form-group,
+.form-wrapper-horizontal #customer-address-form form .form-group {
   margin-left: -15px;
   margin-right: -15px;
 }
 .form-horizontal .form-group:before,
-.form-horizontal .form-group:after {
+.form-horizontal .form-group:after,
+.form-wrapper-horizontal #customer-register-form form .form-group:before,
+.form-wrapper-horizontal #customer-register-form form .form-group:after,
+.form-wrapper-horizontal #customer-login-form form .form-group:before,
+.form-wrapper-horizontal #customer-login-form form .form-group:after,
+.form-wrapper-horizontal #customer-recover-password-form form .form-group:before,
+.form-wrapper-horizontal #customer-recover-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-password-form form .form-group:before,
+.form-wrapper-horizontal #customer-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-address-form form .form-group:before,
+.form-wrapper-horizontal #customer-address-form form .form-group:after {
   content: " ";
   /* 1 */
 
@@ -1791,11 +1839,26 @@ textarea.input-lg {
   /* 2 */
 
 }
-.form-horizontal .form-group:after {
+.form-horizontal .form-group:after,
+.form-wrapper-horizontal #customer-register-form form .form-group:after,
+.form-wrapper-horizontal #customer-login-form form .form-group:after,
+.form-wrapper-horizontal #customer-recover-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-address-form form .form-group:after {
   clear: both;
 }
 .form-horizontal .form-group:before,
-.form-horizontal .form-group:after {
+.form-horizontal .form-group:after,
+.form-wrapper-horizontal #customer-register-form form .form-group:before,
+.form-wrapper-horizontal #customer-register-form form .form-group:after,
+.form-wrapper-horizontal #customer-login-form form .form-group:before,
+.form-wrapper-horizontal #customer-login-form form .form-group:after,
+.form-wrapper-horizontal #customer-recover-password-form form .form-group:before,
+.form-wrapper-horizontal #customer-recover-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-password-form form .form-group:before,
+.form-wrapper-horizontal #customer-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-address-form form .form-group:before,
+.form-wrapper-horizontal #customer-address-form form .form-group:after {
   content: " ";
   /* 1 */
 
@@ -1803,11 +1866,21 @@ textarea.input-lg {
   /* 2 */
 
 }
-.form-horizontal .form-group:after {
+.form-horizontal .form-group:after,
+.form-wrapper-horizontal #customer-register-form form .form-group:after,
+.form-wrapper-horizontal #customer-login-form form .form-group:after,
+.form-wrapper-horizontal #customer-recover-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-password-form form .form-group:after,
+.form-wrapper-horizontal #customer-address-form form .form-group:after {
   clear: both;
 }
 @media (min-width: 768px) {
-  .form-horizontal .control-label {
+  .form-horizontal .control-label,
+  .form-wrapper-horizontal #customer-register-form form .control-label,
+  .form-wrapper-horizontal #customer-login-form form .control-label,
+  .form-wrapper-horizontal #customer-recover-password-form form .control-label,
+  .form-wrapper-horizontal #customer-password-form form .control-label,
+  .form-wrapper-horizontal #customer-address-form form .control-label {
     text-align: right;
   }
 }
@@ -5977,4 +6050,17 @@ a.icon:hover {
   left: 280px;
   background: url('load.gif') no-repeat;
   display: none;
+}
+.dl-horizontal-left dt {
+  text-align: left;
+}
+#signinModal .modal-header {
+  border-bottom: none;
+}
+#signinModal .modal-body .col:last-child {
+  border-left: #eeeeee solid 1px;
+}
+#admin_header {
+  overflow: auto;
+  margin-bottom: 30px;
 }
