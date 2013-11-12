@@ -13,6 +13,24 @@ Quick start
 Download the repo and install it in your Shopify site or, *better yet,* clone it and use the excellent Shopify Theme gem (https://github.com/Shopify/shopify_theme)
 
 
+Bootstrap and Bower
+-------------------
+
+To keep [Bootstrap](http://twitter.github.com/bootstrap) up-to-date we have used the [Bower package manager](http://bower.io/) by Twitter.
+This is simpiler than using crazy nested git repos.
+
+If you want to keep Bootstrapify in the state that it is in when you get it then you don't need to do a thing.
+
+If you wish to update Bootstrap then you will need to install Bower:
+Bower depends on [Node](http://nodejs.org/) and [npm](https://npmjs.org/) so download and install Node if you haven't already.
+
+Install Bower globally using npm:
+  npm install -g bower
+  
+To update Bootstrap run:
+  bower update boostrap
+  
+
 Bugs, issues or feature requests
 -----------
 
