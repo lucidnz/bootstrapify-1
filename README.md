@@ -30,7 +30,7 @@ Install Bower globally using npm:
   
 To update Bootstrap run:
 
-    bower update boostrap
+    bower update bootstrap
   
 
 Bugs, issues or feature requests
