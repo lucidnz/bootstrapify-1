@@ -25,9 +25,11 @@ If you wish to update Bootstrap then you will need to install Bower:
 Bower depends on [Node](http://nodejs.org/) and [npm](https://npmjs.org/) so download and install Node if you haven't already.
 
 Install Bower globally using npm:
+
     npm install -g bower
   
 To update Bootstrap run:
+
     bower update boostrap
   
 
