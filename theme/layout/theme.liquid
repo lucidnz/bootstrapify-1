@@ -41,7 +41,9 @@
   <div class="container">    
     {% if settings.slider-placement == "within-container" and template == "index" %}{% include 'slider' %}{% endif %}
     
-    {% if settings.logo-placement != "sidebar" and settings.logo-placement != "navbar" %}{% include 'brand' %}{% endif %}
+    {% if settings.logo-placement != "navbar" %}
+      <div class="{% if settings.logo-placement == "sidebar" %} visible-xs{% endif %}">{% include 'brand' %}</div>
+    {% endif %}
     
     {% if settings.show-breadcrumbs and template != 'index' %}
     {% include 'breadcrumbs' %}

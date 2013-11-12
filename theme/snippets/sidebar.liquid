@@ -1,5 +1,5 @@
 <aside class="col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9">
-  {% if settings.logo-placement == 'sidebar' %}{% include 'brand' %}{% endif %}
+  {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
   
   {% unless linklists[settings.sidebar-linklist] == empty %}
   <h4 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h4>
