@@ -1,3 +1,14 @@
+{% include '__per-row' %}
+
+<h1 class="page-header">Product Collections</h1>
+
+{% if settings.featured-collections-linklist %}
+  {% include 'list-collections' %}
+{% else %}
+  all collections
+{% endif %}
+
+<!--
 <div id="collections-listing">
   {% paginate collections by 10 %}
 
@@ -21,3 +32,4 @@
     {% endif %}
   {% endpaginate %}
 </div>
+-->
