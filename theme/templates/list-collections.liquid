@@ -8,6 +8,7 @@
     <div class="row">
     {% for collection in collections %}
       {% include '_collection' with collection %}
+      {% include '_end_row' %}
     {% endfor %}
     </div>
     {% include 'pagination' %}

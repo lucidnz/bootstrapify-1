@@ -5,21 +5,3 @@
 {% else %}
   {% include '__image-placeholder' %}
 {% endif %}
-
-	{% comment %}
-{% capture vars %}
-	{% if _collection.featured_image == '' and _collection.products.first.featured_image == '' %}
-	  {% include '__image-placeholder' %}
-	{% else %}
-	
-		{% if _collection.featured_image == '' %}
-			{% capture image %}{{ _collection.products.first.featured_image.src | product_img_url: 'large' | img_tag | link_to: _collection.url }}{% endcapture %}
-		{% else %}
-			{% capture image %}{{ _collection.image.src | collection_img_url: 'large' | img_tag | link_to: _collection.url }}{% endcapture %}
-		{% endif %}
-	
-	  {% capture image %}{{ _collection.image }} | {{ _collection.featured_image }}{% endcapture %}
-
-	{% endif %}
-{% endcapture %}
-	{% endcomment %}

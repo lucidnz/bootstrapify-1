@@ -1,8 +1,7 @@
 <div class="row">{% if settings.homepage-featured-collections-limit contains 'row' %}{% assign limit = settings.homepage-featured-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
   {% for l in linklists[settings.featured-collections-linklist].links | limit: limit %}
     {% assign collection = l.object %}
-    {% unless collection.handle == 'frontpage' %}
     {% include '_collection' with collection %}
-    {% endunless %}
+    {% include '_end_row' %}
   {% endfor %}
 </div>
