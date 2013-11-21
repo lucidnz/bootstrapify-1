@@ -2,10 +2,9 @@
 <div class="{% include '__thumbnail-span' %}">
 	<div class="thumbnail">
 		{{ image }}
-		{% comment %}
 		<div class="caption clearfix">
-			<strong>{{ _collection.title | link_to: _collection.url, _collection.title }}</strong><span class="pull-right">{{ _collection.all_products_count }}&nbsp;{{ _collection.all_products_count | pluralize: 'product','products' }}</span>
+			<strong>{{ _collection.title | link_to: _collection.url, _collection.title }}</strong>
+			{% comment %}<span class="pull-right">{{ _collection.all_products_count }}&nbsp;{{ _collection.all_products_count | pluralize: 'product','products' }}</span>{% endcomment %}
 		</div>
-		{% endcomment %}
 	</div>
 </div>
