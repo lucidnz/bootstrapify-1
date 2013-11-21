@@ -1,14 +1,4 @@
-{% capture vars %}
-	{% if _collection.featured_image == '' and _collection.products.first.featured_image == '' %}
-		{% assign image = '<div class="image_placeholder">Collection Image</div>' %}
-	{% else %}
-		{% if _collection.featured_image == '' %}
-			{% capture image %}{{ _collection.products.first.featured_image.src | product_img_url: 'large' | img_tag | link_to: _collection.url }}{% endcapture %}
-		{% else %}
-			{% capture image %}{{ _collection.image.src | collection_img_url: 'large' | img_tag | link_to: _collection.url }}{% endcapture %}
-		{% endif %}
-	{% endif %}
-{% endcapture %}
+{% include '__collection-image' %}
 <div class="{% include '__thumbnail-span' %}">
 	<div class="thumbnail">
 		{{ image }}

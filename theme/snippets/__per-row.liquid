@@ -1,0 +1,7 @@
+{% capture strip_space %}
+{% if settings.thumbnails-per-row == '3' %}
+ {% assign per-row = 3 %}
+{% else %}
+  {% assign per-row = 4 %}
+{% endif %}
+{% endcapture %}

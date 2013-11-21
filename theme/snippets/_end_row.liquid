@@ -1,0 +1,5 @@
+{% assign thumbs_per_row = settings.thumbnails-per-row | times:1 %}
+{% if forloop.length > thumbs_per_row %}
+  {% assign mod = forloop.index | modulo:thumbs_per_row %}
+  {% if mod == 0 %}</div><div class="row">{% endif %}
+{% endif %}
