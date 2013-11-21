@@ -8,10 +8,4 @@
     </div>
   </div>
 </div>
-{% if settings.thumbnails-per-row == '4' %}
-	{% cycle '', '', '', '<div class="clearfix visible-md visible-lg"></div>' %}
-	{% cycle '', '', '<div class="clearfix visible-sm"></div>' %}
-{% else %}
-	{% cycle  '', '', '<div class="clearfix visible-md visible-lg"></div>' %}
-	{% cycle  '', '<div class="clearfix visible-sm"></div>' %}
-{% endif %}
+{% include '_end_row' %}
