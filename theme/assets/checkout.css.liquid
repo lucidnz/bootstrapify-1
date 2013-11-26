@@ -2,16 +2,18 @@
  * Shopify checkout reset
  */
 /* Reset base elements */
-body, h1, #header h1, h2, #overview h2, h3, h3.divider, #pay-with h3, .group h3, .pgroup h3, h4, .pageform h4, h4.active-customer, h5, h6, p, .medium p, fieldset p, fieldset#switchsolo p, .header-description p, h1 span.subtitle, #header h1 span.subtitle, h3.divider, #pay-with h3.divider, #welcome, #container, #container.slim, #main, #container.slim #main, #content, #header, #container.slim #header, #header h1,
-#info-bar, #footer, .footer p, .footer fieldset#switchsolo p, fieldset#switchsolo .footer p, #container.slim #footer, #overview, #overview h2, #overview a, #products, #done, #wallet, div.wallet-highlight, #cost, #order-num, #success, #steps, #thumbs,
+body, h1, #header h1, #wallet #cost, h2, #overview h2, h3, h3.divider, #pay-with h3, .group h3, .pgroup h3, h4, .pageform h4, h4.active-customer, h5, h6, #footer p, p, .medium p, fieldset p, fieldset#switchsolo p, .header-description p, h1 span.subtitle, #header h1 span.subtitle, #wallet #cost span.subtitle, h3.divider, #pay-with h3.divider, #welcome, #container, #container.slim, #main, #container.slim #main, #content, #header, #container.slim #header, #header h1, #header #wallet #cost, #wallet #header #cost,
+#info-bar, #footer, .footer #footer p, #footer .footer p, .footer p, .footer fieldset#switchsolo p, fieldset#switchsolo .footer p, #container.slim #footer, #overview, #overview h2, #overview a, #products, #done, #wallet, div.wallet-highlight, #cost, #order-num, #success, #steps, #thumbs,
 #thumbs div, #thumbs td, .slim #thumbs td, #thumbs h3, #thumbs h3 span, #thumbs span, #overview .hint, #payment-type, #payment-type li, #payment-type li:hover, li.text-payment, .center,
 #addresses, #email, #email label, #email td.label, #email input, #shipping-same label, #shipping-same td.label, .address-notification, #gateway-logos, #gateway-logos img, #pay-with, #pay-with h3, #payment, #or, #payment-methods li,
 #payment-methods input, #credit-card-valid, img.credit-card, .field-with-errors, .field-with-errors input, .field-with-errors .error-message, .severe-error, .gleft, .gright, label, label.inline, #email label, #shipping-same label, .soft label, .medium label, td.label, .form ul.inline li label, .item-inventory-action label,
 input[type=text], input[type=password], textarea, #buttons, #buttons input, dl, dt, dd, dl .hint, .group, .pgroup, .pgroup dl, input.btn, #buttons input, .sign-in-area input[type=submit], textarea.short, input.digit-2, textarea.tall,
-.ta-success, .big, input.long, input.short, .small, h1 span.subtitle, #header h1 span.subtitle, label.inline, #email label.inline, #shipping-same label.inline, td.inline.label, .form ul.inline li label.inline, .pageform h4, .soft, .soft #email label, #email .soft label, .soft #shipping-same label, #shipping-same .soft label, .soft label, .soft td.label, .soft .form ul.inline li label, .form ul.inline li .soft label, .medium #email label, #email .medium label, .medium #shipping-same label, #shipping-same .medium label, .medium label, .medium td.label, .medium .form ul.inline li label, .form ul.inline li .medium label, .medium p, .medium fieldset#switchsolo p, fieldset#switchsolo .medium p, ul.radios li, fieldset, fieldset#switchsolo, fieldset#switchsolo, legend, fieldset .medium p, .medium fieldset p, fieldset p, fieldset#switchsolo p, fieldset .header-description p, .header-description fieldset p,
+.ta-success, .big, input.long, input.short, .small, h1 span.subtitle, #header h1 span.subtitle, #wallet #cost span.subtitle, label.inline, #email label.inline, #shipping-same label.inline, td.inline.label, .form ul.inline li label.inline, .pageform h4, .soft, .soft #email label, #email .soft label, .soft #shipping-same label, #shipping-same .soft label, .soft label, .soft td.label, .soft .form ul.inline li label, .form ul.inline li .soft label, .medium #email label, #email .medium label, .medium #shipping-same label, #shipping-same .medium label, .medium label, .medium td.label, .medium .form ul.inline li label, .form ul.inline li .medium label, .medium #footer p, #footer .medium p, .medium p, .medium fieldset#switchsolo p, fieldset#switchsolo .medium p, ul.radios li, fieldset, fieldset#switchsolo, fieldset#switchsolo, legend, fieldset #footer p, #footer fieldset p, fieldset .medium p, .medium fieldset p, fieldset p, fieldset#switchsolo p, fieldset .header-description p, .header-description fieldset p,
 span.hint a, td.label, td.lprice, td.sprice, td.weight, th.trash, th.sku, a.bottab, a.more, a.less, .group #pay-with h3, #pay-with .group h3, .group h3, .pgroup #pay-with h3, #pay-with .pgroup h3, .pgroup h3, .form td, .form ul.inline li, .form ul.inline li #email label, #email .form ul.inline li label, .form ul.inline li #shipping-same label, #shipping-same .form ul.inline li label, .form ul.inline li td.label, .form ul.inline li label, .form td.lbl,
 .form td input, .form td input.short, .form td textarea, .highlight, #customer_login.required, .sign-in, .forgot-password, #reset-email, .multiple_address_selection td, table.form.full,
 .form.full td.lbl, .form.full td input, .sign-in-area, .sign-in-area input[type=submit], .group.st, h4.active-customer, span.sign-in-message, .flash, .flash.notice, .flash.error,
+.header-description #footer p,
+#footer .header-description p,
 .header-description fieldset#switchsolo p,
 fieldset#switchsolo .header-description p,
 .header-description p, .thumblist li, .thumblist li:last-child, .thumblist-image, .thumblist-image .images, .thumblist-content, .thumblist .group, .item-inventory-message,
@@ -119,7 +121,7 @@ a:active,
 a:hover {
   outline: 0; }
 
-h1, #header h1 {
+h1, #header h1, #wallet #cost {
   font-size: 2em;
   margin: 0.67em 0; }
 
@@ -283,7 +285,7 @@ table {
   @page {
     margin: 2cm .5cm; }
 
-  p, .medium p, fieldset p, fieldset#switchsolo p, .header-description p,
+  #footer p, p, .medium p, fieldset p, fieldset#switchsolo p, .header-description p,
   h2,
   #overview h2,
   h3,
@@ -305,7 +307,7 @@ table {
   select {
     background: #fff !important; }
 
-  .navbar {
+  .navbar, #footer {
     display: none; }
 
   .table td,
@@ -406,22 +408,23 @@ hr {
   clip: rect(0, 0, 0, 0);
   border: 0; }
 
-p, .medium p, fieldset p, fieldset#switchsolo p, .header-description p {
+#footer p, p, .medium p, fieldset p, fieldset#switchsolo p, .header-description p {
   margin: 0 0 10px; }
 
-.lead {
+.lead, #wallet #steps {
   margin-bottom: 20px;
   font-size: 16px;
   font-weight: 200;
   line-height: 1.4; }
   @media (min-width: 768px) {
-    .lead {
+    .lead, #wallet #steps {
       font-size: 21px; } }
 
 small,
 .small,
 h1 span.subtitle,
-#header h1 span.subtitle {
+#header h1 span.subtitle,
+#wallet #cost span.subtitle {
   font-size: 85%; }
 
 cite {
@@ -464,17 +467,19 @@ cite {
 .text-center {
   text-align: center; }
 
-h1, #header h1, h2, #overview h2, h3, h3.divider, #pay-with h3, .group h3, .pgroup h3, h4, .pageform h4, h4.active-customer, h5, h6,
+h1, #header h1, #wallet #cost, h2, #overview h2, h3, h3.divider, #pay-with h3, .group h3, .pgroup h3, h4, .pageform h4, h4.active-customer, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: inherit; }
-  h1 small, #header h1 small,
+  h1 small, #header h1 small, #wallet #cost small,
   h1 .small,
   #header h1 .small,
+  #wallet #cost .small,
   h1 span.subtitle,
-  #header h1 span.subtitle, h2 small, #overview h2 small,
+  #header h1 span.subtitle,
+  #wallet #cost span.subtitle, h2 small, #overview h2 small,
   h2 .small,
   #overview h2 .small,
   h2 h1 span.subtitle,
@@ -482,7 +487,9 @@ h1, #header h1, h2, #overview h2, h3, h3.divider, #pay-with h3, .group h3, .pgro
   #overview h2 h1 span.subtitle,
   h1 #overview h2 span.subtitle,
   h2 #header h1 span.subtitle,
-  #header h1 h2 span.subtitle, h3 small, h3.divider small, #pay-with h3 small, .group h3 small, .pgroup h3 small,
+  #header h1 h2 span.subtitle,
+  h2 #wallet #cost span.subtitle,
+  #wallet #cost h2 span.subtitle, h3 small, h3.divider small, #pay-with h3 small, .group h3 small, .pgroup h3 small,
   h3 .small,
   #pay-with h3 .small,
   h3 h1 span.subtitle,
@@ -490,58 +497,78 @@ h1, #header h1, h2, #overview h2, h3, h3.divider, #pay-with h3, .group h3, .pgro
   #pay-with h3 h1 span.subtitle,
   h1 #pay-with h3 span.subtitle,
   h3 #header h1 span.subtitle,
-  #header h1 h3 span.subtitle, h4 small, .pageform h4 small, h4.active-customer small,
+  #header h1 h3 span.subtitle,
+  h3 #wallet #cost span.subtitle,
+  #wallet #cost h3 span.subtitle, h4 small, .pageform h4 small, h4.active-customer small,
   h4 .small,
   h4 h1 span.subtitle,
   h1 h4 span.subtitle,
   h4 #header h1 span.subtitle,
-  #header h1 h4 span.subtitle, h5 small,
+  #header h1 h4 span.subtitle,
+  h4 #wallet #cost span.subtitle,
+  #wallet #cost h4 span.subtitle, h5 small,
   h5 .small,
   h5 h1 span.subtitle,
   h1 h5 span.subtitle,
   h5 #header h1 span.subtitle,
-  #header h1 h5 span.subtitle, h6 small,
+  #header h1 h5 span.subtitle,
+  h5 #wallet #cost span.subtitle,
+  #wallet #cost h5 span.subtitle, h6 small,
   h6 .small,
   h6 h1 span.subtitle,
   h1 h6 span.subtitle,
   h6 #header h1 span.subtitle,
   #header h1 h6 span.subtitle,
+  h6 #wallet #cost span.subtitle,
+  #wallet #cost h6 span.subtitle,
   .h1 small,
   .h1 .small,
   .h1 h1 span.subtitle,
   h1 .h1 span.subtitle,
   .h1 #header h1 span.subtitle,
-  #header h1 .h1 span.subtitle, .h2 small,
+  #header h1 .h1 span.subtitle,
+  .h1 #wallet #cost span.subtitle,
+  #wallet #cost .h1 span.subtitle, .h2 small,
   .h2 .small,
   .h2 h1 span.subtitle,
   h1 .h2 span.subtitle,
   .h2 #header h1 span.subtitle,
-  #header h1 .h2 span.subtitle, .h3 small,
+  #header h1 .h2 span.subtitle,
+  .h2 #wallet #cost span.subtitle,
+  #wallet #cost .h2 span.subtitle, .h3 small,
   .h3 .small,
   .h3 h1 span.subtitle,
   h1 .h3 span.subtitle,
   .h3 #header h1 span.subtitle,
-  #header h1 .h3 span.subtitle, .h4 small,
+  #header h1 .h3 span.subtitle,
+  .h3 #wallet #cost span.subtitle,
+  #wallet #cost .h3 span.subtitle, .h4 small,
   .h4 .small,
   .h4 h1 span.subtitle,
   h1 .h4 span.subtitle,
   .h4 #header h1 span.subtitle,
-  #header h1 .h4 span.subtitle, .h5 small,
+  #header h1 .h4 span.subtitle,
+  .h4 #wallet #cost span.subtitle,
+  #wallet #cost .h4 span.subtitle, .h5 small,
   .h5 .small,
   .h5 h1 span.subtitle,
   h1 .h5 span.subtitle,
   .h5 #header h1 span.subtitle,
-  #header h1 .h5 span.subtitle, .h6 small,
+  #header h1 .h5 span.subtitle,
+  .h5 #wallet #cost span.subtitle,
+  #wallet #cost .h5 span.subtitle, .h6 small,
   .h6 .small,
   .h6 h1 span.subtitle,
   h1 .h6 span.subtitle,
   .h6 #header h1 span.subtitle,
-  #header h1 .h6 span.subtitle {
+  #header h1 .h6 span.subtitle,
+  .h6 #wallet #cost span.subtitle,
+  #wallet #cost .h6 span.subtitle {
     font-weight: normal;
     line-height: 1;
     color: #999999; }
 
-h1, #header h1,
+h1, #header h1, #wallet #cost,
 h2,
 #overview h2,
 h3,
@@ -551,11 +578,13 @@ h3.divider,
 .pgroup h3 {
   margin-top: 20px;
   margin-bottom: 10px; }
-  h1 small, #header h1 small,
+  h1 small, #header h1 small, #wallet #cost small,
   h1 .small,
   #header h1 .small,
+  #wallet #cost .small,
   h1 span.subtitle,
   #header h1 span.subtitle,
+  #wallet #cost span.subtitle,
   h2 small,
   #overview h2 small,
   h2 .small,
@@ -566,6 +595,8 @@ h3.divider,
   h1 #overview h2 span.subtitle,
   h2 #header h1 span.subtitle,
   #header h1 h2 span.subtitle,
+  h2 #wallet #cost span.subtitle,
+  #wallet #cost h2 span.subtitle,
   h3 small,
   h3.divider small,
   #pay-with h3 small,
@@ -578,7 +609,9 @@ h3.divider,
   #pay-with h3 h1 span.subtitle,
   h1 #pay-with h3 span.subtitle,
   h3 #header h1 span.subtitle,
-  #header h1 h3 span.subtitle {
+  #header h1 h3 span.subtitle,
+  h3 #wallet #cost span.subtitle,
+  #wallet #cost h3 span.subtitle {
     font-size: 65%; }
 
 h4, .pageform h4, h4.active-customer,
@@ -592,21 +625,27 @@ h6 {
   h1 h4 span.subtitle,
   h4 #header h1 span.subtitle,
   #header h1 h4 span.subtitle,
+  h4 #wallet #cost span.subtitle,
+  #wallet #cost h4 span.subtitle,
   h5 small,
   h5 .small,
   h5 h1 span.subtitle,
   h1 h5 span.subtitle,
   h5 #header h1 span.subtitle,
   #header h1 h5 span.subtitle,
+  h5 #wallet #cost span.subtitle,
+  #wallet #cost h5 span.subtitle,
   h6 small,
   h6 .small,
   h6 h1 span.subtitle,
   h1 h6 span.subtitle,
   h6 #header h1 span.subtitle,
-  #header h1 h6 span.subtitle {
+  #header h1 h6 span.subtitle,
+  h6 #wallet #cost span.subtitle,
+  #wallet #cost h6 span.subtitle {
     font-size: 75%; }
 
-h1, #header h1, .h1 {
+h1, #header h1, #wallet #cost, .h1 {
   font-size: 36px; }
 
 h2, #overview h2, .h2 {
@@ -624,7 +663,7 @@ h5, .h5 {
 h6, .h6 {
   font-size: 12px; }
 
-.page-header {
+.page-header, #header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee; }
@@ -694,11 +733,11 @@ blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
   border-left: 5px solid #eeeeee; }
-  blockquote p, blockquote .medium p, .medium blockquote p, blockquote fieldset#switchsolo p, fieldset#switchsolo blockquote p, blockquote .header-description p, .header-description blockquote p {
+  blockquote #footer p, #footer blockquote p, blockquote p, blockquote .medium p, .medium blockquote p, blockquote fieldset#switchsolo p, fieldset#switchsolo blockquote p, blockquote .header-description p, .header-description blockquote p {
     font-size: 17.5px;
     font-weight: 300;
     line-height: 1.25; }
-  blockquote p:last-child, blockquote fieldset#switchsolo p:last-child, fieldset#switchsolo blockquote p:last-child {
+  blockquote #footer p:last-child, #footer blockquote p:last-child, blockquote p:last-child, blockquote fieldset#switchsolo p:last-child, fieldset#switchsolo blockquote p:last-child {
     margin-bottom: 0; }
   blockquote small {
     display: block;
@@ -711,27 +750,33 @@ blockquote {
     padding-left: 0;
     border-right: 5px solid #eeeeee;
     border-left: 0; }
-    blockquote.pull-right p, blockquote.pull-right fieldset#switchsolo p, fieldset#switchsolo blockquote.pull-right p,
+    blockquote.pull-right #footer p, #footer blockquote.pull-right p, blockquote.pull-right p, blockquote.pull-right fieldset#switchsolo p, fieldset#switchsolo blockquote.pull-right p,
     blockquote.pull-right small,
     blockquote.pull-right .small,
     blockquote.pull-right h1 span.subtitle,
     h1 blockquote.pull-right span.subtitle,
     blockquote.pull-right #header h1 span.subtitle,
-    #header h1 blockquote.pull-right span.subtitle {
+    #header h1 blockquote.pull-right span.subtitle,
+    blockquote.pull-right #wallet #cost span.subtitle,
+    #wallet #cost blockquote.pull-right span.subtitle {
       text-align: right; }
     blockquote.pull-right small:before,
     blockquote.pull-right .small:before,
     blockquote.pull-right h1 span.subtitle:before,
     h1 blockquote.pull-right span.subtitle:before,
     blockquote.pull-right #header h1 span.subtitle:before,
-    #header h1 blockquote.pull-right span.subtitle:before {
+    #header h1 blockquote.pull-right span.subtitle:before,
+    blockquote.pull-right #wallet #cost span.subtitle:before,
+    #wallet #cost blockquote.pull-right span.subtitle:before {
       content: ''; }
     blockquote.pull-right small:after,
     blockquote.pull-right .small:after,
     blockquote.pull-right h1 span.subtitle:after,
     h1 blockquote.pull-right span.subtitle:after,
     blockquote.pull-right #header h1 span.subtitle:after,
-    #header h1 blockquote.pull-right span.subtitle:after {
+    #header h1 blockquote.pull-right span.subtitle:after,
+    blockquote.pull-right #wallet #cost span.subtitle:after,
+    #wallet #cost blockquote.pull-right span.subtitle:after {
       content: '\00A0 \2014'; }
 
 blockquote:before,
@@ -794,24 +839,24 @@ pre {
   .container:after, #info-bar:after, #container:after {
     clear: both; }
 
-.row, #header, #main, #footer, .group {
+.row, #overview, #content {
   margin-left: -15px;
   margin-right: -15px; }
-  .row:before, #header:before, #main:before, #footer:before, .group:before, .row:after, #header:after, #main:after, #footer:after, .group:after {
+  .row:before, #overview:before, #content:before, .row:after, #overview:after, #content:after {
     content: " ";
     /* 1 */
     display: table;
     /* 2 */ }
-  .row:after, #header:after, #main:after, #footer:after, .group:after {
+  .row:after, #overview:after, #content:after {
     clear: both; }
 
-.col-xs-12, #overview, #content, .gleft, .gright, .col-sm-12, .col-md-12, .col-lg-12, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-6, .col-sm-6, .gleft, .gright, .col-md-6, .col-lg-6, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1 {
+.col-xs-12, #products, #wallet, #new_order, #email, .gleft, .gright, .col-sm-12, .col-md-12, .col-lg-12, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-8, .col-sm-8, #products, .col-md-8, .col-lg-8, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-6, .col-sm-6, .gleft, .gright, .col-md-6, .col-lg-6, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-4, .col-sm-4, #wallet, .col-md-4, .col-lg-4, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px; }
 
-.col-xs-12, #overview, #content, .gleft, .gright, .col-xs-11, .col-xs-10, .col-xs-9, .col-xs-8, .col-xs-7, .col-xs-6, .col-xs-5, .col-xs-4, .col-xs-3, .col-xs-2, .col-xs-1 {
+.col-xs-12, #products, #wallet, #new_order, #email, .gleft, .gright, .col-xs-11, .col-xs-10, .col-xs-9, .col-xs-8, .col-xs-7, .col-xs-6, .col-xs-5, .col-xs-4, .col-xs-3, .col-xs-2, .col-xs-1 {
   float: left; }
 
 .col-xs-1 {
@@ -847,7 +892,7 @@ pre {
 .col-xs-11 {
   width: 91.66667%; }
 
-.col-xs-12, #overview, #content, .gleft, .gright {
+.col-xs-12, #products, #wallet, #new_order, #email, .gleft, .gright {
   width: 100%; }
 
 .col-xs-pull-0 {
@@ -971,7 +1016,7 @@ pre {
   .container, #info-bar, #container {
     width: 750px; }
 
-  .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, .col-sm-7, .col-sm-6, .gleft, .gright, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2, .col-sm-1 {
+  .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, #products, .col-sm-7, .col-sm-6, .gleft, .gright, .col-sm-5, .col-sm-4, #wallet, .col-sm-3, .col-sm-2, .col-sm-1 {
     float: left; }
 
   .col-sm-1 {
@@ -983,7 +1028,7 @@ pre {
   .col-sm-3 {
     width: 25%; }
 
-  .col-sm-4 {
+  .col-sm-4, #wallet {
     width: 33.33333%; }
 
   .col-sm-5 {
@@ -995,7 +1040,7 @@ pre {
   .col-sm-7 {
     width: 58.33333%; }
 
-  .col-sm-8 {
+  .col-sm-8, #products {
     width: 66.66667%; }
 
   .col-sm-9 {
@@ -2005,23 +2050,23 @@ textarea.input-lg, .input-group-lg > textarea, .input-group-lg > textarea.short,
     background-color: white;
     border-color: #cccccc; }
 
-.btn-primary {
+.btn-primary, #buttons input {
   color: white;
   background-color: #428bca;
   border-color: #357ebd; }
-  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+  .btn-primary:hover, #buttons input:hover, .btn-primary:focus, #buttons input:focus, .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active {
     color: white;
     background-color: #3276b1;
     border-color: #285e8e; }
-  .open .btn-primary.dropdown-toggle {
+  .open .btn-primary.dropdown-toggle, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle {
     color: white;
     background-color: #3276b1;
     border-color: #285e8e; }
-  .btn-primary:active, .btn-primary.active {
+  .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active {
     background-image: none; }
-  .open .btn-primary.dropdown-toggle {
+  .open .btn-primary.dropdown-toggle, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle {
     background-image: none; }
-  .btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled]#switchsolo .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled]#switchsolo .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled]#switchsolo .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled]#switchsolo .btn-primary:active, fieldset[disabled] .btn-primary.active, fieldset[disabled]#switchsolo .btn-primary.active {
+  .btn-primary.disabled, #buttons input.disabled, .btn-primary.disabled:hover, #buttons input.disabled:hover, .btn-primary.disabled:focus, #buttons input.disabled:focus, .btn-primary.disabled:active, #buttons input.disabled:active, .btn-primary.disabled.active, #buttons input.disabled.active, .btn-primary[disabled], #buttons input[disabled], .btn-primary[disabled]:hover, #buttons input[disabled]:hover, .btn-primary[disabled]:focus, #buttons input[disabled]:focus, .btn-primary[disabled]:active, #buttons input[disabled]:active, .btn-primary[disabled].active, #buttons input[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled]#switchsolo .btn-primary, fieldset[disabled] #buttons input, #buttons fieldset[disabled] input, fieldset[disabled] .btn-primary:hover, fieldset[disabled]#switchsolo .btn-primary:hover, fieldset[disabled] #buttons input:hover, #buttons fieldset[disabled] input:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled]#switchsolo .btn-primary:focus, fieldset[disabled] #buttons input:focus, #buttons fieldset[disabled] input:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled]#switchsolo .btn-primary:active, fieldset[disabled] #buttons input:active, #buttons fieldset[disabled] input:active, fieldset[disabled] .btn-primary.active, fieldset[disabled]#switchsolo .btn-primary.active, fieldset[disabled] #buttons input.active, #buttons fieldset[disabled] input.active {
     background-color: #428bca;
     border-color: #357ebd; }
 
@@ -2893,12 +2938,14 @@ input[type="button"].btn-block {
   left: auto; }
 
 .dropup .caret,
-.navbar-fixed-bottom .dropdown .caret {
+.navbar-fixed-bottom .dropdown .caret,
+#footer .dropdown .caret {
   border-top: 0 dotted;
   border-bottom: 4px solid black;
   content: ""; }
 .dropup .dropdown-menu,
-.navbar-fixed-bottom .dropdown .dropdown-menu {
+.navbar-fixed-bottom .dropdown .dropdown-menu,
+#footer .dropdown .dropdown-menu {
   top: auto;
   bottom: 100%;
   margin-bottom: 1px; }
@@ -2909,12 +2956,12 @@ input[type="button"].btn-block {
     left: auto; } }
 .btn-default .caret, input.btn .caret, #buttons input .caret, .sign-in-area input[type=submit] .caret {
   border-top-color: #333333; }
-.btn-primary .caret, .btn-success .caret, .btn-warning .caret, .btn-danger .caret, .btn-info .caret {
+.btn-primary .caret, #buttons input .caret, .btn-success .caret, .btn-warning .caret, .btn-danger .caret, .btn-info .caret {
   border-top-color: #fff; }
 
 .dropup .btn-default .caret, .dropup input.btn .caret, .dropup #buttons input .caret, #buttons .dropup input .caret, .dropup .sign-in-area input[type=submit] .caret, .sign-in-area .dropup input[type=submit] .caret {
   border-bottom-color: #333333; }
-.dropup .btn-primary .caret,
+.dropup .btn-primary .caret, .dropup #buttons input .caret, #buttons .dropup input .caret,
 .dropup .btn-success .caret,
 .dropup .btn-warning .caret,
 .dropup .btn-danger .caret,
@@ -3363,20 +3410,20 @@ input[type="button"].btn-block {
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
 
-.navbar {
+.navbar, #footer {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent; }
-  .navbar:before, .navbar:after {
+  .navbar:before, #footer:before, .navbar:after, #footer:after {
     content: " ";
     /* 1 */
     display: table;
     /* 2 */ }
-  .navbar:after {
+  .navbar:after, #footer:after {
     clear: both; }
   @media (min-width: 768px) {
-    .navbar {
+    .navbar, #footer {
       border-radius: 4px; } }
 
 .navbar-header:before, .navbar-header:after {
@@ -3448,21 +3495,23 @@ input[type="button"].btn-block {
       border-radius: 0; } }
 
 .navbar-fixed-top,
-.navbar-fixed-bottom {
+.navbar-fixed-bottom,
+#footer {
   position: fixed;
   right: 0;
   left: 0;
   z-index: 1030; }
   @media (min-width: 768px) {
     .navbar-fixed-top,
-    .navbar-fixed-bottom {
+    .navbar-fixed-bottom,
+    #footer {
       border-radius: 0; } }
 
 .navbar-fixed-top {
   top: 0;
   border-width: 0 0 1px; }
 
-.navbar-fixed-bottom {
+.navbar-fixed-bottom, #footer {
   bottom: 0;
   margin-bottom: 0;
   border-width: 1px 0 0; }
@@ -3475,7 +3524,7 @@ input[type="button"].btn-block {
   .navbar-brand:hover, .navbar-brand:focus {
     text-decoration: none; }
   @media (min-width: 768px) {
-    .navbar > .container .navbar-brand, .navbar > #info-bar .navbar-brand, .navbar > #container .navbar-brand {
+    .navbar > .container .navbar-brand, #footer > .container .navbar-brand, .navbar > #info-bar .navbar-brand, #footer > #info-bar .navbar-brand, .navbar > #container .navbar-brand, #footer > #container .navbar-brand {
       margin-left: -15px; } }
 
 .navbar-toggle {
@@ -3566,7 +3615,7 @@ input[type="button"].btn-block {
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
 
-.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
+.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu, #footer .navbar-nav > li > .dropdown-menu {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 
@@ -3588,64 +3637,66 @@ input[type="button"].btn-block {
       margin-left: 15px;
       margin-right: 15px; } }
 
-.navbar-default {
+.navbar-default, #footer {
   background-color: #f8f8f8;
   border-color: #e7e7e7; }
-  .navbar-default .navbar-brand {
+  .navbar-default .navbar-brand, #footer .navbar-brand {
     color: #777777; }
-    .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    .navbar-default .navbar-brand:hover, #footer .navbar-brand:hover, .navbar-default .navbar-brand:focus, #footer .navbar-brand:focus {
       color: #5e5e5e;
       background-color: transparent; }
-  .navbar-default .navbar-text {
+  .navbar-default .navbar-text, #footer .navbar-text {
     color: #777777; }
-  .navbar-default .navbar-nav > li > a {
+  .navbar-default .navbar-nav > li > a, #footer .navbar-nav > li > a {
     color: #777777; }
-    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    .navbar-default .navbar-nav > li > a:hover, #footer .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, #footer .navbar-nav > li > a:focus {
       color: #333333;
       background-color: transparent; }
-  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  .navbar-default .navbar-nav > .active > a, #footer .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, #footer .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, #footer .navbar-nav > .active > a:focus {
     color: #555555;
     background-color: #e7e7e7; }
-  .navbar-default .navbar-nav > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus {
+  .navbar-default .navbar-nav > .disabled > a, #footer .navbar-nav > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, #footer .navbar-nav > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus, #footer .navbar-nav > .disabled > a:focus {
     color: #cccccc;
     background-color: transparent; }
-  .navbar-default .navbar-toggle {
+  .navbar-default .navbar-toggle, #footer .navbar-toggle {
     border-color: #dddddd; }
-    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    .navbar-default .navbar-toggle:hover, #footer .navbar-toggle:hover, .navbar-default .navbar-toggle:focus, #footer .navbar-toggle:focus {
       background-color: #dddddd; }
-    .navbar-default .navbar-toggle .icon-bar {
+    .navbar-default .navbar-toggle .icon-bar, #footer .navbar-toggle .icon-bar {
       background-color: #cccccc; }
-  .navbar-default .navbar-collapse,
-  .navbar-default .navbar-form {
+  .navbar-default .navbar-collapse, #footer .navbar-collapse,
+  .navbar-default .navbar-form,
+  #footer .navbar-form {
     border-color: #e7e7e7; }
-  .navbar-default .navbar-nav > .dropdown > a:hover .caret,
-  .navbar-default .navbar-nav > .dropdown > a:focus .caret {
+  .navbar-default .navbar-nav > .dropdown > a:hover .caret, #footer .navbar-nav > .dropdown > a:hover .caret,
+  .navbar-default .navbar-nav > .dropdown > a:focus .caret,
+  #footer .navbar-nav > .dropdown > a:focus .caret {
     border-top-color: #333333;
     border-bottom-color: #333333; }
-  .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  .navbar-default .navbar-nav > .open > a, #footer .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, #footer .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, #footer .navbar-nav > .open > a:focus {
     background-color: #e7e7e7;
     color: #555555; }
-    .navbar-default .navbar-nav > .open > a .caret, .navbar-default .navbar-nav > .open > a:hover .caret, .navbar-default .navbar-nav > .open > a:focus .caret {
+    .navbar-default .navbar-nav > .open > a .caret, #footer .navbar-nav > .open > a .caret, .navbar-default .navbar-nav > .open > a:hover .caret, #footer .navbar-nav > .open > a:hover .caret, .navbar-default .navbar-nav > .open > a:focus .caret, #footer .navbar-nav > .open > a:focus .caret {
       border-top-color: #555555;
       border-bottom-color: #555555; }
-  .navbar-default .navbar-nav > .dropdown > a .caret {
+  .navbar-default .navbar-nav > .dropdown > a .caret, #footer .navbar-nav > .dropdown > a .caret {
     border-top-color: #777777;
     border-bottom-color: #777777; }
   @media (max-width: 767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a, #footer .navbar-nav .open .dropdown-menu > li > a {
       color: #777777; }
-      .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, #footer .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, #footer .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #333333;
         background-color: transparent; }
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, #footer .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, #footer .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus, #footer .navbar-nav .open .dropdown-menu > .active > a:focus {
       color: #555555;
       background-color: #e7e7e7; }
-    .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a, #footer .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover, #footer .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus, #footer .navbar-nav .open .dropdown-menu > .disabled > a:focus {
       color: #cccccc;
       background-color: transparent; } }
-  .navbar-default .navbar-link {
+  .navbar-default .navbar-link, #footer .navbar-link {
     color: #777777; }
-    .navbar-default .navbar-link:hover {
+    .navbar-default .navbar-link:hover, #footer .navbar-link:hover {
       color: #333333; }
 
 .navbar-inverse {
@@ -3928,10 +3979,10 @@ a.list-group-item.active > .badge,
   line-height: 2.14286;
   color: inherit;
   background-color: #eeeeee; }
-  .jumbotron h1, .jumbotron #header h1, #header .jumbotron h1 {
+  .jumbotron h1, .jumbotron #header h1, #header .jumbotron h1, .jumbotron #wallet #cost, #wallet .jumbotron #cost {
     line-height: 1;
     color: inherit; }
-  .jumbotron p, .jumbotron fieldset#switchsolo p, fieldset#switchsolo .jumbotron p {
+  .jumbotron #footer p, #footer .jumbotron p, .jumbotron p, .jumbotron fieldset#switchsolo p, fieldset#switchsolo .jumbotron p {
     line-height: 1.4; }
   .container .jumbotron, #info-bar .jumbotron, #container .jumbotron {
     border-radius: 6px; }
@@ -3942,7 +3993,7 @@ a.list-group-item.active > .badge,
       .container .jumbotron, #info-bar .jumbotron, #container .jumbotron {
         padding-left: 60px;
         padding-right: 60px; }
-      .jumbotron h1, .jumbotron #header h1, #header .jumbotron h1 {
+      .jumbotron h1, .jumbotron #header h1, #header .jumbotron h1, .jumbotron #wallet #cost, #wallet .jumbotron #cost {
         font-size: 63px; } }
 
 .thumbnail {
@@ -3963,20 +4014,21 @@ a.thumbnail:focus,
 a.thumbnail.active {
   border-color: #428bca; }
 
-.alert {
+.alert, #info-bar {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px; }
-  .alert h4 {
+  .alert h4, #info-bar h4 {
     margin-top: 0;
     color: inherit; }
-  .alert .alert-link {
+  .alert .alert-link, #info-bar .alert-link {
     font-weight: bold; }
-  .alert > p, fieldset#switchsolo .alert > p,
-  .alert > ul {
+  #footer .alert > p, .alert > p, #info-bar > p, fieldset#switchsolo .alert > p,
+  .alert > ul,
+  #info-bar > ul {
     margin-bottom: 0; }
-  .alert > p + p, fieldset#switchsolo .alert > p + p {
+  #footer .alert > p + p, .alert > p + p, #info-bar > p + p, fieldset#switchsolo .alert > p + p {
     margin-top: 5px; }
 
 .alert-dismissable {
@@ -3987,13 +4039,13 @@ a.thumbnail.active {
     right: -21px;
     color: inherit; }
 
-.alert-success {
+.alert-success, #info-bar {
   background-color: #dff0d8;
   border-color: #d6e9c6;
   color: #468847; }
-  .alert-success hr {
+  .alert-success hr, #info-bar hr {
     border-top-color: #c9e2b3; }
-  .alert-success .alert-link {
+  .alert-success .alert-link, #info-bar .alert-link {
     color: #356635; }
 
 .alert-info {
@@ -5275,45 +5327,43 @@ td.visible-print {
   td.hidden-print {
     display: none !important; } }
 /* Layout */
+#main {
+  margin-bottom: 60px; }
+
+#footer {
+  text-align: center; }
+  #footer p {
+    text-align: center;
+    margin-top: 10px; }
+
 /* Type */
 /* Forms */
 /* Buttons */
-/* Undo background and gradient */
-/*
-body, #main, #container, #header, #footer {
-  background: #fff !important;
-}
-*/
-/* Undo overview background and borders */
-/*
-#main #overview {
-  background: #fff;
-  border: none;
-}
-#main #overview > * {
-  border: none;
-}
-#main #thumbs div {
-  border: none;
-}
-*/
+#info-bar {
+  text-align: center;
+  margin-top: 1.5em;
+  margin-bottom: 0; }
+
+h1#tagline {
+  text-align: center; }
+
+#wallet {
+  text-align: center; }
+  #wallet #cost {
+    text-align: center;
+    font-size: 4.5em; }
+
 /* Insert your own logo (upload separately) */
-/*
-#logo { 
-  height: 65px;
-*/
 /* {% if settings.use-logo-image %} */
-/*   background: url({{ "logo-file.png" | asset_url }}) center no-repeat; */
-/* {% endif %} */
-/* } */
-/*
-#header > h1{
-  text-align:center;
-}
-*/
+#logo {
+  height: 65px;
+  background: url({{ "logo-file.png" | asset_url }}) center no-repeat; }
+
+#header > h1, #wallet #header > #cost {
+  text-align: center; }
+
 /* Hide the name of the store because we got this nifty logo now */
-/*
-#header > h1 span.title {
-  display:none;
-}
-*/
+#header > h1 span.title, #wallet #header > #cost span.title {
+  display: none; }
+
+/* {% endif %} */

@@ -1,47 +1,45 @@
 @import "checkout.reset.scss";
 @import "checkout.bootstrap.scss";
 
-/* Undo background and gradient */
-/*
-body, #main, #container, #header, #footer {
-  background: #fff !important;
+#info-bar{
+  @extend .alert;
+  @extend .alert-success;
+  text-align: center;
+  margin-top: 1.5em;
+  margin-bottom: 0;
 }
-*/
 
-/* Undo overview background and borders */
-/*
-#main #overview {
-  background: #fff;
-  border: none;
+h1#tagline{
+  text-align: center;
 }
-#main #overview > * {
-  border: none;
+
+#wallet{
+  text-align: center;
+  #cost{
+    @extend h1;
+    text-align: center;
+    font-size: 4.5em;
+  }
+  #steps{
+    @extend .lead;
+  }
 }
-#main #thumbs div {
-  border: none;
+
+#buttons input{
+  @extend .btn-primary;
 }
-*/
 
 /* Insert your own logo (upload separately) */
-/*
+/* {% if settings.use-logo-image %} */
 #logo { 
   height: 65px;
-*/
-  /* {% if settings.use-logo-image %} */
-/*   background: url(#{'{{ "logo-file.png" | asset_url }}'}) center no-repeat; */
-  /* {% endif %} */
-/* } */
-
-/*
+  background: url(#{'{{ "logo-file.png" | asset_url }}'}) center no-repeat;
+}
 #header > h1{
   text-align:center;
 }
-*/
-
 /* Hide the name of the store because we got this nifty logo now */
-
-/*
 #header > h1 span.title {
   display:none;
 }
-*/
+/* {% endif %} */

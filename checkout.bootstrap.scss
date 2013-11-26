@@ -9,17 +9,47 @@
   @extend .container;
 }
 
-#header, #main, #footer, .group{
-  @extend .row;
+#main{
+  margin-bottom: 60px;
 }
 
 #overview, #content{
+  @extend .row;
+}
+
+#products{
+  @extend .col-xs-12;
+  @extend .col-sm-8;
+}
+
+#wallet{
+  @extend .col-xs-12;
+  @extend .col-sm-4;
+}
+
+#new_order, #email{
   @extend .col-xs-12;
 }
 
 .gleft, .gright{
   @extend .col-xs-12;
   @extend .col-sm-6;
+}
+
+#header{
+  @extend .page-header;
+}
+
+#footer{
+  @extend .navbar;
+  @extend .navbar-default;
+  @extend .navbar-fixed-bottom;
+  text-align: center;
+  p{
+    @extend p;
+    text-align: center;
+    margin-top: 10px;
+  }
 }
 
 /* Type */
