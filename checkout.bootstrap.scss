@@ -1,0 +1,71 @@
+/*
+ * Shopify checkout bootstrap - extends Shopify's checkout styles with bootstrap
+ */
+ 
+@import "bower_components/sass-bootstrap/lib/bootstrap.scss";
+
+/* Layout */
+#info-bar, #container{
+  @extend .container;
+}
+
+#header, #main, #footer, .group{
+  @extend .row;
+}
+
+#overview, #content{
+  @extend .col-xs-12;
+}
+
+.gleft, .gright{
+  @extend .col-xs-12;
+  @extend .col-sm-6;
+}
+
+/* Type */
+h1, #header h1{
+  @extend h1;
+  span.subtitle{
+    @extend .small;
+  }
+}
+
+#overview h2{
+  @extend h2;
+}
+
+h3.divider, #pay-with h3, .group h3, .pgroup h3{
+  @extend h3;
+}
+
+.pageform h4, h4.active-customer{
+  @extend h4;
+}
+
+p, .medium p, fieldset p, .header-description p{
+  @extend p;
+}
+
+/* Forms */
+fieldset, fieldset#switchsolo{
+  @extend fieldset;
+}
+
+legend{
+  @extend legend;
+}
+
+label, label.inline, #email label, #shipping-same label, .soft label, .medium label, td.label, .form ul.inline li label, .item-inventory-action label{
+  @extend label;
+}
+
+input, #email input, #payment-methods input, .field-with-errors input, input[type=text], input[type=password], textarea, textarea.short, input.digit-2, textarea.tall, input.long,
+input.short, .form td input, .form td input.short, .form td textarea, .form.full td input{
+  @extend .form-control;
+}
+
+/* Buttons */
+input.btn, #buttons input, .sign-in-area input[type=submit]{
+  @extend .btn;
+  @extend .btn-default;
+}

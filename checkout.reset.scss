@@ -43,7 +43,7 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
   border: #ccc solid 1px;
 }
 
-#buttons input, .sign-in-area input[type=submit]{
+input.btn, #buttons input, .sign-in-area input[type=submit]{
   background: #ddd;
   padding: 5px;
 }
