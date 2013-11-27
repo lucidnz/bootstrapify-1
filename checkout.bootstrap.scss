@@ -5,11 +5,11 @@
 @import "bower_components/sass-bootstrap/lib/bootstrap.scss";
 
 /* Layout */
-#info-bar, #container{
+#info-bar, #container, #container.slim{
   @extend .container;
 }
 
-#main{
+#main, #container.slim #main{
   margin-bottom: 80px;
 }
 
@@ -52,7 +52,7 @@ h3.divider, #pay-with h3, .group h3, .pgroup h3, #thumbs .plisthead, #email labe
   @extend h3;
 }
 
-.pageform h4, h4.active-customer{
+.pageform h4, h4.active-customer, .group h4{
   @extend h4;
 }
 
@@ -98,7 +98,7 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
 
 
 /* Buttons */
-input.btn, #buttons input, .sign-in-area input[type=submit]{
+input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit], #create-account-btn{
   @extend .btn;
   @extend .btn-default;
 }
@@ -108,7 +108,7 @@ input.btn, #buttons input, .sign-in-area input[type=submit]{
   width: 100%;
   margin-top: 1.5em;
 }
-#thumbs td{
+#thumbs td, .slim #thumbs td{
   display: block;
   overflow: auto;
   & > div{

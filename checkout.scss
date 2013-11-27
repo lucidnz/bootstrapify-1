@@ -9,11 +9,11 @@
   margin-bottom: 0;
 }
 
-#header{
+#header, #container.slim #header{
   @extend .page-header;
 }
 
-#footer{
+#footer, #container.slim #footer{
   @extend .navbar;
   @extend .navbar-default;
   @extend .navbar-fixed-bottom;
@@ -42,7 +42,7 @@ h1#tagline{
   }
 }
 
-#email, #payment{
+#email, #payment, .slim .group{
   padding-top: 1em;
   border-top: $page-header-border-color solid 1px;
 }
@@ -61,12 +61,16 @@ h1#tagline{
   }
 }
 
-#payment-methods{
+#payment-methods, #create-account{
   @extend .well;
 }
 
 #buttons input{
   @extend .btn-primary;
+}
+
+#create-account, #create-account-btn{
+  margin-bottom: 1.5em;
 }
 
 /* Insert your own logo (upload separately) */
