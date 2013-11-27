@@ -35,6 +35,7 @@ fieldset#switchsolo .header-description p,
   margin: 0;
   padding: 0;
   border: none;
+  border-radius: 0;
   background: transparent; }
 
 li.text-payment {
@@ -386,7 +387,7 @@ img {
 .img-rounded {
   border-radius: 6px; }
 
-.img-thumbnail, .thumbnail, #thumbs td > div, .slim #thumbs td > div {
+.img-thumbnail, .thumbnail, #thumbs td > div, .slim #thumbs td > div, .slim #thumbs td .images {
   padding: 4px;
   line-height: 1.42857;
   background-color: white;
@@ -895,13 +896,13 @@ pre {
   .row:after, #overview:after, #content:after {
     clear: both; }
 
-.col-xs-12, #products, #wallet, #new_order, #email, .gleft, .gright, .col-sm-12, .col-md-12, .col-lg-12, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-8, .col-sm-8, #products, .col-md-8, .col-lg-8, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-6, .col-sm-6, .gleft, .gright, .col-md-6, .col-lg-6, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-4, .col-sm-4, #wallet, .col-md-4, .col-lg-4, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1 {
+.col-xs-12, #products, #wallet, #new_order, #email, .slim .group, .gleft, .gright, #create-account, .col-sm-12, .col-md-12, .col-lg-12, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-8, .col-sm-8, #products, .col-md-8, .col-lg-8, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-6, .col-sm-6, .gleft, .gright, #create-account, .col-md-6, .col-lg-6, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-4, .col-sm-4, #wallet, .col-md-4, .col-lg-4, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px; }
 
-.col-xs-12, #products, #wallet, #new_order, #email, .gleft, .gright, .col-xs-11, .col-xs-10, .col-xs-9, .col-xs-8, .col-xs-7, .col-xs-6, .col-xs-5, .col-xs-4, .col-xs-3, .col-xs-2, .col-xs-1 {
+.col-xs-12, #products, #wallet, #new_order, #email, .slim .group, .gleft, .gright, #create-account, .col-xs-11, .col-xs-10, .col-xs-9, .col-xs-8, .col-xs-7, .col-xs-6, .col-xs-5, .col-xs-4, .col-xs-3, .col-xs-2, .col-xs-1 {
   float: left; }
 
 .col-xs-1 {
@@ -937,7 +938,7 @@ pre {
 .col-xs-11 {
   width: 91.66667%; }
 
-.col-xs-12, #products, #wallet, #new_order, #email, .gleft, .gright {
+.col-xs-12, #products, #wallet, #new_order, #email, .slim .group, .gleft, .gright, #create-account {
   width: 100%; }
 
 .col-xs-pull-0 {
@@ -1061,7 +1062,7 @@ pre {
   .container, #info-bar, #container, #container.slim {
     width: 750px; }
 
-  .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, #products, .col-sm-7, .col-sm-6, .gleft, .gright, .col-sm-5, .col-sm-4, #wallet, .col-sm-3, .col-sm-2, .col-sm-1 {
+  .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, #products, .col-sm-7, .col-sm-6, .gleft, .gright, #create-account, .col-sm-5, .col-sm-4, #wallet, .col-sm-3, .col-sm-2, .col-sm-1 {
     float: left; }
 
   .col-sm-1 {
@@ -1079,7 +1080,7 @@ pre {
   .col-sm-5 {
     width: 41.66667%; }
 
-  .col-sm-6, .gleft, .gright {
+  .col-sm-6, .gleft, .gright, #create-account {
     width: 50%; }
 
   .col-sm-7 {
@@ -4132,39 +4133,44 @@ a.list-group-item.active > .badge,
       .jumbotron h1, .jumbotron #header h1, #header .jumbotron h1, .jumbotron #wallet #cost, #wallet .jumbotron #cost {
         font-size: 63px; } }
 
-.thumbnail, #thumbs td > div, .slim #thumbs td > div {
+.thumbnail, #thumbs td > div, .slim #thumbs td > div, .slim #thumbs td .images {
   display: block;
   margin-bottom: 20px; }
-  .thumbnail > img, #thumbs td > div > img, .slim #thumbs td > div > img {
+  .thumbnail > img, #thumbs td > div > img, .slim #thumbs td > div > img, .slim #thumbs td .images > img {
     display: block;
     max-width: 100%;
     height: auto;
     margin-left: auto;
     margin-right: auto; }
-  .thumbnail .caption, #thumbs td > div .caption {
+  .thumbnail .caption, #thumbs td > div .caption, .slim #thumbs td .images .caption {
     padding: 9px;
     color: #333333; }
 
-a.thumbnail:hover,
+a.thumbnail:hover, .slim #thumbs td a.images:hover,
 a.thumbnail:focus,
-a.thumbnail.active {
+.slim #thumbs td a.images:focus,
+a.thumbnail.active,
+.slim #thumbs td a.active.images {
   border-color: #428bca; }
 
-.alert, #info-bar {
+.alert, .flash, .flash.notice, .flash.error, #info-bar {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px; }
-  .alert h4, #info-bar h4 {
+  .alert h4, .flash h4, .flash.notice h4, .flash.error h4, #info-bar h4 {
     margin-top: 0;
     color: inherit; }
-  .alert .alert-link, #info-bar .alert-link {
+  .alert .alert-link, .flash .alert-link, #info-bar .alert-link {
     font-weight: bold; }
-  .alert > p, #info-bar > p, fieldset#switchsolo .alert > p, #footer .alert > p, #container.slim #footer .alert > p, #container.slim #footer #info-bar > p,
+  .alert > p, .flash > p, .flash.notice > p, .flash.error > p, #info-bar > p, fieldset#switchsolo .alert > p, fieldset#switchsolo .flash > p, #footer .alert > p, #footer .flash > p, #container.slim #footer .alert > p, #container.slim #footer .flash > p, #container.slim #footer #info-bar > p,
   .alert > ul,
+  .flash > ul,
+  .flash.notice > ul,
+  .flash.error > ul,
   #info-bar > ul {
     margin-bottom: 0; }
-  .alert > p + p, #info-bar > p + p, fieldset#switchsolo .alert > p + p, #footer .alert > p + p, #container.slim #footer .alert > p + p, #container.slim #footer #info-bar > p + p {
+  .alert > p + p, .flash > p + p, .flash.notice > p + p, .flash.error > p + p, #info-bar > p + p, .medium .alert > p + p, .medium .flash > p + p, .medium .flash.notice > p + p, .medium .flash.error > p + p, .medium #info-bar > p + p, fieldset .alert > p + p, fieldset .flash > p + p, fieldset .flash.notice > p + p, fieldset .flash.error > p + p, fieldset #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, .header-description .alert > p + p, .header-description .flash > p + p, .header-description .flash.notice > p + p, .header-description .flash.error > p + p, .header-description #info-bar > p + p, #footer .alert > p + p, #footer .flash > p + p, #footer .flash.notice > p + p, #footer .flash.error > p + p, #footer #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p, .medium .alert > p + p, .medium .flash > p + p, .medium .flash.notice > p + p, .medium .flash.error > p + p, .medium #info-bar > p + p, .medium .alert > p + p, .medium .flash > p + p, .medium .flash.notice > p + p, .medium .flash.error > p + p, .medium #info-bar > p + p, fieldset .medium .alert > p + p, .medium fieldset .alert > p + p, fieldset .medium .flash > p + p, .medium fieldset .flash > p + p, fieldset .medium .flash.notice > p + p, .medium fieldset .flash.notice > p + p, fieldset .medium .flash.error > p + p, .medium fieldset .flash.error > p + p, fieldset .medium #info-bar > p + p, .medium fieldset #info-bar > p + p, fieldset#switchsolo .medium .alert > p + p, .medium fieldset#switchsolo .alert > p + p, fieldset#switchsolo .medium .flash > p + p, .medium fieldset#switchsolo .flash > p + p, fieldset#switchsolo .medium .flash.notice > p + p, .medium fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .medium .flash.error > p + p, .medium fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo .medium #info-bar > p + p, .medium fieldset#switchsolo #info-bar > p + p, .header-description .medium .alert > p + p, .medium .header-description .alert > p + p, .header-description .medium .flash > p + p, .medium .header-description .flash > p + p, .header-description .medium .flash.notice > p + p, .medium .header-description .flash.notice > p + p, .header-description .medium .flash.error > p + p, .medium .header-description .flash.error > p + p, .header-description .medium #info-bar > p + p, .medium .header-description #info-bar > p + p, #footer .medium .alert > p + p, .medium #footer .alert > p + p, #footer .medium .flash > p + p, .medium #footer .flash > p + p, #footer .medium .flash.notice > p + p, .medium #footer .flash.notice > p + p, #footer .medium .flash.error > p + p, .medium #footer .flash.error > p + p, #footer .medium #info-bar > p + p, .medium #footer #info-bar > p + p, #container.slim #footer .medium .alert > p + p, .medium #container.slim #footer .alert > p + p, #container.slim #footer .medium .flash > p + p, .medium #container.slim #footer .flash > p + p, #container.slim #footer .medium .flash.notice > p + p, .medium #container.slim #footer .flash.notice > p + p, #container.slim #footer .medium .flash.error > p + p, .medium #container.slim #footer .flash.error > p + p, #container.slim #footer .medium #info-bar > p + p, .medium #container.slim #footer #info-bar > p + p, fieldset .alert > p + p, fieldset .flash > p + p, fieldset .flash.notice > p + p, fieldset .flash.error > p + p, fieldset #info-bar > p + p, .medium fieldset .alert > p + p, fieldset .medium .alert > p + p, .medium fieldset .flash > p + p, fieldset .medium .flash > p + p, .medium fieldset .flash.notice > p + p, fieldset .medium .flash.notice > p + p, .medium fieldset .flash.error > p + p, fieldset .medium .flash.error > p + p, .medium fieldset #info-bar > p + p, fieldset .medium #info-bar > p + p, fieldset .alert > p + p, fieldset .flash > p + p, fieldset .flash.notice > p + p, fieldset .flash.error > p + p, fieldset #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, .header-description fieldset .alert > p + p, fieldset .header-description .alert > p + p, .header-description fieldset .flash > p + p, fieldset .header-description .flash > p + p, .header-description fieldset .flash.notice > p + p, fieldset .header-description .flash.notice > p + p, .header-description fieldset .flash.error > p + p, fieldset .header-description .flash.error > p + p, .header-description fieldset #info-bar > p + p, fieldset .header-description #info-bar > p + p, #footer fieldset .alert > p + p, fieldset #footer .alert > p + p, #footer fieldset .flash > p + p, fieldset #footer .flash > p + p, #footer fieldset .flash.notice > p + p, fieldset #footer .flash.notice > p + p, #footer fieldset .flash.error > p + p, fieldset #footer .flash.error > p + p, #footer fieldset #info-bar > p + p, fieldset #footer #info-bar > p + p, #container.slim #footer fieldset .alert > p + p, fieldset #container.slim #footer .alert > p + p, #container.slim #footer fieldset .flash > p + p, fieldset #container.slim #footer .flash > p + p, #container.slim #footer fieldset .flash.notice > p + p, fieldset #container.slim #footer .flash.notice > p + p, #container.slim #footer fieldset .flash.error > p + p, fieldset #container.slim #footer .flash.error > p + p, #container.slim #footer fieldset #info-bar > p + p, fieldset #container.slim #footer #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, .medium fieldset#switchsolo .alert > p + p, fieldset#switchsolo .medium .alert > p + p, .medium fieldset#switchsolo .flash > p + p, fieldset#switchsolo .medium .flash > p + p, .medium fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .medium .flash.notice > p + p, .medium fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo .medium .flash.error > p + p, .medium fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo .medium #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, .header-description fieldset#switchsolo .alert > p + p, fieldset#switchsolo .header-description .alert > p + p, .header-description fieldset#switchsolo .flash > p + p, fieldset#switchsolo .header-description .flash > p + p, .header-description fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .header-description .flash.notice > p + p, .header-description fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo .header-description .flash.error > p + p, .header-description fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo .header-description #info-bar > p + p, #footer fieldset#switchsolo .alert > p + p, fieldset#switchsolo #footer .alert > p + p, #footer fieldset#switchsolo .flash > p + p, fieldset#switchsolo #footer .flash > p + p, #footer fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo #footer .flash.notice > p + p, #footer fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #footer .flash.error > p + p, #footer fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo #footer #info-bar > p + p, #container.slim #footer fieldset#switchsolo .alert > p + p, fieldset#switchsolo #container.slim #footer .alert > p + p, #container.slim #footer fieldset#switchsolo .flash > p + p, fieldset#switchsolo #container.slim #footer .flash > p + p, #container.slim #footer fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo #container.slim #footer .flash.notice > p + p, #container.slim #footer fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #container.slim #footer .flash.error > p + p, #container.slim #footer fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo #container.slim #footer #info-bar > p + p, .header-description .alert > p + p, .header-description .flash > p + p, .header-description .flash.notice > p + p, .header-description .flash.error > p + p, .header-description #info-bar > p + p, .medium .header-description .alert > p + p, .header-description .medium .alert > p + p, .medium .header-description .flash > p + p, .header-description .medium .flash > p + p, .medium .header-description .flash.notice > p + p, .header-description .medium .flash.notice > p + p, .medium .header-description .flash.error > p + p, .header-description .medium .flash.error > p + p, .medium .header-description #info-bar > p + p, .header-description .medium #info-bar > p + p, fieldset .header-description .alert > p + p, .header-description fieldset .alert > p + p, fieldset .header-description .flash > p + p, .header-description fieldset .flash > p + p, fieldset .header-description .flash.notice > p + p, .header-description fieldset .flash.notice > p + p, fieldset .header-description .flash.error > p + p, .header-description fieldset .flash.error > p + p, fieldset .header-description #info-bar > p + p, .header-description fieldset #info-bar > p + p, fieldset#switchsolo .header-description .alert > p + p, .header-description fieldset#switchsolo .alert > p + p, fieldset#switchsolo .header-description .flash > p + p, .header-description fieldset#switchsolo .flash > p + p, fieldset#switchsolo .header-description .flash.notice > p + p, .header-description fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .header-description .flash.error > p + p, .header-description fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo .header-description #info-bar > p + p, .header-description fieldset#switchsolo #info-bar > p + p, .header-description .alert > p + p, .header-description .flash > p + p, .header-description .flash.notice > p + p, .header-description .flash.error > p + p, .header-description #info-bar > p + p, #footer .header-description .alert > p + p, .header-description #footer .alert > p + p, #footer .header-description .flash > p + p, .header-description #footer .flash > p + p, #footer .header-description .flash.notice > p + p, .header-description #footer .flash.notice > p + p, #footer .header-description .flash.error > p + p, .header-description #footer .flash.error > p + p, #footer .header-description #info-bar > p + p, .header-description #footer #info-bar > p + p, #container.slim #footer .header-description .alert > p + p, .header-description #container.slim #footer .alert > p + p, #container.slim #footer .header-description .flash > p + p, .header-description #container.slim #footer .flash > p + p, #container.slim #footer .header-description .flash.notice > p + p, .header-description #container.slim #footer .flash.notice > p + p, #container.slim #footer .header-description .flash.error > p + p, .header-description #container.slim #footer .flash.error > p + p, #container.slim #footer .header-description #info-bar > p + p, .header-description #container.slim #footer #info-bar > p + p, #footer .alert > p + p, #footer .flash > p + p, #footer .flash.notice > p + p, #footer .flash.error > p + p, #footer #info-bar > p + p, .medium #footer .alert > p + p, #footer .medium .alert > p + p, .medium #footer .flash > p + p, #footer .medium .flash > p + p, .medium #footer .flash.notice > p + p, #footer .medium .flash.notice > p + p, .medium #footer .flash.error > p + p, #footer .medium .flash.error > p + p, .medium #footer #info-bar > p + p, #footer .medium #info-bar > p + p, fieldset #footer .alert > p + p, #footer fieldset .alert > p + p, fieldset #footer .flash > p + p, #footer fieldset .flash > p + p, fieldset #footer .flash.notice > p + p, #footer fieldset .flash.notice > p + p, fieldset #footer .flash.error > p + p, #footer fieldset .flash.error > p + p, fieldset #footer #info-bar > p + p, #footer fieldset #info-bar > p + p, fieldset#switchsolo #footer .alert > p + p, #footer fieldset#switchsolo .alert > p + p, fieldset#switchsolo #footer .flash > p + p, #footer fieldset#switchsolo .flash > p + p, fieldset#switchsolo #footer .flash.notice > p + p, #footer fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo #footer .flash.error > p + p, #footer fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #footer #info-bar > p + p, #footer fieldset#switchsolo #info-bar > p + p, .header-description #footer .alert > p + p, #footer .header-description .alert > p + p, .header-description #footer .flash > p + p, #footer .header-description .flash > p + p, .header-description #footer .flash.notice > p + p, #footer .header-description .flash.notice > p + p, .header-description #footer .flash.error > p + p, #footer .header-description .flash.error > p + p, .header-description #footer #info-bar > p + p, #footer .header-description #info-bar > p + p, #footer .alert > p + p, #footer .flash > p + p, #footer .flash.notice > p + p, #footer .flash.error > p + p, #footer #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p, .medium #container.slim #footer .alert > p + p, #container.slim #footer .medium .alert > p + p, .medium #container.slim #footer .flash > p + p, #container.slim #footer .medium .flash > p + p, .medium #container.slim #footer .flash.notice > p + p, #container.slim #footer .medium .flash.notice > p + p, .medium #container.slim #footer .flash.error > p + p, #container.slim #footer .medium .flash.error > p + p, .medium #container.slim #footer #info-bar > p + p, #container.slim #footer .medium #info-bar > p + p, fieldset #container.slim #footer .alert > p + p, #container.slim #footer fieldset .alert > p + p, fieldset #container.slim #footer .flash > p + p, #container.slim #footer fieldset .flash > p + p, fieldset #container.slim #footer .flash.notice > p + p, #container.slim #footer fieldset .flash.notice > p + p, fieldset #container.slim #footer .flash.error > p + p, #container.slim #footer fieldset .flash.error > p + p, fieldset #container.slim #footer #info-bar > p + p, #container.slim #footer fieldset #info-bar > p + p, fieldset#switchsolo #container.slim #footer .alert > p + p, #container.slim #footer fieldset#switchsolo .alert > p + p, fieldset#switchsolo #container.slim #footer .flash > p + p, #container.slim #footer fieldset#switchsolo .flash > p + p, fieldset#switchsolo #container.slim #footer .flash.notice > p + p, #container.slim #footer fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo #container.slim #footer .flash.error > p + p, #container.slim #footer fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #container.slim #footer #info-bar > p + p, #container.slim #footer fieldset#switchsolo #info-bar > p + p, .header-description #container.slim #footer .alert > p + p, #container.slim #footer .header-description .alert > p + p, .header-description #container.slim #footer .flash > p + p, #container.slim #footer .header-description .flash > p + p, .header-description #container.slim #footer .flash.notice > p + p, #container.slim #footer .header-description .flash.notice > p + p, .header-description #container.slim #footer .flash.error > p + p, #container.slim #footer .header-description .flash.error > p + p, .header-description #container.slim #footer #info-bar > p + p, #container.slim #footer .header-description #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p {
     margin-top: 5px; }
 
 .alert-dismissable {
@@ -4175,22 +4181,22 @@ a.thumbnail.active {
     right: -21px;
     color: inherit; }
 
-.alert-success, #info-bar {
+.alert-success, .flash.notice, #info-bar {
   background-color: #dff0d8;
   border-color: #d6e9c6;
   color: #468847; }
-  .alert-success hr, #info-bar hr {
+  .alert-success hr, .flash.notice hr, #info-bar hr {
     border-top-color: #c9e2b3; }
-  .alert-success .alert-link, #info-bar .alert-link {
+  .alert-success .alert-link, .flash.notice .alert-link, #info-bar .alert-link {
     color: #356635; }
 
-.alert-info {
+.alert-info, .flash {
   background-color: #d9edf7;
   border-color: #bce8f1;
   color: #3a87ad; }
-  .alert-info hr {
+  .alert-info hr, .flash hr {
     border-top-color: #a6e1ec; }
-  .alert-info .alert-link {
+  .alert-info .alert-link, .flash .alert-link {
     color: #2d6987; }
 
 .alert-warning {
@@ -4202,13 +4208,13 @@ a.thumbnail.active {
   .alert-warning .alert-link {
     color: #a47e3c; }
 
-.alert-danger {
+.alert-danger, .flash.error {
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #b94a48; }
-  .alert-danger hr {
+  .alert-danger hr, .flash.error hr {
     border-top-color: #e4b9c0; }
-  .alert-danger .alert-link {
+  .alert-danger .alert-link, .flash.error .alert-link {
     color: #953b39; }
 
 @-webkit-keyframes progress-bar-stripes {
@@ -4323,7 +4329,7 @@ a.thumbnail.active {
 .media-heading, #thumbs td .plisthead, .slim #thumbs td .plisthead {
   margin: 0 0 5px; }
 
-.media > .pull-left, #thumbs td.media > div {
+.media > .pull-left, #thumbs td.media > div, .slim #thumbs td .media > .images {
   margin-right: 10px; }
 .media > .pull-right {
   margin-left: 10px; }
@@ -5091,7 +5097,7 @@ button.close {
 .pull-right {
   float: right !important; }
 
-.pull-left, #thumbs td > div, .slim #thumbs td > div {
+.pull-left, #thumbs td > div, .slim #thumbs td > div, .slim #thumbs td .images {
   float: left !important; }
 
 .hide {
@@ -5466,8 +5472,14 @@ td.visible-print {
 #main, #container.slim #main {
   margin-bottom: 80px; }
 
+#create-account + p, #container.slim #footer #create-account + p {
+  clear: both; }
+
 /* Type */
 /* Forms */
+#create-account form table {
+  width: 100%; }
+
 .form td input#shipping-toggle {
   display: inline;
   height: auto; }
@@ -5477,6 +5489,7 @@ td.visible-print {
   padding-bottom: 0.75em; }
 
 /* Buttons */
+/* Alerts */
 /* Media */
 #thumbs {
   width: 100%;
@@ -5487,6 +5500,9 @@ td.visible-print {
   overflow: auto; }
   #thumbs td > div, .slim #thumbs td > div {
     margin-right: 1em; }
+
+.slim #thumbs td .images {
+  margin-right: 1em; }
 
 #info-bar {
   text-align: center;

@@ -27,13 +27,17 @@
   @extend .col-sm-4;
 }
 
-#new_order, #email{
+#new_order, #email, .slim .group{
   @extend .col-xs-12;
 }
 
-.gleft, .gright{
+.gleft, .gright, #create-account{
   @extend .col-xs-12;
   @extend .col-sm-6;
+}
+
+#create-account + p{
+  clear: both;
 }
 
 /* Type */
@@ -78,6 +82,10 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
   @extend .form-control;
 }
 
+#create-account form table{
+  width: 100%;
+}
+
 .form td input#shipping-toggle{
   @extend .checkbox;
   display: inline;
@@ -96,11 +104,25 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
   }
 }
 
-
 /* Buttons */
 input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit], #create-account-btn{
   @extend .btn;
   @extend .btn-default;
+}
+
+/* Alerts */
+
+.flash{
+  @extend .alert;
+  @extend .alert-info;
+}
+.flash.notice{
+  @extend .alert;
+  @extend .alert-success;
+}
+.flash.error{
+  @extend .alert;
+  @extend .alert-danger;
 }
 
 /* Media */
@@ -121,5 +143,12 @@ input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit],
   }
   .plisthead{
     @extend .media-heading;
+  }
+}
+.slim #thumbs td{
+  .images{
+    @extend .thumbnail;
+    @extend .pull-left;
+    margin-right: 1em;
   }
 }
