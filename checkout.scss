@@ -31,6 +31,7 @@ h1#tagline{
 
 #wallet{
   text-align: center;
+  padding: 2.5em 0;
   #cost{
     @extend h1;
     text-align: center;
@@ -39,6 +40,29 @@ h1#tagline{
   #steps{
     @extend .lead;
   }
+}
+
+#email, #payment{
+  padding-top: 1em;
+  border-top: $page-header-border-color solid 1px;
+}
+
+#email{
+  margin-bottom: 1.5em;
+  #order_email{
+    width: 50%;
+    min-width: 300px;
+    margin-right: 1em;
+    float: left;
+  }
+  .sign-in-message{
+    float: left;
+    margin-top: 0.5em;
+  }
+}
+
+#payment-methods{
+  @extend .well;
 }
 
 #buttons input{

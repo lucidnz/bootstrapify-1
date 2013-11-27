@@ -10,7 +10,7 @@
 }
 
 #main{
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 #overview, #content{
@@ -48,7 +48,7 @@ h1, #header h1{
   @extend h2;
 }
 
-h3.divider, #pay-with h3, .group h3, .pgroup h3{
+h3.divider, #pay-with h3, .group h3, .pgroup h3, #thumbs .plisthead, #email label{
   @extend h3;
 }
 
@@ -69,17 +69,52 @@ legend{
   @extend legend;
 }
 
-label, label.inline, #email label, #shipping-same label, .soft label, .medium label, td.label, .form ul.inline li label, .item-inventory-action label{
+label, label.inline, #shipping-same label, .soft label, .medium label, td.label, .form ul.inline li label, .item-inventory-action label{
   @extend label;
 }
 
-input, #email input, #payment-methods input, .field-with-errors input, input[type=text], input[type=password], textarea, textarea.short, input.digit-2, textarea.tall, input.long,
+#email input, #payment-methods input, .field-with-errors input, input[type=text], input[type=password], textarea, textarea.short, input.digit-2, textarea.tall, input.long,
 input.short, .form td input, .form td input.short, .form td textarea, .form.full td input{
   @extend .form-control;
 }
+
+.form td input#shipping-toggle{
+  @extend .checkbox;
+  display: inline;
+  height: auto;
+}
+
+.field-with-errors{
+  @extend .has-error;
+  .error-message{
+    @extend .text-danger;
+  }
+}
+
 
 /* Buttons */
 input.btn, #buttons input, .sign-in-area input[type=submit]{
   @extend .btn;
   @extend .btn-default;
+}
+
+/* Media */
+#thumbs{
+  width: 100%;
+  margin-top: 1.5em;
+}
+#thumbs td{
+  display: block;
+  overflow: auto;
+  & > div{
+    @extend .thumbnail;
+    @extend .pull-left;
+    margin-right: 1em;
+  }
+  .images{
+    @extend .media-object;
+  }
+  .plisthead{
+    @extend .media-heading;
+  }
 }

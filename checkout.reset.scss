@@ -63,7 +63,7 @@ input.btn, #buttons input, .sign-in-area input[type=submit]{
 }
 
 /* Reset links */
-a{
+a, span.hint a{
   color: #479ccf;
   &:hover{
     color: #2a74a0;
