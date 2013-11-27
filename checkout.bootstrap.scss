@@ -36,22 +36,6 @@
   @extend .col-sm-6;
 }
 
-#header{
-  @extend .page-header;
-}
-
-#footer{
-  @extend .navbar;
-  @extend .navbar-default;
-  @extend .navbar-fixed-bottom;
-  text-align: center;
-  p{
-    @extend p;
-    text-align: center;
-    margin-top: 10px;
-  }
-}
-
 /* Type */
 h1, #header h1{
   @extend h1;
