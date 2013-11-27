@@ -84,6 +84,11 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
   height: auto;
 }
 
+.form td, .form td.lbl{
+  vertical-align: top;
+  padding-bottom: 0.75em;
+}
+
 .field-with-errors{
   @extend .has-error;
   .error-message{
