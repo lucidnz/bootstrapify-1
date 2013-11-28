@@ -1,7 +1,12 @@
-{% if settings.thumbnails-per-row == '4' %}
-	{% cycle '', '', '', '<div class="clearfix visible-md visible-lg"></div>' %}
-	{% cycle '', '', '<div class="clearfix visible-sm"></div>' %}
-{% else %}
-	{% cycle  '', '', '<div class="clearfix visible-md visible-lg"></div>' %}
-	{% cycle  '', '<div class="clearfix visible-sm"></div>' %}
+{% assign thumbs_per_row = settings.thumbnails-per-row | times:1 %}
+{% assign thumbs_per_row_minus_one = thumbs_per_row | minus:1 %}
+
+{% if forloop.length > thumbs_per_row_minus_one %}
+  {% assign little_mod = forloop.index | modulo:thumbs_per_row_minus_one %}
+  {% if little_mod == 0 %}<div class="clearfix visible-sm"></div>{% endif %}
+{% endif %}
+
+{% if forloop.length > thumbs_per_row %}
+  {% assign big_mod = forloop.index | modulo:thumbs_per_row %}
+  {% if big_mod == 0 %}<div class="clearfix visible-md visible-lg"></div>{% endif %}
 {% endif %}

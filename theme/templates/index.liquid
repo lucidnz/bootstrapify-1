@@ -6,11 +6,11 @@
 {% endunless %}
 
 {% include '__per-row' %}
-
 {% if settings.featured-collections-linklist %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
-{% include 'list-collections' %}
+  {% include 'list-collections' %}
 {% endif %}
+
 {% if settings.homepage-featured-products-collection %}
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
 <div class="row">{% if settings.featured-products-limit contains 'row' %}{% assign limit = settings.featured-products-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
