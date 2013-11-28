@@ -2,6 +2,20 @@ function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
   return jQuery(document.getElementById(id));
 }
 
+var preloadProductImages = function(){
+  var $thumbs = $('[data-main-image]');
+  if($thumbs.length > 0){
+    $thumbs.each(function(){
+      var image = new Image();
+      image.src = $(this).attr('data-main-image');
+    });
+  }
+};
+
+$(window).load(function(){
+  preloadProductImages();
+});
+
 /* Product Image Switcher */
 $('[data-main-image]').click(function(event) {
 	var targetImage = $(this).attr('data-main-image');
