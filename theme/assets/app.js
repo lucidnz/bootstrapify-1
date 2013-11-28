@@ -3,15 +3,19 @@ function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
 }
 
 /* Product Image Switcher */
-$('.thumbnail').click(function() {
+$('[data-main-image]').click(function(event) {
 	var targetImage = $(this).attr('data-main-image');
-	$('#main').fadeOut(400, function(){
-		$('div.loader').fadeIn(100);
-		$(this).attr('src', targetImage).load(function(){
-			$('div.loader').fadeOut(100);
-			$(this).fadeIn();
-		});
-	});
+	var $mainImage = getID('main');
+	if($mainImage.attr('src') !== targetImage){
+    $mainImage.fadeOut(400, function(){
+      $('div.loader').fadeIn(100);
+      $(this).attr('src', targetImage).load(function(){
+        $('div.loader').fadeOut(100);
+        $(this).fadeIn();
+      });
+    });
+	}
+	event.preventDefault();
 });
 
 /* modal signin forms */
