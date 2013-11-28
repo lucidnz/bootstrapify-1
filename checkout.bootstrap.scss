@@ -82,14 +82,18 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
   @extend .form-control;
 }
 
-#create-account form table{
-  width: 100%;
-}
-
 .form td input#shipping-toggle{
   @extend .checkbox;
   display: inline;
   height: auto;
+}
+
+form table{
+  width: 100%;
+}
+
+.form td.lbl{
+  width: 30%;
 }
 
 .form td, .form td.lbl{
