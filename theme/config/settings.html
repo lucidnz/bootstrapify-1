@@ -2,6 +2,20 @@
   
 </div>
 <fieldset>
+  <legend>Advanced</legend>
+  
+  <table>
+    <tr>
+      <th><label for="custom-css">Custom CSS</label></th>
+      <td>
+        <textarea name="custom-css" id="custom-css"></textarea>
+        <small><p>Feel free to override any of the CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS allowed.</p></small>
+      </td>
+    </tr>
+  </table>
+  
+</fieldset>
+<fieldset>
   <legend>Blog</legend>
   
   <table>
@@ -9,6 +23,15 @@
       <th><label for="round-avatars">Round avatars</label></th>
       <td>
         <input type="checkbox" name="round-avatars" id="round-avatars" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-author">Show author</label></th>
+      <td>
+        <input type="checkbox" name="show-author" id="show-author" value="1" /> Yes
       </td>
     </tr>
   </table>
@@ -24,28 +47,10 @@
   
   <table>
     <tr>
-      <th><label for="show-author-on-article">Show author on article</label></th>
-      <td>
-        <input type="checkbox" name="show-author-on-article" id="show-author-on-article" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="show-author-on-index">Show author on index</label></th>
-      <td>
-        <input type="checkbox" name="show-author-on-index" id="show-author-on-index" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="truncate-words">Truncate words</label></th>
       <td>
         <input type="text" name="truncate-words" id="truncate-words" class="text" value="25" />
-        <small><p>Number of words to show in the blog article listings.</p></small>
+        <small><p>Number of words to show in the blog article listings. Leave blank if you want to show the entire article.</p></small>
       </td>
     </tr>
   </table>
@@ -58,16 +63,28 @@
     <tr>
       <th><label for="logo-alignment">Logo alignment</label></th>
       <td>
-        <div><input type="radio" name="logo-alignment" id="logo-alignment" value="center" checked="checked" /> Center</div><div><input type="radio" name="logo-alignment" id="logo-alignment" value="left" /> Left</div><div><input type="radio" name="logo-alignment" id="logo-alignment" value="right" /> Right</div>
+           <div><input type="radio" name="logo-alignment" id="logo-alignment" value="center" checked="checked" /> Center</div>
+           <div><input type="radio" name="logo-alignment" id="logo-alignment" value="left" /> Left</div>
+           <div><input type="radio" name="logo-alignment" id="logo-alignment" value="right" /> Right</div>
+           
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="logo-file">Logo file</label></th>
+      <th><label for="logo-image">Logo image</label></th>
       <td>
-        <input type="file" name="logo-file.png" id="logo-file"  />
+        <input type="checkbox" name="logo-image" id="logo-image" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="logo-image-file">Logo image file</label></th>
+      <td>
+        <input type="file" name="logo-image-file.png" id="logo-image-file"  />
       </td>
     </tr>
   </table>
@@ -76,16 +93,11 @@
     <tr>
       <th><label for="logo-placement">Logo placement</label></th>
       <td>
-        <div><input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar</div><div><input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar</div><div><input type="radio" name="logo-placement" id="logo-placement" value="header" /> Header</div>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="use-logo-image">Use logo image</label></th>
-      <td>
-        <input type="checkbox" name="use-logo-image" id="use-logo-image" value="1" /> Yes
+           <div><input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar</div>
+           <div><input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar</div>
+           <div><input type="radio" name="logo-placement" id="logo-placement" value="above-navbar" /> Above navbar</div>
+           <div><input type="radio" name="logo-placement" id="logo-placement" value="below-navbar" /> Below navbar</div>
+           
       </td>
     </tr>
   </table>
@@ -103,25 +115,37 @@
     </tr>
   </table>
   
+  <table>
+    <tr>
+      <th><label for="show-shipping-estimator">Show shipping estimator</label></th>
+      <td>
+        <input type="checkbox" name="show-shipping-estimator" id="show-shipping-estimator" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
 </fieldset>
 <fieldset>
   <legend>Collections</legend>
   
   <table>
     <tr>
-      <th><label for="maximum-tag-buttons">Maximum tag buttons</label></th>
+      <th><label for="tag-format">Tag format</label></th>
       <td>
-        <input type="text" name="maximum-tag-buttons" id="maximum-tag-buttons" class="text" value="10" />
-        <small><p>If the number of tags exceeds this limit, they will automatically be displayed in a dropdown menu.</p></small>
+           <div><input type="radio" name="tag-format" id="tag-format" value="dropdown" checked="checked" /> Dropdown</div>
+           <div><input type="radio" name="tag-format" id="tag-format" value="buttons" /> Buttons</div>
+           
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="tag-format">Tag format</label></th>
+      <th><label for="tag-placement">Tag placement</label></th>
       <td>
-        <div><input type="radio" name="tag-format" id="tag-format" value="dropdown" checked="checked" /> Dropdown</div><div><input type="radio" name="tag-format" id="tag-format" value="buttons" /> Buttons</div>
+           <div><input type="radio" name="tag-placement" id="tag-placement" value="sidebar" checked="checked" /> Sidebar</div>
+           <div><input type="radio" name="tag-placement" id="tag-placement" value="main-content" /> Main content</div>
+           
       </td>
     </tr>
   </table>
@@ -132,55 +156,135 @@
   
   <table>
     <tr>
-      <th><label for="condensed-tables">Condensed tables</label></th>
+      <th><label for="body-background-colour">Body background colour</label></th>
       <td>
-        <input type="checkbox" name="condensed-tables" id="condensed-tables" value="1" /> Yes
+        <input type="text" name="body-background-colour" id="body-background-colour" class="color" value="" />
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="custom-css">Custom CSS</label></th>
+      <th><label for="body-heading-colour">Body heading colour</label></th>
       <td>
-        <textarea name="custom-css" id="custom-css"></textarea>
-        <small><p>Feel free to override any of the CSS here. This is included <strong>inside </strong>the stylesheet at the end.</p></small>
+        <input type="text" name="body-heading-colour" id="body-heading-colour" class="color" value="" />
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="highlight-table-rows-on-hover">Highlight table rows on hover</label></th>
+      <th><label for="body-link-colour">Body link colour</label></th>
       <td>
-        <input type="checkbox" name="highlight-table-rows-on-hover" id="highlight-table-rows-on-hover" value="1" /> Yes
+        <input type="text" name="body-link-colour" id="body-link-colour" class="color" value="" />
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="color-scheme">Navbar Color scheme</label></th>
+      <th><label for="body-text-colour">Body text colour</label></th>
       <td>
-        <div><input type="radio" name="color-scheme" id="color-scheme" value="light" checked="checked" /> Light</div><div><input type="radio" name="color-scheme" id="color-scheme" value="dark" /> Dark</div>
+        <input type="text" name="body-text-colour" id="body-text-colour" class="color" value="" />
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="primary-color">Primary color</label></th>
+      <th><label for="footer-background-colour">Footer background colour</label></th>
       <td>
-        <input type="text" name="primary-color" id="primary-color" class="color" value="" />
+        <input type="text" name="footer-background-colour" id="footer-background-colour" class="color" value="" />
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="secondary-color">Secondary color</label></th>
+      <th><label for="footer-heading-colour">Footer heading colour</label></th>
       <td>
-        <input type="text" name="secondary-color" id="secondary-color" class="color" value="" />
+        <input type="text" name="footer-heading-colour" id="footer-heading-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="footer-link-colour">Footer link colour</label></th>
+      <td>
+        <input type="text" name="footer-link-colour" id="footer-link-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="footer-text-colour">Footer text colour</label></th>
+      <td>
+        <input type="text" name="footer-text-colour" id="footer-text-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="navbar-background-colour-1">Navbar background colour</label></th>
+      <td>
+        <input type="text" name="navbar-background-colour-1" id="navbar-background-colour-1" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="navbar-link-colour">Navbar link colour</label></th>
+      <td>
+        <input type="text" name="navbar-link-colour" id="navbar-link-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="navbar-text-colour">Navbar text colour</label></th>
+      <td>
+        <input type="text" name="navbar-text-colour" id="navbar-text-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="sidebar-background-colour">Sidebar background colour</label></th>
+      <td>
+        <input type="text" name="sidebar-background-colour" id="sidebar-background-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="sidebar-heading-colour">Sidebar heading colour</label></th>
+      <td>
+        <input type="text" name="sidebar-heading-colour" id="sidebar-heading-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="sidebar-link-colour">Sidebar link colour</label></th>
+      <td>
+        <input type="text" name="sidebar-link-colour" id="sidebar-link-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="sidebar-text-colour">Sidebar text colour</label></th>
+      <td>
+        <input type="text" name="sidebar-text-colour" id="sidebar-text-colour" class="color" value="" />
       </td>
     </tr>
   </table>
@@ -216,34 +320,12 @@
     <tr>
       <th><label for="site-background-image-repeat">Site background image repeat</label></th>
       <td>
-        <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat" checked="checked" /> repeat</div><div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat-x" /> repeat-x</div><div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat-y" /> repeat-y</div><div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="no-repeat" /> no-repeat</div><div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="inherit" /> inherit</div>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="site-color-scheme">Site Color scheme</label></th>
-      <td>
-        <div><input type="radio" name="site-color-scheme" id="site-color-scheme" value="light" checked="checked" /> Light</div><div><input type="radio" name="site-color-scheme" id="site-color-scheme" value="dark" /> Dark</div>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="striped-tables">Striped tables</label></th>
-      <td>
-        <input type="checkbox" name="striped-tables" id="striped-tables" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="table-borders">Table borders</label></th>
-      <td>
-        <input type="checkbox" name="table-borders" id="table-borders" value="1" /> Yes
+           <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat" checked="checked" /> repeat</div>
+           <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat-x" /> repeat-x</div>
+           <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat-y" /> repeat-y</div>
+           <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="no-repeat" /> no-repeat</div>
+           <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="inherit" /> inherit</div>
+           
       </td>
     </tr>
   </table>
@@ -364,25 +446,10 @@
     <tr>
       <th><label for="footer-columns">Columns</label></th>
       <td>
-        <div><input type="radio" name="footer-columns" id="footer-columns" value="2" checked="checked" /> 2</div><div><input type="radio" name="footer-columns" id="footer-columns" value="3" /> 3</div><div><input type="radio" name="footer-columns" id="footer-columns" value="4" /> 4</div>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="hide-theme-designer-credits">Hide theme designer credits</label></th>
-      <td>
-        <input type="checkbox" name="hide-theme-designer-credits" id="hide-theme-designer-credits" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="shopify-affiliate-code">Shopify affiliate code</label></th>
-      <td>
-        <input type="text" name="shopify-affiliate-code" id="shopify-affiliate-code" class="text" value="lucid-design" />
+           <div><input type="radio" name="footer-columns" id="footer-columns" value="2" checked="checked" /> 2</div>
+           <div><input type="radio" name="footer-columns" id="footer-columns" value="3" /> 3</div>
+           <div><input type="radio" name="footer-columns" id="footer-columns" value="4" /> 4</div>
+           
       </td>
     </tr>
   </table>
@@ -395,16 +462,16 @@
     <tr>
       <th><label for="default-pagination">Default pagination</label></th>
       <td>
-        <div><input type="radio" name="default-pagination" id="default-pagination" value="10" checked="checked" /> 10</div><div><input type="radio" name="default-pagination" id="default-pagination" value="15" /> 15</div><div><input type="radio" name="default-pagination" id="default-pagination" value="20" /> 20</div><div><input type="radio" name="default-pagination" id="default-pagination" value="25" /> 25</div><div><input type="radio" name="default-pagination" id="default-pagination" value="30" /> 30</div><div><input type="radio" name="default-pagination" id="default-pagination" value="40" /> 40</div><div><input type="radio" name="default-pagination" id="default-pagination" value="50" /> 50</div>
+        <input type="text" name="default-pagination" id="default-pagination" class="text" value="20" />
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="main-menu-linklist">Main menu linklist</label></th>
+      <th><label for="navbar-linklist">Navbar linklist</label></th>
       <td>
-        <select class="linklist" name="main-menu-linklist" />
+        <select class="linklist" name="navbar-linklist" />
       </td>
     </tr>
   </table>
@@ -430,15 +497,6 @@
   
   <table>
     <tr>
-      <th><label for="show-collection-title-in-meta-title">Show collection title in meta title</label></th>
-      <td>
-        <input type="checkbox" name="show-collection-title-in-meta-title" id="show-collection-title-in-meta-title" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="show-search-in-navbar">Show search in navbar</label></th>
       <td>
         <input type="checkbox" name="show-search-in-navbar" id="show-search-in-navbar" value="1" /> Yes
@@ -450,7 +508,9 @@
     <tr>
       <th><label for="thumbnails-per-row">Thumbnails per row</label></th>
       <td>
-        <div><input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="3" checked="checked" /> 3</div><div><input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="4" /> 4</div>
+           <div><input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="3" checked="checked" /> 3</div>
+           <div><input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="4" /> 4</div>
+           
       </td>
     </tr>
   </table>
@@ -458,15 +518,6 @@
 </fieldset>
 <fieldset>
   <legend>Homepage</legend>
-  
-  <table>
-    <tr>
-      <th><label for="homepage-featured-collections-limit">Featured collections limit</label></th>
-      <td>
-        <div><input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="1-row" checked="checked" /> 1 row</div><div><input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="2-rows" /> 2 rows</div><div><input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="3-rows" /> 3 rows</div><div><input type="radio" name="homepage-featured-collections-limit" id="homepage-featured-collections-limit" value="unlimited" /> Unlimited</div>
-      </td>
-    </tr>
-  </table>
   
   <table>
     <tr>
@@ -481,7 +532,12 @@
     <tr>
       <th><label for="featured-products-limit">Featured products limit</label></th>
       <td>
-        <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="1-row" checked="checked" /> 1 row</div><div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="2-rows" /> 2 rows</div><div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="3-rows" /> 3 rows</div><div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="4-rows" /> 4 rows</div><div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="unlimited" /> Unlimited</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="1-row" checked="checked" /> 1 row</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="2-rows" /> 2 rows</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="3-rows" /> 3 rows</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="4-rows" /> 4 rows</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="unlimited" /> Unlimited</div>
+           
       </td>
     </tr>
   </table>
@@ -499,7 +555,7 @@
     <tr>
       <th><label for="homepage-intro">Homepage intro</label></th>
       <td>
-        <select class="page" name="homepage-intro" />
+        <select class="page" name="homepage-intro" selected="frontpage" />
       </td>
     </tr>
   </table>
@@ -531,15 +587,6 @@
       <th><label for="slide-caption-1">1st slide caption</label></th>
       <td>
         <textarea name="slide-caption-1" id="slide-caption-1"></textarea>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-heading-1">1st slide heading</label></th>
-      <td>
-        <input type="text" name="slide-heading-1" id="slide-heading-1" class="text" value="" />
       </td>
     </tr>
   </table>
@@ -591,15 +638,6 @@
   
   <table>
     <tr>
-      <th><label for="slide-heading-2">2nd slide heading</label></th>
-      <td>
-        <input type="text" name="slide-heading-2" id="slide-heading-2" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="slide-image-2">2nd slide image</label></th>
       <td>
         <input type="file" name="slide-image-2.jpg" id="slide-image-2"  />
@@ -639,15 +677,6 @@
       <th><label for="slide-caption-3">3rd slide caption</label></th>
       <td>
         <textarea name="slide-caption-3" id="slide-caption-3"></textarea>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-heading-3">3rd slide heading</label></th>
-      <td>
-        <input type="text" name="slide-heading-3" id="slide-heading-3" class="text" value="" />
       </td>
     </tr>
   </table>
@@ -699,15 +728,6 @@
   
   <table>
     <tr>
-      <th><label for="slide-heading-4">4th slide heading</label></th>
-      <td>
-        <input type="text" name="slide-heading-4" id="slide-heading-4" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="slide-image-4">4th slide image</label></th>
       <td>
         <input type="file" name="slide-image-4.jpg" id="slide-image-4"  />
@@ -753,15 +773,6 @@
   
   <table>
     <tr>
-      <th><label for="slide-heading-5">5th slide heading</label></th>
-      <td>
-        <input type="text" name="slide-heading-5" id="slide-heading-5" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="slide-image-5">5th slide image</label></th>
       <td>
         <input type="file" name="slide-image-5.jpg" id="slide-image-5"  />
@@ -780,10 +791,22 @@
   
   <table>
     <tr>
-      <th><label for="slider-placement">Slider placement</label></th>
+      <th><label for="show-slider">Show slider</label></th>
       <td>
-        <div><input type="radio" name="slider-placement" id="slider-placement" value="full-width" checked="checked" /> Full width</div><div><input type="radio" name="slider-placement" id="slider-placement" value="within-container" /> Within container</div><div><input type="radio" name="slider-placement" id="slider-placement" value="next-to-sidebar" /> Next to sidebar</div>
-        <small><p><strong>Important. </strong>If you choose full-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
+        <input type="checkbox" name="show-slider" id="show-slider" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="slider-width">Slider width</label></th>
+      <td>
+           <div><input type="radio" name="slider-width" id="slider-width" value="window-width" checked="checked" /> Window width</div>
+           <div><input type="radio" name="slider-width" id="slider-width" value="site-width" /> Site width</div>
+           <div><input type="radio" name="slider-width" id="slider-width" value="main-content-width" /> Main content width</div>
+           
+        <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
       </td>
     </tr>
   </table>
@@ -867,7 +890,7 @@
       <th><label for="supported-currencies">Supported currencies</label></th>
       <td>
         <input type="text" name="supported-currencies" id="supported-currencies" class="text" value="" />
-        <small><p>Separate your currency codes with a space. Use the ISO 4217 3-letter currency code-click <a href="http://www.xe.com/iso4217.php" target="_blank">here</a> for a complete list of currency codes. <strong>E.g., NZD USD CAD</strong></p></small>
+        <small><p>Separate your currency codes with a space. Use the ISO 4217 3-letter currency code. Click <a href="http://www.xe.com/iso4217.php" target="_blank">here</a> for a complete list of currency codes. <strong>E.g., NZD USD CAD</strong></p></small>
       </td>
     </tr>
   </table>
@@ -880,7 +903,11 @@
     <tr>
       <th><label for="placement-of-add-to-cart-button">Placement of add to cart button</label></th>
       <td>
-        <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-variant-options" checked="checked" /> Below variant options</div><div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-top-of-page" /> At top of page</div><div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-description-above-meta-data" /> Below description (above meta data)</div><div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-bottom-of-page" /> At bottom of page</div>
+           <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-variant-options" checked="checked" /> Below variant options</div>
+           <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-top-of-page" /> At top of page</div>
+           <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-description-above-meta-data" /> Below description (above meta data)</div>
+           <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-bottom-of-page" /> At bottom of page</div>
+           
       </td>
     </tr>
   </table>
@@ -912,16 +939,6 @@
       <th><label for="sidebar-linklist">Sidebar linklist</label></th>
       <td>
         <select class="linklist" name="sidebar-linklist" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="truncate-blog-articles">Truncate blog articles</label></th>
-      <td>
-        <input type="text" name="truncate-blog-articles" id="truncate-blog-articles" class="text" value="10" />
-        <small><p>Number of words</p></small>
       </td>
     </tr>
   </table>
@@ -961,7 +978,12 @@
     <tr>
       <th><label for="newsletter-signup-placement">Newsletter signup placement</label></th>
       <td>
-        <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="column-1" checked="checked" /> Column 1</div><div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="column-2" /> Column 2</div><div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="column-3" /> Column 3</div><div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="column-4" /> Column 4</div><div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="sidebar" /> Sidebar</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-1" checked="checked" /> Footer column 1</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-2" /> Footer column 2</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-3" /> Footer column 3</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-4" /> Footer column 4</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="sidebar" /> Sidebar</div>
+           
       </td>
     </tr>
   </table>
@@ -988,7 +1010,12 @@
     <tr>
       <th><label for="social-links-placement">Social links placement</label></th>
       <td>
-        <div><input type="radio" name="social-links-placement" id="social-links-placement" value="column-1" checked="checked" /> Column 1</div><div><input type="radio" name="social-links-placement" id="social-links-placement" value="column-2" /> Column 2</div><div><input type="radio" name="social-links-placement" id="social-links-placement" value="column-3" /> Column 3</div><div><input type="radio" name="social-links-placement" id="social-links-placement" value="column-4" /> Column 4</div><div><input type="radio" name="social-links-placement" id="social-links-placement" value="sidebar" /> Sidebar</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-1" checked="checked" /> Footer column 1</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-2" /> Footer column 2</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-3" /> Footer column 3</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-4" /> Footer column 4</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="sidebar" /> Sidebar</div>
+           
       </td>
     </tr>
   </table>
@@ -1006,105 +1033,62 @@
 <fieldset>
   <legend>Typography</legend>
   
-  <h3>Body</h3>
-  
   <table>
     <tr>
       <th><label for="body-font">Body font</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
       <td>
         <p><strong>Custom font name</strong></p>
         <p>
           <input type="text" name="body-font-custom" id="body-font-custom" class="text" value="" />
         </p>
+      </td>
+      <td>
         <p><strong>Fallback/default</strong></p>
         <p>
           <select class="font" name="body-font" id="body-font">
             <option value="" selected="selected"></option>
           </select>
         </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <p><strong>Weight</strong></p>
-		<p>
+        <p>
           <input type="text" name="body-font-weight" id="body-font-weight" class="text" value="" />
-		</p>
+        </p>
+      </td>
+      <td>
         <p><strong>Size</strong></p>
         <p>
-          <input type="text" name="body-font-weight-size" id="body-font-weight-size" class="text" value="" />
-		</p>
+          <input type="text" name="body-font-size" id="body-font-size" class="text" value="" />
+        </p>
       </td>
     </tr>
-  </table>
-  
-  <h3>Footer</h3>
-  
-  <table>
     <tr>
-      <th><label for="footer-font">Footer font</label></th>
       <td>
-        <p><strong>Custom font name</strong></p>
+        <p><strong>Style</strong></p>
         <p>
-          <input type="text" name="footer-font-custom" id="footer-font-custom" class="text" value="" />
+          <div><input type="radio" name="body-font" id="body-font" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="body-font" id="body-font" value="italic" /> Italic</div>
         </p>
-        <p><strong>Fallback/default</strong></p>
+      </td>
+      <td>
+        <p><strong>Case</strong></p>
         <p>
-          <select class="font" name="footer-font" id="footer-font">
-            <option value="" selected="selected"></option>
-          </select>
+          <div><input type="radio" name="body-font" id="body-font" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="body-font" id="body-font" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="body-font" id="body-font" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="body-font" id="body-font" value="title-case" /> Title Case</div>
         </p>
-        <p><strong>Weight</strong></p>
-		<p>
-          <input type="text" name="footer-font-weight" id="footer-font-weight" class="text" value="" />
-		</p>
-        <p><strong>Size</strong></p>
-        <p>
-          <input type="text" name="footer-font-weight-size" id="footer-font-weight-size" class="text" value="" />
-		</p>
       </td>
     </tr>
-  </table>
-  
-  <h3>Headings</h3>
-  
-  
-  <table>
-    <tr>
-      <th><label for="heading-case">Heading case</label></th>
-      <td>
-        <div><input type="radio" name="heading-case" id="heading-case" value="normal" checked="checked" /> Normal (as typed)</div><div><input type="radio" name="heading-case" id="heading-case" value="lowercase" /> lowercase</div><div><input type="radio" name="heading-case" id="heading-case" value="uppercase" /> UPPERCASE</div><div><input type="radio" name="heading-case" id="heading-case" value="capitalize" /> Title Case</div>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="heading-font">Heading font</label></th>
-      <td>
-        <p><strong>Custom font name</strong></p>
-        <p>
-          <input type="text" name="heading-font-custom" id="heading-font-custom" class="text" value="" />
-        </p>
-        <p><strong>Fallback/default</strong></p>
-        <p>
-          <select class="font" name="heading-font" id="heading-font">
-            <option value="" selected="selected"></option>
-          </select>
-        </p>
-        <p><strong>Weight</strong></p>
-		<p>
-          <input type="text" name="heading-font-weight" id="heading-font-weight" class="text" value="" />
-		</p>
-        <p><strong>Size</strong></p>
-        <p>
-          <input type="text" name="heading-font-weight-size" id="heading-font-weight-size" class="text" value="" />
-		</p>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="heading-style">Heading style</label></th>
-      <td>
-        <div><input type="radio" name="heading-style" id="heading-style" value="normal" checked="checked" /> Normal</div><div><input type="radio" name="heading-style" id="heading-style" value="italic" /> Italic</div>
+  </tbody>
+</table>
       </td>
     </tr>
   </table>
@@ -1118,111 +1102,184 @@
     </tr>
   </table>
   
-  <h3>Nav</h3>
-  
   <table>
     <tr>
-      <th><label for="nav-case">Nav case</label></th>
+      <th><label for="heading-font">Heading font</label></th>
       <td>
-        <div><input type="radio" name="nav-case" id="nav-case" value="normal" checked="checked" /> Normal (as typed)</div><div><input type="radio" name="nav-case" id="nav-case" value="lowercase" /> lowercase</div><div><input type="radio" name="nav-case" id="nav-case" value="uppercase" /> UPPERCASE</div><div><input type="radio" name="nav-case" id="nav-case" value="capitalize" /> Title Case</div>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
+        <table class="standard-table">
+  <tbody>
     <tr>
-      <th><label for="nav-style">Nav style</label></th>
-      <td>
-        <div><input type="radio" name="nav-style" id="nav-style" value="normal" checked="checked" /> Normal</div><div><input type="radio" name="nav-style" id="nav-style" value="italic" /> Italic</div>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="navbar-font">Navbar font</label></th>
       <td>
         <p><strong>Custom font name</strong></p>
         <p>
-          <input type="text" name="navbar-font-custom" id="navbar-font-custom" class="text" value="" />
+          <input type="text" name="heading-font-custom" id="heading-font-custom" class="text" value="" />
         </p>
+      </td>
+      <td>
         <p><strong>Fallback/default</strong></p>
         <p>
-          <select class="font" name="navbar-font" id="navbar-font">
+          <select class="font" name="heading-font" id="heading-font">
             <option value="" selected="selected"></option>
           </select>
         </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <p><strong>Weight</strong></p>
-		<p>
-          <input type="text" name="navbar-font-weight" id="navbar-font-weight" class="text" value="" />
-		</p>
+        <p>
+          <input type="text" name="heading-font-weight" id="heading-font-weight" class="text" value="" />
+        </p>
+      </td>
+      <td>
         <p><strong>Size</strong></p>
         <p>
-          <input type="text" name="navbar-font-weight-size" id="navbar-font-weight-size" class="text" value="" />
-		</p>
+          <input type="text" name="heading-font-size" id="heading-font-size" class="text" value="" />
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>Style</strong></p>
+        <p>
+          <div><input type="radio" name="heading-font" id="heading-font" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="heading-font" id="heading-font" value="italic" /> Italic</div>
+        </p>
+      </td>
+      <td>
+        <p><strong>Case</strong></p>
+        <p>
+          <div><input type="radio" name="heading-font" id="heading-font" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="heading-font" id="heading-font" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="heading-font" id="heading-font" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="heading-font" id="heading-font" value="title-case" /> Title Case</div>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
       </td>
     </tr>
   </table>
   
-  <h3>Sidebar</h3>
-  
   <table>
     <tr>
-      <th><label for="sidebar-base-font">Sidebar base font</label></th>
+      <th><label for="primary-nav-font">Primary nav font</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
       <td>
         <p><strong>Custom font name</strong></p>
         <p>
-          <input type="text" name="sidebar-base-font-custom" id="sidebar-base-font-custom" class="text" value="" />
+          <input type="text" name="primary-nav-font-custom" id="primary-nav-font-custom" class="text" value="" />
         </p>
+      </td>
+      <td>
         <p><strong>Fallback/default</strong></p>
         <p>
-          <select class="font" name="sidebar-base-font" id="sidebar-base-font">
+          <select class="font" name="primary-nav-font" id="primary-nav-font">
             <option value="" selected="selected"></option>
           </select>
         </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <p><strong>Weight</strong></p>
-		<p>
-          <input type="text" name="sidebar-base-font-weight" id="sidebar-base-font-weight" class="text" value="" />
-		</p>
+        <p>
+          <input type="text" name="primary-nav-font-weight" id="primary-nav-font-weight" class="text" value="" />
+        </p>
+      </td>
+      <td>
         <p><strong>Size</strong></p>
         <p>
-          <input type="text" name="sidebar-base-font-weight-size" id="sidebar-base-font-weight-size" class="text" value="" />
-		</p>
+          <input type="text" name="primary-nav-font-size" id="primary-nav-font-size" class="text" value="" />
+        </p>
       </td>
     </tr>
-  </table>
-  
-  <table>
     <tr>
-      <th><label for="sidebar-nav-case">Sidebar nav case</label></th>
       <td>
-        <div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="normal" checked="checked" /> Normal (as typed)</div><div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="lowercase" /> lowercase</div><div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="uppercase" /> UPPERCASE</div><div><input type="radio" name="sidebar-nav-case" id="sidebar-nav-case" value="capitalize" /> Title Case</div>
+        <p><strong>Style</strong></p>
+        <p>
+          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="italic" /> Italic</div>
+        </p>
+      </td>
+      <td>
+        <p><strong>Case</strong></p>
+        <p>
+          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="title-case" /> Title Case</div>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <small>Fonts used in the sites main navbar.</small>
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="sidebar-nav-font">Sidebar nav font</label></th>
+      <th><label for="secondary-nav-font">Secondary nav font</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
       <td>
         <p><strong>Custom font name</strong></p>
         <p>
-          <input type="text" name="sidebar-nav-font-custom" id="sidebar-nav-font-custom" class="text" value="" />
+          <input type="text" name="secondary-nav-font-custom" id="secondary-nav-font-custom" class="text" value="" />
         </p>
+      </td>
+      <td>
         <p><strong>Fallback/default</strong></p>
         <p>
-          <select class="font" name="sidebar-nav-font" id="sidebar-nav-font">
+          <select class="font" name="secondary-nav-font" id="secondary-nav-font">
             <option value="" selected="selected"></option>
           </select>
         </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <p><strong>Weight</strong></p>
-		<p>
-          <input type="text" name="sidebar-nav-font-weight" id="sidebar-nav-font-weight" class="text" value="" />
-		</p>
+        <p>
+          <input type="text" name="secondary-nav-font-weight" id="secondary-nav-font-weight" class="text" value="" />
+        </p>
+      </td>
+      <td>
         <p><strong>Size</strong></p>
         <p>
-          <input type="text" name="sidebar-nav-font-weight-size" id="sidebar-nav-font-weight-size" class="text" value="" />
-		</p>
+          <input type="text" name="secondary-nav-font-size" id="secondary-nav-font-size" class="text" value="" />
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>Style</strong></p>
+        <p>
+          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="italic" /> Italic</div>
+        </p>
+      </td>
+      <td>
+        <p><strong>Case</strong></p>
+        <p>
+          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="title-case" /> Title Case</div>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <small>Fonts used for navigation links in the footer and sidebar.</small>
       </td>
     </tr>
   </table>
