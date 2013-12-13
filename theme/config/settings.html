@@ -246,6 +246,19 @@
   
   <table>
     <tr>
+      <th><label for="navbar-placement">Navbar placement</label></th>
+      <td>
+           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="fixed-to-top" checked="checked" /> Fixed to top</div>
+           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="static-top" /> Static top</div>
+           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="main-content" /> Main content</div>
+           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="fixed-to-bottom" /> Fixed to bottom</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="navbar-text-colour">Navbar text colour</label></th>
       <td>
         <input type="text" name="navbar-text-colour" id="navbar-text-colour" class="color" value="" />
@@ -450,6 +463,16 @@
            <div><input type="radio" name="footer-columns" id="footer-columns" value="3" /> 3</div>
            <div><input type="radio" name="footer-columns" id="footer-columns" value="4" /> 4</div>
            
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="fix-footer-credits">Fix footer credits</label></th>
+      <td>
+        <input type="checkbox" name="fix-footer-credits" id="fix-footer-credits" value="1" /> Yes
+        <small>This setting will be overridden if the main navbar is fixed to the bottom of the window.</small>
       </td>
     </tr>
   </table>
@@ -921,6 +944,15 @@
       <th><label for="show-sidebar">Show sidebar</label></th>
       <td>
         <input type="checkbox" name="show-sidebar" id="show-sidebar" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-sidebar-on-homepage">Show sidebar on Homepage</label></th>
+      <td>
+        <input type="checkbox" name="show-sidebar-on-homepage" id="show-sidebar-on-homepage" value="1" /> Yes
       </td>
     </tr>
   </table>

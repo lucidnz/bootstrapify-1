@@ -1,6 +1,6 @@
 <h1 class="page-header">{{ page_title }}</h1>
 
-<p class="text-muted">{{ article.published_at | date: settings.long-date-format }}{% if settings.show-author-on-index %} by {{ article.author }}{% endif %}</p>
+<p class="text-muted">{{ article.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ article.author }}{% endif %}</p>
 
 {% include '__formatted-content' with article.content %}
 

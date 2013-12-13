@@ -74,7 +74,7 @@ h1#tagline{
 }
 
 /* Insert your own logo (upload separately) */
-/* {% if settings.use-logo-image %} */
+/* {% if settings.logo-image %} */
 #logo { 
   height: 65px;
   background: url(#{'{{ "logo-file.png" | asset_url }}'}) center no-repeat;

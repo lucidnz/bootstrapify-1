@@ -5046,8 +5046,11 @@ td.visible-print {
   td.hidden-print {
     display: none !important; } }
 body {
-  padding-top: 80px;
-  padding-bottom: 80px; }
+  /* do we need this if we are using navbar placement setting? */
+  /*
+    padding-top: $navbar-height + $grid-gutter-width;
+    padding-bottom: $navbar-height + $grid-gutter-width;
+  */ }
 
 a.icon:hover {
   text-decoration: none; }
@@ -5078,3 +5081,8 @@ a.icon:hover {
 #admin_header {
   overflow: auto;
   margin-bottom: 30px; }
+
+#footer-credits {
+  margin-top: 30px;
+  margin-bottom: 0;
+  border-radius: 0; }

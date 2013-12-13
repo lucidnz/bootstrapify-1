@@ -21,7 +21,7 @@
 	<meta property="og:description" content="{{ page_description | escape }}" />
 	<meta property="og:type" content="article" />
 {% else %}
-	{% if settings.use-logo-image %}
+	{% if settings.logo-image %}
 	<meta property="og:image" content="{{ 'logo-file.png' | asset_url }}" />
 	{% endif %}
 	<meta property="og:url" content="{{ canonical_url }}" />

@@ -5,8 +5,11 @@ img {
 }
 
 body {
+/* do we need this if we are using navbar placement setting? */
+/*
   padding-top: $navbar-height + $grid-gutter-width;
   padding-bottom: $navbar-height + $grid-gutter-width;
+*/
 }
 
 a.icon:hover {
@@ -64,4 +67,10 @@ a.icon:hover {
 #admin_header{
   overflow: auto;
   margin-bottom: $grid-gutter-width;
+}
+
+#footer-credits{
+  margin-top: $grid-gutter-width;
+  margin-bottom: 0;
+  border-radius: 0;
 }

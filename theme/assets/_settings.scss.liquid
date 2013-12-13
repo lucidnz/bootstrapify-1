@@ -1,3 +1,22 @@
+/*
+ * Setting Variables
+ */
+$body_padding: 20px;
+$body_navbar_padding: 50px;
+
+/*
+ * Setting Styles
+ */
+body{
+  {% if settings.navbar-placement == 'fixed-to-top' %}padding-top: $body_navbar_padding + $body_padding;{% elsif settings.navbar-placement == 'main-content' %}padding-top: $body_padding;{% endif %}
+  {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-credits %}padding-bottom: $body_navbar_padding + $body_padding;{% endif %}
+  {% if settings.navbar-placement == 'fixed-to-bottom' %}
+    padding-top: $body_padding;
+    padding-bottom: $body_navbar_padding;
+  {% endif %}
+}
+
+/*
 $inverse_threshhold: 50%;
 $hover_strength: 5%;
 $active_strength: 3%;
@@ -280,5 +299,6 @@ aside .nav li.active a {
 .carousel-caption a {
   
 }
+*/
 
 {% unless settings.custom-css == blank %}{{ settings.custom-css }}{% endunless %}

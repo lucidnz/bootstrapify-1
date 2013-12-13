@@ -10,7 +10,7 @@
   </div>
 </footer>
 
-<div class="navbar navbar-fixed-bottom{% include '__color-scheme' with 'navbar' %}" role="navigation">
+<div id="footer-credits" class="navbar {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-credits %}navbar-fixed-bottom{% endif %} {% include '__color-scheme' with 'navbar' %}" role="navigation">
   <div class="container">
     <div class="collapse navbar-collapse" id="footer-nav">
       <ul class="nav navbar-nav navbar-right">
