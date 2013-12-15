@@ -1,13 +1,13 @@
 {% assign icons = "twitter facebook pinterest google-plus envelope" | split: ' ' %}
 
 {% for i in icons %}{% unless settings[i] == blank %}
-<a href="{% if settings[i] contains '@' %}mailto:{% endif %}{{ settings[i] }}" class="icon icon-stack text-muted"{% unless settings[i] contains '@' %} target="_blank"{% endunless %}>
-  <i class="icon-circle icon-stack-base"></i>
-  <i class="icon-{{ i }} icon-light"></i>
+<a href="{% if settings[i] contains '@' %}mailto:{% endif %}{{ settings[i] }}" class="fa-stack fa-lg text-muted"{% unless settings[i] contains '@' %} target="_blank"{% endunless %}>
+	<i class="fa fa-circle fa-stack-2x"></i>
+	<i class="fa fa-{{ i }} fa-stack-1x fa-inverse"></i>
 </a>{% endunless %}
 {% endfor %}
 
-{% if settings.rss %}<a href="#" class="icon icon-stack text-muted">
-  <i class="icon-circle icon-stack-base"></i>
-  <i class="icon-rss icon-light"></i>
+{% if settings.rss %}<a href="#" class="fa-stack fa-lg text-muted">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
 </a>{% endif %}
