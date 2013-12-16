@@ -444,7 +444,7 @@ h5, .h5 {
 h6, .h6 {
   font-size: 12px; }
 
-.page-header {
+.page-header, .brand {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee; }
@@ -5045,12 +5045,13 @@ td.visible-print {
   th.hidden-print,
   td.hidden-print {
     display: none !important; } }
-body {
-  /* do we need this if we are using navbar placement setting? */
-  /*
-    padding-top: $navbar-height + $grid-gutter-width;
-    padding-bottom: $navbar-height + $grid-gutter-width;
-  */ }
+.brand {
+  overflow: auto;
+  margin-top: 0; }
+  .brand h1 {
+    margin-top: 10px; }
+  .brand a:hover {
+    text-decoration: none; }
 
 a.icon:hover {
   text-decoration: none; }

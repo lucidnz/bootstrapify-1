@@ -4,12 +4,16 @@ img {
   @extend .img-responsive;
 }
 
-body {
-/* do we need this if we are using navbar placement setting? */
-/*
-  padding-top: $navbar-height + $grid-gutter-width;
-  padding-bottom: $navbar-height + $grid-gutter-width;
-*/
+.brand{
+  @extend .page-header;
+  overflow: auto;
+  margin-top: 0;
+  h1{
+    margin-top: 10px;
+  }
+  a:hover{
+    text-decoration: none;
+  }
 }
 
 a.icon:hover {

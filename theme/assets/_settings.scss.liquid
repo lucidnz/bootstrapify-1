@@ -8,11 +8,16 @@ $body_navbar_padding: 50px;
  * Setting Styles
  */
 body{
-  {% if settings.navbar-placement == 'fixed-to-top' %}padding-top: $body_navbar_padding + $body_padding;{% elsif settings.navbar-placement == 'main-content' %}padding-top: $body_padding;{% endif %}
-  {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-credits %}padding-bottom: $body_navbar_padding + $body_padding;{% endif %}
+  {% if settings.navbar-placement == 'fixed-to-top' %}padding-top: $body_navbar_padding + $body_padding;{% elsif settings.navbar-placement == 'main-content' and settings.logo-placement != "above-navbar" %}padding-top: $body_padding;{% endif %}
+  {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-navbar %}padding-bottom: $body_navbar_padding + $body_padding;{% endif %}
   {% if settings.navbar-placement == 'fixed-to-bottom' %}
-    padding-top: $body_padding;
+    {% unless settings.logo-placement == "above-navbar" %}padding-top: $body_padding;{% endunless %}
     padding-bottom: $body_navbar_padding;
+  {% endif %}
+  {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}
+  .brand{
+    margin-bottom: 0;
+  }
   {% endif %}
 }
 
