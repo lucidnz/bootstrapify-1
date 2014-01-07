@@ -1,13 +1,10 @@
-{% assign max_tags = settings.maximum-tag-buttons | plus: 0 %}
-{% if settings.tag-format == "dropdown" or collection.all_tags.size > max_tags %}
-  {% include 'collection-tags-menu' %}
-{% endif %}
+{% unless settings.tag-placement == 'sidebar' %}{% include 'collection-tags-menu' %}{% endunless %}
 
 <h1 class="page-header">{{ page_title }}</h1>
 
-{% if settings.tag-format != "dropdown" and collection.all_tags.size < max_tags %}
+{% unless settings.tag-placement == 'sidebar' %}
   {% include 'collection-tags-buttons' %}
-{% endif %}
+{% endunless %}
 
 {% if collection.all_products_count == 0 %}
 <p>Sorry, no products were found in the {{ collection.title }} collection.</p>
@@ -23,5 +20,3 @@
 {% endpaginate %}
 
 {% endif %}
-
-{% include '_signin-modal' %}

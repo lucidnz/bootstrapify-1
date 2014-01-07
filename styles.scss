@@ -15,6 +15,9 @@ img {
     text-decoration: none;
   }
 }
+aside .page-header:first-child, .main-content .page-header{
+  margin-top: 0;
+}
 
 a.icon:hover {
   text-decoration: none;

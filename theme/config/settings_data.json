@@ -4,7 +4,6 @@
     "Bootstrapify": {
       "customer_layout": "customer_area",
       "truncate-words": "25",
-      "maximum-tag-buttons": "10",
       "primary-color": "",
       "secondary-color": "",
       "site-background-image-position": "center top",
@@ -163,7 +162,6 @@
     "Hi-fi": {
       "customer_layout": "customer_area",
       "truncate-words": "25",
-      "maximum-tag-buttons": "10",
       "site-background-color": "",
       "shopify-affiliate-code": "lucid-design",
       "breadcrumb-separator": "/",

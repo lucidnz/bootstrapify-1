@@ -52,7 +52,7 @@
     {% endif %}
     
     <div class="row">
-      <div class="{% include '__main-span' %}">
+      <div class="main-content {% include '__main-span' %}">
         {% if settings.slider-width == "main-content-width" and settings.show-sidebar and template == "index" %}{% include 'slider' %}{% endif %}
         {{ content_for_layout }}
       </div>

@@ -1,6 +1,9 @@
 <aside class="col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9">
   {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
   
+  {% if settings.tag-placement == 'sidebar' %}{% include 'collection-tags-menu' %}{% endif %}
+  {% if settings.tag-placement == 'sidebar' %}{% include 'collection-tags-buttons' %}{% endif %}
+  
   {% unless linklists[settings.sidebar-linklist] == empty %}
   <h4 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h4>
 
@@ -27,4 +30,7 @@
   {% if settings.social-links-placement == 'sidebar' %}
     {% include 'footer-social-links' %}
   {% endif %}
+  
+  <hr>
+  {% include '_signin-modal' %}
 </aside>

@@ -5053,6 +5053,9 @@ td.visible-print {
   .brand a:hover {
     text-decoration: none; }
 
+aside .page-header:first-child, aside .brand:first-child, .main-content .page-header, .main-content .brand {
+  margin-top: 0; }
+
 a.icon:hover {
   text-decoration: none; }
 
