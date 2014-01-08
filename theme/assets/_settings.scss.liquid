@@ -1,27 +1,146 @@
 /*
+ * Setting functions and mixins
+ */
+@function inverse-colour( $colour, $strength: 100% ) {
+  @return if(lightness($colour) > $inverse_threshhold, darken($colour, $strength), lighten($colour, $strength));
+}
+
+@mixin button-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: $color;
+    background-color: darken($background, 8%);
+        border-color: darken($border, 12%);
+  }
+  .open & { &.dropdown-toggle {
+    color: $color;
+    background-color: darken($background, 8%);
+        border-color: darken($border, 12%);
+  } }
+  &:active,
+  &.active {
+    background-image: none;
+  }
+  .open & { &.dropdown-toggle {
+    background-image: none;
+  } }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: $background;
+          border-color: $border;
+    }
+  }
+}
+
+/*
  * Setting Variables
  */
-$body_padding: 20px;
-$body_navbar_padding: 50px;
+$body_padding:                        20px !default;
+$body_navbar_padding:                 50px !default;
+$inverse_threshhold:                  50%;
+
+$default-primary-background-color:    white !default;
+$default-secondary-background-color:  whitesmoke !default;
+$default-text-color:                  #333 !default;
+$default-link-color:                  #428bca !default;
+
+{% if settings.body-background-colour != blank %}
+  $body-background-colour: {{ settings.body-background-colour }};
+  $button-background-colour-default: $body-background-colour;
+{% else %}
+  $body-background-colour: $default-primary-background-color;
+  $button-background-colour-default: white;
+{% endif %}
+$body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-color{% endif %};
+$body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-color{% endif %};
+{% if settings.body-link-colour != blank %}
+  $body-link-colour: {{ settings.body-link-colour }};
+  $button-colour-primary: inverse-colour($body-link-colour);
+{% else %}
+  $body-link-colour: $default-link-color;
+  $button-colour-primary: white;
+{% endif %}
 
 /*
  * Setting Styles
  */
 body{
+  /* Navbar placement */
   {% if settings.navbar-placement == 'fixed-to-top' %}padding-top: $body_navbar_padding + $body_padding;{% elsif settings.navbar-placement == 'main-content' and settings.logo-placement != "above-navbar" %}padding-top: $body_padding;{% endif %}
   {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-navbar %}padding-bottom: $body_navbar_padding + $body_padding;{% endif %}
   {% if settings.navbar-placement == 'fixed-to-bottom' %}
     {% unless settings.logo-placement == "above-navbar" %}padding-top: $body_padding;{% endunless %}
     padding-bottom: $body_navbar_padding;
   {% endif %}
-  {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}
-  .brand{
-    margin-bottom: 0;
-  }
-  {% endif %}
+  {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}.brand{ margin-bottom: 0; }{% endif %}
+  /* Design and colour schemes */
+  background-color: $body-background-colour;
+  color: $body-text-colour;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+  color: $body-heading-colour;
+  & a{
+    color: $body-heading-colour;
+    &:hover{
+      color: darken($body-heading-colour, 15%);
+    }
+  }
+}
+.navbar-default .navbar-brand{
+  color: $body-heading-colour;
+  &:hover{
+    color: darken($body-heading-colour, 15%);
+  }
+}
 
+.thumbnail .caption, .btn-default, .form-control{
+  color: $body-text-colour;
+}
+.text-muted, .nav > li.disabled > a, .breadcrumb > .active{
+  color: lighten($body-text-colour, 40%);
+}
+.breadcrumb > li + li:before{
+  color: lighten($body-text-colour, 45%);
+}
+
+a{
+  color: $body-link-colour;
+  &:hover{
+    color: darken($body-link-colour, 15%);
+  }
+}
+
+.pagination > li > a, .pagination > li > span{
+  background-color: $button-background-colour-default;
+  border-color: darken($button-background-colour-default, 20%);
+  &:hover{
+    background-color: darken($button-background-colour-default, 8%);
+        border-color: darken(darken($button-background-colour-default, 20%), 12%);
+  }
+}
+.btn-default {
+  @include button-variant($body-text-colour, $button-background-colour-default, darken($button-background-colour-default, 20%));
+}
+.btn-primary {
+  @include button-variant($button-colour-primary, $body-link-colour, darken($body-link-colour, 5%));
+}
+
+.nav > li > a:hover, .nav > li > a:focus{
+  background-color: darken($body-background-colour, 7.5%);
+}
 
 
 

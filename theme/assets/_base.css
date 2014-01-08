@@ -5056,6 +5056,9 @@ td.visible-print {
 aside .page-header:first-child, aside .brand:first-child, .main-content .page-header, .main-content .brand {
   margin-top: 0; }
 
+.carousel {
+  margin-bottom: 30px; }
+
 a.icon:hover {
   text-decoration: none; }
 
