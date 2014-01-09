@@ -1,27 +1,78 @@
 /*
- * Setting functions and mixins
+ * Default Variables
+ */
+$body_padding:                        20px !default;
+$body_navbar_padding:                 50px !default;
+$inverse_threshhold:                  60%;
+
+$default-primary-background-colour:    white !default;
+$default-secondary-background-colour:  whitesmoke !default;
+$default-text-colour:                  #333 !default;
+$default-link-colour:                  #428bca !default;
+
+/*
+ * Setting Variables
+ */
+{% if settings.body-background-colour != blank %}
+  $body-background-colour: {{ settings.body-background-colour }};
+  $button-background-colour-default: $body-background-colour;
+{% else %}
+  $body-background-colour: $default-primary-background-colour;
+  $button-background-colour-default: white;
+{% endif %}
+$body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
+$body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %};
+{% if settings.body-link-colour != blank %}
+  $body-link-colour: {{ settings.body-link-colour }};
+  $button-colour-primary: inverse-colour($body-link-colour);
+{% else %}
+  $body-link-colour: $default-link-colour;
+  $button-colour-primary: white;
+{% endif %}
+
+$footer-background-colour: {% if settings.footer-background-colour != blank %}{{ settings.footer-background-colour }}{% else %}$body-background-colour{% endif %};
+$footer-heading-colour: {% if settings.footer-heading-colour != blank %}{{ settings.footer-heading-colour }}{% else %}$body-heading-colour{% endif %};
+$footer-text-colour: {% if settings.footer-text-colour != blank %}{{ settings.footer-text-colour }}{% else %}$body-text-colour{% endif %};
+{% if settings.footer-link-colour != blank %}
+  $footer-link-colour: {{ settings.footer-link-colour }};
+  $footer-button-colour-primary: inverse-colour($footer-link-colour); // ???
+{% else %}
+  $footer-link-colour: $body-link-colour;
+  $footer-button-colour-primary: $button-colour-primary; // ???
+{% endif %}
+
+/*
+ * Functions and Mixins
  */
 @function inverse-colour( $colour, $strength: 100% ) {
   @return if(lightness($colour) > $inverse_threshhold, darken($colour, $strength), lighten($colour, $strength));
 }
 
-@mixin button-variant($color, $background, $border) {
-  color: $color;
-  background-color: $background;
-  border-color: $border;
+@function darken-colour( $colour, $background-colour, $strength: 100% ) {
+  @return if(lightness($background-colour) > 10%, darken($colour, $strength), lighten($colour, $strength));
+}
+
+@function lighten-colour( $colour, $background-colour, $strength: 100% ) {
+  @return if(lightness($background-colour) > $inverse_threshhold, lighten($colour, $strength), darken($colour, $strength));
+}
+
+@mixin button-variant($colour, $button-background-colour, $border-colour, $background-colour) {
+  color: $colour;
+  background-color: $button-background-colour;
+  border-color: $border-colour;
 
   &:hover,
   &:focus,
   &:active,
   &.active {
-    color: $color;
-    background-color: darken($background, 8%);
-        border-color: darken($border, 12%);
+    color: $colour;
+    background-color: darken-colour($button-background-colour, $background-colour, 8%);
+        border-color: darken-colour($border-colour, $background-colour, 12%);
   }
   .open & { &.dropdown-toggle {
-    color: $color;
-    background-color: darken($background, 8%);
-        border-color: darken($border, 12%);
+    color: $colour;
+    background-color: darken-colour($button-background-colour, $background-colour, 8%);
+        border-color: darken-colour($border-colour, $background-colour, 12%);
   } }
   &:active,
   &.active {
@@ -38,43 +89,75 @@
     &:focus,
     &:active,
     &.active {
-      background-color: $background;
-          border-color: $border;
+      background-color: $button-background-colour;
+          border-color: $border-colour;
     }
   }
 }
 
+@mixin background-colour($colour){
+  background-color: $colour;
+  .page-header{
+    border-bottom-color: darken-colour($colour, $colour, 7.5%);
+  }  
+  hr{
+    border-top-color: darken-colour($colour, $colour, 7.5%);
+  }
+  .table-bordered, .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td{
+    border-color: darken-colour($colour, $colour, 7.5%);
+  }
+  
+  .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
+    background-color: darken-colour($colour, $colour, 4%);
+  }
+  
+  .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+    background-color: darken-colour($colour, $colour, 6%);
+  }
+}
+
+@mixin heading-colour($colour){
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    color: $colour;
+    & a{
+      color: $colour;
+      &:hover{
+        color: darken($colour, 15%);
+      }
+    }
+  }
+}
+
+@mixin text-colour($text-colour, $background-colour){
+  color: $text-colour;
+  .thumbnail .caption, .btn-default{
+    color: $text-colour;
+  }
+  .text-muted, .nav > li.disabled > a, .breadcrumb > .active{
+    color: lighten-colour($text-colour, $background-colour, 40%);
+  }
+  .thumbnail .caption, .btn-default{
+    color: $text-colour;
+  }
+  .text-muted, .nav > li.disabled > a, .breadcrumb > .active{
+    color: lighten-colour($text-colour, $background-colour, 40%);
+  }
+}
+
+@mixin link-colour($text-colour, $background-colour){
+  a{
+    color: $text-colour;
+    &:hover{
+      color: darken($text-colour, 15%);
+    }
+  }
+  .nav > li > a:hover, .nav > li > a:focus{
+    background-color: darken-colour($background-colour, $background-colour, 7.5%);
+  }
+}
+
 /*
- * Setting Variables
- */
-$body_padding:                        20px !default;
-$body_navbar_padding:                 50px !default;
-$inverse_threshhold:                  50%;
-
-$default-primary-background-color:    white !default;
-$default-secondary-background-color:  whitesmoke !default;
-$default-text-color:                  #333 !default;
-$default-link-color:                  #428bca !default;
-
-{% if settings.body-background-colour != blank %}
-  $body-background-colour: {{ settings.body-background-colour }};
-  $button-background-colour-default: $body-background-colour;
-{% else %}
-  $body-background-colour: $default-primary-background-color;
-  $button-background-colour-default: white;
-{% endif %}
-$body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-color{% endif %};
-$body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-color{% endif %};
-{% if settings.body-link-colour != blank %}
-  $body-link-colour: {{ settings.body-link-colour }};
-  $button-colour-primary: inverse-colour($body-link-colour);
-{% else %}
-  $body-link-colour: $default-link-color;
-  $button-colour-primary: white;
-{% endif %}
-
-/*
- * Setting Styles
+ * Styles
  */
 body{
   /* Navbar placement */
@@ -86,19 +169,26 @@ body{
   {% endif %}
   {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}.brand{ margin-bottom: 0; }{% endif %}
   /* Design and colour schemes */
-  background-color: $body-background-colour;
-  color: $body-text-colour;
+  @include background-colour($body-background-colour);
+  @include heading-colour($body-heading-colour);
+  @include text-colour($body-text-colour, $body-background-colour);
+  @include link-colour($body-link-colour, $body-background-colour);
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-  color: $body-heading-colour;
-  & a{
-    color: $body-heading-colour;
-    &:hover{
-      color: darken($body-heading-colour, 15%);
+.footer{
+  @include background-colour($footer-background-colour);
+  @include heading-colour($footer-heading-colour);
+  @include text-colour($footer-text-colour, $footer-background-colour);
+  @include link-colour($footer-link-colour, $footer-background-colour);
+  .container{
+    @if $footer-background-colour == $body-background-colour {
+      border-top-color: darken-colour($footer-background-colour, $footer-background-colour, 7.5%);
+    } @else {
+      border-top: none;
     }
   }
 }
+
 .navbar-default .navbar-brand{
   color: $body-heading-colour;
   &:hover{
@@ -106,41 +196,33 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
-.thumbnail .caption, .btn-default, .form-control{
-  color: $body-text-colour;
-}
-.text-muted, .nav > li.disabled > a, .breadcrumb > .active{
-  color: lighten($body-text-colour, 40%);
+.breadcrumb{
+  background-color: darken-colour($body-background-colour, $body-background-colour, 7.5%);
 }
 .breadcrumb > li + li:before{
-  color: lighten($body-text-colour, 45%);
+  color: lighten-colour($body-text-colour, $body-background-colour, 45%);
 }
 
-a{
-  color: $body-link-colour;
-  &:hover{
-    color: darken($body-link-colour, 15%);
-  }
-}
 
+/* Buttons (still need work) */
 .pagination > li > a, .pagination > li > span{
   background-color: $button-background-colour-default;
-  border-color: darken($button-background-colour-default, 20%);
+  border-color: darken-colour($button-background-colour-default, $body-background-colour, 20%);
   &:hover{
-    background-color: darken($button-background-colour-default, 8%);
-        border-color: darken(darken($button-background-colour-default, 20%), 12%);
+    background-color: darken-colour($button-background-colour-default, $body-background-colour, 8%);
+        border-color: darken-colour(darken($button-background-colour-default, 20%), $body-background-colour, 12%);
   }
 }
 .btn-default {
-  @include button-variant($body-text-colour, $button-background-colour-default, darken($button-background-colour-default, 20%));
+  @include button-variant($body-text-colour, $button-background-colour-default, darken($button-background-colour-default, 20%), $body-background-colour);
 }
 .btn-primary {
-  @include button-variant($button-colour-primary, $body-link-colour, darken($body-link-colour, 5%));
+  @include button-variant($button-colour-primary, $body-link-colour, darken($body-link-colour, 5%), $body-background-colour);
 }
 
-.nav > li > a:hover, .nav > li > a:focus{
-  background-color: darken($body-background-colour, 7.5%);
-}
+
+
+
 
 
 

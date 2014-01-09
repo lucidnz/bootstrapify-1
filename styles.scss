@@ -66,6 +66,9 @@ a.icon:hover {
   }
 }
 
+.modal{
+  color: $text-color;
+}
 #signinModal{
   .modal-header{
     border-bottom: none;
@@ -80,8 +83,14 @@ a.icon:hover {
   margin-bottom: $grid-gutter-width;
 }
 
+.footer{
+  padding-bottom: $grid-gutter-width;
+  .container{
+    padding-top: $padding-base-horizontal;
+    border-top: $gray-lighter solid 1px;
+  }
+}
 #footer-credits{
-  margin-top: $grid-gutter-width;
   margin-bottom: 0;
   border-radius: 0;
 }

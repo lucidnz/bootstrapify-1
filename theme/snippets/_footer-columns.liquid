@@ -3,7 +3,7 @@
   {% unless blogs[footer_blog] == empty %}
   <h4>{{ blogs[footer_blog].title }}</h4>
 
-  <ul class="nav nav-simple nav-stacked">
+  <ul class="nav nav-pills nav-stacked">
     {% for a in blogs[footer_blog].articles %}
     <li{% if a.url == article.url %} class="active"{% endif %}>{{ a.title | link_to: a.url, a.title }}</li>
     {% endfor %}
@@ -14,7 +14,7 @@
   {% unless linklists[footer_menu] == empty %}
   <h4>{{ linklists[footer_menu].title }}</h4>
 
-  <ul class="nav nav-simple nav-stacked">
+  <ul class="nav nav-pills nav-stacked">
     {% for l in linklists[footer_menu].links %}
     <li{% if l.active %} class="active"{% endif %}>{{ l.title | link_to: l.url, l.title }}</li>
     {% endfor %}
