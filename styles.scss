@@ -83,6 +83,11 @@ a.icon:hover {
   margin-bottom: $grid-gutter-width;
 }
 
+.sidebar{
+  padding-top: $padding-base-horizontal;
+  padding-bottom: $padding-base-horizontal;
+}
+
 .footer{
   padding-bottom: $grid-gutter-width;
   .container{
@@ -93,4 +98,16 @@ a.icon:hover {
 #footer-credits{
   margin-bottom: 0;
   border-radius: 0;
+}
+
+@media (min-width: 768px){
+  .sidebar{
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: $grid-gutter-width;
+    .sidebar-content{
+      padding: $padding-base-horizontal;
+      border-radius: $border-radius-base;
+    }
+  }
 }

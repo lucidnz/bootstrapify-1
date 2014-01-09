@@ -6,7 +6,7 @@ $body_navbar_padding:                 50px !default;
 $inverse_threshhold:                  60%;
 
 $default-primary-background-colour:    white !default;
-$default-secondary-background-colour:  whitesmoke !default;
+$default-secondary-background-colour:  #f8f8f8 !default;
 $default-text-colour:                  #333 !default;
 $default-link-colour:                  #428bca !default;
 
@@ -15,31 +15,34 @@ $default-link-colour:                  #428bca !default;
  */
 {% if settings.body-background-colour != blank %}
   $body-background-colour: {{ settings.body-background-colour }};
-  $button-background-colour-default: $body-background-colour;
+  $button-background-colour-default: $body-background-colour; // ???
 {% else %}
   $body-background-colour: $default-primary-background-colour;
-  $button-background-colour-default: white;
+  $button-background-colour-default: white; // ???
 {% endif %}
 $body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
 $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %};
 {% if settings.body-link-colour != blank %}
   $body-link-colour: {{ settings.body-link-colour }};
-  $button-colour-primary: inverse-colour($body-link-colour);
+  $button-colour-primary: inverse-colour($body-link-colour); // ???
 {% else %}
   $body-link-colour: $default-link-colour;
-  $button-colour-primary: white;
+  $button-colour-primary: white; // ???
 {% endif %}
 
-$footer-background-colour: {% if settings.footer-background-colour != blank %}{{ settings.footer-background-colour }}{% else %}$body-background-colour{% endif %};
+$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{ settings.navbar-background-colour }}{% else %}$default-secondary-background-colour{% endif %};
+$navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
+$navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
+
+$sidebar-background-colour: {% if settings.sidebar-background-colour != blank %}{{ settings.sidebar-background-colour }}{% else %}transparent{% endif %};
+$sidebar-heading-colour: {% if settings.sidebar-heading-colour != blank %}{{ settings.sidebar-heading-colour }}{% else %}$body-heading-colour{% endif %};
+$sidebar-text-colour: {% if settings.sidebar-text-colour != blank %}{{ settings.sidebar-text-colour }}{% else %}$body-text-colour{% endif %};
+$sidebar-link-colour: {% if settings.sidebar-link-colour != blank %}{{ settings.sidebar-link-colour }}{% else %}$body-link-colour{% endif %};
+
+$footer-background-colour: {% if settings.footer-background-colour != blank %}{{ settings.footer-background-colour }}{% else %}transparent{% endif %};
 $footer-heading-colour: {% if settings.footer-heading-colour != blank %}{{ settings.footer-heading-colour }}{% else %}$body-heading-colour{% endif %};
 $footer-text-colour: {% if settings.footer-text-colour != blank %}{{ settings.footer-text-colour }}{% else %}$body-text-colour{% endif %};
-{% if settings.footer-link-colour != blank %}
-  $footer-link-colour: {{ settings.footer-link-colour }};
-  $footer-button-colour-primary: inverse-colour($footer-link-colour); // ???
-{% else %}
-  $footer-link-colour: $body-link-colour;
-  $footer-button-colour-primary: $button-colour-primary; // ???
-{% endif %}
+$footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.footer-link-colour }}{% else %}$body-link-colour{% endif %};
 
 /*
  * Functions and Mixins
@@ -49,10 +52,22 @@ $footer-text-colour: {% if settings.footer-text-colour != blank %}{{ settings.fo
 }
 
 @function darken-colour( $colour, $background-colour, $strength: 100% ) {
+  @if $colour == transparent {
+    $colour: $body-background-colour;
+  }
+  @if $background-colour == transparent {
+    $background-colour: $body-background-colour;
+  }
   @return if(lightness($background-colour) > 10%, darken($colour, $strength), lighten($colour, $strength));
 }
 
 @function lighten-colour( $colour, $background-colour, $strength: 100% ) {
+  @if $colour == transparent {
+    $colour: $body-background-colour;
+  }
+  @if $background-colour == transparent {
+    $background-colour: $body-background-colour;
+  }
   @return if(lightness($background-colour) > $inverse_threshhold, lighten($colour, $strength), darken($colour, $strength));
 }
 
@@ -175,27 +190,6 @@ body{
   @include link-colour($body-link-colour, $body-background-colour);
 }
 
-.footer{
-  @include background-colour($footer-background-colour);
-  @include heading-colour($footer-heading-colour);
-  @include text-colour($footer-text-colour, $footer-background-colour);
-  @include link-colour($footer-link-colour, $footer-background-colour);
-  .container{
-    @if $footer-background-colour == $body-background-colour {
-      border-top-color: darken-colour($footer-background-colour, $footer-background-colour, 7.5%);
-    } @else {
-      border-top: none;
-    }
-  }
-}
-
-.navbar-default .navbar-brand{
-  color: $body-heading-colour;
-  &:hover{
-    color: darken($body-heading-colour, 15%);
-  }
-}
-
 .breadcrumb{
   background-color: darken-colour($body-background-colour, $body-background-colour, 7.5%);
 }
@@ -203,6 +197,40 @@ body{
   color: lighten-colour($body-text-colour, $body-background-colour, 45%);
 }
 
+.navbar-default{
+  @include background-colour($navbar-background-colour);
+  @include text-colour($navbar-text-colour, $navbar-background-colour);
+  @include link-colour($navbar-link-colour, $navbar-background-colour);
+  .navbar-brand{
+    color: $body-heading-colour;
+    &:hover{
+      color: darken($body-heading-colour, 15%);
+    }
+  }
+}
+
+
+
+.sidebar{
+  @include background-colour($sidebar-background-colour);
+  @include heading-colour($sidebar-heading-colour);
+  @include text-colour($sidebar-text-colour, $sidebar-background-colour);
+  @include link-colour($sidebar-link-colour, $sidebar-background-colour);
+}
+
+.footer{
+  @include background-colour($footer-background-colour);
+  @include heading-colour($footer-heading-colour);
+  @include text-colour($footer-text-colour, $footer-background-colour);
+  @include link-colour($footer-link-colour, $footer-background-colour);
+  .container{
+    @if $footer-background-colour == $body-background-colour or $footer-background-colour == transparent {
+      border-top-color: darken-colour($footer-background-colour, $footer-background-colour, 7.5%);
+    } @else {
+      border-top: none;
+    }
+  }
+}
 
 /* Buttons (still need work) */
 .pagination > li > a, .pagination > li > span{
@@ -220,8 +248,17 @@ body{
   @include button-variant($button-colour-primary, $body-link-colour, darken($body-link-colour, 5%), $body-background-colour);
 }
 
-
-
+@media (min-width: 768px){
+  .sidebar{
+    background-color: transparent;
+    .sidebar-content{
+      background-color: $sidebar-background-colour;
+      @if $sidebar-background-colour == $body-background-colour or $sidebar-background-colour == transparent {
+        padding: 0;
+      }
+    }
+  }
+}
 
 
 

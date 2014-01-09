@@ -5092,6 +5092,10 @@ a.icon:hover {
   overflow: auto;
   margin-bottom: 30px; }
 
+.sidebar {
+  padding-top: 12px;
+  padding-bottom: 12px; }
+
 .footer {
   padding-bottom: 30px; }
   .footer .container {
@@ -5101,3 +5105,12 @@ a.icon:hover {
 #footer-credits {
   margin-bottom: 0;
   border-radius: 0; }
+
+@media (min-width: 768px) {
+  .sidebar {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 30px; }
+    .sidebar .sidebar-content {
+      padding: 12px;
+      border-radius: 4px; } }
