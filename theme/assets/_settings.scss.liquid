@@ -29,6 +29,7 @@ $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-t
   $body-link-colour: $default-link-colour;
   $button-colour-primary: white; // ???
 {% endif %}
+$site-background-image:{% if settings.site-background-image != blank %}true{% else %}false{% endif %};
 
 $navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{ settings.navbar-background-colour }}{% else %}$default-secondary-background-colour{% endif %};
 $navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
@@ -43,6 +44,7 @@ $footer-background-colour: {% if settings.footer-background-colour != blank %}{{
 $footer-heading-colour: {% if settings.footer-heading-colour != blank %}{{ settings.footer-heading-colour }}{% else %}$body-heading-colour{% endif %};
 $footer-text-colour: {% if settings.footer-text-colour != blank %}{{ settings.footer-text-colour }}{% else %}$body-text-colour{% endif %};
 $footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.footer-link-colour }}{% else %}$body-link-colour{% endif %};
+$fix-footer-navbar:{% if settings.fix-footer-navbar != blank %}true{% else %}false{% endif %};
 
 /*
  * Functions and Mixins
@@ -183,7 +185,14 @@ body{
     padding-bottom: $body_navbar_padding;
   {% endif %}
   {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}.brand{ margin-bottom: 0; }{% endif %}
+  
   /* Design and colour schemes */
+  @if $site-background-image {
+    background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');
+    {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
+    {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
+  }
+  
   @include background-colour($body-background-colour);
   @include heading-colour($body-heading-colour);
   @include text-colour($body-text-colour, $body-background-colour);
@@ -201,6 +210,7 @@ body{
   @include background-colour($navbar-background-colour);
   @include text-colour($navbar-text-colour, $navbar-background-colour);
   @include link-colour($navbar-link-colour, $navbar-background-colour);
+  border-bottom-color: darken-colour($navbar-background-colour, $navbar-background-colour, 7.5%);
   .navbar-brand{
     color: $body-heading-colour;
     &:hover{
@@ -208,8 +218,6 @@ body{
     }
   }
 }
-
-
 
 .sidebar{
   @include background-colour($sidebar-background-colour);
@@ -224,11 +232,19 @@ body{
   @include text-colour($footer-text-colour, $footer-background-colour);
   @include link-colour($footer-link-colour, $footer-background-colour);
   .container{
-    @if $footer-background-colour == $body-background-colour or $footer-background-colour == transparent {
+    @if $site-background-image == false and ($footer-background-colour == $body-background-colour or $footer-background-colour == transparent) {
       border-top-color: darken-colour($footer-background-colour, $footer-background-colour, 7.5%);
     } @else {
       border-top: none;
     }
+  }
+}
+
+#footer-credits{
+  @if $fix-footer-navbar {
+    border-color: darken-colour($navbar-background-colour, $navbar-background-colour, 7.5%);
+  } @else {
+    border: none;
   }
 }
 
@@ -253,7 +269,7 @@ body{
     background-color: transparent;
     .sidebar-content{
       background-color: $sidebar-background-colour;
-      @if $sidebar-background-colour == $body-background-colour or $sidebar-background-colour == transparent {
+      @if $site-background-image == false and ($sidebar-background-colour == $body-background-colour or $sidebar-background-colour == transparent) {
         padding: 0;
       }
     }

@@ -15,7 +15,7 @@
   
     <div class="collapse navbar-collapse" id="main-nav">
       <ul class="nav navbar-nav">
-        {% for l in linklists[settings.main-menu-linklist].links %}
+        {% for l in linklists[settings.navbar-linklist].links %}
         {% include '_navbar-link' with 0 %}
         {% endfor %}
       </ul>
