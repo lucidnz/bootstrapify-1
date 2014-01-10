@@ -13,27 +13,16 @@ $default-link-colour:                  #428bca !default;
 /*
  * Setting Variables
  */
-{% if settings.body-background-colour != blank %}
-  $body-background-colour: {{ settings.body-background-colour }};
-  $button-background-colour-default: $body-background-colour; // ???
-{% else %}
-  $body-background-colour: $default-primary-background-colour;
-  $button-background-colour-default: white; // ???
-{% endif %}
+$site-background-image:{% if settings.site-background-image != blank %}true{% else %}false{% endif %};
+$body-background-colour: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-primary-background-colour{% endif %};
 $body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
 $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %};
-{% if settings.body-link-colour != blank %}
-  $body-link-colour: {{ settings.body-link-colour }};
-  $button-colour-primary: inverse-colour($body-link-colour); // ???
-{% else %}
-  $body-link-colour: $default-link-colour;
-  $button-colour-primary: white; // ???
-{% endif %}
-$site-background-image:{% if settings.site-background-image != blank %}true{% else %}false{% endif %};
+$body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %};
 
 $navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{ settings.navbar-background-colour }}{% else %}$default-secondary-background-colour{% endif %};
 $navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
 $navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
+$fix-footer-navbar:{% if settings.fix-footer-navbar != blank %}true{% else %}false{% endif %};
 
 $sidebar-background-colour: {% if settings.sidebar-background-colour != blank %}{{ settings.sidebar-background-colour }}{% else %}transparent{% endif %};
 $sidebar-heading-colour: {% if settings.sidebar-heading-colour != blank %}{{ settings.sidebar-heading-colour }}{% else %}$body-heading-colour{% endif %};
@@ -44,23 +33,19 @@ $footer-background-colour: {% if settings.footer-background-colour != blank %}{{
 $footer-heading-colour: {% if settings.footer-heading-colour != blank %}{{ settings.footer-heading-colour }}{% else %}$body-heading-colour{% endif %};
 $footer-text-colour: {% if settings.footer-text-colour != blank %}{{ settings.footer-text-colour }}{% else %}$body-text-colour{% endif %};
 $footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.footer-link-colour }}{% else %}$body-link-colour{% endif %};
-$fix-footer-navbar:{% if settings.fix-footer-navbar != blank %}true{% else %}false{% endif %};
 
 /*
  * Functions and Mixins
  */
-@function inverse-colour( $colour, $strength: 100% ) {
-  @return if(lightness($colour) > $inverse_threshhold, darken($colour, $strength), lighten($colour, $strength));
+@function button-colour( $colour, $strength: 100% ) {
+  @return if(lightness($colour) > 80%, darken($colour, $strength), lighten($colour, $strength));
 }
 
-@function darken-colour( $colour, $background-colour, $strength: 100% ) {
+@function darken-colour( $colour, $strength: 100% ) {
   @if $colour == transparent {
     $colour: $body-background-colour;
   }
-  @if $background-colour == transparent {
-    $background-colour: $body-background-colour;
-  }
-  @return if(lightness($background-colour) > 10%, darken($colour, $strength), lighten($colour, $strength));
+  @return if(lightness($colour) > 10%, darken($colour, $strength), lighten($colour, $strength * 2));
 }
 
 @function lighten-colour( $colour, $background-colour, $strength: 100% ) {
@@ -83,13 +68,13 @@ $fix-footer-navbar:{% if settings.fix-footer-navbar != blank %}true{% else %}fal
   &:active,
   &.active {
     color: $colour;
-    background-color: darken-colour($button-background-colour, $background-colour, 8%);
-        border-color: darken-colour($border-colour, $background-colour, 12%);
+    background-color: darken-colour($button-background-colour, 8%);
+    border-color: darken-colour($border-colour, 12%);
   }
   .open & { &.dropdown-toggle {
     color: $colour;
-    background-color: darken-colour($button-background-colour, $background-colour, 8%);
-        border-color: darken-colour($border-colour, $background-colour, 12%);
+    background-color: darken-colour($button-background-colour, 8%);
+    border-color: darken-colour($border-colour, 12%);
   } }
   &:active,
   &.active {
@@ -114,22 +99,25 @@ $fix-footer-navbar:{% if settings.fix-footer-navbar != blank %}true{% else %}fal
 
 @mixin background-colour($colour){
   background-color: $colour;
+  .brand{
+    border-color: darken-colour($colour, 7.5%);
+  }
   .page-header{
-    border-bottom-color: darken-colour($colour, $colour, 7.5%);
+    border-bottom-color: darken-colour($colour, 7.5%);
   }  
   hr{
-    border-top-color: darken-colour($colour, $colour, 7.5%);
+    border-top-color: darken-colour($colour, 7.5%);
   }
   .table-bordered, .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td{
-    border-color: darken-colour($colour, $colour, 7.5%);
+    border-color: darken-colour($colour, 7.5%);
   }
   
   .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
-    background-color: darken-colour($colour, $colour, 4%);
+    background-color: darken-colour($colour, 4%);
   }
   
   .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
-    background-color: darken-colour($colour, $colour, 6%);
+    background-color: darken-colour($colour, 6%);
   }
 }
 
@@ -139,7 +127,7 @@ $fix-footer-navbar:{% if settings.fix-footer-navbar != blank %}true{% else %}fal
     & a{
       color: $colour;
       &:hover{
-        color: darken($colour, 15%);
+        color: darken-colour($colour, 15%);
       }
     }
   }
@@ -153,24 +141,39 @@ $fix-footer-navbar:{% if settings.fix-footer-navbar != blank %}true{% else %}fal
   .text-muted, .nav > li.disabled > a, .breadcrumb > .active{
     color: lighten-colour($text-colour, $background-colour, 40%);
   }
-  .thumbnail .caption, .btn-default{
-    color: $text-colour;
-  }
-  .text-muted, .nav > li.disabled > a, .breadcrumb > .active{
-    color: lighten-colour($text-colour, $background-colour, 40%);
-  }
 }
 
-@mixin link-colour($text-colour, $background-colour){
+@mixin link-colour($link-colour, $background-colour){
   a{
-    color: $text-colour;
+    color: $link-colour;
     &:hover{
-      color: darken($text-colour, 15%);
+      color: darken-colour($link-colour, 15%);
     }
   }
   .nav > li > a:hover, .nav > li > a:focus{
-    background-color: darken-colour($background-colour, $background-colour, 7.5%);
+    background-color: darken-colour($background-colour, 7.5%);
   }
+  
+  /* Buttons (still need work) */
+  .btn-primary {
+    @include button-variant(button-colour($link-colour), $link-colour, darken($link-colour, 5%), $background-colour);
+  }
+  
+  
+  /*.pagination > li > a, .pagination > li > span{
+    background-color: $button-background-colour-default;
+    border-color: darken-colour($button-background-colour-default, $body-background-colour, 20%);
+    &:hover{
+      background-color: darken-colour($button-background-colour-default, $body-background-colour, 8%);
+          border-color: darken-colour(darken($button-background-colour-default, 20%), $body-background-colour, 12%);
+    }
+  }
+  .btn-default {
+    @include button-variant($body-text-colour, $button-background-colour-default, darken($button-background-colour-default, 20%), $body-background-colour);
+  }
+  .btn-primary {
+    @include button-variant($button-colour-primary, $body-link-colour, darken($body-link-colour, 5%), $body-background-colour);
+  }*/
 }
 
 /*
@@ -183,6 +186,9 @@ body{
   {% if settings.navbar-placement == 'fixed-to-bottom' %}
     {% unless settings.logo-placement == "above-navbar" %}padding-top: $body_padding;{% endunless %}
     padding-bottom: $body_navbar_padding;
+    #footer-credits{
+      padding-bottom: $body_navbar_padding - 2px;
+    }
   {% endif %}
   {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}.brand{ margin-bottom: 0; }{% endif %}
   
@@ -200,7 +206,7 @@ body{
 }
 
 .breadcrumb{
-  background-color: darken-colour($body-background-colour, $body-background-colour, 7.5%);
+  background-color: darken-colour($body-background-colour, 7.5%);
 }
 .breadcrumb > li + li:before{
   color: lighten-colour($body-text-colour, $body-background-colour, 45%);
@@ -210,11 +216,11 @@ body{
   @include background-colour($navbar-background-colour);
   @include text-colour($navbar-text-colour, $navbar-background-colour);
   @include link-colour($navbar-link-colour, $navbar-background-colour);
-  border-bottom-color: darken-colour($navbar-background-colour, $navbar-background-colour, 7.5%);
+  border-color: darken-colour($navbar-background-colour, 7.5%);
   .navbar-brand{
     color: $body-heading-colour;
     &:hover{
-      color: darken($body-heading-colour, 15%);
+      color: darken-colour($body-heading-colour, 15%);
     }
   }
 }
@@ -226,14 +232,17 @@ body{
   @include link-colour($sidebar-link-colour, $sidebar-background-colour);
 }
 
-.footer{
+#footer-content{
   @include background-colour($footer-background-colour);
   @include heading-colour($footer-heading-colour);
   @include text-colour($footer-text-colour, $footer-background-colour);
   @include link-colour($footer-link-colour, $footer-background-colour);
+  @if $fix-footer-navbar{
+    padding-bottom: 80px;
+  }
   .container{
     @if $site-background-image == false and ($footer-background-colour == $body-background-colour or $footer-background-colour == transparent) {
-      border-top-color: darken-colour($footer-background-colour, $footer-background-colour, 7.5%);
+      border-top-color: darken-colour($footer-background-colour, 7.5%);
     } @else {
       border-top: none;
     }
@@ -242,26 +251,10 @@ body{
 
 #footer-credits{
   @if $fix-footer-navbar {
-    border-color: darken-colour($navbar-background-colour, $navbar-background-colour, 7.5%);
+    border-color: darken-colour($navbar-background-colour, 7.5%);
   } @else {
     border: none;
   }
-}
-
-/* Buttons (still need work) */
-.pagination > li > a, .pagination > li > span{
-  background-color: $button-background-colour-default;
-  border-color: darken-colour($button-background-colour-default, $body-background-colour, 20%);
-  &:hover{
-    background-color: darken-colour($button-background-colour-default, $body-background-colour, 8%);
-        border-color: darken-colour(darken($button-background-colour-default, 20%), $body-background-colour, 12%);
-  }
-}
-.btn-default {
-  @include button-variant($body-text-colour, $button-background-colour-default, darken($button-background-colour-default, 20%), $body-background-colour);
-}
-.btn-primary {
-  @include button-variant($button-colour-primary, $body-link-colour, darken($body-link-colour, 5%), $body-background-colour);
 }
 
 @media (min-width: 768px){

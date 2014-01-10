@@ -1,5 +1,17 @@
 @import "bower_components/sass-bootstrap/lib/bootstrap.scss";
 
+// sticky footer
+$footer-height: 200px;
+html, body, #wrap { height: 100%; }
+body > #wrap {height: auto; min-height: 100%;}
+#content { padding-bottom: ($footer-height + $navbar-height); overflow: auto; }
+#footer-content { 
+  position: relative;
+  margin-top: -($footer-height + $navbar-height);
+  min-height: $footer-height;
+  clear:both;
+}
+
 img {
   @extend .img-responsive;
 }
@@ -88,7 +100,7 @@ a.icon:hover {
   padding-bottom: $padding-base-horizontal;
 }
 
-.footer{
+#footer-content{
   padding-bottom: $grid-gutter-width;
   .container{
     padding-top: $padding-base-horizontal;

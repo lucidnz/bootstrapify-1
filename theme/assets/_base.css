@@ -5045,6 +5045,23 @@ td.visible-print {
   th.hidden-print,
   td.hidden-print {
     display: none !important; } }
+html, body, #wrap {
+  height: 100%; }
+
+body > #wrap {
+  height: auto;
+  min-height: 100%; }
+
+#content {
+  padding-bottom: 250px;
+  overflow: auto; }
+
+#footer-content {
+  position: relative;
+  margin-top: -250px;
+  min-height: 200px;
+  clear: both; }
+
 .brand {
   overflow: auto;
   margin-top: 0; }
@@ -5096,9 +5113,9 @@ a.icon:hover {
   padding-top: 12px;
   padding-bottom: 12px; }
 
-.footer {
+#footer-content {
   padding-bottom: 30px; }
-  .footer .container {
+  #footer-content .container {
     padding-top: 12px;
     border-top: #eeeeee solid 1px; }
 
