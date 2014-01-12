@@ -108,6 +108,9 @@ $footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.fo
   hr{
     border-top-color: darken-colour($colour, 7.5%);
   }
+  .dropdown-menu .divider{
+    background-color: darken-colour($colour, 7.5%);
+  }
   .table-bordered, .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td{
     border-color: darken-colour($colour, 7.5%);
   }
@@ -153,27 +156,16 @@ $footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.fo
   .nav > li > a:hover, .nav > li > a:focus{
     background-color: darken-colour($background-colour, 7.5%);
   }
-  
-  /* Buttons (still need work) */
+  .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+    color: button-colour($link-colour);
+    background-color: $link-colour;
+  }
   .btn-primary {
     @include button-variant(button-colour($link-colour), $link-colour, darken($link-colour, 5%), $background-colour);
   }
-  
-  
-  /*.pagination > li > a, .pagination > li > span{
-    background-color: $button-background-colour-default;
-    border-color: darken-colour($button-background-colour-default, $body-background-colour, 20%);
-    &:hover{
-      background-color: darken-colour($button-background-colour-default, $body-background-colour, 8%);
-          border-color: darken-colour(darken($button-background-colour-default, 20%), $body-background-colour, 12%);
-    }
+  .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus{
+    color: lighten-colour($link-colour, $background-colour, 40%);
   }
-  .btn-default {
-    @include button-variant($body-text-colour, $button-background-colour-default, darken($button-background-colour-default, 20%), $body-background-colour);
-  }
-  .btn-primary {
-    @include button-variant($button-colour-primary, $body-link-colour, darken($body-link-colour, 5%), $body-background-colour);
-  }*/
 }
 
 /*
@@ -217,11 +209,51 @@ body{
   @include text-colour($navbar-text-colour, $navbar-background-colour);
   @include link-colour($navbar-link-colour, $navbar-background-colour);
   border-color: darken-colour($navbar-background-colour, 7.5%);
+  .navbar-nav {
+    > li > a{
+      color: $navbar-link-colour;
+      &:hover, &:focus{
+        color: darken-colour($navbar-link-colour, 15%);
+      }
+    }
+    > .dropdown > a{
+      .caret{
+        border-top-color: $navbar-link-colour;
+        border-bottom-color: $navbar-link-colour;
+      }
+      &:hover .caret, &:focus .caret{
+        border-top-color: darken-colour($navbar-link-colour, 15%);
+        border-bottom-color: darken-colour($navbar-link-colour, 15%);
+      }
+    }
+    .open .dropdown-menu > li > a{
+      color: $navbar-link-colour;
+      &:hover, &:focus{
+        color: darken-colour($navbar-link-colour, 15%);
+      }
+    }
+    .open > a, .open > a:hover, .open > a:focus{
+      color: darken-colour($navbar-link-colour, 15%);
+      background-color: darken-colour($navbar-background-colour, 7.5%);
+    }
+  }
   .navbar-brand{
     color: $body-heading-colour;
     &:hover{
       color: darken-colour($body-heading-colour, 15%);
     }
+  }
+  .navbar-toggle{
+    border-color: darken-colour($navbar-background-colour, 7.5%);
+    .icon-bar{
+      background-color: darken-colour($navbar-background-colour, 7.5%);
+    }
+    &:hover, &:focus{
+      background-color: darken-colour($navbar-background-colour, 4%);
+    }
+  }
+  .navbar-collapse, .navbar-form{
+    border-color: darken-colour($navbar-background-colour, 7.5%);
   }
 }
 

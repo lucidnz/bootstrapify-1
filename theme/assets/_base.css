@@ -5084,6 +5084,9 @@ a.icon:hover {
 
 .thumbnail {
   overflow: auto; }
+  .thumbnail img {
+    text-align: center;
+    margin: auto; }
 
 .loader {
   margin: 0 auto;

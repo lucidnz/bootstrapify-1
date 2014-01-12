@@ -49,6 +49,10 @@ a.icon:hover {
 
 .thumbnail{
   overflow: auto;
+  img{
+    text-align: center;
+    margin: auto;
+  }
 }
 
 .loader {
