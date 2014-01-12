@@ -1,5 +1,6 @@
 <h1 class="page-header">{{ page_title }}</h1>
-{% paginate blog.articles by settings.default-pagination %}
+{% include '__default-pagination' %}
+{% paginate blog.articles by default-pagination %}
 {% for a in blog.articles %}
 <article>
   <h2>{{ a.title | link_to: a.url, a.title }}</h2>
