@@ -77,6 +77,8 @@
       $('.search').typeahead({
         name: 'Products',
         local: [{% include 'search-typeahead' %}]
+      }).on('typeahead:selected', function (object, datum) {
+        $(this).closest('form').submit();
       });
     });
   </script>
