@@ -12,11 +12,7 @@
 {% else %}
 {% include '__default-pagination' %}
 {% paginate collection.products by default-pagination %}
-<div class="row">
-	{% for p in collection.products %}
-		{% include '_product' with p %}
-	{% endfor %}
-</div>
+{% include 'products-list' %}
 {% include 'pagination' %}
 {% endpaginate %}
 

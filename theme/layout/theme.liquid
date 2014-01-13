@@ -48,9 +48,7 @@
       {% endif %}
       {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% endif %}
       
-      {% if settings.show-breadcrumbs and template != 'index' %}
-      {% include 'breadcrumbs' %}
-      {% endif %}
+      {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
       
       <div class="row">
         <div class="main-content {% include '__main-span' %}">

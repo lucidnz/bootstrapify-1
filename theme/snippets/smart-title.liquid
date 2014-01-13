@@ -7,7 +7,7 @@
       {% assign page_title = homepage_title %}
     {% endif %}
     {% assign title = page_title %}
-    {% if collection.title != blank and collection.title != page_title and template != 'index' and settings.show-collection-title-in-meta-title %}
+    {% if collection.title != blank and collection.title != page_title and template != 'index' %}
        {% assign title = title | append: ' | ' | append: collection.title %}
     {% elsif blog.title != blank and blog.title != page_title %}
       {% assign title = title | append: ' | ' | append: blog.title %}

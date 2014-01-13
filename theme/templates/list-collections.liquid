@@ -1,17 +1,10 @@
-{% include '__per-row' %}
-
 <h1 class="page-header">Product Collections</h1>
 
 {% if settings.featured-collections-linklist == '' %}
   {% include '__default-pagination' %}
   {% paginate collections by default-pagination %}
   {% if collections.size > 0 %}
-    <div class="row">
-    {% for collection in collections %}
-      {% include '_collection' with collection %}
-      {% include '_end_row' %}
-    {% endfor %}
-    </div>
+    {% include 'collections-list' %}
     {% include 'pagination' %}
   {% else %}
     <div class="alert alert-info text-center">
@@ -20,5 +13,5 @@
   {% endif %}
   {% endpaginate %}
 {% else %}
-  {% include 'list-collections' %}
+  {% include 'collections-list' with 'featured' %}
 {% endif %}
