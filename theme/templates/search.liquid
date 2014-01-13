@@ -16,7 +16,7 @@
   </p>
   {% endif %}
   <form class="form-inline" action="/search">
-    <div class="input-group">
+    <div class="input-group input-group-appended">
       <input type="search" name="q" class="form-control search" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}">
       <span class="input-group-btn">
         <input type="submit" class="btn btn-primary" value="Search" />

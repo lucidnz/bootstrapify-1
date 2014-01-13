@@ -255,7 +255,7 @@ html {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  line-height: 1.42857;
+  line-height: 1.42858;
   color: #333333;
   background-color: white; }
 
@@ -291,7 +291,7 @@ img {
 
 .img-thumbnail, .thumbnail {
   padding: 4px;
-  line-height: 1.42857;
+  line-height: 1.42858;
   background-color: white;
   border: 1px solid #dddddd;
   border-radius: 4px;
@@ -475,7 +475,7 @@ dl {
 
 dt,
 dd {
-  line-height: 1.42857; }
+  line-height: 1.42858; }
 
 dt {
   font-weight: bold; }
@@ -522,7 +522,7 @@ blockquote {
     margin-bottom: 0; }
   blockquote small {
     display: block;
-    line-height: 1.42857;
+    line-height: 1.42858;
     color: #999999; }
     blockquote small:before {
       content: '\2014 \00A0'; }
@@ -549,7 +549,7 @@ blockquote:after {
 address {
   margin-bottom: 20px;
   font-style: normal;
-  line-height: 1.42857; }
+  line-height: 1.42858; }
 
 code,
 kbd,
@@ -570,7 +570,7 @@ pre {
   padding: 9.5px;
   margin: 0 0 10px;
   font-size: 13px;
-  line-height: 1.42857;
+  line-height: 1.42858;
   word-break: break-all;
   word-wrap: break-word;
   color: #333333;
@@ -1269,7 +1269,7 @@ th {
   .table > tfoot > tr > th,
   .table > tfoot > tr > td {
     padding: 8px;
-    line-height: 1.42857;
+    line-height: 1.42858;
     vertical-align: top;
     border-top: 1px solid #dddddd; }
   .table > thead > tr > th {
@@ -1483,7 +1483,7 @@ output {
   display: block;
   padding-top: 7px;
   font-size: 14px;
-  line-height: 1.42857;
+  line-height: 1.42858;
   color: #555555;
   vertical-align: middle; }
 
@@ -1493,7 +1493,7 @@ output {
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
-  line-height: 1.42857;
+  line-height: 1.42858;
   color: #555555;
   vertical-align: middle;
   background-color: white;
@@ -1793,7 +1793,7 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
   white-space: nowrap;
   padding: 6px 12px;
   font-size: 14px;
-  line-height: 1.42857;
+  line-height: 1.42858;
   border-radius: 4px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -2676,7 +2676,7 @@ input[type="button"].btn-block {
     padding: 3px 20px;
     clear: both;
     font-weight: normal;
-    line-height: 1.42857;
+    line-height: 1.42858;
     color: #333333;
     white-space: nowrap; }
 
@@ -2710,7 +2710,7 @@ input[type="button"].btn-block {
   display: block;
   padding: 3px 20px;
   font-size: 12px;
-  line-height: 1.42857;
+  line-height: 1.42858;
   color: #999999; }
 
 .dropdown-backdrop {
@@ -3050,7 +3050,7 @@ input[type="button"].btn-block {
     margin-bottom: -1px; }
     .nav-tabs > li > a {
       margin-right: 2px;
-      line-height: 1.42857;
+      line-height: 1.42858;
       border: 1px solid transparent;
       border-radius: 4px 4px 0 0; }
       .nav-tabs > li > a:hover {
@@ -3507,7 +3507,7 @@ input[type="button"].btn-block {
       position: relative;
       float: left;
       padding: 6px 12px;
-      line-height: 1.42857;
+      line-height: 1.42858;
       text-decoration: none;
       background-color: white;
       border: 1px solid #dddddd;
@@ -3696,7 +3696,7 @@ a.list-group-item.active > .badge,
   margin-bottom: 30px;
   font-size: 21px;
   font-weight: 200;
-  line-height: 2.14286;
+  line-height: 2.14287;
   color: inherit;
   background-color: #eeeeee; }
   .jumbotron h1 {
@@ -4264,14 +4264,14 @@ button.close {
 .modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
-  min-height: 16.42857px; }
+  min-height: 16.42858px; }
 
 .modal-header .close {
   margin-top: -2px; }
 
 .modal-title {
   margin: 0;
-  line-height: 1.42857; }
+  line-height: 1.42858; }
 
 .modal-body {
   position: relative;
