@@ -21,17 +21,8 @@
       </ul>
       {% if settings.show-search-in-navbar %}
       <form class="navbar-form col-sm-2 navbar-right" action="/search">
-        {% include '__default-pagination' %}
-        <input type="search" name="q" class="form-control" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}" data-provide="typeahead" data-source='[{% include 'search-typeahead' %}]' data-items="{{ default-pagination }}">
+        <input type="search" name="q" class="form-control search" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}">
       </form>{% endif %}
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class="visible-xs">Search</span>
-            <span class="hidden-xs"><i class="fa fa-search"></i></span>
-          </a>
-        </li>
-      </ul>
         
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -46,10 +37,7 @@
             {% endif %}
           </ul>
         </li>
-      </ul>
-        
-      {% if shop.customer_accounts_enabled %}
-      <ul class="nav navbar-nav navbar-right">
+        {% if shop.customer_accounts_enabled %}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="visible-xs">{% include '__localize' with 'Account' %}</span>
@@ -65,8 +53,10 @@
             {% endif %}
           </ul>
         </li>
+        {% endif %}
       </ul>
-      {% endif %}
+        
+
     </div>
   </div>
 </nav>

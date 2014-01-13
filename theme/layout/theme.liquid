@@ -29,6 +29,7 @@
   {{ 'modal.js' | asset_url | script_tag }}
   {{ 'tooltip.js' | asset_url | script_tag }}
   {{ 'popover.js' | asset_url | script_tag }}
+  {{ 'typeahead.js' | asset_url | script_tag }}
   
   {{ content_for_header }}
 </head>
@@ -71,5 +72,13 @@
   {% include 'currencies' %}
   
   {{ 'app.js' | asset_url | script_tag }}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.search').typeahead({
+        name: 'Products',
+        local: [{% include 'search-typeahead' %}]
+      });
+    });
+  </script>
 </body>
 </html>
