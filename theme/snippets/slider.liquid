@@ -18,7 +18,7 @@
     {% capture indicators %}{{ indicators }}<li data-target="#myCarousel" data-slide-to="{{s}}"{% if s == 0 %} class="active"{% endif %}></li>{% endcapture %}
     {% capture image %}<img src="{{ slide_image | append: '.jpg' | asset_url }}" alt="{% if settings[slide_heading] %}{{ settings[slide_heading] }}{% else %}Slide {{s}}{% endif %}">{% endcapture %}
     {% capture items %}{{ items }}
-      <div class="item{% if s == 0 %} active{% endif %}">
+      <div id="{{ slide }}" class="item{% if s == 0 %} active{% endif %}">
         {% if settings[slide_link] %}<a href="{{ settings[slide_link] }}">{{ image }}</a>{% else %}{{ image }}{% endif %}
         {% if settings[slide_heading] or settings[slide_caption] %}
         <div class="carousel-caption">
@@ -43,13 +43,6 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     {{ items }}
-<!--
-    <div class="item active">
-      <img src="..." alt="...">
-      <div class="carousel-caption">
-      </div>
-    </div>
--->
   </div>
 
   <!-- Controls -->

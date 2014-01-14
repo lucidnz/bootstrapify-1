@@ -34,11 +34,22 @@ $footer-heading-colour: {% if settings.footer-heading-colour != blank %}{{ setti
 $footer-text-colour: {% if settings.footer-text-colour != blank %}{{ settings.footer-text-colour }}{% else %}$body-text-colour{% endif %};
 $footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.footer-link-colour }}{% else %}$body-link-colour{% endif %};
 
+{% for i in (i..5) %}
+  {% assign c = i | plus: 1 %}
+  {% assign slide = 'slide-' | append: c | append: '-dark' %}
+  ${{ slide }}: {% if settings[slide] != blank %}true{% else %}false{% endif %};
+{% endfor %}
+$slides: $slide-1-dark $slide-2-dark $slide-3-dark $slide-4-dark $slide-5-dark;
+
 /*
  * Functions and Mixins
  */
 @function button-colour( $colour, $strength: 100% ) {
   @return if(lightness($colour) > 80%, darken($colour, $strength), lighten($colour, $strength));
+}
+
+@function slide-colour( $dark, $text-colour, $strength: 100% ) {
+  @return if($dark, darken($text-colour, $strength), lighten($text-colour, $strength));
 }
 
 @function darken-colour( $colour, $strength: 100% ) {
@@ -181,6 +192,15 @@ $footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.fo
   }
 }
 
+@mixin slide-colour($slide-dark, $text-colour){
+  .carousel-caption{
+    color: slide-colour($slide-dark, $text-colour);
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+      color: slide-colour($slide-dark, $text-colour);
+    }
+  }
+}
+
 /*
  * Styles
  */
@@ -267,6 +287,12 @@ body{
   }
   .navbar-collapse, .navbar-form{
     border-color: darken-colour($navbar-background-colour, 7.5%);
+  }
+}
+
+@for $i from 1 through length($slides){
+  #slide-#{$i}{
+    @include slide-colour(nth($slides, $i), $body-text-colour);
   }
 }
 
