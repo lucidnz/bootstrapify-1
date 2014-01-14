@@ -487,6 +487,7 @@
       <th><label for="default-pagination">Default pagination</label></th>
       <td>
         <input type="text" name="default-pagination" id="default-pagination" class="text" value="20" />
+        <small>If left blank pagination will be set to 50.</small>
       </td>
     </tr>
   </table>
@@ -545,6 +546,19 @@
   
   <table>
     <tr>
+      <th><label for="featured-collections-limit">Featured collections limit</label></th>
+      <td>
+           <div><input type="radio" name="featured-collections-limit" id="featured-collections-limit" value="1-row" checked="checked" /> 1 row</div>
+           <div><input type="radio" name="featured-collections-limit" id="featured-collections-limit" value="2-rows" /> 2 rows</div>
+           <div><input type="radio" name="featured-collections-limit" id="featured-collections-limit" value="3-rows" /> 3 rows</div>
+           <div><input type="radio" name="featured-collections-limit" id="featured-collections-limit" value="unlimited" /> Unlimited</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="featured-collections-linklist">Featured collections linklist</label></th>
       <td>
         <select class="linklist" name="featured-collections-linklist" />
@@ -590,234 +604,324 @@
   
   <table>
     <tr>
-      <th><label for="slide-active-1">1st slide active</label></th>
-      <td>
-        <input type="checkbox" name="slide-active-1" id="slide-active-1" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-call-to-action-1">1st slide call-to-action</label></th>
-      <td>
-        <input type="text" name="slide-call-to-action-1" id="slide-call-to-action-1" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-caption-1">1st slide caption</label></th>
-      <td>
-        <textarea name="slide-caption-1" id="slide-caption-1"></textarea>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-image-1">1st slide image</label></th>
-      <td>
-        <input type="file" name="slide-image-1.jpg" id="slide-image-1"  />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-link-1">1st slide link</label></th>
-      <td>
-        <input type="text" name="slide-link-1" id="slide-link-1" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-active-2">2nd slide active</label></th>
-      <td>
-        <input type="checkbox" name="slide-active-2" id="slide-active-2" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-call-to-action-2">2nd slide call-to-action</label></th>
-      <td>
-        <input type="text" name="slide-call-to-action-2" id="slide-call-to-action-2" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-caption-2">2nd slide caption</label></th>
-      <td>
-        <textarea name="slide-caption-2" id="slide-caption-2"></textarea>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-image-2">2nd slide image</label></th>
-      <td>
-        <input type="file" name="slide-image-2.jpg" id="slide-image-2"  />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-link-2">2nd slide link</label></th>
-      <td>
-        <input type="text" name="slide-link-2" id="slide-link-2" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-active-3">3rd slide active</label></th>
-      <td>
-        <input type="checkbox" name="slide-active-3" id="slide-active-3" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-call-to-action-3">3rd slide call-to-action</label></th>
-      <td>
-        <input type="text" name="slide-call-to-action-3" id="slide-call-to-action-3" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-caption-3">3rd slide caption</label></th>
-      <td>
-        <textarea name="slide-caption-3" id="slide-caption-3"></textarea>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-image-3">3rd slide image</label></th>
-      <td>
-        <input type="file" name="slide-image-3.jpg" id="slide-image-3"  />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-link-3">3rd slide link</label></th>
-      <td>
-        <input type="text" name="slide-link-3" id="slide-link-3" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-active-4">4th slide active</label></th>
-      <td>
-        <input type="checkbox" name="slide-active-4" id="slide-active-4" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-call-to-action-4">4th slide call-to-action</label></th>
-      <td>
-        <input type="text" name="slide-call-to-action-4" id="slide-call-to-action-4" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-caption-4">4th slide caption</label></th>
-      <td>
-        <textarea name="slide-caption-4" id="slide-caption-4"></textarea>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-image-4">4th slide image</label></th>
-      <td>
-        <input type="file" name="slide-image-4.jpg" id="slide-image-4"  />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-link-4">4th slide link</label></th>
-      <td>
-        <input type="text" name="slide-link-4" id="slide-link-4" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-active-5">5th slide active</label></th>
-      <td>
-        <input type="checkbox" name="slide-active-5" id="slide-active-5" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-call-to-action-5">5th slide call-to-action</label></th>
-      <td>
-        <input type="text" name="slide-call-to-action-5" id="slide-call-to-action-5" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-caption-5">5th slide caption</label></th>
-      <td>
-        <textarea name="slide-caption-5" id="slide-caption-5"></textarea>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-image-5">5th slide image</label></th>
-      <td>
-        <input type="file" name="slide-image-5.jpg" id="slide-image-5"  />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slide-link-5">5th slide link</label></th>
-      <td>
-        <input type="text" name="slide-link-5" id="slide-link-5" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="show-slider">Show slider</label></th>
       <td>
         <input type="checkbox" name="show-slider" id="show-slider" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="slide-1">Slide 1</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Activate slide <input type="checkbox" name="slide-1-active" id="slide-1-active" value="1" /> Yes</p>
+      </td>
+      <td>
+        <p>Use dark text <input type="checkbox" name="slide-1-dark" id="slide-1-dark" value="1" /> Yes</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Slide image <input type="file" name="slide-1-image.jpg" id="slide-1-image"  /></p>
+      </td>
+      <td>
+        <p>Caption position</p>
+        <p>
+          <select name="slide-1-position" id="slide-1-position">
+            <option value="top left" selected="selected">top left</option>
+            <option value="top center">top center</option>
+            <option value="top right">top right</option>
+            <option value="middle left">middle left</option>
+            <option value="middle center">middle center</option>
+            <option value="middle right">middle right</option>
+            <option value="bottom left">bottom left</option>
+            <option value="bottom center">bottom center</option>
+            <option value="bottom right">bottom right</option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Heading</p>
+        <p><input type="text" name="slide-1-heading" id="slide-1-heading" class="text" value="" /></p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Caption</p>
+        <p><textarea name="slide-1-caption" id="slide-1-caption"></textarea></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Call to action</p>
+        <p><input type="text" name="slide-1-call-to-action" id="slide-1-call-to-action" class="text" value="" /></p>
+      </td>
+      <td>
+        <p>Link</p>
+        <p><input type="text" name="slide-1-link" id="slide-1-link" class="text" value="" /></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="slide-2">Slide 2</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Activate slide <input type="checkbox" name="slide-2-active" id="slide-2-active" value="1" /> Yes</p>
+      </td>
+      <td>
+        <p>Use dark text <input type="checkbox" name="slide-2-dark" id="slide-2-dark" value="1" /> Yes</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Slide image <input type="file" name="slide-2-image.jpg" id="slide-2-image"  /></p>
+      </td>
+      <td>
+        <p>Caption position</p>
+        <p>
+          <select name="slide-2-position" id="slide-2-position">
+            <option value="top left" selected="selected">top left</option>
+            <option value="top center">top center</option>
+            <option value="top right">top right</option>
+            <option value="middle left">middle left</option>
+            <option value="middle center">middle center</option>
+            <option value="middle right">middle right</option>
+            <option value="bottom left">bottom left</option>
+            <option value="bottom center">bottom center</option>
+            <option value="bottom right">bottom right</option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Heading</p>
+        <p><input type="text" name="slide-2-heading" id="slide-2-heading" class="text" value="" /></p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Caption</p>
+        <p><textarea name="slide-2-caption" id="slide-2-caption"></textarea></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Call to action</p>
+        <p><input type="text" name="slide-2-call-to-action" id="slide-2-call-to-action" class="text" value="" /></p>
+      </td>
+      <td>
+        <p>Link</p>
+        <p><input type="text" name="slide-2-link" id="slide-2-link" class="text" value="" /></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="slide-3">Slide 3</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Activate slide <input type="checkbox" name="slide-3-active" id="slide-3-active" value="1" /> Yes</p>
+      </td>
+      <td>
+        <p>Use dark text <input type="checkbox" name="slide-3-dark" id="slide-3-dark" value="1" /> Yes</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Slide image <input type="file" name="slide-3-image.jpg" id="slide-3-image"  /></p>
+      </td>
+      <td>
+        <p>Caption position</p>
+        <p>
+          <select name="slide-3-position" id="slide-3-position">
+            <option value="top left" selected="selected">top left</option>
+            <option value="top center">top center</option>
+            <option value="top right">top right</option>
+            <option value="middle left">middle left</option>
+            <option value="middle center">middle center</option>
+            <option value="middle right">middle right</option>
+            <option value="bottom left">bottom left</option>
+            <option value="bottom center">bottom center</option>
+            <option value="bottom right">bottom right</option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Heading</p>
+        <p><input type="text" name="slide-3-heading" id="slide-3-heading" class="text" value="" /></p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Caption</p>
+        <p><textarea name="slide-3-caption" id="slide-3-caption"></textarea></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Call to action</p>
+        <p><input type="text" name="slide-3-call-to-action" id="slide-3-call-to-action" class="text" value="" /></p>
+      </td>
+      <td>
+        <p>Link</p>
+        <p><input type="text" name="slide-3-link" id="slide-3-link" class="text" value="" /></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="slide-4">Slide 4</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Activate slide <input type="checkbox" name="slide-4-active" id="slide-4-active" value="1" /> Yes</p>
+      </td>
+      <td>
+        <p>Use dark text <input type="checkbox" name="slide-4-dark" id="slide-4-dark" value="1" /> Yes</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Slide image <input type="file" name="slide-4-image.jpg" id="slide-4-image"  /></p>
+      </td>
+      <td>
+        <p>Caption position</p>
+        <p>
+          <select name="slide-4-position" id="slide-4-position">
+            <option value="top left" selected="selected">top left</option>
+            <option value="top center">top center</option>
+            <option value="top right">top right</option>
+            <option value="middle left">middle left</option>
+            <option value="middle center">middle center</option>
+            <option value="middle right">middle right</option>
+            <option value="bottom left">bottom left</option>
+            <option value="bottom center">bottom center</option>
+            <option value="bottom right">bottom right</option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Heading</p>
+        <p><input type="text" name="slide-4-heading" id="slide-4-heading" class="text" value="" /></p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Caption</p>
+        <p><textarea name="slide-4-caption" id="slide-4-caption"></textarea></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Call to action</p>
+        <p><input type="text" name="slide-4-call-to-action" id="slide-4-call-to-action" class="text" value="" /></p>
+      </td>
+      <td>
+        <p>Link</p>
+        <p><input type="text" name="slide-4-link" id="slide-4-link" class="text" value="" /></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="slide-5">Slide 5</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Activate slide <input type="checkbox" name="slide-5-active" id="slide-5-active" value="1" /> Yes</p>
+      </td>
+      <td>
+        <p>Use dark text <input type="checkbox" name="slide-5-dark" id="slide-5-dark" value="1" /> Yes</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Slide image <input type="file" name="slide-5-image.jpg" id="slide-5-image"  /></p>
+      </td>
+      <td>
+        <p>Caption position</p>
+        <p>
+          <select name="slide-5-position" id="slide-5-position">
+            <option value="top left" selected="selected">top left</option>
+            <option value="top center">top center</option>
+            <option value="top right">top right</option>
+            <option value="middle left">middle left</option>
+            <option value="middle center">middle center</option>
+            <option value="middle right">middle right</option>
+            <option value="bottom left">bottom left</option>
+            <option value="bottom center">bottom center</option>
+            <option value="bottom right">bottom right</option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Heading</p>
+        <p><input type="text" name="slide-5-heading" id="slide-5-heading" class="text" value="" /></p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Caption</p>
+        <p><textarea name="slide-5-caption" id="slide-5-caption"></textarea></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Call to action</p>
+        <p><input type="text" name="slide-5-call-to-action" id="slide-5-call-to-action" class="text" value="" /></p>
+      </td>
+      <td>
+        <p>Link</p>
+        <p><input type="text" name="slide-5-link" id="slide-5-link" class="text" value="" /></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
       </td>
     </tr>
   </table>
@@ -1074,13 +1178,13 @@
   <tbody>
     <tr>
       <td>
-        <p><strong>Custom font name</strong></p>
+        <p>Custom font name</p>
         <p>
           <input type="text" name="body-font-custom" id="body-font-custom" class="text" value="" />
         </p>
       </td>
       <td>
-        <p><strong>Fallback/default</strong></p>
+        <p>Fallback/default</p>
         <p>
           <select class="font" name="body-font" id="body-font">
             <option value="" selected="selected"></option>
@@ -1090,13 +1194,13 @@
     </tr>
     <tr>
       <td>
-        <p><strong>Weight</strong></p>
+        <p>Weight</p>
         <p>
           <input type="text" name="body-font-weight" id="body-font-weight" class="text" value="" />
         </p>
       </td>
       <td>
-        <p><strong>Size</strong></p>
+        <p>Size</p>
         <p>
           <input type="text" name="body-font-size" id="body-font-size" class="text" value="" />
         </p>
@@ -1104,14 +1208,14 @@
     </tr>
     <tr>
       <td>
-        <p><strong>Style</strong></p>
+        <p>Style</p>
         <p>
           <div><input type="radio" name="body-font" id="body-font" value="normal" checked="checked" /> Normal</div>
           <div><input type="radio" name="body-font" id="body-font" value="italic" /> Italic</div>
         </p>
       </td>
       <td>
-        <p><strong>Case</strong></p>
+        <p>Case</p>
         <p>
           <div><input type="radio" name="body-font" id="body-font" value="normal" checked="checked" /> Normal (as typed)</div>
           <div><input type="radio" name="body-font" id="body-font" value="lowercase" /> lowercase</div>
@@ -1143,13 +1247,13 @@
   <tbody>
     <tr>
       <td>
-        <p><strong>Custom font name</strong></p>
+        <p>Custom font name</p>
         <p>
           <input type="text" name="heading-font-custom" id="heading-font-custom" class="text" value="" />
         </p>
       </td>
       <td>
-        <p><strong>Fallback/default</strong></p>
+        <p>Fallback/default</p>
         <p>
           <select class="font" name="heading-font" id="heading-font">
             <option value="" selected="selected"></option>
@@ -1159,13 +1263,13 @@
     </tr>
     <tr>
       <td>
-        <p><strong>Weight</strong></p>
+        <p>Weight</p>
         <p>
           <input type="text" name="heading-font-weight" id="heading-font-weight" class="text" value="" />
         </p>
       </td>
       <td>
-        <p><strong>Size</strong></p>
+        <p>Size</p>
         <p>
           <input type="text" name="heading-font-size" id="heading-font-size" class="text" value="" />
         </p>
@@ -1173,14 +1277,14 @@
     </tr>
     <tr>
       <td>
-        <p><strong>Style</strong></p>
+        <p>Style</p>
         <p>
           <div><input type="radio" name="heading-font" id="heading-font" value="normal" checked="checked" /> Normal</div>
           <div><input type="radio" name="heading-font" id="heading-font" value="italic" /> Italic</div>
         </p>
       </td>
       <td>
-        <p><strong>Case</strong></p>
+        <p>Case</p>
         <p>
           <div><input type="radio" name="heading-font" id="heading-font" value="normal" checked="checked" /> Normal (as typed)</div>
           <div><input type="radio" name="heading-font" id="heading-font" value="lowercase" /> lowercase</div>
@@ -1203,13 +1307,13 @@
   <tbody>
     <tr>
       <td>
-        <p><strong>Custom font name</strong></p>
+        <p>Custom font name</p>
         <p>
           <input type="text" name="primary-nav-font-custom" id="primary-nav-font-custom" class="text" value="" />
         </p>
       </td>
       <td>
-        <p><strong>Fallback/default</strong></p>
+        <p>Fallback/default</p>
         <p>
           <select class="font" name="primary-nav-font" id="primary-nav-font">
             <option value="" selected="selected"></option>
@@ -1219,13 +1323,13 @@
     </tr>
     <tr>
       <td>
-        <p><strong>Weight</strong></p>
+        <p>Weight</p>
         <p>
           <input type="text" name="primary-nav-font-weight" id="primary-nav-font-weight" class="text" value="" />
         </p>
       </td>
       <td>
-        <p><strong>Size</strong></p>
+        <p>Size</p>
         <p>
           <input type="text" name="primary-nav-font-size" id="primary-nav-font-size" class="text" value="" />
         </p>
@@ -1233,14 +1337,14 @@
     </tr>
     <tr>
       <td>
-        <p><strong>Style</strong></p>
+        <p>Style</p>
         <p>
           <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="normal" checked="checked" /> Normal</div>
           <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="italic" /> Italic</div>
         </p>
       </td>
       <td>
-        <p><strong>Case</strong></p>
+        <p>Case</p>
         <p>
           <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="normal" checked="checked" /> Normal (as typed)</div>
           <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="lowercase" /> lowercase</div>
@@ -1264,13 +1368,13 @@
   <tbody>
     <tr>
       <td>
-        <p><strong>Custom font name</strong></p>
+        <p>Custom font name</p>
         <p>
           <input type="text" name="secondary-nav-font-custom" id="secondary-nav-font-custom" class="text" value="" />
         </p>
       </td>
       <td>
-        <p><strong>Fallback/default</strong></p>
+        <p>Fallback/default</p>
         <p>
           <select class="font" name="secondary-nav-font" id="secondary-nav-font">
             <option value="" selected="selected"></option>
@@ -1280,13 +1384,13 @@
     </tr>
     <tr>
       <td>
-        <p><strong>Weight</strong></p>
+        <p>Weight</p>
         <p>
           <input type="text" name="secondary-nav-font-weight" id="secondary-nav-font-weight" class="text" value="" />
         </p>
       </td>
       <td>
-        <p><strong>Size</strong></p>
+        <p>Size</p>
         <p>
           <input type="text" name="secondary-nav-font-size" id="secondary-nav-font-size" class="text" value="" />
         </p>
@@ -1294,14 +1398,14 @@
     </tr>
     <tr>
       <td>
-        <p><strong>Style</strong></p>
+        <p>Style</p>
         <p>
           <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="normal" checked="checked" /> Normal</div>
           <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="italic" /> Italic</div>
         </p>
       </td>
       <td>
-        <p><strong>Case</strong></p>
+        <p>Case</p>
         <p>
           <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="normal" checked="checked" /> Normal (as typed)</div>
           <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="lowercase" /> lowercase</div>
