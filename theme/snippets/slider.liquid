@@ -9,21 +9,22 @@
   {% assign slide = 'slide-' | append: c %}
   {% assign active_slide = slide | append: '-active' %}
   {% assign slide_image = slide | append: '-image' %}
-  {% assign slide_link = slide | append: '-link' %}
   {% assign slide_image = slide | append: '-image' %}
   {% assign slide_heading = slide | append: '-heading' %}
   {% assign slide_caption = slide | append: '-caption' %}
+  {% assign slide_button_text = slide | append: '-button-text' %}
+  {% assign slide_button_link = slide | append: '-button-link' %}
   
   {% if settings[active_slide] %}
     {% capture indicators %}{{ indicators }}<li data-target="#myCarousel" data-slide-to="{{s}}"{% if s == 0 %} class="active"{% endif %}></li>{% endcapture %}
-    {% capture image %}<img src="{{ slide_image | append: '.jpg' | asset_url }}" alt="{% if settings[slide_heading] %}{{ settings[slide_heading] }}{% else %}Slide {{s}}{% endif %}">{% endcapture %}
     {% capture items %}{{ items }}
       <div id="{{ slide }}" class="item{% if s == 0 %} active{% endif %}">
-        {% if settings[slide_link] %}<a href="{{ settings[slide_link] }}">{{ image }}</a>{% else %}{{ image }}{% endif %}
+        <img src="{{ slide_image | append: '.jpg' | asset_url }}" alt="{% if settings[slide_heading] %}{{ settings[slide_heading] }}{% else %}Slide {{s}}{% endif %}">
         {% if settings[slide_heading] or settings[slide_caption] %}
         <div class="carousel-caption">
           {% if settings[slide_heading] %}<h2>{{ settings[slide_heading] }}</h2>{% endif %}
           {% if settings[slide_caption] %}<p class="lead">{{ settings[slide_caption] }}</p>{% endif %}
+          {% if settings[slide_button_text] != blank and settings[slide_button_link] != blank %}<p><a href="{{ settings[slide_button_link] }}" class="btn btn-primary btn-lg">{{ settings[slide_button_text] }}</a></p>{% endif %}
         </div>
         {% endif %}
       </div>
@@ -32,99 +33,29 @@
   {% endif %}
 {% endfor %}
 
-<div id="myCarousel" class="carousel slide">
-  <!-- Indicators -->
-  {% if s > 1 %}
-  <ol class="carousel-indicators">
-    {{ indicators }}
-  </ol>
-  {% endif %}
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    {{ items }}
-  </div>
-
-  <!-- Controls -->
-  {% if s > 1 %}
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="fa fa-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="fa fa-chevron-right"></span>
-  </a>
-  {% endif %}
-</div>
-{% endif %}
-
-
-
-
-
-
-{% comment %}
-{% if settings.slide-active-1 or settings.slide-active-2 or settings.slide-active-3 or settings.slide-active-4 or settings.slide-active-5 %} <!-- !!! ??? -->
-<div id="myCarousel" class="carousel slide">
-  {% capture vars %}
-  {% assign slide_count = 0 %}
-  {% for i in (i..4) %}
-  {% assign s = i | plus: 1 %}
-  {% assign show = 'slide-active-' | append: s %}
-  {% if settings[show] %}
-  {% assign slide_count = slide_count | plus: 1 %}
-  {% endif %}
-  {% endfor %}
-  {% endcapture %}
-  {% if slide_count > 1 %}
-  <ol class="carousel-indicators">
-    {% for i in (i..4) %}{% capture vars %}
-    {% assign c = forloop.index %}
-    {% assign s = i | plus: 1 %}
-    {% assign show = 'slide-active-' | append: s %}{% endcapture %}
-    {% if settings[show] %}
-    <li data-target="#myCarousel" data-slide-to="{{ c }}" class="{% if c == 1 %}active{% endif %}"></li>
+{% unless items == '' %}
+  <div id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    {% if s > 1 %}
+    <ol class="carousel-indicators">
+      {{ indicators }}
+    </ol>
     {% endif %}
-    {% endfor %}
-  </ol>
-  {% endif %}
-  <div class="carousel-inner">
-    {% for i in (i..4) %}{% capture vars %}
-    {% assign s = i | plus: 1 %}
-    {% assign title = 'slide-heading-' | append: s %}
-    {% assign image = 'slide-image-' | append: s %}
-    {% assign show = 'slide-active-' | append: s %}
-    {% assign link = 'slide-link-' | append: s %}
-    {% assign cta = 'slide-call-to-action-' | append: s %}
-    {% assign caption = 'slide-caption-' | append: s %}{% endcapture %}
-    {% if settings[show] %}
-    {% assign c = forloop.index %}
-    <div class="item{% if c == 1 %} active{% endif %}">
-      {% unless settings[link] == blank %}
-      <a href="{{ settings[link] }}">
-        {% endunless %}
-        <img src="{{ image | append: '.jpg' | asset_url }}" alt="">
-        {% unless settings[link] == blank %}
-      </a>
-      {% endunless %}
-      {% if settings[title] != blank or settings[cta] != blank or settings[caption] != blank %}
-      <div class="carousel-caption clearfix">
-        <h2>{{ settings[title] }}</h2>
-        <p class="lead">{{ settings[caption] }}</p>
-        {% unless settings[link] == blank or settings[cta] == blank %}<p><a href="{{ settings[link] }}" class="btn btn-primary btn-lg">{{ settings[cta] }}</a></p>{% endunless %}
-      </div>
-      {% endif %}
+  
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      {{ items }}
     </div>
+  
+    <!-- Controls -->
+    {% if s > 1 %}
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="fa fa-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="fa fa-chevron-right"></span>
+    </a>
     {% endif %}
-    {% endfor %}
   </div>
-  {% if slide_count > 1 %}
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="icon-prev"></span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="icon-next"></span>
-  </a>
-  {% endif %}
-</div>
+{% endunless %}
 {% endif %}
-{% endcomment %}

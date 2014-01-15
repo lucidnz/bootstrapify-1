@@ -95,6 +95,37 @@ a.icon:hover {
   }
 }
 
+.carousel-control{
+  .fa{
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+  }
+  .fa-chevron-left{
+    margin-left: -10px;
+  }
+  .fa-chevron-right{
+    margin-right: -10px;
+  }
+}
+.carousel-caption{
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  text-align: left;
+  text-shadow: none;
+  padding: $padding-base-horizontal $padding-base-vertical $grid-gutter-width;
+  border: darken($gray-lighter, 6.5%) solid 1px;
+  border-radius: $border-radius-large; 
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 #admin_header{
   overflow: auto;
   margin-bottom: $grid-gutter-width;
@@ -213,5 +244,31 @@ a.icon:hover {
       padding: $padding-base-horizontal;
       border-radius: $border-radius-base;
     }
+  }
+  .carousel-control{
+    .fa{
+      font-size: 30px;
+      width: 30px;
+      height: 30px;
+      margin-top: -15px;
+    }
+    .fa-chevron-left{
+      margin-left: -15px;
+    }
+    .fa-chevron-right{
+      margin-right: -15px;
+    }
+  }
+  .carousel-caption{
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    bottom: 20px;
+    z-index: 10;
+    padding: 20px 0;
+    text-align: center;
+    text-shadow: $carousel-text-shadow;
+    background-color: transparent;
+    border: none;
   }
 }

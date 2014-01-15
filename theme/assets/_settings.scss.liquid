@@ -36,10 +36,13 @@ $footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.fo
 
 {% for i in (i..5) %}
   {% assign c = i | plus: 1 %}
-  {% assign slide = 'slide-' | append: c | append: '-dark' %}
-  ${{ slide }}: {% if settings[slide] != blank %}true{% else %}false{% endif %};
+  {% assign slide = 'slide-' | append: c %}
+  {% assign slide_dark = slide | append: '-dark' %}
+  {% assign slide_position = slide | append: '-position' %}
+  ${{ slide_dark }}: {% if settings[slide_dark] != blank %}true{% else %}false{% endif %};
+  ${{ slide_position }}: {% if settings[slide_position] != blank %}{{ settings[slide_position] }}{% else %}bottom center{% endif %};
 {% endfor %}
-$slides: $slide-1-dark $slide-2-dark $slide-3-dark $slide-4-dark $slide-5-dark;
+$slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($slide-3-dark $slide-3-position) ($slide-4-dark $slide-4-position) ($slide-5-dark $slide-5-position);
 
 /*
  * Functions and Mixins
@@ -192,11 +195,33 @@ $slides: $slide-1-dark $slide-2-dark $slide-3-dark $slide-4-dark $slide-5-dark;
   }
 }
 
-@mixin slide-colour($slide-dark, $text-colour){
+@mixin slide($slide-dark, $slide-position, $text-colour){
   .carousel-caption{
+    @if nth($slide-position, 1) == 'top' {
+      top: 0;
+      bottom: auto;
+    } @else if nth($slide-position, 1) == 'middle' {
+      top: 31%;
+      bottom: auto;
+    }
+    @if nth($slide-position, 2) == 'left' {
+      left: 10%;
+      right: 20%;
+      text-align: left;
+    } @else if nth($slide-position, 2) == 'right' {
+      left: 20%;
+      right: 10%;
+      text-align: right;
+    }
     color: slide-colour($slide-dark, $text-colour);
+    @if $slide-dark {
+      text-shadow: none;
+    }
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
       color: slide-colour($slide-dark, $text-colour);
+      @if $slide-dark {
+        text-shadow: none;
+      }
     }
   }
 }
@@ -290,12 +315,6 @@ body{
   }
 }
 
-@for $i from 1 through length($slides){
-  #slide-#{$i}{
-    @include slide-colour(nth($slides, $i), $body-text-colour);
-  }
-}
-
 .sidebar{
   @include background-colour($sidebar-background-colour);
   @include heading-colour($sidebar-heading-colour);
@@ -328,6 +347,18 @@ body{
   }
 }
 
+.carousel-caption{
+  color: $body-text-colour;
+  background-color: $body-background-colour;
+  border-color: darken-colour($body-background-colour, 7.5%);
+}
+.carousel-indicators li{
+  border-color: $body-text-colour;
+}
+.carousel-indicators .active{
+  background-color: $body-text-colour;
+}
+
 @media (min-width: 768px){
   .sidebar{
     background-color: transparent;
@@ -337,6 +368,23 @@ body{
         padding: 0;
       }
     }
+  }
+  
+  $i: 1;
+  @each $slide in $slides{
+    #slide-#{$i}{
+      @include slide(nth($slide, 1), nth($slide, 2), $body-text-colour);
+    }
+    $i: $i + 1;
+  }
+  .carousel-caption{
+    background-color: transparent;
+  }
+  .carousel-indicators li{
+    border-color: white;
+  }
+  .carousel-indicators .active{
+    background-color: white;
   }
 }
 

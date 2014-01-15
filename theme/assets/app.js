@@ -14,6 +14,11 @@ var preloadProductImages = function(){
 
 $(window).load(function(){
   preloadProductImages();
+  
+  $('.carousel').on('slid.bs.carousel', function () {
+    var imgHeight = $(this).find('.item.active img').height();
+    $('.carousel-control').css({maxHeight: imgHeight});
+  });
 });
 
 /* Product Image Switcher */
