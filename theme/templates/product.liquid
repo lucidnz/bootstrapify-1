@@ -11,9 +11,12 @@
 			<h1 class="page-header">{{ page_title }}</h1>
       
 			<div class="lead">
-				<span id="price-field"></span>
+			
+			  {% comment %}
+				<span id="price-field">{% include 'product-price' with product.price %}</span>
 				<span id="sale-field" class="label label-success">{% include '__localize' with 'On sale' %}</span>
 				<del id="compare-at-price-field" class="text-muted"></del>
+        {% endcomment %}
 			</div>
       
 			{% include 'product-add-to-cart-form' %}

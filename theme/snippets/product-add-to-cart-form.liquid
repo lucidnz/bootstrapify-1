@@ -1,3 +1,103 @@
+
+{% comment %}
+
+<hr>
+<div class="row">
+        {% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include 'product-add-to-cart-button' %}{% endif %}
+        {% comment %}
+        <div id="product-variants" class="col-sm-6">
+                <select id="product-select" name="id" class="form-control">
+                        {% for v in product.variants %}
+                        <option value="{{ v.id }}">{{ v.title }}</option>
+                        {% endfor %}
+                </select>
+        </div>
+        {% endcomment %}
+  
+        {% if product.options.size > 1 %}
+        <div id="product-variants" class="col-sm-6">
+                <select id="product-select" name='id' class="form-control">
+                        {% for v in product.variants %}
+                        <option value="{{ v.id }}">{{ v.title }}</option>
+                        {% endfor %}
+                </select>
+        </div>
+        {% elsif product.options.size == 1 and product.variants.size > 1 %}
+        <div id="product-variants" class="col-sm-6">
+                <label for="product-select" class="control-label">{{ product.options[0] }}:</label>
+                <select id="product-select" name='id' class="form-control">
+                        {% for v in product.variants %}
+                        <option value="{{ v.id }}">{{ v.title }}</option>
+                        {% endfor %}
+                </select>
+        </div>
+        {% else %}
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+        {% endif %}
+  
+        {% if settings.placement-of-add-to-cart-button == "below-variant-options" %}{% include 'product-add-to-cart-button' %}{% endif %}
+</div>
+<hr>
+{% if product.variants.size > 1 %}
+<script type="text/javascript">
+// <![CDATA[  
+
+var selectCallback = function(variant, selector) {
+        jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+        jQuery('#purchase').removeClass('btn-primary');
+        jQuery('#purchase').val('{% include '__localize' with 'Unavailable' %}');
+        // jQuery('#purchase').hide();
+        jQuery('#price-field').addClass('muted');      // set add-to-cart button to unavailable class and disable button
+        
+  if (variant && variant.available == true) {
+    jQuery('.single-option-selector').addClass('form-control'); 
+        jQuery('#price-field').html(Shopify.formatMoney(variant.price, "<span class=\"money\">{{ shop.money_with_currency_format | remove: '<span class="money">' | remove: '</span>' }}</span>"));
+    if (variant.compare_at_price > variant.price) {
+      jQuery('#compare-at-price-field').html(Shopify.formatMoney(variant.compare_at_price, "<span class=\"money\">{{ shop.money_with_currency_format | remove: '<span class="money">' | remove: '</span>' }}</span>"));  // update compare-at-price field
+      jQuery('#sale-field').show(); // update sale-field message
+    } else {
+      jQuery('#compare-at-price-field').text('');  // clear compare-at-price field
+      jQuery('#sale-field').hide(); // clear sale-field message
+    }
+      
+    if (variant.available == true) {
+      // jQuery('#purchase').show();
+      jQuery('#purchase').addClass('btn-primary');
+      jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+      jQuery('#purchase').val('{% include '__localize' with 'Add to cart' %}');
+      jQuery('#price-field').removeClass('muted');      // set add-to-cart button to unavailable class and disable button
+    } else {
+      jQuery('#purchase').val('{% include '__localize' with 'Sold out' %}');
+    }
+  } else {
+    jQuery('#compare-at-price-field').text('');  // clear compare-at-price field
+    jQuery('#price-field').text('');  // update price field
+    jQuery('#sale-field').hide(); // clear sale-field message
+  } 
+};
+
+// initialize multi-selector for product
+jQuery(function() {
+        {% if product.variants.size > 1 or product.options.size > 1 %}
+        new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+        {% assign found_one_in_stock = false %}
+        {% for variant in product.variants %}
+        {% if variant.available and found_one_in_stock == false %}
+        {% assign found_one_in_stock = true %}
+        {% for option in product.options %}
+        jQuery('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+});
+
+// ]]>
+</script>
+{% endif %}
+
+<!-- =================================================*+========= -->
+
 <hr>
 <div class="row">
   {% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include 'product-add-to-cart-button' %}{% endif %}
@@ -53,3 +153,4 @@ $(function() {
 });
 // ]]>
 </script>
+{% endcomment %}

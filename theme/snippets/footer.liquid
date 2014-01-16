@@ -15,7 +15,7 @@
       <ul class="nav navbar-nav navbar-right">
         {% for l in linklists.footer.links %}<li{% if l.active %} class="active"{% endif %}><a href="{{ l.url }}"{% unless l.active %} class="text-muted"{% endunless %} title="Go to {{ l.title }}">{{ l.title }}</a></li>{% endfor %}
       </ul>
-      {% include 'currency-switcher' %}
+      {% unless settings.currency-switcher-position == 'navbar' %}{% include 'currency-switcher' %}{% endunless %}
       <div class="navbar-left navbar-text">
         <small class="text-muted">
           &copy;{{ 'now' | date: '%Y' }}&nbsp;<strong><a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. <br class="visible-sm">

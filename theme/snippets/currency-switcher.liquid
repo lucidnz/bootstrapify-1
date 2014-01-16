@@ -2,8 +2,12 @@
 <ul class="nav pull-right text-muted">
   <li class="navbar-text">
     <small id="current-currency">
-      All prices in <strong><span class="selected-currency">&nbsp;&nbsp;&nbsp;</span></strong> 
+      {% if settings.currency-switcher-position == 'navbar' %}
+        <span id="currency-picker-toggle"><strong><a href="#" class="selected-currency">{{ shop.currency }}</a></strong></span>
+      {% else %}
+      All prices in <strong><span class="selected-currency">{{ shop.currency }}</span></strong> 
       <span id="currency-picker-toggle">(<a href="#" class="text-muted">change</a>)</span>
+      {% endif %}
     </small>
     <span id="currencies-picker" class="navbar-form" style="display:none;">
       &nbsp;<select id="currencies" class="input-auto" name="currencies">

@@ -985,10 +985,22 @@
   
   <table>
     <tr>
-      <th><label for="default-currency">Default currency</label></th>
+      <th><label for="currency-switcher-default">Currency switcher default</label></th>
       <td>
-        <input type="text" name="default-currency" id="default-currency" class="text" value="" />
-        <small><p>E.g., NZD</p></small>
+        <input type="text" name="currency-switcher-default" id="currency-switcher-default" class="text" value="" />
+        <small><p> If left blank the currency switcher will be set to your shops <span style="line-height: 1.5;">default </span><span style="line-height: 1.5;">currency.</span></p></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="currency-switcher-position">Currency switcher position</label></th>
+      <td>
+           <div><input type="radio" name="currency-switcher-position" id="currency-switcher-position" value="navbar" checked="checked" /> Navbar</div>
+           <div><input type="radio" name="currency-switcher-position" id="currency-switcher-position" value="footer-navbar" /> Footer navbar</div>
+           
+        <small><p> </p></small>
       </td>
     </tr>
   </table>
