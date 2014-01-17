@@ -1,7 +1,28 @@
+<div class="row">
+  <div id="product-variants" class="col-sm-6">
+    <label for="product-select" class="control-label"></label>
+    <select id="product-select" name="id" class="form-control">
+      {% for v in product.variants %}
+      <option value="{{ v.id }}">{{ v.title }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  {% include 'product-add-to-cart-button' %}
+</div>
+<script>
+  var selectCallback = function(variant, selector){
+    console.log('selectCallback');
+  };
+
+  jQuery(function() {
+    new Shopify.LucidOptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, selectorDivClass: 'form-group' });
+  });
+</script>
+
+
 
 {% comment %}
 
-<hr>
 <div class="row">
         {% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include 'product-add-to-cart-button' %}{% endif %}
         {% comment %}
@@ -16,6 +37,7 @@
   
         {% if product.options.size > 1 %}
         <div id="product-variants" class="col-sm-6">
+        <label for="product-select" class="control-label">{{ product.options[0] }}:</label>
                 <select id="product-select" name='id' class="form-control">
                         {% for v in product.variants %}
                         <option value="{{ v.id }}">{{ v.title }}</option>
