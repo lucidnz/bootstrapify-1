@@ -1,0 +1,2 @@
+{% if product-thumb-price.price_varies %}<small class="text-muted">{% include '__localize' with 'from' %}</small>&nbsp;{% include 'product-price' with product-thumb-price.price_min %}{% else %}{% include 'product-price' with product-thumb-price.price %}{% endif %}
+{% include 'product-on-sale' with product-thumb-price %}
