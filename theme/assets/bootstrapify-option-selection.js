@@ -6,12 +6,13 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
   // override markup vars
   this.b_selectorDivClass       = 'selector-wrapper form-group';
   this.b_selectorClass          = 'single-option-selector form-control';
+  this.b_linkOptions            = options.linkOptions || false;
   // call base constructor
   Shopify.BootstrapifyOptionSelectors.baseConstructor.call(this, existingSelectorId, options);
   // apply markup
   this.bootstrapifyMarkup();
   // linked options
-  if(this.product.available && this.product.options.length > 1){
+  if(this.b_linkOptions && this.product.available && this.product.options.length > 1){
     Shopify.linkOptionSelectors(this.product);
   }
 };

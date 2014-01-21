@@ -39,7 +39,6 @@
     var changeCurrency = function(oldCurrency, newCurrency){
       Currency.convertAll(oldCurrency, newCurrency);
       jQuery('.selected-currency').text(Currency.currentCurrency);
-      console.log('Currency.currentCurrency: ' + Currency.currentCurrency);
     };
     
     changeCurrency(shopCurrency, currentCurrency);
