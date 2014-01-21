@@ -1,6 +1,5 @@
 <div class="row">
   <div id="product-variants" class="col-sm-6">
-    <label for="product-select" class="control-label"></label>
     <select id="product-select" name="id" class="form-control">
       {% for v in product.variants %}
       <option value="{{ v.id }}">{{ v.title }}</option>
@@ -15,7 +14,8 @@
   };
 
   jQuery(function() {
-    new Shopify.LucidOptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, selectorDivClass: 'form-group' });
+    // option selectors with boostrap markup and link options
+    new Shopify.BootstrapifyOptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
   });
 </script>
 
