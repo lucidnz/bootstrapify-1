@@ -5079,6 +5079,13 @@ aside .page-header:first-child, aside .brand:first-child, .main-content .page-he
 a.icon:hover {
   text-decoration: none; }
 
+#product-form #quantity {
+  max-width: 5em; }
+#product-form #purchase {
+  margin-top: 30px; }
+#product-form .product-price {
+  font-size: 20px; }
+
 #currencies-picker {
   padding: 0; }
 
@@ -5229,6 +5236,9 @@ a.icon:hover {
   margin: 0; }
 
 @media (min-width: 768px) {
+  #product-form .product-price {
+    font-size: 21px; }
+
   .sidebar {
     padding-top: 0;
     padding-bottom: 0;

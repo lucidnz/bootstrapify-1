@@ -52,7 +52,7 @@
     var original_selectCallback = window.selectCallback;
     var selectCallback = function(variant, selector) {
       original_selectCallback(variant, selector);
-      changeCurrency(shopCurrency, Currency.currentCurrency); // ,jQuery('[name=currencies]').val() ???
+      changeCurrency(shopCurrency, Currency.currentCurrency);
     };
   </script>
 {% endif %}

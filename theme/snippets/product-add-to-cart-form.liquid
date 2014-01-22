@@ -1,13 +1,20 @@
 <div class="row">
-  <div id="product-variants" class="col-sm-6">
-    <select id="product-select" name="id" class="form-control">
-      {% for v in product.variants %}
-      <option value="{{ v.id }}">{{ v.title }}</option>
-      {% endfor %}
-    </select>
+  <div class="col-sm-12 col-md-8">
+    <div class="form-group">
+      <label for="quantity">Qty: </label> 
+      <input class="form-control" min="1" type="number" id="quantity" name="quantity" value="1" />
+    </div>
+    <div id="product-variants">
+      <select id="product-select" name="id" class="form-control">
+        {% for v in product.variants %}
+        <option value="{{ v.id }}">{{ v.title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="btn btn-disabled btn-block btn-lg" />
   </div>
-  {% include 'product-add-to-cart-button' %}
 </div>
+
 <script>
   var selectCallback = function(variant, selector){
     // set vars so we dont need to call the elements repeatedly

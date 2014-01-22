@@ -89,19 +89,6 @@
     </tr>
   </table>
   
-  <table>
-    <tr>
-      <th><label for="logo-placement">Logo placement</label></th>
-      <td>
-           <div><input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar</div>
-           <div><input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar</div>
-           <div><input type="radio" name="logo-placement" id="logo-placement" value="above-navbar" /> Above navbar</div>
-           <div><input type="radio" name="logo-placement" id="logo-placement" value="below-navbar" /> Below navbar</div>
-           
-      </td>
-    </tr>
-  </table>
-  
 </fieldset>
 <fieldset>
   <legend>Cart</legend>
@@ -241,19 +228,6 @@
       <th><label for="navbar-link-colour">Navbar link colour</label></th>
       <td>
         <input type="text" name="navbar-link-colour" id="navbar-link-colour" class="color" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="navbar-placement">Navbar placement</label></th>
-      <td>
-           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="fixed-to-top" checked="checked" /> Fixed to top</div>
-           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="static-top" /> Static top</div>
-           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="main-content" /> Main content</div>
-           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="fixed-to-bottom" /> Fixed to bottom</div>
-           
       </td>
     </tr>
   </table>
@@ -464,16 +438,6 @@
            <div><input type="radio" name="footer-columns" id="footer-columns" value="3" /> 3</div>
            <div><input type="radio" name="footer-columns" id="footer-columns" value="4" /> 4</div>
            
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="fix-footer-navbar">Fix footer navbar</label></th>
-      <td>
-        <input type="checkbox" name="fix-footer-navbar" id="fix-footer-navbar" value="1" /> Yes
-        <small>This setting will be overridden if the main navbar is fixed to the bottom of the window.</small>
       </td>
     </tr>
   </table>
@@ -926,6 +890,75 @@
     </tr>
   </table>
   
+</fieldset>
+<fieldset>
+  <legend>Layout</legend>
+  
+  <table>
+    <tr>
+      <th><label for="fix-footer-navbar">Fix footer navbar</label></th>
+      <td>
+        <input type="checkbox" name="fix-footer-navbar" id="fix-footer-navbar" value="1" /> Yes
+        <small>This setting will be overridden if the main navbar is fixed to the bottom of the window.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="logo-placement">Logo placement</label></th>
+      <td>
+           <div><input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar</div>
+           <div><input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar</div>
+           <div><input type="radio" name="logo-placement" id="logo-placement" value="above-navbar" /> Above navbar</div>
+           <div><input type="radio" name="logo-placement" id="logo-placement" value="below-navbar" /> Below navbar</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="navbar-placement">Navbar placement</label></th>
+      <td>
+           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="fixed-to-top" checked="checked" /> Fixed to top</div>
+           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="static-top" /> Static top</div>
+           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="main-content" /> Main content</div>
+           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="fixed-to-bottom" /> Fixed to bottom</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="product-page-image-placement">Product page image placement</label></th>
+      <td>
+           <div><input type="radio" name="product-page-image-placement" id="product-page-image-placement" value="left" checked="checked" /> Left</div>
+           <div><input type="radio" name="product-page-image-placement" id="product-page-image-placement" value="right" /> Right</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-sidebar">Show sidebar</label></th>
+      <td>
+        <input type="checkbox" name="show-sidebar" id="show-sidebar" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-sidebar-on-homepage">Show sidebar on Homepage</label></th>
+      <td>
+        <input type="checkbox" name="show-sidebar-on-homepage" id="show-sidebar-on-homepage" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
   <table>
     <tr>
       <th><label for="slider-width">Slider width</label></th>
@@ -1037,42 +1070,7 @@
   
 </fieldset>
 <fieldset>
-  <legend>Products</legend>
-  
-  <table>
-    <tr>
-      <th><label for="placement-of-add-to-cart-button">Placement of add to cart button</label></th>
-      <td>
-           <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-variant-options" checked="checked" /> Below variant options</div>
-           <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-top-of-page" /> At top of page</div>
-           <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="below-description-above-meta-data" /> Below description (above meta data)</div>
-           <div><input type="radio" name="placement-of-add-to-cart-button" id="placement-of-add-to-cart-button" value="at-bottom-of-page" /> At bottom of page</div>
-           
-      </td>
-    </tr>
-  </table>
-  
-</fieldset>
-<fieldset>
   <legend>Sidebar</legend>
-  
-  <table>
-    <tr>
-      <th><label for="show-sidebar">Show sidebar</label></th>
-      <td>
-        <input type="checkbox" name="show-sidebar" id="show-sidebar" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="show-sidebar-on-homepage">Show sidebar on Homepage</label></th>
-      <td>
-        <input type="checkbox" name="show-sidebar-on-homepage" id="show-sidebar-on-homepage" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
   
   <table>
     <tr>

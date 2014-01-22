@@ -240,7 +240,16 @@ body{
       padding-bottom: $body_navbar_padding - 2px;
     }
   {% endif %}
-  {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}.brand{ margin-bottom: 0; }{% endif %}
+  {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}
+  .brand{
+    margin-bottom: 0;
+    @if $navbar-background-colour == $body-background-colour {
+      border: none;
+    } @else {
+      border-color: darken-colour($footer-background-colour, 7.5%);
+    }
+  }
+  {% endif %}
   
   /* Design and colour schemes */
   @if $site-background-image {
@@ -266,7 +275,11 @@ body{
   @include background-colour($navbar-background-colour);
   @include text-colour($navbar-text-colour, $navbar-background-colour);
   @include link-colour($navbar-link-colour, $navbar-background-colour);
-  border-color: darken-colour($navbar-background-colour, 7.5%);
+  @if $navbar-background-colour == $body-background-colour {
+    border: none;
+  } @else {
+    border-color: darken-colour($footer-background-colour, 7.5%);
+  }
   .navbar-nav {
     > li > a{
       color: $navbar-link-colour;

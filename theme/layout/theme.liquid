@@ -57,12 +57,13 @@
           {% if settings.slider-width == "main-content-width" and settings.show-sidebar and template == "index" %}{% include 'slider' %}{% endif %}
           {{ content_for_layout }}
         </div>
+        
         {% if settings.show-sidebar %}
-          {% if template == "index" %}
-            {% if settings.show-sidebar-on-homepage %}{% include 'sidebar' %}{% endif %}
-          {% else %}
+          {% unless settings.show-sidebar-on-homepage == blank and template == "index" %}
             {% include 'sidebar' %}
-          {% endif %}
+          {% endunless %}
+        {% elsif settings.show-sidebar-on-homepage and template == "index" %}
+          {% include 'sidebar' %}
         {% endif %}
       </div>
     </div>

@@ -44,6 +44,18 @@ a.icon:hover {
   @extend .text-right;
 }
 
+#product-form{
+  #quantity{
+    max-width: 5em;
+  }
+  #purchase{
+    margin-top: $grid-gutter-width;
+  }
+  .product-price{
+    font-size: floor($font-size-large * 1.15);
+  }
+}
+
 #currencies-picker {
 	padding: 0;
 }
@@ -236,6 +248,10 @@ a.icon:hover {
 }
 
 @media (min-width: 768px){
+  #product-form .product-price{
+    font-size: floor($font-size-large * 1.2);
+  }
+  
   .sidebar{
     padding-top: 0;
     padding-bottom: 0;
