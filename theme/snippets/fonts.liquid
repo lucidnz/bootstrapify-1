@@ -6,4 +6,4 @@
 {% if settings.sidebar-nav-font-custom != '' %}{{ settings.sidebar-nav-font-custom | replace: ' ','+' }}{% if settings.sidebar-nav-font-custom and settings.sidebar-nav-font-weight != '' %}:{{ settings.sidebar-nav-font-weight }}{% endif %}|{% endif %}
 {% endcapture %}
 {% capture flist %}{{ flist | strip_newlines }}{% endcapture %}
-{% if flist != '' %}<link href='http://fonts.googleapis.com/css?family={{ flist }}' rel='stylesheet' type='text/css'>{% endif %}
+{% if flist != '' %}<link href='//fonts.googleapis.com/css?family={{ flist }}' rel='stylesheet' type='text/css'>{% endif %}
