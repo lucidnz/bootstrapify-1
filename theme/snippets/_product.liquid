@@ -1,5 +1,5 @@
 {% include '__product-image' %}
-<div class="{% include '__thumbnail-span' %}">
+<div class="{% include '_product-css-class' %}" {% include '_product-data-attr' with _product %}>
   <div class="thumbnail">
     {{ image }}
     <div class="caption clearfix">
