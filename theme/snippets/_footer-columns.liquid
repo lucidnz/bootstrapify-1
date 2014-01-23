@@ -2,12 +2,9 @@
   {% assign footer_blog = 'column-' | append: i | append: '-blog' %}{% assign footer_blog = settings[footer_blog] %}
   {% unless blogs[footer_blog] == empty %}
   <h4>{{ blogs[footer_blog].title }}</h4>
-
-  <ul class="nav nav-pills nav-stacked">
-    {% for a in blogs[footer_blog].articles %}
-    <li{% if a.url == article.url %} class="active"{% endif %}>{{ a.title | link_to: a.url, a.title }}</li>
+    {% for a in blogs[footer_blog].articles limit:settings.blog-list-limit %}
+    {% include '_article-excerpt' %}
     {% endfor %}
-  </ul>
   {% endunless %}
         
   {% assign footer_menu = 'column-' | append: i | append: '-menu' %}{% assign footer_menu = settings[footer_menu] %}
@@ -20,18 +17,18 @@
     {% endfor %}
   </ul>
   {% endunless %}
-        
-  {% assign newsletter_column = 'column-' | append: i %}
-  {% if settings.newsletter-signup-placement == newsletter_column %}
-  <div class="footer-form">
-    {% include 'newsletter-signup-form' %}
-  </div>
-  {% endif %}
                 
-  {% assign social_links_column = 'column-' | append: i %}
+  {% assign social_links_column = 'footer-column-' | append: i %}
   {% if settings.social-links-placement == social_links_column %}
   <div class="clearfix social-icons">
     {% include 'footer-social-links' %}
+  </div>
+  {% endif %}
+        
+  {% assign newsletter_column = 'footer-column-' | append: i %}
+  {% if settings.newsletter-signup-placement == newsletter_column %}
+  <div class="footer-form">
+    {% include 'newsletter-signup-form' with 'footer' %}
   </div>
   {% endif %}
         

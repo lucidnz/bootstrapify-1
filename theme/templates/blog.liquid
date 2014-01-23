@@ -4,8 +4,9 @@
 {% for a in blog.articles %}
 <article>
   <h2>{{ a.title | link_to: a.url, a.title }}</h2>
-  <p class="text-muted">{{ a.published_at | date: settings.short-date-format }}{% if settings.show-author %} by {{ a.author }}{% endif %}</p>
+  <p class="text-muted">{{ a.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ a.author }}{% endif %}</p>
   {% if settings.truncate-words == '' %}{{ a.content }}{% else %}{{ a.content | truncatewords: settings.truncate-words }}{% endif %}
+  <p><a href="{{ a.url }}">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></p>
 </article>
 {% endfor %}
 

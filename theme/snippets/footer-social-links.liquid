@@ -1,13 +1,24 @@
-{% assign icons = "twitter facebook pinterest google-plus envelope" | split: ' ' %}
+{% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
+{% for link in social_links %}
+  {% assign social_link = link | prepend: 'social-links-' %}
+  {% unless settings[social_link] == blank %}
+    {% assign link_href = settings[social_link] %}
+    {% assign icon = link %}
 
-{% for i in icons %}{% unless settings[i] == blank %}
-<a href="{% if settings[i] contains '@' %}mailto:{% endif %}{{ settings[i] }}" class="fa-stack fa-lg text-muted"{% unless settings[i] contains '@' %} target="_blank"{% endunless %}>
-	<i class="fa fa-circle fa-stack-2x"></i>
-	<i class="fa fa-{{ i }} fa-stack-1x fa-inverse"></i>
-</a>{% endunless %}
+    {% case link %}
+    {% when 'email' %}
+      {% assign link_href = settings[social_link] | prepend: 'mailto:' %}
+      {% assign icon = 'envelope' %}
+    {% when 'rss' %}
+      {% assign blog_rss = settings[social_link] %}
+      {% assign link_href = blogs[blog_rss].url | append: '.atom' %}
+    {% when 'vimeo' %}
+      {% assign icon = icon | append: '-square' %}
+    {% endcase %}
+    
+    <a href="{{ link_href }}" class="fa-stack fa-lg text-muted">
+    	<i class="fa fa-circle fa-stack-2x"></i>
+    	<i class="fa fa-{{ icon }} fa-stack-1x fa-inverse"></i>
+    </a>
+  {% endunless %}
 {% endfor %}
-
-{% if settings.rss %}<a href="#" class="fa-stack fa-lg text-muted">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-</a>{% endif %}

@@ -1,4 +1,4 @@
-<h4 class="page-header">{% include '__localize' with 'Join our newsletter' %}</h4>
+<h4 {% unless newsletter-signup-form == 'footer' %}class="page-header"{% endunless %}>{% include '__localize' with 'Join our newsletter' %}</h4>
 <div class="form-inline">
   {% form 'customer' %}
   <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">

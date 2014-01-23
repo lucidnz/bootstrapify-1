@@ -18,8 +18,8 @@
     {% unless blogs[settings.sidebar-blog] == empty %}
     <h4 class="page-header">{{ blogs[settings.sidebar-blog].title }}</h4>
   
-    {% for a in blogs[settings.sidebar-blog].articles %}
-    {% include '_sidebar-articles' %}
+    {% for a in blogs[settings.sidebar-blog].articles limit:settings.blog-list-limit %}
+    {% include '_article-excerpt' %}
     {% endfor %}
     
     {% endunless %}
@@ -33,6 +33,6 @@
     {% endif %}
     
     <hr>
-    {% include '_signin-modal' %}
+    {% comment %}{% include '_signin-modal' %}{% endcomment %}
   </div>
 </aside>

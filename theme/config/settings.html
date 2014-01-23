@@ -20,6 +20,19 @@
   
   <table>
     <tr>
+      <th><label for="blog-list-limit">Blog list limit</label></th>
+      <td>
+           <div><input type="radio" name="blog-list-limit" id="blog-list-limit" value="1" checked="checked" /> 1</div>
+           <div><input type="radio" name="blog-list-limit" id="blog-list-limit" value="2" /> 2</div>
+           <div><input type="radio" name="blog-list-limit" id="blog-list-limit" value="3" /> 3</div>
+           
+        <small><p>Number of blog articles shown in the footer and sidebar blog lists.</p></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="round-avatars">Round avatars</label></th>
       <td>
         <input type="checkbox" name="round-avatars" id="round-avatars" value="1" /> Yes
@@ -324,108 +337,140 @@
   
   <table>
     <tr>
-      <th><label for="column-1-blog">1st column blog</label></th>
+      <th><label for="column-1">Column 1</label></th>
       <td>
-        <select class="blog" name="column-1-blog" />
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Blog</p>
+        <p>
+          <select class="blog" name="column-1-blog" />
+        </p>
+      </td>
+      <td>
+        <p>Menu</p>
+        <p>
+          <select class="linklist" name="column-1-menu" />
+        </p>
+      </td>
+    </tr>
+    <tr>  
+      <td colspan="2">
+        <p>Text</p>
+        <p>
+          <textarea name="column-1-text" id="column-1-text"></textarea>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <small>The footer can have <em>up to</em> four columns which can contain none, one or all of a <strong>blog</strong>, <strong>menu</strong> (linklist), <strong>html text</strong> or <strong>social media icons</strong>.</small>
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="column-1-menu">1st column menu</label></th>
+      <th><label for="column-2">Column 2</label></th>
       <td>
-        <select class="linklist" name="column-1-menu" />
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Blog</p>
+        <p>
+          <select class="blog" name="column-2-blog" />
+        </p>
+      </td>
+      <td>
+        <p>Menu</p>
+        <p>
+          <select class="linklist" name="column-2-menu" />
+        </p>
+      </td>
+    </tr>
+    <tr>  
+      <td colspan="2">
+        <p>Text</p>
+        <p>
+          <textarea name="column-2-text" id="column-2-text"></textarea>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <small>The footer can have <em>up to</em> four columns which can contain none, one or all of a <strong>blog</strong>, <strong>menu</strong> (linklist), <strong>html text</strong> or <strong>social media icons</strong>.</small>
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="column-1-text">1st column text</label></th>
+      <th><label for="column-3">Column 3</label></th>
       <td>
-        <textarea name="column-1-text" id="column-1-text"></textarea>
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Blog</p>
+        <p>
+          <select class="blog" name="column-3-blog" />
+        </p>
+      </td>
+      <td>
+        <p>Menu</p>
+        <p>
+          <select class="linklist" name="column-3-menu" />
+        </p>
+      </td>
+    </tr>
+    <tr>  
+      <td colspan="2">
+        <p>Text</p>
+        <p>
+          <textarea name="column-3-text" id="column-3-text"></textarea>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <small>The footer can have <em>up to</em> four columns which can contain none, one or all of a <strong>blog</strong>, <strong>menu</strong> (linklist), <strong>html text</strong> or <strong>social media icons</strong>.</small>
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="column-2-blog">2nd column blog</label></th>
+      <th><label for="column-4">Column 4</label></th>
       <td>
-        <select class="blog" name="column-2-blog" />
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Blog</p>
+        <p>
+          <select class="blog" name="column-4-blog" />
+        </p>
+      </td>
+      <td>
+        <p>Menu</p>
+        <p>
+          <select class="linklist" name="column-4-menu" />
+        </p>
       </td>
     </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="column-2-menu">2nd column menu</label></th>
-      <td>
-        <select class="linklist" name="column-2-menu" />
+    <tr>  
+      <td colspan="2">
+        <p>Text</p>
+        <p>
+          <textarea name="column-4-text" id="column-4-text"></textarea>
+        </p>
       </td>
     </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="column-2-text">2nd column text</label></th>
-      <td>
-        <textarea name="column-2-text" id="column-2-text"></textarea>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="column-3-blog">3rd column blog</label></th>
-      <td>
-        <select class="blog" name="column-3-blog" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="column-3-menu">3rd column menu</label></th>
-      <td>
-        <select class="linklist" name="column-3-menu" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="column-3-text">3rd column text</label></th>
-      <td>
-        <textarea name="column-3-text" id="column-3-text"></textarea>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="column-4-blog">4th column blog</label></th>
-      <td>
-        <select class="blog" name="column-4-blog" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="column-4-menu">4th column menu</label></th>
-      <td>
-        <select class="linklist" name="column-4-menu" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="column-4-text">4th column text</label></th>
-      <td>
-        <textarea name="column-4-text" id="column-4-text"></textarea>
+  </tbody>
+</table>
+        <small>The footer can have <em>up to</em> four columns which can contain none, one or all of a <strong>blog</strong>, <strong>menu</strong> (linklist), <strong>html text</strong> or <strong>social media icons</strong>.</small>
       </td>
     </tr>
   </table>
@@ -1096,33 +1141,6 @@
   
   <table>
     <tr>
-      <th><label for="envelope">Address for email icon</label></th>
-      <td>
-        <input type="text" name="envelope" id="envelope" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="facebook">Facebook URL</label></th>
-      <td>
-        <input type="text" name="facebook" id="facebook" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="google-plus">Google+ URL</label></th>
-      <td>
-        <input type="text" name="google-plus" id="google-plus" class="text" value="" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="newsletter-signup-placement">Newsletter signup placement</label></th>
       <td>
            <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-1" checked="checked" /> Footer column 1</div>
@@ -1137,18 +1155,133 @@
   
   <table>
     <tr>
-      <th><label for="pinterest">Pinterest URL</label></th>
+      <th><label for="social-links">Social links</label></th>
       <td>
-        <input type="text" name="pinterest" id="pinterest" class="text" value="" />
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Dribbble</p>
+        <p>
+          <input type="text" name="social-links-dribbble" id="social-links-dribbble" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Email</p>
+        <p>
+          <input type="text" name="social-links-email" id="social-links-email" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Facebook</p>
+        <p>
+          <input type="text" name="social-links-facebook" id="social-links-facebook" class="text" value="" />
+        </p>
       </td>
     </tr>
-  </table>
-  
-  <table>
     <tr>
-      <th><label for="rss">RSS social icon</label></th>
       <td>
-        <input type="checkbox" name="rss" id="rss" value="1" /> Yes
+        <p>Flickr</p>
+        <p>
+          <input type="text" name="social-links-flickr" id="social-links-flickr" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Foursquare</p>
+        <p>
+          <input type="text" name="social-links-foursquare" id="social-links-foursquare" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Github</p>
+        <p>
+          <input type="text" name="social-links-github" id="social-links-github" class="text" value="" />
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Google+</p>
+        <p>
+          <input type="text" name="social-links-google-plus" id="social-links-google-plus" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Instagram</p>
+        <p>
+          <input type="text" name="social-links-instagram" id="social-links-instagram" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>LinkedIn</p>
+        <p>
+          <input type="text" name="social-links-linkedin" id="social-links-linkedin" class="text" value="" />
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Pinterest</p>
+        <p>
+          <input type="text" name="social-links-pinterest" id="social-links-pinterest" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>RSS</p>
+        <p>
+          <select class="blog" name="social-links-rss" />
+        </p>
+      </td>
+      <td>
+        <p>Skype</p>
+        <p>
+          <input type="text" name="social-links-skype" id="social-links-skype" class="text" value="" />
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Stack Exchange</p>
+        <p>
+          <input type="text" name="social-links-stack-exchange" id="social-links-stack-exchange" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Stack Overflow</p>
+        <p>
+          <input type="text" name="social-links-stack-overflow" id="social-links-stack-overflow" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Tumblr</p>
+        <p>
+          <input type="text" name="social-links-tumblr" id="social-links-tumblr" class="text" value="" />
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Twitter</p>
+        <p>
+          <input type="text" name="social-links-twitter" id="social-links-twitter" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Vimeo</p>
+        <p>
+          <input type="text" name="social-links-vimeo" id="social-links-vimeo" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>You Tube</p>
+        <p>
+          <input type="text" name="social-links-youtube" id="social-links-youtube" class="text" value="" />
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <small>Enter the url for your social accounts into the fields for each service you want to show. Services left blank wont be shown.</small>
       </td>
     </tr>
   </table>
@@ -1163,15 +1296,6 @@
            <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-4" /> Footer column 4</div>
            <div><input type="radio" name="social-links-placement" id="social-links-placement" value="sidebar" /> Sidebar</div>
            
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="twitter">Twitter URL</label></th>
-      <td>
-        <input type="text" name="twitter" id="twitter" class="text" value="" />
       </td>
     </tr>
   </table>
