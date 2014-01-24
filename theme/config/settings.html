@@ -1306,7 +1306,16 @@
   
   <table>
     <tr>
-      <th><label for="body-font">Body font</label></th>
+      <th><label for="custom-font-embed-code">Custom font embed code</label></th>
+      <td>
+        <textarea name="custom-font-embed-code" id="custom-font-embed-code"></textarea>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="font-body">Font body</label></th>
       <td>
         <table class="standard-table">
   <tbody>
@@ -1314,13 +1323,13 @@
       <td>
         <p>Custom font name</p>
         <p>
-          <input type="text" name="body-font-custom" id="body-font-custom" class="text" value="" />
+          <input type="text" name="font-body-custom" id="font-body-custom" class="text" value="" />
         </p>
       </td>
       <td>
         <p>Fallback/default</p>
         <p>
-          <select class="font" name="body-font" id="body-font">
+          <select class="font" name="font-body" id="font-body">
             <option value="" selected="selected"></option>
           </select>
         </p>
@@ -1330,13 +1339,13 @@
       <td>
         <p>Weight</p>
         <p>
-          <input type="text" name="body-font-weight" id="body-font-weight" class="text" value="" />
+          <input type="text" name="font-body-weight" id="font-body-weight" class="text" value="" />
         </p>
       </td>
       <td>
-        <p>Size</p>
+        <p>Size (e.g. 14px)</p>
         <p>
-          <input type="text" name="body-font-size" id="body-font-size" class="text" value="" />
+          <input type="text" name="font-body-size" id="font-body-size" class="text" value="" />
         </p>
       </td>
     </tr>
@@ -1344,17 +1353,17 @@
       <td>
         <p>Style</p>
         <p>
-          <div><input type="radio" name="body-font" id="body-font" value="normal" checked="checked" /> Normal</div>
-          <div><input type="radio" name="body-font" id="body-font" value="italic" /> Italic</div>
+          <div><input type="radio" name="font-body-style" id="font-body-style" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="font-body-style" id="font-body-style" value="italic" /> Italic</div>
         </p>
       </td>
       <td>
         <p>Case</p>
         <p>
-          <div><input type="radio" name="body-font" id="body-font" value="normal" checked="checked" /> Normal (as typed)</div>
-          <div><input type="radio" name="body-font" id="body-font" value="lowercase" /> lowercase</div>
-          <div><input type="radio" name="body-font" id="body-font" value="uppercase" /> UPPERCASE</div>
-          <div><input type="radio" name="body-font" id="body-font" value="title-case" /> Title Case</div>
+          <div><input type="radio" name="font-body-case" id="font-body-case" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="font-body-case" id="font-body-case" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="font-body-case" id="font-body-case" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="font-body-case" id="font-body-case" value="title-case" /> Title Case</div>
         </p>
       </td>
     </tr>
@@ -1366,16 +1375,7 @@
   
   <table>
     <tr>
-      <th><label for="heading-letterpress">Heading "letterpress"</label></th>
-      <td>
-        <input type="checkbox" name="heading-letterpress" id="heading-letterpress" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="heading-font">Heading font</label></th>
+      <th><label for="font-heading">Font heading</label></th>
       <td>
         <table class="standard-table">
   <tbody>
@@ -1383,13 +1383,13 @@
       <td>
         <p>Custom font name</p>
         <p>
-          <input type="text" name="heading-font-custom" id="heading-font-custom" class="text" value="" />
+          <input type="text" name="font-heading-custom" id="font-heading-custom" class="text" value="" />
         </p>
       </td>
       <td>
         <p>Fallback/default</p>
         <p>
-          <select class="font" name="heading-font" id="heading-font">
+          <select class="font" name="font-heading" id="font-heading">
             <option value="" selected="selected"></option>
           </select>
         </p>
@@ -1399,13 +1399,13 @@
       <td>
         <p>Weight</p>
         <p>
-          <input type="text" name="heading-font-weight" id="heading-font-weight" class="text" value="" />
+          <input type="text" name="font-heading-weight" id="font-heading-weight" class="text" value="" />
         </p>
       </td>
       <td>
-        <p>Size</p>
+        <p>Size (e.g. 14px)</p>
         <p>
-          <input type="text" name="heading-font-size" id="heading-font-size" class="text" value="" />
+          <input type="text" name="font-heading-size" id="font-heading-size" class="text" value="" />
         </p>
       </td>
     </tr>
@@ -1413,17 +1413,17 @@
       <td>
         <p>Style</p>
         <p>
-          <div><input type="radio" name="heading-font" id="heading-font" value="normal" checked="checked" /> Normal</div>
-          <div><input type="radio" name="heading-font" id="heading-font" value="italic" /> Italic</div>
+          <div><input type="radio" name="font-heading-style" id="font-heading-style" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="font-heading-style" id="font-heading-style" value="italic" /> Italic</div>
         </p>
       </td>
       <td>
         <p>Case</p>
         <p>
-          <div><input type="radio" name="heading-font" id="heading-font" value="normal" checked="checked" /> Normal (as typed)</div>
-          <div><input type="radio" name="heading-font" id="heading-font" value="lowercase" /> lowercase</div>
-          <div><input type="radio" name="heading-font" id="heading-font" value="uppercase" /> UPPERCASE</div>
-          <div><input type="radio" name="heading-font" id="heading-font" value="title-case" /> Title Case</div>
+          <div><input type="radio" name="font-heading-case" id="font-heading-case" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="font-heading-case" id="font-heading-case" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="font-heading-case" id="font-heading-case" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="font-heading-case" id="font-heading-case" value="title-case" /> Title Case</div>
         </p>
       </td>
     </tr>
@@ -1435,7 +1435,7 @@
   
   <table>
     <tr>
-      <th><label for="primary-nav-font">Primary nav font</label></th>
+      <th><label for="font-navbar">Font navbar</label></th>
       <td>
         <table class="standard-table">
   <tbody>
@@ -1443,13 +1443,13 @@
       <td>
         <p>Custom font name</p>
         <p>
-          <input type="text" name="primary-nav-font-custom" id="primary-nav-font-custom" class="text" value="" />
+          <input type="text" name="font-navbar-custom" id="font-navbar-custom" class="text" value="" />
         </p>
       </td>
       <td>
         <p>Fallback/default</p>
         <p>
-          <select class="font" name="primary-nav-font" id="primary-nav-font">
+          <select class="font" name="font-navbar" id="font-navbar">
             <option value="" selected="selected"></option>
           </select>
         </p>
@@ -1459,13 +1459,13 @@
       <td>
         <p>Weight</p>
         <p>
-          <input type="text" name="primary-nav-font-weight" id="primary-nav-font-weight" class="text" value="" />
+          <input type="text" name="font-navbar-weight" id="font-navbar-weight" class="text" value="" />
         </p>
       </td>
       <td>
-        <p>Size</p>
+        <p>Size (e.g. 14px)</p>
         <p>
-          <input type="text" name="primary-nav-font-size" id="primary-nav-font-size" class="text" value="" />
+          <input type="text" name="font-navbar-size" id="font-navbar-size" class="text" value="" />
         </p>
       </td>
     </tr>
@@ -1473,17 +1473,17 @@
       <td>
         <p>Style</p>
         <p>
-          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="normal" checked="checked" /> Normal</div>
-          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="italic" /> Italic</div>
+          <div><input type="radio" name="font-navbar-style" id="font-navbar-style" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="font-navbar-style" id="font-navbar-style" value="italic" /> Italic</div>
         </p>
       </td>
       <td>
         <p>Case</p>
         <p>
-          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="normal" checked="checked" /> Normal (as typed)</div>
-          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="lowercase" /> lowercase</div>
-          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="uppercase" /> UPPERCASE</div>
-          <div><input type="radio" name="primary-nav-font" id="primary-nav-font" value="title-case" /> Title Case</div>
+          <div><input type="radio" name="font-navbar-case" id="font-navbar-case" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="font-navbar-case" id="font-navbar-case" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="font-navbar-case" id="font-navbar-case" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="font-navbar-case" id="font-navbar-case" value="title-case" /> Title Case</div>
         </p>
       </td>
     </tr>
@@ -1496,7 +1496,7 @@
   
   <table>
     <tr>
-      <th><label for="secondary-nav-font">Secondary nav font</label></th>
+      <th><label for="font-nav-secondary">Font sidebar and footer nav</label></th>
       <td>
         <table class="standard-table">
   <tbody>
@@ -1504,13 +1504,13 @@
       <td>
         <p>Custom font name</p>
         <p>
-          <input type="text" name="secondary-nav-font-custom" id="secondary-nav-font-custom" class="text" value="" />
+          <input type="text" name="font-nav-secondary-custom" id="font-nav-secondary-custom" class="text" value="" />
         </p>
       </td>
       <td>
         <p>Fallback/default</p>
         <p>
-          <select class="font" name="secondary-nav-font" id="secondary-nav-font">
+          <select class="font" name="font-nav-secondary" id="font-nav-secondary">
             <option value="" selected="selected"></option>
           </select>
         </p>
@@ -1520,13 +1520,13 @@
       <td>
         <p>Weight</p>
         <p>
-          <input type="text" name="secondary-nav-font-weight" id="secondary-nav-font-weight" class="text" value="" />
+          <input type="text" name="font-nav-secondary-weight" id="font-nav-secondary-weight" class="text" value="" />
         </p>
       </td>
       <td>
-        <p>Size</p>
+        <p>Size (e.g. 14px)</p>
         <p>
-          <input type="text" name="secondary-nav-font-size" id="secondary-nav-font-size" class="text" value="" />
+          <input type="text" name="font-nav-secondary-size" id="font-nav-secondary-size" class="text" value="" />
         </p>
       </td>
     </tr>
@@ -1534,23 +1534,32 @@
       <td>
         <p>Style</p>
         <p>
-          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="normal" checked="checked" /> Normal</div>
-          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="italic" /> Italic</div>
+          <div><input type="radio" name="font-nav-secondary-style" id="font-nav-secondary-style" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="font-nav-secondary-style" id="font-nav-secondary-style" value="italic" /> Italic</div>
         </p>
       </td>
       <td>
         <p>Case</p>
         <p>
-          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="normal" checked="checked" /> Normal (as typed)</div>
-          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="lowercase" /> lowercase</div>
-          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="uppercase" /> UPPERCASE</div>
-          <div><input type="radio" name="secondary-nav-font" id="secondary-nav-font" value="title-case" /> Title Case</div>
+          <div><input type="radio" name="font-nav-secondary-case" id="font-nav-secondary-case" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="font-nav-secondary-case" id="font-nav-secondary-case" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="font-nav-secondary-case" id="font-nav-secondary-case" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="font-nav-secondary-case" id="font-nav-secondary-case" value="title-case" /> Title Case</div>
         </p>
       </td>
     </tr>
   </tbody>
 </table>
         <small>Fonts used for navigation links in the footer and sidebar.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="heading-letterpress">Heading "letterpress"</label></th>
+      <td>
+        <input type="checkbox" name="heading-letterpress" id="heading-letterpress" value="1" /> Yes
       </td>
     </tr>
   </table>

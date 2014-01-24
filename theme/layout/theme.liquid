@@ -10,10 +10,7 @@
   {{ '_settings.scss.css' | asset_url | stylesheet_tag }}
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   
-  {% include 'fonts' %}
-  
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  
   {{ '_base.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
   {{ 'bootstrapify-option-selection.js' | asset_url | script_tag }}
@@ -32,6 +29,8 @@
   {{ 'tooltip.js' | asset_url | script_tag }}
   {{ 'popover.js' | asset_url | script_tag }}
   {{ 'typeahead.js' | asset_url | script_tag }}
+  
+  {{ settings.custom-font-embed-code }}
   
   {{ content_for_header }}
 </head>

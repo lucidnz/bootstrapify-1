@@ -1,9 +1,0 @@
-{% capture flist %}{% if settings.body-font-custom != '' %}{{ settings.body-font-custom | replace: ' ','+' }}{% if settings.body-font-custom and settings.body-font-weight != '' %}:{{ settings.body-font-weight }}{% endif %}|{% endif %}
-{% if settings.footer-font-custom != '' %}{{ settings.footer-font-custom | replace: ' ','+' }}{% if settings.footer-font-custom and settings.footer-font-weight != '' %}:{{ settings.footer-font-weight }}{% endif %}|{% endif %}
-{% if settings.heading-font-custom != '' %}{{ settings.heading-font-custom | replace: ' ','+' }}{% if settings.heading-font-custom and settings.heading-font-weight != '' %}:{{ settings.heading-font-weight }}{% endif %}|{% endif %}
-{% if settings.navbar-font-custom != '' %}{{ settings.navbar-font-custom | replace: ' ','+' }}{% if settings.navbar-font-custom and settings.navbar-font-weight != '' %}:{{ settings.navbar-font-weight }}{% endif %}|{% endif %}
-{% if settings.sidebar-base-font-custom != '' %}{{ settings.sidebar-base-font-custom | replace: ' ','+' }}{% if settings.sidebar-base-font-custom and settings.sidebar-base-font-weight != '' %}:{{ settings.sidebar-base-font-weight }}{% endif %}|{% endif %}
-{% if settings.sidebar-nav-font-custom != '' %}{{ settings.sidebar-nav-font-custom | replace: ' ','+' }}{% if settings.sidebar-nav-font-custom and settings.sidebar-nav-font-weight != '' %}:{{ settings.sidebar-nav-font-weight }}{% endif %}|{% endif %}
-{% endcapture %}
-{% capture flist %}{{ flist | strip_newlines }}{% endcapture %}
-{% if flist != '' %}<link href='http://fonts.googleapis.com/css?family={{ flist }}' rel='stylesheet' type='text/css'>{% endif %}

@@ -10,6 +10,8 @@ $default-secondary-background-colour:  #f8f8f8 !default;
 $default-text-colour:                  #333 !default;
 $default-link-colour:                  #428bca !default;
 
+$font-size-base:                       14px !default;
+
 /*
  * Setting Variables
  */
@@ -34,6 +36,31 @@ $footer-heading-colour: {% if settings.footer-heading-colour != blank %}{{ setti
 $footer-text-colour: {% if settings.footer-text-colour != blank %}{{ settings.footer-text-colour }}{% else %}$body-text-colour{% endif %};
 $footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.footer-link-colour }}{% else %}$body-link-colour{% endif %};
 
+$font-family-body: {% if settings.font-body-custom != blank %}'{{ settings.font-body-custom }}'{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %}{% elsif settings.font-body != blank %}{{ settings.font-body }}{% else %}false{% endif %};
+$font-weight-body: {% if settings.font-body-weight != blank %}{{ settings.font-body-weight }}{% else %}normal{% endif %};
+$font-size-body: {% if settings.font-body-size != blank %}{{ settings.font-body-size }}{% else %}false{% endif %};
+$font-transform-body: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %}{{ settings.font-body-case }}{% elsif settings.font-body-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-body-italic: {% if settings.font-body-style == 'italic' %}true{% else %}false{% endif %};
+
+$font-family-heading: {% if settings.font-heading-custom != blank %}'{{ settings.font-heading-custom }}'{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %}{% elsif settings.font-heading != blank %}{{ settings.font-heading }}{% else %}false{% endif %};
+$font-weight-heading: {% if settings.font-heading-weight != blank %}{{ settings.font-heading-weight }}{% else %}normal{% endif %};
+$font-size-heading: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size }}{% else %}false{% endif %};
+$font-transform-heading: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-heading-italic: {% if settings.font-heading-style == 'italic' %}true{% else %}false{% endif %};
+$heading-letterpress: {% if settings.heading-letterpress%}true{% else %}false{% endif %};
+
+$font-family-navbar: {% if settings.font-navbar-custom != blank %}'{{ settings.font-navbar-custom }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %}{% elsif settings.font-navbar != blank %}{{ settings.font-navbar }}{% else %}false{% endif %};
+$font-weight-navbar: {% if settings.font-navbar-weight != blank %}{{ settings.font-navbar-weight }}{% else %}normal{% endif %};
+$font-size-navbar: {% if settings.font-navbar-size != blank %}{{ settings.font-navbar-size }}{% else %}false{% endif %};
+$font-transform-navbar: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %}{{ settings.font-navbar-case }}{% elsif settings.font-navbar-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-navbar-italic: {% if settings.font-navbar-style == 'italic' %}true{% else %}false{% endif %};
+
+$font-family-nav-secondary: {% if settings.font-nav-secondary-custom != blank %}'{{ settings.font-nav-secondary-custom }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %}{% elsif settings.font-nav-secondary != blank %}{{ settings.font-nav-secondary }}{% else %}false{% endif %};
+$font-weight-nav-secondary: {% if settings.font-nav-secondary-weight != blank %}{{ settings.font-nav-secondary-weight }}{% else %}normal{% endif %};
+$font-size-nav-secondary: {% if settings.font-nav-secondary-size != blank %}{{ settings.font-nav-secondary-size }}{% else %}false{% endif %};
+$font-transform-nav-secondary: {% if settings.font-nav-secondary-case == 'lowercase' or settings.font-nav-secondary-case == 'uppercase' %}{{ settings.font-nav-secondary-case }}{% elsif settings.font-nav-secondary-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-nav-secondary-italic: {% if settings.font-nav-secondary-style == 'italic' %}true{% else %}false{% endif %};
+
 {% for i in (i..5) %}
   {% assign c = i | plus: 1 %}
   {% assign slide = 'slide-' | append: c %}
@@ -47,6 +74,7 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
 /*
  * Functions and Mixins
  */
+ 
 @function button-colour( $colour, $strength: 100% ) {
   @return if(lightness($colour) > 80%, darken($colour, $strength), lighten($colour, $strength));
 }
@@ -113,7 +141,7 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
 
 @mixin background-colour($colour){
   background-color: $colour;
-  .brand{
+  .brand, blockquote{
     border-color: darken-colour($colour, 7.5%);
   }
   .page-header{
@@ -142,9 +170,12 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
   }
 }
 
-@mixin heading-colour($colour){
+@mixin heading-colour($colour, $background-colour){
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     color: $colour;
+    @if $heading-letterpress{
+      text-shadow: 0 1px 0 lighten-colour($colour, $background-colour);
+    }
     & a{
       color: $colour;
       &:hover{
@@ -193,6 +224,20 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
   }
+}
+
+@mixin fonts($font-family, $font-size, $font-italic, $font-transform, $font-weight){
+  @if $font-family{
+    font-family: $font-family;
+  }
+  @if $font-size{
+    font-size: $font-size;
+  }
+  @if $font-italic {
+    font-style: italic;
+  }
+  text-transform: $font-transform;
+  font-weight: $font-weight;
 }
 
 @mixin slide($slide-dark, $slide-position, $text-colour){
@@ -252,17 +297,65 @@ body{
   {% endif %}
   
   /* Design and colour schemes */
+  @if $font-family-body{
+    font-family: $font-family-body;
+  }
+  @if $font-size-body{
+    font-size: $font-size-body;
+  }
+  @if $font-body-italic {
+    font-style: italic;
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .navbar{
+      font-style: normal;
+    }
+  }
+  text-transform: $font-transform-body;
+  font-weight: $font-weight-body;
+  
   @if $site-background-image {
     background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');
     {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
     {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
   }
-  
+
   @include background-colour($body-background-colour);
-  @include heading-colour($body-heading-colour);
+  @include heading-colour($body-heading-colour, $body-background-colour);
   @include text-colour($body-text-colour, $body-background-colour);
   @include link-colour($body-link-colour, $body-background-colour);
 }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+  @if $font-family-heading {
+    font-family: $font-family-heading;
+  }
+  @if $font-heading-italic {
+    font-style: italic;
+  }
+  text-transform: $font-transform-heading;
+  font-weight: $font-weight-heading;
+}
+
+@if $font-size-heading{
+  h1{
+    font-size: $font-size-heading;
+  }
+  h2{
+    font-size: floor($font-size-heading / 1.2);
+  }
+  h3{
+    font-size: floor($font-size-heading / 1.5);
+  }
+  h4{
+    font-size: floor($font-size-heading / 2);
+  }
+  h5{
+    font-size: floor($font-size-heading / 2.5);
+  }
+  h6{
+    font-size: floor($font-size-heading / 3);
+  }
+}
+
 
 .breadcrumb{
   background-color: darken-colour($body-background-colour, 7.5%);
@@ -275,6 +368,7 @@ body{
   @include background-colour($navbar-background-colour);
   @include text-colour($navbar-text-colour, $navbar-background-colour);
   @include link-colour($navbar-link-colour, $navbar-background-colour);
+  @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
   @if $navbar-background-colour == $body-background-colour {
     border: none;
   } @else {
@@ -330,18 +424,24 @@ body{
 
 .sidebar{
   @include background-colour($sidebar-background-colour);
-  @include heading-colour($sidebar-heading-colour);
+  @include heading-colour($sidebar-heading-colour, $sidebar-background-colour);
   @include text-colour($sidebar-text-colour, $sidebar-background-colour);
   @include link-colour($sidebar-link-colour, $sidebar-background-colour);
+  .nav{
+    @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
+  }
 }
 
 #footer-content{
   @include background-colour($footer-background-colour);
-  @include heading-colour($footer-heading-colour);
+  @include heading-colour($footer-heading-colour, $footer-background-colour);
   @include text-colour($footer-text-colour, $footer-background-colour);
   @include link-colour($footer-link-colour, $footer-background-colour);
   @if $fix-footer-navbar{
     padding-bottom: 80px;
+  }
+  .nav{
+    @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
   }
   .container{
     @if $site-background-image == false and ($footer-background-colour == $body-background-colour or $footer-background-colour == transparent) {
