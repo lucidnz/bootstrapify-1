@@ -162,6 +162,11 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
   .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
     background-color: darken-colour($colour, 6%);
   }
+
+  .well{
+    border-color: darken-colour($colour, 7.5%);
+    background-color: darken-colour($body-background-colour, 4%);
+  }
   
   @media (max-width: 768px){
     .dropdown-menu .divider{
@@ -356,9 +361,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
-
 .breadcrumb{
-  background-color: darken-colour($body-background-colour, 7.5%);
+  background-color: darken-colour($body-background-colour, 4.5%);
 }
 .breadcrumb > li + li:before{
   color: lighten-colour($body-text-colour, $body-background-colour, 45%);

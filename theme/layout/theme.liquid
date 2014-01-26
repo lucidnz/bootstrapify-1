@@ -31,6 +31,7 @@
   {{ 'typeahead.js' | asset_url | script_tag }}
   
   {{ settings.custom-font-embed-code }}
+  {{ settings.custom-header-code }}
   
   {{ content_for_header }}
 </head>
@@ -82,5 +83,6 @@
       });
     });
   </script>
+  {{ settings.custom-footer-code }}
 </body>
 </html>
