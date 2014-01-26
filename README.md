@@ -1,7 +1,9 @@
-Bootstrapify 3.0
+Bootstrapify 3.0.2
 =================
 
-**Note:** 3.0 is a refactoring of 2.0 to convert to [Bootstrap 3](http://twitter.github.com/bootstrap). Feel free to fork and submit pull-requests or submit an issue if you find something not working.
+**Note:** Bootstrapify 3.0.2 has some significant changes from version 3.0 due to a complete overhaul of the theme settings file.
+
+Bootstrapify 3.0 is a refactoring of 2.0 to convert to [Bootstrap 3](http://twitter.github.com/bootstrap). Feel free to fork and submit pull-requests or submit an issue if you find something not working.
 
 Bootstrapify is an open-source base theme for [Shopify](http://www.shopify.com?ref=lucid-design) that makes it super quick and easy for developers to start building amazing, responsive themes without having to do all the fiddly, repetitive setup work when starting from scratch.
 
