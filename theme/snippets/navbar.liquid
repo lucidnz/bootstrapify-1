@@ -25,26 +25,38 @@
         <input type="submit" class="btn btn-default" value="Search" style="visibility: hidden; width: 0; height: 0; margin: 0; padding: 0; border-width: 0; float: right;" />
       </form>{% endif %}
         
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class="visible-xs">{% include '__localize' with 'View cart' %} <span class="badge">{% include 'cart-count' %}</span></span>
-            <span class="hidden-xs"><i class="fa fa-shopping-cart"></i></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> <span class="badge">{% include 'cart-count' %}</span></a></li>
-            {% if cart.item_count > 0 %}
-            <li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>
-            {% endif %}
-          </ul>
-        </li>
-        {% if shop.customer_accounts_enabled %}
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class="visible-xs">{% include '__localize' with 'Account' %}</span>
-            <span class="hidden-xs"><i class="fa fa-user"></i></span>
-          </a>
-          <ul class="dropdown-menu">
+      <div class="hidden-xs">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> <span class="badge">{% include 'cart-count' %}</span></a></li>
+              {% if cart.item_count > 0 %}
+              <li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>
+              {% endif %}
+            </ul>
+          </li>
+          {% if shop.customer_accounts_enabled %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+            <ul class="dropdown-menu">
+              {% if customer %}
+              <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
+              <li>{% capture logout %}{% include '__localize' with 'Log out' %}{% endcapture %}{{ logout | customer_logout_link }}</li>
+              {% else %}
+              <li>{% capture register %}{% include '__localize' with 'Register' %}{% endcapture %}{{ register | customer_register_link }}</li>
+              <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
+              {% endif %}
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="visible-xs">
+        <ul class="nav navbar-nav">
+          <li><a href="/cart">{% include '__localize' with 'View cart' %} <span class="badge">{% include 'cart-count' %}</span></a></li>
+          {% if cart.item_count > 0 %}<li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>{% endif %}
+          {% if shop.customer_accounts_enabled %}
             {% if customer %}
             <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
             <li>{% capture logout %}{% include '__localize' with 'Log out' %}{% endcapture %}{{ logout | customer_logout_link }}</li>
@@ -52,10 +64,9 @@
             <li>{% capture register %}{% include '__localize' with 'Register' %}{% endcapture %}{{ register | customer_register_link }}</li>
             <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
             {% endif %}
-          </ul>
-        </li>
-        {% endif %}
-      </ul>
+          {% endif %}
+        </ul>
+      </div>
       {% if settings.currency-switcher-position == 'navbar' %}{% include 'currency-switcher' %}{% endif %}
 
     </div>
