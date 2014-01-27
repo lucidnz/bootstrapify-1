@@ -2,31 +2,27 @@
 <p><a href="#shipping-calculator" data-toggle="collapse" class="btn btn-default">Get shipping estimates</a></p>
 
 <div id="shipping-calculator" class="collapse well" style="height: 0px;">
-
-  <div id="wrapper-response"></div>
+  <form role="form">
+    <div id="wrapper-response"></div>
     
-  <div>
-    <p>
+    <div class="form-group">
       <label for="address_country">Country</label>
-      <select id="address_country" name="address[country]" data-default="{% if shop.customer_accounts_enabled and customer %}{{ customer.default_address.country }}{% elsif settings.shipping_calculator_default_country != '' %}{{ settings.shipping_calculator_default_country }}{% endif %}">{{ country_option_tags }}</select>
-    </p>
-    <p id="address_province_container" style="display:none;">
+      <select id="address_country" class="form-control" name="address[country]" data-default="{% if shop.customer_accounts_enabled and customer %}{{ customer.default_address.country }}{% elsif settings.shipping_calculator_default_country != '' %}{{ settings.shipping_calculator_default_country }}{% endif %}">{{ country_option_tags }}</select>
+    </div>
+    
+    <div id="address_province_container" class="form-group" style="display:none;">
       <label for="address_province" id="address_province_label">Province</label>
-      <select id="address_province" class="address_form" name="address[province]" data-default="{% if shop.customer_accounts_enabled and customer and customer.default_address.province != '' %}{{ customer.default_address.province }}{% endif %}"></select>
-    </p>
-  </div>
- 
-  <p>
-    <label for="address_zip">Zip/Postal Code</label>
-    <input type="text" id="address_zip" name="address[zip]"{% if shop.customer_accounts_enabled and customer %} value="{{ customer.default_address.zip }}"{% endif %} />
-  </p>
-  <p>
+      <select id="address_province" class="form-control address_form" name="address[province]" data-default="{% if shop.customer_accounts_enabled and customer and customer.default_address.province != '' %}{{ customer.default_address.province }}{% endif %}"></select>
+    </div>
+    
+    <div class="form-group">
+      <label for="address_zip">Zip/Postal Code</label>
+      <input type="text" id="address_zip" class="form-control" name="address[zip]"{% if shop.customer_accounts_enabled and customer %} value="{{ customer.default_address.zip }}"{% endif %} />
+    </div>
+    
     <input type="button" class="get-rates btn btn-primary" value="Calculate shipping" />
-  </p>
+  </form>
 </div>
-
-
-
 
 <script id="shipping-calculator-response-template" type="text/x-jquery-tmpl">
   {% raw %}
