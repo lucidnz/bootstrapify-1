@@ -21,7 +21,7 @@ $body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.
 $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %};
 $body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %};
 
-$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{ settings.navbar-background-colour }}{% else %}$default-secondary-background-colour{% endif %};
+$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{% if settings.site-background-image != blank and settings.navbar-background-colour == settings.body-background-colour %}transparent{% else %}{{ settings.navbar-background-colour }}{% endif %}{% else %}$default-secondary-background-colour{% endif %};
 $navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
 $navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
 $fix-footer-navbar:{% if settings.fix-footer-navbar != blank %}true{% else %}false{% endif %};
