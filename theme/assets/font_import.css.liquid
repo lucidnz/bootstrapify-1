@@ -1,0 +1,11 @@
+{% if settings.custom-font-embed-code != blank %}
+  {% if settings.custom-font-embed-code contains '<link' %}
+    {% assign link = settings.custom-font-embed-code | split: ' ' %}
+    {% for attr in link %}
+      {% if attr contains 'href' %}
+        {% assign import = attr | remove: 'href="' | remove: '"/>' | remove: 'https:' | remove: 'http:' %}
+          @import url({{ import }});
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}

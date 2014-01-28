@@ -1,3 +1,4 @@
+@import url({{ "font_import.css" | asset_url }});
 /*
  * Shopify checkout reset
  */
@@ -5545,6 +5546,24 @@ h1#tagline {
 
 #create-account, #create-account-btn {
   margin-bottom: 1.5em; }
+
+/* Design and typography settings */
+/* import custom web fonts */
+body {
+  background-color: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-primary-background-colour{% endif %}; }
+  body h1, body #header h1, #header body h1, body #wallet #cost, #wallet body #cost, body h2, body #overview h2, #overview body h2, body h3, body h3.divider, body #pay-with h3, #pay-with body h3, body .group h3, .group body h3, body .pgroup h3, .pgroup body h3, body #thumbs .plisthead, #thumbs body .plisthead, body #email label, #email body label, body #email td.label, #email body td.label, body h4, body .pageform h4, .pageform body h4, body h4.active-customer, body .group h4, .group body h4, body h5, body h6, body .h1, body .h2, body .h3, body .h4, body .h5, body .h6 {
+    color: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
+    /*  @if $heading-letterpress{
+          text-shadow: 0 1px 0 lighten-colour($colour, $background-colour);
+        } */ }
+    body h1 a, body #header h1 a, #header body h1 a, body #wallet #cost a, #wallet body #cost a, body h2 a, body #overview h2 a, #overview body h2 a, body h3 a, body h3.divider a, body #pay-with h3 a, #pay-with body h3 a, body .group h3 a, .group body h3 a, body .pgroup h3 a, .pgroup body h3 a, body #thumbs .plisthead a, #thumbs body .plisthead a, body #email label a, #email body label a, body #email td.label a, #email body td.label a, body h4 a, body .pageform h4 a, .pageform body h4 a, body h4.active-customer a, body .group h4 a, .group body h4 a, body h5 a, body h6 a, body .h1 a, body .h2 a, body .h3 a, body .h4 a, body .h5 a, body .h6 a {
+      color: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %}; }
+      body h1 a:hover, body #header h1 a:hover, #header body h1 a:hover, body #wallet #cost a:hover, #wallet body #cost a:hover, body h2 a:hover, body #overview h2 a:hover, #overview body h2 a:hover, body h3 a:hover, body #pay-with h3 a:hover, #pay-with body h3 a:hover, body #thumbs .plisthead a:hover, #thumbs body .plisthead a:hover, body #email label a:hover, #email body label a:hover, body #email td.label a:hover, #email body td.label a:hover, body h4 a:hover, body h5 a:hover, body h6 a:hover, body .h1 a:hover, body .h2 a:hover, body .h3 a:hover, body .h4 a:hover, body .h5 a:hover, body .h6 a:hover {
+        color: darken-colour({% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %}, 15%); }
+  body a {
+    color: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %}; }
+    body a:hover {
+      /*       color: darken-colour($body-link-colour, 15%); */ }
 
 /* Insert your own logo (upload separately) */
 /* {% if settings.logo-image %} */
