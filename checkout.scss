@@ -1,6 +1,7 @@
 @import "checkout.reset.scss";
 @import "checkout.bootstrap.scss";
 
+/* Custom checkout styles */
 #info-bar{
   @extend .alert;
   @extend .alert-success;
@@ -72,42 +73,6 @@ h1#tagline{
 #create-account, #create-account-btn{
   margin-bottom: 1.5em;
 }
-
-/* Design and typography settings */
-$body-background-colour: #{'{% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-primary-background-colour{% endif %}'};
-$body-heading-colour: #{'{% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %}'};
-$body-text-colour: #{'{% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %}'};
-$body-link-colour: #{'{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %}'};
-
-$heading-letterpress: #{'{% if settings.heading-letterpress%}true{% else %}false{% endif %}'};
-
-/* import custom web fonts */
-@import url(#{'{{ "font_import.css" | asset_url }}'});
-
-body{
-  background-color: $body-background-colour;
-  
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-    color: $body-heading-colour;
-/*  @if $heading-letterpress{
-      text-shadow: 0 1px 0 lighten-colour($colour, $background-colour);
-    } */
-    & a{
-      color: $body-heading-colour;
-      &:hover{
-        color: darken-colour($body-heading-colour, 15%);
-      }
-    }
-  }
-  
-  a{
-    color: $body-link-colour;
-    &:hover{
-/*       color: darken-colour($body-link-colour, 15%); */
-    }
-  }
-}
-
 
 /* Insert your own logo (upload separately) */
 /* {% if settings.logo-image %} */
