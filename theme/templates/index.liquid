@@ -1,5 +1,5 @@
 {% unless pages[settings.homepage-intro] == empty %}
-<h1 class="page-header">{{ page_title }}</h1>
+<h1 class="page-header">{{ pages[settings.homepage-intro].title }}</h1>
 <div class="lead">
   {{ pages[settings.homepage-intro].content }}
 </div>
