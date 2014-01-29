@@ -20,11 +20,13 @@ $body-background-colour: {% if settings.body-background-colour != blank %}{{ set
 $body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
 $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %};
 $body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %};
+$button-colour: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}$body-link-colour{% endif %};
+$button-text-colour: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}false{% endif %};
 
 $navbar-background-colour: {% if settings.navbar-background-colour != blank %}{% if settings.site-background-image != blank and settings.navbar-background-colour == settings.body-background-colour %}transparent{% else %}{{ settings.navbar-background-colour }}{% endif %}{% else %}$default-secondary-background-colour{% endif %};
 $navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
 $navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
-$fix-footer-navbar:{% if settings.fix-footer-navbar != blank %}true{% else %}false{% endif %};
+$fix-footer-navbar: {% if settings.fix-footer-navbar != blank %}true{% else %}false{% endif %};
 
 $sidebar-background-colour: {% if settings.sidebar-background-colour != blank %}{{ settings.sidebar-background-colour }}{% else %}transparent{% endif %};
 $sidebar-heading-colour: {% if settings.sidebar-heading-colour != blank %}{{ settings.sidebar-heading-colour }}{% else %}$body-heading-colour{% endif %};
@@ -219,7 +221,11 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     background-color: $link-colour;
   }
   .btn-primary {
-    @include button-variant(button-colour($link-colour), $link-colour, darken($link-colour, 5%), $background-colour);
+    $text-colour: button-colour($link-colour);
+    @if $button-text-colour {
+      $text-colour: $button-text-colour;
+    }
+    @include button-variant($text-colour, $button-colour, darken($button-colour, 5%), $background-colour);
   }
   .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus{
     color: lighten-colour($link-colour, $background-colour, 40%);
