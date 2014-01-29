@@ -15,8 +15,14 @@ $font-transform-body: #{'{% if settings.font-body-case == "lowercase" or setting
 
 $font-family-heading: #{'{% if settings.font-heading-custom != blank %}"{{ settings.font-heading-custom }}"{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %}{% elsif settings.font-heading != blank %}{{ settings.font-heading }}{% else %}'}$font-family-base#{'{% endif %}'};
 $font-weight-heading: #{'{% if settings.font-heading-weight != blank %}{{ settings.font-heading-weight }}{% else %}normal{% endif %}'};
-$font-size-heading: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size }}{% else %}'}$font-size-h1#{'{% endif %}'};
 $font-transform-heading: #{'{% if settings.font-heading-case == "lowercase" or settings.font-heading-case == "uppercase" %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == "title-case"%}capitalize{% else %}none{% endif %}'};
+
+$h1-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size }}{% else %}'}$font-size-h1#{'{% endif %}'};
+$h2-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 1.2 }}{% else %}'}$font-size-h2#{'{% endif %}'};
+$h3-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 1.75 }}{% else %}'}$font-size-h3#{'{% endif %}'};
+$h4-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 2 }}{% else %}'}$font-size-h4#{'{% endif %}'};
+$h5-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 2.5 }}{% else %}'}$font-size-h5#{'{% endif %}'};
+$h6-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 3 }}{% else %}'}$font-size-h6#{'{% endif %}'};
 
 /* Design and typography styles */
 body{
@@ -34,7 +40,6 @@ body{
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     color: $body-heading-colour;    
     font-family: $font-family-heading;
-     /* font-size: $font-size-heading; <-- */
     text-transform: $font-transform-heading;
     font-weight: $font-weight-heading;
     /* {% if settings.font-heading-style == "italic" %} */
@@ -49,6 +54,28 @@ body{
     }
   }
   
+  h1, .h1{
+    font-size: $h1-font-size;
+  }
+  h2, .h2{
+    font-size: #{$h2-font-size}px;
+  }
+  h3, .h3{
+    font-size: #{$h3-font-size}px;
+  }
+  h4, .h4{
+    font-size: #{$h4-font-size}px;
+  }
+  h5, .h5{
+    font-size: #{$h5-font-size}px;
+  }
+  h6, .h6{
+    font-size: #{$h6-font-size}px;
+  }
+  
+  #wallet #cost{
+    font-size: 4.5em;
+  }
   
   p, #header h1 span.subtitle, #wallet, #wallet #steps, #overview .hint, #thumbs, #thumbs span, span.sign-in-message, .address-notification, label, #buttons{
     color: $body-text-colour;

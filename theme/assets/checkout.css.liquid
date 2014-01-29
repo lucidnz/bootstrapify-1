@@ -5578,8 +5578,7 @@ h1#tagline {
   text-align: center;
   padding: 2.5em 0; }
   #wallet #cost {
-    text-align: center;
-    font-size: 4.5em; }
+    text-align: center; }
 
 #email, #payment, .slim .group {
   padding-top: 1em;
@@ -5618,7 +5617,6 @@ body {
   body h1, body #header h1, #header body h1, body #wallet #cost, #wallet body #cost, body h2, body #overview h2, #overview body h2, body h3, body h3.divider, body #pay-with h3, #pay-with body h3, body .group h3, .group body h3, body .pgroup h3, .pgroup body h3, body #thumbs .plisthead, #thumbs body .plisthead, body #email label, #email body label, body #email td.label, #email body td.label, body h4, body .pageform h4, .pageform body h4, body h4.active-customer, body .group h4, .group body h4, body h5, body h6, body .h1, body .h2, body .h3, body .h4, body .h5, body .h6 {
     color: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}#333333{% endif %};
     font-family: {% if settings.font-heading-custom != blank %}"{{ settings.font-heading-custom }}"{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %}{% elsif settings.font-heading != blank %}{{ settings.font-heading }}{% else %}"Helvetica Neue", Helvetica, Arial, sans-serif{% endif %};
-    /* font-size: $font-size-heading; <-- */
     text-transform: {% if settings.font-heading-case == "lowercase" or settings.font-heading-case == "uppercase" %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == "title-case"%}capitalize{% else %}none{% endif %};
     font-weight: {% if settings.font-heading-weight != blank %}{{ settings.font-heading-weight }}{% else %}normal{% endif %};
     /* {% if settings.font-heading-style == "italic" %} */
@@ -5629,6 +5627,20 @@ body {
       body h1 a:hover, body #header h1 a:hover, #header body h1 a:hover, body #wallet #cost a:hover, #wallet body #cost a:hover, body h2 a:hover, body #overview h2 a:hover, #overview body h2 a:hover, body h3 a:hover, body #pay-with h3 a:hover, #pay-with body h3 a:hover, body #thumbs .plisthead a:hover, #thumbs body .plisthead a:hover, body #email label a:hover, #email body label a:hover, body #email td.label a:hover, #email body td.label a:hover, body h4 a:hover, body h5 a:hover, body h6 a:hover, body .h1 a:hover, body .h2 a:hover, body .h3 a:hover, body .h4 a:hover, body .h5 a:hover, body .h6 a:hover {
         color: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %};
         opacity: 0.4; }
+  body h1, body #header h1, #header body h1, body #wallet #cost, #wallet body #cost, body .h1 {
+    font-size: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size }}{% else %}36px{% endif %}; }
+  body h2, body #overview h2, #overview body h2, body .h2 {
+    font-size: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 1.2 }}{% else %}30px{% endif %}px; }
+  body h3, body h3.divider, body #pay-with h3, #pay-with body h3, body .group h3, .group body h3, body .pgroup h3, .pgroup body h3, body #thumbs .plisthead, #thumbs body .plisthead, body #email label, #email body label, body #email td.label, #email body td.label, body .h3 {
+    font-size: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 1.75 }}{% else %}24px{% endif %}px; }
+  body h4, body .pageform h4, .pageform body h4, body h4.active-customer, body .group h4, .group body h4, body .h4 {
+    font-size: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 2 }}{% else %}18px{% endif %}px; }
+  body h5, body .h5 {
+    font-size: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 2.5 }}{% else %}14px{% endif %}px; }
+  body h6, body .h6 {
+    font-size: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 3 }}{% else %}12px{% endif %}px; }
+  body #wallet #cost {
+    font-size: 4.5em; }
   body p, body .medium p, .medium body p, body fieldset#switchsolo p, fieldset#switchsolo body p, body .header-description p, .header-description body p, body #footer p, #footer body p, body #container.slim #footer p, #container.slim #footer body p, body #header h1 span.subtitle, body #header #wallet #cost span.subtitle, #wallet body #header #cost span.subtitle, body #wallet, body #wallet #steps, body #overview .hint, body #thumbs, body #thumbs span, body span.sign-in-message, body .address-notification, body label, body label.inline, body #shipping-same label, #shipping-same body label, body .soft label, .soft body label, body .medium label, .medium body label, body td.label, body .form ul.inline li label, .form ul.inline li body label, body .item-inventory-action label, .item-inventory-action body label, body #buttons {
     color: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}#333333{% endif %};
     font-family: {% if settings.font-body-custom != blank %}"{{ settings.font-body-custom }}"{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %}{% elsif settings.font-body != blank %}{{ settings.font-body }}{% else %}"Helvetica Neue", Helvetica, Arial, sans-serif{% endif %};
