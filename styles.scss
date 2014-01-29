@@ -21,6 +21,9 @@ img {
   @extend .page-header;
   overflow: auto;
   margin-top: 0;
+  .text-center img{
+    margin: auto;
+  }
   h1{
     margin-top: 10px;
   }

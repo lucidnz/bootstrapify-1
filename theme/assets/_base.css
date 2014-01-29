@@ -5065,6 +5065,8 @@ body > #wrap {
 .brand {
   overflow: auto;
   margin-top: 0; }
+  .brand .text-center img {
+    margin: auto; }
   .brand h1 {
     margin-top: 10px; }
   .brand a:hover {
