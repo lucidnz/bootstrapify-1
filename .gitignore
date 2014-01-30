@@ -2,3 +2,5 @@
 config.yml
 Archive.zip
 theme/config.yml
+
+*.zip
