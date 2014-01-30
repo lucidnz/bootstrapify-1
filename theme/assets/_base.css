@@ -5053,8 +5053,7 @@ body > #wrap {
   min-height: 100%; }
 
 #content {
-  padding-bottom: 250px;
-  overflow: auto; }
+  padding-bottom: 250px; }
 
 #footer-content {
   position: relative;

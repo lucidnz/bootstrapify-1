@@ -5,7 +5,7 @@ $line-height-base: 1.42858; // fix rounding issue as sass var can only hold 5 de
 $footer-height: 200px;
 html, body, #wrap { height: 100%; }
 body > #wrap {height: auto; min-height: 100%;}
-#content { padding-bottom: ($footer-height + $navbar-height); overflow: auto; }
+#content { padding-bottom: ($footer-height + $navbar-height); }
 #footer-content { 
   position: relative;
   margin-top: -($footer-height + $navbar-height);
