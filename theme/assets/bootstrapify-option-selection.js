@@ -7,17 +7,41 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
   this.b_selectorDivClass       = 'selector-wrapper form-group';
   this.b_selectorClass          = 'single-option-selector form-control';
   this.b_linkOptions            = options.linkOptions || false;
-  // call base constructor
-  Shopify.BootstrapifyOptionSelectors.baseConstructor.call(this, existingSelectorId, options);
-  // apply markup
-  this.bootstrapifyMarkup();
-  // linked options
-  if(this.b_linkOptions && this.product.available && this.product.options.length > 1){
-    Shopify.linkOptionSelectors(this.product);
+  this.product                  = new Shopify.Product(options.product);
+  
+  if(this.product.variants.length === 1){
+    var oldSelector = document.getElementById(existingSelectorId);
+    oldSelector.style.display = 'none';
+    this.displayVariantTitle(oldSelector);
+  } else {
+    // call base constructor
+    Shopify.BootstrapifyOptionSelectors.baseConstructor.call(this, existingSelectorId, options);
+    // apply markup
+    this.bootstrapifyMarkup();
+    // linked options
+    if(this.b_linkOptions && this.product.available && this.product.options.length > 1){
+      Shopify.linkOptionSelectors(this.product);
+    }
   }
 };
 
 Shopify.extend(Shopify.BootstrapifyOptionSelectors, Shopify.OptionSelectors);
+
+Shopify.BootstrapifyOptionSelectors.prototype.displayVariantTitle = function(oldSelector){
+  var options = this.product.variants[0].options;
+  var showTitle = true;
+  for(var i = 0; i < options.length; i++){
+    if(options[i] === "Default Title"){
+      showTitle = false;
+    }
+  }
+  if(showTitle){
+    var title = document.createElement('p');
+    title.className = 'lead';
+    title.innerHTML = this.product.variants[0].title;
+    oldSelector.parentNode.appendChild(title);
+  }
+};
 
 Shopify.BootstrapifyOptionSelectors.prototype.bootstrapifyMarkup = function(){
   var self = this;
