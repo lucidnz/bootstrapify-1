@@ -1,36 +1,20 @@
+function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
+  return jQuery(document.getElementById(id));
+}
+
+var preloadProductImages = function(){
+  var $thumbs = $('[data-main-image]');
+  if($thumbs.length > 0){
+    $thumbs.each(function(){
+      var image = new Image();
+      image.src = $(this).attr('data-main-image');
+    });
+  }
+};
+
 $(function() {
-  
-  /*==========================*/
-  /* Global Variables */
-  /*==========================*/
-
-  var   THE_BODY              = $('body'),
-  HEADER                = $('#header'),
-  FOOTER                = $('#footer'),
-  IS_INDEX              = (THE_BODY.hasClass('template-index')) ? true : false,
-  IS_COLLECTION         = (THE_BODY.hasClass('template-collection')) ? true : false,
-  IS_COLLECTION_LISTING = ($('#collection-list').length > 0) ? true : false,
-  IS_PRODUCT            = (THE_BODY.hasClass('template-product')) ? true : false,
-  IS_BLOG               = (THE_BODY.hasClass('template-blog')) ? true : false,
-  IS_ARTICLE            = (THE_BODY.hasClass('template-article')) ? true : false,
-  IS_SEARCH             = (THE_BODY.hasClass('template-search')) ? true : false,
-  IS_CART               = (THE_BODY.hasClass('template-cart')) ? true : false,
-  HAS_LOGO              = (HEADER.hasClass('use-logo')) ? true : false,
-  BE_WIDE               = (HEADER.hasClass('wide')) ? true : false,
-  HAS_CURRENCIES        = (THE_BODY.hasClass('currencies')) ? true : false,
-  HAS_TWITTER           = (FOOTER.hasClass('has-twitter')) ? true : false,
-  IS_IE                 = /msie/i.test(navigator.userAgent),
-  /* PRODUCT_IMAGE_W_TO_H_RATIO = product_image_w_to_h_ratio || 1,
-  THREE_PER_ROW_W       = 268,
-  FOUR_PER_ROW_W        = 191,
-  THREE_PER_ROW_H       = parseInt(THREE_PER_ROW_W/PRODUCT_IMAGE_W_TO_H_RATIO,  10),
-  FOUR_PER_ROW_H        = parseInt(FOUR_PER_ROW_W/PRODUCT_IMAGE_W_TO_H_RATIO,   10), */
-  IS_MOBILE             = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
-        
   /* Multiple currencies */
-  /*==========================*/
-
-  if (HAS_CURRENCIES) {
+  if ($('body').hasClass('currencies')) {
         
     $('#currency-picker-toggle a').click(function() {
       $('#currency-picker-toggle').hide();
@@ -58,4 +42,102 @@ $(function() {
   });
 });
 
+$(window).load(function(){
+  preloadProductImages();
+  
+  $('.carousel').on('slid.bs.carousel', function () {
+    var imgHeight = $(this).find('.item.active img').height();
+    $('.carousel-control').css({maxHeight: imgHeight});
+  });
+});
 
+/* Product Image Switcher */
+$('[data-main-image]').click(function(event) {
+	var targetImage = $(this).attr('data-main-image');
+	var $mainImage = getID('main');
+	if($mainImage.attr('src') !== targetImage){
+    $mainImage.fadeOut(400, function(){
+      $('div.loader').fadeIn(100);
+      $(this).attr('src', targetImage).load(function(){
+        $('div.loader').fadeOut(100);
+        $(this).fadeIn();
+      });
+    });
+	}
+	event.preventDefault();
+});
+
+
+/* modal signin forms */
+var modalForm = getID('signinModal');
+modalForm.on('submit', 'form', function(e){
+  // collect form data and validate
+  var form = $(this),
+    inputArray = [],
+    valid = true;
+  form.find('input').each(function(){
+    var input = $(this);
+    if(input.attr('name')){
+      if(input.val() === ''){
+        valid = false;
+        input.closest('.form-group').addClass('has-error').append('<p class="help-block">Field can\'t be blank.</p>');
+      }
+      inputArray.push(input.attr('name') +'='+ input.val());
+    }
+  });
+  var dataString = inputArray.join('&');
+  
+  // POST form data
+  if(valid){
+    $.ajax({
+      type: "POST",
+      url: $(this).attr('action'),
+      data: dataString,
+      success: function(data) {
+        // check for error and refresh page if none found
+        var formAlert = $(data).find('form .alert');
+        if(formAlert.length > 0){
+          form.prepend('<div class="alert alert-danger">'+formAlert.html()+'</div>');
+        } else {
+          window.location.reload();
+        }
+      },
+      error: function(data) {
+        console.log('Form post error:');
+        console.log(data);
+      }
+    });
+  }
+  e.preventDefault();
+});
+
+/* Recover password form */
+var recoverForm = getID('customer-recover-password-form'),
+  loginForm = getID('customer-login-form');
+
+function showRecoverPasswordForm() {
+  recoverForm.parent().show();
+  loginForm.parent().hide();
+}
+
+function hideRecoverPasswordForm() {
+  recoverForm.parent().hide();
+  loginForm.parent().show();
+}
+
+$('.hide-recover-password-form').on('click', function(e){
+  hideRecoverPasswordForm();
+  e.preventDefault();
+});
+
+$('.show-recover-password-form').on('click', function(e){
+  showRecoverPasswordForm();
+  e.preventDefault();
+});
+
+// dont show links if we dont have both includes present
+if(recoverForm === null){ getID('forgotten-password-link').style.display='none'; }
+if(loginForm === null){ getID('recover-password-link').style.display='none'; }
+
+hideRecoverPasswordForm();
+if (window.location.hash === '#recover') { showRecoverPasswordForm(); }

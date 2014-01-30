@@ -63,20 +63,20 @@ var Shopify = Shopify || {};
 Shopify.optionsMap = {};
  
 Shopify.updateOptionsInSelector = function(selectorIndex) {
-    
+  var key, selector;
   switch (selectorIndex) {
     case 0:
-      var key = 'root';
-      var selector = jQuery('.single-option-selector:eq(0)');
+      key = 'root';
+      selector = jQuery('.single-option-selector:eq(0)');
       break;
     case 1:
-      var key = jQuery('.single-option-selector:eq(0)').val();
-      var selector = jQuery('.single-option-selector:eq(1)');
+      key = jQuery('.single-option-selector:eq(0)').val();
+      selector = jQuery('.single-option-selector:eq(1)');
       break;
     case 2:
-      var key = jQuery('.single-option-selector:eq(0)').val();  
+      key = jQuery('.single-option-selector:eq(0)').val();  
       key += ' / ' + jQuery('.single-option-selector:eq(1)').val();
-      var selector = jQuery('.single-option-selector:eq(2)');
+      selector = jQuery('.single-option-selector:eq(2)');
   }
   
   var initialValue = selector.val();
@@ -98,6 +98,7 @@ Shopify.linkOptionSelectors = function(product) {
   // Building our mapping object.
   for (var i=0; i<product.variants.length; i++) {
     var variant = product.variants[i];
+    var key;
     if (variant.available) {
       // Gathering values for the 1st drop-down.
       Shopify.optionsMap['root'] = Shopify.optionsMap['root'] || [];
@@ -105,14 +106,14 @@ Shopify.linkOptionSelectors = function(product) {
       Shopify.optionsMap['root'] = Shopify.uniq(Shopify.optionsMap['root']);
       // Gathering values for the 2nd drop-down.
       if (product.options.length > 1) {
-        var key = variant.option1;
+        key = variant.option1;
         Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
         Shopify.optionsMap[key].push(variant.option2);
         Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
       }
       // Gathering values for the 3rd drop-down.
       if (product.options.length === 3) {
-        var key = variant.option1 + ' / ' + variant.option2;
+        key = variant.option1 + ' / ' + variant.option2;
         Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
         Shopify.optionsMap[key].push(variant.option3);
         Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
@@ -121,17 +122,17 @@ Shopify.linkOptionSelectors = function(product) {
   }
   // Update options right away.
   Shopify.updateOptionsInSelector(0);
-  if (product.options.length > 1) Shopify.updateOptionsInSelector(1);
-  if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+  if (product.options.length > 1){ Shopify.updateOptionsInSelector(1); }
+  if (product.options.length === 3){ Shopify.updateOptionsInSelector(2); }
   // When there is an update in the first dropdown.
   jQuery(".single-option-selector:eq(0)").change(function() {
     Shopify.updateOptionsInSelector(1);
-    if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+    if (product.options.length === 3){ Shopify.updateOptionsInSelector(2); }
     return true;
   });
   // When there is an update in the second dropdown.
   jQuery(".single-option-selector:eq(1)").change(function() {
-    if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+    if (product.options.length === 3){ Shopify.updateOptionsInSelector(2); }
     return true;
   });
   

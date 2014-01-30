@@ -18,37 +18,39 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         globals: {
-          jQuery: true
+          document: true,
+          window: true,
+          console: true,
+          Image: true,
+          $: true,
+          jQuery: true,
+          Shopify: true
         }
       },
       gruntfile: {
         src: 'Gruntfile.js'
       },
-      lib_test: {
-        src: ['lib/**/*.js', 'test/**/*.js']
+      assets: {
+        src: ['theme/assets/_base.js', 'theme/assets/app.js', 'theme/assets/bootstrapify-option-selection.js']
       }
     },
-    nodeunit: {
-      files: ['test/**/*_test.js']
-    },
+/*
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
-      },
-      lib_test: {
-        files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'nodeunit']
       }
     }
+*/
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+/*   grunt.loadNpmTasks('grunt-contrib-watch'); */
+/*   grunt.loadNpmTasks('grunt-contrib-sass'); */
+/*   grunt.loadNpmTasks('grunt-contrib-copy'); */
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', ['jshint']);
 
 };
