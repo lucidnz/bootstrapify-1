@@ -305,6 +305,11 @@ body{
       border-color: darken-colour($footer-background-colour, 7.5%);
     }
   }
+  {% elsif settings.navbar-placement == 'main-content' %}
+    .brand{
+      margin-bottom: 0;
+      border: none;
+    }
   {% endif %}
   
   /* Design and colour schemes */
