@@ -2,7 +2,8 @@
  * Shopify checkout bootstrap - extends Shopify's checkout styles with bootstrap
  */
  
-@import "bower_components/sass-bootstrap/lib/bootstrap.scss";
+/* @import "bower_components/sass-bootstrap/lib/bootstrap.scss"; */
+@import "bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 
 /* Layout */
 #info-bar, #container, #container.slim{
