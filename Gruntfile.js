@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       assets: {
-        src: ['theme/assets/_base.js', 'theme/assets/app.js', 'theme/assets/bootstrapify-option-selection.js']
+        src: ['theme/assets/_base.js', 'theme/assets/bootstrapify-option-selection.js']
       }
     },
 /*
@@ -42,15 +42,42 @@ module.exports = function(grunt) {
       }
     }
 */
+    sass: {
+      dist: {
+        files: {
+          'theme/assets/_base.css': 'styles.scss',
+          'theme/assets/checkout.css.liquid': 'checkout.scss'
+        }
+      }
+    },
+    copy: {
+      main: {
+        files: [
+          // grab bootstraps js files
+          {
+            expand: true,
+            cwd: 'bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/',
+            src: '*.js',
+            dest: 'theme/assets/'
+          },
+          {
+            expand: true,
+            cwd: 'bower_components/typeahead.js/dist/',
+            src: 'typeahead.js',
+            dest: 'theme/assets/'
+          }
+        ]
+      }
+    }
   });
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
 /*   grunt.loadNpmTasks('grunt-contrib-watch'); */
-/*   grunt.loadNpmTasks('grunt-contrib-sass'); */
-/*   grunt.loadNpmTasks('grunt-contrib-copy'); */
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task.
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', ['jshint', 'copy', 'sass']);
 
 };
