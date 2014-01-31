@@ -3882,6 +3882,8 @@ a.list-group-item.active > .badge,
     height: auto;
     margin-left: auto;
     margin-right: auto; }
+  .thumbnail a:hover,
+  .thumbnail a:focus,
   .thumbnail .caption {
     padding: 9px;
     color: #333333; }

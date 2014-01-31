@@ -45,8 +45,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'theme/assets/_base.css': 'dev/styles.scss',
-          'theme/assets/checkout.css.liquid': 'dev/checkout.scss'
+          'theme/assets/_base.css': 'dist/styles.scss',
+          'theme/assets/checkout.css.liquid': 'dist/checkout.scss'
         }
       }
     },
