@@ -1,80 +1,116 @@
-Bootstrapify 3.0.2
-=================
-
-**Note:** Bootstrapify 3.0.2 has some significant changes from version 3.0 due to a complete overhaul of the theme settings file.
-
-Bootstrapify 3.0 is a refactoring of 2.0 to convert to [Bootstrap 3](http://twitter.github.com/bootstrap). Feel free to fork and submit pull-requests or submit an issue if you find something not working.
+# Bootstrapify 3.1.0
 
 Bootstrapify is an open-source base theme for [Shopify](http://www.shopify.com?ref=lucid-design) that makes it super quick and easy for developers to start building amazing, responsive themes without having to do all the fiddly, repetitive setup work when starting from scratch.
 
 You can view the Bootstrapify theme at http://bootstrapify-theme.myshopify.com.
 
-Quick start
------------
 
-Download the repo and install it in your Shopify site or, *better yet,* clone it and use the excellent [Shopify Theme gem](https://github.com/Shopify/shopify_theme).
+## Getting started
 
+Clone Bootstrapify using git or download the [zip file](https://github.com/luciddesign/bootstrapify/archive/master.zip).
 
-Sass Bootstrap
---------------
+    git clone git@github.com:luciddesign/bootstrapify.git
 
-Because [Shopify lets us use SCSS](http://ecommerce.shopify.com/c/ecommerce-design/t/you-can-now-use-scss-in-shopify-s-template-editor-133389) we are using a [SASS port of Bootstrap](https://github.com/jlong/sass-bootstrap).
-This means that you can also use SCSS without having mixed languages in the same project.
+### Simple setup
 
+If you wish to use the theme without touching the SASS or Bootstrap files then just remove everything except the theme folder. Create a zipped file of the theme folder and upload this to Shopify.
 
-Workflow
---------
+### Advanced setup
+
+If you wish to develop locally and push your changes to Shopify you will need to use [Grunt.js](http://gruntjs.com/) and the [Shopify Theme gem](https://github.com/Shopify/shopify_theme).
+
+#### Workflow
 
 There is one caveat with using SCSS with Shopify: They don't support `@import`... yet.
 So to keep Bootstrap intact and updateable we have created a workflow for working with this theme.
 
-Styles.scss is kept outside the theme directory and is compiled using your favourite [SASS compiler](http://incident57.com/codekit/) into `assets/_base.css`.
+Styles.scss is kept outside the theme directory and is compiled using Grunt into `assets/_base.css`.
 
 We use the [Shopify Theme gem](https://github.com/Shopify/shopify_theme) to watch the theme directory and push any changes up to Shopify.
 
+#### Requirements
 
-Bootstrap and Bower
--------------------
+You will need to install both [Ruby](https://www.ruby-lang.org) and [Node.js](http://nodejs.org/).
+The Shopify theme gem and SASS require Ruby. Grunt.js and Bower use Node.js. Once these are installed you can setup the project.
 
-To keep [Bootstrap](https://github.com/jlong/sass-bootstrap) up-to-date we have used the [Bower package manager](http://bower.io/) by Twitter.
-This is simpiler than using crazy nested git repos.
+#### Installation
 
-If you want to keep Bootstrapify in the state that it is in when you get it then you don't need to do a thing.
-
-If you wish to update Bootstrap then you will need to install Bower:
-Bower depends on [Node](http://nodejs.org/) and [npm](https://npmjs.org/) so download and install Node if you haven't already.
-
-Install Bower globally using npm:
+If you havent installed Grunt and Bower globally on your system already install them using npm:
 
     npm install -g bower
-  
-To update Bootstrap run:
 
-    bower update sass-bootstrap
-  
+    npm install -g grunt-cli
 
-Bugs, issues or feature requests
------------
+Install Grunts dependancies:
+
+    npm install
+
+Install Bootstrap and other Bower dependancies:
+
+    bower install
+
+Install the SASS gem and the Shopify theme gem:
+
+    bundle install
+
+#### Setup the Shopify theme gem
+
+Inside the theme folder run:
+
+    theme configure [api_key] [password] [store_url]
+    
+More detail can be found on the [Shopify theme gems readme](https://github.com/Shopify/shopify_theme#usage)
+
+#### Build
+
+To build the project run:
+
+    grunt    
+
+This will do the following:
+
+ * Compile the SCSS files into the themes asset directory.
+ * Copy Bootstraps JS files into the themes asset directory.
+ * Lint the Bootstrapify JS files.
+
+
+## Bugs, issues or feature requests
 
 Please create an issue here on GitHub at https://github.com/luciddesign/bootstrapify/issues
 
 
-Contributing
-------------
+## Contributing
 
 Feel free to make pull requests.
 
-Credits
-------------
 
-Needless to say, we couldn't have done this without the awesome [Twitter Bootstrap](http://twitter.github.com/bootstrap) project which this is based on,
-or the [SASS port of Bootstrap](https://github.com/jlong/sass-bootstrap).
+## Change log
 
+3.1.0
+
+ * Upgrade to version 3.1.0 of Twitter Bootstrap.
+ * Added Grunt for SASS compilation, JS linting and copying files. 
+ * Added Gemfile and bower.json for dependancies.
+ * Moved development SCSS files into sub directory.
+ 
+3.0.2
+
+ * Upgrade to version 3.0.2 of Twitter Bootstrap.
+ * Complete overhaul of theme settings.
+ 
+3.0
+
+ * Upgrade to version 3.0 of Twitter Bootstrap.
+ * Complete overhaul and refactor of theme files.
+
+
+## Credits
+
+Needless to say, we couldn't have done this without the awesome [Twitter Bootstrap](http://twitter.github.com/bootstrap) project which this is based on.
 Huge huge respect and many thanks for what these guys have created!
 
 
-Copyright and license
----------------------
+## Copyright and license
 
 Copyright 2013 Lucid Design Limited, Nelson, New Zealand | www.luciddesign.co.nz
 
