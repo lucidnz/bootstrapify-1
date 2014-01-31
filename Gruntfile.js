@@ -34,19 +34,21 @@ module.exports = function(grunt) {
         src: ['theme/assets/_base.js', 'theme/assets/bootstrapify-option-selection.js']
       }
     },
-/*
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
+      },
+      sass: {
+        files: 'dist/scss/*.scss',
+        tasks: ['sass']
       }
-    }
-*/
+    },
     sass: {
       dist: {
         files: {
-          'theme/assets/_base.css': 'dist/styles.scss',
-          'theme/assets/checkout.css.liquid': 'dist/checkout.scss'
+          'theme/assets/_base.css': 'dist/scss/styles.scss',
+          'theme/assets/checkout.css.liquid': 'dist/scss/checkout.scss'
         }
       }
     },
@@ -73,7 +75,7 @@ module.exports = function(grunt) {
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
-/*   grunt.loadNpmTasks('grunt-contrib-watch'); */
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
 

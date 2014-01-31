@@ -73,6 +73,10 @@ This will do the following:
  * Copy Bootstraps JS files into the themes asset directory.
  * Lint the Bootstrapify JS files.
 
+To compile the SCSS files automaticly when they are saved run:
+
+    grunt watch
+
 
 ## Bugs, issues or feature requests
 
