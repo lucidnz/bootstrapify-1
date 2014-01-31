@@ -6,10 +6,10 @@
     "Lucid Design <info@luciddesign.co.nz> (http://www.luciddesign.co.nz)"
   ],
   "description": "An open-source base Shopify theme built with Twitter Bootstrap",
-  "main": "'styles.scss'",
+  "main": "dist/styles.scss",
   "keywords": [
-    "Shopify",
-    "Bootstrap"
+    "Bootstrap",
+    "Shopify"
   ],
   "license": "Apache-2.0",
   "private": true,
@@ -19,5 +19,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap-sass": "git@github.com:twbs/bootstrap-sass.git#~3.1.0",
+    "typeahead.js": "~0.9.3"
+  }
 }
