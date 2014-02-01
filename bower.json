@@ -21,7 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-sass": "git@github.com:twbs/bootstrap-sass.git#~3.1.0",
+    "bootstrap-sass": "git@github.com:twbs/bootstrap-sass.git#master",
     "typeahead.js": "~0.9.3"
   }
 }

@@ -1,13 +1,6 @@
 $line-height-base: 1.42858; // fix rounding issue as sass var can only hold 5 decimal places (orig: 1.428571429)
 @import "bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 
-// patch bootstrap-sass issue #512 (https://github.com/twbs/bootstrap-sass/issues/512)
-.thumbnail{
-  a:hover, a:focus{
-    padding: 0;
-  }
-}
-
 // sticky footer
 $footer-height: 200px;
 html, body, #wrap { height: 100%; }
