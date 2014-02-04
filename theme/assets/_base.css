@@ -5128,6 +5128,9 @@ a.icon:hover {
 #currencies-picker {
   padding: 0; }
 
+.shipping-calculator-wrapper {
+  margin-top: 30px; }
+
 .main-content .tags-list {
   margin-bottom: 30px; }
 
