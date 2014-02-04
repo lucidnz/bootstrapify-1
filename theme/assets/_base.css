@@ -5204,8 +5204,7 @@ a.icon:hover {
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;
-  position: relative;
-  margin-top: 5px; }
+  position: relative; }
 
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
@@ -5231,9 +5230,11 @@ a.icon:hover {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important; }
 
-.input-group-appended > .twitter-typeahead > .tt-query {
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important; }
+.input-group-appended > .twitter-typeahead {
+  margin-top: 5px; }
+  .input-group-appended > .twitter-typeahead > .tt-query {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important; }
 
 .tt-dropdown-menu {
   min-width: 160px;
