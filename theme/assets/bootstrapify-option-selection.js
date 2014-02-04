@@ -7,12 +7,15 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
   this.b_selectorDivClass       = 'selector-wrapper form-group';
   this.b_selectorClass          = 'single-option-selector form-control';
   this.b_linkOptions            = options.linkOptions || false;
+  this.onVariantSelected        = Shopify.isDefined(options.onVariantSelected) ? options.onVariantSelected : function(){};
   this.product                  = new Shopify.Product(options.product);
   
   if(this.product.variants.length === 1){
     var oldSelector = document.getElementById(existingSelectorId);
     oldSelector.style.display = 'none';
     this.displayVariantTitle(oldSelector);
+    // trigger select callback
+    this.onVariantSelected(this.product.variants[0], null);
   } else {
     // call base constructor
     Shopify.BootstrapifyOptionSelectors.baseConstructor.call(this, existingSelectorId, options);
