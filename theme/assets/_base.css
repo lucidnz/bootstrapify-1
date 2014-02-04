@@ -5128,6 +5128,9 @@ a.icon:hover {
 #currencies-picker {
   padding: 0; }
 
+.main-content .tags-list {
+  margin-bottom: 30px; }
+
 .thumbnail {
   overflow: auto; }
   .thumbnail img {

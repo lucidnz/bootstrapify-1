@@ -1,6 +1,6 @@
 {% include '__max-tags' %}
 {% if settings.tag-format != "dropdown" and collection.all_tags.size < max_tags %}
-<ul class="nav nav-pills">
+<ul class="nav nav-pills tags-list">
   {% if settings.tag-placement == 'sidebar' %}
   <h4 class="page-header">{% include '__localize' with 'Filter by' %}</h4>
   {% else %}
@@ -15,5 +15,4 @@
   {% endfor %}
   {% if current_tags %}<li><a href="./"><em>{% include '__localize' with 'Clear filters' %}</em></a></li>{% endif %}
 </ul>
-{% unless settings.tag-placement == 'sidebar' %}<hr>{% endunless %}
 {% endif %}
