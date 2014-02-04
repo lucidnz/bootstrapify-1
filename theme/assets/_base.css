@@ -5204,7 +5204,8 @@ a.icon:hover {
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;
-  position: relative; }
+  position: relative;
+  margin-top: 5px; }
 
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {

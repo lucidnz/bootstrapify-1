@@ -120,6 +120,7 @@ Shopify.linkOptionSelectors = function(product) {
       }
     }
   }
+  
   // Update options right away.
   Shopify.updateOptionsInSelector(0);
   if (product.options.length > 1){ Shopify.updateOptionsInSelector(1); }
