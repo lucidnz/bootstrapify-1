@@ -10,8 +10,11 @@
 </div>
 {% endif %}
 
+<ul class="pager">
+  {% if blog.previous_article %}<li class="previous">{{ 'previous article' | link_to: blog.previous_article }}</li>{% endif %}
+  {% if blog.next_article %}<li class="next">{{ 'next article' | link_to: blog.next_article }}</li>{% endif %}
+</ul>
+
 {% if article.comments_enabled? %}
-
-{% include 'article-comments' %}
-
+  {% include 'article-comments' %}
 {% endif %}
