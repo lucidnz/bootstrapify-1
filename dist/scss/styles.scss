@@ -63,8 +63,13 @@ a.icon:hover {
 	padding: 0;
 }
 
-.shipping-calculator-wrapper{
-  margin-top: $grid-gutter-width;
+.additional-checkout-buttons, .shipping-calculator-wrapper{
+  margin-top: $grid-gutter-width / 2;
+}
+.additional-checkout-buttons span{
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 0.5em;
 }
 
 .main-content .tags-list{

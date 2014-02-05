@@ -60,6 +60,12 @@ function remove_item(id) {
         <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'Update' %}" class="btn btn-default" />
         <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary" />
       </div>
+      {% if additional_checkout_buttons %}
+      <div class="additional-checkout-buttons">
+        <span class="text-muted">or</span>
+        {{ content_for_additional_checkout_buttons }}
+      </div>
+      {% endif %}
     </div>
   </div>
 </form>
