@@ -5,7 +5,7 @@
 <article>
   <h2>{{ a.title | link_to: a.url, a.title }}</h2>
   <p class="text-muted">{{ a.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ a.author }}{% endif %}</p>
-  {% if settings.truncate-words == '' %}{{ a.content }}{% else %}{{ a.content | truncatewords: settings.truncate-words }}{% endif %}
+  {% if settings.truncate-words == '' %}{{ a.excerpt_or_content }}{% else %}{{ a.excerpt_or_content | truncatewords: settings.truncate-words }}{% endif %}
   <p><a href="{{ a.url }}">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></p>
 </article>
 {% endfor %}
@@ -14,7 +14,6 @@
 
 {% endpaginate %}
 
-<div class="alert alert-info">
-  <h3>Subscribe</h3>
-  <p><a href="{{ blog.url | append: '.atom' }}">Click here to subscribe.</a></p>
+<div class="well">
+  <a href="{{ blog.url | append: '.atom' }}">Subscribe to our {{ blog.title }} blog.</a>
 </div>
