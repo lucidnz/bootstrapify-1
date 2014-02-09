@@ -76,3 +76,12 @@
 		</div>
 	</div>
 </form>
+{% if settings.show-related-products %}
+<div class="row">
+	<div class="col-xs-12">
+	<h3>Related Products</h3>
+	{% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
+	{% include 'products-list' with 'limit' %}
+	</div>
+</div>
+{% endif %}
