@@ -389,6 +389,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   } @else {
     border-color: darken-colour($body-background-colour, 7.5%);
   }
+  .nav > li > a:hover, .nav > li > a:focus{
+    background-color: transparent;
+  }
   .navbar-nav {
     > li > a{
       color: $navbar-link-colour;

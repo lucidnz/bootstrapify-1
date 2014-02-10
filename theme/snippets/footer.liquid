@@ -12,12 +12,6 @@
 <div id="footer-credits" class="navbar {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-navbar %}navbar-fixed-bottom{% endif %} {% include '__color-scheme' with 'navbar' %}" role="navigation">
   <div class="container">
     <div class="collapse navbar-collapse" id="footer-nav">
-      <ul class="nav navbar-nav navbar-right">
-        {% for l in linklists[settings.footer-navbar-linklist].links %}
-        {% include '_navbar-link' with 0 %}
-        {% endfor %}
-      </ul>
-      {% unless settings.currency-switcher-position == 'navbar' %}{% include 'currency-switcher' %}{% endunless %}
       <div class="navbar-left navbar-text">
         <small class="text-muted">
           &copy;{{ 'now' | date: '%Y' }}&nbsp;<strong><a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. <br class="visible-sm">
@@ -25,6 +19,12 @@
           Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.
         </small>
       </div>
+      <ul class="nav navbar-nav navbar-right">
+        {% for l in linklists[settings.footer-navbar-linklist].links %}
+        {% include '_navbar-link' with 0 %}
+        {% endfor %}
+      </ul>
+      {% unless settings.currency-switcher-position == 'navbar' %}{% include 'currency-switcher' %}{% endunless %}
     </div>
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-nav">
