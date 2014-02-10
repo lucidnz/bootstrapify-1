@@ -24,7 +24,7 @@
     
     {% endunless %}
     
-    {% if settings.newsletter-signup-placement == 'sidebar' %}
+    {% if settings.show-newsletter-signup-form and settings.newsletter-signup-placement == 'sidebar' %}
       {% include 'newsletter-signup-form' %}
     {% endif %}
             
