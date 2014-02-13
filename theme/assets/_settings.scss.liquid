@@ -312,6 +312,32 @@ body{
     }
   {% endif %}
   
+  {% assign column-1 = false %}
+  {% assign column-2 = false %}
+  {% assign column-3 = false %}
+  {% assign column-4 = false %}
+  {% assign newsletter = false %}
+  {% assign social = false %}
+  
+  {% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign column-1 = true %}{% endif %}
+  {% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign column-2 = true %}{% endif %}
+  {% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign column-3 = true %}{% endif %}
+  {% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign column-4 = true %}{% endif %}
+  {% if settings.show-newsletter-signup-form and settings.newsletter-signup-placement contains 'footer' %}{% assign newsletter = true %}{% endif %}
+  {% if settings.social-links-placement contains 'footer' %}
+    {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
+    {% for link in social_links %}
+      {% assign social_link = link | prepend: 'social-links-' %}
+      {% if settings[social_link] != blank %}{% assign social = true %}{% endif %}
+    {% endfor %}
+  {% endif %}
+  
+  {% if column-1 == false and column-2 == false and column-3 == false and column-4 == false and newsletter == false and social == false %}
+    #content{
+      padding-bottom: $body_navbar_padding + $body_padding;
+    }
+  {% endif %}
+  
   /* Design and colour schemes */
   @if $font-family-body{
     font-family: $font-family-body;
@@ -388,6 +414,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     border: none;
   } @else {
     border-color: darken-colour($body-background-colour, 7.5%);
+  }
+  .nav > li > a:hover, .nav > li > a:focus{
+    background-color: transparent;
   }
   .navbar-nav {
     > li > a{
@@ -468,11 +497,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 #footer-credits{
-  @if $fix-footer-navbar {
-    border-color: darken-colour($navbar-background-colour, 7.5%);
-  } @else {
-    border: none;
-  }
+  border-color: darken-colour($navbar-background-colour, 7.5%);
 }
 
 .carousel-caption{

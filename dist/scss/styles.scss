@@ -179,10 +179,10 @@ a.icon:hover {
 }
 
 #footer-content{
+  border-top: $gray-lighter solid 1px;
   padding-bottom: $grid-gutter-width;
   .container{
     padding-top: $padding-base-horizontal;
-    border-top: $gray-lighter solid 1px;
   }
 }
 #footer-credits{
@@ -190,7 +190,12 @@ a.icon:hover {
   border-radius: 0;
   border-bottom: none;
   border-left: none;
-  border-right: none;  
+  border-right: none;
+  .navbar-collapse{
+    border-top: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
@@ -319,5 +324,11 @@ a.icon:hover {
     text-shadow: $carousel-text-shadow;
     background-color: transparent;
     border: none;
+  }
+  #footer-credits{
+    .navbar-collapse{
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }

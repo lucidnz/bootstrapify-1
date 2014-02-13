@@ -26,7 +26,7 @@
   {% endif %}
         
   {% assign newsletter_column = 'footer-column-' | append: i %}
-  {% if settings.newsletter-signup-placement == newsletter_column %}
+  {% if settings.show-newsletter-signup-form and settings.newsletter-signup-placement == newsletter_column %}
   <div class="footer-form">
     {% include 'newsletter-signup-form' with 'footer' %}
   </div>

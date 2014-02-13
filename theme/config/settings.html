@@ -1,7 +1,7 @@
 <div class="section-info">
   
 </div>
-<fieldset>
+  <fieldset>
   <legend>Advanced</legend>
   
   <table>
@@ -564,6 +564,15 @@
   
   <table>
     <tr>
+      <th><label for="footer-navbar-linklist">Footer navbar linklist</label></th>
+      <td>
+        <select class="linklist" name="footer-navbar-linklist" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="navbar-linklist">Navbar linklist</label></th>
       <td>
         <select class="linklist" name="navbar-linklist" />
@@ -661,18 +670,18 @@
   
   <table>
     <tr>
-      <th><label for="homepage-featured-products-collection">Homepage featured products collection</label></th>
+      <th><label for="homepage">Homepage</label></th>
       <td>
-        <select class="collection" name="homepage-featured-products-collection" />
+        <select class="page" name="homepage" selected="frontpage" />
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="homepage-intro">Homepage intro</label></th>
+      <th><label for="homepage-featured-products-collection">Homepage featured products collection</label></th>
       <td>
-        <select class="page" name="homepage-intro" selected="frontpage" />
+        <select class="collection" name="homepage-featured-products-collection" />
       </td>
     </tr>
   </table>
@@ -1005,6 +1014,19 @@
     </tr>
   </table>
   
+  <table>
+    <tr>
+      <th><label for="slider-width">Slider width</label></th>
+      <td>
+           <div><input type="radio" name="slider-width" id="slider-width" value="window-width" checked="checked" /> Window width</div>
+           <div><input type="radio" name="slider-width" id="slider-width" value="site-width" /> Site width</div>
+           <div><input type="radio" name="slider-width" id="slider-width" value="main-content-width" /> Main content width</div>
+           
+        <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
+      </td>
+    </tr>
+  </table>
+  
 </fieldset>
 <fieldset>
   <legend>Layout</legend>
@@ -1057,19 +1079,6 @@
       <th><label for="show-sidebar-on-homepage">Show sidebar on Homepage</label></th>
       <td>
         <input type="checkbox" name="show-sidebar-on-homepage" id="show-sidebar-on-homepage" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="slider-width">Slider width</label></th>
-      <td>
-           <div><input type="radio" name="slider-width" id="slider-width" value="window-width" checked="checked" /> Window width</div>
-           <div><input type="radio" name="slider-width" id="slider-width" value="site-width" /> Site width</div>
-           <div><input type="radio" name="slider-width" id="slider-width" value="main-content-width" /> Main content width</div>
-           
-        <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
       </td>
     </tr>
   </table>
@@ -1206,6 +1215,15 @@
            <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-4" /> Footer column 4</div>
            <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="sidebar" /> Sidebar</div>
            
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-newsletter-signup-form">Show newsletter signup form</label></th>
+      <td>
+        <input type="checkbox" name="show-newsletter-signup-form" id="show-newsletter-signup-form" value="1" /> Yes
       </td>
     </tr>
   </table>
