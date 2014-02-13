@@ -35,7 +35,7 @@ img {
 .dropdown-menu > li .nav{
   margin: 5px 0 5px 20px;
   > li > a{
-    border-left: $gray-lighter solid 2px;
+    border-left: darken($gray-lighter, 10%) solid 2px;
     padding: 3px 20px 3px 20px;
     white-space: nowrap; // prevent links from randomly breaking onto new lines
     &:hover,
@@ -288,6 +288,10 @@ a.icon:hover {
 @media (min-width: 768px){
   #product-form .product-price{
     font-size: floor($font-size-large * 1.2);
+  }
+  
+  .dropdown-menu > li .nav > li > a{
+    border-left-color: $gray-lighter, 10%;
   }
   
   .sidebar{
