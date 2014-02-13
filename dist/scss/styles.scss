@@ -31,6 +31,20 @@ img {
     text-decoration: none;
   }
 }
+
+.dropdown-menu > li .nav{
+  margin: 5px 0 5px 20px;
+  > li > a{
+    border-left: $gray-lighter solid 2px;
+    padding: 3px 20px 3px 20px;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+    &:hover,
+    &:focus {
+      background-color: $dropdown-link-hover-bg;
+    }
+  }
+}
+
 aside .page-header:first-child, .main-content .page-header{
   margin-top: 0;
 }

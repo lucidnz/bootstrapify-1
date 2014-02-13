@@ -5109,6 +5109,15 @@ body > #wrap {
   .brand a:hover {
     text-decoration: none; }
 
+.dropdown-menu > li .nav {
+  margin: 5px 0 5px 20px; }
+  .dropdown-menu > li .nav > li > a {
+    border-left: #eeeeee solid 2px;
+    padding: 3px 20px 3px 20px;
+    white-space: nowrap; }
+    .dropdown-menu > li .nav > li > a:hover, .dropdown-menu > li .nav > li > a:focus {
+      background-color: whitesmoke; }
+
 aside .page-header:first-child, aside .brand:first-child, .main-content .page-header, .main-content .brand {
   margin-top: 0; }
 
