@@ -13,6 +13,8 @@ var preloadProductImages = function(){
 };
 
 $(function() {
+/*   alert('test'); */
+
   /* Multiple currencies */
   if ($('body').hasClass('currencies')) {
         
