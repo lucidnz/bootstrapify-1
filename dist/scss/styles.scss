@@ -32,16 +32,23 @@ img {
   }
 }
 
-.dropdown-menu > li .nav{
-  margin: 5px 0 5px 20px;
-  > li > a{
-    border-left: darken($gray-lighter, 10%) solid 2px;
-    padding: 3px 20px 3px 20px;
+.dropdown-menu > li.submenu{
+  float: left;
+  min-width: 160px;
+  border: red solid 1px;
+  > .nav > li > a{
+    padding: 3px 20px;
     white-space: nowrap; // prevent links from randomly breaking onto new lines
     &:hover,
     &:focus {
       background-color: $dropdown-link-hover-bg;
     }
+  }
+  .dropdown-header{
+    @extend .h4;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -288,10 +295,6 @@ a.icon:hover {
 @media (min-width: 768px){
   #product-form .product-price{
     font-size: floor($font-size-large * 1.2);
-  }
-  
-  .dropdown-menu > li .nav > li > a{
-    border-left-color: $gray-lighter, 10%;
   }
   
   .sidebar{

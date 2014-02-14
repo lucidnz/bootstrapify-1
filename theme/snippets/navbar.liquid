@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="main-nav">
       <ul class="nav navbar-nav">
         {% for l in linklists[settings.navbar-linklist].links %}
-        {% include '_navbar-link' with 0 %}
+        {% include '_navbar-link' %}
         {% endfor %}
       </ul>
       {% if settings.show-search-in-navbar %}
