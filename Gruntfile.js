@@ -41,7 +41,7 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: {
-          'theme/assets/_base.min.js': ['dist/js/base.js'],
+          'theme/assets/_base.min.js': ['dist/js/jquery.bootstrapify-dropdowns.js', 'dist/js/base.js'],
           'theme/assets/bootstrapify-option-selection.min.js': ['dist/js/bootstrapify-option-selection.js'],
         }
       }

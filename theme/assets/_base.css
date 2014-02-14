@@ -5114,7 +5114,7 @@ body > #wrap {
 .dropdown-menu > li.submenu {
   float: left;
   min-width: 160px;
-  border: red solid 1px; }
+  /*   border: red solid 1px; */ }
   .dropdown-menu > li.submenu > .nav > li > a {
     padding: 3px 20px;
     white-space: nowrap; }

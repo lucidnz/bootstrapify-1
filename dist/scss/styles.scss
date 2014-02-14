@@ -35,7 +35,7 @@ img {
 .dropdown-menu > li.submenu{
   float: left;
   min-width: 160px;
-  border: red solid 1px;
+/*   border: red solid 1px; */
   > .nav > li > a{
     padding: 3px 20px;
     white-space: nowrap; // prevent links from randomly breaking onto new lines
