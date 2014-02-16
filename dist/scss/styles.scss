@@ -32,25 +32,30 @@ img {
   }
 }
 
-.dropdown-menu > li.submenu{
-  float: left;
-  min-width: 160px;
-/*   border: red solid 1px; */
-  > .nav > li > a{
-    padding: 3px 20px;
-    white-space: nowrap; // prevent links from randomly breaking onto new lines
-    &:hover,
-    &:focus {
-      background-color: $dropdown-link-hover-bg;
+.dropdown-menu{
+  > li.divider{
+    clear: both;
+  }
+  > li.submenu{
+    float: left;
+    min-width: 160px;
+    > .nav > li > a{
+      padding: 3px 20px;
+      white-space: nowrap; // prevent links from randomly breaking onto new lines
+      &:hover,
+      &:focus {
+        background-color: $dropdown-link-hover-bg;
+      }
+    }
+    .dropdown-header{
+      @extend .h4;
+      padding: 0;
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
-  .dropdown-header{
-    @extend .h4;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
 }
+
 
 aside .page-header:first-child, .main-content .page-header{
   margin-top: 0;

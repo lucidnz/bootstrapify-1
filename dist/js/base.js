@@ -34,7 +34,7 @@ $(function() {
 
   }
   
-  $('.dropdown-menu').bootstrapifyDropdown();
+  $('.dropdown').bootstrapifyDropdown();
   
   $('.localize').tooltip();
   $('.tip').popover({

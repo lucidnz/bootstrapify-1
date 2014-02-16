@@ -2,7 +2,10 @@
   
   var BootstrapifyDropdown = function($ele){
     this.$ele = $ele;
-    this.submenus = this.$ele.find('.submenu');
+    this.menu = $ele.find('.dropdown-menu');
+    this.submenus = $ele.find('.submenu');
+    this.divider = '<li class="divider"></li>';
+    this.maxCols = 4;
     this.init();
   };
   
@@ -14,19 +17,14 @@
   };
   
   BootstrapifyDropdown.prototype.resizeDropdown = function(){
+    // open dropdown to get hidden elements dimensions
+    this.$ele.addClass('open');
+    
     var newDropdownWidth = this.getDropdownWidth();
-    this.$ele.width(newDropdownWidth);
-  };
-  
-  BootstrapifyDropdown.prototype.addDividers = function(){
-    if(this.hasSubMenus()){
-/*       if(){} */
-      // if submenu first has a prev sibling add divider before
-      // if submenu last has next sibling add divider after
+    this.menu.width(newDropdownWidth);
     
-    
-      console.log(this.submenus);
-    }
+    // close the dropdown again
+    this.$ele.removeClass('open');
   };
   
   BootstrapifyDropdown.prototype.hasSubMenus = function(threshold){
@@ -35,11 +33,43 @@
   };
   
   BootstrapifyDropdown.prototype.getDropdownWidth = function(){
+    var maxDropdownWidth = this.getMaxDropdownWidth();
+    var maxCols = this.maxCols;
     var totalWidth = 0;
-    $.each(this.submenus, function(){
-      totalWidth += $(this).getHiddenDimensions().width;
+    $.each(this.submenus, function(i){
+      var colCount = i + 1;
+      var width = $(this).width();
+      
+      // we have the max amount of cols we can fit so break
+      if(totalWidth + width > maxDropdownWidth || colCount > maxCols){ return; }
+      
+      totalWidth += width;
     });
     return totalWidth;
+  };
+  
+  BootstrapifyDropdown.prototype.getMaxDropdownWidth = function(){
+    var documentWidth = $(document).width();
+    var menuOffsetLeft = this.menu.offset().left;
+    return documentWidth - menuOffsetLeft;
+  };
+  
+  BootstrapifyDropdown.prototype.addDividers = function(){
+    if(this.hasSubMenus()){
+      var self = this;
+      $.each(this.submenus, function(){
+        var $this = $(this);
+        // if submenu has a next sibling that is not a submenu add divider after
+        if(self.hasSibling($this.next())){ $this.after(self.divider); }
+        
+        // if submenu has a prev sibling that is not a submenu add divider before
+        if(self.hasSibling($this.prev())){ $this.before(self.divider); }
+      });
+    }
+  };
+  
+  BootstrapifyDropdown.prototype.hasSibling = function($sibling){
+    return $sibling.length > 0 && !$sibling.hasClass('submenu');
   };
 
   $.fn.bootstrapifyDropdown = function(){
@@ -48,44 +78,5 @@
       $ele.data('_bootstrapifyDropdown', new BootstrapifyDropdown($ele));
     });
   };
-  
-  
-  // http://www.foliotek.com/devblog/getting-the-width-of-a-hidden-element-with-jquery-using-width/
-  // Optional parameter includeMargin is used when calculating outer dimensions
-  $.fn.getHiddenDimensions = function(includeMargin) {
-    var $item = this,
-      props = { position: 'absolute', visibility: 'hidden', display: 'block' },
-      dim = { width:0, height:0, innerWidth: 0, innerHeight: 0,outerWidth: 0,outerHeight: 0 },
-      $hiddenParents = $item.parents().andSelf().not(':visible'),
-      includeMargin = (includeMargin == null)? false : includeMargin;
-
-    var oldProps = [];
-    $hiddenParents.each(function() {
-      var old = {};
-
-      for ( var name in props ) {
-          old[ name ] = this.style[ name ];
-          this.style[ name ] = props[ name ];
-      }
-
-      oldProps.push(old);
-    });
-
-    dim.width = $item.width();
-    dim.outerWidth = $item.outerWidth(includeMargin);
-    dim.innerWidth = $item.innerWidth();
-    dim.height = $item.height();
-    dim.innerHeight = $item.innerHeight();
-    dim.outerHeight = $item.outerHeight(includeMargin);
-
-    $hiddenParents.each(function(i) {
-      var old = oldProps[i];
-      for ( var name in props ) {
-          this.style[ name ] = old[ name ];
-      }
-    });
-
-    return dim;
-  }
   
 }(jQuery));
