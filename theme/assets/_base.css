@@ -334,7 +334,7 @@ hr {
   border: 0; }
 
 h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .dropdown-menu > li.submenu .dropdown-header, .h5, .h6 {
+.h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
@@ -349,9 +349,8 @@ h1, h2, h3, h4, h5, h6,
   .h1 small,
   .h1 .small, .h2 small,
   .h2 .small, .h3 small,
-  .h3 .small, .h4 small, .dropdown-menu > li.submenu .dropdown-header small,
-  .h4 .small,
-  .dropdown-menu > li.submenu .dropdown-header .small, .h5 small,
+  .h3 .small, .h4 small,
+  .h4 .small, .h5 small,
   .h5 .small, .h6 small,
   .h6 .small {
     font-weight: normal;
@@ -374,15 +373,14 @@ h3, .h3 {
   .h3 .small {
     font-size: 65%; }
 
-h4, .h4, .dropdown-menu > li.submenu .dropdown-header,
+h4, .h4,
 h5, .h5,
 h6, .h6 {
   margin-top: 10px;
   margin-bottom: 10px; }
   h4 small,
-  h4 .small, .h4 small, .dropdown-menu > li.submenu .dropdown-header small,
+  h4 .small, .h4 small,
   .h4 .small,
-  .dropdown-menu > li.submenu .dropdown-header .small,
   h5 small,
   h5 .small, .h5 small,
   .h5 .small,
@@ -400,7 +398,7 @@ h2, .h2 {
 h3, .h3 {
   font-size: 24px; }
 
-h4, .h4, .dropdown-menu > li.submenu .dropdown-header {
+h4, .h4 {
   font-size: 18px; }
 
 h5, .h5 {
@@ -5111,20 +5109,10 @@ body > #wrap {
   .brand a:hover {
     text-decoration: none; }
 
-.dropdown-menu > li.divider {
-  clear: both; }
-.dropdown-menu > li.submenu {
-  float: left;
-  min-width: 160px; }
-  .dropdown-menu > li.submenu > .nav > li > a {
-    padding: 3px 20px;
-    white-space: nowrap; }
-    .dropdown-menu > li.submenu > .nav > li > a:hover, .dropdown-menu > li.submenu > .nav > li > a:focus {
-      background-color: whitesmoke; }
-  .dropdown-menu > li.submenu .dropdown-header {
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 0; }
+.navbar-nav .open .dropdown-menu .dropdown-header {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0; }
 
 aside .page-header:first-child, aside .brand:first-child, .main-content .page-header, .main-content .brand {
   margin-top: 0; }
@@ -5308,9 +5296,30 @@ a.icon:hover {
 .tt-suggestion p {
   margin: 0; }
 
+@media (max-width: 767px) {
+  .dropdown-menu > li.submenu > .nav > li > a {
+    padding: 5px 15px 5px 25px; } }
 @media (min-width: 768px) {
   #product-form .product-price {
     font-size: 21px; }
+
+  .dropdown-menu > li.divider {
+    clear: both; }
+  .dropdown-menu > li.submenu {
+    float: left;
+    min-width: 160px;
+    margin-bottom: 0.5em; }
+    .dropdown-menu > li.submenu > .nav > li > a {
+      padding: 3px 20px;
+      white-space: nowrap; }
+      .dropdown-menu > li.submenu > .nav > li > a:hover, .dropdown-menu > li.submenu > .nav > li > a:focus {
+        background-color: whitesmoke; }
+    .dropdown-menu > li.submenu .dropdown-header {
+      font-weight: bold;
+      font-size: 14px;
+      padding: 0;
+      margin-top: 0.5em;
+      margin-bottom: 0; }
 
   .sidebar {
     padding-top: 0;
@@ -5345,3 +5354,24 @@ a.icon:hover {
   #footer-credits .navbar-collapse {
     padding-left: 0;
     padding-right: 0; } }
+/* Pass screen size to js: http://adactio.com/journal/5429/ */
+body:after {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  display: block;
+  line-height: 0;
+  margin-top: -1em; }
+
+@media (max-width: 767px) {
+  body:after {
+    content: 'xs'; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  body:after {
+    content: 'sm'; } }
+@media (min-width: 992px) and (max-width: 1199px) {
+  body:after {
+    content: 'md'; } }
+@media (min-width: 1200px) {
+  body:after {
+    content: 'lg'; } }

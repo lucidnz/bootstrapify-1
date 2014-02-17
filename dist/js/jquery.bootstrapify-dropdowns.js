@@ -5,26 +5,37 @@
     this.menu = $ele.find('.dropdown-menu');
     this.submenus = $ele.find('.submenu');
     this.divider = '<li class="divider"></li>';
-    this.maxCols = 4;
+    this.maxCols = 3;
     this.init();
+    
+    var self = this;
+    $(window).on('resize', function(){
+      self.resizeDropdown();
+    });
   };
   
   BootstrapifyDropdown.prototype.init = function(){
-    if(this.hasSubMenus(1)){
-      this.resizeDropdown();
-    }
+    this.resizeDropdown();
     this.addDividers();
   };
   
   BootstrapifyDropdown.prototype.resizeDropdown = function(){
-    // open dropdown to get hidden elements dimensions
-    this.$ele.addClass('open');
-    
-    var newDropdownWidth = this.getDropdownWidth();
-    this.menu.width(newDropdownWidth);
-    
-    // close the dropdown again
-    this.$ele.removeClass('open');
+    if(this.hasSubMenus(1)){
+      if(this.screenSizeIs('xs')){
+        // dont resize if we are on a mobile view
+        this.menu.width('auto');
+        
+      } else {
+        // open dropdown to get hidden elements dimensions
+        this.$ele.addClass('open');
+        
+        var newDropdownWidth = this.getDropdownWidth();
+        this.menu.width(newDropdownWidth);
+        
+        // close the dropdown again
+        this.$ele.removeClass('open');
+      }
+    }
   };
   
   BootstrapifyDropdown.prototype.hasSubMenus = function(threshold){
@@ -35,7 +46,7 @@
   BootstrapifyDropdown.prototype.getDropdownWidth = function(){
     var maxDropdownWidth = this.getMaxDropdownWidth();
     var maxCols = this.maxCols;
-    var totalWidth = 0;
+    var totalWidth = 1; // +1 to account for fx being a lame
     $.each(this.submenus, function(i){
       var colCount = i + 1;
       var width = $(this).width();
@@ -70,6 +81,15 @@
   
   BootstrapifyDropdown.prototype.hasSibling = function($sibling){
     return $sibling.length > 0 && !$sibling.hasClass('submenu');
+  };
+  
+  BootstrapifyDropdown.prototype.screenSizeIs = function(size){
+    var screenSize = this.getScreenSize();
+    return screenSize.indexOf(size) !=-1;
+  };
+  
+  BootstrapifyDropdown.prototype.getScreenSize = function(){
+    return window.getComputedStyle(document.body,':after').getPropertyValue('content');
   };
 
   $.fn.bootstrapifyDropdown = function(){
