@@ -1,9 +1,9 @@
 {% assign homepage = 'frontpage' %}
 {% unless settings.homepage == blank %}{% assign homepage = settings.homepage %}{% endunless %}
 <h1 class="page-header">{{ pages[homepage].title }}</h1>
-<div class="lead">
+{% unless pages[homepage].content == blank %}<div class="lead">
   {{ pages[homepage].content }}
-</div>
+</div>{% endunless %}
 
 {% if settings.featured-collections-linklist %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>

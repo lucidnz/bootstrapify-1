@@ -11,7 +11,7 @@
   {% unless linklists[footer_menu] == empty %}
   <h4>{{ linklists[footer_menu].title }}</h4>
 
-  <ul class="nav nav-pills nav-stacked">
+  <ul class="list-nav">
     {% for l in linklists[footer_menu].links %}
     <li{% if l.active %} class="active"{% endif %}>{{ l.title | link_to: l.url, l.title }}</li>
     {% endfor %}

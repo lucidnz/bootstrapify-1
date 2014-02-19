@@ -1,5 +1,5 @@
 {% include '__collection-image' %}
-<div class="{% include '__thumbnail-span' %}">
+<div class="{% include '__thumbnail-span' %}{% if settings.masonry-style-layout %} masonry{% endif %}">
 	<div class="thumbnail">
 		{{ image }}
 		<div class="caption clearfix">
