@@ -5,8 +5,7 @@ $body_padding:                        20px !default;
 $body_navbar_padding:                 50px !default;
 $inverse_threshhold:                  60%;
 
-$default-primary-background-colour:    white !default;
-$default-secondary-background-colour:  #f8f8f8 !default;
+$default-background-colour:            white !default;
 $default-text-colour:                  #333 !default;
 $default-link-colour:                  #428bca !default;
 
@@ -16,14 +15,17 @@ $font-size-base:                       14px !default;
  * Setting Variables
  */
 $site-background-image:{% if settings.site-background-image != blank %}true{% else %}false{% endif %};
-$body-background-colour: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-primary-background-colour{% endif %};
+$body-background-colour: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-background-colour{% endif %};
 $body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
 $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %};
 $body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %};
 $button-colour: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}$body-link-colour{% endif %};
 $button-text-colour: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}false{% endif %};
 
-$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{% if settings.site-background-image != blank and settings.navbar-background-colour == settings.body-background-colour %}transparent{% else %}{{ settings.navbar-background-colour }}{% endif %}{% else %}$default-secondary-background-colour{% endif %};
+/*
+$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{% if settings.site-background-image != blank and settings.navbar-background-colour == settings.body-background-colour %}transparent{% else %}{{ settings.navbar-background-colour }}{% endif %}{% else %}$default-background-colour{% endif %};
+*/
+$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{ settings.navbar-background-colour }}{% else %}$body-background-colour{% endif %};
 $navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
 $navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
 $fix-top-navbar: {% if settings.top-navbar-placement == 'fixed-to-top' %}true{% else %}false{% endif %};
@@ -386,6 +388,35 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   color: lighten-colour($body-text-colour, $body-background-colour, 45%);
 }
 
+#navbar-top, #navbar-footer{
+  @include background-colour($navbar-background-colour);
+  @include text-colour($navbar-text-colour, $navbar-background-colour);
+  @include link-colour($navbar-link-colour, $navbar-background-colour);
+  @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
+  @if $site-background-image and $navbar-background-colour == $body-background-colour and $fix-top-navbar == false{
+    background-color: transparent;
+  }
+  .navbar-toggle{
+    border-color: darken-colour($navbar-background-colour, 7.5%);
+    .icon-bar{
+      background-color: darken-colour($navbar-background-colour, 7.5%);
+    }
+    &:hover, &:focus{
+      background-color: darken-colour($navbar-background-colour, 4%);
+    }
+  }
+}
+
+#navbar-main{
+  @include text-colour($navbar-text-colour, $body-background-colour);
+  @include link-colour($navbar-link-colour, $body-background-colour);
+  @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
+  .navbar-nav > li > a:hover, .nav > li > a:focus{
+    background-color: transparent;
+  }
+}
+
+/*
 .navbar-default{
   @include background-colour($navbar-background-colour);
   @include text-colour($navbar-text-colour, $navbar-background-colour);
@@ -446,6 +477,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     border-color: darken-colour($navbar-background-colour, 7.5%);
   }
 }
+*/
 
 .sidebar{
   @include background-colour($sidebar-background-colour);
@@ -457,7 +489,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
-#footer-content{
+#footer-content > .container{
   @include background-colour($footer-background-colour);
   @include heading-colour($footer-heading-colour, $footer-background-colour);
   @include text-colour($footer-text-colour, $footer-background-colour);
