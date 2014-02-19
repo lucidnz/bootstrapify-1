@@ -214,7 +214,6 @@ a.icon:hover {
   padding-bottom: $padding-base-horizontal;
 }
 
-<<<<<<< HEAD
 .list-nav {
   @extend .list-unstyled;
   
@@ -227,28 +226,6 @@ a.icon:hover {
   }
 }
 
-#footer-content{
-  border-top: $gray-lighter solid 1px;
-  padding-bottom: $grid-gutter-width;
-  .container{
-    padding-top: $padding-base-horizontal;
-  }
-}
-#footer-credits{
-  margin-bottom: 0;
-  border-radius: 0;
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-  .navbar-collapse{
-    border-top: none;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-  }
-}
-
-=======
->>>>>>> bootstrap3/stewart
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;
