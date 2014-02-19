@@ -57,7 +57,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          // grab bootstraps js files
+          // grab js files from bower
           {
             expand: true,
             cwd: 'bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/',
@@ -68,6 +68,12 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'bower_components/typeahead.js/dist/',
             src: 'typeahead.js',
+            dest: 'theme/assets/'
+          },
+          {
+            expand: true,
+            cwd: 'bower_components/jquery/dist/',
+            src: 'jquery.min.js',
             dest: 'theme/assets/'
           }
         ]
