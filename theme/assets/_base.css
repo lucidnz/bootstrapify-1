@@ -5064,6 +5064,14 @@ body > #wrap {
   min-height: 200px;
   clear: both; }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1em; }
+
 .brand {
   overflow: auto;
   margin-top: 0; }
