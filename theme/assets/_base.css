@@ -5099,37 +5099,52 @@ body > #wrap {
   min-height: 50px;
   clear: both; }
 
-.brand {
-  /*   @extend .page-header; */
-  overflow: auto;
-  margin-top: 0; }
-  .brand .text-center img {
-    margin: auto; }
-  .brand h1 {
-    margin-top: 10px; }
-  .brand a:hover {
-    text-decoration: none; }
+#navbar-main {
+  /*   margin-bottom: 3em; */ }
 
 #navbar-footer {
-  margin-bottom: 0; }
-  #navbar-footer .navbar-collapse {
-    border-top: none;
-    border-bottom-width: 1px;
-    border-bottom-style: solid; }
+  margin-bottom: 0;
+  /*
+    .navbar-collapse{ <-- only use this if the navbar has colour
+      border-top: none;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+    }
+  */ }
 
 #footer-content > .container {
   padding-top: 30px;
   padding-bottom: 30px; }
+
+.navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover,
+.navbar .navbar-nav > .active > a:focus, .navbar .navbar-nav .open > a,
+.navbar .navbar-nav .open > a:hover, .navbar .navbar-nav .open > a:focus,
+.navbar .navbar-nav > li > a:hover, .nav > li > a:focus {
+  color: #2a6496;
+  background-color: transparent; }
 
 .navbar-nav .open .dropdown-menu .dropdown-header {
   font-weight: bold;
   font-size: 14px;
   padding: 0; }
 
+.brand {
+  overflow: auto; }
+  .brand .text-center img {
+    margin: auto; }
+  .brand h1 {
+    margin: 1em auto 1.5em; }
+  .brand a:hover {
+    text-decoration: none; }
+
 .main-content {
   margin-bottom: 30px; }
+  .main-content .page-header {
+    margin-bottom: 0.75em; }
+  .main-content .tags-list {
+    margin-bottom: 30px; }
 
-aside .page-header:first-child, .main-content .page-header {
+aside .page-header:first-child {
   margin-top: 0; }
 
 .carousel {
@@ -5155,9 +5170,6 @@ a.icon:hover {
   display: inline-block;
   vertical-align: top;
   margin-right: 0.5em; }
-
-.main-content .tags-list {
-  margin-bottom: 30px; }
 
 .thumbnail {
   overflow: auto; }
@@ -5310,6 +5322,8 @@ a.icon:hover {
     .navbar-center > li {
       float: none;
       display: inline-block; }
+    .navbar-center .dropdown-menu {
+      text-align: left; }
 
   #product-form .product-price {
     font-size: 21px; }

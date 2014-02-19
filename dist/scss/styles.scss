@@ -17,34 +17,34 @@ img {
   @extend .img-responsive;
 }
 
-.brand{
-/*   @extend .page-header; */
-  overflow: auto;
-  margin-top: 0;
-  .text-center img{
-    margin: auto;
-  }
-  h1{
-    margin-top: 10px;
-  }
-  a:hover{
-    text-decoration: none;
-  }
+#navbar-main{
+/*   margin-bottom: 3em; */
 }
 
 #navbar-footer{
   margin-bottom: 0;
-  .navbar-collapse{
+/*
+  .navbar-collapse{ <-- only use this if the navbar has colour
     border-top: none;
     border-bottom-width: 1px;
     border-bottom-style: solid;
   }
+*/
 }
+
 #footer-content{
   > .container{
     padding-top: $grid-gutter-width;
     padding-bottom: $grid-gutter-width;
   }
+}
+    
+.navbar .navbar-nav>.active>a, .navbar .navbar-nav>.active>a:hover,
+.navbar .navbar-nav>.active>a:focus, .navbar .navbar-nav .open>a,
+.navbar .navbar-nav .open>a:hover, .navbar .navbar-nav .open>a:focus,
+.navbar .navbar-nav > li > a:hover, .nav > li > a:focus{
+  color: $link-hover-color;
+  background-color: transparent;
 }
     
 .navbar-nav .open .dropdown-menu .dropdown-header{
@@ -53,11 +53,30 @@ img {
   padding: 0;
 }
 
-.main-content{
-  margin-bottom: $grid-gutter-width;
+.brand{
+  overflow: auto;
+  .text-center img{
+    margin: auto;
+  }
+  h1{
+    margin: 1em auto 1.5em;
+  }
+  a:hover{
+    text-decoration: none;
+  }
 }
 
-aside .page-header:first-child, .main-content .page-header{
+.main-content{
+  margin-bottom: $grid-gutter-width;
+  .page-header{
+    margin-bottom: 0.75em;
+  }
+  .tags-list{
+    margin-bottom: $grid-gutter-width;
+  }
+}
+
+aside .page-header:first-child{
   margin-top: 0;
 }
 
@@ -96,10 +115,6 @@ a.icon:hover {
   display: inline-block;
   vertical-align: top;
   margin-right: 0.5em;
-}
-
-.main-content .tags-list{
-  margin-bottom: $grid-gutter-width;
 }
 
 .thumbnail{
@@ -298,6 +313,9 @@ a.icon:hover {
     > li{
       float: none;
       display: inline-block;
+    }
+    .dropdown-menu{
+      text-align: left;
     }
   }
 

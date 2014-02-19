@@ -26,7 +26,7 @@ $button-text-colour: {% if settings.button-text-colour != blank %}{{ settings.bu
 $navbar-background-colour: {% if settings.navbar-background-colour != blank %}{% if settings.site-background-image != blank and settings.navbar-background-colour == settings.body-background-colour %}transparent{% else %}{{ settings.navbar-background-colour }}{% endif %}{% else %}$default-secondary-background-colour{% endif %};
 $navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
 $navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
-$fix-footer-navbar: {% if settings.fix-footer-navbar != blank %}true{% else %}false{% endif %};
+$fix-top-navbar: {% if settings.top-navbar-placement == 'fixed-to-top' %}true{% else %}false{% endif %};
 
 $sidebar-background-colour: {% if settings.sidebar-background-colour != blank %}{{ settings.sidebar-background-colour }}{% else %}transparent{% endif %};
 $sidebar-heading-colour: {% if settings.sidebar-heading-colour != blank %}{{ settings.sidebar-heading-colour }}{% else %}$body-heading-colour{% endif %};
@@ -310,51 +310,14 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
  */
 body{
   /* Navbar placement */
-  {% comment %}
-  {% if settings.navbar-placement == 'fixed-to-top' %}padding-top: $body_navbar_padding + $body_padding;{% elsif settings.navbar-placement == 'main-content' and settings.logo-placement != "above-navbar" %}padding-top: $body_padding;{% endif %}
-  {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-navbar %}padding-bottom: $body_navbar_padding + $body_padding;{% endif %}
-  {% if settings.navbar-placement == 'fixed-to-bottom' %}
-    {% unless settings.logo-placement == "above-navbar" %}padding-top: $body_padding;{% endunless %}
-    padding-bottom: $body_navbar_padding;
-    /*
-    #footer-credits{
-      padding-bottom: $body_navbar_padding - 2px;
-    }
-    */
-  {% endif %}
-  {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}
-  .brand{
-    margin-bottom: 0;
-    @if $navbar-background-colour == $body-background-colour {
-      border: none;
-    } @else {
-      border-color: darken-colour($footer-background-colour, 7.5%);
-    }
+  @if $fix-top-navbar{
+    padding-top: $body_navbar_padding + $body_padding;
   }
-  {% elsif settings.navbar-placement == 'main-content' %}
-    .brand{
-      margin-bottom: 0;
-      border: none;
-    }
-  {% endif %}
-  
-  {% if column-1 == false and column-2 == false and column-3 == false and column-4 == false and newsletter == false and social == false %}
-    #content{
-      padding-bottom: $body_navbar_padding + $body_padding;
-    }
-  {% endif %}
-  {% endcomment %}
-  
   #content{
     @if $has-footer{
       padding-bottom: $footer-height;
     }
   }
-  
-  
-  
-  
-  
   
   /* Design and colour schemes */
   @if $font-family-body{
