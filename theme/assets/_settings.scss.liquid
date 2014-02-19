@@ -63,6 +63,29 @@ $font-size-nav-secondary: {% if settings.font-nav-secondary-size != blank %}{{ s
 $font-transform-nav-secondary: {% if settings.font-nav-secondary-case == 'lowercase' or settings.font-nav-secondary-case == 'uppercase' %}{{ settings.font-nav-secondary-case }}{% elsif settings.font-nav-secondary-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-nav-secondary-italic: {% if settings.font-nav-secondary-style == 'italic' %}true{% else %}false{% endif %};
 
+{% assign column-1 = false %}
+{% assign column-2 = false %}
+{% assign column-3 = false %}
+{% assign column-4 = false %}
+{% assign newsletter = false %}
+{% assign social = false %}
+{% assign has_footer = false %}
+{% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign column-1 = true %}{% endif %}
+{% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign column-2 = true %}{% endif %}
+{% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign column-3 = true %}{% endif %}
+{% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign column-4 = true %}{% endif %}
+{% if settings.show-newsletter-signup-form and settings.newsletter-signup-placement contains 'footer' %}{% assign newsletter = true %}{% endif %}
+{% if settings.social-links-placement contains 'footer' %}
+  {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
+  {% for link in social_links %}
+    {% assign social_link = link | prepend: 'social-links-' %}
+    {% if settings[social_link] != blank %}{% assign social = true %}{% endif %}
+  {% endfor %}
+{% endif %}
+{% if column-1 or column-2 or column-3 or column-4 or newsletter or social %}{% assign has_footer = true %}{% endif %}
+$has-footer: {% if has_footer %}true{% else %}false{% endif %};
+$footer-height: 250px;
+
 {% for i in (i..5) %}
   {% assign c = i | plus: 1 %}
   {% assign slide = 'slide-' | append: c %}
@@ -287,14 +310,17 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
  */
 body{
   /* Navbar placement */
+  {% comment %}
   {% if settings.navbar-placement == 'fixed-to-top' %}padding-top: $body_navbar_padding + $body_padding;{% elsif settings.navbar-placement == 'main-content' and settings.logo-placement != "above-navbar" %}padding-top: $body_padding;{% endif %}
   {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-navbar %}padding-bottom: $body_navbar_padding + $body_padding;{% endif %}
   {% if settings.navbar-placement == 'fixed-to-bottom' %}
     {% unless settings.logo-placement == "above-navbar" %}padding-top: $body_padding;{% endunless %}
     padding-bottom: $body_navbar_padding;
+    /*
     #footer-credits{
       padding-bottom: $body_navbar_padding - 2px;
     }
+    */
   {% endif %}
   {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}
   .brand{
@@ -312,31 +338,23 @@ body{
     }
   {% endif %}
   
-  {% assign column-1 = false %}
-  {% assign column-2 = false %}
-  {% assign column-3 = false %}
-  {% assign column-4 = false %}
-  {% assign newsletter = false %}
-  {% assign social = false %}
-  
-  {% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign column-1 = true %}{% endif %}
-  {% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign column-2 = true %}{% endif %}
-  {% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign column-3 = true %}{% endif %}
-  {% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign column-4 = true %}{% endif %}
-  {% if settings.show-newsletter-signup-form and settings.newsletter-signup-placement contains 'footer' %}{% assign newsletter = true %}{% endif %}
-  {% if settings.social-links-placement contains 'footer' %}
-    {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
-    {% for link in social_links %}
-      {% assign social_link = link | prepend: 'social-links-' %}
-      {% if settings[social_link] != blank %}{% assign social = true %}{% endif %}
-    {% endfor %}
-  {% endif %}
-  
   {% if column-1 == false and column-2 == false and column-3 == false and column-4 == false and newsletter == false and social == false %}
     #content{
       padding-bottom: $body_navbar_padding + $body_padding;
     }
   {% endif %}
+  {% endcomment %}
+  
+  #content{
+    @if $has-footer{
+      padding-bottom: $footer-height;
+    }
+  }
+  
+  
+  
+  
+  
   
   /* Design and colour schemes */
   @if $font-family-body{
@@ -480,14 +498,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   @include background-colour($footer-background-colour);
   @include heading-colour($footer-heading-colour, $footer-background-colour);
   @include text-colour($footer-text-colour, $footer-background-colour);
-  @include link-colour($footer-link-colour, $footer-background-colour);
-  @if $fix-footer-navbar{
-    padding-bottom: 80px;
+  @include link-colour($footer-link-colour, $footer-background-colour);  
+  @if $has-footer{
+    margin-top: -$footer-height;
+    min-height: $footer-height;
   }
   .nav{
     @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
   }
-  .container{
+  > .container{
+    @if $has-footer{
+      padding-bottom: 80px;
+    }
     @if $site-background-image == false and ($footer-background-colour == $body-background-colour or $footer-background-colour == transparent) {
       border-top-color: darken-colour($footer-background-colour, 7.5%);
     } @else {
@@ -496,9 +518,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
+/*
 #footer-credits{
   border-color: darken-colour($navbar-background-colour, 7.5%);
 }
+*/
 
 .carousel-caption{
   color: $body-text-colour;

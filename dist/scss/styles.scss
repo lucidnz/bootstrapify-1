@@ -2,13 +2,13 @@ $line-height-base: 1.42858; // fix rounding issue as sass var can only hold 5 de
 @import "bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 
 // sticky footer
-$footer-height: 200px;
+$footer-height: $navbar-height;
 html, body, #wrap { height: 100%; }
 body > #wrap {height: auto; min-height: 100%;}
-#content { padding-bottom: ($footer-height + $navbar-height); }
+#content { padding-bottom: $footer-height; }
 #footer-content { 
   position: relative;
-  margin-top: -($footer-height + $navbar-height);
+  margin-top: -$footer-height;
   min-height: $footer-height;
   clear:both;
 }
@@ -18,7 +18,7 @@ img {
 }
 
 .brand{
-  @extend .page-header;
+/*   @extend .page-header; */
   overflow: auto;
   margin-top: 0;
   .text-center img{
@@ -31,11 +31,30 @@ img {
     text-decoration: none;
   }
 }
+
+#navbar-footer{
+  margin-bottom: 0;
+  .navbar-collapse{
+    border-top: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+}
+#footer-content{
+  > .container{
+    padding-top: $grid-gutter-width;
+    padding-bottom: $grid-gutter-width;
+  }
+}
     
 .navbar-nav .open .dropdown-menu .dropdown-header{
   font-weight: bold;
   font-size: $font-size-base;
   padding: 0;
+}
+
+.main-content{
+  margin-bottom: $grid-gutter-width;
 }
 
 aside .page-header:first-child, .main-content .page-header{
@@ -171,26 +190,6 @@ a.icon:hover {
   padding-bottom: $padding-base-horizontal;
 }
 
-#footer-content{
-  border-top: $gray-lighter solid 1px;
-  padding-bottom: $grid-gutter-width;
-  .container{
-    padding-top: $padding-base-horizontal;
-  }
-}
-#footer-credits{
-  margin-bottom: 0;
-  border-radius: 0;
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-  .navbar-collapse{
-    border-top: none;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-  }
-}
-
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;
@@ -285,6 +284,22 @@ a.icon:hover {
 }
 
 @media (min-width: $screen-sm){
+  
+  .navbar-nav.navbar-left:first-child{
+    margin-left: ($grid-gutter-width / -2);
+  }
+  .navbar-text.navbar-left:first-child{
+    margin-left: 0;
+  }
+  
+  .navbar-center{
+    float: none;
+    text-align: center;
+    > li{
+      float: none;
+      display: inline-block;
+    }
+  }
 
   #product-form .product-price{
     font-size: floor($font-size-large * 1.2);
@@ -333,10 +348,10 @@ a.icon:hover {
       margin-top: -15px;
     }
     .fa-chevron-left{
-      margin-left: -15px;
+      margin-left:  ($grid-gutter-width / -2);
     }
     .fa-chevron-right{
-      margin-right: -15px;
+      margin-right: ($grid-gutter-width / -2);
     }
   }
   .carousel-caption{
@@ -351,16 +366,12 @@ a.icon:hover {
     background-color: transparent;
     border: none;
   }
-  #footer-credits{
-    .navbar-collapse{
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
 }
 
 /* Pass screen size to js: http://adactio.com/journal/5429/ */
 body:after{
+  // newer chrome is a lame about not giving us content of display:none element in js
+  // so hide it this way
   visibility: hidden;
   height: 0;
   width: 0;

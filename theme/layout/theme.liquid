@@ -37,13 +37,16 @@
 
 <body class="{% if settings.show-multiple-currencies %} currencies{% endif %}">
   <div id="wrap">
+  {% include 'navbar' with 'top' %}
+  
   {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
     
-  {% if settings.navbar-placement != 'main-content' %}{% include 'navbar' %}{% endif %}
+  {% if settings.main-navbar-placement != 'main-content-width' and settings.main-navbar-linklist != blank %}{% include 'navbar' with 'main' %}{% endif %}
   
   {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% endif %}
     <div id="content" class="container">
-      {% if settings.navbar-placement == 'main-content' %}{% include 'navbar' %}{% endif %}
+      {% if  settings.main-navbar-placement == 'main-content-width' and settings.main-navbar-linklist != blank %}{% include 'navbar' with 'main' %}{% endif %}
+      
       {% if settings.logo-placement != "navbar" and settings.logo-placement != "above-navbar" %}
         <div class="{% if settings.logo-placement == "sidebar" %} visible-xs{% endif %}">{% include 'brand' %}</div>
       {% endif %}

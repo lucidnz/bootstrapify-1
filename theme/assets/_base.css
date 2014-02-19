@@ -504,7 +504,7 @@ a.bg-warning:hover {
 a.bg-danger:hover {
   background-color: #e4b9b9; }
 
-.page-header, .brand {
+.page-header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee; }
@@ -5091,15 +5091,16 @@ body > #wrap {
   min-height: 100%; }
 
 #content {
-  padding-bottom: 250px; }
+  padding-bottom: 50px; }
 
 #footer-content {
   position: relative;
-  margin-top: -250px;
-  min-height: 200px;
+  margin-top: -50px;
+  min-height: 50px;
   clear: both; }
 
 .brand {
+  /*   @extend .page-header; */
   overflow: auto;
   margin-top: 0; }
   .brand .text-center img {
@@ -5109,12 +5110,26 @@ body > #wrap {
   .brand a:hover {
     text-decoration: none; }
 
+#navbar-footer {
+  margin-bottom: 0; }
+  #navbar-footer .navbar-collapse {
+    border-top: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid; }
+
+#footer-content > .container {
+  padding-top: 30px;
+  padding-bottom: 30px; }
+
 .navbar-nav .open .dropdown-menu .dropdown-header {
   font-weight: bold;
   font-size: 14px;
   padding: 0; }
 
-aside .page-header:first-child, aside .brand:first-child, .main-content .page-header, .main-content .brand {
+.main-content {
+  margin-bottom: 30px; }
+
+aside .page-header:first-child, .main-content .page-header {
   margin-top: 0; }
 
 .carousel {
@@ -5204,23 +5219,6 @@ a.icon:hover {
   padding-top: 12px;
   padding-bottom: 12px; }
 
-#footer-content {
-  border-top: #eeeeee solid 1px;
-  padding-bottom: 30px; }
-  #footer-content .container {
-    padding-top: 12px; }
-
-#footer-credits {
-  margin-bottom: 0;
-  border-radius: 0;
-  border-bottom: none;
-  border-left: none;
-  border-right: none; }
-  #footer-credits .navbar-collapse {
-    border-top: none;
-    border-bottom-width: 1px;
-    border-bottom-style: solid; }
-
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;
@@ -5300,6 +5298,19 @@ a.icon:hover {
   .dropdown-menu > li.submenu > .nav > li > a {
     padding: 5px 15px 5px 25px; } }
 @media (min-width: 768px) {
+  .navbar-nav.navbar-left:first-child {
+    margin-left: -15px; }
+
+  .navbar-text.navbar-left:first-child {
+    margin-left: 0; }
+
+  .navbar-center {
+    float: none;
+    text-align: center; }
+    .navbar-center > li {
+      float: none;
+      display: inline-block; }
+
   #product-form .product-price {
     font-size: 21px; }
 
@@ -5349,11 +5360,7 @@ a.icon:hover {
     text-align: center;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
     background-color: transparent;
-    border: none; }
-
-  #footer-credits .navbar-collapse {
-    padding-left: 0;
-    padding-right: 0; } }
+    border: none; } }
 /* Pass screen size to js: http://adactio.com/journal/5429/ */
 body:after {
   visibility: hidden;
