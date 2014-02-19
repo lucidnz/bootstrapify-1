@@ -5064,7 +5064,6 @@ body > #wrap {
   min-height: 50px;
   clear: both; }
 
-<<<<<<< HEAD
 h1,
 h2,
 h3,
@@ -5072,7 +5071,7 @@ h4,
 h5,
 h6 {
   margin-top: 1em; }
-=======
+
 #navbar-main {
   /*   margin-bottom: 3em; */ }
 
@@ -5101,7 +5100,6 @@ h6 {
   font-weight: bold;
   font-size: 14px;
   padding: 0; }
->>>>>>> bootstrap3/stewart
 
 .brand {
   overflow: auto; }
@@ -5206,31 +5204,11 @@ a.icon:hover {
   padding-top: 12px;
   padding-bottom: 12px; }
 
-<<<<<<< HEAD
 .list-nav li {
   margin-top: 1em; }
 .list-nav li:first-child {
   margin-top: 0; }
 
-#footer-content {
-  border-top: #eeeeee solid 1px;
-  padding-bottom: 30px; }
-  #footer-content .container {
-    padding-top: 12px; }
-
-#footer-credits {
-  margin-bottom: 0;
-  border-radius: 0;
-  border-bottom: none;
-  border-left: none;
-  border-right: none; }
-  #footer-credits .navbar-collapse {
-    border-top: none;
-    border-bottom-width: 1px;
-    border-bottom-style: solid; }
-
-=======
->>>>>>> bootstrap3/stewart
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;
