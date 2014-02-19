@@ -17,6 +17,15 @@ img {
   @extend .img-responsive;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1em;
+}
+
 .brand{
   @extend .page-header;
   overflow: auto;
@@ -176,6 +185,18 @@ a.icon:hover {
 .sidebar{
   padding-top: $padding-base-horizontal;
   padding-bottom: $padding-base-horizontal;
+}
+
+.list-nav {
+  @extend .list-unstyled;
+  
+  li {
+    margin-top: 1em;
+  }
+  
+  li:first-child {
+    margin-top: 0;
+  }
 }
 
 #footer-content{

@@ -45,6 +45,16 @@ $(function() {
 $(window).load(function(){
   preloadProductImages();
   
+  /* Isotope */
+  var $container = $('.row');
+  // init
+  $container.isotope({
+    // options
+    itemSelector: '.masonry',
+    layoutMode: 'masonry'
+  });
+  /* End Isotope */
+  
   $('.carousel').on('slid.bs.carousel', function () {
     var imgHeight = $(this).find('.item.active img').height();
     $('.carousel-control').css({maxHeight: imgHeight});
