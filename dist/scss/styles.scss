@@ -2,13 +2,13 @@ $line-height-base: 1.42858; // fix rounding issue as sass var can only hold 5 de
 @import "bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 
 // sticky footer
-$footer-height: 200px;
+$footer-height: $navbar-height;
 html, body, #wrap { height: 100%; }
 body > #wrap {height: auto; min-height: 100%;}
-#content { padding-bottom: ($footer-height + $navbar-height); }
+#content { padding-bottom: $footer-height; }
 #footer-content { 
   position: relative;
-  margin-top: -($footer-height + $navbar-height);
+  margin-top: -$footer-height;
   min-height: $footer-height;
   clear:both;
 }
@@ -26,19 +26,34 @@ h6 {
   margin-top: 1em;
 }
 
-.brand{
-  @extend .page-header;
-  overflow: auto;
-  margin-top: 0;
-  .text-center img{
-    margin: auto;
+#navbar-main{
+/*   margin-bottom: 3em; */
+}
+
+#navbar-footer{
+  margin-bottom: 0;
+/*
+  .navbar-collapse{ <-- only use this if the navbar has colour
+    border-top: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
   }
-  h1{
-    margin-top: 10px;
+*/
+}
+
+#footer-content{
+  > .container{
+    padding-top: $grid-gutter-width;
+    padding-bottom: $grid-gutter-width;
   }
-  a:hover{
-    text-decoration: none;
-  }
+}
+    
+.navbar .navbar-nav>.active>a, .navbar .navbar-nav>.active>a:hover,
+.navbar .navbar-nav>.active>a:focus, .navbar .navbar-nav .open>a,
+.navbar .navbar-nav .open>a:hover, .navbar .navbar-nav .open>a:focus,
+.navbar .navbar-nav > li > a:hover, .nav > li > a:focus{
+  color: $link-hover-color;
+  background-color: transparent;
 }
     
 .navbar-nav .open .dropdown-menu .dropdown-header{
@@ -47,7 +62,30 @@ h6 {
   padding: 0;
 }
 
-aside .page-header:first-child, .main-content .page-header{
+.brand{
+  overflow: auto;
+  .text-center img{
+    margin: auto;
+  }
+  h1{
+    margin: 1em auto 1.5em;
+  }
+  a:hover{
+    text-decoration: none;
+  }
+}
+
+.main-content{
+  margin-bottom: $grid-gutter-width;
+  .page-header{
+    margin-bottom: 0.75em;
+  }
+  .tags-list{
+    margin-bottom: $grid-gutter-width;
+  }
+}
+
+aside .page-header:first-child{
   margin-top: 0;
 }
 
@@ -86,10 +124,6 @@ a.icon:hover {
   display: inline-block;
   vertical-align: top;
   margin-right: 0.5em;
-}
-
-.main-content .tags-list{
-  margin-bottom: $grid-gutter-width;
 }
 
 .thumbnail{
@@ -180,6 +214,7 @@ a.icon:hover {
   padding-bottom: $padding-base-horizontal;
 }
 
+<<<<<<< HEAD
 .list-nav {
   @extend .list-unstyled;
   
@@ -212,6 +247,8 @@ a.icon:hover {
   }
 }
 
+=======
+>>>>>>> bootstrap3/stewart
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;
@@ -306,6 +343,25 @@ a.icon:hover {
 }
 
 @media (min-width: $screen-sm){
+  
+  .navbar-nav.navbar-left:first-child{
+    margin-left: ($grid-gutter-width / -2);
+  }
+  .navbar-text.navbar-left:first-child{
+    margin-left: 0;
+  }
+  
+  .navbar-center{
+    float: none;
+    text-align: center;
+    > li{
+      float: none;
+      display: inline-block;
+    }
+    .dropdown-menu{
+      text-align: left;
+    }
+  }
 
   #product-form .product-price{
     font-size: floor($font-size-large * 1.2);
@@ -354,10 +410,10 @@ a.icon:hover {
       margin-top: -15px;
     }
     .fa-chevron-left{
-      margin-left: -15px;
+      margin-left:  ($grid-gutter-width / -2);
     }
     .fa-chevron-right{
-      margin-right: -15px;
+      margin-right: ($grid-gutter-width / -2);
     }
   }
   .carousel-caption{
@@ -372,16 +428,12 @@ a.icon:hover {
     background-color: transparent;
     border: none;
   }
-  #footer-credits{
-    .navbar-collapse{
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
 }
 
 /* Pass screen size to js: http://adactio.com/journal/5429/ */
 body:after{
+  // newer chrome is a lame about not giving us content of display:none element in js
+  // so hide it this way
   visibility: hidden;
   height: 0;
   width: 0;
