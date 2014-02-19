@@ -187,6 +187,18 @@ a.icon:hover {
   padding-bottom: $padding-base-horizontal;
 }
 
+.list-nav {
+  @extend .list-unstyled;
+  
+  li {
+    margin-top: 1em;
+  }
+  
+  li:first-child {
+    margin-top: 0;
+  }
+}
+
 #footer-content{
   border-top: $gray-lighter solid 1px;
   padding-bottom: $grid-gutter-width;

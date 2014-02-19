@@ -519,7 +519,7 @@ ol {
   ol ol {
     margin-bottom: 0; }
 
-.list-unstyled, .list-inline {
+.list-unstyled, .list-inline, .list-nav {
   padding-left: 0;
   list-style: none; }
 
@@ -5180,6 +5180,11 @@ a.icon:hover {
 .sidebar {
   padding-top: 12px;
   padding-bottom: 12px; }
+
+.list-nav li {
+  margin-top: 1em; }
+.list-nav li:first-child {
+  margin-top: 0; }
 
 #footer-content {
   border-top: #eeeeee solid 1px;
