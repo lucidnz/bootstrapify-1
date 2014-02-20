@@ -17,18 +17,18 @@
     {% endfor %}
   </ul>
   {% endunless %}
-                
+        
+  {% assign newsletter_column = 'footer-column-' | append: i %}
+  {% if settings.newsletter-signup-placement == newsletter_column %}
+  <div class="footer-form">
+    {% include 'newsletter-signup-form' with 'footer' %}
+  </div>
+  {% endif %}
+  
   {% assign social_links_column = 'footer-column-' | append: i %}
   {% if settings.social-links-placement == social_links_column %}
   <div class="clearfix social-icons">
     {% include 'social-links' %}
-  </div>
-  {% endif %}
-        
-  {% assign newsletter_column = 'footer-column-' | append: i %}
-  {% if settings.show-newsletter-signup-form and settings.newsletter-signup-placement == newsletter_column %}
-  <div class="footer-form">
-    {% include 'newsletter-signup-form' with 'footer' %}
   </div>
   {% endif %}
         
