@@ -179,7 +179,7 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     border-top-color: darken-colour($colour, 7.5%);
   }
 
-  .table-bordered, .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td{
+  .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td, .table-bordered, .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td{
     border-color: darken-colour($colour, 7.5%);
   }
   
@@ -191,6 +191,10 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     background-color: darken-colour($colour, 6%);
   }
 
+  .thumbnail{
+    border-color: darken-colour($colour, 7.5%);
+  }
+  
   .well{
     border-color: darken-colour($colour, 7.5%);
     background-color: darken-colour($body-background-colour, 4%);
@@ -253,13 +257,32 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     }
     @include button-variant($text-colour, $button-colour, darken($button-colour, 5%), $background-colour);
   }
+  .btn-default{
+    border-color: darken-colour($background-colour, 7.5%);
+    &:hover, &:focus{
+      background-color: darken-colour($background-colour, 7.5%);
+      border-color: darken-colour($background-colour, 12%);
+    }
+  }
+  .pagination > li > a, .pagination > li > span{
+    color: $link-colour;
+    border-color: darken-colour($background-colour, 7.5%);
+    &:hover, &:focus{
+      color: darken-colour($link-colour, 15%);
+      background-color: darken-colour($background-colour, 7.5%);
+      border-color: darken-colour($background-colour, 12%);
+    }
+  }
   .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus{
     color: lighten-colour($link-colour, $background-colour, 40%);
   }
-  .form-control:focus {
-    border-color: $link-colour;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
+  .form-control{
+    border-color: darken-colour($background-colour, 7.5%);
+    &:focus {
+      border-color: $link-colour;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
+    }
   }
 }
 

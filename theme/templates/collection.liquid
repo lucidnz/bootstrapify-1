@@ -8,13 +8,11 @@
 {% endunless %}
 
 {% if collection.all_products_count == 0 %}
-<p>Sorry, no products were found in the {{ collection.title }} collection.</p>
-
+  <p>Sorry, no products were found in the {{ collection.title }} collection.</p>
 {% else %}
-{% include '__default-pagination' %}
-{% paginate collection.products by default-pagination %}
-{% include 'products-list' %}
-{% include 'pagination' %}
-{% endpaginate %}
-
+  {% include '__default-pagination' %}
+  {% paginate collection.products by default-pagination %}
+  {% include 'products-list' %}
+  {% include 'pagination' %}
+  {% endpaginate %}
 {% endif %}

@@ -1,17 +1,21 @@
 {% if paginate.pages > 1 %}
-<ul class="pagination pagination-sm">
-  {% if paginate.previous %}
-  <li>{{ paginate.previous.title | link_to: paginate.previous.url }}</li>
-  {% endif %}
-  {% for p in paginate.parts %}
-  {% if p.is_link %}
-  <li>{{ p.title | link_to: p.url }}</li>
-  {% else %}
-  <li>{{ p.title | link_to: p.url }}</li>        
-  {% endif %}        
-  {% endfor %}      
-  {% if paginate.next %}
-  <li>{{ paginate.next.title | link_to: paginate.next.url }}</li>
-  {% endif %}
-</ul>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="pagination pagination-sm">
+      {% if paginate.previous %}
+      <li>{{ paginate.previous.title | link_to: paginate.previous.url }}</li>
+      {% endif %}
+      {% for p in paginate.parts %}
+      {% if p.is_link %}
+      <li>{{ p.title | link_to: p.url }}</li>
+      {% else %}
+      <li>{{ p.title | link_to: p.url }}</li>        
+      {% endif %}        
+      {% endfor %}      
+      {% if paginate.next %}
+      <li>{{ paginate.next.title | link_to: paginate.next.url }}</li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
 {% endif %}

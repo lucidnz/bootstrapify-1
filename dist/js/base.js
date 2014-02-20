@@ -52,7 +52,7 @@ $(window).load(function(){
   preloadProductImages();
   
   /* Isotope */
-  var $container = $('.row');
+  var $container = $('.masonry-collection');
   // init
   $container.isotope({
     // options
