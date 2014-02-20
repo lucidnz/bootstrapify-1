@@ -29,6 +29,7 @@ $navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{
 $navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
 $navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
 $fix-top-navbar: {% if settings.top-navbar-placement == 'fixed-to-top' %}true{% else %}false{% endif %};
+$fix-footer-navbar: {% if settings.footer-navbar-placement == 'fixed-to-bottom' %}true{% else %}false{% endif %};
 
 $sidebar-background-colour: {% if settings.sidebar-background-colour != blank %}{{ settings.sidebar-background-colour }}{% else %}transparent{% endif %};
 $sidebar-heading-colour: {% if settings.sidebar-heading-colour != blank %}{{ settings.sidebar-heading-colour }}{% else %}$body-heading-colour{% endif %};
@@ -489,26 +490,31 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
-#footer-content > .container{
+#footer-content{
   @include background-colour($footer-background-colour);
-  @include heading-colour($footer-heading-colour, $footer-background-colour);
-  @include text-colour($footer-text-colour, $footer-background-colour);
-  @include link-colour($footer-link-colour, $footer-background-colour);  
-  @if $has-footer{
-    margin-top: -$footer-height;
-    min-height: $footer-height;
-  }
-  .nav{
-    @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
+  @if $fix-footer-navbar{
+    padding-bottom: $body_navbar_padding + $body_padding;
   }
   > .container{
+    @include heading-colour($footer-heading-colour, $footer-background-colour);
+    @include text-colour($footer-text-colour, $footer-background-colour);
+    @include link-colour($footer-link-colour, $footer-background-colour);  
     @if $has-footer{
-      padding-bottom: 80px;
+      margin-top: -$footer-height;
+      min-height: $footer-height;
     }
-    @if $site-background-image == false and ($footer-background-colour == $body-background-colour or $footer-background-colour == transparent) {
-      border-top-color: darken-colour($footer-background-colour, 7.5%);
-    } @else {
-      border-top: none;
+    .nav{
+      @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
+    }
+    > .container{
+      @if $has-footer{
+        padding-bottom: 80px;
+      }
+      @if $site-background-image == false and ($footer-background-colour == $body-background-colour or $footer-background-colour == transparent) {
+        border-top-color: darken-colour($footer-background-colour, 7.5%);
+      } @else {
+        border-top: none;
+      }
     }
   }
 }
