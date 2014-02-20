@@ -167,6 +167,19 @@ a.icon:hover {
   display: none;
 }
 
+.main-content table {
+  margin-top: $grid-gutter-width;
+  margin-bottom: $grid-gutter-width;
+}
+
+.gutter-top {
+  margin-top: $grid-gutter-width;
+}
+
+.gutter-bottom {
+  margin-bottom: $grid-gutter-width;
+}
+
 .dl-horizontal-left{
   @extend .dl-horizontal;
   dt{

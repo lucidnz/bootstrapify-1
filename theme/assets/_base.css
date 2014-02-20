@@ -5175,6 +5175,16 @@ a.icon:hover {
   background: url("load.gif") no-repeat;
   display: none; }
 
+.main-content table {
+  margin-top: 30px;
+  margin-bottom: 30px; }
+
+.gutter-top {
+  margin-top: 30px; }
+
+.gutter-bottom {
+  margin-bottom: 30px; }
+
 .dl-horizontal-left dt {
   text-align: left; }
 
