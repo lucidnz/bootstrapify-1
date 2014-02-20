@@ -1,3 +1,7 @@
+/*
+ * Base JS file
+ */
+
 function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
   return jQuery(document.getElementById(id));
 }

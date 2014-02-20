@@ -1,3 +1,8 @@
+/*
+ * jquery.bootstrapify-dropdown.js
+ * Handle nested linklists inside dropdowns better
+ */
+
 (function($){
   
   var BootstrapifyDropdown = function($ele){
@@ -100,6 +105,11 @@
   };
   
 }(jQuery));
+
+/*
+ * Base JS file
+ */
+
 function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
   return jQuery(document.getElementById(id));
 }

@@ -1,3 +1,8 @@
+/*
+ * jquery.bootstrapify-dropdown.js
+ * Handle nested linklists inside dropdowns better
+ */
+
 (function($){
   
   var BootstrapifyDropdown = function($ele){
