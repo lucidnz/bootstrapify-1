@@ -1,0 +1,5 @@
+<ul class="nav navbar-nav {% if settings.main-nav-alignment == 'left' %}navbar-left{% elsif settings.main-nav-alignment == 'center' %}navbar-center{% elsif settings.main-nav-alignment == 'right' %}navbar-right{% endif %}">
+  {% for l in linklists[settings.main-navbar-linklist].links %}
+  {% include '_navbar-link' %}
+  {% endfor %}
+</ul>

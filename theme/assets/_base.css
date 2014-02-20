@@ -504,7 +504,7 @@ a.bg-warning:hover {
 a.bg-danger:hover {
   background-color: #e4b9b9; }
 
-.page-header, .brand {
+.page-header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee; }
@@ -5056,12 +5056,12 @@ body > #wrap {
   min-height: 100%; }
 
 #content {
-  padding-bottom: 250px; }
+  padding-bottom: 50px; }
 
 #footer-content {
   position: relative;
-  margin-top: -250px;
-  min-height: 200px;
+  margin-top: -50px;
+  min-height: 50px;
   clear: both; }
 
 h1,
@@ -5072,26 +5072,52 @@ h5,
 h6 {
   margin-top: 1em; }
 
+#navbar-main {
+  /*   margin-bottom: 3em; */ }
+
+#navbar-footer {
+  margin-bottom: 0;
+  /*
+    .navbar-collapse{ <-- only use this if the navbar has colour
+      border-top: none;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+    }
+  */ }
+
+#footer-content > .container {
+  padding-top: 30px;
+  padding-bottom: 30px; }
+
+.navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover,
+.navbar .navbar-nav > .active > a:focus, .navbar .navbar-nav .open > a,
+.navbar .navbar-nav .open > a:hover, .navbar .navbar-nav .open > a:focus,
+.navbar .navbar-nav > li > a:hover, .nav > li > a:focus {
+  color: #2a6496;
+  background-color: transparent; }
+
+.navbar-nav .open .dropdown-menu .dropdown-header {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0; }
+
 .brand {
-  overflow: auto;
-  margin-top: 0; }
+  overflow: auto; }
   .brand .text-center img {
     margin: auto; }
   .brand h1 {
-    margin-top: 10px; }
+    margin: 1em auto 1.5em; }
   .brand a:hover {
     text-decoration: none; }
 
-.dropdown-menu > li .nav {
-  margin: 5px 0 5px 20px; }
-  .dropdown-menu > li .nav > li > a {
-    border-left: #eeeeee solid 2px;
-    padding: 3px 20px 3px 20px;
-    white-space: nowrap; }
-    .dropdown-menu > li .nav > li > a:hover, .dropdown-menu > li .nav > li > a:focus {
-      background-color: whitesmoke; }
+.main-content {
+  margin-bottom: 30px; }
+  .main-content .page-header {
+    margin-bottom: 0.75em; }
+  .main-content .tags-list {
+    margin-bottom: 30px; }
 
-aside .page-header:first-child, aside .brand:first-child, .main-content .page-header, .main-content .brand {
+aside .page-header:first-child {
   margin-top: 0; }
 
 .carousel {
@@ -5117,9 +5143,6 @@ a.icon:hover {
   display: inline-block;
   vertical-align: top;
   margin-right: 0.5em; }
-
-.main-content .tags-list {
-  margin-bottom: 30px; }
 
 .thumbnail {
   overflow: auto; }
@@ -5185,23 +5208,6 @@ a.icon:hover {
   margin-top: 1em; }
 .list-nav li:first-child {
   margin-top: 0; }
-
-#footer-content {
-  border-top: #eeeeee solid 1px;
-  padding-bottom: 30px; }
-  #footer-content .container {
-    padding-top: 12px; }
-
-#footer-credits {
-  margin-bottom: 0;
-  border-radius: 0;
-  border-bottom: none;
-  border-left: none;
-  border-right: none; }
-  #footer-credits .navbar-collapse {
-    border-top: none;
-    border-bottom-width: 1px;
-    border-bottom-style: solid; }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
@@ -5278,9 +5284,45 @@ a.icon:hover {
 .tt-suggestion p {
   margin: 0; }
 
+@media (max-width: 767px) {
+  .dropdown-menu > li.submenu > .nav > li > a {
+    padding: 5px 15px 5px 25px; } }
 @media (min-width: 768px) {
+  .navbar-nav.navbar-left:first-child {
+    margin-left: -15px; }
+
+  .navbar-text.navbar-left:first-child {
+    margin-left: 0; }
+
+  .navbar-center {
+    float: none;
+    text-align: center; }
+    .navbar-center > li {
+      float: none;
+      display: inline-block; }
+    .navbar-center .dropdown-menu {
+      text-align: left; }
+
   #product-form .product-price {
     font-size: 21px; }
+
+  .dropdown-menu > li.divider {
+    clear: both; }
+  .dropdown-menu > li.submenu {
+    float: left;
+    min-width: 160px;
+    margin-bottom: 0.5em; }
+    .dropdown-menu > li.submenu > .nav > li > a {
+      padding: 3px 20px;
+      white-space: nowrap; }
+      .dropdown-menu > li.submenu > .nav > li > a:hover, .dropdown-menu > li.submenu > .nav > li > a:focus {
+        background-color: whitesmoke; }
+    .dropdown-menu > li.submenu .dropdown-header {
+      font-weight: bold;
+      font-size: 14px;
+      padding: 0;
+      margin-top: 0.5em;
+      margin-bottom: 0; }
 
   .sidebar {
     padding-top: 0;
@@ -5310,8 +5352,25 @@ a.icon:hover {
     text-align: center;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
     background-color: transparent;
-    border: none; }
+    border: none; } }
+/* Pass screen size to js: http://adactio.com/journal/5429/ */
+body:after {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  display: block;
+  line-height: 0;
+  margin-top: -1em; }
 
-  #footer-credits .navbar-collapse {
-    padding-left: 0;
-    padding-right: 0; } }
+@media (max-width: 767px) {
+  body:after {
+    content: 'xs'; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  body:after {
+    content: 'sm'; } }
+@media (min-width: 992px) and (max-width: 1199px) {
+  body:after {
+    content: 'md'; } }
+@media (min-width: 1200px) {
+  body:after {
+    content: 'lg'; } }

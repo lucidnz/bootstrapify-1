@@ -5,8 +5,7 @@ $body_padding:                        20px !default;
 $body_navbar_padding:                 50px !default;
 $inverse_threshhold:                  60%;
 
-$default-primary-background-colour:    white !default;
-$default-secondary-background-colour:  #f8f8f8 !default;
+$default-background-colour:            white !default;
 $default-text-colour:                  #333 !default;
 $default-link-colour:                  #428bca !default;
 
@@ -16,17 +15,20 @@ $font-size-base:                       14px !default;
  * Setting Variables
  */
 $site-background-image:{% if settings.site-background-image != blank %}true{% else %}false{% endif %};
-$body-background-colour: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-primary-background-colour{% endif %};
+$body-background-colour: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-background-colour{% endif %};
 $body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
 $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %};
 $body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %};
 $button-colour: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}$body-link-colour{% endif %};
 $button-text-colour: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}false{% endif %};
 
-$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{% if settings.site-background-image != blank and settings.navbar-background-colour == settings.body-background-colour %}transparent{% else %}{{ settings.navbar-background-colour }}{% endif %}{% else %}$default-secondary-background-colour{% endif %};
+/*
+$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{% if settings.site-background-image != blank and settings.navbar-background-colour == settings.body-background-colour %}transparent{% else %}{{ settings.navbar-background-colour }}{% endif %}{% else %}$default-background-colour{% endif %};
+*/
+$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{ settings.navbar-background-colour }}{% else %}$body-background-colour{% endif %};
 $navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
 $navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
-$fix-footer-navbar: {% if settings.fix-footer-navbar != blank %}true{% else %}false{% endif %};
+$fix-top-navbar: {% if settings.top-navbar-placement == 'fixed-to-top' %}true{% else %}false{% endif %};
 
 $sidebar-background-colour: {% if settings.sidebar-background-colour != blank %}{{ settings.sidebar-background-colour }}{% else %}transparent{% endif %};
 $sidebar-heading-colour: {% if settings.sidebar-heading-colour != blank %}{{ settings.sidebar-heading-colour }}{% else %}$body-heading-colour{% endif %};
@@ -62,6 +64,29 @@ $font-weight-nav-secondary: {% if settings.font-nav-secondary-weight != blank %}
 $font-size-nav-secondary: {% if settings.font-nav-secondary-size != blank %}{{ settings.font-nav-secondary-size }}{% else %}false{% endif %};
 $font-transform-nav-secondary: {% if settings.font-nav-secondary-case == 'lowercase' or settings.font-nav-secondary-case == 'uppercase' %}{{ settings.font-nav-secondary-case }}{% elsif settings.font-nav-secondary-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-nav-secondary-italic: {% if settings.font-nav-secondary-style == 'italic' %}true{% else %}false{% endif %};
+
+{% assign column-1 = false %}
+{% assign column-2 = false %}
+{% assign column-3 = false %}
+{% assign column-4 = false %}
+{% assign newsletter = false %}
+{% assign social = false %}
+{% assign has_footer = false %}
+{% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign column-1 = true %}{% endif %}
+{% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign column-2 = true %}{% endif %}
+{% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign column-3 = true %}{% endif %}
+{% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign column-4 = true %}{% endif %}
+{% if settings.show-newsletter-signup-form and settings.newsletter-signup-placement contains 'footer' %}{% assign newsletter = true %}{% endif %}
+{% if settings.social-links-placement contains 'footer' %}
+  {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
+  {% for link in social_links %}
+    {% assign social_link = link | prepend: 'social-links-' %}
+    {% if settings[social_link] != blank %}{% assign social = true %}{% endif %}
+  {% endfor %}
+{% endif %}
+{% if column-1 or column-2 or column-3 or column-4 or newsletter or social %}{% assign has_footer = true %}{% endif %}
+$has-footer: {% if has_footer %}true{% else %}false{% endif %};
+$footer-height: 250px;
 
 {% for i in (i..5) %}
   {% assign c = i | plus: 1 %}
@@ -287,56 +312,14 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
  */
 body{
   /* Navbar placement */
-  {% if settings.navbar-placement == 'fixed-to-top' %}padding-top: $body_navbar_padding + $body_padding;{% elsif settings.navbar-placement == 'main-content' and settings.logo-placement != "above-navbar" %}padding-top: $body_padding;{% endif %}
-  {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-navbar %}padding-bottom: $body_navbar_padding + $body_padding;{% endif %}
-  {% if settings.navbar-placement == 'fixed-to-bottom' %}
-    {% unless settings.logo-placement == "above-navbar" %}padding-top: $body_padding;{% endunless %}
-    padding-bottom: $body_navbar_padding;
-    #footer-credits{
-      padding-bottom: $body_navbar_padding - 2px;
-    }
-  {% endif %}
-  {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}
-  .brand{
-    margin-bottom: 0;
-    @if $navbar-background-colour == $body-background-colour {
-      border: none;
-    } @else {
-      border-color: darken-colour($footer-background-colour, 7.5%);
+  @if $fix-top-navbar{
+    padding-top: $body_navbar_padding + $body_padding;
+  }
+  #content{
+    @if $has-footer{
+      padding-bottom: $footer-height;
     }
   }
-  {% elsif settings.navbar-placement == 'main-content' %}
-    .brand{
-      margin-bottom: 0;
-      border: none;
-    }
-  {% endif %}
-  
-  {% assign column-1 = false %}
-  {% assign column-2 = false %}
-  {% assign column-3 = false %}
-  {% assign column-4 = false %}
-  {% assign newsletter = false %}
-  {% assign social = false %}
-  
-  {% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign column-1 = true %}{% endif %}
-  {% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign column-2 = true %}{% endif %}
-  {% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign column-3 = true %}{% endif %}
-  {% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign column-4 = true %}{% endif %}
-  {% if settings.show-newsletter-signup-form and settings.newsletter-signup-placement contains 'footer' %}{% assign newsletter = true %}{% endif %}
-  {% if settings.social-links-placement contains 'footer' %}
-    {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
-    {% for link in social_links %}
-      {% assign social_link = link | prepend: 'social-links-' %}
-      {% if settings[social_link] != blank %}{% assign social = true %}{% endif %}
-    {% endfor %}
-  {% endif %}
-  
-  {% if column-1 == false and column-2 == false and column-3 == false and column-4 == false and newsletter == false and social == false %}
-    #content{
-      padding-bottom: $body_navbar_padding + $body_padding;
-    }
-  {% endif %}
   
   /* Design and colour schemes */
   @if $font-family-body{
@@ -405,6 +388,35 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   color: lighten-colour($body-text-colour, $body-background-colour, 45%);
 }
 
+#navbar-top, #navbar-footer{
+  @include background-colour($navbar-background-colour);
+  @include text-colour($navbar-text-colour, $navbar-background-colour);
+  @include link-colour($navbar-link-colour, $navbar-background-colour);
+  @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
+  @if $site-background-image and $navbar-background-colour == $body-background-colour and $fix-top-navbar == false{
+    background-color: transparent;
+  }
+  .navbar-toggle{
+    border-color: darken-colour($navbar-background-colour, 7.5%);
+    .icon-bar{
+      background-color: darken-colour($navbar-background-colour, 7.5%);
+    }
+    &:hover, &:focus{
+      background-color: darken-colour($navbar-background-colour, 4%);
+    }
+  }
+}
+
+#navbar-main{
+  @include text-colour($navbar-text-colour, $body-background-colour);
+  @include link-colour($navbar-link-colour, $body-background-colour);
+  @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
+  .navbar-nav > li > a:hover, .nav > li > a:focus{
+    background-color: transparent;
+  }
+}
+
+/*
 .navbar-default{
   @include background-colour($navbar-background-colour);
   @include text-colour($navbar-text-colour, $navbar-background-colour);
@@ -465,6 +477,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     border-color: darken-colour($navbar-background-colour, 7.5%);
   }
 }
+*/
 
 .sidebar{
   @include background-colour($sidebar-background-colour);
@@ -476,18 +489,22 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
-#footer-content{
+#footer-content > .container{
   @include background-colour($footer-background-colour);
   @include heading-colour($footer-heading-colour, $footer-background-colour);
   @include text-colour($footer-text-colour, $footer-background-colour);
-  @include link-colour($footer-link-colour, $footer-background-colour);
-  @if $fix-footer-navbar{
-    padding-bottom: 80px;
+  @include link-colour($footer-link-colour, $footer-background-colour);  
+  @if $has-footer{
+    margin-top: -$footer-height;
+    min-height: $footer-height;
   }
   .nav{
     @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
   }
-  .container{
+  > .container{
+    @if $has-footer{
+      padding-bottom: 80px;
+    }
     @if $site-background-image == false and ($footer-background-colour == $body-background-colour or $footer-background-colour == transparent) {
       border-top-color: darken-colour($footer-background-colour, 7.5%);
     } @else {
@@ -496,9 +513,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
+/*
 #footer-credits{
   border-color: darken-colour($navbar-background-colour, 7.5%);
 }
+*/
 
 .carousel-caption{
   color: $body-text-colour;

@@ -33,7 +33,9 @@ $(function() {
     });
 
   }
-        
+  
+  $('.navbar .dropdown').bootstrapifyDropdown();
+  
   $('.localize').tooltip();
   $('.tip').popover({
     trigger: 'click',

@@ -4,7 +4,7 @@
 {% assign column-4 = false %}
 {% assign newsletter = false %}
 {% assign social = false %}
-
+{% assign has_footer = false %}
 {% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign column-1 = true %}{% endif %}
 {% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign column-2 = true %}{% endif %}
 {% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign column-3 = true %}{% endif %}
@@ -17,9 +17,10 @@
     {% if settings[social_link] != blank %}{% assign social = true %}{% endif %}
   {% endfor %}
 {% endif %}
+{% if column-1 or column-2 or column-3 or column-4 or newsletter or social %}{% assign has_footer = true %}{% endif %}
 
-{% if column-1 or column-2 or column-3 or column-4 or newsletter or social %}
 <footer id="footer-content" class="footer">
+{% if has_footer %}
   <div class="container">
     <div class="row">
       {% assign footer_columns = settings.footer-columns | plus: 0 %}
@@ -28,33 +29,6 @@
       {% endfor %}
     </div>
   </div>
-</footer>
 {% endif %}
-
-<div id="footer-credits" class="navbar {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-navbar %}navbar-fixed-bottom{% endif %} {% include '__color-scheme' with 'navbar' %}" role="navigation">
-  <div class="container">
-    <div class="collapse navbar-collapse" id="footer-nav">
-      <div class="navbar-left navbar-text">
-        <small class="text-muted">
-          &copy;{{ 'now' | date: '%Y' }}&nbsp;<strong><a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. <br class="visible-sm">
-          <a href="https://github.com/luciddesign/bootstrapify/" title="Bootstrapify, open-source Shopify theme on GitHub">Boostrapify</a>&nbsp;theme&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid&nbsp;Design</a>. <br class="visible-sm">
-          Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.
-        </small>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        {% for l in linklists[settings.footer-navbar-linklist].links %}
-        {% include '_navbar-link' with 0 %}
-        {% endfor %}
-      </ul>
-      {% unless settings.currency-switcher-position == 'navbar' %}{% include 'currency-switcher' %}{% endunless %}
-    </div>
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-nav">
-        <span class="sr-only">Toggle main navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-  </div>
-</div>
+  {% include 'navbar' with 'footer' %}
+</footer>
