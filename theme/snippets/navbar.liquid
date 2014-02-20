@@ -14,7 +14,8 @@
   <div class="container">
     {% if navbar == 'footer' %}
       <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
-        {% include '_navbar-footer' %}
+        {% include 'navbar-nav' with 'footer-left' %}
+        {% include 'navbar-nav' with 'footer-right' %}
       </div>
     {% endif %}
   

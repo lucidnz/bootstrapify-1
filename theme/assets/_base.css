@@ -5072,17 +5072,33 @@ h5,
 h6 {
   margin-top: 1em; }
 
+#footer-content .col-sm-3 h4,
+#footer-content .col-sm-3 .social-icons,
+#footer-content .col-sm-4 h4,
+#footer-content .col-sm-4 .social-icons {
+  margin-top: 30px; }
+  #footer-content .col-sm-3 h4:first-child,
+  #footer-content .col-sm-3 .social-icons:first-child,
+  #footer-content .col-sm-4 h4:first-child,
+  #footer-content .col-sm-4 .social-icons:first-child {
+    margin-top: 0; }
+
+.footer-credits {
+  margin-top: 30px; }
+  .footer-credits, .footer-credits a {
+    opacity: .5; }
+
 #navbar-main {
   /*   margin-bottom: 3em; */ }
 
 #navbar-footer {
   margin-bottom: 0;
   /*
-    .navbar-collapse{ <-- only use this if the navbar has colour
-      border-top: none;
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-    }
+  .navbar-collapse{ <-- only use this if the navbar has colour
+  border-top: none;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  }
   */ }
 
 #footer-content > .container {
