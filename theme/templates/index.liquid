@@ -5,10 +5,10 @@
   {{ pages[homepage].content }}
 </div>{% endunless %}
 
-{% if settings.featured-collections-linklist %}
+{% unless settings.featured-collections-linklist == blank %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
   {% include 'collections-list' with 'featured' %}
-{% endif %}
+{% endunless %}
 
 {% if settings.homepage-featured-products-collection %}
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
