@@ -85,7 +85,7 @@
   
   BootstrapifyDropdown.prototype.screenSizeIs = function(size){
     var screenSize = this.getScreenSize();
-    return screenSize.indexOf(size) !=-1;
+    return screenSize.indexOf(size) !==-1;
   };
   
   BootstrapifyDropdown.prototype.getScreenSize = function(){
@@ -94,7 +94,7 @@
 
   $.fn.bootstrapifyDropdown = function(){
     return this.each(function(){
-      $ele = $(this);
+      var $ele = $(this);
       $ele.data('_bootstrapifyDropdown', new BootstrapifyDropdown($ele));
     });
   };
