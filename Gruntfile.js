@@ -32,19 +32,24 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       assets: {
-        src: ['dist/js/_base.js', 'dist/js/bootstrapify-option-selection.js']
+        src: ['dist/js/*.js']
       }
     },
     uglify: {
       options: {
         mangle: false
       },
-      my_target: {
+      dist: {
         files: {
-          'theme/assets/_base.min.js': ['dist/js/jquery.bootstrapify-dropdowns.js', 'dist/js/base.js'],
           'theme/assets/bootstrapify-option-selection.min.js': ['dist/js/bootstrapify-option-selection.js'],
         }
       }
+    },
+    concat: {
+      dist: {
+        src: ['dist/js/jquery.bootstrapify-dropdowns.js', 'dist/js/base.js'],
+        dest: 'theme/assets/_base.js',
+      },
     },
     sass: {
       dist: {
@@ -89,8 +94,12 @@ module.exports = function(grunt) {
         tasks: ['jshint:assets']
       },
       uglify: {
-        files: 'dist/js/*.js',
+        files: 'dist/js/bootstrapify-option-selection.js',
         tasks: ['uglify']
+      },
+      concat: {
+        files: '<%= concat.dist.src %>',
+        tasks: ['concat']
       },
       sass: {
         files: 'dist/scss/*.scss',
@@ -105,8 +114,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'sass']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass']);
 
 };

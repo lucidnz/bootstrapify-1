@@ -2,8 +2,10 @@
   <div class="sidebar-content">
     {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
     
-    {% if settings.tag-placement == 'sidebar' %}{% include 'collection-tags-menu' %}{% endif %}
-    {% if settings.tag-placement == 'sidebar' %}{% include 'collection-tags-buttons' %}{% endif %}
+    {% if settings.tag-placement == 'sidebar' %}
+      {% include 'collection-tags-menu' %}
+      {% include 'collection-tags-buttons' %}
+    {% endif %}
     
     {% unless linklists[settings.sidebar-linklist] == empty %}
     <h4 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h4>

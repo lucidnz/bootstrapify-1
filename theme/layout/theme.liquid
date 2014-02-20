@@ -75,7 +75,7 @@
   {% include 'footer' %}
   {% include 'currencies' %}
   
-  {{ '_base.min.js' | asset_url | script_tag }}
+  {{ '_base.js' | asset_url | script_tag }}
   <script type="text/javascript">
     $(document).ready(function(){
       $('.search').typeahead({
