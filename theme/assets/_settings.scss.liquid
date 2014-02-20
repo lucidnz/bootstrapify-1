@@ -516,7 +516,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 #footer-content{
   @include background-colour($footer-background-colour);
   @if $fix-footer-navbar{
-    padding-bottom: $body_navbar_padding + $body_padding;
+    padding-bottom: $body_navbar_padding;
   }
   > .container{
     @include heading-colour($footer-heading-colour, $footer-background-colour);

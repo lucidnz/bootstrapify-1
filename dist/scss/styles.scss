@@ -22,24 +22,46 @@ h2,
 h3,
 h4,
 h5,
-h6,
-.social-icons {
+h6 {
   margin-top: 1em;
 }
 
+#footer-content {
+  .col-sm-3,
+  .col-sm-4 {
+    h4,
+    .social-icons {
+      margin-top: $grid-gutter-width;
+    
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.footer-credits {
+  &,
+  & a {
+    opacity: .5;
+  }
+  
+  margin-top: $grid-gutter-width;
+}
+
 #navbar-main{
-/*   margin-bottom: 3em; */
+  /*   margin-bottom: 3em; */
 }
 
 #navbar-footer{
   margin-bottom: 0;
-/*
+  /*
   .navbar-collapse{ <-- only use this if the navbar has colour
-    border-top: none;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
+  border-top: none;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
   }
-*/
+  */
 }
 
 #footer-content{
@@ -115,7 +137,7 @@ a.icon:hover {
 }
 
 #currencies-picker {
-	padding: 0;
+  padding: 0;
 }
 
 .additional-checkout-buttons, .shipping-calculator-wrapper{
@@ -136,13 +158,13 @@ a.icon:hover {
 }
 
 .loader {
-	margin: 0 auto;
-	z-index: 9999;
-	cursor: wait;
-	width: 25px;
-	height: 25px;
-	background: url('load.gif') no-repeat;
-	display: none;
+  margin: 0 auto;
+  z-index: 9999;
+  cursor: wait;
+  width: 25px;
+  height: 25px;
+  background: url('load.gif') no-repeat;
+  display: none;
 }
 
 .dl-horizontal-left{
