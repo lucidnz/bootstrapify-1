@@ -15,7 +15,7 @@
 {% endcomment %}
 
 {% if shop.checkout.guest_login %}
-<hr/>
+{% if settings.show-borders %}<hr>{% endif %}
 <div id="guest">
   <h3 class="title">Guest Login</h3>
   {% form 'guest_login' %}

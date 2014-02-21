@@ -69,7 +69,7 @@ $font-size-nav-secondary: {% if settings.font-nav-secondary-size != blank %}{{ s
 $font-transform-nav-secondary: {% if settings.font-nav-secondary-case == 'lowercase' or settings.font-nav-secondary-case == 'uppercase' %}{{ settings.font-nav-secondary-case }}{% elsif settings.font-nav-secondary-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-nav-secondary-italic: {% if settings.font-nav-secondary-style == 'italic' %}true{% else %}false{% endif %};
 
-$show-borders: {% if settings.show-borders != blank %}true{% else %}false{% endif %};
+$show-borders: {% if settings.show-borders %}true{% else %}false{% endif %};
 
 {% assign column-1 = false %}
 {% assign column-2 = false %}
@@ -378,7 +378,7 @@ body{
   @include link-colour($body-link-colour, $body-background-colour);
   
   @if $show-borders == false{
-    .page-header, .thumbnail{
+    .page-header, .thumbnail, .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td{
       border: none;
     }
   }

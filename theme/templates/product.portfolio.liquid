@@ -35,15 +35,15 @@
     <!-- details col -->
 		<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
 			<h1 class="page-header hidden-xs">{{ page_title }}</h1>
-			<hr class="visible-xs">
+			{% if settings.show-borders %}<hr class="visible-xs">{% endif %}
 			<div class="lead product-price">
 				<span id="price-field">{% include 'product-price' with product.price %}</span>
 				<del id="compare-at-price-field" class="text-muted"></del>
 				<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
 			</div>
-      <hr>
+      {% if settings.show-borders %}<hr>{% endif %}
 			{% include 'product-add-to-cart-form' %}
-      <hr>
+      {% if settings.show-borders %}<hr>{% endif %}
 			{% include '__formatted-content' with product.description %}
     
 			<table class="table {% include '__table-formatting' %}">
@@ -66,7 +66,7 @@
 			</table>
     
 			{% if collection %}
-			<hr>
+			{% if settings.show-borders %}<hr>{% endif %}
 			<ul class="pagination pagination-sm">
 				<li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
 				<li>{{ collection.title | link_to: collection.url }}</li>
