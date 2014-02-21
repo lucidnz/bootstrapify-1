@@ -29,8 +29,8 @@ h6 {
 #footer-content {
   .col-sm-3,
   .col-sm-4 {
-    h4,
-    .social-icons {
+    & > h4,
+    & > .social-icons {
       margin-top: $grid-gutter-width;
     
       &:first-child {
