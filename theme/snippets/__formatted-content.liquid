@@ -1,2 +1,4 @@
+{% unless settings.show-sidebar %}<div class="row"><div class="col-lg-offset-2 col-lg-8">{% endunless %}
 {% capture table_replace %}<table class="table{% include '__table-formatting' %}"{% endcapture %}
-<p>{{ __formatted-content | replace_first: '<table',table_replace }}</p>
+{{ __formatted-content | replace_first: '<table',table_replace }}
+{% unless settings.show-sidebar %}</div></div>{% endunless %}
