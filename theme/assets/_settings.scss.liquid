@@ -60,6 +60,12 @@ $font-size-navbar: {% if settings.font-navbar-size != blank %}{{ settings.font-n
 $font-transform-navbar: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %}{{ settings.font-navbar-case }}{% elsif settings.font-navbar-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-navbar-italic: {% if settings.font-navbar-style == 'italic' %}true{% else %}false{% endif %};
 
+$font-family-brand: {% if settings.font-brand-custom != blank %}'{{ settings.font-brand-custom }}'{% if settings.font-brand != blank %},{{ settings.font-brand }}{% endif %}{% elsif settings.font-brand != blank %}{{ settings.font-brand }}{% else %}false{% endif %};
+$font-weight-brand: {% if settings.font-brand-weight != blank %}{{ settings.font-brand-weight }}{% else %}normal{% endif %};
+$font-size-brand: {% if settings.font-brand-size != blank %}{{ settings.font-brand-size }}{% else %}false{% endif %};
+$font-transform-brand: {% if settings.font-brand-case == 'lowercase' or settings.font-brand-case == 'uppercase' %}{{ settings.font-brand-case }}{% elsif settings.font-brand-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-brand-italic: {% if settings.font-brand-style == 'italic' %}true{% else %}false{% endif %};
+
 $font-family-nav-secondary: {% if settings.font-nav-secondary-custom != blank %}'{{ settings.font-nav-secondary-custom }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %}{% elsif settings.font-nav-secondary != blank %}{{ settings.font-nav-secondary }}{% else %}false{% endif %};
 $font-weight-nav-secondary: {% if settings.font-nav-secondary-weight != blank %}{{ settings.font-nav-secondary-weight }}{% else %}normal{% endif %};
 $font-size-nav-secondary: {% if settings.font-nav-secondary-size != blank %}{{ settings.font-nav-secondary-size }}{% else %}false{% endif %};
@@ -403,6 +409,20 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   h6{
     font-size: floor($font-size-heading / 3);
   }
+}
+
+.brand h1, .navbar-brand{
+  @if $font-family-brand {
+    font-family: $font-family-brand;
+  }
+  @if $font-size-brand{
+    font-size: $font-size-brand;
+  }
+  @if $font-brand-italic {
+    font-style: italic;
+  }
+  text-transform: $font-transform-brand;
+  font-weight: $font-weight-brand;
 }
 
 .breadcrumb{
