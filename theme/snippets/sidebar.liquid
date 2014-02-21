@@ -1,4 +1,5 @@
-<aside class="sidebar col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9">
+{% if settings.sidebar-placement == 'left' %}{% assign sidebar_span = 'col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9' %}{% else %}{% assign sidebar_span = 'col-sm-4 col-md-3' %}{% endif %}
+<aside class="sidebar {{ sidebar_span }}">
   <div class="sidebar-content">
     {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
     
