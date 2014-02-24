@@ -9,7 +9,7 @@
       <th><label for="custom-checkout-css">Custom checkout CSS</label></th>
       <td>
         <textarea name="custom-checkout-css" id="custom-checkout-css"></textarea>
-        <small><p>Feel free to override any of the checkout CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS is <strong>not</strong> allowed.</p></small>
+        <small><p>Feel free to override any of the checkout CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS is <strong>not</strong> allowed.</p></small>
       </td>
     </tr>
   </table>
@@ -19,7 +19,7 @@
       <th><label for="custom-css">Custom CSS</label></th>
       <td>
         <textarea name="custom-css" id="custom-css"></textarea>
-        <small><p>Feel free to override any of the CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS allowed.</p></small>
+        <small><p>Feel free to override any of the CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS allowed.</p></small>
       </td>
     </tr>
   </table>
@@ -94,6 +94,15 @@
       <td>
         <input type="text" name="truncate-words" id="truncate-words" class="text" value="25" />
         <small><p>Number of words to show in the blog article listings. Leave blank if you want to show the entire article.</p></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="use-gravatars">Use Gravatar for avatars</label></th>
+      <td>
+        <input type="checkbox" name="use-gravatars" id="use-gravatars" value="1" /> Yes
       </td>
     </tr>
   </table>
@@ -320,6 +329,15 @@
       <th><label for="navbar-text-colour">Navbar text colour</label></th>
       <td>
         <input type="text" name="navbar-text-colour" id="navbar-text-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-borders">Show borders</label></th>
+      <td>
+        <input type="checkbox" name="show-borders" id="show-borders" value="1" /> Yes
       </td>
     </tr>
   </table>
@@ -585,7 +603,7 @@
       <th><label for="typeahead-collection">Search typeahead collection</label></th>
       <td>
         <select class="collection" name="typeahead-collection" />
-        <small><p>We recommend you create a collection of <em>all </em>products (i.e., an automatic collection where price (and/or inventory) is greater than 0.</p></small>
+        <small><p>We recommend you create a collection of <em>all </em>products (i.e., an automatic collection where price (and/or inventory) is greater than 0.</p></small>
       </td>
     </tr>
   </table>
@@ -1022,7 +1040,7 @@
            <div><input type="radio" name="slider-width" id="slider-width" value="site-width" /> Site width</div>
            <div><input type="radio" name="slider-width" id="slider-width" value="main-content-width" /> Main content width</div>
            
-        <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
+        <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
       </td>
     </tr>
   </table>
@@ -1056,6 +1074,17 @@
       <th><label for="show-sidebar-on-homepage">Show sidebar on Homepage</label></th>
       <td>
         <input type="checkbox" name="show-sidebar-on-homepage" id="show-sidebar-on-homepage" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="sidebar-placement">Sidebar placement</label></th>
+      <td>
+           <div><input type="radio" name="sidebar-placement" id="sidebar-placement" value="left" checked="checked" /> Left</div>
+           <div><input type="radio" name="sidebar-placement" id="sidebar-placement" value="right" /> Right</div>
+           
       </td>
     </tr>
   </table>
@@ -1163,7 +1192,7 @@
       <th><label for="currency-switcher-default">Currency switcher default</label></th>
       <td>
         <input type="text" name="currency-switcher-default" id="currency-switcher-default" class="text" value="" />
-        <small><p> If left blank the currency switcher will be set to your shops default currency.</p></small>
+        <small><p> If left blank the currency switcher will be set to your shops default currency.</p></small>
       </td>
     </tr>
   </table>
@@ -1175,7 +1204,7 @@
            <div><input type="radio" name="currency-switcher-position" id="currency-switcher-position" value="navbar" checked="checked" /> Navbar</div>
            <div><input type="radio" name="currency-switcher-position" id="currency-switcher-position" value="footer-navbar" /> Footer navbar</div>
            
-        <small><p> </p></small>
+        <small><p> </p></small>
       </td>
     </tr>
   </table>
@@ -1333,9 +1362,19 @@
   
   <table>
     <tr>
+      <th><label for="mailchimp">Mailchimp form action URL</label></th>
+      <td>
+        <input type="text" name="mailchimp" id="mailchimp" class="text" value="" />
+        <small>Use Mailchimp's form action URL for the newsletter signup form. If left blank Shopify's default action will be used.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="newsletter-signup-placement">Newsletter signup placement</label></th>
       <td>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="don-t-show" checked="checked" /> Don’t show</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="dont-show" checked="checked" /> Don't show</div>
            <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="top-navbar-left" /> Top navbar left</div>
            <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="top-navbar-right" /> Top navbar right</div>
            <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="sidebar" /> Sidebar</div>
@@ -1566,6 +1605,66 @@
           <div><input type="radio" name="font-body-case" id="font-body-case" value="lowercase" /> lowercase</div>
           <div><input type="radio" name="font-body-case" id="font-body-case" value="uppercase" /> UPPERCASE</div>
           <div><input type="radio" name="font-body-case" id="font-body-case" value="title-case" /> Title Case</div>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="font-brand">Font brand</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Custom font name</p>
+        <p>
+          <input type="text" name="font-brand-custom" id="font-brand-custom" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Fallback/default</p>
+        <p>
+          <select class="font" name="font-brand" id="font-brand">
+            <option value="" selected="selected"></option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Weight</p>
+        <p>
+          <input type="text" name="font-brand-weight" id="font-brand-weight" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Size (e.g. 14px)</p>
+        <p>
+          <input type="text" name="font-brand-size" id="font-brand-size" class="text" value="" />
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Style</p>
+        <p>
+          <div><input type="radio" name="font-brand-style" id="font-brand-style" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="font-brand-style" id="font-brand-style" value="italic" /> Italic</div>
+        </p>
+      </td>
+      <td>
+        <p>Case</p>
+        <p>
+          <div><input type="radio" name="font-brand-case" id="font-brand-case" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="font-brand-case" id="font-brand-case" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="font-brand-case" id="font-brand-case" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="font-brand-case" id="font-brand-case" value="title-case" /> Title Case</div>
         </p>
       </td>
     </tr>
