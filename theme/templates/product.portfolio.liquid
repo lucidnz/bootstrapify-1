@@ -2,7 +2,7 @@
 {% if product.featured_image == blank %}
 {% assign image = '<div class="image_placeholder">Product Image</div>' %}
 {% else %}
-{% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}">{% endcapture %}
+{% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'original' }}" alt="{{ product.featured_image.alt }}">{% endcapture %}
 {% endif %}
 {% endcapture %}
 <form id="product-form" action="/cart/add" method="post">
@@ -10,29 +10,35 @@
     <div class="col-xs-12">
       <h1 class="page-header">{{ page_title }}</h1>
     </div>
+  </div>
 	
-    <!-- images col -->
+  <!-- images col -->
+  <div class="row">
     <div class="col-xs-12">
-      <div class="row">
-        <div class="thumbnail">
-          {{ image }}
-          <div class="loader"></div>
-        </div>
-        {% if product.images.size > 1 %}
-        {% assign image_cols = product.images.size | times: 4 %}
-        {% assign offset = 12 | minus: image_cols | divided_by: 2 %}
-        {% for image in product.images %}
-        <div class="{% if forloop.index == 1 %}col-sm-offset-{{ offset }} {% endif %}col-xs-6 col-sm-4">
-          <a href="#" class="thumbnail" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-            {{ image.src | product_img_url: 'large' | img_tag }}
-          </a>
-        </div>
-        {% endfor %}
-        {% endif %}
+      <div class="thumbnail">
+        {{ image }}
+        <div class="loader"></div>
       </div>
     </div>
+  </div>
+  {% if product.images.size > 1 %}
+  <div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
+    {% assign image_cols = product.images.size | times: 4 %}
+    {% assign offset = 12 | minus: image_cols | divided_by: 2 %}
+    {% for image in product.images %}
+    <div class="{% if forloop.index == 1 %}col-sm-offset-{{ offset }} {% endif %}col-xs-6 col-sm-4{% if settings.masonry-style-layout %} masonry{% endif %}">
+      <div class="thumbnail">
+        <a href="#" data-main-image="{{ image.src | product_img_url: 'original' }}">
+          {{ image.src | product_img_url: 'large' | img_tag }}
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
 	
-    <!-- details col -->
+  <!-- details col -->
+  <div class="row">
     <div class="col-xs-12">
       {% if product.price > 0 %}<div class="lead product-price">
         <span id="price-field">{% include 'product-price' with product.price %}</span>
@@ -43,50 +49,51 @@
       {% include 'product-add-to-cart-form' %}
       {% if settings.show-borders %}<hr>{% endif %}
       {% endif %}
-			
-      <div class="row">
-        <div class="col-sm-6 gutter-top">
-          {% include '__formatted-content' with product.description %}
-        </div>
-        
-        <div class="col-sm-6">
-          <table class="table {% include '__table-formatting' %}">
-            <tr>
-              <th>{% include '__localize' with 'Vendor' %}</th>
-              <td>{{ product.vendor | link_to_vendor }}</td>
-            </tr>
-            <tr>
-              <th>{% include '__localize' with 'Type' %}</th>
-              <td>{{ product.type | link_to_type }}</td>
-            </tr>
-            <tr>
-              <th>{% include '__localize' with 'Collections' %}</th>
-              <td>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</td>
-            </tr>
-            <tr>
-              <th>{% include '__localize' with 'Tags' %}</th>
-              <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</td>
-            </tr>
-          </table>
-        </div>
-
-        {% if collection %}
-        {% if settings.show-borders %}<hr>{% endif %}
-        <ul class="pagination pagination-sm">
-          <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
-          <li>{{ collection.title | link_to: collection.url }}</li>
-          <li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: collection.next_product }}</li>
-        </ul>
-        {% endif %}
-      </div>
-    </div>
-  </form>
-  {% if settings.show-related-products %}
-  <div class="row">
-    <div class="col-xs-12">
-      {% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
-      <h3>{% include '__localize' with 'Related in' %} {{ collection.title }}</h3>
-      {% include 'products-list' with 'limit' %}
     </div>
   </div>
+  
+  <div class="row">			
+    <div class="col-sm-6 gutter-top">
+      {% include '__formatted-content' with product.description %}
+    </div>
+        
+    <div class="col-sm-6">
+      <table class="table {% include '__table-formatting' %}">
+        <tr>
+          <th>{% include '__localize' with 'Vendor' %}</th>
+          <td>{{ product.vendor | link_to_vendor }}</td>
+        </tr>
+        <tr>
+          <th>{% include '__localize' with 'Type' %}</th>
+          <td>{{ product.type | link_to_type }}</td>
+        </tr>
+        <tr>
+          <th>{% include '__localize' with 'Collections' %}</th>
+          <td>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</td>
+        </tr>
+        <tr>
+          <th>{% include '__localize' with 'Tags' %}</th>
+          <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  {% if collection %}
+  {% if settings.show-borders %}<hr>{% endif %}
+  <ul class="pagination pagination-sm">
+    <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
+    <li>{{ collection.title | link_to: collection.url }}</li>
+    <li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: collection.next_product }}</li>
+  </ul>
   {% endif %}
+</form>
+{% if settings.show-related-products %}
+<div class="row">
+  <div class="col-xs-12">
+    {% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
+    <h3>{% include '__localize' with 'Related in' %} {{ collection.title }}</h3>
+    {% include 'products-list' with 'limit' %}
+  </div>
+</div>
+{% endif %}
