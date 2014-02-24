@@ -1,5 +1,5 @@
 {% include '__per-row' %}
-<div class="row">
+<div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
 {% if collections-list == 'featured' %}
   {% if settings.featured-collections-limit contains 'row' %}{% assign limit = settings.featured-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
   {% for l in linklists[settings.featured-collections-linklist].links | limit: limit %}

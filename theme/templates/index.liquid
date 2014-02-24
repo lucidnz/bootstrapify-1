@@ -1,14 +1,14 @@
 {% assign homepage = 'frontpage' %}
 {% unless settings.homepage == blank %}{% assign homepage = settings.homepage %}{% endunless %}
 <h1 class="page-header">{{ pages[homepage].title }}</h1>
-<div class="lead">
+{% unless pages[homepage].content == blank %}<div class="lead">
   {{ pages[homepage].content }}
-</div>
+</div>{% endunless %}
 
-{% if settings.featured-collections-linklist %}
+{% unless settings.featured-collections-linklist == blank %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
   {% include 'collections-list' with 'featured' %}
-{% endif %}
+{% endunless %}
 
 {% if settings.homepage-featured-products-collection %}
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>

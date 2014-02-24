@@ -1,6 +1,6 @@
 {
   "name": "Bootstrapify",
-  "version": "3.0.2",
+  "version": "3.1.1",
   "homepage": "https://github.com/luciddesign/bootstrapify",
   "authors": [
     "Lucid Design <info@luciddesign.co.nz> (http://www.luciddesign.co.nz)"
@@ -22,6 +22,10 @@
   ],
   "dependencies": {
     "bootstrap-sass": "git@github.com:twbs/bootstrap-sass.git#master",
-    "typeahead.js": "~0.9.3"
+    "typeahead.js": "~0.9.3",
+    "jquery": "~2.1.0"
+  },
+  "resolutions": {
+    "jquery": "~2.1.0"
   }
 }

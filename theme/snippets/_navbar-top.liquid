@@ -1,8 +1,4 @@
-<ul class="nav navbar-nav{% unless settings.logo-placement == 'navbar' %} navbar-left{% endunless %}">
-  {% for l in linklists[settings.top-navbar-linklist].links %}
-  {% include '_navbar-link' %}
-  {% endfor %}
-</ul>
+{% include 'navbar-nav' with 'top-left' %}
 
 {% if settings.show-search-in-navbar %}
 <form class="navbar-form col-sm-2 navbar-right" action="/search">
@@ -54,3 +50,5 @@
   </ul>
 </div>
 {% if settings.currency-switcher-position == 'navbar' %}{% include 'currency-switcher' %}{% endif %}
+
+{% include 'navbar-nav' with 'top-right' %}

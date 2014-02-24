@@ -2,13 +2,13 @@
 {% if product.featured_image == blank %}
 {% assign image = '<div class="image_placeholder">Product Image</div>' %}
 {% else %}
-{% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">{% endcapture %}
+{% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}">{% endcapture %}
 {% endif %}
 {% endcapture %}
 <form id="product-form" action="/cart/add" method="post">
-	<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
+	<div class="row">
 	  <div class="col-xs-12 visible-xs">
-  	  <h1 class="page-header" itemprop="name">{{ page_title }}</h1>
+  	  <h1 class="page-header">{{ page_title }}</h1>
 	  </div>
 	
   	<!-- images col -->
@@ -34,28 +34,26 @@
 	
     <!-- details col -->
 		<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
-			<h1 class="page-header hidden-xs" itemprop="name">{{ page_title }}</h1>
+			<h1 class="page-header hidden-xs">{{ page_title }}</h1>
 			{% if settings.show-borders %}<hr class="visible-xs">{% endif %}
-			<div class="lead product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+			<div class="lead product-price">
 				<span id="price-field">{% include 'product-price' with product.price %}</span>
 				<del id="compare-at-price-field" class="text-muted"></del>
 				<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
-				<meta itemprop="currency" content="{{ shop.currency }}" />
-  			<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
 			</div>
       {% if settings.show-borders %}<hr>{% endif %}
 			{% include 'product-add-to-cart-form' %}
       {% if settings.show-borders %}<hr>{% endif %}
-			<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+			{% include '__formatted-content' with product.description %}
     
 			<table class="table {% include '__table-formatting' %}">
 				<tr>
 					<th>Vendor</th>
-					<td itemprop="brand" content="{{ product.vendor }}">{{ product.vendor | link_to_vendor }}</td>
+					<td>{{ product.vendor | link_to_vendor }}</td>
 				</tr>
 				<tr>
 					<th>Type</th>
-					<td itemprop="category" content="{{ product.type }}">{{ product.type | link_to_type }}</td>
+					<td>{{ product.type | link_to_type }}</td>
 				</tr>
 				<tr>
 					<th>Collections</th>
