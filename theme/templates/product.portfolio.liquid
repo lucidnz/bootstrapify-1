@@ -39,9 +39,10 @@
         <del id="compare-at-price-field" class="text-muted"></del>
         <span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
       </div>
-      <hr>
+      {% if settings.show-borders %}<hr>{% endif %}
       {% include 'product-add-to-cart-form' %}
-      <hr>{% endif %}
+      {% if settings.show-borders %}<hr>{% endif %}
+      {% endif %}
 			
       <div class="row">
         <div class="col-sm-6 gutter-top">
@@ -70,7 +71,7 @@
         </div>
 
         {% if collection %}
-        <hr>
+        {% if settings.show-borders %}<hr>{% endif %}
         <ul class="pagination pagination-sm">
           <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
           <li>{{ collection.title | link_to: collection.url }}</li>
