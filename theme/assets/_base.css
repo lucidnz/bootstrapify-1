@@ -5072,15 +5072,13 @@ h5,
 h6 {
   margin-top: 1em; }
 
-#footer-content .col-sm-3 h4,
-#footer-content .col-sm-3 .social-icons,
-#footer-content .col-sm-4 h4,
-#footer-content .col-sm-4 .social-icons {
+#footer-content .col-sm-3 > h4, #footer-content .col-sm-3 > .social-icons,
+#footer-content .col-sm-4 > h4,
+#footer-content .col-sm-4 > .social-icons {
   margin-top: 30px; }
-  #footer-content .col-sm-3 h4:first-child,
-  #footer-content .col-sm-3 .social-icons:first-child,
-  #footer-content .col-sm-4 h4:first-child,
-  #footer-content .col-sm-4 .social-icons:first-child {
+  #footer-content .col-sm-3 > h4:first-child, #footer-content .col-sm-3 > .social-icons:first-child,
+  #footer-content .col-sm-4 > h4:first-child,
+  #footer-content .col-sm-4 > .social-icons:first-child {
     margin-top: 0; }
 
 .footer-credits {
@@ -5174,6 +5172,16 @@ a.icon:hover {
   height: 25px;
   background: url("load.gif") no-repeat;
   display: none; }
+
+.main-content table {
+  margin-top: 30px;
+  margin-bottom: 30px; }
+
+.gutter-top {
+  margin-top: 30px; }
+
+.gutter-bottom {
+  margin-bottom: 30px; }
 
 .dl-horizontal-left dt {
   text-align: left; }

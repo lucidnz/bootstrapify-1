@@ -48,24 +48,24 @@
       {% if settings.show-borders %}<hr>{% endif %}
 			<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
     
-			<table class="table {% include '__table-formatting' %}">
-				<tr>
-					<th>Vendor</th>
-					<td itemprop="brand" content="{{ product.vendor }}">{{ product.vendor | link_to_vendor }}</td>
-				</tr>
-				<tr>
-					<th>Type</th>
-					<td itemprop="category" content="{{ product.type }}">{{ product.type | link_to_type }}</td>
-				</tr>
-				<tr>
-					<th>Collections</th>
-					<td>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</td>
-				</tr>
-				<tr>
-					<th>Tags</th>
-					<td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</td>
-				</tr>
-			</table>
+      <table class="table {% include '__table-formatting' %}">
+        <tr>
+          <th>{% include '__localize' with 'Vendor' %}</th>
+          <td>{{ product.vendor | link_to_vendor }}</td>
+        </tr>
+        <tr>
+          <th>{% include '__localize' with 'Type' %}</th>
+          <td>{{ product.type | link_to_type }}</td>
+        </tr>
+        <tr>
+          <th>{% include '__localize' with 'Collections' %}</th>
+          <td>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</td>
+        </tr>
+        <tr>
+          <th>{% include '__localize' with 'Tags' %}</th>
+          <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</td>
+        </tr>
+      </table>
     
 			{% if collection %}
 			{% if settings.show-borders %}<hr>{% endif %}
@@ -80,10 +80,10 @@
 </form>
 {% if settings.show-related-products %}
 <div class="row">
-	<div class="col-xs-12">
-	<h3>Related Products</h3>
-	{% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
-	{% include 'products-list' with 'limit' %}
-	</div>
+  <div class="col-xs-12">
+    {% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
+    <h3>{% include '__localize' with 'Related in' %} {{ collection.title }}</h3>
+    {% include 'products-list' with 'limit' %}
+  </div>
 </div>
 {% endif %}

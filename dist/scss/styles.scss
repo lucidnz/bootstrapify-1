@@ -29,8 +29,8 @@ h6 {
 #footer-content {
   .col-sm-3,
   .col-sm-4 {
-    h4,
-    .social-icons {
+    & > h4,
+    & > .social-icons {
       margin-top: $grid-gutter-width;
     
       &:first-child {
@@ -165,6 +165,19 @@ a.icon:hover {
   height: 25px;
   background: url('load.gif') no-repeat;
   display: none;
+}
+
+.main-content table {
+  margin-top: $grid-gutter-width;
+  margin-bottom: $grid-gutter-width;
+}
+
+.gutter-top {
+  margin-top: $grid-gutter-width;
+}
+
+.gutter-bottom {
+  margin-bottom: $grid-gutter-width;
 }
 
 .dl-horizontal-left{
