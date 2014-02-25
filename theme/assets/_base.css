@@ -5072,6 +5072,9 @@ h5,
 h6 {
   margin-top: 1em; }
 
+#product-form h1:first-child {
+  margin-top: 0; }
+
 #footer-content .col-sm-3 > h4, #footer-content .col-sm-3 > .social-icons,
 #footer-content .col-sm-4 > h4,
 #footer-content .col-sm-4 > .social-icons {
@@ -5114,6 +5117,9 @@ h6 {
   font-weight: bold;
   font-size: 14px;
   padding: 0; }
+
+.navbar-form.newsletter {
+  width: 30%; }
 
 .brand {
   overflow: auto; }
@@ -5307,6 +5313,20 @@ a.icon:hover {
 
 .tt-suggestion p {
   margin: 0; }
+
+.centered-layout h1,
+.centered-layout h2,
+.centered-layout h3,
+.centered-layout .main-content .lead,
+.centered-layout .caption,
+.centered-layout .author {
+  text-align: center; }
+
+.centered-layout #product-form h1,
+.centered-layout #product-form h2,
+.centered-layout #product-form h3,
+.centered-layout #product-form .lead {
+  text-align: left; }
 
 @media (max-width: 767px) {
   .dropdown-menu > li.submenu > .nav > li > a {

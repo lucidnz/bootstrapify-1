@@ -5,48 +5,49 @@
 {% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">{% endcapture %}
 {% endif %}
 {% endcapture %}
+<div class="visible-xs">
+  <h1 class="page-header" itemprop="name">{{ page_title }}</h1>
+</div>
+
 <form id="product-form" action="/cart/add" method="post">
-	<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
-	  <div class="col-xs-12 visible-xs">
-  	  <h1 class="page-header" itemprop="name">{{ page_title }}</h1>
-	  </div>
+  <div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
 	
-  	<!-- images col -->
-		<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
-			<div class="row">
-				<div class="col-xs-12 col-sm-12">
-					<div class="thumbnail">
-						{{ image }}
+    <!-- images col -->
+    <div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12">
+          <div class="thumbnail">
+            {{ image }}
             <div class="loader"></div>
-					</div>
-				</div>
-				{% if product.images.size > 1 %}
-				{% for image in product.images %}
-				<div class="col-xs-6 col-sm-4">
-					<a href="#" class="thumbnail" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-						{{ image.src | product_img_url: 'medium' | img_tag }}
-					</a>
-				</div>
-				{% endfor %}
-				{% endif %}
-			</div>
-		</div>
+          </div>
+        </div>
+        {% if product.images.size > 1 %}
+        {% for image in product.images %}
+        <div class="col-xs-6 col-sm-4">
+          <a href="#" class="thumbnail" data-main-image="{{ image.src | product_img_url: 'grande' }}">
+            {{ image.src | product_img_url: 'medium' | img_tag }}
+          </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
 	
     <!-- details col -->
-		<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
-			<h1 class="page-header hidden-xs" itemprop="name">{{ page_title }}</h1>
-			{% if settings.show-borders %}<hr class="visible-xs">{% endif %}
-			<div class="lead product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
-				<span id="price-field">{% include 'product-price' with product.price %}</span>
-				<del id="compare-at-price-field" class="text-muted"></del>
-				<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
-				<meta itemprop="currency" content="{{ shop.currency }}" />
-  			<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
-			</div>
-      {% if settings.show-borders %}<hr>{% endif %}
-			{% include 'product-add-to-cart-form' %}
-      {% if settings.show-borders %}<hr>{% endif %}
-			<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+    <div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
+      <h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
+      <hr class="visible-xs">
+      <div class="lead product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+        <span id="price-field">{% include 'product-price' with product.price %}</span>
+        <del id="compare-at-price-field" class="text-muted"></del>
+        <span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
+        <meta itemprop="currency" content="{{ shop.currency }}" />
+        <meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
+      </div>
+      <hr>
+      {% include 'product-add-to-cart-form' %}
+
+      <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
     
       <table class="table {% include '__table-formatting' %}">
         <tr>
@@ -66,24 +67,8 @@
           <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</td>
         </tr>
       </table>
-    
-			{% if collection %}
-			{% if settings.show-borders %}<hr>{% endif %}
-			<ul class="pagination pagination-sm">
-				<li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
-				<li>{{ collection.title | link_to: collection.url }}</li>
-				<li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: collection.next_product }}</li>
-			</ul>
-			{% endif %}
-		</div>
-	</div>
-</form>
-{% if settings.show-related-products %}
-<div class="row">
-  <div class="col-xs-12">
-    {% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
-    <h3>{% include '__localize' with 'Related in' %} {{ collection.title }}</h3>
-    {% include 'products-list' with 'limit' %}
+    </div>
   </div>
-</div>
-{% endif %}
+</form>
+
+{% include 'product-footer' %}

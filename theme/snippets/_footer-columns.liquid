@@ -6,7 +6,7 @@
 
   {% assign footer_blog = 'column-' | append: i | append: '-blog' %}{% assign footer_blog = settings[footer_blog] %}
   {% unless blogs[footer_blog] == empty %}
-  <h4>{{ blogs[footer_blog].title }}</h4>
+  <h4>{{ blogs[footer_blog].title | link_to: blogs[footer_blog].url }}</h4>
     {% for a in blogs[footer_blog].articles limit:settings.blog-list-limit %}
     {% include '_article-excerpt' %}
     {% endfor %}

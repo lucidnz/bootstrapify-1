@@ -8,8 +8,14 @@
   {% endfor %}
 </ul>
 
-{% assign social_links_placement = linklist_parts[0] | append: '-navbar-' | append: linklist_parts[1] %}
-{% if settings.social-links-placement == social_links_placement %}
+{% assign placement = linklist_parts[0] | append: '-navbar-' | append: linklist_parts[1] %}
+
+{% if settings.newsletter-signup-placement == placement %}
+{% assign form-placement = 'navbar-' | append: linklist_parts[1] %}
+  {% include 'newsletter-signup-form' with form-placement %}
+{% endif %}
+
+{% if settings.social-links-placement == placement %}
 <div class="nav navbar-text navbar-{{ linklist_parts[1] }} social-icons">
   {% include 'social-links' %}
 </div>

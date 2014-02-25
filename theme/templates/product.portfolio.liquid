@@ -5,13 +5,13 @@
 {% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'original' }}" alt="{{ product.featured_image.alt }}">{% endcapture %}
 {% endif %}
 {% endcapture %}
-<form id="product-form" action="/cart/add" method="post">
-  <div class="row">
-    <div class="col-xs-12">
-      <h1 class="page-header">{{ page_title }}</h1>
-    </div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="page-header" itemprop="name">{{ page_title }}</h1>
   </div>
-	
+</div>
+
+<form id="product-form" action="/cart/add" method="post">
   <!-- images col -->
   <div class="row">
     <div class="col-xs-12">
@@ -45,9 +45,9 @@
         <del id="compare-at-price-field" class="text-muted"></del>
         <span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
       </div>
-      {% if settings.show-borders %}<hr>{% endif %}
+      <hr>
       {% include 'product-add-to-cart-form' %}
-      {% if settings.show-borders %}<hr>{% endif %}
+
       {% endif %}
     </div>
   </div>
@@ -78,22 +78,6 @@
       </table>
     </div>
   </div>
-
-  {% if collection %}
-  {% if settings.show-borders %}<hr>{% endif %}
-  <ul class="pagination pagination-sm">
-    <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous product' | link_to: collection.previous_product }}</li>
-    <li>{{ collection.title | link_to: collection.url }}</li>
-    <li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next product &raquo;' | link_to: collection.next_product }}</li>
-  </ul>
-  {% endif %}
 </form>
-{% if settings.show-related-products %}
-<div class="row">
-  <div class="col-xs-12">
-    {% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
-    <h3>{% include '__localize' with 'Related in' %} {{ collection.title }}</h3>
-    {% include 'products-list' with 'limit' %}
-  </div>
-</div>
-{% endif %}
+
+{% include 'product-footer' %}

@@ -378,8 +378,15 @@ body{
   @include link-colour($body-link-colour, $body-background-colour);
   
   @if $show-borders == false{
-    .page-header, .thumbnail, .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td{
+    .page-header, .thumbnail, .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
       border: none;
+    }
+    hr {
+      border-color: transparent;
+    }
+    .thumbnail {
+      padding: 0;
+      background-color: transparent;
     }
   }
 }

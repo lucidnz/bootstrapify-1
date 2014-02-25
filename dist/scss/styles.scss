@@ -26,6 +26,10 @@ h6 {
   margin-top: 1em;
 }
 
+#product-form h1:first-child {
+  margin-top: 0;
+}
+
 #footer-content {
   .col-sm-3,
   .col-sm-4 {
@@ -83,6 +87,10 @@ h6 {
   font-weight: bold;
   font-size: $font-size-base;
   padding: 0;
+}
+
+.navbar-form.newsletter {
+  width: 30%;
 }
 
 .brand{
@@ -347,6 +355,28 @@ a.icon:hover {
 
 .tt-suggestion p {
   margin: 0;
+}
+
+.centered-layout {
+  h1,
+  h2,
+  h3,
+  .main-content .lead,
+  .caption,
+  .author {
+    text-align: center;
+  }
+}
+
+.centered-layout {
+  #product-form {
+    h1,
+    h2,
+    h3,
+    .lead {
+      text-align: left;
+    }
+  }
 }
 
 @media (max-width: $screen-xs-max) {
