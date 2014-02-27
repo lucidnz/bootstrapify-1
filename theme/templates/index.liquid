@@ -5,6 +5,8 @@
   {% include '__formatted-content' with pages[homepage].content %}
 </div>{% endunless %}
 
+{% include 'features-overview' %}
+
 {% unless settings.featured-collections-linklist == blank %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
   {% include 'collections-list' with 'featured' %}

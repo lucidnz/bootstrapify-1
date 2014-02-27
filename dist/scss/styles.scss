@@ -108,9 +108,11 @@ h6 {
 
 .main-content{
   margin-bottom: $grid-gutter-width;
-  .page-header{
-    margin-bottom: 0.75em;
+  
+  .lead {
+    margin-bottom: $grid-gutter-width * 2;
   }
+  
   .tags-list{
     margin-bottom: $grid-gutter-width;
   }
@@ -365,6 +367,14 @@ a.icon:hover {
   .caption,
   .author {
     text-align: center;
+  }
+  
+  .text-left {
+    text-align: left;
+  }
+  
+  .text-right {
+    text-align: left;
   }
 }
 

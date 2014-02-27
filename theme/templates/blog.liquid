@@ -4,17 +4,16 @@
 {% for a in blog.articles %}
 <article class="excerpts">
   <h2>{{ a.title | link_to: a.url, a.title }}</h2>
-  <div class="{% if settings.centered-layout %} text-center{% endif %}">    
-    {% if a.excerpt != blank %}
-    {{ a.excerpt }}
-    {% else %}
-    {% if settings.truncate-words == '' %}{{ a.content }}{% else %}<p>{{ a.content | strip_html | truncatewords: settings.truncate-words }}</p>{% endif %}
-    {% endif %}
-    {% include 'article-author' with a %}
-    <ul class="pager">
-      <li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></li>
-    </ul>
-  </div>
+  {% capture blog_content %}{% if a.excerpt != blank %}
+  {{ a.excerpt }}
+  {% else %}
+  {% if settings.truncate-words == '' %}{{ a.content }}{% else %}<p>{{ a.content | strip_html | truncatewords: settings.truncate-words }}</p>{% endif %}
+  {% endif %}{% endcapture %}
+  {% include '__offset-centered-content' with blog_content %}
+  {% include 'article-author' with a %}
+  <ul class="pager">
+    <li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></li>
+  </ul>
 </article>
 {% endfor %}
 

@@ -5132,8 +5132,8 @@ h6 {
 
 .main-content {
   margin-bottom: 30px; }
-  .main-content .page-header {
-    margin-bottom: 0.75em; }
+  .main-content .lead {
+    margin-bottom: 60px; }
   .main-content .tags-list {
     margin-bottom: 30px; }
 
@@ -5321,6 +5321,10 @@ a.icon:hover {
 .centered-layout .caption,
 .centered-layout .author {
   text-align: center; }
+.centered-layout .text-left {
+  text-align: left; }
+.centered-layout .text-right, .centered-layout .money {
+  text-align: left; }
 
 .centered-layout #product-form h1,
 .centered-layout #product-form h2,
