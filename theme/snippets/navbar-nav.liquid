@@ -1,12 +1,14 @@
 {% assign linklist_parts = navbar-nav | split: '-' %}
-
 {% assign linklist_name = linklist_parts[0] | append: '-navbar-linklist-' | append: linklist_parts[1] %}
 {% assign linklist_setting = settings[linklist_name] %}
+
+{% if linklist_setting %}
 <ul class="nav navbar-nav navbar-{{ linklist_parts[1] }}">
   {% for l in linklists[linklist_setting].links %}
   {% include '_navbar-link' %}
   {% endfor %}
 </ul>
+{% endif %}
 
 {% assign placement = linklist_parts[0] | append: '-navbar-' | append: linklist_parts[1] %}
 
