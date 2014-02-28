@@ -2,8 +2,10 @@
 {% unless settings.homepage == blank %}{% assign homepage = settings.homepage %}{% endunless %}
 <h1 class="page-header">{{ pages[homepage].title }}</h1>
 {% unless pages[homepage].content == blank %}<div class="lead">
-  {{ pages[homepage].content }}
+  {% include '__formatted-content' with pages[homepage].content %}
 </div>{% endunless %}
+
+{% include 'features-overview' %}
 
 {% unless settings.featured-collections-linklist == blank %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>

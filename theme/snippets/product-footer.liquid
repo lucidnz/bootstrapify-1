@@ -1,0 +1,18 @@
+{% if collection %}
+<hr>
+<ul class="pager">
+  <li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous' | link_to: collection.previous_product }}</li>
+  <li>{{ collection.title | link_to: collection.url }}</li>
+  <li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next &raquo;' | link_to: collection.next_product }}</li>
+</ul>
+{% endif %}
+
+{% if settings.show-related-products %}
+<div class="row">
+  <div class="col-xs-12">
+    {% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
+    <h2>{% include '__localize' with 'Related in' %} {{ collection.title }}</h2>
+    {% include 'products-list' with 'limit' %}
+  </div>
+</div>
+{% endif %}

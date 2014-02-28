@@ -1,20 +1,26 @@
-{% capture signup_form %}
-  <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
-  <div class="input-group">
-    <input type="text" id="contact_email" name="contact[email]" class="form-control" placeholder="{% include '__localize' with 'Your email address' %}">
-    <span class="input-group-btn"><button type="submit" class="btn btn-default">{% include '__localize' with 'Sign up!' %}</button></span>
-  </div>
-{% endcapture %}
+{% capture fields %}<input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
+<div class="input-group">
+  <input type="text" id="contact_email" name="contact[email]" class="form-control" placeholder="{% include '__localize' with 'Your email address' %}">
+  <span class="input-group-btn"><button type="submit" class="btn btn-primary">{% include '__localize' with 'Subscribe' %}</button></span>
+</div>{% endcapture %}
 
+{% capture form %}{% if settings.mailchimp == blank %}
+{% form 'customer' %}
+{{ fields }}
+{% endform %}
+{% else %}
+<form action="{{ settings.mailchimp }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate contact-form" target="_blank">
+  {{ fields }}
+</form>
+{% endif %}{% endcapture %}
+
+{% if newsletter-signup-form contains 'navbar' %}
+<div class="navbar-form {{ newsletter-signup-form }} newsletter">
+  {{ form }}
+</div>
+{% else %}
 <h4 {% unless newsletter-signup-form == 'footer' %}class="page-header"{% endunless %}>{% include '__localize' with 'Join our newsletter' %}</h4>
 <div class="form-inline">
-{% if settings.mailchimp == blank %}
-  {% form 'customer' %}
-    {{ signup_form }}
-  {% endform %}
-{% else %}
-  <form action="{{ settings.mailchimp }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate contact-form" target="_blank">
-    {{ signup_form }}
-  </form>
-{% endif %}
+  {{ form }}
 </div>
+{% endif %}

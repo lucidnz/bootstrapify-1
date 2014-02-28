@@ -1,0 +1,10 @@
+<div class="text-muted author">
+  <hr>
+  {% include '__localize' with 'Published on' %} {{ article-author.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ article-author.author }}{% endif %}.
+  {% if article-author.tags.size > 0 %}
+  <i class="fa fa-tags"></i> 
+  {% for tag in article-author.tags %}
+  {{ tag | link_to_tag: tag }}
+  {% endfor %}
+  {% endif %}
+</div>

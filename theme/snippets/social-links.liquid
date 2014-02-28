@@ -16,9 +16,8 @@
       {% assign icon = icon | append: '-square' %}
     {% endcase %}
     
-    <a href="{{ link_href }}" class="fa-stack fa-lg text-muted">
-    	<i class="fa fa-circle fa-stack-2x"></i>
-    	<i class="fa fa-{{ icon }} fa-stack-1x fa-inverse"></i>
+    <a href="{{ link_href }}" class="text-muted" target="_blank">
+    	<i class="fa fa-{{ icon }} fa-fw {% if social-links %}fa-{{ social-links }}{% endif %}"></i>
     </a>
   {% endunless %}
 {% endfor %}

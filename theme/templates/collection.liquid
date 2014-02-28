@@ -1,7 +1,7 @@
 {% unless settings.tag-placement == 'sidebar' %}{% include 'collection-tags-menu' %}{% endunless %}
 
 <h1 class="page-header">{{ page_title }}</h1>
-{% unless collection.description == blank %}<p class="lead">{{ collection.description }}</p>{% endunless %}
+{% unless collection.description == blank %}<div class="lead">{{ collection.description }}</div>{% endunless %}
 
 {% unless settings.tag-placement == 'sidebar' %}
   {% include 'collection-tags-buttons' %}

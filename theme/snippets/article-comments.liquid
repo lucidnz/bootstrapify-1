@@ -1,4 +1,4 @@
-{% if settings.show-borders %}<hr>{% endif %}
+<hr>
 <h3>Comments</h3>
 {% include '__default-pagination' %}
 {% paginate article.comments by default-pagination %}
@@ -11,7 +11,7 @@
     <p>{% include '__localize' with 'No comments. Please feel free to be the first.' %}</p>
   {% endif %}
 {% endpaginate %}
-{% if settings.show-borders %}<hr>{% endif %}
+<hr>
 <h4>{% include '__localize' with 'Leave a comment' %}</h4>
 
 {% form article %}

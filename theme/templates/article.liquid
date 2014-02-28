@@ -1,8 +1,8 @@
 <h1 class="page-header">{{ page_title }}</h1>
 
-<p class="text-muted">{{ article.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ article.author }}{% endif %}</p>
+{% include '__offset-centered-content' with article.content %}
 
-<p>{% include '__formatted-content' with article.content %}</p>
+{% include 'article-author' with article %}
 
 {% if article.user.bio != blank and settings.show-author-bios == true %}
 <div class="well text-muted">
@@ -10,11 +10,14 @@
 </div>
 {% endif %}
 
+{% if blog.previous_article or blog.next_article %}
+<hr>
 <ul class="pager">
-  {% if blog.previous_article %}<li class="previous">{{ 'previous article' | link_to: blog.previous_article }}</li>{% endif %}
-  {% if blog.next_article %}<li class="next">{{ 'next article' | link_to: blog.next_article }}</li>{% endif %}
+  {% if blog.previous_article %}<li>{{ '&laquo; Previous article' | link_to: blog.previous_article }}</li>{% endif %}
+  {% if blog.next_article %}<li>{{ 'Next article &raquo;' | link_to: blog.next_article }}</li>{% endif %}
 </ul>
+{% endif %}
 
 {% if article.comments_enabled? %}
-  {% include 'article-comments' %}
+{% include 'article-comments' %}
 {% endif %}

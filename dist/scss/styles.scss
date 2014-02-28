@@ -26,11 +26,15 @@ h6 {
   margin-top: 1em;
 }
 
+#product-form h1:first-child {
+  margin-top: 0;
+}
+
 #footer-content {
   .col-sm-3,
   .col-sm-4 {
-    h4,
-    .social-icons {
+    & > h4,
+    & > .social-icons {
       margin-top: $grid-gutter-width;
     
       &:first-child {
@@ -85,6 +89,10 @@ h6 {
   padding: 0;
 }
 
+.navbar-form.newsletter {
+  width: 30%;
+}
+
 .brand{
   overflow: auto;
   .text-center img{
@@ -100,9 +108,11 @@ h6 {
 
 .main-content{
   margin-bottom: $grid-gutter-width;
-  .page-header{
-    margin-bottom: 0.75em;
+  
+  .lead {
+    margin-bottom: $grid-gutter-width * 2;
   }
+  
   .tags-list{
     margin-bottom: $grid-gutter-width;
   }
@@ -165,6 +175,19 @@ a.icon:hover {
   height: 25px;
   background: url('load.gif') no-repeat;
   display: none;
+}
+
+.main-content table {
+  margin-top: $grid-gutter-width;
+  margin-bottom: $grid-gutter-width;
+}
+
+.gutter-top {
+  margin-top: $grid-gutter-width;
+}
+
+.gutter-bottom {
+  margin-bottom: $grid-gutter-width;
 }
 
 .dl-horizontal-left{
@@ -334,6 +357,36 @@ a.icon:hover {
 
 .tt-suggestion p {
   margin: 0;
+}
+
+.centered-layout {
+  h1,
+  h2,
+  h3,
+  .main-content .lead,
+  .caption,
+  .author {
+    text-align: center;
+  }
+  
+  .text-left {
+    text-align: left;
+  }
+  
+  .text-right {
+    text-align: left;
+  }
+}
+
+.centered-layout {
+  #product-form {
+    h1,
+    h2,
+    h3,
+    .lead {
+      text-align: left;
+    }
+  }
 }
 
 @media (max-width: $screen-xs-max) {
