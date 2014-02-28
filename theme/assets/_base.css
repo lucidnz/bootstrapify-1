@@ -5072,15 +5072,16 @@ h5,
 h6 {
   margin-top: 1em; }
 
-#footer-content .col-sm-3 h4,
-#footer-content .col-sm-3 .social-icons,
-#footer-content .col-sm-4 h4,
-#footer-content .col-sm-4 .social-icons {
+#product-form h1:first-child {
+  margin-top: 0; }
+
+#footer-content .col-sm-3 > h4, #footer-content .col-sm-3 > .social-icons,
+#footer-content .col-sm-4 > h4,
+#footer-content .col-sm-4 > .social-icons {
   margin-top: 30px; }
-  #footer-content .col-sm-3 h4:first-child,
-  #footer-content .col-sm-3 .social-icons:first-child,
-  #footer-content .col-sm-4 h4:first-child,
-  #footer-content .col-sm-4 .social-icons:first-child {
+  #footer-content .col-sm-3 > h4:first-child, #footer-content .col-sm-3 > .social-icons:first-child,
+  #footer-content .col-sm-4 > h4:first-child,
+  #footer-content .col-sm-4 > .social-icons:first-child {
     margin-top: 0; }
 
 .footer-credits {
@@ -5117,6 +5118,9 @@ h6 {
   font-size: 14px;
   padding: 0; }
 
+.navbar-form.newsletter {
+  width: 30%; }
+
 .brand {
   overflow: auto; }
   .brand .text-center img {
@@ -5128,8 +5132,8 @@ h6 {
 
 .main-content {
   margin-bottom: 30px; }
-  .main-content .page-header {
-    margin-bottom: 0.75em; }
+  .main-content .lead {
+    margin-bottom: 60px; }
   .main-content .tags-list {
     margin-bottom: 30px; }
 
@@ -5174,6 +5178,16 @@ a.icon:hover {
   height: 25px;
   background: url("load.gif") no-repeat;
   display: none; }
+
+.main-content table {
+  margin-top: 30px;
+  margin-bottom: 30px; }
+
+.gutter-top {
+  margin-top: 30px; }
+
+.gutter-bottom {
+  margin-bottom: 30px; }
 
 .dl-horizontal-left dt {
   text-align: left; }
@@ -5299,6 +5313,24 @@ a.icon:hover {
 
 .tt-suggestion p {
   margin: 0; }
+
+.centered-layout h1,
+.centered-layout h2,
+.centered-layout h3,
+.centered-layout .main-content .lead,
+.centered-layout .caption,
+.centered-layout .author {
+  text-align: center; }
+.centered-layout .text-left {
+  text-align: left; }
+.centered-layout .text-right, .centered-layout .money {
+  text-align: left; }
+
+.centered-layout #product-form h1,
+.centered-layout #product-form h2,
+.centered-layout #product-form h3,
+.centered-layout #product-form .lead {
+  text-align: left; }
 
 @media (max-width: 767px) {
   .dropdown-menu > li.submenu > .nav > li > a {

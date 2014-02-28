@@ -1,2 +1,3 @@
 {% capture table_replace %}<table class="table{% include '__table-formatting' %}"{% endcapture %}
-{{ __formatted-content | replace_first: '<table',table_replace }}
+{% capture img_replace %}<img class="thumbnail"{% endcapture %}
+{{ __formatted-content | replace_first: '<table',table_replace | replace_first: '<img',img_replace }}

@@ -32,8 +32,8 @@
     {% endif %}
             
     {% if settings.social-links-placement == 'sidebar' %}
-      {% if settings.show-borders %}<hr>{% endif %}
-      {% include 'social-links' %}
+      <hr>
+      {% include 'social-links' with 'lg' %}
     {% endif %}
   </div>
 </aside>

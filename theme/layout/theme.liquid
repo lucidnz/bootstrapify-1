@@ -37,7 +37,7 @@
   {{ content_for_header }}
 </head>
 
-<body class="{% if settings.show-multiple-currencies %} currencies{% endif %}">
+<body class="{% if settings.show-multiple-currencies %} currencies{% endif %}{% if settings.centered-layout %} centered-layout{% endif %}">
   <div id="wrap">
   {% include 'navbar' with 'top' %}
   
