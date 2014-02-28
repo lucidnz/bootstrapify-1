@@ -1,6 +1,6 @@
 <h1 class="page-header">{{ page_title }}</h1>
 
-<p class="text-muted">{{ article.published_at | date: settings.long-date-format }}{% if settings.show-author-on-index %} by {{ article.author }}{% endif %}</p>
+<p class="text-muted">{{ article.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ article.author }}{% endif %}</p>
 
 {% include '__formatted-content' with article.content %}
 
@@ -10,8 +10,11 @@
 </div>
 {% endif %}
 
+<ul class="pager">
+  {% if blog.previous_article %}<li class="previous">{{ 'previous article' | link_to: blog.previous_article }}</li>{% endif %}
+  {% if blog.next_article %}<li class="next">{{ 'next article' | link_to: blog.next_article }}</li>{% endif %}
+</ul>
+
 {% if article.comments_enabled? %}
-
-{% include 'article-comments' %}
-
+  {% include 'article-comments' %}
 {% endif %}

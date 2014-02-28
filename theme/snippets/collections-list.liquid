@@ -1,0 +1,14 @@
+{% include '__per-row' %}
+<div class="row">
+{% if collections-list == 'featured' %}
+  {% if settings.featured-collections-limit contains 'row' %}{% assign limit = settings.featured-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
+  {% for l in linklists[settings.featured-collections-linklist].links | limit: limit %}
+    {% assign collection = l.object %}
+    {% include '_collection' with collection %}
+  {% endfor %}
+{% else %}
+  {% for collection in collections %}
+    {% include '_collection' with collection %}
+  {% endfor %}
+{% endif %}
+</div>

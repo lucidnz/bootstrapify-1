@@ -1,0 +1,27 @@
+{
+  "name": "Bootstrapify",
+  "version": "3.0.2",
+  "homepage": "https://github.com/luciddesign/bootstrapify",
+  "authors": [
+    "Lucid Design <info@luciddesign.co.nz> (http://www.luciddesign.co.nz)"
+  ],
+  "description": "An open-source base Shopify theme built with Twitter Bootstrap",
+  "main": "dist/styles.scss",
+  "keywords": [
+    "Bootstrap",
+    "Shopify"
+  ],
+  "license": "Apache-2.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "git@github.com:twbs/bootstrap-sass.git#master",
+    "typeahead.js": "~0.9.3"
+  }
+}

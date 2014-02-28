@@ -1,0 +1,30 @@
+{% comment %}
+/* Use web fonts from settings: https://gist.github.com/stewartknapman/8659486
+ *
+ * font_import.css.liquid lives inside theme/assets/ and will be compiled into css by Shopify.
+ *
+ * IMPORTANT NOTE: This will only work if we are using a _non_ javascript way of importing a web font.
+ * e.g. <link type="text/css" rel="stylesheet" href="http://fast.fonts.net/cssapi/1234-5678.css"/>
+ *
+ * 1. Get our custom-font-embed-code from the theme settings.
+ * 2. Check if its a link
+ * 3. Split it up on the spaces and loop through the parts
+ * 4. Find the href
+ * 5. Remove the pieces of the string we don't need
+ * 6. pass that to the css import
+ *
+ * output: @import url(//fast.fonts.net/cssapi/1234-5678.css);
+ */
+{% endcomment %}
+
+{% if settings.custom-font-embed-code != blank %}
+  {% if settings.custom-font-embed-code contains '<link' %}
+    {% assign link = settings.custom-font-embed-code | split: ' ' %}
+    {% for attr in link %}
+      {% if attr contains 'href' %}
+        {% assign import = attr | remove: 'href="' | remove: '"/>' | remove: 'https:' | remove: 'http:' %}
+          @import url({{ import }});
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}

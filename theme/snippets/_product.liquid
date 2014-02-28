@@ -1,24 +1,11 @@
-{% capture vars %}
-{% assign product_url = _product.url | within: collection %}
-{% if _product.featured_image == blank %}
-{% assign image = '<div class="image_placeholder">Product Image</div>' %}
-{% else %}
-{% assign image = _product.featured_image.src | product_img_url: 'large' | img_tag | link_to: product_url %}
-{% endif %}
-{% endcapture %}
-<div class="{% include '__thumbnail-span' %}">
+{% include '__product-image' %}
+<div class="{% include '__product-css-class' %}" {% include '__product-data-attr' with _product %}>
   <div class="thumbnail">
     {{ image }}
     <div class="caption clearfix">
       <div><strong>{{ _product.title | link_to: product_url }}</strong></div>
-      <div class="text-right">{% include 'product-price' with _product %}</div>
+      <div class="text-right">{% include 'product-thumb-price' with _product %}</div>
     </div>
   </div>
 </div>
-{% if settings.thumbnails-per-row == '4' %}
-	{% cycle '', '', '', '<div class="clearfix visible-md visible-lg"></div>' %}
-	{% cycle '', '', '<div class="clearfix visible-sm"></div>' %}
-{% else %}
-	{% cycle  '', '', '<div class="clearfix visible-md visible-lg"></div>' %}
-	{% cycle  '', '<div class="clearfix visible-sm"></div>' %}
-{% endif %}
+{% include '_end_row' %}

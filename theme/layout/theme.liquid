@@ -8,20 +8,18 @@
   
   {{ '_base.css' | asset_url | stylesheet_tag }}
   {{ '_settings.scss.css' | asset_url | stylesheet_tag }}
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  
-  {% include 'fonts' %}
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  
-  {{ '_base.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  {{ 'bootstrapify-option-selection.js' | asset_url | script_tag }}
   
   {% if template contains 'customers' %}
     {{ "shopify_common.js" | shopify_asset_url | script_tag }}
     {{ "customer_area.js"  | shopify_asset_url | script_tag }}
   {% endif %}
   
+  {{ 'transition.js' | asset_url | script_tag }}
   {{ 'button.js' | asset_url | script_tag }}
   {{ 'carousel.js' | asset_url | script_tag }}
   {{ 'collapse.js' | asset_url | script_tag }}
@@ -29,35 +27,43 @@
   {{ 'modal.js' | asset_url | script_tag }}
   {{ 'tooltip.js' | asset_url | script_tag }}
   {{ 'popover.js' | asset_url | script_tag }}
+  {{ 'typeahead.js' | asset_url | script_tag }}
+  
+  {{ settings.custom-font-embed-code }}
+  {{ settings.custom-header-code }}
   
   {{ content_for_header }}
 </head>
 
 <body class="{% if settings.show-multiple-currencies %} currencies{% endif %}">
-  {% include 'navbar' %}
+  <div id="wrap">
+  {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
+    
+  {% if settings.navbar-placement != 'main-content' %}{% include 'navbar' %}{% endif %}
   
-  {% if settings.slider-placement == "full-width" and template == "index" %}{% include 'slider' %}{% endif %}
-  
-  <div class="container">    
-    {% if settings.slider-placement == "within-container" and template == "index" %}{% include 'slider' %}{% endif %}
-    
-    {% if settings.logo-placement != "sidebar" and settings.logo-placement != "navbar" %}
-    <header class="page-header">
-      <h1 class="text-{{ settings.logo-alignment }}"><a href="/">{% include 'logo' %}</a></h1>
-    </header>
-    {% endif %}
-    
-    {% if settings.show-breadcrumbs and template != 'index' %}
-    {% include 'breadcrumbs' %}
-    {% endif %}
-    
-    <div class="row">
-      {% if settings.show-sidebar %}{% include 'sidebar' %}{% endif %}
-      <div class="{% include '__main-span' %}">
-            
-        {% if settings.slider-placement == "next-to-sidebar" and settings.show-sidebar and template == "index" %}{% include 'slider' %}{% endif %}
-
-        {{ content_for_layout }}
+  {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% endif %}
+    <div id="content" class="container">
+      {% if settings.navbar-placement == 'main-content' %}{% include 'navbar' %}{% endif %}
+      {% if settings.logo-placement != "navbar" and settings.logo-placement != "above-navbar" %}
+        <div class="{% if settings.logo-placement == "sidebar" %} visible-xs{% endif %}">{% include 'brand' %}</div>
+      {% endif %}
+      {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% endif %}
+      
+      {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
+      
+      <div class="row">
+        <div class="main-content {% include '__main-span' %}">
+          {% if settings.slider-width == "main-content-width" and settings.show-sidebar and template == "index" %}{% include 'slider' %}{% endif %}
+          {{ content_for_layout }}
+        </div>
+        
+        {% if settings.show-sidebar %}
+          {% unless settings.show-sidebar-on-homepage == blank and template == "index" %}
+            {% include 'sidebar' %}
+          {% endunless %}
+        {% elsif settings.show-sidebar-on-homepage and template == "index" %}
+          {% include 'sidebar' %}
+        {% endif %}
       </div>
     </div>
   </div>
@@ -65,6 +71,17 @@
   {% include 'footer' %}
   {% include 'currencies' %}
   
-  {{ 'app.js' | asset_url | script_tag }}
+  {{ '_base.js' | asset_url | script_tag }}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.search').typeahead({
+        name: 'Products',
+        local: [{% include 'search-typeahead' %}]
+      }).on('typeahead:selected', function (object, datum) {
+        $(this).closest('form').submit();
+      });
+    });
+  </script>
+  {{ settings.custom-footer-code }}
 </body>
 </html>

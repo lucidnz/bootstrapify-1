@@ -1,55 +1,64 @@
-<hr>
 <div class="row">
-  {% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include 'product-add-to-cart-button' %}{% endif %}
-  <div id="product-variants" class="col-sm-6">
-    <select id="product-select" name="id" class="form-control">
-      {% for v in product.variants %}
-      <option value="{{ v.id }}">{{ v.title }}</option>
-      {% endfor %}
-    </select>
+  <div class="col-sm-12 col-md-8">
+    <div class="form-group">
+      <label for="quantity">Qty: </label> 
+      <input class="form-control" min="1" type="number" id="quantity" name="quantity" value="1" />
+    </div>
+    <div id="product-variants">
+      <select id="product-select" name="id" class="form-control">
+        {% for v in product.variants %}
+        <option value="{{ v.id }}">{{ v.title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="btn btn-primary btn-block btn-lg" />
   </div>
-  {% if settings.placement-of-add-to-cart-button == "below-variant-options" %}{% include 'product-add-to-cart-button' %}{% endif %}
 </div>
-<hr>
-    
-<script type="text/javascript">
-// <![CDATA[  
-var selectCallback = function(variant, selector) {
-  $('.single-option-selector').addClass('form-control');
-  $('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
-  $('#purchase').removeClass('btn-primary');
-  $('#purchase').val('{% include '__localize' with 'Unavailable' %}');
-  // $('#purchase').hide();
-  $('#price-field').addClass('text-muted');      // set add-to-cart button to unavailable class and disable button
-  if (variant) {
-    $('#price-field').html(Shopify.formatMoney(variant.price, "<span class=\"money\">{{ shop.money_with_currency_format | remove: '<span class="money">' | remove: '</span>' }}</span>"));
-    if (variant.compare_at_price > 0) {
-      $('#compare-at-price-field').html(Shopify.formatMoney(variant.compare_at_price, "<span class=\"money\">{{ shop.money_with_currency_format | remove: '<span class="money">' | remove: '</span>' }}</span>"));  // update compare-at-price field
-      $('#sale-field').show(); // update sale-field message
-    } else {
-      $('#compare-at-price-field').text('');  // clear compare-at-price field
-      $('#sale-field').hide(); // clear sale-field message
-    }
-      
-    if (variant.available == true) {
-      // $('#purchase').show();
-      $('#purchase').addClass('btn-primary');
-      $('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
-      $('#purchase').val('{% include '__localize' with 'Add to cart' %}');
-      $('#price-field').removeClass('text-muted');      // set add-to-cart button to unavailable class and disable button
-    } else {
-      $('#purchase').val('{% include '__localize' with 'Sold out' %}');
-    }
-  } else {
-    $('#compare-at-price-field').text('');  // clear compare-at-price field
-    $('#price-field').text('{% include '__localize' with 'Unavailable' %}');  // update price field
-    $('#sale-field').hide(); // clear sale-field message
-  } 
-};
 
-// initialize multi-selector for product
-$(function() {
-  new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
-});
-// ]]>
+<script>
+  var selectCallback = function(variant, selector){
+    // set vars so we dont need to call the elements repeatedly
+    var purchaseButton = jQuery(document.getElementById('purchase'));
+    var priceField = jQuery(document.getElementById('price-field'));
+    var saleField = jQuery(document.getElementById('sale-field'));
+    var compareAtPriceField = jQuery(document.getElementById('compare-at-price-field'));
+    
+    var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
+    var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
+    var soldOutStr = '{% include '__localize' with 'Sold out' %}';
+    
+    // disable purchase button
+    purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);
+    priceField.addClass('text-muted');
+    saleField.hide();
+    compareAtPriceField.html('').hide();
+    
+    if(variant){
+      // we have a variant so update the price
+      var moneyFormat = "{% if settings.show-currency-with-prices %}{{ shop.money_with_currency_format }}{% else %}{{ shop.money_format }}{% endif %}"; // we still need the correct money format if the currency converter is off
+      var formattedMoney = Shopify.formatMoney(variant.price, moneyFormat); 
+      priceField.html('<span class="money">'+formattedMoney+'</span>'); // we need to refresh the the money span to invoke the currency converter if it is on
+      
+      if(variant.compare_at_price > 0){
+        // variant is on sale
+        var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
+        compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
+        saleField.show();
+      }
+      
+      if(variant.available){
+        // the variant is available for purchase so enable the button
+        purchaseButton.removeAttr('disabled').removeClass('disabled').addClass('btn-primary').val(addToCartStr);
+        priceField.removeClass('text-muted');
+      } else {
+        // sold out
+        purchaseButton.val(soldOutStr);
+      }
+    }
+  };
+
+  jQuery(function() {
+    // option selectors with boostrap markup and link options
+    new Shopify.BootstrapifyOptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, linkOptions: true });
+  });
 </script>

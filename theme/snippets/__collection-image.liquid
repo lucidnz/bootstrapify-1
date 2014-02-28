@@ -1,0 +1,7 @@
+{% if _collection.image %}
+  {% capture image %}{{ _collection.image.src | collection_img_url: 'large' | img_tag | link_to: _collection.url }}{% endcapture %}
+{% elsif _collection.products.first.featured_image %}
+  {% capture image %}{{ _collection.products.first.featured_image.src | product_img_url: 'large' | img_tag | link_to: _collection.url }}{% endcapture %}
+{% else %}
+  {% include '__image-placeholder' %}
+{% endif %}

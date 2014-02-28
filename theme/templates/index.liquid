@@ -1,32 +1,16 @@
 {% unless pages[settings.homepage-intro] == empty %}
-<h1 class="page-header">{{ page_title }}</h1>
+<h1 class="page-header">{{ pages[settings.homepage-intro].title }}</h1>
 <div class="lead">
   {{ pages[settings.homepage-intro].content }}
 </div>
 {% endunless %}
 
-{% capture strip_space %}
-{% if settings.thumbnails-per-row == '3' %}
- {% assign per-row = 3 %}
-{% else %}
-  {% assign per-row = 4 %}
-{% endif %}
-{% endcapture %}
-
-{% unless settings.featured-collections-linklist == empty %}
+{% if settings.featured-collections-linklist %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
-<div class="row">{% if settings.homepage-featured-collections-limit contains 'row' %}{% assign limit = settings.homepage-featured-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
-  {% for l in linklists[settings.featured-collections-linklist].links | limit: limit %}
-    {% assign collection = l.object %}
-    {% include '_collection' with collection %}
-  {% endfor %}
-</div>
-{% endunless %}
-{% unless settings.homepage-featured-products-collection == empty %}
+  {% include 'collections-list' with 'featured' %}
+{% endif %}
+
+{% if settings.homepage-featured-products-collection %}
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
-<div class="row">{% if settings.featured-products-limit contains 'row' %}{% assign limit = settings.featured-products-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
-  {% for p in collections[settings.homepage-featured-products-collection].products | limit: limit %}
-    {% include '_product' with p %}
-  {% endfor %}
-</div>
-{% endunless %}
+  {% include 'products-list' with 'featured' %}
+{% endif %}

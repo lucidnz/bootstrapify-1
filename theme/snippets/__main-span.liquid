@@ -1,1 +1,1 @@
-{% if settings.show-sidebar %}col-sm-8 col-md-9{% else %}col-xs-12 col-sm-12{% endif %}
+{% assign full_width = 'col-xs-12' %}{% assign two_col = 'col-sm-8 col-sm-push-4 col-md-9 col-md-push-3' %}{% if settings.show-sidebar %}{% if settings.show-sidebar-on-homepage != blank or template != "index" %}{{ two_col }}{% else %}{{ full_width }}{% endif %}{% elsif settings.show-sidebar-on-homepage and template == "index" %}{{ two_col }}{% else %}{{ full_width }}{% endif %}

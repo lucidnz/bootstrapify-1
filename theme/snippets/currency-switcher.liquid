@@ -1,14 +1,19 @@
 {% if settings.show-multiple-currencies %}
-<ul class="nav pull-right text-muted">
-  <li class="navbar-text">
-    <small id="current-currency">
-      All prices in <strong><span class="selected-currency">&nbsp;&nbsp;&nbsp;</span></strong> 
-      <span id="currency-picker-toggle">(<a href="#" class="text-muted">change</a>)</span>
-    </small>
-    <span id="currencies-picker" class="navbar-form" style="display:none;">
-      &nbsp;<select id="currencies" class="input-auto" name="currencies">
-        {% capture codes %},USD,EUR,GBP,CAD,ARS,AUD,BBD,BDT,BSD,BHD,BRL,BOB,BND,BGN,MMK,KYD,CLP,CNY,COP,CRC,HRK,CZK,DKK,DOP,XCD,EGP,XPF,FJD,GHS,GTQ,GYD,GEL,HKD,HUF,ISK,INR,IDR,NIS,JMD,JPY,JOD,KZT,KES,KWD,LVL,LTL,MXN,MYR,MUR,MDL,MAD,MNT,MZN,ANG,NZD,NGN,NOK,OMR,PKR,PYG,PEN,PHP,PLN,QAR,RON,RUB,SAR,RSD,SCR,SGD,SYP,ZAR,KRW,LKR,SEK,CHF,TWD,THB,TZS,TTD,TRY,UAH,AED,UYU,VEB,VND,ZMK,{% endcapture %}
-        {% assign supported_codes = settings.supported-currencies | remove: ',' | split: ' ' %}
+{% capture codes %}USD,EUR,GBP,CAD,ARS,AUD,BBD,BDT,BSD,BHD,BRL,BOB,BND,BGN,MMK,KYD,CLP,CNY,COP,CRC,HRK,CZK,DKK,DOP,XCD,EGP,XPF,FJD,GHS,GTQ,GYD,GEL,HKD,HUF,ISK,INR,IDR,NIS,JMD,JPY,JOD,KZT,KES,KWD,LVL,LTL,MXN,MYR,MUR,MDL,MAD,MNT,MZN,ANG,NZD,NGN,NOK,OMR,PKR,PYG,PEN,PHP,PLN,QAR,RON,RUB,SAR,RSD,SCR,SGD,SYP,ZAR,KRW,LKR,SEK,CHF,TWD,THB,TZS,TTD,TRY,UAH,AED,UYU,VEB,VND,ZMK{% endcapture %}
+{% assign supported_codes = settings.supported-currencies | remove: ',' | split: ' ' %}
+<div class="navbar-right">
+  {% if settings.currency-switcher-position == 'navbar' %}
+  <ul id="currency-picker-toggle" class="nav navbar-nav">
+    <li>
+      <a href="#" id="current-currency" class="selected-currency">{{ shop.currency }}</a>
+    </li>
+  </ul>
+  {% else %}
+  <p id="currency-picker-toggle" class="navbar-text navbar-right">All prices in <a href="#" id="current-currency" class="selected-currency">{{ shop.currency }}</a></p>
+  {% endif %}
+  <form id="currencies-picker" class="navbar-form" style="display:none;">
+    <div class="form-group">
+      <select id="currencies" class="form-control" name="currencies">
         <option value="{{ shop.currency }}" selected="selected">{{ shop.currency }}</option>
         {% for code in supported_codes %}
         {% if code != shop.currency and codes contains code %}
@@ -16,9 +21,7 @@
         {% endif %}
         {% endfor %}
       </select>
-    </span>
-  </li>
-
-  <li class="divider"></li>
-</ul>
+    </div>
+  </form>
+</div>
 {% endif %}

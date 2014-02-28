@@ -13,44 +13,64 @@ function remove_item(id) {
 </script>
 
 <form action="/cart" method="post" id="cart">
-  <table class="table {% include '__table-formatting' %}">
-    <thead>
-      <tr>
-        <th class="hidden-xs">&nbsp;</th>
-        <th>{% include '__localize' with 'Item' %}</th>
-        <th class="money hidden-xs">{% include '__localize' with 'Price' %}</th>
-        <th class="text-center" style="width: 50px;">{% include '__localize' with 'Qty' %}</th>
-        <th class="hidden-xs">&nbsp;</th>
-        <th class="money">{% include '__localize' with 'Line total' %}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for i in cart.items %}
-      <tr>
-        <td class="col-sm-2 hidden-xs"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
-        <td>
-          <strong>{{ i.product.title | link_to: i.product.url }}</strong>
-          <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
-        </td>
-        <td class="money hidden-xs"><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
-        <td class="text-center">
-          <input type="text" class="form-control" name="updates[{{ i.variant.id }}]" id="updates_{{ i.variant.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
-        </td>
-        <td class="hidden-xs"><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="icon-remove"></i></a></td>
-        <td class="money">
-          <span class='money'>{{ i.line_price | money_with_currency | replace: ' ','&nbsp' }}</span>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  
-  <div class="form-actions text-right">
-    <h3><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></h3>
-    <div class="btn-group">
-      <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'Update' %}" class="btn btn-default" />
-      <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary" />
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table {% include '__table-formatting' %}">
+        <thead>
+          <tr>
+            <th class="hidden-xs">&nbsp;</th>
+            <th>{% include '__localize' with 'Item' %}</th>
+            <th class="money hidden-xs">{% include '__localize' with 'Price' %}</th>
+            <th class="text-center" style="width: 50px;">{% include '__localize' with 'Qty' %}</th>
+            <th class="hidden-xs">&nbsp;</th>
+            <th class="money">{% include '__localize' with 'Line total' %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in cart.items %}
+          <tr>
+            <td class="col-sm-2 hidden-xs"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
+            <td>
+              <strong>{{ i.product.title | link_to: i.product.url }}</strong>
+              <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
+            </td>
+            <td class="money hidden-xs"><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
+            <td class="text-center">
+              <input type="text" class="form-control" name="updates[{{ i.variant.id }}]" id="updates_{{ i.variant.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
+            </td>
+            <td class="hidden-xs"><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>
+            <td class="money">
+              <span class='money'>{{ i.line_price | money_with_currency | replace: ' ','&nbsp' }}</span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="cart-note">Extra notes or special instructions</label>
+      <textarea id="note" name="note" class="form-control" rows="4">{{ cart.note }}</textarea>
+    </div>
+    
+    <div class="form-actions text-right col-md-6">
+      <h3><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></h3>
+      <div class="btn-group">
+        <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'Update' %}" class="btn btn-default" />
+        <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary" />
+      </div>
+      {% if additional_checkout_buttons %}
+      <div class="additional-checkout-buttons">
+        <span class="text-muted">or</span>
+        {{ content_for_additional_checkout_buttons }}
+      </div>
+      {% endif %}
     </div>
   </div>
 </form>
+
+<div class="row">
+  <div class="col-md-6">{% include 'shipping-calculator' %}</div>
+</div>
 {% endif %}

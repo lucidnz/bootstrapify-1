@@ -21,8 +21,8 @@
 	<meta property="og:description" content="{{ page_description | escape }}" />
 	<meta property="og:type" content="article" />
 {% else %}
-	{% if settings.use-logo-image %}
-	<meta property="og:image" content="{{ 'logo-file.png' | asset_url }}" />
+	{% if settings.logo-image %}
+	<meta property="og:image" content="{{ 'logo-image-file.png' | asset_url }}" />
 	{% endif %}
 	<meta property="og:url" content="{{ canonical_url }}" />
 	<meta property="og:title" content="{{ page_title | escape }}" />
@@ -32,3 +32,7 @@
 
 <meta property="og:site_name" content="{{ shop.name }}" />
 <meta name="author" content="{{ shop.name }}">
+
+{% if settings.social-links-rss != blank %}
+<link rel="alternate" type="application/atom+xml" title="{{ blogs[settings.social-links-rss].title }}" href="{{ blogs[settings.social-links-rss].url | append: '.atom' }}" />
+{% endif %}

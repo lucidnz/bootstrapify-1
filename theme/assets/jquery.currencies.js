@@ -17,7 +17,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
  *
- */ 
+ */
 
 if (typeof Currency === 'undefined') {
   var Currency = {};
@@ -55,7 +55,7 @@ Currency.money_with_currency_format = {
     "BRL": "R$ {{amount_with_comma_separator}} BRL",
     "BOB": "Bs{{amount_with_comma_separator}} BOB",
     "BND": "${{amount}} BND",
-    "BGN": "{{amount}} лв BGN",
+    "BGN": "{{amount}} &#1083; BGN",
     "MMK": "K{{amount}} MMK",
     "KYD": "${{amount}} KYD",
     "CLP": "${{amount_no_decimals}} CLP",
@@ -123,7 +123,7 @@ Currency.money_with_currency_format = {
     "TZS": "{{amount}} TZS",
     "TTD": "${{amount}} TTD",
     "TRY": "{{amount}}TL",
-    "UAH": "₴{{amount}} UAH",
+    "UAH": "&#8372;{{amount}} UAH",
     "AED": "Dhs. {{amount}} AED",
     "UYU": "${{amount_with_comma_separator}} UYU",
     "VEB": "Bs. {{amount_with_comma_separator}} VEB",
@@ -145,7 +145,7 @@ Currency.money_format = {
   "BRL": "R$ {{amount_with_comma_separator}}",
   "BOB": "Bs{{amount_with_comma_separator}}",
   "BND": "${{amount}}",
-  "BGN": "{{amount}} лв",
+  "BGN": "{{amount}} &#1083;",
   "MMK": "K{{amount}}",
   "KYD": "${{amount}}",
   "CLP": "${{amount_no_decimals}}",
@@ -213,16 +213,16 @@ Currency.money_format = {
   "TZS": "{{amount}} TZS",
   "TTD": "${{amount}}",
   "TRY": "{{amount}}TL",
-  "UAH": "₴{{amount}}",
+  "UAH": "&#8372;{{amount}}",
   "AED": "Dhs. {{amount}}",
   "UYU": "${{amount_with_comma_separator}}",
   "VEB": "Bs. {{amount_with_comma_separator}}",
-  "VND": "{{amount_no_decimals_with_comma_separator}}₫",
+  "VND": "{{amount_no_decimals_with_comma_separator}}&#8363;",
   "ZMK": "K{{amount_no_decimals_with_comma_separator}}"
 };
 
 Currency.formatMoney = function(cents, format) {
-  if (typeof cents == 'string') cents = cents.replace('.','');
+  if (typeof cents === 'string'){ cents = cents.replace('.',''); }
   var value = '';
   var patt = /\{\{\s*(\w+)\s*\}\}/;
   var formatString = (format || this.money_format);
@@ -247,10 +247,10 @@ Currency.formatMoney = function(cents, format) {
 };
 
 function floatToString(numeric, decimals) {
-  var amount = numeric.toFixed(decimals).toString();  
+  var amount = numeric.toFixed(decimals).toString();
   if(amount.match(/^\.\d+/)) { return "0"+amount; }
   else { return amount; }
-};
+}
 
 Currency.currentCurrency = '';
 Currency.format = 'money_with_currency_format';
@@ -258,7 +258,7 @@ Currency.format = 'money_with_currency_format';
 Currency.convertAll = function(oldCurrency, newCurrency, selector, format) {
   jQuery(selector || 'span.money').each(function() {
     // If the amount has already been converted, we leave it alone.
-    if (jQuery(this).attr('data-currency') === newCurrency) return;
+    if (jQuery(this).attr('data-currency') === newCurrency) { return; }
     // If we are converting to a currency that we have saved, we will use the saved amount.
     if (jQuery(this).attr('data-currency-'+newCurrency)) {
       jQuery(this).html(jQuery(this).attr('data-currency-'+newCurrency));
@@ -270,8 +270,7 @@ Currency.convertAll = function(oldCurrency, newCurrency, selector, format) {
       var newFormat = Currency[format || Currency.format][newCurrency] || '{{amount}}';
       if (oldFormat.indexOf('amount_no_decimals') !== -1) {
         cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10)*100, oldCurrency, newCurrency);
-      }
-      else { 
+      } else {
         cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10), oldCurrency, newCurrency);
       }
       var newFormattedAmount = Currency.formatMoney(cents, newFormat);

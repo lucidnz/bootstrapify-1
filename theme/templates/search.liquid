@@ -1,9 +1,26 @@
 <h1 class="page-header">{% include 'smart-title' %}</h1>
-{% paginate search.results by settings.default-pagination %}
-{% for i in search.results %}    
-{% include '_search-item' %}
-{% endfor %}
 
-{% include 'pagination' %}
-
-{% endpaginate %}
+{% if search.performed and search.results.size > 0 %}
+  {% include '__default-pagination' %}
+  {% paginate search.results by default-pagination %}
+  {% for i in search.results %}    
+  {% include '_search-item' %}
+  {% endfor %}
+  {% include 'pagination' %}
+  {% endpaginate %}
+{% else %}
+  {% if search.performed %}
+  <h3>{% include '__localize' with 'No search results found' %}.</h3>
+  <p class="lead">
+    {% include '__localize' with 'Try another search' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with ' or browse all products' %}</a>.{% endunless %}
+  </p>
+  {% endif %}
+  <form class="form-inline" action="/search">
+    <div class="input-group input-group-appended">
+      <input type="search" name="q" class="form-control search" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}">
+      <span class="input-group-btn">
+        <input type="submit" class="btn btn-primary" value="Search" />
+      </span>
+    </div>
+  </form>
+{% endif %}

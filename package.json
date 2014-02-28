@@ -1,0 +1,27 @@
+{
+  "name": "Bootstrapify",
+  "version": "3.1.0",
+  "homepage": "http://bootstrapify-theme.myshopify.com/",
+  "description": "An open-source base theme for Shopify using Twitter Bootstrap",
+  "keywords": "Shopify, Bootstrap",
+  "license": "Apache-2.0",
+  "author": "Lucid Design <info@luciddesign.co.nz> (http://www.luciddesign.co.nz)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/luciddesign/bootstrapify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luciddesign/bootstrapify/issues"
+  },
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-sass": "~0.7.1",
+    "grunt-contrib-copy": "~0.5.0"
+  }
+}

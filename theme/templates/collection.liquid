@@ -1,27 +1,20 @@
-{% assign max_tags = settings.maximum-tag-buttons | plus: 0 %}
-{% if settings.tag-format == "dropdown" or collection.all_tags.size > max_tags %}
-  {% include 'collection-tags-menu' %}
-{% endif %}
+{% unless settings.tag-placement == 'sidebar' %}{% include 'collection-tags-menu' %}{% endunless %}
 
 <h1 class="page-header">{{ page_title }}</h1>
+<p class="lead">{{ collection.description }}</p>
 
-{% if settings.tag-format != "dropdown" and collection.all_tags.size < max_tags %}
+{% unless settings.tag-placement == 'sidebar' %}
   {% include 'collection-tags-buttons' %}
-{% endif %}
+{% endunless %}
 
 {% if collection.all_products_count == 0 %}
 <p>Sorry, no products were found in the {{ collection.title }} collection.</p>
 
 {% else %}
-{% paginate collection.products by settings.default-pagination %}
-<div class="row">
-	{% for p in collection.products %}
-		{% include '_product' with p %}
-	{% endfor %}
-</div>
+{% include '__default-pagination' %}
+{% paginate collection.products by default-pagination %}
+{% include 'products-list' %}
 {% include 'pagination' %}
 {% endpaginate %}
 
 {% endif %}
-
-{% include '_signin-modal' %}

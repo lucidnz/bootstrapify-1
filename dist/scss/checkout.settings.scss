@@ -1,0 +1,148 @@
+$hover-opacity: 0.4;
+
+/* Setting variables */
+$body-background-colour: #{'{% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}'}$body-bg#{'{% endif %}'};
+$body-heading-colour: #{'{% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}'}$text-color#{'{% endif %}'};
+$body-text-colour: #{'{% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}'}$text-color#{'{% endif %}'};
+$body-link-colour: #{'{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}'}$link-color#{'{% endif %}'};
+$button-colour: #{'{% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}'}$body-link-colour#{'{% endif %}'};
+$button-text-colour: #{'{% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}'}$btn-primary-color#{'{% endif %}'};
+
+$font-family-body: #{'{% if settings.font-body-custom != blank %}"{{ settings.font-body-custom }}"{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %}{% elsif settings.font-body != blank %}{{ settings.font-body }}{% else %}'}$font-family-base#{'{% endif %}'};
+$font-weight-body: #{'{% if settings.font-body-weight != blank %}{{ settings.font-body-weight }}{% else %}normal{% endif %}'};
+$font-size-body: #{'{% if settings.font-body-size != blank %}{{ settings.font-body-size }}{% else %}'}$font-size-base#{'{% endif %}'};
+$font-transform-body: #{'{% if settings.font-body-case == "lowercase" or settings.font-body-case == "uppercase" %}{{ settings.font-body-case }}{% elsif settings.font-body-case == "title-case"%}capitalize{% else %}none{% endif %}'};
+
+$font-family-heading: #{'{% if settings.font-heading-custom != blank %}"{{ settings.font-heading-custom }}"{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %}{% elsif settings.font-heading != blank %}{{ settings.font-heading }}{% else %}'}$font-family-base#{'{% endif %}'};
+$font-weight-heading: #{'{% if settings.font-heading-weight != blank %}{{ settings.font-heading-weight }}{% else %}normal{% endif %}'};
+$font-transform-heading: #{'{% if settings.font-heading-case == "lowercase" or settings.font-heading-case == "uppercase" %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == "title-case"%}capitalize{% else %}none{% endif %}'};
+
+$h1-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size }}{% else %}'}$font-size-h1#{'{% endif %}'};
+$h2-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 1.2 }}{% else %}'}$font-size-h2#{'{% endif %}'};
+$h3-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 1.75 }}{% else %}'}$font-size-h3#{'{% endif %}'};
+$h4-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 2 }}{% else %}'}$font-size-h4#{'{% endif %}'};
+$h5-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 2.5 }}{% else %}'}$font-size-h5#{'{% endif %}'};
+$h6-font-size: #{'{% if settings.font-heading-size != blank %}{{ settings.font-heading-size | remove: "pt" | remove: "px" | times: 1 | divided_by: 3 }}{% else %}'}$font-size-h6#{'{% endif %}'};
+
+/* Design and typography styles */
+body{
+  background-color: $body-background-colour;
+  /* {% if settings.site-background-image != blank %} */
+  background-image: url(#{'{{ "site-background-image-file.jpg" | asset_url }}'});
+  /* {% unless settings.site-background-image-repeat == blank %} */
+  background-repeat: #{'{{ settings.site-background-image-repeat }}'};
+  /* {% endunless %} */
+  /* {% unless settings.site-background-image-position == blank %} */
+  background-position: #{'{{ settings.site-background-image-position }}'};
+  /* {% endunless %} */
+  /* {% endif %} */
+  
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    color: $body-heading-colour;    
+    font-family: $font-family-heading;
+    text-transform: $font-transform-heading;
+    font-weight: $font-weight-heading;
+    /* {% if settings.font-heading-style == "italic" %} */
+    font-style: italic;
+    /* {% endif %} */
+    & a{
+      color: $body-heading-colour;
+      &:hover{
+        color: $body-link-colour;
+        opacity: $hover-opacity;
+      }
+    }
+  }
+  
+  h1, .h1{
+    font-size: $h1-font-size;
+  }
+  h2, .h2{
+    font-size: #{$h2-font-size}px;
+  }
+  h3, .h3{
+    font-size: #{$h3-font-size}px;
+  }
+  h4, .h4{
+    font-size: #{$h4-font-size}px;
+  }
+  h5, .h5{
+    font-size: #{$h5-font-size}px;
+  }
+  h6, .h6{
+    font-size: #{$h6-font-size}px;
+  }
+  
+  #wallet #cost{
+    font-size: 4.5em;
+  }
+  
+  p, #header h1 span.subtitle, #wallet, #wallet #steps, #overview .hint, #thumbs, #thumbs span, span.sign-in-message, .address-notification, label, #buttons{
+    color: $body-text-colour;
+    font-family: $font-family-body;
+    font-size: $font-size-body;
+    text-transform: $font-transform-body;
+    font-weight: $font-weight-body;
+    /* {% if settings.font-body-style == "italic" %} */
+    font-style: italic;
+    /* {% endif %} */
+  }
+  #info-bar, a, span.hint a, .btn-primary, #buttons input{
+    font-family: $font-family-body;
+    font-size: $font-size-body;
+    text-transform: $font-transform-body;
+    font-weight: $font-weight-body;
+    /* {% if settings.font-body-style == "italic" %} */
+    font-style: italic;
+    /* {% endif %} */
+  }
+  
+  a, span.hint a{
+    color: $body-link-colour;
+    &:hover{
+      color: $body-link-colour;
+      opacity: $hover-opacity;
+    }
+  }
+  
+  .btn-primary, #buttons input{
+    color: $button-text-colour;
+    background-color: $button-colour;
+    border-color: $button-colour;
+    &:hover, &:active, &:focus{
+      color: $button-text-colour;
+      background-color: $button-colour;
+      border-color: $button-colour;
+      opacity: $hover-opacity;
+    }
+  }
+  
+  #footer{
+    /* {% if settings.footer-background-colour != blank %} */ 
+    background-color: #{'{{ settings.footer-background-colour }}'};
+    border-color: #{'{{ settings.footer-background-colour }}'};
+    /* {% endif %} */
+    /* {% if settings.footer-text-colour != blank %} */
+    p{
+      color: #{'{{ settings.footer-text-colour }}'};
+    }
+    /* {% endif %} */
+  }
+}
+
+/* Insert your own logo (upload separately) */
+/* {% if settings.logo-image %} */
+#logo { 
+  height: 65px;
+  background: url(#{'{{ "logo-image-file.png" | asset_url }}'}) center no-repeat;
+}
+#header > h1{
+  text-align:center;
+}
+/* Hide the name of the store because we got this nifty logo now */
+#header > h1 span.title {
+  display:none;
+}
+/* {% endif %} */
+
+/* {% unless settings.custom-checkout-css == blank %}{{ settings.custom-checkout-css | prepend: '*\/' | append: '\/*' | remove: '\' }}{% endunless %} */
