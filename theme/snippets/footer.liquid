@@ -25,7 +25,7 @@
     <div class="row">
       {% assign footer_columns = settings.footer-columns | plus: 0 %}
       {% for i in (1..footer_columns) %}
-      {% include '_footer-columns' %}
+      {% include '_footer-columns' with footer_columns %}
       {% endfor %}
     </div>
     {% endif %}
