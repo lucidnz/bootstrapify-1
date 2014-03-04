@@ -1,0 +1,19 @@
+{% assign show_navbar_footer = false %}
+{% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'footer-navbar' %}{% assign show_navbar_footer = true %}{% endif %}
+{% if settings.footer-navbar-linklist-left != blank %}{% assign show_navbar_footer = true %}{% endif %}
+{% if settings.footer-navbar-linklist-right != blank %}{% assign show_navbar_footer = true %}{% endif %}
+{% if settings.newsletter-signup-placement contains 'footer-navbar' %}{% assign show_navbar_footer = true %}{% endif %}
+
+{% if settings.social-links-placement contains 'footer-navbar' %}
+  {% assign footer_navbar_social = false %}
+  {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
+  {% for link in social_links %}
+    {% assign social_link = link | prepend: 'social-links-' %}
+    {% if settings[social_link] != blank %}{% assign footer_navbar_social = true %}{% endif %}
+  {% endfor %}
+  {% if footer_navbar_social %}{% assign show_navbar_footer = true %}{% endif %}
+{% endif %}
+
+{% if show_navbar_footer %}
+  {% include 'navbar' with 'footer' %}
+{% endif %}

@@ -9,8 +9,8 @@
 {% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign column-2 = true %}{% endif %}
 {% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign column-3 = true %}{% endif %}
 {% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign column-4 = true %}{% endif %}
-{% if settings.show-newsletter-signup-form and settings.newsletter-signup-placement contains 'footer' %}{% assign newsletter = true %}{% endif %}
-{% if settings.social-links-placement contains 'footer' %}
+{% if settings.newsletter-signup-placement contains 'footer-column' %}{% assign newsletter = true %}{% endif %}
+{% if settings.social-links-placement contains 'footer-column' %}
   {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
   {% for link in social_links %}
     {% assign social_link = link | prepend: 'social-links-' %}
@@ -39,5 +39,5 @@
     </p>
   </div>
 
-{% include 'navbar' with 'footer' %}
+{% include 'navbar-footer' %}
 </footer>
