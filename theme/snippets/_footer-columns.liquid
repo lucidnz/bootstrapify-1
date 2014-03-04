@@ -1,4 +1,4 @@
-<div class="col-sm-{{ 12 | divided_by: footer_columns }}">
+<div class="col-sm-{{ 12 | divided_by: _footer-columns }}">
   {% assign footer_text = 'column-' | append: i | append: '-text' %}{% assign footer_text = settings[footer_text] %}
   {% unless footer_text == blank %}
   {{ footer_text }}
@@ -25,9 +25,7 @@
         
   {% assign newsletter_column = 'footer-column-' | append: i %}
   {% if settings.newsletter-signup-placement == newsletter_column %}
-  <div class="footer-form">
-    {% include 'newsletter-signup-form' with 'footer' %}
-  </div>
+  {% include 'newsletter-signup-form' with 'footer' %}
   {% endif %}
   
   {% assign social_links_column = 'footer-column-' | append: i %}

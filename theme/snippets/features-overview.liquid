@@ -1,5 +1,6 @@
-{% assign cols = 12 | modulo: linklists.what-we-do.links.size %}
 {% assign linklist = linklists[settings.features-linklist] %}
+{% if linklist != empty and linklist.size > 0 %}
+{% assign cols = 12 | modulo: linklist.size %}
 
 <h2>{{ linklist.title }}</h2>
 
@@ -11,3 +12,4 @@
   </div>
   {% endfor %}
 </div>
+{% endif %}
