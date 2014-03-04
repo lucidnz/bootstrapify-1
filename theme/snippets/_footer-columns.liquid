@@ -1,4 +1,4 @@
-<div class="col-sm-{{ 12 | divided_by: footer_columns }}">
+<div class="col-sm-{{ 12 | divided_by: _footer-columns }}">
   {% assign footer_text = 'column-' | append: i | append: '-text' %}{% assign footer_text = settings[footer_text] %}
   {% unless footer_text == blank %}
   {{ footer_text }}
