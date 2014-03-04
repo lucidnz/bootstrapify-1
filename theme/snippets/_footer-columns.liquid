@@ -25,9 +25,7 @@
         
   {% assign newsletter_column = 'footer-column-' | append: i %}
   {% if settings.newsletter-signup-placement == newsletter_column %}
-  <div class="footer-form">
-    {% include 'newsletter-signup-form' with 'footer' %}
-  </div>
+  {% include 'newsletter-signup-form' with 'footer' %}
   {% endif %}
   
   {% assign social_links_column = 'footer-column-' | append: i %}
