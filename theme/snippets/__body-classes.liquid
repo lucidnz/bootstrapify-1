@@ -1,6 +1,2 @@
-{% include '__has-variables' %}
-
-{% if has_social %} has{% else %} no{% endif %}-social
-{% if has_top_navbar %} has{% else %} no{% endif %}-top-navbar
-
+{% if has_social %} has-social{% endif %}{% if has_top_navbar %} has-top-navbar{% endif %}{% if has_footer %} has-footer{% endif %}{% if has_footer_navbar %} has-footer-navbar{% endif %}
 {% if settings.show-multiple-currencies %} currencies{% endif %}{% if settings.centered-layout %} centered-layout{% endif %}

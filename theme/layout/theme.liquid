@@ -41,11 +41,11 @@
   {{ content_for_header }}
 </head>
 
+{% capture has_vars %}{% include '__has-variables' %}{% endcapture %}
 <body class="{% include '__body-classes' %}">
 
   <div id="wrap">
-  {% comment %}{% include 'navbar-top' %}{% endcomment %}
-  {% include 'navbar' with 'top' %}
+  {% if has_top_navbar %}{% include 'navbar' with 'top' %}{% endif %}
   
   {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
     
