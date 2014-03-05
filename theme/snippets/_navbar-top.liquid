@@ -34,10 +34,12 @@
     {% endif %}
   </ul>
 </div>
-{% unless settings.disable-cart %}<div class="visible-xs">
+<div class="visible-xs">
   <ul class="nav navbar-nav">
+    {% unless settings.disable-cart %}
     <li><a href="/cart">{% include '__localize' with 'View cart' %} <span class="badge">{% include 'cart-count' %}</span></a></li>
     {% if cart.item_count > 0 %}<li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>{% endif %}
+    {% endunless %}
     {% if shop.customer_accounts_enabled %}
       {% if customer %}
       <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
@@ -48,7 +50,7 @@
       {% endif %}
     {% endif %}
   </ul>
-</div>{% endunless %}
+</div>
 {% if settings.currency-switcher-position == 'navbar' %}{% include 'currency-switcher' %}{% endif %}
 
 {% include 'navbar-nav' with 'top-right' %}
