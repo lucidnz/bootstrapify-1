@@ -380,14 +380,10 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
  */
 body{
   /* Navbar placement */
-  @if $fix-top-navbar{ // and has-top-navbar
-    @if $has-top-navbar{
-      padding-top: $body_navbar_padding;
-    }
-    .brand h1{
-      margin-top: 1.5em;
-    }
+  @if $has-top-navbar and $fix-top-navbar{
+    padding-top: $body_navbar_padding + $body_padding;
   }
+  
   #content{
     @if $has-footer{
       padding-bottom: $footer-height;
