@@ -14,6 +14,10 @@ $font-size-base:                       14px !default;
 /*
  * Setting Variables
  */
+
+$container-width-large-devices: {% if settings.container-width-large-devices == blank %}1170px{% else %}{{ settings.container-width-large-devices }}{% endif %}; 
+$container-width-medium-devices: {% if settings.container-width-medium-devices == blank %}970px{% else %}{{ settings.container-width-medium-devices }}{% endif %}; 
+ 
 $site-background-image:{% if settings.site-background-image != blank %}true{% else %}false{% endif %};
 $body-background-colour: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-background-colour{% endif %};
 $body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
@@ -527,6 +531,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 @media (min-width: 768px){
+  .container {
+    width: $container-width-medium-devices;
+  }
+  
   .sidebar{
     background-color: transparent;
     .sidebar-content{
@@ -552,6 +560,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
   .carousel-indicators .active{
     background-color: white;
+  }
+}
+
+@media (min-width: 1200px){
+  .container {
+    width: $container-width-large-devices;
   }
 }
 
