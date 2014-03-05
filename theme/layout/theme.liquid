@@ -41,7 +41,7 @@
   {{ content_for_header }}
 </head>
 
-{% capture has_vars %}{% include '__has-variables' %}{% endcapture %}
+{% include '__has-variables' %}
 <body class="{% include '__body-classes' %}">
 
   <div id="wrap">
@@ -49,11 +49,11 @@
   
   {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
     
-  {% if settings.main-navbar-placement != 'main-content-width' and settings.main-navbar-linklist != blank %}{% include 'navbar' with 'main' %}{% endif %}
+  {% if has_main_navbar and settings.main-navbar-placement != 'main-content-width' %}{% include 'navbar' with 'main' %}{% endif %}
   
   {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% endif %}
     <div id="content" class="container">
-      {% if  settings.main-navbar-placement == 'main-content-width' and settings.main-navbar-linklist != blank %}{% include 'navbar' with 'main' %}{% endif %}
+      {% if has_main_navbar and settings.main-navbar-placement == 'main-content-width' %}{% include 'navbar' with 'main' %}{% endif %}
       
       {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% endif %}
       
@@ -65,12 +65,14 @@
           {{ content_for_layout }}
         </div>
         
-        {% if settings.show-sidebar %}
-          {% unless settings.show-sidebar-on-homepage == blank and template == "index" %}
+        {% if has_sidebar %}
+          {% if settings.show-sidebar %}
+            {% unless settings.show-sidebar-on-homepage == blank and template == "index" %}
+              {% include 'sidebar' %}
+            {% endunless %}
+          {% elsif settings.show-sidebar-on-homepage and template == "index" %}
             {% include 'sidebar' %}
-          {% endunless %}
-        {% elsif settings.show-sidebar-on-homepage and template == "index" %}
-          {% include 'sidebar' %}
+          {% endif %}
         {% endif %}
       </div>
     </div>

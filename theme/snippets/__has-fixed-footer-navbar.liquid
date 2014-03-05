@@ -1,0 +1,5 @@
+{% if has_footer_navbar and settings.footer-navbar-placement == 'fixed-to-bottom' %}
+  {% assign has_fixed_footer_navbar = true %}
+{% else %}
+  {% assign has_fixed_footer_navbar = false %}
+{% endif %}
