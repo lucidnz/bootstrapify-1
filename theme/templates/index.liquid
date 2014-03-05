@@ -1,8 +1,8 @@
 {% assign homepage = 'frontpage' %}
-{% unless settings.homepage == blank %}{% assign homepage = settings.homepage %}{% endunless %}
-<h1 class="page-header">{{ pages[homepage].title }}</h1>
-{% unless pages[homepage].content == blank %}
-  {% include '__formatted-content' with pages[homepage].content %}
+{% unless settings.homepage == blank %}{% assign homepage = pages[settings.homepage] %}{% endunless %}
+<h1 class="page-header">{{ homepage.title }}</h1>
+{% unless homepage.content == blank %}
+  {% include '__formatted-content' with homepage.content %}
 {% endunless %}
 
 {% include 'features-overview' %}
