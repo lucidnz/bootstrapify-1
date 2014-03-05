@@ -41,9 +41,11 @@
   {{ content_for_header }}
 </head>
 
-<body class="{% if settings.show-multiple-currencies %} currencies{% endif %}{% if settings.centered-layout %} centered-layout{% endif %}">
+<body class="{% include '__body-classes' %}">
+
   <div id="wrap">
-  {% include 'navbar-top' %}
+  {% comment %}{% include 'navbar-top' %}{% endcomment %}
+  {% include 'navbar' with 'top' %}
   
   {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
     

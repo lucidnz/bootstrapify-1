@@ -78,6 +78,7 @@ $show-borders: {% if settings.show-borders %}true{% else %}false{% endif %};
 {% assign show_navbar_top = false %}
 {% if settings.logo-placement == 'navbar' %}{% assign show_navbar_top = true %}{% endif %}
 {% if settings.disable-cart == blank %}{% assign show_navbar_top = true %}{% endif %}
+{% if shop.customer_accounts_enabled %}{% assign show_navbar_top = true %}{% endif %}
 {% if settings.show-search-in-navbar != blank %}{% assign show_navbar_top = true %}{% endif %}
 {% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'navbar' %}{% assign show_navbar_top = true %}{% endif %}
 {% if settings.top-navbar-linklist-left != blank %}{% assign show_navbar_top = true %}{% endif %}
@@ -383,6 +384,10 @@ body{
   @if $has-top-navbar and $fix-top-navbar{
     padding-top: $body_navbar_padding + $body_padding;
   }
+  
+  /*&:before{
+    content: '{{ settings | json }}';
+  }*/
   
   #content{
     @if $has-footer{
