@@ -1,6 +1,7 @@
 {% assign linklist = linklists[settings.features-linklist] %}
 {% if linklist != empty and linklist.size > 0 %}
-{% assign cols = 12 | modulo: linklist.size %}
+
+{% assign cols = 4 %}
 
 <h2>{{ linklist.title }}</h2>
 

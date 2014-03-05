@@ -19,7 +19,7 @@
     {% capture indicators %}{{ indicators }}<li data-target="#myCarousel" data-slide-to="{{s}}"{% if s == 0 %} class="active"{% endif %}></li>{% endcapture %}
     {% capture items %}{{ items }}
       <div id="{{ slide }}" class="item{% if s == 0 %} active{% endif %}">
-        <img src="{{ slide_image | append: '.jpg' | asset_url }}" alt="{% if settings[slide_heading] %}{{ settings[slide_heading] }}{% else %}Slide {{s}}{% endif %}">
+        <img src="{{ slide_image | append: '.png' | asset_url }}" alt="{% if settings[slide_heading] %}{{ settings[slide_heading] }}{% else %}Slide {{s}}{% endif %}">
         {% if settings[slide_heading] or settings[slide_caption] %}
         <div class="carousel-caption">
           {% if settings[slide_heading] %}<h2>{{ settings[slide_heading] }}</h2>{% endif %}
