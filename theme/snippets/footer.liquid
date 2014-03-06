@@ -1,24 +1,3 @@
-{% assign column-1 = false %}
-{% assign column-2 = false %}
-{% assign column-3 = false %}
-{% assign column-4 = false %}
-{% assign newsletter = false %}
-{% assign social = false %}
-{% assign has_footer = false %}
-{% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign column-1 = true %}{% endif %}
-{% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign column-2 = true %}{% endif %}
-{% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign column-3 = true %}{% endif %}
-{% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign column-4 = true %}{% endif %}
-{% if settings.newsletter-signup-placement contains 'footer-column' %}{% assign newsletter = true %}{% endif %}
-{% if settings.social-links-placement contains 'footer-column' %}
-  {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
-  {% for link in social_links %}
-    {% assign social_link = link | prepend: 'social-links-' %}
-    {% if settings[social_link] != blank %}{% assign social = true %}{% endif %}
-  {% endfor %}
-{% endif %}
-{% if column-1 or column-2 or column-3 or column-4 or newsletter or social %}{% assign has_footer = true %}{% endif %}
-
 <footer id="footer-content" class="footer">
   <div class="container">
     {% if has_footer %}
@@ -39,5 +18,5 @@
     </p>
   </div>
 
-{% include 'navbar-footer' %}
+{% if has_footer_navbar %}{% include 'navbar' with 'footer' %}{% endif %}
 </footer>

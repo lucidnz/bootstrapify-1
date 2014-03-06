@@ -1,5 +1,5 @@
 <header class="brand">
-  <div class="container">
+  {% unless settings.logo-placement == 'sidebar' %}<div class="container">{% endunless %}
     <h1 class="text-{{ settings.logo-alignment }}"><a href="/">{% include 'logo' %}</a></h1>
-  </div>
+  {% unless settings.logo-placement == 'sidebar' %}</div>{% endunless %}
 </header>

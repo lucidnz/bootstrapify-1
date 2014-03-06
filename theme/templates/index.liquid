@@ -1,3 +1,4 @@
+{% include '__has-variables' %}
 {% assign homepage = 'frontpage' %}
 {% unless settings.homepage == blank %}{% assign homepage = pages[settings.homepage] %}{% endunless %}
 <h1 class="page-header">{{ homepage.title }}</h1>
