@@ -3,6 +3,7 @@
  */
 $body_padding:                        20px !default;
 $body_navbar_padding:                 50px !default;
+$footer-height:                       250px !default;
 $inverse_threshhold:                  60%;
 
 $default-background-colour:            white !default;
@@ -74,65 +75,6 @@ $font-transform-nav-secondary: {% if settings.font-nav-secondary-case == 'lowerc
 $font-nav-secondary-italic: {% if settings.font-nav-secondary-style == 'italic' %}true{% else %}false{% endif %};
 
 $show-borders: {% if settings.show-borders %}true{% else %}false{% endif %};
-
-{% assign show_navbar_top = false %}
-{% if settings.logo-placement == 'navbar' %}{% assign show_navbar_top = true %}{% endif %}
-{% if settings.disable-cart == blank %}{% assign show_navbar_top = true %}{% endif %}
-{% if shop.customer_accounts_enabled %}{% assign show_navbar_top = true %}{% endif %}
-{% if settings.show-search-in-navbar != blank %}{% assign show_navbar_top = true %}{% endif %}
-{% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'navbar' %}{% assign show_navbar_top = true %}{% endif %}
-{% if settings.top-navbar-linklist-left != blank %}{% assign show_navbar_top = true %}{% endif %}
-{% if settings.top-navbar-linklist-right != blank %}{% assign show_navbar_top = true %}{% endif %}
-{% if settings.newsletter-signup-placement contains 'top-navbar' %}{% assign show_navbar_top = true %}{% endif %}
-{% if settings.social-links-placement contains 'top-navbar' %}
-  {% assign top_navbar_social = false %}
-  {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
-  {% for link in social_links %}
-    {% assign social_link = link | prepend: 'social-links-' %}
-    {% if settings[social_link] != blank %}{% assign top_navbar_social = true %}{% endif %}
-  {% endfor %}
-  {% if top_navbar_social %}{% assign show_navbar_top = true %}{% endif %}
-{% endif %}
-$has-top-navbar: {% if show_navbar_top %}true{% else %}false{% endif %};
-
-{% assign show_navbar_footer = false %}
-{% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'footer-navbar' %}{% assign show_navbar_footer = true %}{% endif %}
-{% if settings.footer-navbar-linklist-left != blank %}{% assign show_navbar_footer = true %}{% endif %}
-{% if settings.footer-navbar-linklist-right != blank %}{% assign show_navbar_footer = true %}{% endif %}
-{% if settings.newsletter-signup-placement contains 'footer-navbar' %}{% assign show_navbar_footer = true %}{% endif %}
-{% if settings.social-links-placement contains 'footer-navbar' %}
-  {% assign footer_navbar_social = false %}
-  {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
-  {% for link in social_links %}
-    {% assign social_link = link | prepend: 'social-links-' %}
-    {% if settings[social_link] != blank %}{% assign footer_navbar_social = true %}{% endif %}
-  {% endfor %}
-  {% if footer_navbar_social %}{% assign show_navbar_footer = true %}{% endif %}
-{% endif %}
-$has-footer-navbar: {% if show_navbar_footer %}true{% else %}false{% endif %};
-
-{% assign column-1 = false %}
-{% assign column-2 = false %}
-{% assign column-3 = false %}
-{% assign column-4 = false %}
-{% assign newsletter = false %}
-{% assign social = false %}
-{% assign has_footer = false %}
-{% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign column-1 = true %}{% endif %}
-{% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign column-2 = true %}{% endif %}
-{% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign column-3 = true %}{% endif %}
-{% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign column-4 = true %}{% endif %}
-{% if settings.newsletter-signup-placement contains 'footer-column' %}{% assign newsletter = true %}{% endif %}
-{% if settings.social-links-placement contains 'footer-column' %}
-  {% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
-  {% for link in social_links %}
-    {% assign social_link = link | prepend: 'social-links-' %}
-    {% if settings[social_link] != blank %}{% assign social = true %}{% endif %}
-  {% endfor %}
-{% endif %}
-{% if column-1 or column-2 or column-3 or column-4 or newsletter or social %}{% assign has_footer = true %}{% endif %}
-$has-footer: {% if has_footer %}true{% else %}false{% endif %};
-$footer-height: 250px;
 
 {% for i in (i..5) %}
   {% assign c = i | plus: 1 %}
@@ -380,18 +322,24 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
  * Styles
  */
 body{
-  /* Navbar placement */
-  @if $has-top-navbar and $fix-top-navbar{
+  /* Layout Adjustments */
+  &.has-top-navbar.has-fixed-top-navbar{
     padding-top: $body_navbar_padding + $body_padding;
   }
-  
-  /*&:before{
-    content: '{{ settings | json }}';
-  }*/
-  
-  #content{
-    @if $has-footer{
+  &.has-footer-navbar.has-fixed-footer-navbar{
+    #footer-content{
+      padding-bottom: $body_navbar_padding;
+    }
+  }
+  &.has-footer{
+    #content{
       padding-bottom: $footer-height;
+    }
+    #footer-content{
+      > .container{        
+        margin-top: -$footer-height;
+        min-height: $footer-height;
+      }
     }
   }
   
@@ -529,29 +477,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 
 #footer-content{
   @include background-colour($footer-background-colour);
-  @if $fix-footer-navbar and $has-footer-navbar{
-    padding-bottom: $body_navbar_padding;
-  }
   > .container{
     @include heading-colour($footer-heading-colour, $footer-background-colour);
     @include text-colour($footer-text-colour, $footer-background-colour);
-    @include link-colour($footer-link-colour, $footer-background-colour);  
-    @if $has-footer{
-      margin-top: -$footer-height;
-      min-height: $footer-height;
-    }
+    @include link-colour($footer-link-colour, $footer-background-colour);
     .nav{
       @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
-    }
-    > .container{
-      @if $has-footer{
-        padding-bottom: 80px;
-      }
-      @if $site-background-image == false and ($footer-background-colour == $body-background-colour or $footer-background-colour == transparent) {
-        border-top-color: darken-colour($footer-background-colour, 7.5%);
-      } @else {
-        border-top: none;
-      }
     }
   }
 }
