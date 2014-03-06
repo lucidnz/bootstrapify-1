@@ -9,7 +9,7 @@
   
 <div class="hidden-xs">
   <ul class="nav navbar-nav navbar-right">
-    {% unless settings.disable-cart %}<li class="dropdown">
+    {% if has_cart %}<li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i></a>
       <ul class="dropdown-menu">
         <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> <span class="badge">{% include 'cart-count' %}</span></a></li>
@@ -17,7 +17,7 @@
         <li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>
         {% endif %}
       </ul>
-    </li>{% endunless %}
+    </li>{% endif %}
     {% if shop.customer_accounts_enabled %}
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
@@ -36,10 +36,10 @@
 </div>
 <div class="visible-xs">
   <ul class="nav navbar-nav">
-    {% unless settings.disable-cart %}
+    {% if has_cart %}
     <li><a href="/cart">{% include '__localize' with 'View cart' %} <span class="badge">{% include 'cart-count' %}</span></a></li>
     {% if cart.item_count > 0 %}<li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>{% endif %}
-    {% endunless %}
+    {% endif %}
     {% if shop.customer_accounts_enabled %}
       {% if customer %}
       <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
