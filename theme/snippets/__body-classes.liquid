@@ -10,4 +10,5 @@
 
 {% if settings.show-multiple-currencies %} currencies{% endif %}
 {% if settings.centered-layout %} centered-layout{% endif %}
+ {{ template | replace: '.', '-' }}
 {% endcapture %}{{ body_classes | strip_newlines | strip }}
