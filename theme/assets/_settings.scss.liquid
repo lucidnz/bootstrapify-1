@@ -4,13 +4,18 @@
 $body_padding:                        20px !default;
 $body_navbar_padding:                 50px !default;
 $footer-height:                       250px !default;
+
 $inverse_threshhold:                  60%;
+$default-background-colour:           white !default;
+$default-text-colour:                 #333 !default;
+$default-link-colour:                 #428bca !default;
 
-$default-background-colour:            white !default;
-$default-text-colour:                  #333 !default;
-$default-link-colour:                  #428bca !default;
+$font-size-base:                      14px !default;
 
-$font-size-base:                       14px !default;
+$screen-xs-min:                       480px !default;
+$screen-sm-min:                       768px !default;
+$screen-md-min:                       992px !default;
+$screen-lg-min:                       1200px !default;
 
 /*
  * Setting Variables
@@ -499,11 +504,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   background-color: $body-text-colour;
 }
 
-@media (min-width: 768px){
-  .container {
-    width: $container-width-medium-devices;
-  }
-  
+@media (min-width: $screen-sm-min){
   .sidebar{
     background-color: transparent;
     .sidebar-content{
@@ -532,7 +533,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
-@media (min-width: 1200px){
+@media (min-width: $screen-md-min) {
+  .container {
+    width: $container-width-medium-devices;
+  }
+}
+
+@media (min-width: $screen-lg-min) {
   .container {
     width: $container-width-large-devices;
   }
