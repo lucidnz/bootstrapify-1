@@ -5211,6 +5211,8 @@ a.icon:hover {
 #signinModal .modal-body .col:last-child {
   border-left: #eeeeee solid 1px; }
 
+.carousel-control.left, .carousel-control.right {
+  background: none; }
 .carousel-control .fa {
   position: absolute;
   top: 50%;
@@ -5236,6 +5238,16 @@ a.icon:hover {
   border-radius: 6px;
   border-top-left-radius: 0;
   border-top-right-radius: 0; }
+
+.carousel-indicators li {
+  margin: 3px; }
+.carousel-indicators .active {
+  margin: 3px;
+  width: 10px;
+  height: 10px; }
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+  margin: auto; }
 
 #admin_header {
   overflow: auto;

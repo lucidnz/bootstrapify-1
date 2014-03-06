@@ -216,6 +216,9 @@ a.icon:hover {
 }
 
 .carousel-control{
+  &.left, &.right{
+    background: none;
+  }
   .fa{
     position: absolute;
     top: 50%;
@@ -244,6 +247,19 @@ a.icon:hover {
   border-radius: $border-radius-large; 
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+.carousel-indicators{
+  li{
+    margin: 3px;
+  }
+  .active{
+    margin: 3px;
+    width: 10px;
+    height: 10px;
+  }
+}
+.carousel-inner > .item > img, .carousel-inner > .item > a > img{
+  margin: auto;
 }
 
 #admin_header{
@@ -391,7 +407,7 @@ a.icon:hover {
   }
 }
 
-@media (min-width: $screen-sm){
+@media (min-width: $screen-sm-min){
   
   .navbar-nav.navbar-left:first-child{
     margin-left: ($grid-gutter-width / -2);
