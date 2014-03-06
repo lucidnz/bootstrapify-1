@@ -1,3 +1,4 @@
+{% assign template = template | split: '.' | first %}
 {% assign banner_img = [template]metafields.banner.image %}
 {% if banner_img != null %}
 <div class="carousel">
