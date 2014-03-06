@@ -5157,6 +5157,14 @@ aside .page-header:first-child {
 a.icon:hover {
   text-decoration: none; }
 
+.image_placeholder {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 6em;
+  margin-bottom: 1em;
+  background-color: #eeeeee; }
+
 #product-form #quantity {
   max-width: 5em; }
 #product-form #purchase {
@@ -5180,6 +5188,10 @@ a.icon:hover {
   .thumbnail img {
     text-align: center;
     margin: auto; }
+  .thumbnail .price {
+    margin-top: 0.5em; }
+  .thumbnail > a:hover {
+    text-decoration: none; }
 
 .loader {
   margin: 0 auto;

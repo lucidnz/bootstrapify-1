@@ -126,6 +126,15 @@ a.icon:hover {
   text-decoration: none;
 }
 
+.image_placeholder{
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 6em;
+  margin-bottom: 1em;
+  background-color: $gray-lighter;
+}
+
 .money {
   @extend .text-right;
 }
@@ -160,6 +169,12 @@ a.icon:hover {
   img{
     text-align: center;
     margin: auto;
+  }
+  .price{
+    margin-top: 0.5em;
+  }
+  > a:hover{
+    text-decoration: none;
   }
 }
 
