@@ -80,6 +80,19 @@ module.exports = function(grunt) {
             cwd: 'bower_components/jquery/dist/',
             src: 'jquery.min.js',
             dest: 'theme/assets/'
+          },
+          // grab required respond js and cross-domain files from bower
+          {
+            expand: true,
+            cwd: 'bower_components/respond/dest/',
+            src: 'respond.min.js',
+            dest: 'theme/assets/'
+          },
+          {
+            expand: true,
+            cwd: 'bower_components/respond/cross-domain/',
+            src: 'respond-proxy.html',
+            dest: 'theme/assets/'
           }
         ]
       }
