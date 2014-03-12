@@ -1,0 +1,6 @@
+{% assign has_social = false %}
+{% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
+{% for link in social_links %}
+  {% assign social_link = link | prepend: 'social-links-' %}
+  {% if settings[social_link] != blank %}{% assign has_social = true %}{% endif %}
+{% endfor %}

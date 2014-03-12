@@ -1,6 +1,7 @@
+{% include '__has-variables' %}
 {% capture vars %}
 {% if product.featured_image == blank %}
-{% assign image = '<div class="image_placeholder">Product Image</div>' %}
+{% include '__image-placeholder' %}
 {% else %}
 {% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">{% endcapture %}
 {% endif %}
@@ -36,7 +37,8 @@
     <!-- details col -->
     <div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
       <h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
-      <hr class="visible-xs">
+      <hr>
+      {% if has_prices %}
       <div class="lead product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
         <span id="price-field">{% include 'product-price' with product.price %}</span>
         <del id="compare-at-price-field" class="text-muted"></del>
@@ -45,7 +47,8 @@
         <meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
       </div>
       <hr>
-      {% include 'product-add-to-cart-form' %}
+      {% endif %}
+      {% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 
       <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
     

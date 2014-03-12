@@ -10,3 +10,4 @@ theme/config/settings_data.json
 node_modules
 bower_components
 .sass-cache
+.idea
