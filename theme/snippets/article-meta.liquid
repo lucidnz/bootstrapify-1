@@ -1,0 +1,9 @@
+<p class="text-muted article-meta">
+  {% include '__localize' with 'Published on' %} {{ article-meta.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ article-meta.author }}{% endif %}.
+  {% if article-meta.tags.size > 0 %}
+    <i class="fa fa-tags"></i> 
+    {% for tag in article-meta.tags %}
+    {{ tag | link_to_tag: tag }}
+    {% endfor %}
+  {% endif %}
+</p>

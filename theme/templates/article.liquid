@@ -3,7 +3,7 @@
 
 {% include '__offset-centered-content' with article.content %}
 
-{% include 'article-author' with article %}
+{% include 'article-meta' with article %}
 
 {% if article.user.bio != blank and settings.show-author-bios == true %}
 <div class="well text-muted">
@@ -12,7 +12,7 @@
 {% endif %}
 
 {% if blog.previous_article or blog.next_article %}
-<hr>
+<!-- <hr> -->
 <ul class="pager">
   {% if blog.previous_article %}<li>{{ '&laquo; Previous article' | link_to: blog.previous_article }}</li>{% endif %}
   {% if blog.next_article %}<li>{{ 'Next article &raquo;' | link_to: blog.next_article }}</li>{% endif %}

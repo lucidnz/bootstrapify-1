@@ -5,16 +5,17 @@
 {% for a in blog.articles %}
 <article class="excerpts">
   <h2>{{ a.title | link_to: a.url, a.title }}</h2>
+  {% include 'article-meta' with a %}
   {% capture blog_content %}{% if a.excerpt != blank %}
-  {{ a.excerpt }}
+    {{ a.excerpt }}
   {% else %}
-  {% if settings.truncate-words == '' %}{{ a.content }}{% else %}<p>{{ a.content | strip_html | truncatewords: settings.truncate-words }}</p>{% endif %}
+    {% if settings.truncate-words == '' %}{{ a.content }}{% else %}<p>{{ a.content | strip_html | truncatewords: settings.truncate-words }}</p>{% endif %}
   {% endif %}{% endcapture %}
   {% include '__offset-centered-content' with blog_content %}
-  {% include 'article-author' with a %}
   <ul class="pager">
     <li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></li>
   </ul>
+  <hr>
 </article>
 {% endfor %}
 
