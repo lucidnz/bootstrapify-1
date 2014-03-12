@@ -1,9 +1,16 @@
-<p class="text-muted article-meta">
-  {% include '__localize' with 'Published on' %} {{ article-meta.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ article-meta.author }}{% endif %}.
+<ul class="article-meta">
+  <li>
+    {% include '__localize' with 'Published on' %} {{ article-meta.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ article-meta.author }}{% endif %}.
+  </li>
   {% if article-meta.tags.size > 0 %}
-    <i class="fa fa-tags"></i> 
+  <li>
+    <i class="fa fa-tags"></i>
     {% for tag in article-meta.tags %}
-    {{ tag | link_to_tag: tag }}
+      {{ tag | link_to_tag: tag }}{% unless forloop.last %},{% endunless %}
     {% endfor %}
+  </li>
   {% endif %}
-</p>
+  <li>
+    <i class="fa fa-comments"></i> {{ article-meta.comments_count }} Comments
+  </li>
+</ul>

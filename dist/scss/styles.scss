@@ -299,6 +299,14 @@ a.icon:hover {
   }
 }
 
+.article-meta{
+  @extend .list-inline;
+  @extend .text-muted;
+  a{
+    @extend .text-muted;
+  }
+}
+
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;

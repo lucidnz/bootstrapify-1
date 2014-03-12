@@ -1,9 +1,10 @@
 {% include '__has-variables' %}
-<h1 class="page-header">{{ page_title }}</h1>
+<div class="page-header">
+  <h1>{{ page_title }}</h1>
+  {% include 'article-meta' with article %}
+</div>
 
 {% include '__offset-centered-content' with article.content %}
-
-{% include 'article-meta' with article %}
 
 {% if article.user.bio != blank and settings.show-author-bios == true %}
 <div class="well text-muted">
@@ -12,7 +13,6 @@
 {% endif %}
 
 {% if blog.previous_article or blog.next_article %}
-<!-- <hr> -->
 <ul class="pager">
   {% if blog.previous_article %}<li>{{ '&laquo; Previous article' | link_to: blog.previous_article }}</li>{% endif %}
   {% if blog.next_article %}<li>{{ 'Next article &raquo;' | link_to: blog.next_article }}</li>{% endif %}
