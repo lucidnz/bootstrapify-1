@@ -1,12 +1,8 @@
-{% if settings.sidebar-placement == 'left' %}{% assign sidebar_span = 'col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9' %}{% else %}{% assign sidebar_span = 'col-sm-4 col-md-3' %}{% endif %}
-<aside class="sidebar {{ sidebar_span }}">
+<aside class="sidebar {% include '__sidebar-span' %}">
   <div class="sidebar-content">
     {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
     
-    {% if settings.tag-placement == 'sidebar' %}
-      {% include 'collection-tags-menu' %}
-      {% include 'collection-tags-buttons' %}
-    {% endif %}
+    {% if settings.tag-placement == 'sidebar' %}{% include 'tags-list' %}{% endif %}
     
     {% unless linklists[settings.sidebar-linklist] == empty %}
     <h4 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h4>

@@ -1,3 +1,16 @@
+{{ tags }}
+<hr style="border-top-color: red;">
+
+
+
+
+
+
+
+
+
+
+{% comment %}
 {% if collection.all_tags.size > 0 %}
   {% include '__max-tags' %}
   {% if settings.tag-format != "dropdown" and collection.all_tags.size < max_tags %}
@@ -18,3 +31,4 @@
   </ul>
   {% endif %}
 {% endif %}
+{% endcomment %}

@@ -126,13 +126,17 @@ a.icon:hover {
   text-decoration: none;
 }
 
-.image_placeholder{
+.image-placeholder{
   display: block;
   text-align: center;
   width: 100%;
-  padding: 6em;
+  padding-top: 6em;
+  padding-bottom: 6em;
   margin-bottom: 1em;
   background-color: $gray-lighter;
+  .image-placeholder-content{
+    margin: auto;
+  }
 }
 
 .money {

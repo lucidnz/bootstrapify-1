@@ -1,3 +1,4 @@
+{% comment %}
 {% if collection.all_tags.size > 0 %}
   {% include '__max-tags' %}
   {% if settings.tag-format == "dropdown" or collection.all_tags.size > max_tags %}
@@ -17,3 +18,4 @@
   </div>
   {% endif %}
 {% endif %}
+{% endcomment %}

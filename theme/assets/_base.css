@@ -5235,13 +5235,16 @@ aside .page-header:first-child {
 a.icon:hover {
   text-decoration: none; }
 
-.image_placeholder {
+.image-placeholder {
   display: block;
   text-align: center;
   width: 100%;
-  padding: 6em;
+  padding-top: 6em;
+  padding-bottom: 6em;
   margin-bottom: 1em;
   background-color: #eeeeee; }
+  .image-placeholder .image-placeholder {
+    margin: auto; }
 
 #product-form #quantity {
   max-width: 5em; }
