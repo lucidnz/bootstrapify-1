@@ -1,3 +1,8 @@
 {% capture table_replace %}<table class="table{% include '__table-formatting' %}"{% endcapture %}
 {% capture img_replace %}<img class="thumbnail"{% endcapture %}
-{{ __formatted-content | replace_first: '<table',table_replace | replace_first: '<img',img_replace }}
+{% assign formatted_content = __formatted-content | replace_first: '<table',table_replace | replace_first: '<img',img_replace | replace: '<p>&nbsp;</p>',' ' %}
+{% if formatted_content contains '<p>' %}
+  {{ formatted_content }}
+{% else %}
+  <p>{{ formatted_content }}</p>
+{% endif %}

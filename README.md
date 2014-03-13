@@ -35,12 +35,15 @@ The Shopify theme gem and SASS require Ruby. Grunt.js and Bower use Node.js. Onc
 
 #### Installation
 
-If you havent installed Grunt and Bower globally on your system already install them using npm:
+**Before you start.**
+If you already have Grunt and Bower installed globally on your system you can skip this first step.
+To install Grunt and Bower globally using npm:
 
     npm install -g bower
 
     npm install -g grunt-cli
 
+**Setting up the project**
 Install Grunts dependancies:
 
     npm install

@@ -1141,13 +1141,13 @@ ol {
   ol ol {
     margin-bottom: 0; }
 
-.list-unstyled, .list-inline, .article-meta, .list-nav {
+.list-unstyled, .list-inline, header .article-meta, .list-nav, .article-meta {
   padding-left: 0;
   list-style: none; }
 
-.list-inline, .article-meta {
+.list-inline, header .article-meta {
   margin-left: -5px; }
-  .list-inline > li, .article-meta > li {
+  .list-inline > li, header .article-meta > li {
     display: inline-block;
     padding-left: 5px;
     padding-right: 5px; }
@@ -5243,7 +5243,7 @@ a.icon:hover {
   padding-bottom: 6em;
   margin-bottom: 1em;
   background-color: #eeeeee; }
-  .image-placeholder .image-placeholder {
+  .image-placeholder .image-placeholder-content {
     margin: auto; }
 
 #product-form #quantity {

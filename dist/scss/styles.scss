@@ -304,11 +304,14 @@ a.icon:hover {
 }
 
 .article-meta{
-  @extend .list-inline;
+  @extend .list-unstyled;
   @extend .text-muted;
   a{
     @extend .text-muted;
   }
+}
+header .article-meta{
+  @extend .list-inline;
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
