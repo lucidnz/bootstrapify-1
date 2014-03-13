@@ -20,6 +20,13 @@
       {% endfor %}
     {% endunless %}
     
+    {% if template == 'blog' or template == 'article' %}
+      <h4 class="page-header">Recent articles</h4>
+      {% for a in blog.articles limit:settings.blog-list-limit %}
+      {% include '_article-excerpt' %}
+      {% endfor %}
+    {% endif %}
+    
     {% if settings.newsletter-signup-placement == 'sidebar' %}
       {% include 'newsletter-signup-form' %}
     {% endif %}

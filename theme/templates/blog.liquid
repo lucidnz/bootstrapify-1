@@ -6,25 +6,30 @@
 
 {% include '__default-pagination' %}
 {% paginate blog.articles by default-pagination %}
+
 {% for a in blog.articles %}
-<article class="excerpts">
-  <h2>{{ a.title | link_to: a.url, a.title }}</h2>
-  {% include 'article-meta' with a %}
-  {% capture blog_content %}{% if a.excerpt != blank %}
-    {{ a.excerpt }}
-  {% else %}
-    {% if settings.truncate-words == '' %}{{ a.content }}{% else %}<p>{{ a.content | strip_html | truncatewords: settings.truncate-words }}</p>{% endif %}
-  {% endif %}{% endcapture %}
-  {% include '__offset-centered-content' with blog_content %}
-  <ul class="pager">
-    <li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></li>
-  </ul>
-  <hr>
-</article>
+<div class="row">
+  <article class="excerpts col-xs-12 {% unless has_sidebar %}col-md-9{% endunless %} col-lg-9">
+    <h2>{{ a.title | link_to: a.url, a.title }}</h2>
+    <div class="hidden-lg {% unless has_sidebar %} hidden-md{% endunless %}">{% include 'article-meta' with a %}</div>
+    {% capture blog_content %}{% if a.excerpt != blank %}
+      {{ a.excerpt }}
+    {% else %}
+      {% if settings.truncate-words == '' %}{{ a.content }}{% else %}<p>{{ a.content | strip_html | truncatewords: settings.truncate-words }}</p>{% endif %}
+    {% endif %}{% endcapture %}
+    {% include '__offset-centered-content' with blog_content %}
+    <ul class="pager">
+      <li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></li>
+    </ul>
+  </article>
+  <aside class="visible-lg {% unless has_sidebar %} visible-md{% endunless %} {% unless has_sidebar %}col-md-3{% endunless %} col-lg-3">
+    {% include 'article-meta' with a %}
+  </aside>
+</div>
+<hr>
 {% endfor %}
 
 {% include 'pagination' %}
-
 {% endpaginate %}
 
 <div class="well">
