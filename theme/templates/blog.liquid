@@ -1,7 +1,9 @@
 {% include '__has-variables' %}
+{% unless settings.tag-placement == 'sidebar' %}{% include 'tags-list' with 'menu' %}{% endunless %}
 
-{% comment %}
 <h1 class="page-header">{{ page_title }}</h1>
+{% unless settings.tag-placement == 'sidebar' %}{% include 'tags-list' with 'buttons' %}{% endunless %}
+
 {% include '__default-pagination' %}
 {% paginate blog.articles by default-pagination %}
 {% for a in blog.articles %}
@@ -28,4 +30,3 @@
 <div class="well">
   <a href="{{ blog.url | append: '.atom' }}">{% include '__localize' with 'Subscribe to RSS feed for ' %} {{ blog.title }}.</a>
 </div>
-{% endcomment %}
