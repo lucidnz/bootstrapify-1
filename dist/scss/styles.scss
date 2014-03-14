@@ -126,6 +126,19 @@ a.icon:hover {
   text-decoration: none;
 }
 
+.image-placeholder{
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding-top: 6em;
+  padding-bottom: 6em;
+  margin-bottom: 1em;
+  background-color: $gray-lighter;
+  .image-placeholder-content{
+    margin: auto;
+  }
+}
+
 .money {
   @extend .text-right;
 }
@@ -160,6 +173,12 @@ a.icon:hover {
   img{
     text-align: center;
     margin: auto;
+  }
+  .price{
+    margin-top: 0.5em;
+  }
+  > a:hover{
+    text-decoration: none;
   }
 }
 
@@ -216,6 +235,9 @@ a.icon:hover {
 }
 
 .carousel-control{
+  &.left, &.right{
+    background: none;
+  }
   .fa{
     position: absolute;
     top: 50%;
@@ -245,6 +267,19 @@ a.icon:hover {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.carousel-indicators{
+  li{
+    margin: 3px;
+  }
+  .active{
+    margin: 3px;
+    width: 10px;
+    height: 10px;
+  }
+}
+.carousel-inner > .item > img, .carousel-inner > .item > a > img{
+  margin: auto;
+}
 
 #admin_header{
   overflow: auto;
@@ -266,6 +301,17 @@ a.icon:hover {
   li:first-child {
     margin-top: 0;
   }
+}
+
+.article-meta{
+  @extend .list-unstyled;
+  @extend .text-muted;
+  a{
+    @extend .text-muted;
+  }
+}
+header .article-meta{
+  @extend .list-inline;
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
@@ -391,7 +437,7 @@ a.icon:hover {
   }
 }
 
-@media (min-width: $screen-sm){
+@media (min-width: $screen-sm-min){
   
   .navbar-nav.navbar-left:first-child{
     margin-left: ($grid-gutter-width / -2);
