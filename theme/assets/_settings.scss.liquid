@@ -451,12 +451,28 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     background-color: transparent;
   }
   .navbar-toggle{
-    border-color: darken-colour($navbar-background-colour, 7.5%);
+    border-color: darken-colour($navbar-background-colour, 9%);
     .icon-bar{
-      background-color: darken-colour($navbar-background-colour, 7.5%);
+      background-color: darken-colour($navbar-background-colour, 9%);
     }
     &:hover, &:focus{
-      background-color: darken-colour($navbar-background-colour, 4%);
+      background-color: darken-colour($navbar-background-colour, 6%);
+    }
+  }
+  .dropdown-menu{
+      background-color: darken-colour($navbar-background-colour, 5%);
+  }
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+      background-color: darken-colour($navbar-background-colour, 7.5%);
+  }
+}
+@media (min-width: $screen-sm-min){
+  #navbar-top, #navbar-footer{
+    .dropdown-menu{
+      background-color: white;
+    }
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu .nav > li > a:hover, .dropdown-menu .nav > li > a:focus{
+      background-color: whitesmoke;
     }
   }
 }
