@@ -39,11 +39,8 @@
   {{ 'popover.js' | asset_url | script_tag }}
   {{ 'typeahead.js' | asset_url | script_tag }}
   
-  {{ settings.custom-font-embed-code }}
   {% if settings.custom-header-code != '' %}
-    {% unless settings.custom-header-code contains '<script' %}<script type="text/javascript">{% endunless %}
     {{ settings.custom-header-code }}
-    {% unless settings.custom-header-code contains '<script' %}</script>{% endunless %}
   {% endif %}
   
   {{ content_for_header }}
@@ -102,9 +99,7 @@
   </script>
   
   {% if settings.custom-footer-code != '' %}
-    {% unless settings.custom-footer-code contains '<script' %}<script type="text/javascript">{% endunless %}
     {{ settings.custom-footer-code }}
-    {% unless settings.custom-footer-code contains '<script' %}</script>{% endunless %}
   {% endif %}
 </body>
 </html>
