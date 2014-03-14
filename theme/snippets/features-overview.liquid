@@ -1,0 +1,16 @@
+{% assign linklist = linklists[settings.features-linklist] %}
+{% if linklist != empty and linklist.size > 0 %}
+
+{% assign cols = 4 %}
+
+<h2>{{ linklist.title }}</h2>
+
+<div class="row">
+  {% for l in linklist.links %}
+  <div class="col-md-{{ 12 | divided_by: cols }}">
+    <h3 class="text-left"><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ l.object.title }}"><i class="fa fa-{{ l.object.metafields.lucid.icon }} fa-fw text-muted"></i> {{ l.title }}</a></h3>
+    <p>{% if l.object.description == blank and shop.url contains 'myshopify' and settigns.development-mode != false %}You can change the feature descriptions by editing the descriptions of the linked pages or collections in <a href="{{ shop.url }}/admin/link_lists/{{ linklists.what-we-do.id }}" target="_blank"> {{ linklists.what-we-do.title }} linklist</a>.{% else %}{{ l.object.description }}{% endif %}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

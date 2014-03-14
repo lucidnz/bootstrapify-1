@@ -1,0 +1,9 @@
+{% assign max_tags = 20 %}
+{% if template == 'collection' %}
+  {% assign tags = collection.all_tags %}
+{% elsif template == 'blog' or template == 'article' %}
+  {% assign tags = blog.all_tags %}
+{% endif %}
+
+{% if tags-list == null or tags-list == 'menu' %}{% include 'tags-list-menu' %}{% endif %}
+{% if tags-list == null or tags-list == 'buttons' %}{% include 'tags-list-buttons' %}{% endif %}

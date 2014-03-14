@@ -1,10 +1,6 @@
+{% include '__has-variables' %}
 <h1 class="page-header">{{ page_title }}</h1>
-
-{% if cart.item_count == 0 %}
-<p class="lead">
-  {% include '__localize' with 'Your cart is empty' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all products' %}</a>.{% endunless %}
-</p>
-{% else %}
+{% if has_cart and cart.item_count > 0 %}
 <script type="text/javascript">
 function remove_item(id) {
   document.getElementById('updates_'+id).value = 0;
@@ -73,4 +69,10 @@ function remove_item(id) {
 <div class="row">
   <div class="col-md-6">{% include 'shipping-calculator' %}</div>
 </div>
+{% else %}
+{% assign cart_message = 'Your cart is empty' %}
+{% unless has_cart %}{% assign cart_message = 'The shopping cart is currently disabled' %}{% endunless %}
+<p class="lead">
+  {% include '__localize' with cart_message %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all products' %}</a>.{% endunless %}
+</p>
 {% endif %}

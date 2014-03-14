@@ -1,20 +1,17 @@
-{% unless settings.tag-placement == 'sidebar' %}{% include 'collection-tags-menu' %}{% endunless %}
+{% include '__has-variables' %}
+{% unless settings.tag-placement == 'sidebar' %}{% include 'tags-list' with 'menu' %}{% endunless %}
 
 <h1 class="page-header">{{ page_title }}</h1>
-<p class="lead">{{ collection.description }}</p>
+{% unless collection.description == blank %}<div class="lead">{{ collection.description }}</div>{% endunless %}
 
-{% unless settings.tag-placement == 'sidebar' %}
-  {% include 'collection-tags-buttons' %}
-{% endunless %}
+{% unless settings.tag-placement == 'sidebar' %}{% include 'tags-list' with 'buttons' %}{% endunless %}
 
 {% if collection.all_products_count == 0 %}
-<p>Sorry, no products were found in the {{ collection.title }} collection.</p>
-
+  <p>Sorry, no products were found in the {{ collection.title }} collection.</p>
 {% else %}
-{% include '__default-pagination' %}
-{% paginate collection.products by default-pagination %}
-{% include 'products-list' %}
-{% include 'pagination' %}
-{% endpaginate %}
-
+  {% include '__default-pagination' %}
+  {% paginate collection.products by default-pagination %}
+  {% include 'products-list' %}
+  {% include 'pagination' %}
+  {% endpaginate %}
 {% endif %}

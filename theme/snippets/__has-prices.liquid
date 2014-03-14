@@ -1,0 +1,2 @@
+{% assign has_prices = true %}
+{% if has_cart == false and settings.hide-prices-if-cart-disabled %}{% assign has_prices = false %}{% endif %}

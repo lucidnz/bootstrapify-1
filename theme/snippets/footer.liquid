@@ -1,36 +1,22 @@
 <footer id="footer-content" class="footer">
   <div class="container">
+    {% if has_footer %}
     <div class="row">
       {% assign footer_columns = settings.footer-columns | plus: 0 %}
       {% for i in (1..footer_columns) %}
-      {% include '_footer-columns' %}
+      {% include '_footer-columns' with footer_columns %}
       {% endfor %}
     </div>
+    {% endif %}
+    
+    <p class="text-center footer-credits">
+      <small>
+        &copy;{{ 'now' | date: '%Y' }}&nbsp;<strong><a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. <br class="visible-sm">
+        Design&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid&nbsp;Design</a>. <br class="visible-sm">
+        Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.
+      </small>
+    </p>
   </div>
-</footer>
 
-<div id="footer-credits" class="navbar {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-navbar %}navbar-fixed-bottom{% endif %} {% include '__color-scheme' with 'navbar' %}" role="navigation">
-  <div class="container">
-    <div class="collapse navbar-collapse" id="footer-nav">
-      <ul class="nav navbar-nav navbar-right">
-        {% for l in linklists.footer.links %}<li{% if l.active %} class="active"{% endif %}><a href="{{ l.url }}"{% unless l.active %} class="text-muted"{% endunless %} title="Go to {{ l.title }}">{{ l.title }}</a></li>{% endfor %}
-      </ul>
-      {% unless settings.currency-switcher-position == 'navbar' %}{% include 'currency-switcher' %}{% endunless %}
-      <div class="navbar-left navbar-text">
-        <small class="text-muted">
-          &copy;{{ 'now' | date: '%Y' }}&nbsp;<strong><a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a></strong>. <br class="visible-sm">
-          <a href="https://github.com/luciddesign/bootstrapify/" title="Bootstrapify, open-source Shopify theme on GitHub">Boostrapify</a>&nbsp;theme&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid&nbsp;Design</a>. <br class="visible-sm">
-          Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.
-        </small>
-      </div>
-    </div>
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-nav">
-        <span class="sr-only">Toggle main navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-  </div>
-</div>
+{% if has_footer_navbar %}{% include 'navbar' with 'footer' %}{% endif %}
+</footer>

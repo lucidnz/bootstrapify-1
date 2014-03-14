@@ -1,23 +1,47 @@
+{% include '__has-variables' %}
+{% unless settings.tag-placement == 'sidebar' %}{% include 'tags-list' with 'menu' %}{% endunless %}
+
 <h1 class="page-header">{{ page_title }}</h1>
+{% unless settings.tag-placement == 'sidebar' %}{% include 'tags-list' with 'buttons' %}{% endunless %}
+
 {% include '__default-pagination' %}
 {% paginate blog.articles by default-pagination %}
+
 {% for a in blog.articles %}
-<article>
-  <h2>{{ a.title | link_to: a.url, a.title }}</h2>
-  <p class="text-muted">{{ a.published_at | date: settings.long-date-format }}{% if settings.show-author %} by {{ a.author }}{% endif %}</p>
-  {% if a.excerpt != blank %}
-    {{ a.excerpt }}
-  {% else %}
-    {% if settings.truncate-words == '' %}{{ a.content }}{% else %}{{ a.content | truncatewords: settings.truncate-words }}{% endif %}
+<article class="excerpt row">
+  <header class="col-xs-12">
+    <h2>{{ a.title | link_to: a.url, a.title }}</h2>
+    <div class="excerpt-meta hidden-lg {% unless has_sidebar %} hidden-md{% endunless %}">
+      {% include 'article-meta' with a %}
+    </div>
+  </header>
+  
+  <section class="col-xs-12{% unless has_sidebar %} col-md-9{% endunless %} col-lg-9{% if settings.sidebar-placement == 'right' %} col-md-push-3 col-lg-push-3{% endif %}">
+    {% if a.excerpt != blank %}
+      {{ a.excerpt }}
+    {% else %}
+      {% if settings.truncate-words == '' %}{{ a.content }}{% else %}<p>{{ a.content | strip_html | truncatewords: settings.truncate-words }}</p>{% endif %}
+    {% endif %}
+  </section>
+  
+  <section class="excerpt-meta visible-lg {% unless has_sidebar %} visible-md{% endunless %} col-xs-12{% unless has_sidebar %} col-md-3{% endunless %} col-lg-3{% if settings.sidebar-placement == 'right' %} col-md-pull-9 col-lg-pull-9{% endif %}">
+    {% include 'article-meta' with a %}
+  </section>
+  
+  {% if a.excerpt != blank or settings.truncate-words != '' %}
+  <footer class="col-xs-12">
+    <ul class="pager">
+      <li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></li>
+    </ul>
+  </footer>
   {% endif %}
-  <p><a href="{{ a.url }}">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></p>
 </article>
+<hr>
 {% endfor %}
 
 {% include 'pagination' %}
-
 {% endpaginate %}
 
 <div class="well">
-  <a href="{{ blog.url | append: '.atom' }}">Subscribe to our {{ blog.title }} blog.</a>
+  <a href="{{ blog.url | append: '.atom' }}">{% include '__localize' with 'Subscribe to RSS feed for ' %} {{ blog.title }}.</a>
 </div>

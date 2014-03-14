@@ -1,38 +1,9 @@
-<aside class="sidebar col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9">
-  <div class="sidebar-content">
-    {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
-    
-    {% if settings.tag-placement == 'sidebar' %}{% include 'collection-tags-menu' %}{% endif %}
-    {% if settings.tag-placement == 'sidebar' %}{% include 'collection-tags-buttons' %}{% endif %}
-    
-    {% unless linklists[settings.sidebar-linklist] == empty %}
-    <h4 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h4>
-  
-    <ul class="nav nav-pills nav-stacked">
-      {% for l in linklists[settings.sidebar-linklist].links %}
-      <li{% if l.active %} class="active"{% endif %}>{{ l.title | link_to: l.url, l.title }}</li>
-      {% endfor %}
-    </ul>
+{% if has_sidebar %}
+  {% if settings.show-sidebar %}
+    {% unless settings.show-sidebar-on-homepage == blank and template == "index" %}
+      {% include 'sidebar-content' %}
     {% endunless %}
-  
-    {% unless blogs[settings.sidebar-blog] == empty %}
-    <h4 class="page-header">{{ blogs[settings.sidebar-blog].title }}</h4>
-  
-    {% for a in blogs[settings.sidebar-blog].articles limit:settings.blog-list-limit %}
-    {% include '_article-excerpt' %}
-    {% endfor %}
-    
-    {% endunless %}
-    
-    {% if settings.newsletter-signup-placement == 'sidebar' %}
-      {% include 'newsletter-signup-form' %}
-    {% endif %}
-            
-    {% if settings.social-links-placement == 'sidebar' %}
-      <hr>
-      {% include 'social-links' %}
-    {% endif %}
-    
-    <hr>
-  </div>
-</aside>
+  {% elsif settings.show-sidebar-on-homepage and template == "index" %}
+    {% include 'sidebar-content' %}
+  {% endif %}
+{% endif %}

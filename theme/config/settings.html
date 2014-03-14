@@ -1,7 +1,7 @@
 <div class="section-info">
   
 </div>
-<fieldset>
+  <fieldset>
   <legend>Advanced</legend>
   
   <table>
@@ -98,6 +98,15 @@
     </tr>
   </table>
   
+  <table>
+    <tr>
+      <th><label for="use-gravatars">Use Gravatar for avatars</label></th>
+      <td>
+        <input type="checkbox" name="use-gravatars" id="use-gravatars" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
 </fieldset>
 <fieldset>
   <legend>Branding</legend>
@@ -139,7 +148,6 @@
            <div><input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar</div>
            <div><input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar</div>
            <div><input type="radio" name="logo-placement" id="logo-placement" value="above-navbar" /> Above navbar</div>
-           <div><input type="radio" name="logo-placement" id="logo-placement" value="below-navbar" /> Below navbar</div>
            
       </td>
     </tr>
@@ -160,6 +168,25 @@
   
   <table>
     <tr>
+      <th><label for="disable-cart">Disable cart</label></th>
+      <td>
+        <input type="checkbox" name="disable-cart" id="disable-cart" value="1" /> Yes
+        <small>If you're using Shopify as a brochure site until you are ready to sell online, you can disable the cart.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="hide-prices-if-cart-disabled">Hide prices if cart is disabled</label></th>
+      <td>
+        <input type="checkbox" name="hide-prices-if-cart-disabled" id="hide-prices-if-cart-disabled" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="show-shipping-estimator">Show shipping estimator</label></th>
       <td>
         <input type="checkbox" name="show-shipping-estimator" id="show-shipping-estimator" value="1" /> Yes
@@ -170,6 +197,15 @@
 </fieldset>
 <fieldset>
   <legend>Collections</legend>
+  
+  <table>
+    <tr>
+      <th><label for="masonry-style-layout">Masonry-style layout</label></th>
+      <td>
+        <input type="checkbox" name="masonry-style-layout" id="masonry-style-layout" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
   
   <table>
     <tr>
@@ -311,6 +347,15 @@
       <th><label for="navbar-text-colour">Navbar text colour</label></th>
       <td>
         <input type="text" name="navbar-text-colour" id="navbar-text-colour" class="color" value="" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-borders">Show borders</label></th>
+      <td>
+        <input type="checkbox" name="show-borders" id="show-borders" value="1" /> Yes
       </td>
     </tr>
   </table>
@@ -556,7 +601,7 @@
     <tr>
       <th><label for="default-pagination">Default pagination</label></th>
       <td>
-        <input type="text" name="default-pagination" id="default-pagination" class="text" value="20" />
+        <input type="text" name="default-pagination" id="default-pagination" class="text" value="24" />
         <small>If left blank pagination will be set to 50.</small>
       </td>
     </tr>
@@ -564,9 +609,9 @@
   
   <table>
     <tr>
-      <th><label for="navbar-linklist">Navbar linklist</label></th>
+      <th><label for="favicon">Favicon</label></th>
       <td>
-        <select class="linklist" name="navbar-linklist" />
+        <input type="file" name="favicon.png" id="favicon"  />
       </td>
     </tr>
   </table>
@@ -586,6 +631,15 @@
       <th><label for="show-breadcrumbs">Show breadcrumbs</label></th>
       <td>
         <input type="checkbox" name="show-breadcrumbs" id="show-breadcrumbs" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-related-products">Show related products on products page</label></th>
+      <td>
+        <input type="checkbox" name="show-related-products" id="show-related-products" value="1" /> Yes
       </td>
     </tr>
   </table>
@@ -652,18 +706,28 @@
   
   <table>
     <tr>
-      <th><label for="homepage-featured-products-collection">Homepage featured products collection</label></th>
+      <th><label for="features-linklist">Features linklist</label></th>
       <td>
-        <select class="collection" name="homepage-featured-products-collection" />
+        <select class="linklist" name="features-linklist" />
+        <small>Setup a linklist with links pointing to collections or pages. The page or collection's description will be displayed on the homepage.</small>
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="homepage-intro">Homepage intro</label></th>
+      <th><label for="homepage">Homepage</label></th>
       <td>
-        <select class="page" name="homepage-intro" selected="frontpage" />
+        <select class="page" name="homepage" selected="frontpage" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="homepage-featured-products-collection">Homepage featured products collection</label></th>
+      <td>
+        <select class="collection" name="homepage-featured-products-collection" />
       </td>
     </tr>
   </table>
@@ -697,7 +761,7 @@
     </tr>
     <tr>
       <td>
-        <p>Slide image <input type="file" name="slide-1-image.jpg" id="slide-1-image"  /></p>
+        <p>Slide image <input type="file" name="slide-1-image.png" id="slide-1-image"  /></p>
       </td>
       <td>
         <p>Caption position</p>
@@ -760,7 +824,7 @@
     </tr>
     <tr>
       <td>
-        <p>Slide image <input type="file" name="slide-2-image.jpg" id="slide-2-image"  /></p>
+        <p>Slide image <input type="file" name="slide-2-image.png" id="slide-2-image"  /></p>
       </td>
       <td>
         <p>Caption position</p>
@@ -823,7 +887,7 @@
     </tr>
     <tr>
       <td>
-        <p>Slide image <input type="file" name="slide-3-image.jpg" id="slide-3-image"  /></p>
+        <p>Slide image <input type="file" name="slide-3-image.png" id="slide-3-image"  /></p>
       </td>
       <td>
         <p>Caption position</p>
@@ -886,7 +950,7 @@
     </tr>
     <tr>
       <td>
-        <p>Slide image <input type="file" name="slide-4-image.jpg" id="slide-4-image"  /></p>
+        <p>Slide image <input type="file" name="slide-4-image.png" id="slide-4-image"  /></p>
       </td>
       <td>
         <p>Caption position</p>
@@ -949,7 +1013,7 @@
     </tr>
     <tr>
       <td>
-        <p>Slide image <input type="file" name="slide-5-image.jpg" id="slide-5-image"  /></p>
+        <p>Slide image <input type="file" name="slide-5-image.png" id="slide-5-image"  /></p>
       </td>
       <td>
         <p>Caption position</p>
@@ -996,29 +1060,46 @@
     </tr>
   </table>
   
+  <table>
+    <tr>
+      <th><label for="slider-width">Slider width</label></th>
+      <td>
+           <div><input type="radio" name="slider-width" id="slider-width" value="window-width" checked="checked" /> Window width</div>
+           <div><input type="radio" name="slider-width" id="slider-width" value="site-width" /> Site width</div>
+           <div><input type="radio" name="slider-width" id="slider-width" value="main-content-width" /> Main content width</div>
+           
+        <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
+      </td>
+    </tr>
+  </table>
+  
 </fieldset>
 <fieldset>
   <legend>Layout</legend>
   
   <table>
     <tr>
-      <th><label for="fix-footer-navbar">Fix footer navbar</label></th>
+      <th><label for="centered-layout">Centered layout</label></th>
       <td>
-        <input type="checkbox" name="fix-footer-navbar" id="fix-footer-navbar" value="1" /> Yes
-        <small>This setting will be overridden if the main navbar is fixed to the bottom of the window.</small>
+        <input type="checkbox" name="centered-layout" id="centered-layout" value="1" /> Yes
       </td>
     </tr>
   </table>
   
   <table>
     <tr>
-      <th><label for="navbar-placement">Navbar placement</label></th>
+      <th><label for="container-width-large-devices">Container width, large devices</label></th>
       <td>
-           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="fixed-to-top" checked="checked" /> Fixed to top</div>
-           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="static-top" /> Static top</div>
-           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="main-content" /> Main content</div>
-           <div><input type="radio" name="navbar-placement" id="navbar-placement" value="fixed-to-bottom" /> Fixed to bottom</div>
-           
+        <input type="text" name="container-width-large-devices" id="container-width-large-devices" class="text" value="1170px" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="container-width-medium-devices">Container width, medium devices</label></th>
+      <td>
+        <input type="text" name="container-width-medium-devices" id="container-width-medium-devices" class="text" value="970px" />
       </td>
     </tr>
   </table>
@@ -1054,13 +1135,11 @@
   
   <table>
     <tr>
-      <th><label for="slider-width">Slider width</label></th>
+      <th><label for="sidebar-placement">Sidebar placement</label></th>
       <td>
-           <div><input type="radio" name="slider-width" id="slider-width" value="window-width" checked="checked" /> Window width</div>
-           <div><input type="radio" name="slider-width" id="slider-width" value="site-width" /> Site width</div>
-           <div><input type="radio" name="slider-width" id="slider-width" value="main-content-width" /> Main content width</div>
+           <div><input type="radio" name="sidebar-placement" id="sidebar-placement" value="left" checked="checked" /> Left</div>
+           <div><input type="radio" name="sidebar-placement" id="sidebar-placement" value="right" /> Right</div>
            
-        <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
       </td>
     </tr>
   </table>
@@ -1068,6 +1147,24 @@
 </fieldset>
 <fieldset>
   <legend>Localization</legend>
+  
+  <table>
+    <tr>
+      <th><label for="collection">Collection</label></th>
+      <td>
+        <input type="text" name="collection" id="collection" class="text" value="Collection" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="collections">Collections</label></th>
+      <td>
+        <input type="text" name="collections" id="collections" class="text" value="Collections" />
+      </td>
+    </tr>
+  </table>
   
   <table>
     <tr>
@@ -1101,6 +1198,42 @@
       <th><label for="short-date-format">Short date format</label></th>
       <td>
         <input type="text" name="short-date-format" id="short-date-format" class="text" value="%d %B %Y" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="tag">Tag</label></th>
+      <td>
+        <input type="text" name="tag" id="tag" class="text" value="Tag" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="tags">Tags</label></th>
+      <td>
+        <input type="text" name="tags" id="tags" class="text" value="Tags" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="type">Type</label></th>
+      <td>
+        <input type="text" name="type" id="type" class="text" value="Type" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="vendor">Vendor</label></th>
+      <td>
+        <input type="text" name="vendor" id="vendor" class="text" value="Vendor" />
       </td>
     </tr>
   </table>
@@ -1163,6 +1296,101 @@
   
 </fieldset>
 <fieldset>
+  <legend>Navigation</legend>
+  
+  <table>
+    <tr>
+      <th><label for="footer-navbar-linklist-left">Footer navbar linklist, left</label></th>
+      <td>
+        <select class="linklist" name="footer-navbar-linklist-left" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="footer-navbar-linklist-right">Footer navbar linklist, right</label></th>
+      <td>
+        <select class="linklist" name="footer-navbar-linklist-right" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="footer-navbar-placement">Footer navbar placement</label></th>
+      <td>
+           <div><input type="radio" name="footer-navbar-placement" id="footer-navbar-placement" value="fixed-to-bottom" checked="checked" /> Fixed to bottom</div>
+           <div><input type="radio" name="footer-navbar-placement" id="footer-navbar-placement" value="static-bottom" /> Static bottom</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="main-nav-alignment">Main nav alignment</label></th>
+      <td>
+           <div><input type="radio" name="main-nav-alignment" id="main-nav-alignment" value="left" checked="checked" /> Left</div>
+           <div><input type="radio" name="main-nav-alignment" id="main-nav-alignment" value="center" /> Center</div>
+           <div><input type="radio" name="main-nav-alignment" id="main-nav-alignment" value="right" /> Right</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="main-navbar-linklist">Main navbar linklist</label></th>
+      <td>
+        <select class="linklist" name="main-navbar-linklist" />
+        <small>If no link list is selected the main navbar will not be shown.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="main-navbar-placement">Main navbar placement</label></th>
+      <td>
+           <div><input type="radio" name="main-navbar-placement" id="main-navbar-placement" value="full-width" checked="checked" /> Full width</div>
+           <div><input type="radio" name="main-navbar-placement" id="main-navbar-placement" value="main-content-width" /> Main content width</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="top-navbar-linklist-left">Top navbar linklist, left</label></th>
+      <td>
+        <select class="linklist" name="top-navbar-linklist-left" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="top-navbar-linklist-right">Top navbar linklist, right</label></th>
+      <td>
+        <select class="linklist" name="top-navbar-linklist-right" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="top-navbar-placement">Top navbar placement</label></th>
+      <td>
+           <div><input type="radio" name="top-navbar-placement" id="top-navbar-placement" value="fixed-to-top" checked="checked" /> Fixed to top</div>
+           <div><input type="radio" name="top-navbar-placement" id="top-navbar-placement" value="static-top" /> Static top</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+</fieldset>
+<fieldset>
   <legend>Sidebar</legend>
   
   <table>
@@ -1189,13 +1417,28 @@
   
   <table>
     <tr>
+      <th><label for="mailchimp">Mailchimp form action URL</label></th>
+      <td>
+        <input type="text" name="mailchimp" id="mailchimp" class="text" value="" />
+        <small>Use Mailchimp's form action URL for the newsletter signup form. If left blank Shopify's default action will be used.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="newsletter-signup-placement">Newsletter signup placement</label></th>
       <td>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-1" checked="checked" /> Footer column 1</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="dont-show" checked="checked" /> Don't show</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="top-navbar-left" /> Top navbar left</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="top-navbar-right" /> Top navbar right</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="sidebar" /> Sidebar</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-1" /> Footer column 1</div>
            <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-2" /> Footer column 2</div>
            <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-3" /> Footer column 3</div>
            <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-4" /> Footer column 4</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="sidebar" /> Sidebar</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-navbar-left" /> Footer navbar left</div>
+           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-navbar-right" /> Footer navbar right</div>
            
       </td>
     </tr>
@@ -1338,11 +1581,15 @@
     <tr>
       <th><label for="social-links-placement">Social links placement</label></th>
       <td>
-           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-1" checked="checked" /> Footer column 1</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="top-navbar-left" checked="checked" /> Top navbar left</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="top-navbar-right" /> Top navbar right</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-1" /> Footer column 1</div>
            <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-2" /> Footer column 2</div>
            <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-3" /> Footer column 3</div>
            <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-4" /> Footer column 4</div>
            <div><input type="radio" name="social-links-placement" id="social-links-placement" value="sidebar" /> Sidebar</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-navbar-left" /> Footer navbar left</div>
+           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-navbar-right" /> Footer navbar right</div>
            
       </td>
     </tr>
@@ -1413,6 +1660,66 @@
           <div><input type="radio" name="font-body-case" id="font-body-case" value="lowercase" /> lowercase</div>
           <div><input type="radio" name="font-body-case" id="font-body-case" value="uppercase" /> UPPERCASE</div>
           <div><input type="radio" name="font-body-case" id="font-body-case" value="title-case" /> Title Case</div>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="font-brand">Font brand</label></th>
+      <td>
+        <table class="standard-table">
+  <tbody>
+    <tr>
+      <td>
+        <p>Custom font name</p>
+        <p>
+          <input type="text" name="font-brand-custom" id="font-brand-custom" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Fallback/default</p>
+        <p>
+          <select class="font" name="font-brand" id="font-brand">
+            <option value="" selected="selected"></option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Weight</p>
+        <p>
+          <input type="text" name="font-brand-weight" id="font-brand-weight" class="text" value="" />
+        </p>
+      </td>
+      <td>
+        <p>Size (e.g. 14px)</p>
+        <p>
+          <input type="text" name="font-brand-size" id="font-brand-size" class="text" value="" />
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Style</p>
+        <p>
+          <div><input type="radio" name="font-brand-style" id="font-brand-style" value="normal" checked="checked" /> Normal</div>
+          <div><input type="radio" name="font-brand-style" id="font-brand-style" value="italic" /> Italic</div>
+        </p>
+      </td>
+      <td>
+        <p>Case</p>
+        <p>
+          <div><input type="radio" name="font-brand-case" id="font-brand-case" value="normal" checked="checked" /> Normal (as typed)</div>
+          <div><input type="radio" name="font-brand-case" id="font-brand-case" value="lowercase" /> lowercase</div>
+          <div><input type="radio" name="font-brand-case" id="font-brand-case" value="uppercase" /> UPPERCASE</div>
+          <div><input type="radio" name="font-brand-case" id="font-brand-case" value="title-case" /> Title Case</div>
         </p>
       </td>
     </tr>

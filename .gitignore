@@ -2,6 +2,7 @@
 config.yml
 Archive.zip
 theme/config.yml
+theme/config/settings_data.json
 *.lock
 *.zip
 
@@ -9,3 +10,4 @@ theme/config.yml
 node_modules
 bower_components
 .sass-cache
+.idea

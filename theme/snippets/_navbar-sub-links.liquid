@@ -1,10 +1,17 @@
-{% assign submenu = l.title | handleize %}
-{% if linklists[submenu].links.size > 0 %}
-<li class="divider"></li>
-<li class="dropdown-header">{{ l.title }}</li>
-{% for l in linklists[submenu].links %}
-{% include '_navbar-sub-links' %}
-{% endfor %}
-{% else %}
-<li><a tabindex="-1" href="{{ l.url }}" title="{{ l.title }}">{{ l.title }}</a></li>
+{% if _navbar-sub-links < 2 %}
+  {% assign submenu = l.title | handleize %}
+  {% if linklists[submenu].links.size > 0 and _navbar-sub-links < 1 %}
+    <li class="submenu">
+      <ul class="nav">
+        <li class="dropdown-header"><a tabindex="-1" href="{{ l.url }}" title="{{ l.title }}">{{ l.title }}</a></li>
+        {% for l in linklists[submenu].links %}
+          {% assign level_count = _navbar-sub-links | plus: 1 %}
+          {% include '_navbar-sub-links' with level_count %}
+        {% endfor %}
+      </ul>
+    </li>
+  {% else %}
+    <li><a tabindex="-1" href="{{ l.url }}" title="{{ l.title }}">{{ l.title }}</a></li>
+  {% endif %}
 {% endif %}
+

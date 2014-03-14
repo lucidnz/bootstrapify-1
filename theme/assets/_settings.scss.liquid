@@ -3,30 +3,40 @@
  */
 $body_padding:                        20px !default;
 $body_navbar_padding:                 50px !default;
+$footer-height:                       250px !default;
+
 $inverse_threshhold:                  60%;
+$default-background-colour:           white !default;
+$default-text-colour:                 #333 !default;
+$default-link-colour:                 #428bca !default;
 
-$default-primary-background-colour:    white !default;
-$default-secondary-background-colour:  #f8f8f8 !default;
-$default-text-colour:                  #333 !default;
-$default-link-colour:                  #428bca !default;
+$font-size-base:                      14px !default;
 
-$font-size-base:                       14px !default;
+$screen-xs-min:                       480px !default;
+$screen-sm-min:                       768px !default;
+$screen-md-min:                       992px !default;
+$screen-lg-min:                       1200px !default;
 
 /*
  * Setting Variables
  */
+
+$container-width-large-devices: {% if settings.container-width-large-devices == blank %}1170px{% else %}{{ settings.container-width-large-devices }}{% endif %}; 
+$container-width-medium-devices: {% if settings.container-width-medium-devices == blank %}970px{% else %}{{ settings.container-width-medium-devices }}{% endif %}; 
+ 
 $site-background-image:{% if settings.site-background-image != blank %}true{% else %}false{% endif %};
-$body-background-colour: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-primary-background-colour{% endif %};
+$body-background-colour: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-background-colour{% endif %};
 $body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
 $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %};
 $body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %};
 $button-colour: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}$body-link-colour{% endif %};
 $button-text-colour: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}false{% endif %};
 
-$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{% if settings.site-background-image != blank and settings.navbar-background-colour == settings.body-background-colour %}transparent{% else %}{{ settings.navbar-background-colour }}{% endif %}{% else %}$default-secondary-background-colour{% endif %};
+$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{ settings.navbar-background-colour }}{% else %}$body-background-colour{% endif %};
 $navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
 $navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
-$fix-footer-navbar: {% if settings.fix-footer-navbar != blank %}true{% else %}false{% endif %};
+$fix-top-navbar: {% if settings.top-navbar-placement == 'fixed-to-top' %}true{% else %}false{% endif %};
+$fix-footer-navbar: {% if settings.footer-navbar-placement == 'fixed-to-bottom' %}true{% else %}false{% endif %};
 
 $sidebar-background-colour: {% if settings.sidebar-background-colour != blank %}{{ settings.sidebar-background-colour }}{% else %}transparent{% endif %};
 $sidebar-heading-colour: {% if settings.sidebar-heading-colour != blank %}{{ settings.sidebar-heading-colour }}{% else %}$body-heading-colour{% endif %};
@@ -57,11 +67,19 @@ $font-size-navbar: {% if settings.font-navbar-size != blank %}{{ settings.font-n
 $font-transform-navbar: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %}{{ settings.font-navbar-case }}{% elsif settings.font-navbar-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-navbar-italic: {% if settings.font-navbar-style == 'italic' %}true{% else %}false{% endif %};
 
+$font-family-brand: {% if settings.font-brand-custom != blank %}'{{ settings.font-brand-custom }}'{% if settings.font-brand != blank %},{{ settings.font-brand }}{% endif %}{% elsif settings.font-brand != blank %}{{ settings.font-brand }}{% else %}false{% endif %};
+$font-weight-brand: {% if settings.font-brand-weight != blank %}{{ settings.font-brand-weight }}{% else %}normal{% endif %};
+$font-size-brand: {% if settings.font-brand-size != blank %}{{ settings.font-brand-size }}{% else %}false{% endif %};
+$font-transform-brand: {% if settings.font-brand-case == 'lowercase' or settings.font-brand-case == 'uppercase' %}{{ settings.font-brand-case }}{% elsif settings.font-brand-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-brand-italic: {% if settings.font-brand-style == 'italic' %}true{% else %}false{% endif %};
+
 $font-family-nav-secondary: {% if settings.font-nav-secondary-custom != blank %}'{{ settings.font-nav-secondary-custom }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %}{% elsif settings.font-nav-secondary != blank %}{{ settings.font-nav-secondary }}{% else %}false{% endif %};
 $font-weight-nav-secondary: {% if settings.font-nav-secondary-weight != blank %}{{ settings.font-nav-secondary-weight }}{% else %}normal{% endif %};
 $font-size-nav-secondary: {% if settings.font-nav-secondary-size != blank %}{{ settings.font-nav-secondary-size }}{% else %}false{% endif %};
 $font-transform-nav-secondary: {% if settings.font-nav-secondary-case == 'lowercase' or settings.font-nav-secondary-case == 'uppercase' %}{{ settings.font-nav-secondary-case }}{% elsif settings.font-nav-secondary-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-nav-secondary-italic: {% if settings.font-nav-secondary-style == 'italic' %}true{% else %}false{% endif %};
+
+$show-borders: {% if settings.show-borders %}true{% else %}false{% endif %};
 
 {% for i in (i..5) %}
   {% assign c = i | plus: 1 %}
@@ -153,7 +171,7 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     border-top-color: darken-colour($colour, 7.5%);
   }
 
-  .table-bordered, .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td{
+  .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td, .table-bordered, .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td{
     border-color: darken-colour($colour, 7.5%);
   }
   
@@ -165,6 +183,10 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     background-color: darken-colour($colour, 6%);
   }
 
+  .thumbnail{
+    border-color: darken-colour($colour, 7.5%);
+  }
+  
   .well{
     border-color: darken-colour($colour, 7.5%);
     background-color: darken-colour($body-background-colour, 4%);
@@ -227,13 +249,32 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     }
     @include button-variant($text-colour, $button-colour, darken($button-colour, 5%), $background-colour);
   }
+  .btn-default{
+    border-color: darken-colour($background-colour, 7.5%);
+    &:hover, &:focus{
+      background-color: darken-colour($background-colour, 7.5%);
+      border-color: darken-colour($background-colour, 12%);
+    }
+  }
+  .pagination > li > a, .pagination > li > span{
+    color: $link-colour;
+    border-color: darken-colour($background-colour, 7.5%);
+    &:hover, &:focus{
+      color: darken-colour($link-colour, 15%);
+      background-color: darken-colour($background-colour, 7.5%);
+      border-color: darken-colour($background-colour, 12%);
+    }
+  }
   .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus{
     color: lighten-colour($link-colour, $background-colour, 40%);
   }
-  .form-control:focus {
-    border-color: $link-colour;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
+  .form-control{
+    border-color: darken-colour($background-colour, 7.5%);
+    &:focus {
+      border-color: $link-colour;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
+    }
   }
 }
 
@@ -286,31 +327,26 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
  * Styles
  */
 body{
-  /* Navbar placement */
-  {% if settings.navbar-placement == 'fixed-to-top' %}padding-top: $body_navbar_padding + $body_padding;{% elsif settings.navbar-placement == 'main-content' and settings.logo-placement != "above-navbar" %}padding-top: $body_padding;{% endif %}
-  {% if settings.navbar-placement != 'fixed-to-bottom' and settings.fix-footer-navbar %}padding-bottom: $body_navbar_padding + $body_padding;{% endif %}
-  {% if settings.navbar-placement == 'fixed-to-bottom' %}
-    {% unless settings.logo-placement == "above-navbar" %}padding-top: $body_padding;{% endunless %}
-    padding-bottom: $body_navbar_padding;
-    #footer-credits{
-      padding-bottom: $body_navbar_padding - 2px;
-    }
-  {% endif %}
-  {% if settings.navbar-placement == 'static-top' and settings.logo-placement == "above-navbar" %}
-  .brand{
-    margin-bottom: 0;
-    @if $navbar-background-colour == $body-background-colour {
-      border: none;
-    } @else {
-      border-color: darken-colour($footer-background-colour, 7.5%);
+  /* Layout Adjustments */
+  &.has-top-navbar.has-fixed-top-navbar{
+    padding-top: $body_navbar_padding + $body_padding;
+  }
+  &.has-footer-navbar.has-fixed-footer-navbar{
+    #footer-content{
+      padding-bottom: $body_navbar_padding;
     }
   }
-  {% elsif settings.navbar-placement == 'main-content' %}
-    .brand{
-      margin-bottom: 0;
-      border: none;
+  &.has-footer{
+    #content{
+      padding-bottom: $footer-height;
     }
-  {% endif %}
+    #footer-content{
+      > .container{        
+        margin-top: -$footer-height;
+        min-height: $footer-height;
+      }
+    }
+  }
   
   /* Design and colour schemes */
   @if $font-family-body{
@@ -338,6 +374,19 @@ body{
   @include heading-colour($body-heading-colour, $body-background-colour);
   @include text-colour($body-text-colour, $body-background-colour);
   @include link-colour($body-link-colour, $body-background-colour);
+  
+  @if $show-borders == false{
+    .page-header, .thumbnail, .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+      border: none;
+    }
+    hr {
+      border-color: transparent;
+    }
+    .thumbnail {
+      padding: 0;
+      background-color: transparent;
+    }
+  }
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
@@ -372,68 +421,68 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
-.breadcrumb{
+.brand h1, .navbar-brand{
+  @if $font-family-brand {
+    font-family: $font-family-brand;
+  }
+  @if $font-size-brand{
+    font-size: $font-size-brand;
+  }
+  @if $font-brand-italic {
+    font-style: italic;
+  }
+  text-transform: $font-transform-brand;
+  font-weight: $font-weight-brand;
+}
+
+.breadcrumb, .image-placeholder{
   background-color: darken-colour($body-background-colour, 4.5%);
 }
-.breadcrumb > li + li:before{
+.breadcrumb > li + li:before, body .image-placeholder{
   color: lighten-colour($body-text-colour, $body-background-colour, 45%);
 }
 
-.navbar-default{
+#navbar-top, #navbar-footer{
   @include background-colour($navbar-background-colour);
   @include text-colour($navbar-text-colour, $navbar-background-colour);
   @include link-colour($navbar-link-colour, $navbar-background-colour);
   @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
-  @if $navbar-background-colour == $body-background-colour {
-    border: none;
-  } @else {
-    border-color: darken-colour($body-background-colour, 7.5%);
-  }
-  .navbar-nav {
-    > li > a{
-      color: $navbar-link-colour;
-      &:hover, &:focus{
-        color: darken-colour($navbar-link-colour, 15%);
-      }
-    }
-    > .dropdown > a{
-      .caret{
-        border-top-color: $navbar-link-colour;
-        border-bottom-color: $navbar-link-colour;
-      }
-      &:hover .caret, &:focus .caret{
-        border-top-color: darken-colour($navbar-link-colour, 15%);
-        border-bottom-color: darken-colour($navbar-link-colour, 15%);
-      }
-    }
-    .open .dropdown-menu > li > a{
-      color: $navbar-link-colour;
-      &:hover, &:focus{
-        color: darken-colour($navbar-link-colour, 15%);
-      }
-    }
-    > .active > a, > .active > a:hover, > .active > a:focus, .open > a, .open > a:hover, .open > a:focus{
-      color: darken-colour($navbar-link-colour, 15%);
-      background-color: darken-colour($navbar-background-colour, 7.5%);
-    }
-  }
-  .navbar-brand{
-    color: $body-heading-colour;
-    &:hover{
-      color: darken-colour($body-heading-colour, 15%);
-    }
+  @if $site-background-image and $navbar-background-colour == $body-background-colour and $fix-top-navbar == false{
+    background-color: transparent;
   }
   .navbar-toggle{
-    border-color: darken-colour($navbar-background-colour, 7.5%);
+    border-color: darken-colour($navbar-background-colour, 9%);
     .icon-bar{
-      background-color: darken-colour($navbar-background-colour, 7.5%);
+      background-color: darken-colour($navbar-background-colour, 9%);
     }
     &:hover, &:focus{
-      background-color: darken-colour($navbar-background-colour, 4%);
+      background-color: darken-colour($navbar-background-colour, 6%);
     }
   }
-  .navbar-collapse, .navbar-form{
-    border-color: darken-colour($navbar-background-colour, 7.5%);
+  .dropdown-menu{
+      background-color: darken-colour($navbar-background-colour, 5%);
+  }
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+      background-color: darken-colour($navbar-background-colour, 7.5%);
+  }
+}
+@media (min-width: $screen-sm-min){
+  #navbar-top, #navbar-footer{
+    .dropdown-menu{
+      background-color: white;
+    }
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu .nav > li > a:hover, .dropdown-menu .nav > li > a:focus{
+      background-color: whitesmoke;
+    }
+  }
+}
+
+#navbar-main{
+  @include text-colour($navbar-text-colour, $body-background-colour);
+  @include link-colour($navbar-link-colour, $body-background-colour);
+  @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
+  .navbar-nav > li > a:hover, .nav > li > a:focus{
+    background-color: transparent;
   }
 }
 
@@ -449,36 +498,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 
 #footer-content{
   @include background-colour($footer-background-colour);
-  @include heading-colour($footer-heading-colour, $footer-background-colour);
-  @include text-colour($footer-text-colour, $footer-background-colour);
-  @include link-colour($footer-link-colour, $footer-background-colour);
-  @if $fix-footer-navbar{
-    padding-bottom: 80px;
-  }
-  .nav{
-    @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
-  }
-  .container{
-    @if $site-background-image == false and ($footer-background-colour == $body-background-colour or $footer-background-colour == transparent) {
-      border-top-color: darken-colour($footer-background-colour, 7.5%);
-    } @else {
-      border-top: none;
+  > .container{
+    @include heading-colour($footer-heading-colour, $footer-background-colour);
+    @include text-colour($footer-text-colour, $footer-background-colour);
+    @include link-colour($footer-link-colour, $footer-background-colour);
+    .nav{
+      @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
     }
-  }
-}
-
-#footer-credits{
-  @if $fix-footer-navbar {
-    border-color: darken-colour($navbar-background-colour, 7.5%);
-  } @else {
-    border: none;
   }
 }
 
 .carousel-caption{
   color: $body-text-colour;
-  background-color: $body-background-colour;
-  border-color: darken-colour($body-background-colour, 7.5%);
 }
 .carousel-indicators li{
   border-color: $body-text-colour;
@@ -487,7 +518,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   background-color: $body-text-colour;
 }
 
-@media (min-width: 768px){
+@media (min-width: $screen-sm-min){
   .sidebar{
     background-color: transparent;
     .sidebar-content{
@@ -513,6 +544,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
   .carousel-indicators .active{
     background-color: white;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .container {
+    width: $container-width-medium-devices;
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  .container {
+    width: $container-width-large-devices;
   }
 }
 
