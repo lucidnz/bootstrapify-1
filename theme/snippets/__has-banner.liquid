@@ -1,0 +1,9 @@
+{% assign has_banner = false %}
+{% assign template = template | split: '.' | first %}
+{% assign banner_img = [template]metafields.banner.image %}
+
+{% if banner_img != null %}
+{% assign has_banner = true %}
+{% elsif template contains 'index' and settings.slide-1-active %}
+{% assign has_banner = true %}
+{% endif %}
