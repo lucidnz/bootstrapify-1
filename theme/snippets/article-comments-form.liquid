@@ -1,0 +1,45 @@
+<h4>{% include '__localize' with 'Leave a comment' %}</h4>
+{% form article %}
+<div class="form-horizontal">
+  {% if form.posted_successfully? %}
+  {% if blog.moderated? %}
+  <div class="alert alert-success">{% include '__localize' with 'Comment posted. Awaiting moderation.' %}</div>
+  {% else %}
+  <div class="alert alert-success">{% include '__localize' with 'Comment posted.' %}</div>
+  {% endif %}
+  {% else %}
+  {% if form.errors %}
+  <div class="alert alert-danger">{% include '__localize' with 'Sorry, you appear to have missed something. Please see below.' %}</div>
+  {% endif %}
+	
+  <div class="form-group {% if form.errors contains 'author' %}has-error has-feedback{% endif %}">
+    <label for="comment_author" class="col-sm-2">{% include '__localize' with 'Your name' %}</label>
+    <div class="col-sm-10">
+      <input type="text" value="{{form.author}}" name="comment[author]" id="comment_author" class="form-control" placeholder="{% include '__localize' with 'First Last' %}">
+      {% if form.errors contains 'author' %}<span class="fa fa-times form-control-feedback"></span>{% endif %}
+    </div>
+  </div>
+  <div class="form-group {% if form.errors contains 'email' %}has-error has-feedback{% endif %}">
+    <label for="comment_email" class="col-sm-2">{% include '__localize' with 'Email' %}</label>
+    <div class="col-sm-10">
+      <input type="text" value="{{form.email}}" id="comment_email" name="comment[email]" class="form-control" placeholder="{% include '__localize' with '(Your email will not be pubslished)' %}">
+      {% if form.errors contains 'email' %}<span class="fa fa-times form-control-feedback"></span>{% endif %}
+    </div>
+  </div>
+  <div class="form-group {% if form.errors contains 'body' %}has-error has-feedback{% endif %}">
+    <label for="comment_body" class="col-sm-2">{% include '__localize' with 'Your comment' %}</label>
+    <div class="col-sm-10">
+      <textarea rows="3" id="comment_body" name="comment[body]" class="form-control">{{form.body}}</textarea>
+      {% if form.errors contains 'body' %}<span class="fa fa-times form-control-feedback"></span>{% endif %}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" class="btn btn-primary" value="{% include '__localize' with 'Post comment' %}" />
+      {% if blog.moderated? %}<span class="text-muted help-block">{% include '__localize' with 'All comments are held for moderation. Your comment will appear shortly.' %}</span>{% endif %}  
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endform %}
