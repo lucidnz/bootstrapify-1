@@ -3,8 +3,10 @@
   <div class="thumbnail">
     {{ image }}
     <div class="caption clearfix">
-      <div><strong>{{ _product.title | link_to: product_url }}</strong></div>
-      {% if has_prices and _product.price > 0 %}<div class="text-right">{% include 'product-thumb-price' with _product %}</div>{% endif %}
+      <h3>{{ _product.title | link_to: product_url }}</h3>
+	  {% assign _excerpt = _product.description | split: '===' %}
+	  <p>{{ _excerpt.last }}</p>
+	  {% if has_prices and _product.price > 0 %}<div class="text-right">{% include 'product-thumb-price' with _product %}</div>{% endif %}
     </div>
   </div>
 </div>

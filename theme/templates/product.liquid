@@ -50,8 +50,10 @@
       {% endif %}
       {% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 
-      <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+	  {% assign product_desc = product.description | split: '===' %}
+      <p itemprop="description">{% include '__formatted-content' with product_desc.first %}</p>
     
+	  {% comment %}
       <table class="table {% include '__table-formatting' %}">
         <tr>
           <th>{% include '__localize' with 'Vendor' %}</th>
@@ -70,6 +72,7 @@
           <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</td>
         </tr>
       </table>
+	  {% endcomment %}
     </div>
   </div>
 </form>
