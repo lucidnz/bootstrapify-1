@@ -29,7 +29,7 @@
       <th><label for="custom-footer-code">Custom footer code</label></th>
       <td>
         <textarea name="custom-footer-code" id="custom-footer-code"></textarea>
-        <small><p>Scripts to be placed before the sites closing body tag.</p></small>
+        <small><p>Anything to be placed before the site?s closing body tag.</p></small>
       </td>
     </tr>
   </table>
@@ -39,7 +39,7 @@
       <th><label for="custom-header-code">Custom header code</label></th>
       <td>
         <textarea name="custom-header-code" id="custom-header-code"></textarea>
-        <small><p>Scripts to be placed inside the sites head tag.</p></small>
+        <small><p><span>Anything to be placed within the site's head tag.</span></p></small>
       </td>
     </tr>
   </table>
@@ -178,6 +178,15 @@
   
   <table>
     <tr>
+      <th><label for="quick-cart">Enable quick cart</label></th>
+      <td>
+        <input type="checkbox" name="quick-cart" id="quick-cart" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="hide-prices-if-cart-disabled">Hide prices if cart is disabled</label></th>
       <td>
         <input type="checkbox" name="hide-prices-if-cart-disabled" id="hide-prices-if-cart-disabled" value="1" /> Yes
@@ -214,7 +223,7 @@
            <div><input type="radio" name="tag-format" id="tag-format" value="dropdown" checked="checked" /> Dropdown</div>
            <div><input type="radio" name="tag-format" id="tag-format" value="buttons" /> Buttons</div>
            
-        <small>If tag format is set to buttons and there are more than 10 tags a dropdown will be shown instead.</small>
+        <small>If tag format is set to buttons and there are more than 20 tags a dropdown will be shown instead.</small>
       </td>
     </tr>
   </table>
@@ -700,6 +709,16 @@
            <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="4-rows" /> 4 rows</div>
            <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="unlimited" /> Unlimited</div>
            
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="features-blog">Features blog</label></th>
+      <td>
+        <select class="blog" name="features-blog" />
+        <small>If you have a blog containing features for your product, you can display excerpts on your homepage.</small>
       </td>
     </tr>
   </table>
@@ -1598,16 +1617,6 @@
 </fieldset>
 <fieldset>
   <legend>Typography</legend>
-  
-  <table>
-    <tr>
-      <th><label for="custom-font-embed-code">Custom font embed code</label></th>
-      <td>
-        <textarea name="custom-font-embed-code" id="custom-font-embed-code"></textarea>
-        <small>This is for the web font embed code provided by your web font service. e.g. Google Fonts, Typekit, Fonts.com</small>
-      </td>
-    </tr>
-  </table>
   
   <table>
     <tr>
