@@ -17,3 +17,14 @@
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
   {% include 'products-list' with 'featured' %}
 {% endif %}
+
+{% unless homepage.metafields.support.size == 0 %}
+<hr>
+<aside class="row">
+{% for field in homepage.metafields.support %}
+	<div class="col-sm-2">
+		<img src="{{ field | last }}" alt="{{ field | first }}">	        
+	</div>
+{% endfor %}
+</aside>
+{% endunless %}
