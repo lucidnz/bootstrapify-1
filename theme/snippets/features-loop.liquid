@@ -1,0 +1,12 @@
+{% if features-loop == 'linklist' %}{% assign object = l.object %}{% else %}{% assign object = l %}{% endif %}
+<div class="col-md-{{ 12 | divided_by: cols }}">
+  <div class="media">
+    <div class="pull-left">
+      <i class="fa fa-{{ object.metafields.lucid.icon }} fa-fw fa-2x text-muted media-object"></i>
+    </div>
+    <div class="media-body">
+      <h3 class="text-left media-heading"><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h3>
+      <p>{% if object.description == blank and shop.url contains 'myshopify' and settigns.development-mode != false %}You can change the feature descriptions by editing the descriptions of the linked pages or collections in <a href="{{ shop.url }}/admin/link_lists/{{ linklists.what-we-do.id }}" target="_blank"> {{ linklists.what-we-do.title }} linklist</a>.{% else %}{{ object.description }}{% endif %}</p>
+    </div>
+  </div>
+</div>
