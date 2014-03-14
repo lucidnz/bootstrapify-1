@@ -1,0 +1,7 @@
+{% capture sidebar_span %}
+{% if settings.sidebar-placement == 'left' %}
+  col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9
+{% else %}
+  col-sm-4 col-md-3
+{% endif %}
+{% endcapture %}{{ sidebar_span | strip_newlines | strip }}

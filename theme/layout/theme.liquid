@@ -48,7 +48,6 @@
 
 {% include '__has-variables' %}
 <body class="{% include '__body-classes' %}">
-
   <div id="wrap">
   {% if has_top_navbar %}{% include 'navbar' with 'top' %}{% endif %}
   
@@ -69,16 +68,7 @@
           {% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
           {{ content_for_layout }}
         </div>
-        
-        {% if has_sidebar %}
-          {% if settings.show-sidebar %}
-            {% unless settings.show-sidebar-on-homepage == blank and template == "index" %}
-              {% include 'sidebar' %}
-            {% endunless %}
-          {% elsif settings.show-sidebar-on-homepage and template == "index" %}
-            {% include 'sidebar' %}
-          {% endif %}
-        {% endif %}
+        {% include 'sidebar' %}
       </div>
     </div>
   </div>

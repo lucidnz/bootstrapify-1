@@ -126,13 +126,17 @@ a.icon:hover {
   text-decoration: none;
 }
 
-.image_placeholder{
+.image-placeholder{
   display: block;
   text-align: center;
   width: 100%;
-  padding: 6em;
+  padding-top: 6em;
+  padding-bottom: 6em;
   margin-bottom: 1em;
   background-color: $gray-lighter;
+  .image-placeholder-content{
+    margin: auto;
+  }
 }
 
 .money {
@@ -297,6 +301,17 @@ a.icon:hover {
   li:first-child {
     margin-top: 0;
   }
+}
+
+.article-meta{
+  @extend .list-unstyled;
+  @extend .text-muted;
+  a{
+    @extend .text-muted;
+  }
+}
+header .article-meta{
+  @extend .list-inline;
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
