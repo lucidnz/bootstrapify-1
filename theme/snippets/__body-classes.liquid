@@ -10,6 +10,8 @@
 {% if has_footer_navbar %} has-footer-navbar{% endif %}
 {% if has_fixed_footer_navbar %} has-fixed-footer-navbar{% endif %}
 
+ {{ settings.slider-width | prepend: 'banner-' }}
+
 {% if settings.show-multiple-currencies %} currencies{% endif %}
 {% if settings.centered-layout %} centered-layout{% endif %}
  {{ template | replace: '.', '-' }}
