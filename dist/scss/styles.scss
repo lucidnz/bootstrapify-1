@@ -182,6 +182,10 @@ a.icon:hover {
   }
 }
 
+.media-body {
+  margin-bottom: $grid-gutter-width;
+}
+
 .loader {
   margin: 0 auto;
   z-index: 9999;

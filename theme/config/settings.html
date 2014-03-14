@@ -39,8 +39,16 @@
       <th><label for="custom-header-code">Custom header code</label></th>
       <td>
         <textarea name="custom-header-code" id="custom-header-code"></textarea>
-        <small><p><span style="line-height: 1.5;">Anything to be placed within the site’s head tag.</span></p>
-X</small>
+        <small><p><span>Anything to be placed within the site's head tag.</span></p></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="development-mode">Development mode</label></th>
+      <td>
+        <input type="checkbox" name="development-mode" id="development-mode" value="1" /> Yes
       </td>
     </tr>
   </table>
@@ -179,6 +187,15 @@ X</small>
   
   <table>
     <tr>
+      <th><label for="quick-cart">Enable quick cart</label></th>
+      <td>
+        <input type="checkbox" name="quick-cart" id="quick-cart" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="hide-prices-if-cart-disabled">Hide prices if cart is disabled</label></th>
       <td>
         <input type="checkbox" name="hide-prices-if-cart-disabled" id="hide-prices-if-cart-disabled" value="1" /> Yes
@@ -215,7 +232,7 @@ X</small>
            <div><input type="radio" name="tag-format" id="tag-format" value="dropdown" checked="checked" /> Dropdown</div>
            <div><input type="radio" name="tag-format" id="tag-format" value="buttons" /> Buttons</div>
            
-        <small>If tag format is set to buttons and there are more than 10 tags a dropdown will be shown instead.</small>
+        <small>If tag format is set to buttons and there are more than 20 tags a dropdown will be shown instead.</small>
       </td>
     </tr>
   </table>
@@ -671,6 +688,16 @@ X</small>
   
   <table>
     <tr>
+      <th><label for="featured-blog">Featured blog</label></th>
+      <td>
+        <select class="blog" name="featured-blog" />
+        <small>Displays a grid of featured blog posts on your homepage.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="featured-collections-limit">Featured collections limit</label></th>
       <td>
            <div><input type="radio" name="featured-collections-limit" id="featured-collections-limit" value="1-row" checked="checked" /> 1 row</div>
@@ -701,16 +728,6 @@ X</small>
            <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="4-rows" /> 4 rows</div>
            <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="unlimited" /> Unlimited</div>
            
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="features-blog">Features blog</label></th>
-      <td>
-        <select class="blog" name="features-blog" />
-        <small>If you have a blog containing features for your product, you can display excerpts on your homepage.</small>
       </td>
     </tr>
   </table>
