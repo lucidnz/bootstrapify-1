@@ -11,4 +11,3 @@ node_modules
 bower_components
 .sass-cache
 .idea
-theme/config/settings.json
