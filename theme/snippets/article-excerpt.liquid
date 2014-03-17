@@ -1,0 +1,3 @@
+<h5>{{ a.title | link_to: a.url, a.title }}</h5>
+<p class="text-muted"><small>{{ a.published_at | date: settings.short-date-format }}</small></p>
+<p>{% include '__excerpt' with a.excerpt_or_content %} <a href="{{ a.url }}">{% include '__localize' with 'Read&nbsp;more' %}&nbsp;&rarr;</a></p>
