@@ -4,6 +4,6 @@
     {% include '__image-placeholder' %}
     {% assign image = image | link_to: product_url %}
   {% else %}
-    {% assign image = _product.featured_image.src | product_img_url: 'large' | img_tag | link_to: product_url %}
+    {% assign image = _product.featured_image.src | product_img_url: 'large' | img_tag: _product.featured_image.alt | link_to: product_url %}
   {% endif %}
 {% endcapture %}

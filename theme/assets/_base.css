@@ -5364,6 +5364,9 @@ a.icon:hover {
 .gutter-bottom {
   margin-bottom: 30px; }
 
+.btn-group > .btn:first-child {
+  margin-left: 15px; }
+
 .dl-horizontal-left dt {
   text-align: left; }
 
