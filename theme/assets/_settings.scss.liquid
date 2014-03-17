@@ -48,32 +48,32 @@ $footer-heading-colour: {% if settings.footer-heading-colour != blank %}{{ setti
 $footer-text-colour: {% if settings.footer-text-colour != blank %}{{ settings.footer-text-colour }}{% else %}$body-text-colour{% endif %};
 $footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.footer-link-colour }}{% else %}$body-link-colour{% endif %};
 
-$font-family-body: {% if settings.font-body-custom != blank %}'{{ settings.font-body-custom }}'{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %}{% elsif settings.font-body != blank %}{{ settings.font-body }}{% else %}false{% endif %};
+$font-family-body: {% if settings.font-body-custom != blank %}'{{ settings.font-body-custom | remove: "'" | remove: '"' }}'{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %}{% elsif settings.font-body != blank %}{{ settings.font-body }}{% else %}false{% endif %};
 $font-weight-body: {% if settings.font-body-weight != blank %}{{ settings.font-body-weight }}{% else %}normal{% endif %};
 $font-size-body: {% if settings.font-body-size != blank %}{{ settings.font-body-size }}{% else %}false{% endif %};
 $font-transform-body: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %}{{ settings.font-body-case }}{% elsif settings.font-body-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-body-italic: {% if settings.font-body-style == 'italic' %}true{% else %}false{% endif %};
 
-$font-family-heading: {% if settings.font-heading-custom != blank %}'{{ settings.font-heading-custom }}'{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %}{% elsif settings.font-heading != blank %}{{ settings.font-heading }}{% else %}false{% endif %};
+$font-family-heading: {% if settings.font-heading-custom != blank %}'{{ settings.font-heading-custom | remove: "'" | remove: '"' }}'{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %}{% elsif settings.font-heading != blank %}{{ settings.font-heading }}{% else %}false{% endif %};
 $font-weight-heading: {% if settings.font-heading-weight != blank %}{{ settings.font-heading-weight }}{% else %}normal{% endif %};
 $font-size-heading: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size }}{% else %}false{% endif %};
 $font-transform-heading: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-heading-italic: {% if settings.font-heading-style == 'italic' %}true{% else %}false{% endif %};
 $heading-letterpress: {% if settings.heading-letterpress%}true{% else %}false{% endif %};
 
-$font-family-navbar: {% if settings.font-navbar-custom != blank %}'{{ settings.font-navbar-custom }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %}{% elsif settings.font-navbar != blank %}{{ settings.font-navbar }}{% else %}false{% endif %};
+$font-family-navbar: {% if settings.font-navbar-custom != blank %}'{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %}{% elsif settings.font-navbar != blank %}{{ settings.font-navbar }}{% else %}false{% endif %};
 $font-weight-navbar: {% if settings.font-navbar-weight != blank %}{{ settings.font-navbar-weight }}{% else %}normal{% endif %};
 $font-size-navbar: {% if settings.font-navbar-size != blank %}{{ settings.font-navbar-size }}{% else %}false{% endif %};
 $font-transform-navbar: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %}{{ settings.font-navbar-case }}{% elsif settings.font-navbar-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-navbar-italic: {% if settings.font-navbar-style == 'italic' %}true{% else %}false{% endif %};
 
-$font-family-brand: {% if settings.font-brand-custom != blank %}'{{ settings.font-brand-custom }}'{% if settings.font-brand != blank %},{{ settings.font-brand }}{% endif %}{% elsif settings.font-brand != blank %}{{ settings.font-brand }}{% else %}false{% endif %};
+$font-family-brand: {% if settings.font-brand-custom != blank %}'{{ settings.font-brand-custom | remove: "'" | remove: '"' }}'{% if settings.font-brand != blank %},{{ settings.font-brand }}{% endif %}{% elsif settings.font-brand != blank %}{{ settings.font-brand }}{% else %}false{% endif %};
 $font-weight-brand: {% if settings.font-brand-weight != blank %}{{ settings.font-brand-weight }}{% else %}normal{% endif %};
 $font-size-brand: {% if settings.font-brand-size != blank %}{{ settings.font-brand-size }}{% else %}false{% endif %};
 $font-transform-brand: {% if settings.font-brand-case == 'lowercase' or settings.font-brand-case == 'uppercase' %}{{ settings.font-brand-case }}{% elsif settings.font-brand-case == 'title-case'%}capitalize{% else %}none{% endif %};
 $font-brand-italic: {% if settings.font-brand-style == 'italic' %}true{% else %}false{% endif %};
 
-$font-family-nav-secondary: {% if settings.font-nav-secondary-custom != blank %}'{{ settings.font-nav-secondary-custom }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %}{% elsif settings.font-nav-secondary != blank %}{{ settings.font-nav-secondary }}{% else %}false{% endif %};
+$font-family-nav-secondary: {% if settings.font-nav-secondary-custom != blank %}'{{ settings.font-nav-secondary-custom | remove: "'" | remove: '"' }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %}{% elsif settings.font-nav-secondary != blank %}{{ settings.font-nav-secondary }}{% else %}false{% endif %};
 $font-weight-nav-secondary: {% if settings.font-nav-secondary-weight != blank %}{{ settings.font-nav-secondary-weight }}{% else %}normal{% endif %};
 $font-size-nav-secondary: {% if settings.font-nav-secondary-size != blank %}{{ settings.font-nav-secondary-size }}{% else %}false{% endif %};
 $font-transform-nav-secondary: {% if settings.font-nav-secondary-case == 'lowercase' or settings.font-nav-secondary-case == 'uppercase' %}{{ settings.font-nav-secondary-case }}{% elsif settings.font-nav-secondary-case == 'title-case'%}capitalize{% else %}none{% endif %};

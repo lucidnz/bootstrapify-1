@@ -13,6 +13,6 @@
 </li>
 {% else %}
 <li class="{% if l.active %}active{% endif %}">
-  <a href="{{ l.url }}" title="{{ l.title }}">{{ l.title }}</a>
+  <a href="{{ l.url }}" title="{{ l.title | strip_html }}">{{ l.title }}</a>
 </li>
 {% endif %}
