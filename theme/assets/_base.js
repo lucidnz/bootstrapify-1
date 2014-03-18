@@ -180,13 +180,7 @@ $('[data-main-image]').click(function(event) {
 	var targetImage = $(this).attr('data-main-image');
 	var $mainImage = getID('main');
 	if($mainImage.attr('src') !== targetImage){
-    $mainImage.fadeOut(400, function(){
-      $('div.loader').fadeIn(100);
-      $(this).attr('src', targetImage).load(function(){
-        $('div.loader').fadeOut(100);
-        $(this).fadeIn();
-      });
-    });
+    $mainImage.hide().attr('src', targetImage).fadeIn();
 	}
 	event.preventDefault();
 });
