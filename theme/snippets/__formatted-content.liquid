@@ -1,6 +1,6 @@
 {% capture table_replace %}<table class="table{% include '__table-formatting' %}"{% endcapture %}
 {% capture img_replace %}<img class="thumbnail"{% endcapture %}
-{% assign formatted_content = __formatted-content | remove: '<p>===</p>' | remove: '===' | first: '<table',table_replace | first: '<img',img_replace | replace: '<p>&nbsp;</p>',' ' %}
+{% assign formatted_content = __formatted-content | remove: '<p>===</p>' | remove: '===' | replace_first: '<table',table_replace | replace_first: '<img',img_replace | replace: '<p>&nbsp;</p>',' ' %}
 {% if formatted_content contains '<p>' %}
   {{ formatted_content }}
 {% else %}

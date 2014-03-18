@@ -209,6 +209,10 @@ a.icon:hover {
   margin-bottom: $grid-gutter-width;
 }
 
+.btn-group > .btn:first-child {
+	margin-left: $grid-gutter-width / 2;
+}
+
 .dl-horizontal-left{
   @extend .dl-horizontal;
   dt{
