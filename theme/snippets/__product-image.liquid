@@ -4,6 +4,10 @@
     {% include '__image-placeholder' %}
     {% assign image = image | link_to: product_url %}
   {% else %}
-    {% assign image = _product.featured_image.src | product_img_url: 'large' | img_tag: _product.featured_image.alt | link_to: product_url %}
+  	{% if settings.round-product-images %}
+		{% assign image = _product.featured_image.src | product_img_url: 'large' | img_tag: _product.featured_image.alt, 'img-circle' | link_to: product_url %}
+	{% else %}
+    	{% assign image = _product.featured_image.src | product_img_url: 'large' | img_tag: _product.featured_image.alt | link_to: product_url %}
+	{% endif %}
   {% endif %}
 {% endcapture %}
