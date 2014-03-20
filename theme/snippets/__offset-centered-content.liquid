@@ -5,5 +5,5 @@
   </div>
 </div>
 {% else %}
-  {{ __offset-centered-content }}
+  {% include '__formatted-content' with __offset-centered-content %}
 {% endif %}
