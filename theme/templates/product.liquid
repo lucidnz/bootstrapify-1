@@ -3,7 +3,9 @@
 {% if product.featured_image == blank %}
 {% include '__image-placeholder' %}
 {% else %}
-{% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">{% endcapture %}
+	{% capture image %}
+		<img id="main" {% if settings.round-product-images %}class="img-circle" {% endif %}src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">
+	{% endcapture %}
 {% endif %}
 {% endcapture %}
 <div class="visible-xs">
@@ -26,7 +28,11 @@
         {% for image in product.images %}
         <div class="col-xs-6 col-sm-4">
           <a href="#" class="thumbnail" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-            {{ image.src | product_img_url: 'medium' | img_tag }}
+			  {% if settings.round-product-images %}
+			  	{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
+			  {% else %}
+			  	{{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
+			  {% endif %}
           </a>
         </div>
         {% endfor %}
