@@ -107,8 +107,8 @@
 }(jQuery));
 
 /*
- * Base JS file
- */
+* Base JS file
+*/
 
 function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
   return jQuery(document.getElementById(id));
@@ -177,12 +177,12 @@ $(window).load(function(){
 
 /* Product Image Switcher */
 $('[data-main-image]').click(function(event) {
-	var targetImage = $(this).attr('data-main-image');
-	var $mainImage = getID('main');
-	if($mainImage.attr('src') !== targetImage){
+  var targetImage = $(this).attr('data-main-image');
+  var $mainImage = getID('main');
+  if($mainImage.attr('src') !== targetImage){
     $mainImage.hide().attr('src', targetImage).fadeIn();
-	}
-	event.preventDefault();
+  }
+  event.preventDefault();
 });
 
 
@@ -191,8 +191,8 @@ var modalForm = getID('signinModal');
 modalForm.on('submit', 'form', function(e){
   // collect form data and validate
   var form = $(this),
-    inputArray = [],
-    valid = true;
+  inputArray = [],
+  valid = true;
   form.find('input').each(function(){
     var input = $(this);
     if(input.attr('name')){
@@ -231,7 +231,7 @@ modalForm.on('submit', 'form', function(e){
 
 /* Recover password form */
 var recoverForm = getID('customer-recover-password-form'),
-  loginForm = getID('customer-login-form');
+loginForm = getID('customer-login-form');
 
 function showRecoverPasswordForm() {
   recoverForm.parent().show();
