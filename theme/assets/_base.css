@@ -5501,6 +5501,8 @@ a.icon:hover {
 .centered-layout .caption,
 .centered-layout .author {
   text-align: center; }
+.centered-layout .rss-subscribe {
+  text-align: center; }
 .centered-layout .text-left {
   text-align: left; }
 .centered-layout .text-right, .centered-layout .money {
