@@ -74,7 +74,7 @@
     .text('Tag your photos using #'+this.currentHashtag+' to be seen on our instagram feed.');
     
     var imageContainer = $('<div>')
-    .addClass('instagram-images');
+    .addClass('instagram-images row');
     
     this.$ele
     .append(title)
@@ -90,7 +90,7 @@
   
   BootstrapifyInstagram.prototype.createPhotoElement = function(photo){
     var innerHtml = $('<img>')
-    .addClass('instagram-image')
+    .addClass('instagram-image thumbnail')
     .attr('src', photo.images.low_resolution.url);
 
     innerHtml = $('<a>')
@@ -99,7 +99,7 @@
     .append(innerHtml);
 
     return $('<div>')
-    .addClass('instagram-thumb')
+    .addClass('instagram-thumb col-sm-3')
     .attr('id', photo.id)
     .append(innerHtml);
   };
