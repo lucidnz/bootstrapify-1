@@ -127,7 +127,6 @@ var preloadProductImages = function(){
 $(function() {
   /* Multiple currencies */
   if ($('body').hasClass('currencies')) {
-        
     $('#currency-picker-toggle a').click(function() {
       $('#currency-picker-toggle').hide();
       $('#currencies-picker').fadeIn();
@@ -143,7 +142,6 @@ $(function() {
       $('#currency-picker-toggle').fadeIn();
       return true;
     });
-
   }
   
   $('.navbar .dropdown').bootstrapifyDropdown();
