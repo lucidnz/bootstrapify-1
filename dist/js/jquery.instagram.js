@@ -1,7 +1,11 @@
 /*
  * jquery.instagram.js
- * Display an instagram feed on your shopify site.
- * Requires jQuery Instagram by Giovanni Cappellotto http://potomak.github.com/jquery-instagram
+ * Display an Instagram feed on your Shopify site.
+ *
+ * Wrapper for jQuery Instagram by Giovanni Cappellotto https://github.com/potomak/jquery-instagram
+ * Adds a black-list for filtering unwanted images
+ * As well as the ablity to show a page specific hashtag if one exists
+ * with a global fallback if it doesn't exist or returns no results
  */
  
 (function($) {
@@ -10,51 +14,112 @@
     this.$ele           = $ele;
     this.clientId       = this.$ele.data('client-id');
     this.hastag         = this.$ele.data('hashtag');
-    this.defaultHastag  = this.$ele.data('default-hashtag');
+    this.defaultHashtag = this.$ele.data('default-hashtag');
+    this.currentHashtag = this.hastag || this.defaultHashtag;
     this.imageCount     = this.$ele.data('image-count');
     this.blacklist      = this.$ele.data('blacklist').split(',');
     
-    this.init();
+    this.addEventListeners();
+    this.buildWidgetMarkup();
+    this.loadInstagramImages(this.currentHashtag);
   };
   
-  BootstrapifyInstagram.prototype.init = function(){
+  BootstrapifyInstagram.prototype.addEventListeners = function(){
     var self = this;
-    var hashtag = this.hastag || this.defaultHastag;
-    this.$ele.instagram({
-      hash: hashtag,
-      count: this.imageCount,
-      clientId: this.clientId
-    }).on('didLoadInstagram', function(event, response){
+    this.$ele.on('didLoadInstagram', function(event, response){
       self.didLoadInstagram(this, event, response);
     });
   };
   
+  BootstrapifyInstagram.prototype.loadInstagramImages = function(hashtag){
+    this.currentHashtag = hashtag; // make sure we always know what we are searching
+    
+    // Call Instagram request
+    this.$ele.instagram({
+      hash: hashtag,
+      count: this.imageCount + 10, // grab some extras so that we can account for any images that are filltered out by Instagram or blacklisted
+      clientId: this.clientId
+    });
+  };
+  
   BootstrapifyInstagram.prototype.didLoadInstagram = function(element, event, response){
-    console.log(this);
-    console.log(event);
-    console.log(element);
-    console.log(response);
-/*
+    var self = this;
     if(response.data.length > 0){
-      $.each(response.data, function(i, photo) {
-        $(that).append(createPhotoElement(photo));
-      });
+      self.loopResponseData(response.data);
     } else {
-      console.log('No images for instagram search');
+      self.noResponseData();
     }
-*/
+  };
+  
+  BootstrapifyInstagram.prototype.loopResponseData = function(data){
+    var self = this;
+    // make sure we are returning an expected amount of images, or as close to
+    // taking into account filltered and blacklisted images
+    var imageCount = 0;
+    $.each(data, function(i, photo) {
+      if(imageCount === self.imageCount){ return false; } // break when we have what we need
     
+      if(self.notInBlackList(photo)){
+        self.addImage(photo);
+        imageCount++;
+      }
+    });
+  };
+  
+  BootstrapifyInstagram.prototype.buildWidgetMarkup = function(){
+    var title = $('<h2>')
+    .text('Instagram');
     
-/*
-    var that = this;
-    if(response.data.length > 0){
-      $.each(response.data, function(i, photo) {
-        $(that).append(createPhotoElement(photo));
-      });
+    var message = $('<p>')
+    .text('Tag your photos using #'+this.currentHashtag+' to be seen on our instagram feed.');
+    
+    var imageContainer = $('<div>')
+    .addClass('instagram-images');
+    
+    this.$ele
+    .append(title)
+    .append(message)
+    .append(imageContainer);
+  };
+  
+  BootstrapifyInstagram.prototype.addImage = function(photo){
+    var imageContainer = this.$ele.find('.instagram-images');
+    var imageElement = this.createPhotoElement(photo);
+    imageContainer.append(imageElement);
+  };
+  
+  BootstrapifyInstagram.prototype.createPhotoElement = function(photo){
+    var innerHtml = $('<img>')
+    .addClass('instagram-image')
+    .attr('src', photo.images.low_resolution.url);
+
+    innerHtml = $('<a>')
+    .attr('target', '_blank')
+    .attr('href', photo.link)
+    .append(innerHtml);
+
+    return $('<div>')
+    .addClass('instagram-thumb')
+    .attr('id', photo.id)
+    .append(innerHtml);
+  };
+  
+  BootstrapifyInstagram.prototype.notInBlackList = function(photo){
+    var inList = true;
+    $.each(this.blacklist, function(i, str){
+      str = $.trim(str);
+      if(str !== '' && photo.link.indexOf(str) !== -1){ inList = false; }
+    });
+    return inList;
+  };
+  
+  BootstrapifyInstagram.prototype.noResponseData = function(){
+    if(this.currentHashtag !== this.defaultHashtag){
+      this.loadInstagramImages(this.defaultHashtag); // drop back to fallback hashtag
     } else {
-      console.log('No images for instagram search');
+      var message = $('p').text('No images found for #'+this.currentHashtag);
+      this.$ele.append(message);
     }
-*/
   };
 
   $.fn.bootstrapifyInstagram = function(){
@@ -70,76 +135,3 @@
 $(function(){
   jQuery(document.getElementById('instagram-widget')).bootstrapifyInstagram();
 });
-
-/*
-$(document).ready(function(){
-  var clientId = '5491f0c04ee54ee09dd0803be66f96a9';
-  var $instagram = $('.instagram');
-  var hashtag = $instagram.data('hashtag');
-  var hashtagFallback = $instagram.data('hashtag-fallback');
-  var blackList = '{{ settings.instagram_app_black_list }}'.split(',');
-  var imageCount = 12;
-  
-  function inBlackList(photo){
-    var inList = false;
-    $.each(blackList, function(i, str){
-      var str = $.trim(str);
-      if(str != '' && photo.link.indexOf(str) !== -1){ inList = true; }
-    });
-    return inList;
-  }
-  
-  function createPhotoElement(photo) {
-    if(!inBlackList(photo)){
-      var innerHtml = $('<img>')
-      .addClass('instagram-image')
-      .attr('src', photo.images.thumbnail.url);
-  
-      innerHtml = $('<a>')
-      .attr('target', '_blank')
-      .attr('href', photo.link)
-      .append(innerHtml);
-  
-      return $('<div>')
-      .addClass('instagram-thumb col-sm-2 col-md-2 col-lg-2')
-      .attr('id', photo.id)
-      .append(innerHtml);
-    }
-  }
-
-  function didLoadInstagram(event, response) {
-    var that = this;
-    if(response.data.length > 0){
-      $.each(response.data, function(i, photo) {
-        $(that).append(createPhotoElement(photo));
-      });
-    } else {
-      console.log('No images for instagram search, loading fallback');
-      $(that).instagram({
-        hash: hashtagFallback,
-        count: imageCount,
-        clientId: clientId
-      })
-      .off('didLoadInstagram', didLoadInstagram)
-      .on('didLoadInstagram', didLoadInstagramFallback);
-    }
-  }
-  
-  function didLoadInstagramFallback(event, response){
-    var that = this;
-    if(response.data.length > 0){
-      $.each(response.data, function(i, photo) {
-        $(that).append(createPhotoElement(photo));
-      });
-    } else {
-      $(that).append('no images found.');
-    }
-  }
-    
-  $instagram.instagram({
-    hash: hashtag,
-    count: imageCount,
-    clientId: clientId
-  }).on('didLoadInstagram', didLoadInstagram);
-});
-*/
