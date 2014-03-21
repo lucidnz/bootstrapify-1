@@ -53,19 +53,8 @@ h6 {
   margin-top: $grid-gutter-width;
 }
 
-#navbar-main{
-  /*   margin-bottom: 3em; */
-}
-
 #navbar-footer{
   margin-bottom: 0;
-  /*
-  .navbar-collapse{ <-- only use this if the navbar has colour
-  border-top: none;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  }
-  */
 }
 
 #footer-content{
@@ -73,14 +62,6 @@ h6 {
     padding-top: $grid-gutter-width;
     padding-bottom: $grid-gutter-width;
   }
-}
-    
-.navbar .navbar-nav>.active>a, .navbar .navbar-nav>.active>a:hover,
-.navbar .navbar-nav>.active>a:focus, .navbar .navbar-nav .open>a,
-.navbar .navbar-nav .open>a:hover, .navbar .navbar-nav .open>a:focus,
-.navbar .navbar-nav > li > a:hover, .nav > li > a:focus{
-  color: $link-hover-color;
-  background-color: transparent;
 }
     
 .navbar-nav .open .dropdown-menu .dropdown-header{
@@ -207,6 +188,10 @@ a.icon:hover {
 
 .gutter-bottom {
   margin-bottom: $grid-gutter-width;
+}
+
+.btn-group > .btn:first-child {
+	margin-left: $grid-gutter-width / 2;
 }
 
 .dl-horizontal-left{
@@ -412,6 +397,10 @@ header .article-meta{
   .main-content .lead,
   .caption,
   .author {
+    text-align: center;
+  }
+  
+  .rss-subscribe {
     text-align: center;
   }
   

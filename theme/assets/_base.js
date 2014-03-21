@@ -107,8 +107,8 @@
 }(jQuery));
 
 /*
- * Base JS file
- */
+* Base JS file
+*/
 
 function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
   return jQuery(document.getElementById(id));
@@ -148,6 +148,8 @@ $(function() {
   
   $('.navbar .dropdown').bootstrapifyDropdown();
   
+  facebookGallery();
+  
   $('.localize').tooltip();
   $('.tip').popover({
     trigger: 'click',
@@ -177,18 +179,12 @@ $(window).load(function(){
 
 /* Product Image Switcher */
 $('[data-main-image]').click(function(event) {
-	var targetImage = $(this).attr('data-main-image');
-	var $mainImage = getID('main');
-	if($mainImage.attr('src') !== targetImage){
-    $mainImage.fadeOut(400, function(){
-      $('div.loader').fadeIn(100);
-      $(this).attr('src', targetImage).load(function(){
-        $('div.loader').fadeOut(100);
-        $(this).fadeIn();
-      });
-    });
-	}
-	event.preventDefault();
+  var targetImage = $(this).attr('data-main-image');
+  var $mainImage = getID('main');
+  if($mainImage.attr('src') !== targetImage){
+    $mainImage.hide().attr('src', targetImage).fadeIn();
+  }
+  event.preventDefault();
 });
 
 
@@ -197,8 +193,8 @@ var modalForm = getID('signinModal');
 modalForm.on('submit', 'form', function(e){
   // collect form data and validate
   var form = $(this),
-    inputArray = [],
-    valid = true;
+  inputArray = [],
+  valid = true;
   form.find('input').each(function(){
     var input = $(this);
     if(input.attr('name')){
@@ -237,7 +233,7 @@ modalForm.on('submit', 'form', function(e){
 
 /* Recover password form */
 var recoverForm = getID('customer-recover-password-form'),
-  loginForm = getID('customer-login-form');
+loginForm = getID('customer-login-form');
 
 function showRecoverPasswordForm() {
   recoverForm.parent().show();
@@ -265,3 +261,37 @@ if(loginForm === null){ getID('recover-password-link').style.display='none'; }
 
 hideRecoverPasswordForm();
 if (window.location.hash === '#recover') { showRecoverPasswordForm(); }
+
+/* Facebook gallery via https://gist.github.com/alexdunae/1239554 */
+
+var facebookGallery = function () {
+  var title = $('#facebook-title'),
+  link = $('#facebook-link'),
+  viewer = $('#facebook-viewer'),
+  thumbs = $('#facebook-thumbs'),
+  gallery_id = thumbs.attr('data-album');
+  
+  if(thumbs.length > 0){
+    // album info
+    $.getJSON('//graph.facebook.com/' + gallery_id + '?callback=?', function(json, status, xhr) {
+      title.html('<a href="' + json.link + '" title="View album on Facebook" target="_blank">' + json.name + '</a>');
+      link.html('<i class="fa fa-fw fa-facebook-square text-muted"></i> <a href="' + json.link + '" title="View album on Facebook" target="_blank">View album on Facebook</a>');
+    });
+
+    // images
+    $.getJSON('//graph.facebook.com/' + gallery_id + '/photos?callback=?', function(json, status, xhr) {
+      var imgs = json.data;
+
+      viewer.attr('src', imgs[0].images[0].source);
+
+      for (var i = 0, l = imgs.length - 1; i < l; i++) {
+        $('<div class="col-sm-3"><img class="thumbnail" src="' + imgs[i].images[2].source + '" data-fullsize="' + imgs[i].images[0].source + '"></div>').appendTo(thumbs);
+      }
+
+      $('img', thumbs).bind('click', function(e) {
+        e.preventDefault();
+        viewer.attr('src', $(this).attr('data-fullsize'));
+      });
+    });
+  }
+}; // let's go -- put the gallery ID here

@@ -10,7 +10,14 @@
     {% endfor %}
   </li>
   {% endif %}
+  {% if article-meta.comments_enabled? %}
   <li>
-    <i class="fa fa-comments"></i> {{ article-meta.comments_count }} Comments
+    <i class="fa fa-comments"></i>
+    {% if template == 'article' %}
+      <a href="#article-comments">{{ article-meta.comments_count }} Comments</a>
+    {% else %}
+      {{ article-meta.comments_count }} Comments
+    {% endif %}
   </li>
+  {% endif %}
 </ul>

@@ -32,8 +32,9 @@ $body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-l
 $button-colour: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}$body-link-colour{% endif %};
 $button-text-colour: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}false{% endif %};
 
+$main-navbar-background-colour: {% if settings.main-navbar-background-colour != blank %}{{ settings.main-navbar-background-colour }}{% else %}$body-background-colour{% endif %};
+$main-navbar-link-colour: {% if settings.main-navbar-link-colour != blank %}{{ settings.main-navbar-link-colour }}{% else %}$body-link-colour{% endif %};
 $navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{ settings.navbar-background-colour }}{% else %}$body-background-colour{% endif %};
-$navbar-text-colour: {% if settings.navbar-text-colour != blank %}{{ settings.navbar-text-colour }}{% else %}$body-text-colour{% endif %};
 $navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
 $fix-top-navbar: {% if settings.top-navbar-placement == 'fixed-to-top' %}true{% else %}false{% endif %};
 $fix-footer-navbar: {% if settings.footer-navbar-placement == 'fixed-to-bottom' %}true{% else %}false{% endif %};
@@ -199,11 +200,11 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
   }
 }
 
-@mixin heading-colour($colour, $background-colour){
+@mixin heading-colour($colour, $bg-colour){
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     color: $colour;
     @if $heading-letterpress{
-      text-shadow: 0 1px 0 lighten-colour($colour, $background-colour);
+      text-shadow: 0 1px 0 lighten-colour($colour, $bg-colour);
     }
     & a{
       color: $colour;
@@ -214,17 +215,17 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
   }
 }
 
-@mixin text-colour($text-colour, $background-colour){
+@mixin text-colour($text-colour, $bg-colour){
   color: $text-colour;
   .thumbnail .caption, .btn-default{
     color: $text-colour;
   }
   .text-muted, .nav > li.disabled > a, .breadcrumb > .active{
-    color: lighten-colour($text-colour, $background-colour, 40%);
+    color: lighten-colour($text-colour, $bg-colour, 40%);
   }
 }
 
-@mixin link-colour($link-colour, $background-colour){
+@mixin link-colour($link-colour, $bg-colour){
   a{
     color: $link-colour;
     &:hover{
@@ -232,7 +233,7 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     }
   }
   .nav > li > a:hover, .nav > li > a:focus{
-    background-color: darken-colour($background-colour, 7.5%);
+    background-color: darken-colour($bg-colour, 7.5%);
   }
   .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
     color: button-colour($link-colour);
@@ -242,34 +243,47 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     color: button-colour($link-colour);
     background-color: $link-colour;
   }
+  .dropdown-menu{
+      background-color: darken-colour($bg-colour, 5%);
+  }
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+      background-color: darken-colour($bg-colour, 7.5%);
+  }
+  .navbar-nav>.active>a, .navbar-nav>.active>a:hover,
+  .navbar-nav>.active>a:focus,.navbar-nav .open>a,
+  .navbar-nav .open>a:hover, .navbar-nav .open>a:focus,
+  .navbar-nav > li > a:hover, .nav > li > a:focus{
+    color: darken-colour($link-colour, 15%);
+    background-color: darken-colour($bg-colour, 7.5%);
+  }
   .btn-primary {
     $text-colour: button-colour($link-colour);
     @if $button-text-colour {
       $text-colour: $button-text-colour;
     }
-    @include button-variant($text-colour, $button-colour, darken($button-colour, 5%), $background-colour);
+    @include button-variant($text-colour, $button-colour, darken($button-colour, 5%), $bg-colour);
   }
   .btn-default{
-    border-color: darken-colour($background-colour, 7.5%);
+    border-color: darken-colour($bg-colour, 7.5%);
     &:hover, &:focus{
-      background-color: darken-colour($background-colour, 7.5%);
-      border-color: darken-colour($background-colour, 12%);
+      background-color: darken-colour($bg-colour, 7.5%);
+      border-color: darken-colour($bg-colour, 12%);
     }
   }
   .pagination > li > a, .pagination > li > span{
     color: $link-colour;
-    border-color: darken-colour($background-colour, 7.5%);
+    border-color: darken-colour($bg-colour, 7.5%);
     &:hover, &:focus{
       color: darken-colour($link-colour, 15%);
-      background-color: darken-colour($background-colour, 7.5%);
-      border-color: darken-colour($background-colour, 12%);
+      background-color: darken-colour($bg-colour, 7.5%);
+      border-color: darken-colour($bg-colour, 12%);
     }
   }
   .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus{
-    color: lighten-colour($link-colour, $background-colour, 40%);
+    color: lighten-colour($link-colour, $bg-colour, 40%);
   }
   .form-control{
-    border-color: darken-colour($background-colour, 7.5%);
+    border-color: darken-colour($bg-colour, 7.5%);
     &:focus {
       border-color: $link-colour;
       -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
@@ -330,6 +344,12 @@ body{
   /* Layout Adjustments */
   &.has-top-navbar.has-fixed-top-navbar{
     padding-top: $body_navbar_padding + $body_padding;
+	#content {
+		margin-top: $body_padding;
+	}
+	&.banner-window-width {
+		padding-top: $body_navbar_padding;
+	}
   }
   &.has-footer-navbar.has-fixed-footer-navbar{
     #footer-content{
@@ -444,29 +464,36 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 
 #navbar-top, #navbar-footer{
   @include background-colour($navbar-background-colour);
-  @include text-colour($navbar-text-colour, $navbar-background-colour);
   @include link-colour($navbar-link-colour, $navbar-background-colour);
   @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
   @if $site-background-image and $navbar-background-colour == $body-background-colour and $fix-top-navbar == false{
     background-color: transparent;
   }
   .navbar-toggle{
-    border-color: darken-colour($navbar-background-colour, 7.5%);
+    border-color: darken-colour($navbar-background-colour, 9%);
     .icon-bar{
-      background-color: darken-colour($navbar-background-colour, 7.5%);
+      background-color: darken-colour($navbar-background-colour, 9%);
     }
     &:hover, &:focus{
-      background-color: darken-colour($navbar-background-colour, 4%);
+      background-color: darken-colour($navbar-background-colour, 6%);
     }
   }
 }
 
 #navbar-main{
-  @include text-colour($navbar-text-colour, $body-background-colour);
-  @include link-colour($navbar-link-colour, $body-background-colour);
+  @include background-colour($main-navbar-background-colour);
+  @include link-colour($main-navbar-link-colour, $main-navbar-background-colour);
   @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
-  .navbar-nav > li > a:hover, .nav > li > a:focus{
-    background-color: transparent;
+}
+
+@media (min-width: $screen-sm-min){
+  #navbar-top, #navbar-footer, #navbar-main{
+    .dropdown-menu{
+      background-color: white;
+    }
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu .nav > li > a:hover, .dropdown-menu .nav > li > a:focus{
+      background-color: whitesmoke;
+    }
   }
 }
 

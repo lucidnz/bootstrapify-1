@@ -4,6 +4,13 @@
     
     {% if settings.tag-placement == 'sidebar' %}{% include 'tags-list' %}{% endif %}
     
+    {% if template == 'blog' or template == 'article' %}
+      <h4 class="page-header">Recent articles</h4>
+      {% for a in blog.articles limit:settings.blog-list-limit %}
+        {% include 'article-excerpt' %}
+      {% endfor %}
+    {% endif %}
+    
     {% unless linklists[settings.sidebar-linklist] == empty %}
       <h4 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h4>
       <ul class="nav nav-pills nav-stacked">
@@ -19,13 +26,6 @@
       <h5>{{ a.title | link_to: a.url, a.title }} <small class="text-muted help-block">{{ a.published_at | date: settings.short-date-format }}</small></h5>
       {% endfor %}
     {% endunless %}
-    
-    {% if template == 'blog' or template == 'article' %}
-      <h4 class="page-header">Recent articles</h4>
-      {% for a in blog.articles limit:settings.blog-list-limit %}
-      <h5>{{ a.title | link_to: a.url, a.title }} <small class="text-muted help-block">{{ a.published_at | date: settings.short-date-format }}</small></h5>
-      {% endfor %}
-    {% endif %}
     
     {% if settings.newsletter-signup-placement == 'sidebar' %}
       {% include 'newsletter-signup-form' %}

@@ -1,7 +1,14 @@
 {% assign linklist = linklists[settings.features-linklist] %}
 {% if linklist != empty and linklist.size > 0 %}
 
-{% assign cols = 4 %}
+{% assign is_3 = linklist.size | modulo: 3 %}
+{% assign is_4 = linklist.size | modulo: 4 %}
+
+{% if is_4 == 0 %}
+  {% assign cols = 4 %}
+{% else %}
+  {% assign cols = 3 %}
+{% endif %}
 
 <h2 class="page-header">{{ linklist.title }}</h2>
 

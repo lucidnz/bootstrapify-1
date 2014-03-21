@@ -1,0 +1,28 @@
+{% if template contains 'collection' and collection.all_tags.size > 1 %}
+
+{% include 'tag-groups-array' %}
+
+<!-- Loop for tag filter groups -->
+{% for i in cat_array %}
+{% unless i == '' %}
+<div class="btn-group {% unless settings.tag-placement == 'sidebar' %}pull-right{% endunless %}">
+	<a class="btn {% if current_tags %}btn-primary{% else %}btn-default{% endif %} dropdown-toggle" data-toggle="dropdown" href="#">Filter by {{ i }}</a>
+	<ul class="dropdown-menu">
+		<!-- Loop through tags in filter groups -->
+		{% if current_tags and template == 'collection' %}<li><a href="./"><em>{% include '__localize' with 'Clear filters' %}</em></a></li>{% endif %}
+		{% for t in collection.all_tags %}
+		{% if t contains i %}
+		{% if current_tags contains t %}
+		<li class="active">{{ t | remove: i | remove: ':' | capitalize | append: '&ensp;<i class="fa fa-times-circle"></i>' | link_to_remove_tag: t }}</li>
+		{% else %}
+		{% comment %}<!-- to use multiple tag filters in dropdown use this line instead of the one above --><li>{{ t | remove: i | remove: ':' | capitalize | link_to_tag: t }}</li>{% endcomment %}
+		<li>{{ t | remove: i | remove: ':' | capitalize | link_to_add_tag: t }}</li>
+		{% endif %}
+		{% endif %}	
+		{% endfor %}
+	</ul>
+</div>
+{% endunless %}
+{% endfor %}
+  
+{% endif %}

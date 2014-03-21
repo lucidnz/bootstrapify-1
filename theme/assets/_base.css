@@ -5248,29 +5248,12 @@ h6 {
   .footer-credits, .footer-credits a {
     opacity: .5; }
 
-#navbar-main {
-  /*   margin-bottom: 3em; */ }
-
 #navbar-footer {
-  margin-bottom: 0;
-  /*
-  .navbar-collapse{ <-- only use this if the navbar has colour
-  border-top: none;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  }
-  */ }
+  margin-bottom: 0; }
 
 #footer-content > .container {
   padding-top: 30px;
   padding-bottom: 30px; }
-
-.navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover,
-.navbar .navbar-nav > .active > a:focus, .navbar .navbar-nav .open > a,
-.navbar .navbar-nav .open > a:hover, .navbar .navbar-nav .open > a:focus,
-.navbar .navbar-nav > li > a:hover, .nav > li > a:focus {
-  color: #2a6496;
-  background-color: transparent; }
 
 .navbar-nav .open .dropdown-menu .dropdown-header {
   font-weight: bold;
@@ -5363,6 +5346,9 @@ a.icon:hover {
 
 .gutter-bottom {
   margin-bottom: 30px; }
+
+.btn-group > .btn:first-child {
+  margin-left: 15px; }
 
 .dl-horizontal-left dt {
   text-align: left; }
@@ -5507,6 +5493,8 @@ a.icon:hover {
 .centered-layout .main-content .lead,
 .centered-layout .caption,
 .centered-layout .author {
+  text-align: center; }
+.centered-layout .rss-subscribe {
   text-align: center; }
 .centered-layout .text-left {
   text-align: left; }

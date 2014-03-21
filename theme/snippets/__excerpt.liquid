@@ -1,1 +1,5 @@
-{{ __excerpt | strip_html | split: '===' | first }}
+{% if __excerpt contains '===' %}
+  {{ __excerpt | strip_html | split: '===' | first }}
+{% else %}
+  {{ __excerpt | strip_html | truncatewords: 25 }}
+{% endif %}
