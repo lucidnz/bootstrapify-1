@@ -19,9 +19,13 @@
     this.imageCount     = this.$ele.data('image-count');
     this.blacklist      = this.$ele.data('blacklist').split(',');
     
-    this.addEventListeners();
-    this.buildWidgetMarkup();
-    this.loadInstagramImages(this.currentHashtag);
+    if(this.currentHashtag){
+      this.addEventListeners();
+      this.buildWidgetMarkup();
+      this.loadInstagramImages(this.currentHashtag);
+    } else {
+      console.log('No hashtag set for instagram feed.');
+    }
   };
   
   BootstrapifyInstagram.prototype.addEventListeners = function(){

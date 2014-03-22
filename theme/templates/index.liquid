@@ -22,5 +22,14 @@
 
 {% include 'testimonials' %}
 
-<section id="instagram-widget" data-client-id="5491f0c04ee54ee09dd0803be66f96a9" data-hashtag="test" data-default-hashtag="stewartknapman" data-blacklist="l0ekpkRbKj,l0jw_7IZgP,l0nXrnLzw9" data-image-count="8">
-</section>
+{% for fb in blogs[settings.blog-for-facebook-album].articles %}
+  {% if fb.metafields.lucid.facebook-album != blank and album_set != true %}
+    {% include 'social-feed' with fb %}
+    {% assign album_set = true %}
+  {% endif %}
+{% endfor %}
+
+{% if settings.instagram-feed and settings.instagram-client-id != blank %}
+  <!-- To do: Social feed snippet and page specific hashtag from meta data -->
+  <section id="instagram-widget" data-client-id="{{ settings.instagram-client-id }}" data-hashtag="" data-default-hashtag="{{ settings.instagram-default-hashtag }}" data-blacklist="{{ settings.instagram-blacklist }}" data-image-count="8"></section>
+{% endif %}

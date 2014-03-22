@@ -418,6 +418,16 @@
   
   <table>
     <tr>
+      <th><label for="blog-for-facebook-album">Blog for Facebook album</label></th>
+      <td>
+        <select class="blog" name="blog-for-facebook-album" />
+        <small>Choose a blog that is linked to Facebook albums.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="featured-blog">Featured blog</label></th>
       <td>
         <select class="blog" name="featured-blog" />
@@ -486,6 +496,16 @@
       <th><label for="homepage">Homepage</label></th>
       <td>
         <select class="page" name="homepage" selected="frontpage" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="instagram-feed">Show instagram feed</label></th>
+      <td>
+        <input type="checkbox" name="instagram-feed" id="instagram-feed" value="1" /> Yes
+        <small>Show an Instagram feed on your home page.</small>
       </td>
     </tr>
   </table>
@@ -1774,6 +1794,36 @@
 <fieldset>
   	
   <legend>Social</legend>
+  
+  <table>
+    <tr>
+      <th><label for="instagram-blacklist">Instagram blacklist</label></th>
+      <td>
+        <textarea name="instagram-blacklist" id="instagram-blacklist"></textarea>
+        <small>A comma separated list of image id's that you don't wish to show in your instagram feeds.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="instagram-client-id">Instagram client id</label></th>
+      <td>
+        <input type="text" name="instagram-client-id" id="instagram-client-id" class="text" value="" />
+        <small>You can obtain a client id registering a new Instagram API client app at <a href="http://instagram.com/developer/clients/register/">http://instagram.com/developer/clients/register/</a></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="instagram-default-hashtag">Instagram default hashtag</label></th>
+      <td>
+        <input type="text" name="instagram-default-hashtag" id="instagram-default-hashtag" class="text" value="" />
+        <small>A default hashtag for all instagram feeds to use if a page specific one is not set.</small>
+      </td>
+    </tr>
+  </table>
   
   <table>
     <tr>
