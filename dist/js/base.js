@@ -19,7 +19,6 @@ var preloadProductImages = function(){
 $(function() {
   /* Multiple currencies */
   if ($('body').hasClass('currencies')) {
-        
     $('#currency-picker-toggle a').click(function() {
       $('#currency-picker-toggle').hide();
       $('#currencies-picker').fadeIn();
@@ -35,12 +34,9 @@ $(function() {
       $('#currency-picker-toggle').fadeIn();
       return true;
     });
-
   }
   
   $('.navbar .dropdown').bootstrapifyDropdown();
-  
-  facebookGallery();
   
   $('.localize').tooltip();
   $('.tip').popover({
@@ -156,7 +152,7 @@ if (window.location.hash === '#recover') { showRecoverPasswordForm(); }
 
 /* Facebook gallery via https://gist.github.com/alexdunae/1239554 */
 
-var facebookGallery = function () {
+(function(){
   var title = $('#facebook-title'),
   link = $('#facebook-link'),
   viewer = $('#facebook-viewer'),
@@ -165,13 +161,13 @@ var facebookGallery = function () {
   
   if(thumbs.length > 0){
     // album info
-    $.getJSON('//graph.facebook.com/' + gallery_id + '?callback=?', function(json, status, xhr) {
+    $.getJSON('//graph.facebook.com/' + gallery_id + '?callback=?', function(json) {
       title.html('<a href="' + json.link + '" title="View album on Facebook" target="_blank">' + json.name + '</a>');
       link.html('<i class="fa fa-fw fa-facebook-square text-muted"></i> <a href="' + json.link + '" title="View album on Facebook" target="_blank">View album on Facebook</a>');
     });
 
     // images
-    $.getJSON('//graph.facebook.com/' + gallery_id + '/photos?callback=?', function(json, status, xhr) {
+    $.getJSON('//graph.facebook.com/' + gallery_id + '/photos?callback=?', function(json) {
       var imgs = json.data;
 
       viewer.attr('src', imgs[0].images[0].source);
@@ -186,4 +182,4 @@ var facebookGallery = function () {
       });
     });
   }
-}; // let's go -- put the gallery ID here
+}());

@@ -13,10 +13,14 @@
     {% include '__formatted-content' with article.content %}
   </section>
   
-  {% if article.metafields.lucid.facebook-album != blank %}
+  {% if article.metafields.social-feed.facebook-album != blank %}
   <section class="col-xs-12">
-    {% include 'social-feed' with article %}
+    {% include 'social-feed-facebook' with article %}
   </section>
+  {% endif %}
+  
+  {% if article.metafields.social-feed.instagram != blank %}
+    {% include 'social-feed-instagram' with article %}
   {% endif %}
   
   <section class="excerpt-meta visible-lg {% unless has_sidebar %} visible-md{% endunless %} col-xs-12{% unless has_sidebar %} col-md-3{% endunless %} col-lg-3{% if settings.sidebar-placement == 'right' %} col-md-pull-9 col-lg-pull-9{% endif %}">
