@@ -13,6 +13,7 @@
   var BootstrapifyInstagram = function($ele){
     this.$ele           = $ele;
     this.clientId       = this.$ele.data('client-id');
+    this.feedLink       = this.$ele.data('instagram-link');
     this.hastag         = this.$ele.data('hashtag');
     this.defaultHashtag = this.$ele.data('default-hashtag');
     this.currentHashtag = this.hastag || this.defaultHashtag;
@@ -21,9 +22,9 @@
     
     if(this.currentHashtag){
       this.addEventListeners();
-      this.buildWidgetMarkup();
       this.loadInstagramImages(this.currentHashtag);
     } else {
+      this.$ele.html('');
       console.log('No hashtag set for instagram feed.');
     }
   };
@@ -49,9 +50,17 @@
   BootstrapifyInstagram.prototype.didLoadInstagram = function(element, event, response){
     var self = this;
     if(response.data.length > 0){
+      self.updateMessageHashtag();
       self.loopResponseData(response.data);
     } else {
       self.noResponseData();
+    }
+  };
+  
+  BootstrapifyInstagram.prototype.updateMessageHashtag = function(){
+    var messageHashtag = this.$ele.find('.hashtag');
+    if(messageHashtag.length > 0 && messageHashtag.text() != this.currentHashtag){
+      messageHashtag.text(this.currentHashtag);
     }
   };
   
@@ -68,22 +77,6 @@
         imageCount++;
       }
     });
-  };
-  
-  BootstrapifyInstagram.prototype.buildWidgetMarkup = function(){
-    var title = $('<h2>')
-    .text('Instagram');
-    
-    var message = $('<p>')
-    .text('Tag your photos using #'+this.currentHashtag+' to be seen on our instagram feed.');
-    
-    var imageContainer = $('<div>')
-    .addClass('instagram-images row');
-    
-    this.$ele
-    .append(title)
-    .append(message)
-    .append(imageContainer);
   };
   
   BootstrapifyInstagram.prototype.addImage = function(photo){

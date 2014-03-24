@@ -7,6 +7,10 @@
 </ul>
 {% endif %}
 
+{% if product.metafields.social-feed.instagram != blank %}
+  {% include 'social-feed-instagram' with product %}
+{% endif %}
+
 {% if settings.show-related-products %}
 <div class="row">
   <div class="col-xs-12">
