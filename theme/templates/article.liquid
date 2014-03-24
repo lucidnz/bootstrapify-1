@@ -13,7 +13,7 @@
     {% include '__formatted-content' with article.content %}
   </section>
   
-  {% if article.metafields.lucid.facebook-album != blank %}
+  {% if article.metafields.social-feed.facebook-album != blank %}
   <section class="col-xs-12">
     {% include 'social-feed-facebook' with article %}
   </section>
