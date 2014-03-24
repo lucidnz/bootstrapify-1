@@ -59,7 +59,7 @@
   
   BootstrapifyInstagram.prototype.updateMessageHashtag = function(){
     var messageHashtag = this.$ele.find('.hashtag');
-    if(messageHashtag.length > 0 && messageHashtag.text() != this.currentHashtag){
+    if(messageHashtag.length > 0 && messageHashtag.text() !== this.currentHashtag){
       messageHashtag.text(this.currentHashtag);
     }
   };
