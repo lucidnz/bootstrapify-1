@@ -18,6 +18,6 @@
     {% endfor %}
     {% if current_tags and template == 'collection' %}<li><a href="./"><em>{% include '__localize' with 'Clear filters' %}</em></a></li>{% endif %}
   </ul>
-  {% include 'tag-groups' %}
+  {% include 'tag-groups-buttons' %}
   {% endif %} 
 {% endif %}
