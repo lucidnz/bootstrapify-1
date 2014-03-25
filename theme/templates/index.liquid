@@ -1,12 +1,12 @@
 {% include '__has-variables' %}
 {% assign homepage = 'frontpage' %}
-{% unless settings.homepage == blank %}{% assign homepage = pages[settings.homepage] %}{% endunless %}
-<h1 class="page-header">{{ homepage.title }}</h1>
+{% unless settings.homepage == blank %}{% assign homepage = pages[settings.homepage] %}
+<h1 class="page-header">{{ homepage.title }}</h1>{% endunless %}
 {% unless homepage.content == blank %}
   {% include '__formatted-content' with homepage.content %}
 {% endunless %}
 
-{% include 'features-overview' %}
+{% include 'features-linklist-overview' with 'linklist' %}
 
 {% unless settings.featured-collections-linklist == blank %}
 <h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
@@ -17,3 +17,17 @@
 <h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
   {% include 'products-list' with 'featured' %}
 {% endif %}
+
+{% include 'featured-blog-overview' with 'blog' %}
+
+{% include 'testimonials' %}
+
+{% assign album_set = false %}
+{% for fb in blogs[settings.blog-for-facebook-album].articles %}
+  {% if fb.metafields.social-feed.facebook-album != blank and album_set != true %}
+    {% include 'social-feed-facebook' with fb %}
+    {% assign album_set = true %}
+  {% endif %}
+{% endfor %}
+
+{% include 'social-feed-instagram' with homepage %}

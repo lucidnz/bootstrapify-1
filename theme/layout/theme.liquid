@@ -39,11 +39,8 @@
   {{ 'popover.js' | asset_url | script_tag }}
   {{ 'typeahead.js' | asset_url | script_tag }}
   
-  {{ settings.custom-font-embed-code }}
   {% if settings.custom-header-code != '' %}
-    {% unless settings.custom-header-code contains '<script' %}<script type="text/javascript">{% endunless %}
     {{ settings.custom-header-code }}
-    {% unless settings.custom-header-code contains '<script' %}</script>{% endunless %}
   {% endif %}
   
   {{ content_for_header }}
@@ -80,6 +77,7 @@
   {% include 'currencies' %}
   
   {{ '_base.js' | asset_url | script_tag }}
+  {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
   <script type="text/javascript">
     $(document).ready(function(){
       $('.search').typeahead({
@@ -92,9 +90,7 @@
   </script>
   
   {% if settings.custom-footer-code != '' %}
-    {% unless settings.custom-footer-code contains '<script' %}<script type="text/javascript">{% endunless %}
     {{ settings.custom-footer-code }}
-    {% unless settings.custom-footer-code contains '<script' %}</script>{% endunless %}
   {% endif %}
 </body>
 </html>
