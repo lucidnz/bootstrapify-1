@@ -1,4 +1,8 @@
+{% if template contains 'index' %}
+{% assign thumbs_per_row = 4 | times:1 %}
+{% else %}
 {% assign thumbs_per_row = settings.thumbnails-per-row | times:1 %}
+{% endif %}
 {% assign thumbs_per_row_minus_two = thumbs_per_row | minus:2 %}
 
 {% if thumbs_per_row == 4 %}
