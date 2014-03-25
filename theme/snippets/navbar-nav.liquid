@@ -3,7 +3,7 @@
 {% assign linklist_setting = settings[linklist_name] %}
 
 {% if linklist_setting %}
-<ul class="nav navbar-nav {% unless settings.logo-placement == 'navbar' and linklist_parts[0] == 'top' %}navbar-{{ linklist_parts[1] }}{% endunless %}">
+<ul class="nav navbar-nav  navbar-right {% unless settings.logo-placement == 'navbar' and linklist_parts[0] == 'top' %}navbar-{{ linklist_parts[1] }}{% endunless %}">
   {% for l in linklists[linklist_setting].links %}
   {% include '_navbar-link' %}
   {% endfor %}
