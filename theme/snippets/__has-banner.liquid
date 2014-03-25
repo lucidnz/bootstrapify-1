@@ -2,7 +2,7 @@
 {% assign template = template | split: '.' | first %}
 {% assign banner_img = [template]metafields.banner.image %}
 
-{% if banner_img != null %}
+{% if banner_img != null or template contains 'blog' or template contains 'article' %}
 {% assign has_banner = true %}
 {% elsif template contains 'index' and settings.slide-1-active %}
 {% assign has_banner = true %}

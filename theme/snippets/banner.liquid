@@ -1,8 +1,12 @@
 {% assign template = template | split: '.' | first %}
 {% assign banner_img = [template]metafields.banner.image %}
 {% assign banner_border = [template]metafields.banner.border %}
-{% if banner_img != null %}
+{% if banner_img != null or template contains 'blog' or template contains 'article' %}
 <div class="carousel"{% if banner_img != null %} style="border-bottom-color: {{ banner_border }};"{% endif %}>
+	{% if template contains 'blog' or template contains 'article' %}
+	<img src="{{ 'slide-1-image.jpg' | asset_url }}" alt="{{ page_title }}">
+	{% else %}
 	<img src="{{ banner_img }}" alt="{{ page_title }}">
+	{% endif %}
 </div>
 {% endif %}
