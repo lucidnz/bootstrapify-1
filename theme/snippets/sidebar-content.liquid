@@ -7,7 +7,7 @@
     {% if template == 'blog' or template == 'article' %}
       <h4 class="page-header">Recent articles</h4>
       {% for a in blog.articles limit:settings.blog-list-limit %}
-      <h5>{{ a.title | link_to: a.url, a.title }} <small class="text-muted help-block">{{ a.published_at | date: settings.short-date-format }}</small></h5>
+        {% include 'article-excerpt' %}
       {% endfor %}
     {% endif %}
     

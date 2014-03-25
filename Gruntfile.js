@@ -41,14 +41,15 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'theme/assets/bootstrapify-option-selection.min.js': ['dist/js/bootstrapify-option-selection.js'],
+          'theme/assets/bootstrapify-option-selection.min.js': 'dist/js/bootstrapify-option-selection.js',
+          'theme/assets/jquery.instagram.min.js': ['bower_components/jquery-instagram/dist/instagram.js', 'dist/js/jquery.instagram.js']
         }
       }
     },
     concat: {
       dist: {
         src: ['dist/js/jquery.bootstrapify-dropdowns.js', 'dist/js/base.js'],
-        dest: 'theme/assets/_base.js',
+        dest: 'theme/assets/_base.js'
       },
     },
     sass: {
@@ -107,7 +108,7 @@ module.exports = function(grunt) {
         tasks: ['jshint:assets']
       },
       uglify: {
-        files: 'dist/js/bootstrapify-option-selection.js',
+        files: 'dist/js/*.js',
         tasks: ['uglify']
       },
       concat: {

@@ -12,12 +12,12 @@
 <p>{% if excerpt == blank and shop.url contains 'myshopify' and settings.development-mode %}This will show an excerpt of the content (if one exists). To hide this placeholder text, disable development mode in Settings > Advanced.{% else %}{{ excerpt }}{% endif %}</p>
 {% endcapture %}
 <div class="col-md-{{ span }}">
-  {% if object.metafields.lucid.icon == blank %}
+  {% if object.metafields.icon.name == blank %}
   {{ blurb }}
   {% else %}
   <div class="media">
     <div class="pull-left">
-      <i class="fa fa-{{ object.metafields.lucid.icon }} fa-fw fa-2x text-muted media-object"></i>
+      <i class="fa fa-{{ object.metafields.icon.name }} fa-fw fa-2x text-muted media-object"></i>
     </div>
     <div class="media-body">
       {{ blurb }}
