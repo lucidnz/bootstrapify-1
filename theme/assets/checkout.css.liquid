@@ -1049,6 +1049,14 @@ hr {
   clip: rect(0, 0, 0, 0);
   border: 0; }
 
+.sr-only-focusable:active, .sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto; }
+
 h1, #header h1, #wallet #cost, h2, #overview h2, h3, h3.divider, #pay-with h3, .group h3, .pgroup h3, #thumbs .plisthead, #email label, #email td.label, h4, .pageform h4, h4.active-customer, .group h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: inherit;
@@ -2614,8 +2622,124 @@ textarea.form-control, textarea, textarea.short, textarea.tall, .form td textare
 input[type="search"] {
   -webkit-appearance: none; }
 
-input[type="date"] {
-  line-height: 34px; }
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  line-height: 34px;
+  line-height: 1.42857 \0; }
+  input[type="date"].input-sm, .input-group-sm > input[type="date"].form-control, #email .input-group-sm > input[type="date"], #payment-methods .input-group-sm > input[type="date"], .field-with-errors .input-group-sm > input[type="date"], .input-group-sm > input[type="date"][type=text], .input-group-sm > input[type="date"][type=password], .input-group-sm > input[type="date"].digit-2, .input-group-sm > input[type="date"].long,
+  .input-group-sm > input[type="date"].short, .form td .input-group-sm > input[type="date"],
+  .input-group-sm > input[type="date"].input-group-addon,
+  .input-group-sm > .input-group-btn > input[type="date"][type=submit],
+  .input-group-sm > .input-group-btn > input[type="date"].btn,
+  #buttons .input-group-sm > .input-group-btn > input[type="date"],
+  .input-group-sm > .input-group-btn > input[type="date"]#create-account-btn,
+  input[type="time"].input-sm,
+  .input-group-sm > input[type="time"].form-control,
+  #email .input-group-sm > input[type="time"],
+  #payment-methods .input-group-sm > input[type="time"],
+  .field-with-errors .input-group-sm > input[type="time"],
+  .input-group-sm > input[type="time"][type=text],
+  .input-group-sm > input[type="time"][type=password],
+  .input-group-sm > input[type="time"].digit-2,
+  .input-group-sm > input[type="time"].long,
+  .input-group-sm > input[type="time"].short,
+  .form td .input-group-sm > input[type="time"],
+  .input-group-sm > input[type="time"].input-group-addon,
+  .input-group-sm > .input-group-btn > input[type="time"][type=submit],
+  .input-group-sm > .input-group-btn > input[type="time"].btn,
+  #buttons .input-group-sm > .input-group-btn > input[type="time"],
+  .input-group-sm > .input-group-btn > input[type="time"]#create-account-btn,
+  input[type="datetime-local"].input-sm,
+  .input-group-sm > input[type="datetime-local"].form-control,
+  #email .input-group-sm > input[type="datetime-local"],
+  #payment-methods .input-group-sm > input[type="datetime-local"],
+  .field-with-errors .input-group-sm > input[type="datetime-local"],
+  .input-group-sm > input[type="datetime-local"][type=text],
+  .input-group-sm > input[type="datetime-local"][type=password],
+  .input-group-sm > input[type="datetime-local"].digit-2,
+  .input-group-sm > input[type="datetime-local"].long,
+  .input-group-sm > input[type="datetime-local"].short,
+  .form td .input-group-sm > input[type="datetime-local"],
+  .input-group-sm > input[type="datetime-local"].input-group-addon,
+  .input-group-sm > .input-group-btn > input[type="datetime-local"][type=submit],
+  .input-group-sm > .input-group-btn > input[type="datetime-local"].btn,
+  #buttons .input-group-sm > .input-group-btn > input[type="datetime-local"],
+  .input-group-sm > .input-group-btn > input[type="datetime-local"]#create-account-btn,
+  input[type="month"].input-sm,
+  .input-group-sm > input[type="month"].form-control,
+  #email .input-group-sm > input[type="month"],
+  #payment-methods .input-group-sm > input[type="month"],
+  .field-with-errors .input-group-sm > input[type="month"],
+  .input-group-sm > input[type="month"][type=text],
+  .input-group-sm > input[type="month"][type=password],
+  .input-group-sm > input[type="month"].digit-2,
+  .input-group-sm > input[type="month"].long,
+  .input-group-sm > input[type="month"].short,
+  .form td .input-group-sm > input[type="month"],
+  .input-group-sm > input[type="month"].input-group-addon,
+  .input-group-sm > .input-group-btn > input[type="month"][type=submit],
+  .input-group-sm > .input-group-btn > input[type="month"].btn,
+  #buttons .input-group-sm > .input-group-btn > input[type="month"],
+  .input-group-sm > .input-group-btn > input[type="month"]#create-account-btn {
+    line-height: 30px; }
+  input[type="date"].input-lg, .input-group-lg > input[type="date"].form-control, #email .input-group-lg > input[type="date"], #payment-methods .input-group-lg > input[type="date"], .field-with-errors .input-group-lg > input[type="date"], .input-group-lg > input[type="date"][type=text], .input-group-lg > input[type="date"][type=password], .input-group-lg > input[type="date"].digit-2, .input-group-lg > input[type="date"].long,
+  .input-group-lg > input[type="date"].short, .form td .input-group-lg > input[type="date"],
+  .input-group-lg > input[type="date"].input-group-addon,
+  .input-group-lg > .input-group-btn > input[type="date"][type=submit],
+  .input-group-lg > .input-group-btn > input[type="date"].btn,
+  #buttons .input-group-lg > .input-group-btn > input[type="date"],
+  .input-group-lg > .input-group-btn > input[type="date"]#create-account-btn,
+  input[type="time"].input-lg,
+  .input-group-lg > input[type="time"].form-control,
+  #email .input-group-lg > input[type="time"],
+  #payment-methods .input-group-lg > input[type="time"],
+  .field-with-errors .input-group-lg > input[type="time"],
+  .input-group-lg > input[type="time"][type=text],
+  .input-group-lg > input[type="time"][type=password],
+  .input-group-lg > input[type="time"].digit-2,
+  .input-group-lg > input[type="time"].long,
+  .input-group-lg > input[type="time"].short,
+  .form td .input-group-lg > input[type="time"],
+  .input-group-lg > input[type="time"].input-group-addon,
+  .input-group-lg > .input-group-btn > input[type="time"][type=submit],
+  .input-group-lg > .input-group-btn > input[type="time"].btn,
+  #buttons .input-group-lg > .input-group-btn > input[type="time"],
+  .input-group-lg > .input-group-btn > input[type="time"]#create-account-btn,
+  input[type="datetime-local"].input-lg,
+  .input-group-lg > input[type="datetime-local"].form-control,
+  #email .input-group-lg > input[type="datetime-local"],
+  #payment-methods .input-group-lg > input[type="datetime-local"],
+  .field-with-errors .input-group-lg > input[type="datetime-local"],
+  .input-group-lg > input[type="datetime-local"][type=text],
+  .input-group-lg > input[type="datetime-local"][type=password],
+  .input-group-lg > input[type="datetime-local"].digit-2,
+  .input-group-lg > input[type="datetime-local"].long,
+  .input-group-lg > input[type="datetime-local"].short,
+  .form td .input-group-lg > input[type="datetime-local"],
+  .input-group-lg > input[type="datetime-local"].input-group-addon,
+  .input-group-lg > .input-group-btn > input[type="datetime-local"][type=submit],
+  .input-group-lg > .input-group-btn > input[type="datetime-local"].btn,
+  #buttons .input-group-lg > .input-group-btn > input[type="datetime-local"],
+  .input-group-lg > .input-group-btn > input[type="datetime-local"]#create-account-btn,
+  input[type="month"].input-lg,
+  .input-group-lg > input[type="month"].form-control,
+  #email .input-group-lg > input[type="month"],
+  #payment-methods .input-group-lg > input[type="month"],
+  .field-with-errors .input-group-lg > input[type="month"],
+  .input-group-lg > input[type="month"][type=text],
+  .input-group-lg > input[type="month"][type=password],
+  .input-group-lg > input[type="month"].digit-2,
+  .input-group-lg > input[type="month"].long,
+  .input-group-lg > input[type="month"].short,
+  .form td .input-group-lg > input[type="month"],
+  .input-group-lg > input[type="month"].input-group-addon,
+  .input-group-lg > .input-group-btn > input[type="month"][type=submit],
+  .input-group-lg > .input-group-btn > input[type="month"].btn,
+  #buttons .input-group-lg > .input-group-btn > input[type="month"],
+  .input-group-lg > .input-group-btn > input[type="month"]#create-account-btn {
+    line-height: 46px; }
 
 .form-group {
   margin-bottom: 15px; }
@@ -2626,8 +2750,7 @@ input[type="date"] {
   display: block;
   min-height: 20px;
   margin-top: 10px;
-  margin-bottom: 10px;
-  padding-left: 20px; }
+  margin-bottom: 10px; }
   .radio label, .radio #shipping-same label, #shipping-same .radio label, .radio td.label, .radio .form ul.inline li label, .form ul.inline li .radio label,
   .checkbox label,
   .form td input#shipping-toggle label,
@@ -2637,7 +2760,8 @@ input[type="date"] {
   .form td input#shipping-toggle td.label,
   .checkbox .form ul.inline li label,
   .form ul.inline li .checkbox label {
-    display: inline;
+    padding-left: 20px;
+    margin-bottom: 0;
     font-weight: normal;
     cursor: pointer; }
 
@@ -2892,6 +3016,45 @@ select[multiple].input-lg,
     display: inline-block;
     width: auto;
     vertical-align: middle; }
+  .form-inline .input-group, .navbar-form .input-group {
+    display: inline-table;
+    vertical-align: middle; }
+    .form-inline .input-group .input-group-addon, .navbar-form .input-group .input-group-addon,
+    .form-inline .input-group .input-group-btn,
+    .navbar-form .input-group .input-group-btn,
+    .form-inline .input-group .form-control,
+    .navbar-form .input-group .form-control,
+    .form-inline .input-group #email input,
+    #email .form-inline .input-group input,
+    .navbar-form .input-group #email input,
+    #email .navbar-form .input-group input,
+    .form-inline .input-group #payment-methods input,
+    #payment-methods .form-inline .input-group input,
+    .navbar-form .input-group #payment-methods input,
+    #payment-methods .navbar-form .input-group input,
+    .form-inline .input-group .field-with-errors input,
+    .field-with-errors .form-inline .input-group input,
+    .navbar-form .input-group .field-with-errors input,
+    .field-with-errors .navbar-form .input-group input,
+    .form-inline .input-group input[type=text],
+    .navbar-form .input-group input[type=text],
+    .form-inline .input-group input[type=password],
+    .navbar-form .input-group input[type=password],
+    .form-inline .input-group textarea,
+    .navbar-form .input-group textarea,
+    .form-inline .input-group input.digit-2,
+    .navbar-form .input-group input.digit-2,
+    .form-inline .input-group input.long,
+    .navbar-form .input-group input.long,
+    .form-inline .input-group input.short,
+    .navbar-form .input-group input.short,
+    .form-inline .input-group .form td input,
+    .form td .form-inline .input-group input,
+    .navbar-form .input-group .form td input,
+    .form td .navbar-form .input-group input,
+    .form-inline .input-group select,
+    .navbar-form .input-group select {
+      width: auto; }
   .form-inline .input-group > .form-control, .navbar-form .input-group > .form-control, .form-inline #email .input-group > input, #email .form-inline .input-group > input, .navbar-form #email .input-group > input, #email .navbar-form .input-group > input, .form-inline #payment-methods .input-group > input, #payment-methods .form-inline .input-group > input, .navbar-form #payment-methods .input-group > input, #payment-methods .navbar-form .input-group > input, .form-inline .field-with-errors .input-group > input, .field-with-errors .form-inline .input-group > input, .navbar-form .field-with-errors .input-group > input, .field-with-errors .navbar-form .input-group > input, .form-inline .input-group > input[type=text], .navbar-form .input-group > input[type=text], .form-inline .input-group > input[type=password], .navbar-form .input-group > input[type=password], .form-inline .input-group > textarea, .navbar-form .input-group > textarea, .form-inline .input-group > input.digit-2, .navbar-form .input-group > input.digit-2, .form-inline .input-group > input.long, .navbar-form .input-group > input.long,
   .form-inline .input-group > input.short,
   .navbar-form .input-group > input.short, .form-inline .form td .input-group > input, .form td .form-inline .input-group > input, .navbar-form .form td .input-group > input, .form td .navbar-form .input-group > input, .form-inline .input-group > select, .navbar-form .input-group > select {
@@ -2923,7 +3086,6 @@ select[multiple].input-lg,
   .form-inline .has-feedback .form-control-feedback, .navbar-form .has-feedback .form-control-feedback {
     top: 0; } }
 
-.form-horizontal .control-label,
 .form-horizontal .radio,
 .form-horizontal .checkbox,
 .form-horizontal .form td input#shipping-toggle,
@@ -2951,7 +3113,9 @@ select[multiple].input-lg,
   padding-bottom: 7px; }
 @media (min-width: 768px) {
   .form-horizontal .control-label {
-    text-align: right; } }
+    text-align: right;
+    margin-bottom: 0;
+    padding-top: 7px; } }
 .form-horizontal .has-feedback .form-control-feedback {
   top: 0;
   right: 15px; }
@@ -2998,17 +3162,11 @@ select[multiple].input-lg,
   color: #333333;
   background-color: white;
   border-color: #cccccc; }
-  .btn-default:hover, input[type=submit]:hover, input.btn:hover, #buttons input:hover, #create-account-btn:hover, .btn-default:focus, input[type=submit]:focus, input.btn:focus, #buttons input:focus, #create-account-btn:focus, .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn {
+  .btn-default:hover, input[type=submit]:hover, input.btn:hover, #buttons input:hover, #create-account-btn:hover, .btn-default:focus, input[type=submit]:focus, input.btn:focus, #buttons input:focus, #create-account-btn:focus, .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open .btn-default.dropdown-toggle, .open input.dropdown-toggle[type=submit], .open input.dropdown-toggle.btn, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle, .open .dropdown-toggle#create-account-btn {
     color: #333333;
     background-color: #e6e6e6;
     border-color: #adadad; }
-  .open .btn-default.dropdown-toggle, .open input.dropdown-toggle[type=submit], .open input.dropdown-toggle.btn, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle, .open .dropdown-toggle#create-account-btn {
-    color: #333333;
-    background-color: #e6e6e6;
-    border-color: #adadad; }
-  .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn {
-    background-image: none; }
-  .open .btn-default.dropdown-toggle, .open input.dropdown-toggle[type=submit], .open input.dropdown-toggle.btn, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle, .open .dropdown-toggle#create-account-btn {
+  .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open .btn-default.dropdown-toggle, .open input.dropdown-toggle[type=submit], .open input.dropdown-toggle.btn, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle, .open .dropdown-toggle#create-account-btn {
     background-image: none; }
   .btn-default.disabled, input.disabled[type=submit], input.disabled.btn, #buttons input.disabled, .disabled#create-account-btn, .btn-default.disabled:hover, input.disabled[type=submit]:hover, input.disabled.btn:hover, #buttons input.disabled:hover, .disabled#create-account-btn:hover, .btn-default.disabled:focus, input.disabled[type=submit]:focus, input.disabled.btn:focus, #buttons input.disabled:focus, .disabled#create-account-btn:focus, .btn-default.disabled:active, input.disabled[type=submit]:active, input.disabled.btn:active, #buttons input.disabled:active, .disabled#create-account-btn:active, .btn-default.disabled.active, input.disabled.active[type=submit], input.disabled.active.btn, #buttons input.disabled.active, .disabled.active#create-account-btn, .btn-default[disabled], input[disabled][type=submit], input[disabled].btn, #buttons input[disabled], [disabled]#create-account-btn, .btn-default[disabled]:hover, input[disabled][type=submit]:hover, input[disabled].btn:hover, #buttons input[disabled]:hover, [disabled]#create-account-btn:hover, .btn-default[disabled]:focus, input[disabled][type=submit]:focus, input[disabled].btn:focus, #buttons input[disabled]:focus, [disabled]#create-account-btn:focus, .btn-default[disabled]:active, input[disabled][type=submit]:active, input[disabled].btn:active, #buttons input[disabled]:active, [disabled]#create-account-btn:active, .btn-default[disabled].active, input[disabled].active[type=submit], input[disabled].active.btn, #buttons input[disabled].active, [disabled].active#create-account-btn, fieldset[disabled] .btn-default, fieldset[disabled]#switchsolo .btn-default, fieldset[disabled] input[type=submit], fieldset[disabled]#switchsolo input[type=submit], fieldset[disabled] input.btn, fieldset[disabled]#switchsolo input.btn, fieldset[disabled] #buttons input, #buttons fieldset[disabled] input, fieldset[disabled] #create-account-btn, fieldset[disabled] .btn-default:hover, fieldset[disabled]#switchsolo .btn-default:hover, fieldset[disabled] input[type=submit]:hover, fieldset[disabled]#switchsolo input[type=submit]:hover, fieldset[disabled] input.btn:hover, fieldset[disabled]#switchsolo input.btn:hover, fieldset[disabled] #buttons input:hover, #buttons fieldset[disabled] input:hover, fieldset[disabled] #create-account-btn:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled]#switchsolo .btn-default:focus, fieldset[disabled] input[type=submit]:focus, fieldset[disabled]#switchsolo input[type=submit]:focus, fieldset[disabled] input.btn:focus, fieldset[disabled]#switchsolo input.btn:focus, fieldset[disabled] #buttons input:focus, #buttons fieldset[disabled] input:focus, fieldset[disabled] #create-account-btn:focus, fieldset[disabled] .btn-default:active, fieldset[disabled]#switchsolo .btn-default:active, fieldset[disabled] input[type=submit]:active, fieldset[disabled]#switchsolo input[type=submit]:active, fieldset[disabled] input.btn:active, fieldset[disabled]#switchsolo input.btn:active, fieldset[disabled] #buttons input:active, #buttons fieldset[disabled] input:active, fieldset[disabled] #create-account-btn:active, fieldset[disabled] .btn-default.active, fieldset[disabled]#switchsolo .btn-default.active, fieldset[disabled] input.active[type=submit], fieldset[disabled]#switchsolo input.active[type=submit], fieldset[disabled] input.active.btn, fieldset[disabled]#switchsolo input.active.btn, fieldset[disabled] #buttons input.active, #buttons fieldset[disabled] input.active, fieldset[disabled] .active#create-account-btn {
     background-color: white;
@@ -3021,17 +3179,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #428bca;
   border-color: #357ebd; }
-  .btn-primary:hover, #buttons input:hover, .btn-primary:focus, #buttons input:focus, .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active {
+  .btn-primary:hover, #buttons input:hover, .btn-primary:focus, #buttons input:focus, .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active, .open .btn-primary.dropdown-toggle, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle {
     color: white;
     background-color: #3071a9;
     border-color: #285e8e; }
-  .open .btn-primary.dropdown-toggle, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle {
-    color: white;
-    background-color: #3071a9;
-    border-color: #285e8e; }
-  .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active {
-    background-image: none; }
-  .open .btn-primary.dropdown-toggle, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle {
+  .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active, .open .btn-primary.dropdown-toggle, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle {
     background-image: none; }
   .btn-primary.disabled, #buttons input.disabled, .btn-primary.disabled:hover, #buttons input.disabled:hover, .btn-primary.disabled:focus, #buttons input.disabled:focus, .btn-primary.disabled:active, #buttons input.disabled:active, .btn-primary.disabled.active, #buttons input.disabled.active, .btn-primary[disabled], #buttons input[disabled], .btn-primary[disabled]:hover, #buttons input[disabled]:hover, .btn-primary[disabled]:focus, #buttons input[disabled]:focus, .btn-primary[disabled]:active, #buttons input[disabled]:active, .btn-primary[disabled].active, #buttons input[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled]#switchsolo .btn-primary, fieldset[disabled] #buttons input, #buttons fieldset[disabled] input, fieldset[disabled] .btn-primary:hover, fieldset[disabled]#switchsolo .btn-primary:hover, fieldset[disabled] #buttons input:hover, #buttons fieldset[disabled] input:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled]#switchsolo .btn-primary:focus, fieldset[disabled] #buttons input:focus, #buttons fieldset[disabled] input:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled]#switchsolo .btn-primary:active, fieldset[disabled] #buttons input:active, #buttons fieldset[disabled] input:active, fieldset[disabled] .btn-primary.active, fieldset[disabled]#switchsolo .btn-primary.active, fieldset[disabled] #buttons input.active, #buttons fieldset[disabled] input.active {
     background-color: #428bca;
@@ -3044,17 +3196,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #5cb85c;
   border-color: #4cae4c; }
-  .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active {
+  .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .btn-success.dropdown-toggle {
     color: white;
     background-color: #449d44;
     border-color: #398439; }
-  .open .btn-success.dropdown-toggle {
-    color: white;
-    background-color: #449d44;
-    border-color: #398439; }
-  .btn-success:active, .btn-success.active {
-    background-image: none; }
-  .open .btn-success.dropdown-toggle {
+  .btn-success:active, .btn-success.active, .open .btn-success.dropdown-toggle {
     background-image: none; }
   .btn-success.disabled, .btn-success.disabled:hover, .btn-success.disabled:focus, .btn-success.disabled:active, .btn-success.disabled.active, .btn-success[disabled], .btn-success[disabled]:hover, .btn-success[disabled]:focus, .btn-success[disabled]:active, .btn-success[disabled].active, fieldset[disabled] .btn-success, fieldset[disabled]#switchsolo .btn-success, fieldset[disabled] .btn-success:hover, fieldset[disabled]#switchsolo .btn-success:hover, fieldset[disabled] .btn-success:focus, fieldset[disabled]#switchsolo .btn-success:focus, fieldset[disabled] .btn-success:active, fieldset[disabled]#switchsolo .btn-success:active, fieldset[disabled] .btn-success.active, fieldset[disabled]#switchsolo .btn-success.active {
     background-color: #5cb85c;
@@ -3067,17 +3213,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #5bc0de;
   border-color: #46b8da; }
-  .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active {
+  .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .btn-info.dropdown-toggle {
     color: white;
     background-color: #31b0d5;
     border-color: #269abc; }
-  .open .btn-info.dropdown-toggle {
-    color: white;
-    background-color: #31b0d5;
-    border-color: #269abc; }
-  .btn-info:active, .btn-info.active {
-    background-image: none; }
-  .open .btn-info.dropdown-toggle {
+  .btn-info:active, .btn-info.active, .open .btn-info.dropdown-toggle {
     background-image: none; }
   .btn-info.disabled, .btn-info.disabled:hover, .btn-info.disabled:focus, .btn-info.disabled:active, .btn-info.disabled.active, .btn-info[disabled], .btn-info[disabled]:hover, .btn-info[disabled]:focus, .btn-info[disabled]:active, .btn-info[disabled].active, fieldset[disabled] .btn-info, fieldset[disabled]#switchsolo .btn-info, fieldset[disabled] .btn-info:hover, fieldset[disabled]#switchsolo .btn-info:hover, fieldset[disabled] .btn-info:focus, fieldset[disabled]#switchsolo .btn-info:focus, fieldset[disabled] .btn-info:active, fieldset[disabled]#switchsolo .btn-info:active, fieldset[disabled] .btn-info.active, fieldset[disabled]#switchsolo .btn-info.active {
     background-color: #5bc0de;
@@ -3090,17 +3230,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #f0ad4e;
   border-color: #eea236; }
-  .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active {
+  .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open .btn-warning.dropdown-toggle {
     color: white;
     background-color: #ec971f;
     border-color: #d58512; }
-  .open .btn-warning.dropdown-toggle {
-    color: white;
-    background-color: #ec971f;
-    border-color: #d58512; }
-  .btn-warning:active, .btn-warning.active {
-    background-image: none; }
-  .open .btn-warning.dropdown-toggle {
+  .btn-warning:active, .btn-warning.active, .open .btn-warning.dropdown-toggle {
     background-image: none; }
   .btn-warning.disabled, .btn-warning.disabled:hover, .btn-warning.disabled:focus, .btn-warning.disabled:active, .btn-warning.disabled.active, .btn-warning[disabled], .btn-warning[disabled]:hover, .btn-warning[disabled]:focus, .btn-warning[disabled]:active, .btn-warning[disabled].active, fieldset[disabled] .btn-warning, fieldset[disabled]#switchsolo .btn-warning, fieldset[disabled] .btn-warning:hover, fieldset[disabled]#switchsolo .btn-warning:hover, fieldset[disabled] .btn-warning:focus, fieldset[disabled]#switchsolo .btn-warning:focus, fieldset[disabled] .btn-warning:active, fieldset[disabled]#switchsolo .btn-warning:active, fieldset[disabled] .btn-warning.active, fieldset[disabled]#switchsolo .btn-warning.active {
     background-color: #f0ad4e;
@@ -3113,17 +3247,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #d9534f;
   border-color: #d43f3a; }
-  .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active {
+  .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open .btn-danger.dropdown-toggle {
     color: white;
     background-color: #c9302c;
     border-color: #ac2925; }
-  .open .btn-danger.dropdown-toggle {
-    color: white;
-    background-color: #c9302c;
-    border-color: #ac2925; }
-  .btn-danger:active, .btn-danger.active {
-    background-image: none; }
-  .open .btn-danger.dropdown-toggle {
+  .btn-danger:active, .btn-danger.active, .open .btn-danger.dropdown-toggle {
     background-image: none; }
   .btn-danger.disabled, .btn-danger.disabled:hover, .btn-danger.disabled:focus, .btn-danger.disabled:active, .btn-danger.disabled.active, .btn-danger[disabled], .btn-danger[disabled]:hover, .btn-danger[disabled]:focus, .btn-danger[disabled]:active, .btn-danger[disabled].active, fieldset[disabled] .btn-danger, fieldset[disabled]#switchsolo .btn-danger, fieldset[disabled] .btn-danger:hover, fieldset[disabled]#switchsolo .btn-danger:hover, fieldset[disabled] .btn-danger:focus, fieldset[disabled]#switchsolo .btn-danger:focus, fieldset[disabled] .btn-danger:active, fieldset[disabled]#switchsolo .btn-danger:active, fieldset[disabled] .btn-danger.active, fieldset[disabled]#switchsolo .btn-danger.active {
     background-color: #d9534f;
@@ -3372,7 +3500,7 @@ tbody.collapse.in {
     .btn-group-vertical > input[type=submit]:focus,
     #buttons .btn-group-vertical > input:focus,
     .btn-group-vertical > #create-account-btn:focus {
-      outline: none; }
+      outline: 0; }
 
 .btn-group .btn + .btn, .btn-group input[type=submit] + .btn, .btn-group #buttons input + .btn, #buttons .btn-group input + .btn, .btn-group #create-account-btn + .btn, .btn-group .btn + input[type=submit], .btn-group input[type=submit] + input[type=submit], .btn-group #create-account-btn + input[type=submit], .btn-group #buttons .btn + input, #buttons .btn-group .btn + input, .btn-group #buttons input + input, #buttons .btn-group input + input, .btn-group #buttons #create-account-btn + input, #buttons .btn-group #create-account-btn + input, .btn-group .btn + #create-account-btn, .btn-group input[type=submit] + #create-account-btn, .btn-group #buttons input + #create-account-btn, #buttons .btn-group input + #create-account-btn, .btn-group #create-account-btn + #create-account-btn,
 .btn-group .btn + .btn-group,
@@ -3845,7 +3973,6 @@ tbody.collapse.in {
     float: left; } }
 
 .navbar-collapse {
-  max-height: 340px;
   overflow-x: visible;
   padding-right: 15px;
   padding-left: 15px;
@@ -3874,6 +4001,18 @@ tbody.collapse.in {
       .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse, #footer .navbar-collapse, #container.slim #footer .navbar-collapse {
         padding-left: 0;
         padding-right: 0; } }
+
+.navbar-fixed-top .navbar-collapse,
+.navbar-fixed-bottom .navbar-collapse,
+#footer .navbar-collapse,
+#container.slim #footer .navbar-collapse {
+  max-height: 340px; }
+  @media (max-width: 480px) and (orientation: landscape) {
+    .navbar-fixed-top .navbar-collapse,
+    .navbar-fixed-bottom .navbar-collapse,
+    #footer .navbar-collapse,
+    #container.slim #footer .navbar-collapse {
+      max-height: 200px; } }
 
 .container > .navbar-header, #info-bar > .navbar-header, #container > .navbar-header,
 .container > .navbar-collapse,
@@ -3948,7 +4087,7 @@ tbody.collapse.in {
   border: 1px solid transparent;
   border-radius: 4px; }
   .navbar-toggle:focus {
-    outline: none; }
+    outline: 0; }
   .navbar-toggle .icon-bar {
     display: block;
     width: 22px;
@@ -4316,15 +4455,16 @@ tbody.collapse.in {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em; }
-  .label[href]:hover, .label[href]:focus {
-    color: white;
-    text-decoration: none;
-    cursor: pointer; }
   .label:empty {
     display: none; }
   .btn .label, input[type=submit] .label, #buttons input .label, #create-account-btn .label {
     position: relative;
     top: -1px; }
+
+a.label:hover, a.label:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer; }
 
 .label-default {
   background-color: #999999; }
@@ -4377,19 +4517,16 @@ tbody.collapse.in {
   .btn-xs .badge, .btn-group-xs > .btn .badge, .btn-group-xs > input[type=submit] .badge, #buttons .btn-group-xs > input .badge, .btn-group-xs > #create-account-btn .badge {
     top: 0;
     padding: 1px 5px; }
+  a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+    color: #428bca;
+    background-color: white; }
+  .nav-pills > li > a > .badge {
+    margin-left: 3px; }
 
 a.badge:hover, a.badge:focus {
   color: white;
   text-decoration: none;
   cursor: pointer; }
-
-a.list-group-item.active > .badge,
-.nav-pills > .active > a > .badge {
-  color: #428bca;
-  background-color: white; }
-
-.nav-pills > li > a > .badge {
-  margin-left: 3px; }
 
 .jumbotron {
   padding: 30px;
@@ -5095,7 +5232,7 @@ button.close {
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
-  outline: none; }
+  outline: 0; }
 
 .modal-backdrop {
   position: fixed;
@@ -5144,6 +5281,13 @@ button.close {
     margin-left: -1px; }
   .modal-footer .btn-block + .btn-block {
     margin-left: 0; }
+
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll; }
 
 @media (min-width: 768px) {
   .modal-dialog {
@@ -5421,7 +5565,7 @@ button.close {
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1); }
   .carousel-control:hover, .carousel-control:focus {
-    outline: none;
+    outline: 0;
     color: white;
     text-decoration: none;
     opacity: 0.9;
@@ -5557,6 +5701,20 @@ button.close {
 .visible-xs, .visible-sm, .visible-md, .visible-lg {
   display: none !important; }
 
+.visible-xs-block,
+.visible-xs-inline,
+.visible-xs-inline-block,
+.visible-sm-block,
+.visible-sm-inline,
+.visible-sm-inline-block,
+.visible-md-block,
+.visible-md-inline,
+.visible-md-inline-block,
+.visible-lg-block,
+.visible-lg-inline,
+.visible-lg-inline-block {
+  display: none !important; }
+
 @media (max-width: 767px) {
   .visible-xs {
     display: block !important; }
@@ -5570,6 +5728,18 @@ button.close {
   th.visible-xs,
   td.visible-xs {
     display: table-cell !important; } }
+@media (max-width: 767px) {
+  .visible-xs-block {
+    display: block !important; } }
+
+@media (max-width: 767px) {
+  .visible-xs-inline {
+    display: inline !important; } }
+
+@media (max-width: 767px) {
+  .visible-xs-inline-block {
+    display: inline-block !important; } }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .visible-sm {
     display: block !important; }
@@ -5583,6 +5753,18 @@ button.close {
   th.visible-sm,
   td.visible-sm {
     display: table-cell !important; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .visible-sm-block {
+    display: block !important; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .visible-sm-inline {
+    display: inline !important; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .visible-sm-inline-block {
+    display: inline-block !important; } }
+
 @media (min-width: 992px) and (max-width: 1199px) {
   .visible-md {
     display: block !important; }
@@ -5596,6 +5778,18 @@ button.close {
   th.visible-md,
   td.visible-md {
     display: table-cell !important; } }
+@media (min-width: 992px) and (max-width: 1199px) {
+  .visible-md-block {
+    display: block !important; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .visible-md-inline {
+    display: inline !important; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .visible-md-inline-block {
+    display: inline-block !important; } }
+
 @media (min-width: 1200px) {
   .visible-lg {
     display: block !important; }
@@ -5609,6 +5803,18 @@ button.close {
   th.visible-lg,
   td.visible-lg {
     display: table-cell !important; } }
+@media (min-width: 1200px) {
+  .visible-lg-block {
+    display: block !important; } }
+
+@media (min-width: 1200px) {
+  .visible-lg-inline {
+    display: inline !important; } }
+
+@media (min-width: 1200px) {
+  .visible-lg-inline-block {
+    display: inline-block !important; } }
+
 @media (max-width: 767px) {
   .hidden-xs {
     display: none !important; } }
@@ -5637,6 +5843,24 @@ button.close {
   th.visible-print,
   td.visible-print {
     display: table-cell !important; } }
+.visible-print-block {
+  display: none !important; }
+  @media print {
+    .visible-print-block {
+      display: block !important; } }
+
+.visible-print-inline {
+  display: none !important; }
+  @media print {
+    .visible-print-inline {
+      display: inline !important; } }
+
+.visible-print-inline-block {
+  display: none !important; }
+  @media print {
+    .visible-print-inline-block {
+      display: inline-block !important; } }
+
 @media print {
   .hidden-print {
     display: none !important; } }
