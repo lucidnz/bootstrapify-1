@@ -486,7 +486,7 @@ header .article-meta{
   }
 
   .sidebar{
-    padding-top: 0;
+    padding-top: $grid-gutter-width;
     padding-bottom: 0;
     margin-bottom: $grid-gutter-width;
     .sidebar-content{

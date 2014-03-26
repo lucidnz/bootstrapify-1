@@ -5588,7 +5588,7 @@ a.icon:hover {
       margin-bottom: 0; }
 
   .sidebar {
-    padding-top: 0;
+    padding-top: 30px;
     padding-bottom: 0;
     margin-bottom: 30px; }
     .sidebar .sidebar-content {
