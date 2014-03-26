@@ -5320,9 +5320,6 @@ h6 {
 aside .page-header:first-child {
   margin-top: 0; }
 
-.carousel {
-  margin-bottom: 30px; }
-
 a.icon:hover {
   text-decoration: none; }
 
@@ -5423,22 +5420,46 @@ a.icon:hover {
   left: auto;
   text-align: left;
   text-shadow: none;
-  padding: 12px 6px 30px;
-  border: #dedede solid 1px;
-  border-radius: 6px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0; }
+  padding: 0 15px 15px; }
 
-.carousel-indicators li {
-  margin: 3px; }
-.carousel-indicators .active {
-  margin: 3px;
-  width: 10px;
-  height: 10px; }
+.centered-layout .carousel-caption {
+  text-align: center; }
+
+.carousel-indicators {
+  bottom: 0;
+  margin-bottom: 0; }
+  .carousel-indicators li {
+    margin: 3px; }
+  .carousel-indicators .active {
+    margin: 3px;
+    width: 10px;
+    height: 10px; }
 
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
   margin: auto; }
 
+@media (min-width: 768px) {
+  .carousel-indicators {
+    bottom: 10px;
+    margin-bottom: 10px; }
+
+  .carousel-control .fa {
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px; }
+  .carousel-control .fa-chevron-left {
+    margin-left: -15px; }
+  .carousel-control .fa-chevron-right {
+    margin-right: -15px; }
+
+  .carousel-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); } }
 #admin_header {
   overflow: auto;
   margin-bottom: 30px; }
@@ -5593,29 +5614,7 @@ a.icon:hover {
     margin-bottom: 30px; }
     .sidebar .sidebar-content {
       padding: 12px;
-      border-radius: 4px; }
-
-  .carousel-control .fa {
-    font-size: 30px;
-    width: 30px;
-    height: 30px;
-    margin-top: -15px; }
-  .carousel-control .fa-chevron-left {
-    margin-left: -15px; }
-  .carousel-control .fa-chevron-right {
-    margin-right: -15px; }
-
-  .carousel-caption {
-    position: absolute;
-    left: 15%;
-    right: 15%;
-    bottom: 20px;
-    z-index: 10;
-    padding: 20px 0;
-    text-align: center;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-    background-color: transparent;
-    border: none; } }
+      border-radius: 4px; } }
 /* Pass screen size to js: http://adactio.com/journal/5429/ */
 body:after {
   visibility: hidden;

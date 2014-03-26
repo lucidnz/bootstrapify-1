@@ -103,10 +103,6 @@ aside .page-header:first-child{
   margin-top: 0;
 }
 
-.carousel{
-  margin-bottom: $grid-gutter-width;
-}
-
 a.icon:hover {
   text-decoration: none;
 }
@@ -254,13 +250,14 @@ a.icon:hover {
   left: auto;
   text-align: left;
   text-shadow: none;
-  padding: $padding-base-horizontal $padding-base-vertical $grid-gutter-width;
-  border: darken($gray-lighter, 6.5%) solid 1px;
-  border-radius: $border-radius-large; 
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  padding: 0 $grid-gutter-width/2 $grid-gutter-width/2;
+}
+.centered-layout .carousel-caption{
+  text-align: center;
 }
 .carousel-indicators{
+  bottom: 0;
+  margin-bottom: 0;
   li{
     margin: 3px;
   }
@@ -272,6 +269,34 @@ a.icon:hover {
 }
 .carousel-inner > .item > img, .carousel-inner > .item > a > img{
   margin: auto;
+}
+@media (min-width: $screen-sm-min){
+  .carousel-indicators{
+    bottom: 10px;
+    margin-bottom: 10px;
+  }
+  .carousel-control{
+    .fa{
+      font-size: 30px;
+      width: 30px;
+      height: 30px;
+      margin-top: -15px;
+    }
+    .fa-chevron-left{
+      margin-left:  ($grid-gutter-width / -2);
+    }
+    .fa-chevron-right{
+      margin-right: ($grid-gutter-width / -2);
+    }
+  }
+  .carousel-caption{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: $grid-gutter-width;
+    text-align: center;
+    text-shadow: $carousel-text-shadow;
+  }
 }
 
 #admin_header{
@@ -435,7 +460,6 @@ header .article-meta{
 }
 
 @media (min-width: $screen-sm-min){
-  
   .navbar-nav.navbar-left:first-child{
     margin-left: ($grid-gutter-width / -2);
   }
@@ -493,32 +517,6 @@ header .article-meta{
       padding: $padding-base-horizontal;
       border-radius: $border-radius-base;
     }
-  }
-  .carousel-control{
-    .fa{
-      font-size: 30px;
-      width: 30px;
-      height: 30px;
-      margin-top: -15px;
-    }
-    .fa-chevron-left{
-      margin-left:  ($grid-gutter-width / -2);
-    }
-    .fa-chevron-right{
-      margin-right: ($grid-gutter-width / -2);
-    }
-  }
-  .carousel-caption{
-    position: absolute;
-    left: 15%;
-    right: 15%;
-    bottom: 20px;
-    z-index: 10;
-    padding: 20px 0;
-    text-align: center;
-    text-shadow: $carousel-text-shadow;
-    background-color: transparent;
-    border: none;
   }
 }
 
