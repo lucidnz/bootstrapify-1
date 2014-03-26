@@ -1,14 +1,13 @@
-<title>{% include 'smart-title' %} | {{ shop.name }}</title>
+<title>{% include 'smart-title' with 'strip_html' %} | {{ shop.name }}</title>
 {% if page_description %}
 <meta name="description" content="{{ page_description | escape }}" />
 {% endif %}
 
 <link rel="canonical" href="{{ canonical_url }}" />
 
-<meta property="og:title" content="{% include 'smart-title' %}" />
+<meta property="og:title" content="{% include 'smart-title' with 'strip_html' %} | {{ shop.name }}" />
 <meta property="og:description" content="{{ page_description | escape }}" />
 <meta property="og:url" content="{{ canonical_url }}" />
-
 {% if template contains 'product' %}
 <meta property="og:type" content="product" />
 <meta property="og:price:amount" content="{{ product.price | money_without_currency }}" />
@@ -19,14 +18,13 @@
 {% else %}
 <meta property="og:type" content="website" />
 {% endif %}
-
 {% if product.featured_image != blank %}
 <meta property="og:image" content="{{ product.featured_image | product_img_url: 'medium' }}" />
 {% elsif settings.logo-image %}
 <meta property="og:image" content="{{ 'logo-image-file.png' | asset_url }}" />
 {% endif %}
-
 <meta property="og:site_name" content="{{ shop.name }}" />
+
 <meta name="author" content="{{ shop.name }}">
 
 {% if settings.social-links-rss != blank %}

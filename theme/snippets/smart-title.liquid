@@ -9,4 +9,4 @@
       {% assign title = title | append: ' | ' | append: blog.title %}
     {% endif %}
   {% endif %}
-{% endcapture %}{{ title }}
+{% endcapture %}{% if smart-title == 'strip_html' %}{{ title | strip_html }}{% else %}{{ title }}{% endif %}
