@@ -1,4 +1,3 @@
-{% include '__per-row' %}
 <div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
 {% if products-list == 'featured' %}
   {% if settings.featured-products-limit contains 'row' %}{% assign limit = settings.featured-products-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
