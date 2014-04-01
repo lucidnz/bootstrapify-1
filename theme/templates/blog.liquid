@@ -42,6 +42,8 @@
 {% include 'pagination' %}
 {% endpaginate %}
 
+{% comment %}
 <div class="well">
   <a href="{{ blog.url | append: '.atom' }}">{% include '__localize' with 'Subscribe to RSS feed for ' %} {{ blog.title }}.</a>
 </div>
+{% endcomment %}
