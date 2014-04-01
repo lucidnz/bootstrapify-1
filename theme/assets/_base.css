@@ -5460,6 +5460,9 @@ a.icon:hover {
 .list-nav li:first-child {
   margin-top: 0; }
 
+.pager li > a, .pager li > span {
+  border-radius: 4px; }
+
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;

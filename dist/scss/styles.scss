@@ -302,6 +302,10 @@ a.icon:hover {
   }
 }
 
+.pager li > a, .pager li > span {
+	border-radius: 4px;
+}
+
 .article-meta{
   @extend .list-unstyled;
   @extend .text-muted;
