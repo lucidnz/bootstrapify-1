@@ -18,12 +18,18 @@
   {% include 'products-list' with 'featured' %}
 {% endif %}
 
-{% unless homepage.metafields.support.size == 0 %}
+{% unless homepage.metafields.supporter.size == 0 %}
 <hr>
 <aside class="row">
-{% for field in homepage.metafields.support %}
+	{% for i in (1..4) %}
+	{% assign c = forloop.index %}
+	{% assign s_image = 'image_' | append: c %}
+	{% assign s_link = 'link_' | append: c %}
+	{% assign s_name = 'name_' | append: c %}
 	<div class="col-sm-3">
-		<img src="{{ field | last }}" alt="{{ field | first }}">	        
+		<a href="{{ homepage.metafields.supporter[s_link] }}">
+			<img src="{{ homepage.metafields.supporter[s_image] }}" alt="{{ homepage.metafields.supporter[s_name] }}">	  
+		</a>      
 	</div>
 {% endfor %}
 </aside>
