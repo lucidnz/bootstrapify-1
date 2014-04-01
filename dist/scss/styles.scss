@@ -78,6 +78,12 @@ h6 {
   width: 30%;
 }
 
+.navbar-brand img {
+  height: $navbar-height - ($grid-gutter-width / 2 );
+  margin-top: $grid-gutter-width / 4 * -1;
+  margin-bottom: $grid-gutter-width / 4 * -1;
+}
+
 .brand{
   overflow: auto;
   .text-center img{
