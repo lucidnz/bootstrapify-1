@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
   <li><a href="/"><i class="fa fa-home"></i></a></li>
-  {% if collection.title != blank and collection.title != page_title and template != 'index' %}<li><a href="{{ collection.url }}">{{ collection.title }}</a></li>{% endif %}
+  {% unless collection.title == blank or collection.title == page_title or template == 'index' or template contains 'collection' %}<li><a href="{{ collection.url }}">{{ collection.title }}</a></li>{% endunless %}
   {% if blog.title != blank and blog.title != page_title %}<li><a href="{{ blog.url }}">{{ blog.title }}</a></li>{% endif %}
   {% if article.title != blank and article.title != page_title %}<li><a href="{{ article.url }}">{{ article.title }}</a></li>{% endif %}
   {% if page.title != blank and page.title != page_title %}<li><a href="{{ page.url }}">{{ page.title }}</a></li>{% endif %}
