@@ -1,11 +1,11 @@
 {% if tags %}
   {% if settings.tag-format != "dropdown" and tags.size < max_tags %}
   {% if settings.tag-placement == 'sidebar' %}
-  <h4 class="page-header">{% include '__localize' with 'Filter by tags:' %}</h4>
+  <h3 class="page-header">{% include '__localize' with 'Filter' %}</h3>
   {% endif %}
-  <ul class="nav nav-pills tags-list">
+  <ul class="{% if settings.tag-placement == 'sidebar' %}list-unstyled{% else %}nav nav-pills{% endif %}">
     {% if settings.tag-placement != 'sidebar' %}
-    <li class="disabled"><a href="#">{% include '__localize' with 'Filter by tags:' %}</a></li>
+    <li class="disabled"><a href="#">{% include '__localize' with 'Filter by tags' %}</a></li>
     {% endif %}
     {% for t in tags %}
 	{% unless t contains ':' %}
