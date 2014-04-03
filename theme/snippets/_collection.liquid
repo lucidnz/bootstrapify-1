@@ -1,11 +1,15 @@
 {% include '__collection-image' %}
 <div class="{% include '__thumbnail-span' %}{% if settings.masonry-style-layout %} masonry{% endif %}">
-	<div class="thumbnail">
-		{{ image }}
-		<div class="caption clearfix">
-			<strong>{{ _collection.title | link_to: _collection.url, _collection.title }}</strong>
-			{% comment %}<span class="pull-right">{{ _collection.all_products_count }}&nbsp;{{ _collection.all_products_count | pluralize: 'product','products' }}</span>{% endcomment %}
-		</div>
-	</div>
+  <div class="thumbnail text-center">
+    <div class="collection-image">
+      {{ image }}
+    </div>
+    <div class="caption clearfix">
+      <h4>{{ _collection.title | link_to: _collection.url, _collection.title }}</h4>
+      {% capture product_title %}{% include '__localize' with 'Product' %}{% endcapture %}
+      {% capture products_title %}{% include '__localize' with 'Products' %}{% endcapture %}
+      {% if settings.show-product-count-for-collections %}<div class="text-muted">{{ _collection.all_products_count }}&nbsp;{{ _collection.all_products_count | pluralize: product_title, products_title }}</div>{% endif %}
+    </div>
+  </div>
 </div>
 {% include '_end_row' %}

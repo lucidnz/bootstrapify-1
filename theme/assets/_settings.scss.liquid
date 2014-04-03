@@ -503,6 +503,45 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   }
 }
 
+{% unless settings.max-height-of-product-images-desktop == blank %}
+@media (min-width: $screen-md-min){
+  .collection-image,
+  .product-image {
+    height: {{ settings.max-height-of-product-images-desktop }};
+    img {
+      max-height: {{ settings.max-height-of-product-images-desktop }};
+    }
+  }
+}
+{% endunless %}
+
+{% unless settings.max-height-of-product-images-tablet == blank %}
+@media (min-width: $screen-sm-min) and (max-width: ($screen-md-min - 1)){
+  .collection-image,
+  .product-image {
+    height: {{ settings.max-height-of-product-images-tablet }};
+    img {
+      max-height: {{ settings.max-height-of-product-images-tablet }};
+    }
+  }
+}
+{% endunless %}
+
+{% unless settings.max-height-of-product-images-tablet and settings.max-height-of-product-images-desktop == blank %}
+@media (min-width: $screen-sm-min){
+  .collection-image,
+  .product-image {
+    position: relative;
+    
+    img {
+      margin: auto;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+    }
+  }
+}
+{% endunless %}
+
 .sidebar{
   @include background-colour($sidebar-background-colour);
   @include heading-colour($sidebar-heading-colour, $sidebar-background-colour);

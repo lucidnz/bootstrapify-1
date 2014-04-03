@@ -1,8 +1,7 @@
 {% include '__has-variables' %}
-{% unless settings.tag-placement == 'sidebar' %}{% include 'tags-list' with 'menu' %}{% endunless %}
 
 <h1 class="page-header">{{ page_title }}</h1>
-{% unless settings.tag-placement == 'sidebar' %}{% include 'tags-list' with 'buttons' %}{% endunless %}
+{% unless settings.tag-placement == 'sidebar' %}{% include 'tag-buttons' %}{% endunless %}
 
 {% include '__default-pagination' %}
 {% paginate blog.articles by default-pagination %}

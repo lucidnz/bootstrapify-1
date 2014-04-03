@@ -2,26 +2,29 @@
   <div class="sidebar-content">
     {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
     
-    {% if settings.tag-placement == 'sidebar' %}{% include 'tags-list' %}{% endif %}
+    {% if settings.tag-placement == 'sidebar' %}
+    <h3 class="page-header">{% include '__localize' with 'Filter' %}</h3>
+    {% include 'tag-buttons' %}
+    {% endif %}
     
     {% if template == 'blog' or template == 'article' %}
-      <h4 class="page-header">Recent articles</h4>
+      <h3 class="page-header">{% include '__localize' with 'Recent articles' %}</h3>
       {% for a in blog.articles limit:settings.blog-list-limit %}
         {% include 'article-excerpt' %}
       {% endfor %}
     {% endif %}
     
     {% unless linklists[settings.sidebar-linklist] == empty %}
-      <h4 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h4>
-      <ul class="nav nav-pills nav-stacked">
+      <h3 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h3>
+      <ul class="list-unstyled">
         {% for l in linklists[settings.sidebar-linklist].links %}
-        <li{% if l.active %} class="active"{% endif %}>{{ l.title | link_to: l.url, l.title }}</li>
+        <li{% if l.active %} class="active"{% endif %}><h4>{{ l.title | link_to: l.url, l.title }}</h4></li>
         {% endfor %}
       </ul>
     {% endunless %}
   
     {% unless blogs[settings.sidebar-blog] == empty %}
-      <h4 class="page-header">{{ blogs[settings.sidebar-blog].title }}</h4>
+      <h3 class="page-header">{{ blogs[settings.sidebar-blog].title }}</h3>
       {% for a in blogs[settings.sidebar-blog].articles limit:settings.blog-list-limit %}
       <h5>{{ a.title | link_to: a.url, a.title }} <small class="text-muted help-block">{{ a.published_at | date: settings.short-date-format }}</small></h5>
       {% endfor %}
