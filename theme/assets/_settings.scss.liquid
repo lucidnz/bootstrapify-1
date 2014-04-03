@@ -16,6 +16,7 @@ $screen-xs-min:                       480px !default;
 $screen-sm-min:                       768px !default;
 $screen-md-min:                       992px !default;
 $screen-lg-min:                       1200px !default;
+$container-width-small-devices:       750px !default;
 
 /*
  * Setting Variables
@@ -316,13 +317,15 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
       bottom: auto;
     }
     @if nth($slide-position, 2) == 'left' {
-      left: 10%;
-      right: 20%;
       text-align: left;
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        text-align: left;
+      }
     } @else if nth($slide-position, 2) == 'right' {
-      left: 20%;
-      right: 10%;
       text-align: right;
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        text-align: right;
+      }
     }
     color: slide-colour($slide-dark, $text-colour);
     @if $slide-dark {
@@ -491,6 +494,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     .dropdown-menu{
       background-color: white;
     }
+    .dropdown-menu > li > a, .dropdown-menu .nav > li > a{
+      color: $default-text-colour;
+    }
     .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu .nav > li > a:hover, .dropdown-menu .nav > li > a:focus{
       background-color: whitesmoke;
     }
@@ -504,6 +510,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   @include link-colour($sidebar-link-colour, $sidebar-background-colour);
   .nav{
     @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
+  }
+}
+@media (min-width: $screen-sm-min){
+  .sidebar{
+    background-color: transparent;
+    .sidebar-content{
+      background-color: $sidebar-background-colour;
+      @if $site-background-image == false and ($sidebar-background-colour == $body-background-colour or $sidebar-background-colour == transparent) {
+        padding: 0;
+      }
+    }
   }
 }
 
@@ -528,18 +545,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 .carousel-indicators .active{
   background-color: $body-text-colour;
 }
-
 @media (min-width: $screen-sm-min){
-  .sidebar{
-    background-color: transparent;
-    .sidebar-content{
-      background-color: $sidebar-background-colour;
-      @if $site-background-image == false and ($sidebar-background-colour == $body-background-colour or $sidebar-background-colour == transparent) {
-        padding: 0;
-      }
-    }
-  }
-  
   $i: 1;
   @each $slide in $slides{
     #slide-#{$i}{
@@ -548,6 +554,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     $i: $i + 1;
   }
   .carousel-caption{
+    left: 50%;
+    width: $container-width-small-devices;
+    margin-left: -($container-width-small-devices/2);
     background-color: transparent;
   }
   .carousel-indicators li{
@@ -562,11 +571,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   .container {
     width: $container-width-medium-devices;
   }
+  .carousel-caption{
+    width: $container-width-medium-devices;
+    margin-left: -($container-width-medium-devices/2);
+  }
 }
 
 @media (min-width: $screen-lg-min) {
   .container {
     width: $container-width-large-devices;
+  }
+  .carousel-caption{
+    width: $container-width-large-devices;
+    margin-left: -($container-width-large-devices/2);
   }
 }
 

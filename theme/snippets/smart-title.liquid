@@ -2,10 +2,6 @@
   {% if search.performed %}
     {% capture title %}{% include '__localize' with 'Search results for' %} {{ settings.left-quote }}{{ page_title }}{{ settings.right-quote }}{% endcapture %}
   {% else %}
-    {% if template == 'index' %}
-      {% capture homepage_title %}{% include '__localize' with 'Welcome' %}{% endcapture %}
-      {% assign page_title = homepage_title %}
-    {% endif %}
     {% assign title = page_title %}
     {% if collection.title != blank and collection.title != page_title and template != 'index' %}
        {% assign title = title | append: ' | ' | append: collection.title %}
@@ -13,4 +9,4 @@
       {% assign title = title | append: ' | ' | append: blog.title %}
     {% endif %}
   {% endif %}
-{% endcapture %}{{ title }}
+{% endcapture %}{% if smart-title == 'strip_html' %}{{ title | strip_html }}{% else %}{{ title }}{% endif %}

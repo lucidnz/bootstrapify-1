@@ -14,7 +14,8 @@
 {% endunless %}
 
 {% if settings.homepage-featured-products-collection %}
-<h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
+{% assign featured_collection = collections[settings.homepage-featured-products-collection] %}
+<h2><a href="{{ featured_collection.url }}">{{ featured_collection.title }}</a>{% if featured_collection.products.size > per-row %}&emsp;<a class="small" href="{{ featured_collection.url }}">View more</a>{% endif %}</h2>
   {% include 'products-list' with 'featured' %}
 {% endif %}
 

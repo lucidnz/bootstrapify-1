@@ -3,7 +3,7 @@
 
 {% assign cols = 3 %}
 
-<h2 class="page-header">{{ blog.title }} <small><a class="text-muted" href="{{ blog.url }}">View all</a></small></h2>
+<h2 class="page-header">{{ blog.title }}&emsp;<a class="small" href="{{ blog.url }}">View all</a></h2>
 
 <div class="row">
   {% for l in blog.articles | limit: 3 %}
