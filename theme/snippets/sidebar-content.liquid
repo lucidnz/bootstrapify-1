@@ -2,7 +2,10 @@
   <div class="sidebar-content">
     {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
     
-    {% if settings.tag-placement == 'sidebar' %}{% include 'tags-list' %}{% endif %}
+    {% if settings.tag-placement == 'sidebar' %}
+    <h3 class="page-header">{% include '__localize' with 'Filter' %}</h3>
+    {% include 'tag-buttons' %}
+    {% endif %}
     
     {% if template == 'blog' or template == 'article' %}
       <h3 class="page-header">{% include '__localize' with 'Recent articles' %}</h3>
