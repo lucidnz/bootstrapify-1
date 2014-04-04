@@ -1,7 +1,7 @@
 {% include '__product-image' %}
 <div class="{% include '__product-css-class' %}{% if settings.masonry-style-layout %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
   <div class="thumbnail">
-    <div class="product-image">
+    <div class="thumbnail-image">
       {{ image }}
     </div>
     <div class="caption clearfix">
@@ -10,4 +10,3 @@
     </div>
   </div>
 </div>
-{% include '_end_row' %}

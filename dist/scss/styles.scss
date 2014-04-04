@@ -27,7 +27,7 @@ h6 {
 }
 
 .label {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 #product-form h1:first-child {
@@ -197,7 +197,7 @@ a.icon:hover {
 }
 
 .btn-group > .btn:first-child {
-	margin-left: $grid-gutter-width / 2;
+  margin-left: $grid-gutter-width / 2;
 }
 
 .dl-horizontal-left{
@@ -526,6 +526,14 @@ header .article-meta{
   }
 }
 
+.thumbnail-image {
+  overflow: hidden;
+}
+
+.caption h4 {
+  margin-top: 0;
+}
+
 /* Pass screen size to js: http://adactio.com/journal/5429/ */
 body:after{
   // newer chrome is a lame about not giving us content of display:none element in js
@@ -554,10 +562,18 @@ body:after{
   body:after{
     content: 'md';
   }
+  
+  .caption h4 {
+    height: 4em;
+  }
 }
 
 @media (min-width: $screen-lg-min) {
   body:after{
     content: 'lg';
+  }
+  
+  .caption h4 {
+    height: 3em;
   }
 }

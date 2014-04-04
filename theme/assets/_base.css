@@ -5620,6 +5620,12 @@ a.icon:hover {
     .sidebar .sidebar-content {
       padding: 12px;
       border-radius: 4px; } }
+.thumbnail-image {
+  overflow: hidden; }
+
+.caption h4 {
+  margin-top: 0; }
+
 /* Pass screen size to js: http://adactio.com/journal/5429/ */
 body:after {
   visibility: hidden;
@@ -5637,7 +5643,13 @@ body:after {
     content: 'sm'; } }
 @media (min-width: 992px) and (max-width: 1199px) {
   body:after {
-    content: 'md'; } }
+    content: 'md'; }
+
+  .caption h4 {
+    height: 4em; } }
 @media (min-width: 1200px) {
   body:after {
-    content: 'lg'; } }
+    content: 'lg'; }
+
+  .caption h4 {
+    height: 3em; } }
