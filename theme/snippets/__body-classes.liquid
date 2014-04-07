@@ -14,7 +14,7 @@ template-{{ template }}
 
 {{ settings.slider-width | prepend: 'banner-' }}
 
-{% if settings.fit-thumbnails-in-a-square %} square-thumbnails{% endif %}
+{% unless settings.thumbnail-ratio == blank %}{% if settings.thumbnails-cropped %} thumbnails-cropped{% else %} thumbnails-fit{% endif %}{% endunless %}
 {% if settings.show-multiple-currencies %} currencies{% endif %}
 {% if settings.centered-layout %} centered-layout{% endif %}
  {{ template | replace: '.', '-' }}

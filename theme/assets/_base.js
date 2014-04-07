@@ -124,7 +124,7 @@ var preloadProductImages = function(){
   }
 };
 
-$(function() {
+$(function() {  
   /* Multiple currencies */
   if ($('body').hasClass('currencies')) {
     $('#currency-picker-toggle a').click(function() {
@@ -157,9 +157,8 @@ $(function() {
 $(window).load(function(){
   preloadProductImages();
   
-  $('body.square-thumbnails .thumbnail-image').each(function(){
-    squareThumb($(this));
-  });
+  $(".thumbnails-cropped .thumbnail-image").imgLiquid({fill:true});
+  $(".thumbnails-fit .thumbnail-image").imgLiquid({fill:false});
   
   /* Isotope */
   var $container = $('.masonry-collection');
@@ -186,29 +185,6 @@ $('[data-main-image]').click(function(event) {
   }
   event.preventDefault();
 });
-
-$(window).resize(function(){
-  $('body.square-thumbnails .thumbnail-image').each(function(){
-    squareThumb($(this));
-  });
-});
-
-function squareThumb(thumbWrap) {
-  var img = thumbWrap.find('img'),
-  w = img.width(),
-  h = img.height(),
-  ratio = w / h;
-  
-  console.log(w,h);
-    
-  thumbWrap.height(w);
-    
-  if(w > h) {
-    img.height(w);
-    img.width(w * ratio);
-  }
-}
-
 
 /* modal signin forms */
 var modalForm = getID('signinModal');
