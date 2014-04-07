@@ -13,7 +13,7 @@
   {% endfor %}
   {% endunless %}
   
-  {% if localized == "" %}
+  {% if localized == blank %}
     {{ __localize }}
   {% else %}
     {{ localized }}
