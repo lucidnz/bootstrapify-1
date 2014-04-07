@@ -1,4 +1,5 @@
-<h1 class="page-header">Product Collections</h1>
+{% include '__has-variables' %}
+<h1 class="page-header">{% include '__localize' with "Product Collections" %}</h1>
 
 {% if settings.featured-collections-linklist == '' %}
   {% include '__default-pagination' %}

@@ -1,6 +1,7 @@
+{% include '__has-variables' %}
 {% capture vars %}
 {% if product.featured_image == blank %}
-{% assign image = '<div class="image_placeholder">Product Image</div>' %}
+{% include '__image-placeholder' %}
 {% else %}
 {% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'original' }}" alt="{{ product.featured_image.alt }}">{% endcapture %}
 {% endif %}

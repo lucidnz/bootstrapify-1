@@ -11,7 +11,7 @@
 {% endcase %}
 
 <nav id="navbar-{{ navbar }}" class="navbar{% if placement %} {{ placement }}{% endif %}{% if navbar == 'main' %} hidden-xs{% endif %}" role="navigation">
-  {% unless navbar == 'main' %}<div class="container">{% endunless %}
+  {% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}<div class="container">{% endunless %}
     {% if navbar == 'footer' %}
       <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
         {% include 'navbar-nav' with 'footer-left' %}
@@ -43,5 +43,5 @@
       {% endif %}
     </div>
     {% endunless %}
-  {% unless navbar == 'main' %}</div>{% endunless %}
+  {% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}</div>{% endunless %}
 </nav>

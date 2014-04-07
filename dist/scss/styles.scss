@@ -26,6 +26,10 @@ h6 {
   margin-top: 1em;
 }
 
+.label {
+  font-weight: normal;
+}
+
 #product-form h1:first-child {
   margin-top: 0;
 }
@@ -53,19 +57,8 @@ h6 {
   margin-top: $grid-gutter-width;
 }
 
-#navbar-main{
-  /*   margin-bottom: 3em; */
-}
-
 #navbar-footer{
   margin-bottom: 0;
-  /*
-  .navbar-collapse{ <-- only use this if the navbar has colour
-  border-top: none;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  }
-  */
 }
 
 #footer-content{
@@ -73,14 +66,6 @@ h6 {
     padding-top: $grid-gutter-width;
     padding-bottom: $grid-gutter-width;
   }
-}
-    
-.navbar .navbar-nav>.active>a, .navbar .navbar-nav>.active>a:hover,
-.navbar .navbar-nav>.active>a:focus, .navbar .navbar-nav .open>a,
-.navbar .navbar-nav .open>a:hover, .navbar .navbar-nav .open>a:focus,
-.navbar .navbar-nav > li > a:hover, .nav > li > a:focus{
-  color: $link-hover-color;
-  background-color: transparent;
 }
     
 .navbar-nav .open .dropdown-menu .dropdown-header{
@@ -91,6 +76,12 @@ h6 {
 
 .navbar-form.newsletter {
   width: 30%;
+}
+
+.navbar-brand img {
+  height: $navbar-height - ($grid-gutter-width / 2 );
+  margin-top: $grid-gutter-width / 4 * -1;
+  margin-bottom: $grid-gutter-width / 4 * -1;
 }
 
 .brand{
@@ -118,12 +109,30 @@ aside .page-header:first-child{
   margin-top: 0;
 }
 
-.carousel{
-  margin-bottom: $grid-gutter-width;
-}
-
 a.icon:hover {
   text-decoration: none;
+}
+
+.image-placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  background-color: $gray-lighter;
+  
+  .image-placeholder-content {
+    bottom: 0;
+    left: 0;
+    margin-top: 25%;
+    margin-bottom: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }
 
 .money {
@@ -161,6 +170,16 @@ a.icon:hover {
     text-align: center;
     margin: auto;
   }
+  .price{
+    margin-top: 0.5em;
+  }
+  > a:hover{
+    text-decoration: none;
+  }
+}
+
+.media-body {
+  margin-bottom: $grid-gutter-width;
 }
 
 .loader {
@@ -184,6 +203,10 @@ a.icon:hover {
 
 .gutter-bottom {
   margin-bottom: $grid-gutter-width;
+}
+
+.btn-group > .btn:first-child {
+  margin-left: $grid-gutter-width / 2;
 }
 
 .dl-horizontal-left{
@@ -216,6 +239,9 @@ a.icon:hover {
 }
 
 .carousel-control{
+  &.left, &.right{
+    background: none;
+  }
   .fa{
     position: absolute;
     top: 50%;
@@ -239,11 +265,53 @@ a.icon:hover {
   left: auto;
   text-align: left;
   text-shadow: none;
-  padding: $padding-base-horizontal $padding-base-vertical $grid-gutter-width;
-  border: darken($gray-lighter, 6.5%) solid 1px;
-  border-radius: $border-radius-large; 
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  padding: 0 $grid-gutter-width/2 $grid-gutter-width/2;
+}
+.centered-layout .carousel-caption{
+  text-align: center;
+}
+.carousel-indicators{
+  bottom: 0;
+  margin-bottom: 0;
+  li{
+    margin: 3px;
+  }
+  .active{
+    margin: 3px;
+    width: 10px;
+    height: 10px;
+  }
+}
+.carousel-inner > .item > img, .carousel-inner > .item > a > img{
+  margin: auto;
+}
+@media (min-width: $screen-sm-min){
+  .carousel-indicators{
+    bottom: 10px;
+    margin-bottom: 10px;
+  }
+  .carousel-control{
+    .fa{
+      font-size: 30px;
+      width: 30px;
+      height: 30px;
+      margin-top: -15px;
+    }
+    .fa-chevron-left{
+      margin-left:  ($grid-gutter-width / -2);
+    }
+    .fa-chevron-right{
+      margin-right: ($grid-gutter-width / -2);
+    }
+  }
+  .carousel-caption{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: $grid-gutter-width;
+    text-align: center;
+    text-shadow: $carousel-text-shadow;
+  }
 }
 
 #admin_header{
@@ -266,6 +334,17 @@ a.icon:hover {
   li:first-child {
     margin-top: 0;
   }
+}
+
+.article-meta{
+  @extend .list-unstyled;
+  @extend .text-muted;
+  a{
+    @extend .text-muted;
+  }
+}
+header .article-meta{
+  @extend .list-inline;
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
@@ -365,6 +444,10 @@ a.icon:hover {
     text-align: center;
   }
   
+  .rss-subscribe {
+    text-align: center;
+  }
+  
   .text-left {
     text-align: left;
   }
@@ -391,8 +474,7 @@ a.icon:hover {
   }
 }
 
-@media (min-width: $screen-sm){
-  
+@media (min-width: $screen-sm-min){
   .navbar-nav.navbar-left:first-child{
     margin-left: ($grid-gutter-width / -2);
   }
@@ -443,7 +525,7 @@ a.icon:hover {
   }
 
   .sidebar{
-    padding-top: 0;
+    padding-top: $grid-gutter-width;
     padding-bottom: 0;
     margin-bottom: $grid-gutter-width;
     .sidebar-content{
@@ -451,32 +533,14 @@ a.icon:hover {
       border-radius: $border-radius-base;
     }
   }
-  .carousel-control{
-    .fa{
-      font-size: 30px;
-      width: 30px;
-      height: 30px;
-      margin-top: -15px;
-    }
-    .fa-chevron-left{
-      margin-left:  ($grid-gutter-width / -2);
-    }
-    .fa-chevron-right{
-      margin-right: ($grid-gutter-width / -2);
-    }
-  }
-  .carousel-caption{
-    position: absolute;
-    left: 15%;
-    right: 15%;
-    bottom: 20px;
-    z-index: 10;
-    padding: 20px 0;
-    text-align: center;
-    text-shadow: $carousel-text-shadow;
-    background-color: transparent;
-    border: none;
-  }
+}
+
+.thumbnail-image {
+  overflow: hidden;
+}
+
+.caption h4 {
+  margin-top: 0;
 }
 
 /* Pass screen size to js: http://adactio.com/journal/5429/ */
@@ -501,16 +565,28 @@ body:after{
   body:after{
     content: 'sm';
   }
+  
+  .caption h4 {
+    height: 3em;
+  }
 }
 
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
   body:after{
     content: 'md';
   }
+  
+  .caption h4 {
+    height: 4em;
+  }
 }
 
 @media (min-width: $screen-lg-min) {
   body:after{
     content: 'lg';
+  }
+  
+  .caption h4 {
+    height: 3em;
   }
 }

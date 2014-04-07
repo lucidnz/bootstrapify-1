@@ -1,8 +1,11 @@
+{% include '__has-variables' %}
 {% capture vars %}
 {% if product.featured_image == blank %}
-{% assign image = '<div class="image_placeholder">Product Image</div>' %}
+{% include '__image-placeholder' %}
 {% else %}
-{% capture image %}<img id="main" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">{% endcapture %}
+	{% capture image %}
+		<img id="main" {% if settings.round-product-images %}class="img-circle" {% endif %}src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">
+	{% endcapture %}
 {% endif %}
 {% endcapture %}
 <div class="visible-xs">
@@ -18,14 +21,18 @@
         <div class="col-xs-12 col-sm-12">
           <div class="thumbnail">
             {{ image }}
-            <div class="loader"></div>
+<!--             <div class="loader"></div> -->
           </div>
         </div>
         {% if product.images.size > 1 %}
         {% for image in product.images %}
         <div class="col-xs-6 col-sm-4">
-          <a href="#" class="thumbnail" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-            {{ image.src | product_img_url: 'medium' | img_tag }}
+        <a href="#" class="thumbnail product-image" data-main-image="{{ image.src | product_img_url: 'grande' }}">
+			  {% if settings.round-product-images %}
+			  	{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
+			  {% else %}
+			  	{{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
+			  {% endif %}
           </a>
         </div>
         {% endfor %}
@@ -36,7 +43,8 @@
     <!-- details col -->
     <div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
       <h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
-      <hr class="visible-xs">
+      <hr>
+      {% if has_prices %}
       <div class="lead product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
         <span id="price-field">{% include 'product-price' with product.price %}</span>
         <del id="compare-at-price-field" class="text-muted"></del>
@@ -45,27 +53,36 @@
         <meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
       </div>
       <hr>
-      {% include 'product-add-to-cart-form' %}
+      {% endif %}
+      {% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 
       <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
     
       <table class="table {% include '__table-formatting' %}">
+		{% if settings.show-product-vendor %}
         <tr>
           <th>{% include '__localize' with 'Vendor' %}</th>
           <td>{{ product.vendor | link_to_vendor }}</td>
         </tr>
+		{% endif %}
+		{% if settings.show-product-type %}
         <tr>
           <th>{% include '__localize' with 'Type' %}</th>
           <td>{{ product.type | link_to_type }}</td>
         </tr>
+		{% endif %}
+		{% if settings.show-product-collections %}
         <tr>
           <th>{% include '__localize' with 'Collections' %}</th>
           <td>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</td>
         </tr>
+		{% endif %}
+		{% if settings.show-product-tags %}
         <tr>
           <th>{% include '__localize' with 'Tags' %}</th>
-          <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</td>
+          <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{% unless tag contains ':' %}{{ tag | link_to: tag_url }}{% endunless %}{% endfor %}</td>
         </tr>
+		{% endif %}
       </table>
     </div>
   </div>

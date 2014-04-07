@@ -41,14 +41,15 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'theme/assets/bootstrapify-option-selection.min.js': ['dist/js/bootstrapify-option-selection.js'],
+          'theme/assets/bootstrapify-option-selection.min.js': 'dist/js/bootstrapify-option-selection.js',
+          'theme/assets/jquery.instagram.min.js': ['bower_components/jquery-instagram/dist/instagram.js', 'dist/js/jquery.instagram.js']
         }
       }
     },
     concat: {
       dist: {
         src: ['dist/js/jquery.bootstrapify-dropdowns.js', 'dist/js/base.js'],
-        dest: 'theme/assets/_base.js',
+        dest: 'theme/assets/_base.js'
       },
     },
     sass: {
@@ -78,7 +79,20 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'bower_components/jquery/dist/',
-            src: 'jquery.min.js',
+            src: 'jquery.min.*',
+            dest: 'theme/assets/'
+          },
+          // grab required respond js and cross-domain files from bower
+          {
+            expand: true,
+            cwd: 'bower_components/respond/dest/',
+            src: 'respond.min.js',
+            dest: 'theme/assets/'
+          },
+          {
+            expand: true,
+            cwd: 'bower_components/respond/cross-domain/',
+            src: 'respond-proxy.html',
             dest: 'theme/assets/'
           }
         ]
@@ -94,7 +108,7 @@ module.exports = function(grunt) {
         tasks: ['jshint:assets']
       },
       uglify: {
-        files: 'dist/js/bootstrapify-option-selection.js',
+        files: 'dist/js/*.js',
         tasks: ['uglify']
       },
       concat: {

@@ -8,7 +8,7 @@
   {% unless blogs[footer_blog] == empty %}
   <h4>{{ blogs[footer_blog].title | link_to: blogs[footer_blog].url }}</h4>
     {% for a in blogs[footer_blog].articles limit:settings.blog-list-limit %}
-    {% include '_article-excerpt' %}
+      {% include 'article-excerpt' %}
     {% endfor %}
   {% endunless %}
         
