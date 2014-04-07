@@ -12,8 +12,9 @@ template-{{ template }}
 {% if has_footer_navbar %} has-footer-navbar{% endif %}
 {% if has_fixed_footer_navbar %} has-fixed-footer-navbar{% endif %}
 
- {{ settings.slider-width | prepend: 'banner-' }}
+{{ settings.slider-width | prepend: 'banner-' }}
 
+{% unless settings.thumbnail-ratio == blank %}{% if settings.thumbnails-cropped %} thumbnails-cropped{% else %} thumbnails-fit{% endif %}{% endunless %}
 {% if settings.show-multiple-currencies %} currencies{% endif %}
 {% if settings.centered-layout %} centered-layout{% endif %}
  {{ template | replace: '.', '-' }}

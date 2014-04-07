@@ -19,12 +19,12 @@
   {{ 'jquery.min.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
   {{ 'bootstrapify-option-selection.min.js' | asset_url | script_tag }}
-  
+
   {% if template contains 'customers' %}
-    {{ "shopify_common.js" | shopify_asset_url | script_tag }}
-    {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+  {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+  {{ "customer_area.js"  | shopify_asset_url | script_tag }}
   {% endif %}
-  
+
   {{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
   {{ 'transition.js' | asset_url | script_tag }}
   {{ 'button.js' | asset_url | script_tag }}
@@ -35,31 +35,31 @@
   {{ 'tooltip.js' | asset_url | script_tag }}
   {{ 'popover.js' | asset_url | script_tag }}
   {{ 'typeahead.js' | asset_url | script_tag }}
-  
+
   {% if settings.custom-header-code != '' %}
-    {{ settings.custom-header-code }}
+  {{ settings.custom-header-code }}
   {% endif %}
-  
+
   {{ content_for_header }}
 </head>
 
 {% include '__has-variables' %}
 <body class="{% include '__body-classes' %}">
   <div id="wrap">
-  {% if has_top_navbar %}{% include 'navbar' with 'top' %}{% endif %}
+    {% if has_top_navbar %}{% include 'navbar' with 'top' %}{% endif %}
+
+    {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
   
-  {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
-    
-  {% if has_main_navbar and settings.main-navbar-placement != 'main-content-width' %}{% include 'navbar' with 'main' %}{% endif %}
-  
-  {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
+    {% if has_main_navbar and settings.main-navbar-placement != 'main-content-width' %}{% include 'navbar' with 'main' %}{% endif %}
+
+    {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
     <div id="content" class="container">
       {% if has_main_navbar and settings.main-navbar-placement == 'main-content-width' %}{% include 'navbar' with 'main' %}{% endif %}
-      
+    
       {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
-      
+    
       {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
-      
+    
       <div class="row">
         <div class="main-content {% include '__main-span' %}">
           {% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
@@ -69,25 +69,34 @@
       </div>
     </div>
   </div>
-  
+
   {% include 'footer' %}
   {% include 'currencies' %}
-  
+
   {{ '_base.js' | asset_url | script_tag }}
+  {{ 'imgLiquid-min.js' | asset_url | script_tag }}
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
+
   <script type="text/javascript">
-    $(document).ready(function(){
-      $('.search').typeahead({
-        name: 'Products',
-        local: [{% include 'search-typeahead' %}]
-      }).on('typeahead:selected', function (object, datum) {
-        $(this).closest('form').submit();
-      });
-    });
+  $(document).ready(function(){
+    $('.search').typeahead({
+      name: 'Products',
+      local: [{% include 'search-typeahead' %}]
+    }).on('typeahead:selected', function (object, datum) {
+      $(this).closest('form').submit();
+    });    
+    {% unless settings.thumbnail-ratio == blank %}{% capture vars %}
+    {% assign ratio_parts = settings.thumbnail-ratio | split: ':' %}
+    {% assign width = ratio_parts.first | default: 1 %}
+    {% assign height = ratio_parts.last | default: 1 %}{% endcapture %}
+    $('.thumbnail-image').each(function(){
+      $(this).height($(this).width() * ({{ height }} / {{ width }}));
+    });{% endunless %}
+  });
   </script>
-  
+
   {% if settings.custom-footer-code != '' %}
-    {{ settings.custom-footer-code }}
+  {{ settings.custom-footer-code }}
   {% endif %}
 </body>
 </html>
