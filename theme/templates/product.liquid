@@ -3,9 +3,9 @@
 {% if product.featured_image == blank %}
 {% include '__image-placeholder' %}
 {% else %}
-	{% capture image %}
-		<img id="main" {% if settings.round-product-images %}class="img-circle" {% endif %}src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">
-	{% endcapture %}
+{% capture image %}
+<img id="main" {% if settings.round-product-images %}class="img-circle" {% endif %}src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">
+{% endcapture %}
 {% endif %}
 {% endcapture %}
 <div class="visible-xs">
@@ -21,18 +21,18 @@
         <div class="col-xs-12 col-sm-12">
           <div class="thumbnail">
             {{ image }}
-<!--             <div class="loader"></div> -->
+            <!--             <div class="loader"></div> -->
           </div>
         </div>
         {% if product.images.size > 1 %}
         {% for image in product.images %}
         <div class="col-xs-6 col-sm-4">
-        <a href="#" class="thumbnail product-image" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-			  {% if settings.round-product-images %}
-			  	{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
-			  {% else %}
-			  	{{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
-			  {% endif %}
+          <a href="#" class="thumbnail product-image" data-main-image="{{ image.src | product_img_url: 'grande' }}">
+            {% if settings.round-product-images %}
+            {{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
+            {% else %}
+            {{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
+            {% endif %}
           </a>
         </div>
         {% endfor %}
@@ -58,32 +58,7 @@
 
       <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
     
-      <table class="table {% include '__table-formatting' %}">
-		{% if settings.show-product-vendor %}
-        <tr>
-          <th>{% include '__localize' with 'Vendor' %}</th>
-          <td>{{ product.vendor | link_to_vendor }}</td>
-        </tr>
-		{% endif %}
-		{% if settings.show-product-type %}
-        <tr>
-          <th>{% include '__localize' with 'Type' %}</th>
-          <td>{{ product.type | link_to_type }}</td>
-        </tr>
-		{% endif %}
-		{% if settings.show-product-collections %}
-        <tr>
-          <th>{% include '__localize' with 'Collections' %}</th>
-          <td>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</td>
-        </tr>
-		{% endif %}
-		{% if settings.show-product-tags %}
-        <tr>
-          <th>{% include '__localize' with 'Tags' %}</th>
-          <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{% unless tag contains ':' %}{{ tag | link_to: tag_url }}{% endunless %}{% endfor %}</td>
-        </tr>
-		{% endif %}
-      </table>
+      {% include 'product-specs' %}
     </div>
   </div>
 </form>
