@@ -470,6 +470,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   color: lighten-colour($body-text-colour, $body-background-colour, 45%);
 }
 
+.pagination > .active > a {
+  background-color: $button-colour;
+  border-color: $button-colour;
+  color: $button-text-colour;
+  
+  &:hover {
+    background-color: darken($button-colour, 2%);
+    border-color: darken($button-colour, 2%);
+    color: $button-text-colour;
+  }
+}
+
 #navbar-top, #navbar-footer{
   @include background-colour($navbar-background-colour);
   @include link-colour($navbar-link-colour, $navbar-background-colour);

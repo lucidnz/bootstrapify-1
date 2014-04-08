@@ -6,10 +6,10 @@
       <li>{{ paginate.previous.title | link_to: paginate.previous.url }}</li>
       {% endif %}
       {% for p in paginate.parts %}
-      {% if p.is_link %}
-      <li>{{ p.title | link_to: p.url }}</li>
+      {% if p.is_link or p.title == paginate.current_page %}
+      <li{% if p.title == paginate.current_page %} class="active"{% endif %}>{{ p.title | link_to: p.url }}</li>
       {% else %}
-      <li>{{ p.title | link_to: p.url }}</li>        
+      <li class="disabled">{{ p.title | link_to: p.url }}</li>        
       {% endif %}        
       {% endfor %}      
       {% if paginate.next %}
