@@ -5434,6 +5434,10 @@ a.icon:hover {
   text-align: left;
   text-shadow: none;
   padding: 0 15px 15px; }
+  .carousel-caption h2 {
+    font-size: 4em; }
+  .carousel-caption .btn {
+    margin-top: 30px; }
 
 .centered-layout .carousel-caption {
   text-align: center; }
