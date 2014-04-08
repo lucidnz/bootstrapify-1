@@ -79,9 +79,9 @@ h6 {
 }
 
 .navbar-brand img {
-  height: $navbar-height - ($grid-gutter-width / 2 );
-  margin-top: $grid-gutter-width / 4 * -1;
-  margin-bottom: $grid-gutter-width / 4 * -1;
+  height: $navbar-height - ($grid-gutter-width);
+  //margin-top: $grid-gutter-width / 4 * -1;
+  //margin-bottom: $grid-gutter-width / 4 * -1;
 }
 
 .brand{
@@ -266,6 +266,14 @@ a.icon:hover {
   text-align: left;
   text-shadow: none;
   padding: 0 $grid-gutter-width/2 $grid-gutter-width/2;
+  
+  h2 {
+    font-size: 4em;
+  }
+  
+  .btn {
+    margin-top: 30px;
+  }
 }
 .centered-layout .carousel-caption{
   text-align: center;

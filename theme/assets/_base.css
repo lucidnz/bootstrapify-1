@@ -5304,9 +5304,7 @@ h6 {
   width: 30%; }
 
 .navbar-brand img {
-  height: 35px;
-  margin-top: -7.5px;
-  margin-bottom: -7.5px; }
+  height: 20px; }
 
 .brand {
   overflow: auto; }
@@ -5434,6 +5432,10 @@ a.icon:hover {
   text-align: left;
   text-shadow: none;
   padding: 0 15px 15px; }
+  .carousel-caption h2 {
+    font-size: 4em; }
+  .carousel-caption .btn {
+    margin-top: 30px; }
 
 .centered-layout .carousel-caption {
   text-align: center; }
