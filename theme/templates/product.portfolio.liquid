@@ -53,32 +53,20 @@
     </div>
   </div>
   
+  {% capture specs %}{% include 'product-specs' %}{% endcapture %}
+  {% if specs == blank %}
+    {% include '__formatted-content' with product.description %}
+  {% else %}
   <div class="row">			
     <div class="col-sm-6 gutter-top">
       {% include '__formatted-content' with product.description %}
     </div>
         
     <div class="col-sm-6">
-      <table class="table {% include '__table-formatting' %}">
-        <tr>
-          <th>{% include '__localize' with 'Vendor' %}</th>
-          <td>{{ product.vendor | link_to_vendor }}</td>
-        </tr>
-        <tr>
-          <th>{% include '__localize' with 'Type' %}</th>
-          <td>{{ product.type | link_to_type }}</td>
-        </tr>
-        <tr>
-          <th>{% include '__localize' with 'Collections' %}</th>
-          <td>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</td>
-        </tr>
-        <tr>
-          <th>{% include '__localize' with 'Tags' %}</th>
-          <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endfor %}</td>
-        </tr>
-      </table>
+      {{ specs }}
     </div>
   </div>
+  {% endif %}
 </form>
 
 {% include 'product-footer' %}
