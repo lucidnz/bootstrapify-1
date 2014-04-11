@@ -16,6 +16,6 @@ template-{{ template }}
 
 {% unless settings.thumbnail-ratio == blank %}{% if settings.thumbnails-cropped %} thumbnails-cropped{% else %} thumbnails-fit{% endif %}{% endunless %}
 {% if settings.show-multiple-currencies %} currencies{% endif %}
-{% if settings.centered-layout %} centered-layout{% endif %}
+{% if settings.centered-layout %}{% unless has_sidebar and template != 'index' %} centered-layout{% endunless %}{% endif %}
  {{ template | replace: '.', '-' }}
 {% endcapture %}{{ body_classes | strip_newlines | strip }}
