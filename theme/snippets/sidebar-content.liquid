@@ -13,6 +13,17 @@
         {% include 'article-excerpt' %}
       {% endfor %}
     {% endif %}
+	
+    {% unless linklists[current_list] == empty %}
+      <h3 class="page-header">{{ linklists[current_list].title }}</h3>
+      <ul class="list-unstyled">
+        {% for l in linklists[current_list].links %}
+        <li{% if l.active %} class="active"{% endif %}>
+          <h4>{{ l.title | link_to: l.url, l.title }}</h4>
+        </li>
+        {% endfor %}
+      </ul>
+    {% endunless %}
     
     {% unless linklists[settings.sidebar-linklist] == empty %}
       <h3 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h3>

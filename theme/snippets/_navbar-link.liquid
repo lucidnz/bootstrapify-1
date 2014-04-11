@@ -6,11 +6,12 @@
     <b class="caret"></b>
   </a>
   <ul class="dropdown-menu">
-    {% for l in linklists[submenu].links %}
+    {% for ll in linklists[submenu].links %}
       {% include '_navbar-sub-links' with 0 %}
     {% endfor %}
   </ul>
 </li>
+{% if l.active %}{% assign current_list = l.handle %}{% endif %}
 {% else %}
 <li class="{% if l.active %}active{% endif %}">
   <a href="{{ l.url }}" title="{{ l.title | strip_html }}">{{ l.title }}</a>
