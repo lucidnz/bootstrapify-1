@@ -14,7 +14,7 @@
 {% for t in all_tags %}
   {% if t contains ':' %}
     {% assign t_parts = t | split: ':' %}
-    {% assign key = t_parts.first | replace: ' ', '-' %}
+    {% assign key = t_parts.first | downcase | replace: ' ', '-' %}
     {% assign value = t_parts.last %}
     
     {% unless hidden_tags contains key or tag_groups_array contains key %}
