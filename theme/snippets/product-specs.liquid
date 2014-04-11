@@ -21,7 +21,7 @@
   {% if settings.show-product-tags %}
   <tr>
     <th>{% include '__localize' with 'Tags' %}</th>
-    <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{% unless tag contains ':' %}{{ tag | link_to: tag_url }}{% endunless %}{% endfor %}</td>
+    <td>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% unless tag contains ':' %}{% if forloop.index > 1 %}, {% endif %}{{ tag | link_to: tag_url }}{% endunless %}{% endfor %}</td>
   </tr>
   {% endif %}
 </table>
