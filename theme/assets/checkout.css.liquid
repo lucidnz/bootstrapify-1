@@ -79,7 +79,7 @@ a, span.hint a {
 /*
  * Shopify checkout bootstrap - extends Shopify's checkout styles with bootstrap
  */
-/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -2407,7 +2407,7 @@ table th[class*="col-"] {
   background-color: whitesmoke; }
 
 .table-hover > tbody > tr > td.active:hover,
-.table-hover > tbody > tr > th.active:hover, .table-hover > tbody > tr.active:hover > td, .table-hover > tbody > tr.active:hover > th {
+.table-hover > tbody > tr > th.active:hover, .table-hover > tbody > tr.active:hover > td, .table-hover > tbody > tr:hover > .active, .table-hover > tbody > tr.active:hover > th {
   background-color: #e8e8e8; }
 
 .table > thead > tr > td.success,
@@ -2423,7 +2423,7 @@ table th[class*="col-"] {
   background-color: #dff0d8; }
 
 .table-hover > tbody > tr > td.success:hover,
-.table-hover > tbody > tr > th.success:hover, .table-hover > tbody > tr.success:hover > td, .table-hover > tbody > tr.success:hover > th {
+.table-hover > tbody > tr > th.success:hover, .table-hover > tbody > tr.success:hover > td, .table-hover > tbody > tr:hover > .success, .table-hover > tbody > tr.success:hover > th {
   background-color: #d0e9c6; }
 
 .table > thead > tr > td.info,
@@ -2439,7 +2439,7 @@ table th[class*="col-"] {
   background-color: #d9edf7; }
 
 .table-hover > tbody > tr > td.info:hover,
-.table-hover > tbody > tr > th.info:hover, .table-hover > tbody > tr.info:hover > td, .table-hover > tbody > tr.info:hover > th {
+.table-hover > tbody > tr > th.info:hover, .table-hover > tbody > tr.info:hover > td, .table-hover > tbody > tr:hover > .info, .table-hover > tbody > tr.info:hover > th {
   background-color: #c4e3f3; }
 
 .table > thead > tr > td.warning,
@@ -2455,7 +2455,7 @@ table th[class*="col-"] {
   background-color: #fcf8e3; }
 
 .table-hover > tbody > tr > td.warning:hover,
-.table-hover > tbody > tr > th.warning:hover, .table-hover > tbody > tr.warning:hover > td, .table-hover > tbody > tr.warning:hover > th {
+.table-hover > tbody > tr > th.warning:hover, .table-hover > tbody > tr.warning:hover > td, .table-hover > tbody > tr:hover > .warning, .table-hover > tbody > tr.warning:hover > th {
   background-color: #faf2cc; }
 
 .table > thead > tr > td.danger,
@@ -2471,7 +2471,7 @@ table th[class*="col-"] {
   background-color: #f2dede; }
 
 .table-hover > tbody > tr > td.danger:hover,
-.table-hover > tbody > tr > th.danger:hover, .table-hover > tbody > tr.danger:hover > td, .table-hover > tbody > tr.danger:hover > th {
+.table-hover > tbody > tr > th.danger:hover, .table-hover > tbody > tr.danger:hover > td, .table-hover > tbody > tr:hover > .danger, .table-hover > tbody > tr.danger:hover > th {
   background-color: #ebcccc; }
 
 @media screen and (max-width: 767px) {
@@ -2533,6 +2533,7 @@ legend {
 
 label, label.inline, #shipping-same label, .soft label, .medium label, td.label, .form ul.inline li label, .item-inventory-action label {
   display: inline-block;
+  max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold; }
 
@@ -2882,6 +2883,7 @@ select[multiple].input-lg,
   position: absolute;
   top: 25px;
   right: 0;
+  z-index: 2;
   display: block;
   width: 34px;
   height: 34px;
@@ -3161,11 +3163,11 @@ select[multiple].input-lg,
   color: #333333;
   background-color: white;
   border-color: #cccccc; }
-  .btn-default:hover, input[type=submit]:hover, input.btn:hover, #buttons input:hover, #create-account-btn:hover, .btn-default:focus, input[type=submit]:focus, input.btn:focus, #buttons input:focus, #create-account-btn:focus, .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open .btn-default.dropdown-toggle, .open input.dropdown-toggle[type=submit], .open input.dropdown-toggle.btn, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle, .open .dropdown-toggle#create-account-btn {
+  .btn-default:hover, input[type=submit]:hover, input.btn:hover, #buttons input:hover, #create-account-btn:hover, .btn-default:focus, input[type=submit]:focus, input.btn:focus, #buttons input:focus, #create-account-btn:focus, .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open > .btn-default.dropdown-toggle, .open > input.dropdown-toggle[type=submit], .open > input.dropdown-toggle.btn, #buttons .open > input.dropdown-toggle, .open > .dropdown-toggle#create-account-btn {
     color: #333333;
     background-color: #e6e6e6;
     border-color: #adadad; }
-  .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open .btn-default.dropdown-toggle, .open input.dropdown-toggle[type=submit], .open input.dropdown-toggle.btn, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle, .open .dropdown-toggle#create-account-btn {
+  .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open > .btn-default.dropdown-toggle, .open > input.dropdown-toggle[type=submit], .open > input.dropdown-toggle.btn, #buttons .open > input.dropdown-toggle, .open > .dropdown-toggle#create-account-btn {
     background-image: none; }
   .btn-default.disabled, input.disabled[type=submit], input.disabled.btn, #buttons input.disabled, .disabled#create-account-btn, .btn-default.disabled:hover, input.disabled[type=submit]:hover, input.disabled.btn:hover, #buttons input.disabled:hover, .disabled#create-account-btn:hover, .btn-default.disabled:focus, input.disabled[type=submit]:focus, input.disabled.btn:focus, #buttons input.disabled:focus, .disabled#create-account-btn:focus, .btn-default.disabled:active, input.disabled[type=submit]:active, input.disabled.btn:active, #buttons input.disabled:active, .disabled#create-account-btn:active, .btn-default.disabled.active, input.disabled.active[type=submit], input.disabled.active.btn, #buttons input.disabled.active, .disabled.active#create-account-btn, .btn-default[disabled], input[disabled][type=submit], input[disabled].btn, #buttons input[disabled], [disabled]#create-account-btn, .btn-default[disabled]:hover, input[disabled][type=submit]:hover, input[disabled].btn:hover, #buttons input[disabled]:hover, [disabled]#create-account-btn:hover, .btn-default[disabled]:focus, input[disabled][type=submit]:focus, input[disabled].btn:focus, #buttons input[disabled]:focus, [disabled]#create-account-btn:focus, .btn-default[disabled]:active, input[disabled][type=submit]:active, input[disabled].btn:active, #buttons input[disabled]:active, [disabled]#create-account-btn:active, .btn-default[disabled].active, input[disabled].active[type=submit], input[disabled].active.btn, #buttons input[disabled].active, [disabled].active#create-account-btn, fieldset[disabled] .btn-default, fieldset[disabled]#switchsolo .btn-default, fieldset[disabled] input[type=submit], fieldset[disabled]#switchsolo input[type=submit], fieldset[disabled] input.btn, fieldset[disabled]#switchsolo input.btn, fieldset[disabled] #buttons input, #buttons fieldset[disabled] input, fieldset[disabled] #create-account-btn, fieldset[disabled] .btn-default:hover, fieldset[disabled]#switchsolo .btn-default:hover, fieldset[disabled] input[type=submit]:hover, fieldset[disabled]#switchsolo input[type=submit]:hover, fieldset[disabled] input.btn:hover, fieldset[disabled]#switchsolo input.btn:hover, fieldset[disabled] #buttons input:hover, #buttons fieldset[disabled] input:hover, fieldset[disabled] #create-account-btn:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled]#switchsolo .btn-default:focus, fieldset[disabled] input[type=submit]:focus, fieldset[disabled]#switchsolo input[type=submit]:focus, fieldset[disabled] input.btn:focus, fieldset[disabled]#switchsolo input.btn:focus, fieldset[disabled] #buttons input:focus, #buttons fieldset[disabled] input:focus, fieldset[disabled] #create-account-btn:focus, fieldset[disabled] .btn-default:active, fieldset[disabled]#switchsolo .btn-default:active, fieldset[disabled] input[type=submit]:active, fieldset[disabled]#switchsolo input[type=submit]:active, fieldset[disabled] input.btn:active, fieldset[disabled]#switchsolo input.btn:active, fieldset[disabled] #buttons input:active, #buttons fieldset[disabled] input:active, fieldset[disabled] #create-account-btn:active, fieldset[disabled] .btn-default.active, fieldset[disabled]#switchsolo .btn-default.active, fieldset[disabled] input.active[type=submit], fieldset[disabled]#switchsolo input.active[type=submit], fieldset[disabled] input.active.btn, fieldset[disabled]#switchsolo input.active.btn, fieldset[disabled] #buttons input.active, #buttons fieldset[disabled] input.active, fieldset[disabled] .active#create-account-btn {
     background-color: white;
@@ -3178,11 +3180,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #428bca;
   border-color: #357ebd; }
-  .btn-primary:hover, #buttons input:hover, .btn-primary:focus, #buttons input:focus, .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active, .open .btn-primary.dropdown-toggle, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle {
+  .btn-primary:hover, #buttons input:hover, .btn-primary:focus, #buttons input:focus, .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active, .open > .btn-primary.dropdown-toggle, #buttons .open > input.dropdown-toggle {
     color: white;
     background-color: #3071a9;
     border-color: #285e8e; }
-  .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active, .open .btn-primary.dropdown-toggle, .open #buttons input.dropdown-toggle, #buttons .open input.dropdown-toggle {
+  .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active, .open > .btn-primary.dropdown-toggle, #buttons .open > input.dropdown-toggle {
     background-image: none; }
   .btn-primary.disabled, #buttons input.disabled, .btn-primary.disabled:hover, #buttons input.disabled:hover, .btn-primary.disabled:focus, #buttons input.disabled:focus, .btn-primary.disabled:active, #buttons input.disabled:active, .btn-primary.disabled.active, #buttons input.disabled.active, .btn-primary[disabled], #buttons input[disabled], .btn-primary[disabled]:hover, #buttons input[disabled]:hover, .btn-primary[disabled]:focus, #buttons input[disabled]:focus, .btn-primary[disabled]:active, #buttons input[disabled]:active, .btn-primary[disabled].active, #buttons input[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled]#switchsolo .btn-primary, fieldset[disabled] #buttons input, #buttons fieldset[disabled] input, fieldset[disabled] .btn-primary:hover, fieldset[disabled]#switchsolo .btn-primary:hover, fieldset[disabled] #buttons input:hover, #buttons fieldset[disabled] input:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled]#switchsolo .btn-primary:focus, fieldset[disabled] #buttons input:focus, #buttons fieldset[disabled] input:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled]#switchsolo .btn-primary:active, fieldset[disabled] #buttons input:active, #buttons fieldset[disabled] input:active, fieldset[disabled] .btn-primary.active, fieldset[disabled]#switchsolo .btn-primary.active, fieldset[disabled] #buttons input.active, #buttons fieldset[disabled] input.active {
     background-color: #428bca;
@@ -3195,11 +3197,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #5cb85c;
   border-color: #4cae4c; }
-  .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .btn-success.dropdown-toggle {
+  .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle {
     color: white;
     background-color: #449d44;
     border-color: #398439; }
-  .btn-success:active, .btn-success.active, .open .btn-success.dropdown-toggle {
+  .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle {
     background-image: none; }
   .btn-success.disabled, .btn-success.disabled:hover, .btn-success.disabled:focus, .btn-success.disabled:active, .btn-success.disabled.active, .btn-success[disabled], .btn-success[disabled]:hover, .btn-success[disabled]:focus, .btn-success[disabled]:active, .btn-success[disabled].active, fieldset[disabled] .btn-success, fieldset[disabled]#switchsolo .btn-success, fieldset[disabled] .btn-success:hover, fieldset[disabled]#switchsolo .btn-success:hover, fieldset[disabled] .btn-success:focus, fieldset[disabled]#switchsolo .btn-success:focus, fieldset[disabled] .btn-success:active, fieldset[disabled]#switchsolo .btn-success:active, fieldset[disabled] .btn-success.active, fieldset[disabled]#switchsolo .btn-success.active {
     background-color: #5cb85c;
@@ -3212,11 +3214,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #5bc0de;
   border-color: #46b8da; }
-  .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .btn-info.dropdown-toggle {
+  .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open > .btn-info.dropdown-toggle {
     color: white;
     background-color: #31b0d5;
     border-color: #269abc; }
-  .btn-info:active, .btn-info.active, .open .btn-info.dropdown-toggle {
+  .btn-info:active, .btn-info.active, .open > .btn-info.dropdown-toggle {
     background-image: none; }
   .btn-info.disabled, .btn-info.disabled:hover, .btn-info.disabled:focus, .btn-info.disabled:active, .btn-info.disabled.active, .btn-info[disabled], .btn-info[disabled]:hover, .btn-info[disabled]:focus, .btn-info[disabled]:active, .btn-info[disabled].active, fieldset[disabled] .btn-info, fieldset[disabled]#switchsolo .btn-info, fieldset[disabled] .btn-info:hover, fieldset[disabled]#switchsolo .btn-info:hover, fieldset[disabled] .btn-info:focus, fieldset[disabled]#switchsolo .btn-info:focus, fieldset[disabled] .btn-info:active, fieldset[disabled]#switchsolo .btn-info:active, fieldset[disabled] .btn-info.active, fieldset[disabled]#switchsolo .btn-info.active {
     background-color: #5bc0de;
@@ -3229,11 +3231,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #f0ad4e;
   border-color: #eea236; }
-  .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open .btn-warning.dropdown-toggle {
+  .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open > .btn-warning.dropdown-toggle {
     color: white;
     background-color: #ec971f;
     border-color: #d58512; }
-  .btn-warning:active, .btn-warning.active, .open .btn-warning.dropdown-toggle {
+  .btn-warning:active, .btn-warning.active, .open > .btn-warning.dropdown-toggle {
     background-image: none; }
   .btn-warning.disabled, .btn-warning.disabled:hover, .btn-warning.disabled:focus, .btn-warning.disabled:active, .btn-warning.disabled.active, .btn-warning[disabled], .btn-warning[disabled]:hover, .btn-warning[disabled]:focus, .btn-warning[disabled]:active, .btn-warning[disabled].active, fieldset[disabled] .btn-warning, fieldset[disabled]#switchsolo .btn-warning, fieldset[disabled] .btn-warning:hover, fieldset[disabled]#switchsolo .btn-warning:hover, fieldset[disabled] .btn-warning:focus, fieldset[disabled]#switchsolo .btn-warning:focus, fieldset[disabled] .btn-warning:active, fieldset[disabled]#switchsolo .btn-warning:active, fieldset[disabled] .btn-warning.active, fieldset[disabled]#switchsolo .btn-warning.active {
     background-color: #f0ad4e;
@@ -3246,11 +3248,11 @@ select[multiple].input-lg,
   color: white;
   background-color: #d9534f;
   border-color: #d43f3a; }
-  .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open .btn-danger.dropdown-toggle {
+  .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open > .btn-danger.dropdown-toggle {
     color: white;
     background-color: #c9302c;
     border-color: #ac2925; }
-  .btn-danger:active, .btn-danger.active, .open .btn-danger.dropdown-toggle {
+  .btn-danger:active, .btn-danger.active, .open > .btn-danger.dropdown-toggle {
     background-image: none; }
   .btn-danger.disabled, .btn-danger.disabled:hover, .btn-danger.disabled:focus, .btn-danger.disabled:active, .btn-danger.disabled.active, .btn-danger[disabled], .btn-danger[disabled]:hover, .btn-danger[disabled]:focus, .btn-danger[disabled]:active, .btn-danger[disabled].active, fieldset[disabled] .btn-danger, fieldset[disabled]#switchsolo .btn-danger, fieldset[disabled] .btn-danger:hover, fieldset[disabled]#switchsolo .btn-danger:hover, fieldset[disabled] .btn-danger:focus, fieldset[disabled]#switchsolo .btn-danger:focus, fieldset[disabled] .btn-danger:active, fieldset[disabled]#switchsolo .btn-danger:active, fieldset[disabled] .btn-danger.active, fieldset[disabled]#switchsolo .btn-danger.active {
     background-color: #d9534f;
@@ -3365,6 +3367,7 @@ tbody.collapse.in {
   margin: 2px 0 0;
   list-style: none;
   font-size: 14px;
+  text-align: left;
   background-color: white;
   border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.15);

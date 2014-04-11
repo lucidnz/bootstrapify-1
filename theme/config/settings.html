@@ -859,7 +859,7 @@
            <div><input type="radio" name="slider-width" id="slider-width" value="site-width" /> Site width</div>
            <div><input type="radio" name="slider-width" id="slider-width" value="main-content-width" /> Main content width</div>
            
-        <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
+        <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
       </td>
     </tr>
   </table>
@@ -1242,9 +1242,59 @@
   
   <table>
     <tr>
+      <th><label for="all-collections-linklist">"All collections" collection linklist</label></th>
+      <td>
+        <select class="linklist" name="all-collections-linklist" />
+        <small>If you would like to specify which collections show on the /collections page, create a linklist of collections.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="collections-per-row">Collections per row</label></th>
+      <td>
+           <div><input type="radio" name="collections-per-row" id="collections-per-row" value="2" checked="checked" /> 2</div>
+           <div><input type="radio" name="collections-per-row" id="collections-per-row" value="3" /> 3</div>
+           <div><input type="radio" name="collections-per-row" id="collections-per-row" value="4" /> 4</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="hidden-tag-prefixes">Hidden tag prefixes</label></th>
+      <td>
+        <input type="text" name="hidden-tag-prefixes" id="hidden-tag-prefixes" class="text" value="hd,hidden" />
+        <small>Comma-separated list of tag prefixes to never display on the site. These can be used for creating more complex collection.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="hide-products-with-less-than-this-number-of-products">Hide products with less than this number of products</label></th>
+      <td>
+        <input type="text" name="hide-products-with-less-than-this-number-of-products" id="hide-products-with-less-than-this-number-of-products" class="text" value="0" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
       <th><label for="masonry-style-layout">Masonry-style layout</label></th>
       <td>
         <input type="checkbox" name="masonry-style-layout" id="masonry-style-layout" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-product-count-for-collections">Show product count for collections</label></th>
+      <td>
+        <input type="checkbox" name="show-product-count-for-collections" id="show-product-count-for-collections" value="1" /> Yes
       </td>
     </tr>
   </table>
@@ -1268,6 +1318,26 @@
            <div><input type="radio" name="tag-placement" id="tag-placement" value="sidebar" checked="checked" /> Sidebar</div>
            <div><input type="radio" name="tag-placement" id="tag-placement" value="main-content" /> Main content</div>
            
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="thumbnail-ratio">Thumbnail ratio</label></th>
+      <td>
+        <input type="text" name="thumbnail-ratio" id="thumbnail-ratio" class="text" value="1:1" />
+        <small><strong>Important:</strong> must be in the format w:h (i.e., 1:1 would be square)</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="thumbnails-cropped">Thumbnails cropped</label></th>
+      <td>
+        <input type="checkbox" name="thumbnails-cropped" id="thumbnails-cropped" value="1" /> Yes
+        <small>If checked, thumbnails will be cropped to fit their container. If unchecked, thumbnails will fit <em>inside</em> the container.</small>
       </td>
     </tr>
   </table>
@@ -1405,7 +1475,7 @@
       <th><label for="typeahead-collection">Search typeahead collection</label></th>
       <td>
         <select class="collection" name="typeahead-collection" />
-        <small><p>We recommend you create a collection of <em>all </em>products (i.e., an automatic collection where price (and/or inventory) is greater than 0.</p></small>
+        <small><p>We recommend you create a collection of <em>all </em>products (i.e., an automatic collection where price (and/or inventory) is greater than 0.</p></small>
       </td>
     </tr>
   </table>
@@ -1645,27 +1715,19 @@
   
   <table>
     <tr>
-      <th><label for="collection">Collection</label></th>
-      <td>
-        <input type="text" name="collection" id="collection" class="text" value="Collection" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="collections">Collections</label></th>
-      <td>
-        <input type="text" name="collections" id="collections" class="text" value="Collections" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="left-quote">Left quote</label></th>
       <td>
         <input type="text" name="left-quote" id="left-quote" class="text" value="&ldquo;" />
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="localizations">Localizations</label></th>
+      <td>
+        <textarea name="localizations" id="localizations"></textarea>
+        <small>Comma-separated list of translations in the format key: Value. Each on a newline is fine.</small>
       </td>
     </tr>
   </table>
@@ -1697,42 +1759,6 @@
     </tr>
   </table>
   
-  <table>
-    <tr>
-      <th><label for="tag">Tag</label></th>
-      <td>
-        <input type="text" name="tag" id="tag" class="text" value="Tag" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="tags">Tags</label></th>
-      <td>
-        <input type="text" name="tags" id="tags" class="text" value="Tags" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="type">Type</label></th>
-      <td>
-        <input type="text" name="type" id="type" class="text" value="Type" />
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="vendor">Vendor</label></th>
-      <td>
-        <input type="text" name="vendor" id="vendor" class="text" value="Vendor" />
-      </td>
-    </tr>
-  </table>
-  
 </fieldset>
 <fieldset>
   	
@@ -1743,7 +1769,7 @@
       <th><label for="currency-switcher-default">Currency switcher default</label></th>
       <td>
         <input type="text" name="currency-switcher-default" id="currency-switcher-default" class="text" value="" />
-        <small><p> If left blank the currency switcher will be set to your shops default currency.</p></small>
+        <small><p> If left blank the currency switcher will be set to your shops default currency.</p></small>
       </td>
     </tr>
   </table>
@@ -1755,7 +1781,7 @@
            <div><input type="radio" name="currency-switcher-position" id="currency-switcher-position" value="navbar" checked="checked" /> Navbar</div>
            <div><input type="radio" name="currency-switcher-position" id="currency-switcher-position" value="footer-navbar" /> Footer navbar</div>
            
-        <small><p> </p></small>
+        <small><p> </p></small>
       </td>
     </tr>
   </table>
@@ -2015,7 +2041,7 @@
       <th><label for="custom-checkout-css">Custom checkout CSS</label></th>
       <td>
         <textarea name="custom-checkout-css" id="custom-checkout-css"></textarea>
-        <small><p>Feel free to override any of the checkout CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS is <strong>not</strong> allowed.</p></small>
+        <small><p>Feel free to override any of the checkout CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS is <strong>not</strong> allowed.</p></small>
       </td>
     </tr>
   </table>
@@ -2025,7 +2051,7 @@
       <th><label for="custom-css">Custom CSS</label></th>
       <td>
         <textarea name="custom-css" id="custom-css"></textarea>
-        <small><p>Feel free to override any of the CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS allowed.</p></small>
+        <small><p>Feel free to override any of the CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS allowed.</p></small>
       </td>
     </tr>
   </table>
@@ -2035,7 +2061,7 @@
       <th><label for="custom-footer-code">Custom footer code</label></th>
       <td>
         <textarea name="custom-footer-code" id="custom-footer-code"></textarea>
-        <small><p>Anything to be placed before the site?s closing body tag.</p></small>
+        <small><p>Anything to be placed before the site’s closing body tag.</p></small>
       </td>
     </tr>
   </table>

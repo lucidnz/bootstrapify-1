@@ -16,6 +16,11 @@ $screen-xs-min:                       480px !default;
 $screen-sm-min:                       768px !default;
 $screen-md-min:                       992px !default;
 $screen-lg-min:                       1200px !default;
+
+$screen-xs-max:                       ($screen-sm-min - 1) !default;
+$screen-sm-max:                       ($screen-md-min - 1) !default;
+$screen-md-max:                       ($screen-lg-min - 1) !default;
+
 $container-width-small-devices:       750px !default;
 
 /*
@@ -463,6 +468,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 .breadcrumb > li + li:before, body .image-placeholder{
   color: lighten-colour($body-text-colour, $body-background-colour, 45%);
+}
+
+.pagination > .active > a {
+  background-color: $button-colour;
+  border-color: $button-colour;
+  color: $button-text-colour;
+  
+  &:hover {
+    background-color: darken($button-colour, 2%);
+    border-color: darken($button-colour, 2%);
+    color: $button-text-colour;
+  }
 }
 
 #navbar-top, #navbar-footer{

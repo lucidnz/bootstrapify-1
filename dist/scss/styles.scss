@@ -27,7 +27,7 @@ h6 {
 }
 
 .label {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 #product-form h1:first-child {
@@ -78,6 +78,12 @@ h6 {
   width: 30%;
 }
 
+.navbar-brand img {
+  height: $navbar-height - ($grid-gutter-width);
+  //margin-top: $grid-gutter-width / 4 * -1;
+  //margin-bottom: $grid-gutter-width / 4 * -1;
+}
+
 .brand{
   overflow: auto;
   .text-center img{
@@ -107,16 +113,25 @@ a.icon:hover {
   text-decoration: none;
 }
 
-.image-placeholder{
+.image-placeholder {
   display: block;
-  text-align: center;
   width: 100%;
-  padding-top: 6em;
-  padding-bottom: 6em;
-  margin-bottom: 1em;
+  height: 100%;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
   background-color: $gray-lighter;
-  .image-placeholder-content{
-    margin: auto;
+  
+  .image-placeholder-content {
+    bottom: 0;
+    left: 0;
+    margin-top: 25%;
+    margin-bottom: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }
 
@@ -191,7 +206,7 @@ a.icon:hover {
 }
 
 .btn-group > .btn:first-child {
-	margin-left: $grid-gutter-width / 2;
+  margin-left: $grid-gutter-width / 2;
 }
 
 .dl-horizontal-left{
@@ -251,6 +266,14 @@ a.icon:hover {
   text-align: left;
   text-shadow: none;
   padding: 0 $grid-gutter-width/2 $grid-gutter-width/2;
+  
+  h2 {
+    font-size: 4em;
+  }
+  
+  .btn {
+    margin-top: 30px;
+  }
 }
 .centered-layout .carousel-caption{
   text-align: center;
@@ -520,6 +543,14 @@ header .article-meta{
   }
 }
 
+.thumbnail-image {
+  overflow: hidden;
+}
+
+.caption h4 {
+  margin-top: 0;
+}
+
 /* Pass screen size to js: http://adactio.com/journal/5429/ */
 body:after{
   // newer chrome is a lame about not giving us content of display:none element in js
@@ -542,16 +573,28 @@ body:after{
   body:after{
     content: 'sm';
   }
+  
+  .caption h4 {
+    height: 3em;
+  }
 }
 
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
   body:after{
     content: 'md';
   }
+  
+  .caption h4 {
+    height: 4em;
+  }
 }
 
 @media (min-width: $screen-lg-min) {
   body:after{
     content: 'lg';
+  }
+  
+  .caption h4 {
+    height: 3em;
   }
 }

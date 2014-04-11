@@ -1,1 +1,21 @@
-{% capture translation %}{% assign setting_name = __localize | remove: '&' | remove: ',' | remove: '.' | remove: '?' | remove: '!' | replace: ' ','-' | downcase %}{% if settings.[setting_name] == blank %}{{ __localize }}{% else %}{{ settings.[setting_name] }}{% endif %}{% endcapture %}{{ translation }}
+{% capture translation %}
+  {% assign setting_name = __localize | remove: '&' | remove: ',' | remove: '.' | remove: '?' | remove: '!' | replace: ' ','-' | downcase %}
+  
+  {% unless settings.localizations == blank %}
+  {% assign localizations = settings.localizations | split: ',' %}
+  {% assign localized = "" %}
+  {% for l in localizations %}
+  {% assign key = l | split: ':' | first | strip %}
+  {% assign value = l | split: ':' | last | strip %}
+  {% if key == setting_name %}
+    {% assign localized = value %}
+  {% endif %}
+  {% endfor %}
+  {% endunless %}
+  
+  {% if localized == blank %}
+    {{ __localize }}
+  {% else %}
+    {{ localized }}
+  {% endif %}
+{% endcapture %}{{ translation | strip }}

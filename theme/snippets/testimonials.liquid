@@ -1,6 +1,6 @@
 {% unless settings.testimonials-blog == blank %}
 {% assign testimonials_blog = blogs[settings.testimonials-blog] %}
-<h2>{{ testimonials_blog.title }}</h2>
+<h2 class="page-header">{{ testimonials_blog.title }}</h2>
 <div class="row">
   {% for t in testimonials_blog.articles %}
   <div class="col-sm-6">
