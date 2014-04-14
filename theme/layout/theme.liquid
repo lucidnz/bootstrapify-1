@@ -3,9 +3,14 @@
 <head>
   {% include 'meta' %}
   
-  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />  
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  
+  {{ '_base.scss.css' | asset_url | stylesheet_tag }}
+  
+  {% comment %}
   {{ '_base.css' | asset_url | stylesheet_tag }}
-  {{ '_settings.scss.css' | asset_url | stylesheet_tag }}
+  {{ '_settings.scss.css' | asset_url | stylesheet_tag }}  
+  {% endcomment %}
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
   <!--[if lt IE 9]>
