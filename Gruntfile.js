@@ -121,7 +121,7 @@ module.exports = function(grunt) {
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_carousel.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_utilities.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_responsive-utilities.scss',
-          'dist/scss/styles.scss',
+          'dist/scss/post_styles.scss.liquid',
           'dist/scss/settings.scss.liquid'
         ],
         dest: 'theme/assets/_base.scss.liquid'
@@ -130,7 +130,6 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-/*           'theme/assets/_base.css': 'dist/scss/styles.scss', */
           'theme/assets/checkout.css.liquid': 'dist/scss/checkout.scss'
         }
       }
