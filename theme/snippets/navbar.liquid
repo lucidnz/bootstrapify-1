@@ -10,7 +10,7 @@
   {% assign placement = false %}
 {% endcase %}
 
-<nav id="navbar-{{ navbar }}" class="navbar{% if placement %} {{ placement }}{% endif %}{% if has_top_navbar and navbar == 'main' %} hidden-xs{% endif %}" role="navigation">
+<nav id="navbar-{{ navbar }}" class="navbar{% if placement %} {{ placement }}{% endif %}{% if navbar == 'main' %} hidden-xs{% endif %}{% if has_top_navbar == false and navbar == 'top' %} visible-xs{% endif %}" role="navigation">
   {% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}<div class="container">{% endunless %}
     {% if navbar == 'footer' %}
       <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
