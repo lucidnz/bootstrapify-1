@@ -45,7 +45,7 @@
 {% include '__has-variables' %}
 <body class="{% include '__body-classes' %}">
   <div id="wrap">
-    {% if has_top_navbar %}{% include 'navbar' with 'top' %}{% endif %}
+    {% include 'navbar' with 'top' %}
 
     {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
   
