@@ -10,7 +10,7 @@
   {% assign placement = false %}
 {% endcase %}
 
-<nav id="navbar-{{ navbar }}" class="navbar{% if placement %} {{ placement }}{% endif %}{% if navbar == 'main' %} hidden-xs{% endif %}" role="navigation">
+<nav id="navbar-{{ navbar }}" class="navbar{% if placement %} {{ placement }}{% endif %}{% if has_top_navbar and navbar == 'main' %} hidden-xs{% endif %}" role="navigation">
   {% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}<div class="container">{% endunless %}
     {% if navbar == 'footer' %}
       <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
@@ -19,17 +19,17 @@
       </div>
     {% endif %}
   
+    {% unless has_top_navbar and navbar == 'main' %}
     <div class="navbar-header">
-      {% unless navbar == 'main' %}
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ navbar }}-nav">
         <span class="sr-only">Toggle main navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {% endunless %}
       {% if settings.logo-placement == "navbar" and navbar == 'top' %}<a class="navbar-brand" href="/">{% include 'logo' %}</a>{% endif %}
     </div>
+    {% endunless %}
     
     {% unless navbar == 'footer' %}
     <div class="collapse navbar-collapse" id="{{ navbar }}-nav">

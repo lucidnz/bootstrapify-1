@@ -504,6 +504,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   @include background-colour($main-navbar-background-colour);
   @include link-colour($main-navbar-link-colour, $main-navbar-background-colour);
   @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
+  .navbar-toggle{
+    border-color: darken-colour($main-navbar-background-colour, 9%);
+    .icon-bar{
+      background-color: darken-colour($main-navbar-background-colour, 9%);
+    }
+    &:hover, &:focus{
+      background-color: darken-colour($main-navbar-background-colour, 6%);
+    }
+  }
 }
 
 @media (min-width: $screen-sm-min){
