@@ -48,6 +48,14 @@ h6 {
   }
 }
 
+.testimonials {
+  margin-top: $grid-gutter-width * -1;
+}
+
+.testimonial {
+  margin-top: $grid-gutter-width;
+}
+
 .footer-credits {
   &,
   & a {

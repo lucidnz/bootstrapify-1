@@ -251,7 +251,6 @@ th {
   font-family: 'Glyphicons Halflings';
   src: url("bootstrap/glyphicons-halflings-regular.eot");
   src: url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
-
 .glyphicon {
   position: relative;
   top: 1px;
@@ -876,7 +875,7 @@ th {
 
 html {
   font-size: 62.5%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: transparent; }
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1069,7 +1068,7 @@ mark,
   text-align: justify; }
 
 .text-muted, .article-meta, .article-meta a {
-  color: #999999; }
+  color: inherit; }
 
 .text-primary {
   color: #428bca; }
@@ -4045,7 +4044,6 @@ a.thumbnail.active {
 
   to {
     background-position: 0 0; } }
-
 .progress {
   overflow: hidden;
   height: 20px;
@@ -5003,7 +5001,7 @@ button.close {
     border-radius: 10px;
     cursor: pointer;
     background-color: #000 \9;
-    background-color: rgba(0, 0, 0, 0); }
+    background-color: transparent; }
   .carousel-indicators .active {
     margin: 0;
     width: 12px;
@@ -5089,7 +5087,6 @@ button.close {
 
 @-ms-viewport {
   width: device-width; }
-
 .visible-xs, .visible-sm, .visible-md, .visible-lg {
   display: none !important; }
 
@@ -5272,6 +5269,9 @@ body > #wrap {
   min-height: 50px;
   clear: both; }
 
+.text-muted, .article-meta, .article-meta a {
+  opacity: .7; }
+
 h1,
 h2,
 h3,
@@ -5294,6 +5294,12 @@ h6 {
   #footer-content .col-sm-4 > h4:first-child,
   #footer-content .col-sm-4 > .social-icons:first-child {
     margin-top: 0; }
+
+.testimonials {
+  margin-top: -30px; }
+
+.testimonial {
+  margin-top: 30px; }
 
 .footer-credits {
   margin-top: 30px; }
