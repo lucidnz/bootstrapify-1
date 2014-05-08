@@ -1,4 +1,6 @@
 $line-height-base: 1.42858; // fix rounding issue as sass var can only hold 5 decimal places (orig: 1.428571429)
+$text-muted: inherit !default;
+
 @import "bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 
 // sticky footer
@@ -15,6 +17,10 @@ body > #wrap {height: auto; min-height: 100%;}
 
 img {
   @extend .img-responsive;
+}
+
+.text-muted {
+  opacity: .7;
 }
 
 h1,
