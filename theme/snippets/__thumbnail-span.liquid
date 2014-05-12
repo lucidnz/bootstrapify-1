@@ -1,1 +1,13 @@
-{% if per-row == 3 %}col-sm-4{% else %}col-sm-6 col-md-3{% endif %}
+{% capture strip_space %}
+{% assign col-xs = 12 | divided_by: settings.thumbnails-per-row-mobile %}
+{% assign col-sm = 12 | divided_by: settings.thumbnails-per-row-tablet %}
+{% assign col-md = 12 | divided_by: settings.thumbnails-per-row-laptop %}
+{% assign col-lg = 12 | divided_by: settings.thumbnails-per-row-desktop %}
+{% endcapture %}
+{% if product_results <= 4 and settings.use-adaptive-thumbnails-per-row == true %}
+{% assign adaptive_cols = product_results | modulo: 12 %}
+{% assign adaptive_cols = 12 | divided_by: adaptive_cols %}
+col-xs-{{ adaptive_cols }}
+{% else %}
+col-xs-{{ col-xs }} col-sm-{{ col-sm }} col-md-{{ col-md }} col-lg-{{ col-lg }}
+{% endif %}

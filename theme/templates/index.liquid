@@ -16,8 +16,8 @@
 
 {% if settings.homepage-featured-products-collection %}
 {% assign featured_collection = collections[settings.homepage-featured-products-collection] %}
-<h2 class="page-header"><a href="{{ featured_collection.url }}">{{ featured_collection.title }}</a>{% if featured_collection.products.size > per-row %}&emsp;<a class="small" href="{{ featured_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
-  {% include 'products-list' with 'featured' %}
+<h2 class="page-header"><a href="{{ featured_collection.url }}">{{ featured_collection.title }}</a>{% if featured_collection.all_products_count > featured_products_limit %}&emsp;<a class="small" href="{{ featured_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
+  {% include 'products-list' %}
 {% endif %}
 
 {% include 'featured-blog-overview' with 'blog' %}

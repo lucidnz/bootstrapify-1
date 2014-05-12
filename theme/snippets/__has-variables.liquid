@@ -9,5 +9,5 @@
 {% include '__has-footer' %}
 {% include '__has-footer-navbar' %}
 {% include '__has-fixed-footer-navbar' %}
-{% include '__per-row' %}
+{% if settings.featured-products-limit contains 'limit' %}{% assign featured_products_limit = nil %}{% else %}{% assign featured_products_limit = settings.featured-products-limit | times: 1 %}{% endif %}
 {% endcapture %}
