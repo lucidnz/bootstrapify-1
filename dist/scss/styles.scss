@@ -154,12 +154,6 @@ a.icon:hover {
 }
 
 #product-form{
-  #quantity{
-    max-width: 5em;
-  }
-  #purchase{
-    margin-top: $grid-gutter-width;
-  }
   .product-price{
     font-size: floor($font-size-large * 1.15);
   }

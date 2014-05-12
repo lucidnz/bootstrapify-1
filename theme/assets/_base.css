@@ -5363,10 +5363,6 @@ a.icon:hover {
     right: 0;
     top: 0; }
 
-#product-form #quantity {
-  max-width: 5em; }
-#product-form #purchase {
-  margin-top: 30px; }
 #product-form .product-price {
   font-size: 20px; }
 
