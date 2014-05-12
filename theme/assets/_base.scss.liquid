@@ -241,7 +241,7 @@ $dropdown-link-disabled-color:   $gray-light !default;
 //** Text color for headers within dropdown menus.
 $dropdown-header-color:          $gray-light !default;
 
-// Note: Deprecated $dropdown-caret-color as of v3.1.0
+//** Deprecated `$dropdown-caret-color` as of v3.1.0
 $dropdown-caret-color:           #000 !default;
 
 
@@ -254,8 +254,8 @@ $dropdown-caret-color:           #000 !default;
 
 $zindex-navbar:            1000 !default;
 $zindex-dropdown:          1000 !default;
-$zindex-popover:           1010 !default;
-$zindex-tooltip:           1030 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;
 $zindex-navbar-fixed:      1030 !default;
 $zindex-modal-background:  1040 !default;
 $zindex-modal:             1050 !default;
@@ -266,27 +266,32 @@ $zindex-modal:             1050 !default;
 //## Define the breakpoints at which your layout will change, adapting to different screen sizes.
 
 // Extra small screen / phone
-// Note: Deprecated $screen-xs and $screen-phone as of v3.0.1
+//** Deprecated `$screen-xs` as of v3.0.1
 $screen-xs:                  480px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
 $screen-xs-min:              $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1
 $screen-phone:               $screen-xs-min !default;
 
 // Small screen / tablet
-// Note: Deprecated $screen-sm and $screen-tablet as of v3.0.1
+//** Deprecated `$screen-sm` as of v3.0.1
 $screen-sm:                  768px !default;
 $screen-sm-min:              $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1
 $screen-tablet:              $screen-sm-min !default;
 
 // Medium screen / desktop
-// Note: Deprecated $screen-md and $screen-desktop as of v3.0.1
+//** Deprecated `$screen-md` as of v3.0.1
 $screen-md:                  992px !default;
 $screen-md-min:              $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1
 $screen-desktop:             $screen-md-min !default;
 
 // Large screen / wide desktop
-// Note: Deprecated $screen-lg and $screen-lg-desktop as of v3.0.1
+//** Deprecated `$screen-lg` as of v3.0.1
 $screen-lg:                  1200px !default;
 $screen-lg-min:              $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
 $screen-lg-desktop:          $screen-lg-min !default;
 
 // So media queries don't overlap when required, provide a maximum
@@ -534,7 +539,7 @@ $popover-arrow-color:                 #fff !default;
 //** Popover outer arrow width
 $popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
 //** Popover outer arrow color
-$popover-arrow-outer-color:           rgba($popover-border-color, 0.05) !default;
+$popover-arrow-outer-color:           fade_in($popover-border-color, 0.05) !default;
 //** Popover outer arrow fallback color
 $popover-arrow-outer-fallback-color:  darken($popover-fallback-border-color, 20%) !default;
 
@@ -1260,14 +1265,14 @@ $component-offset-horizontal: 180px !default;
   &:focus,
   &:active,
   &.active,
-  .open &.dropdown-toggle {
+  .open > &.dropdown-toggle {
     color: $color;
     background-color: darken($background, 10%);
         border-color: darken($border, 12%);
   }
   &:active,
   &.active,
-  .open &.dropdown-toggle {
+  .open > &.dropdown-toggle {
     background-image: none;
   }
   &.disabled,
@@ -1426,7 +1431,7 @@ $component-offset-horizontal: 180px !default;
 // Form control focus state
 //
 // Generate a customized focus state and for any input with the specified color,
-// which defaults to the `$input-focus-border` variable.
+// which defaults to the `$input-border-focus` variable.
 //
 // We highly encourage you to not customize the default value, but instead use
 // this to tweak colors on an as-needed basis. This aesthetic change is based on
@@ -1501,6 +1506,7 @@ $component-offset-horizontal: 180px !default;
     > td.#{$state}:hover,
     > th.#{$state}:hover,
     &.#{$state}:hover > td,
+    &:hover > .#{$state},
     &.#{$state}:hover > th {
       background-color: darken($background, 5%);
     }
@@ -1849,7 +1855,7 @@ $component-offset-horizontal: 180px !default;
   }
 }
 
-/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 
 //
 // 1. Set default font family to sans-serif.
@@ -1875,7 +1881,9 @@ body {
 // ==========================================================================
 
 //
-// Correct `block` display not defined in IE 8/9.
+// Correct `block` display not defined for any HTML5 element in IE 8/9.
+// Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+// Correct `block` display not defined for `main` in IE 11.
 //
 
 article,
@@ -1917,8 +1925,8 @@ audio:not([controls]) {
 }
 
 //
-// Address `[hidden]` styling not present in IE 8/9.
-// Hide the `template` element in IE, Safari, and Firefox < 22.
+// Address `[hidden]` styling not present in IE 8/9/10.
+// Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
 //
 
 [hidden],
@@ -1950,7 +1958,7 @@ a:hover {
 // ==========================================================================
 
 //
-// Address styling not present in IE 8/9, Safari 5, and Chrome.
+// Address styling not present in IE 8/9/10/11, Safari, and Chrome.
 //
 
 abbr[title] {
@@ -1958,7 +1966,7 @@ abbr[title] {
 }
 
 //
-// Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+// Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
 //
 
 b,
@@ -1967,7 +1975,7 @@ strong {
 }
 
 //
-// Address styling not present in Safari 5 and Chrome.
+// Address styling not present in Safari and Chrome.
 //
 
 dfn {
@@ -1976,7 +1984,7 @@ dfn {
 
 //
 // Address variable `h1` font-size and margin within `section` and `article`
-// contexts in Firefox 4+, Safari 5, and Chrome.
+// contexts in Firefox 4+, Safari, and Chrome.
 //
 
 h1 {
@@ -2025,7 +2033,7 @@ sub {
 // ==========================================================================
 
 //
-// Remove border when inside `a` element in IE 8/9.
+// Remove border when inside `a` element in IE 8/9/10.
 //
 
 img {
@@ -2033,7 +2041,7 @@ img {
 }
 
 //
-// Correct overflow displayed oddly in IE 9.
+// Correct overflow not hidden in IE 9/10/11.
 //
 
 svg:not(:root) {
@@ -2044,7 +2052,7 @@ svg:not(:root) {
 // ==========================================================================
 
 //
-// Address margin not present in IE 8/9 and Safari 5.
+// Address margin not present in IE 8/9 and Safari.
 //
 
 figure {
@@ -2093,7 +2101,7 @@ samp {
 // 1. Correct color not being inherited.
 //    Known issue: affects color of disabled elements.
 // 2. Correct font properties not being inherited.
-// 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+// 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
 //
 
 button,
@@ -2107,7 +2115,7 @@ textarea {
 }
 
 //
-// Address `overflow` set to `hidden` in IE 8/9/10.
+// Address `overflow` set to `hidden` in IE 8/9/10/11.
 //
 
 button {
@@ -2117,7 +2125,7 @@ button {
 //
 // Address inconsistent `text-transform` inheritance for `button` and `select`.
 // All other form control elements do not inherit `text-transform` values.
-// Correct `button` style inheritance in Firefox, IE 8+, and Opera
+// Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
 // Correct `select` style inheritance in Firefox.
 //
 
@@ -2196,8 +2204,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 //
-// 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
-// 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+// 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+// 2. Address `box-sizing` set to `border-box` in Safari and Chrome
 //    (include `-moz` to future-proof).
 //
 
@@ -2230,7 +2238,7 @@ fieldset {
 }
 
 //
-// 1. Correct `color` not being inherited in IE 8/9.
+// 1. Correct `color` not being inherited in IE 8/9/10/11.
 // 2. Remove padding so people aren't caught out if they zero out fieldsets.
 //
 
@@ -2240,7 +2248,7 @@ legend {
 }
 
 //
-// Remove default vertical scrollbar in IE 8/9.
+// Remove default vertical scrollbar in IE 8/9/10/11.
 //
 
 textarea {
@@ -2272,6 +2280,7 @@ td,
 th {
   padding: 0;
 }
+
 //
 // Basic print styles
 // --------------------------------------------------
@@ -2827,7 +2836,7 @@ p {
 .lead {
   margin-bottom: $line-height-computed;
   font-size: floor(($font-size-base * 1.15));
-  font-weight: 200;
+  font-weight: 300;
   line-height: 1.4;
 
   @media (min-width: $screen-sm-min) {
@@ -2841,10 +2850,14 @@ p {
 
 // Ex: 14px base font * 85% = about 12px
 small,
-.small  { font-size: 85%; }
+.small {
+  font-size: 85%;
+}
 
 // Undo browser default styling
-cite    { font-style: normal; }
+cite {
+  font-style: normal;
+}
 
 mark,
 .mark {
@@ -3473,6 +3486,7 @@ legend {
 
 label {
   display: inline-block;
+  max-width: 100%; // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -3731,6 +3745,7 @@ input[type="checkbox"],
   position: absolute;
   top: ($line-height-computed + 5); // Height of the `label` and its margin
   right: 0;
+  z-index: 2; // Ensure icon is above input groups
   display: block;
   width: $input-height-base;
   height: $input-height-base;
@@ -3757,6 +3772,12 @@ input[type="checkbox"],
 }
 .has-error {
   @include form-control-validation($state-danger-text, $state-danger-text, $state-danger-bg);
+}
+
+
+// Reposition feedback icon if label is hidden with "screenreader only" state
+.has-feedback label.sr-only ~ .form-control-feedback {
+  top: 0;
 }
 
 
@@ -4153,6 +4174,7 @@ tbody.collapse.in { display: table-row-group; }
   margin: 2px 0 0; // override default ul
   list-style: none;
   font-size: $font-size-base;
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
   background-color: $dropdown-bg;
   border: 1px solid $dropdown-fallback-border; // IE8 fallback
   border: 1px solid $dropdown-border;
@@ -4605,10 +4627,14 @@ tbody.collapse.in { display: table-row-group; }
 
 .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
-.input-group-lg > .input-group-btn > .btn { @extend .input-lg; }
+.input-group-lg > .input-group-btn > .btn {
+  @extend .input-lg;
+}
 .input-group-sm > .form-control,
 .input-group-sm > .input-group-addon,
-.input-group-sm > .input-group-btn > .btn { @extend .input-sm; }
+.input-group-sm > .input-group-btn > .btn {
+  @extend .input-sm;
+}
 
 
 // Display as table-cell
@@ -4891,7 +4917,7 @@ tbody.collapse.in { display: table-row-group; }
 
   > li {
     float: none;
-     > a {
+    > a {
       text-align: center;
       margin-bottom: 5px;
     }
@@ -6054,7 +6080,7 @@ a.thumbnail.active {
 // Expand the right padding and account for the close button's positioning.
 
 .alert-dismissable {
- padding-right: ($alert-padding + 20);
+  padding-right: ($alert-padding + 20);
 
   // Adjust close link position
   .close {
@@ -7109,7 +7135,9 @@ button.close {
 
   > .active,
   > .next,
-  > .prev { display: block; }
+  > .prev {
+    display: block;
+  }
 
   > .active {
     left: 0;
@@ -7191,19 +7219,21 @@ button.close {
   .icon-prev,
   .glyphicon-chevron-left {
     left: 50%;
+    margin-left: -10px;
   }
   .icon-next,
   .glyphicon-chevron-right {
     right: 50%;
+    margin-right: -10px;
   }
   .icon-prev,
   .icon-next {
     width:  20px;
     height: 20px;
     margin-top: -10px;
-    margin-left: -10px;
     font-family: serif;
   }
+
 
   .icon-prev {
     &:before {
@@ -7294,8 +7324,15 @@ button.close {
       width: 30px;
       height: 30px;
       margin-top: -15px;
-      margin-left: -15px;
       font-size: 30px;
+    }
+    .glyphicon-chevron-left,
+    .icon-prev {
+      margin-left: -15px;
+    }
+    .glyphicon-chevron-right,
+    .icon-next {
+      margin-right: -15px;
     }
   }
 
@@ -8143,3 +8180,615 @@ body:after{
     height: 3em;
   }
 }
+/*
+ * Default Variables
+ */
+$body_padding:                        20px !default;
+$body_navbar_padding:                 50px !default;
+$footer-height:                       250px !default;
+
+$inverse_threshhold:                  60%;
+$default-background-colour:           white !default;
+$default-text-colour:                 #333 !default;
+$default-link-colour:                 #428bca !default;
+
+$font-size-base:                      14px !default;
+
+$screen-xs-min:                       480px !default;
+$screen-sm-min:                       768px !default;
+$screen-md-min:                       992px !default;
+$screen-lg-min:                       1200px !default;
+
+$screen-xs-max:                       ($screen-sm-min - 1) !default;
+$screen-sm-max:                       ($screen-md-min - 1) !default;
+$screen-md-max:                       ($screen-lg-min - 1) !default;
+
+$container-width-small-devices:       750px !default;
+
+/*
+ * Setting Variables
+ */
+
+$container-width-large-devices: {% if settings.container-width-large-devices == blank %}1170px{% else %}{{ settings.container-width-large-devices }}{% endif %}; 
+$container-width-medium-devices: {% if settings.container-width-medium-devices == blank %}970px{% else %}{{ settings.container-width-medium-devices }}{% endif %}; 
+ 
+$site-background-image:{% if settings.site-background-image != blank %}true{% else %}false{% endif %};
+$body-background-colour: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}$default-background-colour{% endif %};
+$body-heading-colour: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}$default-text-colour{% endif %};
+$body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}$default-text-colour{% endif %};
+$body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %};
+$button-colour: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}$body-link-colour{% endif %};
+$button-text-colour: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}false{% endif %};
+
+$main-navbar-background-colour: {% if settings.main-navbar-background-colour != blank %}{{ settings.main-navbar-background-colour }}{% else %}transparent{% endif %};
+$main-navbar-link-colour: {% if settings.main-navbar-link-colour != blank %}{{ settings.main-navbar-link-colour }}{% else %}$body-link-colour{% endif %};
+$navbar-background-colour: {% if settings.navbar-background-colour != blank %}{{ settings.navbar-background-colour }}{% else %}$body-background-colour{% endif %};
+$navbar-link-colour: {% if settings.navbar-link-colour != blank %}{{ settings.navbar-link-colour }}{% else %}$body-link-colour{% endif %};
+$fix-top-navbar: {% if settings.top-navbar-placement == 'fixed-to-top' %}true{% else %}false{% endif %};
+$fix-footer-navbar: {% if settings.footer-navbar-placement == 'fixed-to-bottom' %}true{% else %}false{% endif %};
+
+$sidebar-background-colour: {% if settings.sidebar-background-colour != blank %}{{ settings.sidebar-background-colour }}{% else %}transparent{% endif %};
+$sidebar-heading-colour: {% if settings.sidebar-heading-colour != blank %}{{ settings.sidebar-heading-colour }}{% else %}$body-heading-colour{% endif %};
+$sidebar-text-colour: {% if settings.sidebar-text-colour != blank %}{{ settings.sidebar-text-colour }}{% else %}$body-text-colour{% endif %};
+$sidebar-link-colour: {% if settings.sidebar-link-colour != blank %}{{ settings.sidebar-link-colour }}{% else %}$body-link-colour{% endif %};
+
+$footer-background-colour: {% if settings.footer-background-colour != blank %}{{ settings.footer-background-colour }}{% else %}transparent{% endif %};
+$footer-heading-colour: {% if settings.footer-heading-colour != blank %}{{ settings.footer-heading-colour }}{% else %}$body-heading-colour{% endif %};
+$footer-text-colour: {% if settings.footer-text-colour != blank %}{{ settings.footer-text-colour }}{% else %}$body-text-colour{% endif %};
+$footer-link-colour: {% if settings.footer-link-colour != blank %}{{ settings.footer-link-colour }}{% else %}$body-link-colour{% endif %};
+
+$font-family-body: {% if settings.font-body-custom != blank %}'{{ settings.font-body-custom | remove: "'" | remove: '"' }}'{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %}{% elsif settings.font-body != blank %}{{ settings.font-body }}{% else %}false{% endif %};
+$font-weight-body: {% if settings.font-body-weight != blank %}{{ settings.font-body-weight }}{% else %}normal{% endif %};
+$font-size-body: {% if settings.font-body-size != blank %}{{ settings.font-body-size }}{% else %}false{% endif %};
+$font-transform-body: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %}{{ settings.font-body-case }}{% elsif settings.font-body-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-body-italic: {% if settings.font-body-style == 'italic' %}true{% else %}false{% endif %};
+
+$font-family-heading: {% if settings.font-heading-custom != blank %}'{{ settings.font-heading-custom | remove: "'" | remove: '"' }}'{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %}{% elsif settings.font-heading != blank %}{{ settings.font-heading }}{% else %}false{% endif %};
+$font-weight-heading: {% if settings.font-heading-weight != blank %}{{ settings.font-heading-weight }}{% else %}normal{% endif %};
+$font-size-heading: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size }}{% else %}false{% endif %};
+$font-transform-heading: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-heading-italic: {% if settings.font-heading-style == 'italic' %}true{% else %}false{% endif %};
+$heading-letterpress: {% if settings.heading-letterpress%}true{% else %}false{% endif %};
+
+$font-family-navbar: {% if settings.font-navbar-custom != blank %}'{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %}{% elsif settings.font-navbar != blank %}{{ settings.font-navbar }}{% else %}false{% endif %};
+$font-weight-navbar: {% if settings.font-navbar-weight != blank %}{{ settings.font-navbar-weight }}{% else %}normal{% endif %};
+$font-size-navbar: {% if settings.font-navbar-size != blank %}{{ settings.font-navbar-size }}{% else %}false{% endif %};
+$font-transform-navbar: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %}{{ settings.font-navbar-case }}{% elsif settings.font-navbar-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-navbar-italic: {% if settings.font-navbar-style == 'italic' %}true{% else %}false{% endif %};
+
+$font-family-brand: {% if settings.font-brand-custom != blank %}'{{ settings.font-brand-custom | remove: "'" | remove: '"' }}'{% if settings.font-brand != blank %},{{ settings.font-brand }}{% endif %}{% elsif settings.font-brand != blank %}{{ settings.font-brand }}{% else %}false{% endif %};
+$font-weight-brand: {% if settings.font-brand-weight != blank %}{{ settings.font-brand-weight }}{% else %}normal{% endif %};
+$font-size-brand: {% if settings.font-brand-size != blank %}{{ settings.font-brand-size }}{% else %}false{% endif %};
+$font-transform-brand: {% if settings.font-brand-case == 'lowercase' or settings.font-brand-case == 'uppercase' %}{{ settings.font-brand-case }}{% elsif settings.font-brand-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-brand-italic: {% if settings.font-brand-style == 'italic' %}true{% else %}false{% endif %};
+
+$font-family-nav-secondary: {% if settings.font-nav-secondary-custom != blank %}'{{ settings.font-nav-secondary-custom | remove: "'" | remove: '"' }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %}{% elsif settings.font-nav-secondary != blank %}{{ settings.font-nav-secondary }}{% else %}false{% endif %};
+$font-weight-nav-secondary: {% if settings.font-nav-secondary-weight != blank %}{{ settings.font-nav-secondary-weight }}{% else %}normal{% endif %};
+$font-size-nav-secondary: {% if settings.font-nav-secondary-size != blank %}{{ settings.font-nav-secondary-size }}{% else %}false{% endif %};
+$font-transform-nav-secondary: {% if settings.font-nav-secondary-case == 'lowercase' or settings.font-nav-secondary-case == 'uppercase' %}{{ settings.font-nav-secondary-case }}{% elsif settings.font-nav-secondary-case == 'title-case'%}capitalize{% else %}none{% endif %};
+$font-nav-secondary-italic: {% if settings.font-nav-secondary-style == 'italic' %}true{% else %}false{% endif %};
+
+$show-borders: {% if settings.show-borders %}true{% else %}false{% endif %};
+
+{% for i in (i..5) %}
+  {% assign c = i | plus: 1 %}
+  {% assign slide = 'slide-' | append: c %}
+  {% assign slide_dark = slide | append: '-dark' %}
+  {% assign slide_position = slide | append: '-position' %}
+  ${{ slide_dark }}: {% if settings[slide_dark] != blank %}true{% else %}false{% endif %};
+  ${{ slide_position }}: {% if settings[slide_position] != blank %}{{ settings[slide_position] }}{% else %}bottom center{% endif %};
+{% endfor %}
+$slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($slide-3-dark $slide-3-position) ($slide-4-dark $slide-4-position) ($slide-5-dark $slide-5-position);
+
+/*
+ * Functions and Mixins
+ */
+ 
+@function button-colour( $colour, $strength: 100% ) {
+  @return if(lightness($colour) > 80%, darken($colour, $strength), lighten($colour, $strength));
+}
+
+@function slide-colour( $dark, $text-colour, $strength: 100% ) {
+  @return if($dark, darken($text-colour, $strength), lighten($text-colour, $strength));
+}
+
+@function darken-colour( $colour, $strength: 100% ) {
+  @if $colour == transparent {
+    $colour: $body-background-colour;
+  }
+  @return if(lightness($colour) > 10%, darken($colour, $strength), lighten($colour, $strength * 2));
+}
+
+@function lighten-colour( $colour, $background-colour, $strength: 100% ) {
+  @if $colour == transparent {
+    $colour: $body-background-colour;
+  }
+  @if $background-colour == transparent {
+    $background-colour: $body-background-colour;
+  }
+  @return if(lightness($background-colour) > $inverse_threshhold, lighten($colour, $strength), darken($colour, $strength));
+}
+
+@mixin button-variant($colour, $button-background-colour, $border-colour, $background-colour) {
+  color: $colour;
+  background-color: $button-background-colour;
+  border-color: $border-colour;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: $colour;
+    background-color: darken-colour($button-background-colour, 8%);
+    border-color: darken-colour($border-colour, 12%);
+  }
+  .open & { &.dropdown-toggle {
+    color: $colour;
+    background-color: darken-colour($button-background-colour, 8%);
+    border-color: darken-colour($border-colour, 12%);
+  } }
+  &:active,
+  &.active {
+    background-image: none;
+  }
+  .open & { &.dropdown-toggle {
+    background-image: none;
+  } }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: $button-background-colour;
+          border-color: $border-colour;
+    }
+  }
+}
+
+@mixin background-colour($colour){
+  background-color: $colour;
+  .brand, blockquote{
+    border-color: darken-colour($colour, 7.5%);
+  }
+  .page-header{
+    border-bottom-color: darken-colour($colour, 7.5%);
+  }  
+  hr{
+    border-top-color: darken-colour($colour, 7.5%);
+  }
+
+  .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td, .table-bordered, .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td{
+    border-color: darken-colour($colour, 7.5%);
+  }
+  
+  .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
+    background-color: darken-colour($colour, 4%);
+  }
+  
+  .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+    background-color: darken-colour($colour, 6%);
+  }
+
+  .thumbnail{
+    border-color: darken-colour($colour, 7.5%);
+  }
+  
+  .well{
+    border-color: darken-colour($colour, 7.5%);
+    background-color: darken-colour($body-background-colour, 4%);
+  }
+  
+  @media (max-width: 768px){
+    .dropdown-menu .divider{
+      background-color: darken-colour($colour, 7.5%);
+    }
+  }
+}
+
+@mixin heading-colour($colour, $bg-colour){
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    color: $colour;
+    @if $heading-letterpress{
+      text-shadow: 0 1px 0 lighten-colour($colour, $bg-colour);
+    }
+    & a{
+      color: $colour;
+      &:hover{
+        color: darken-colour($colour, 15%);
+      }
+    }
+  }
+}
+
+@mixin text-colour($text-colour, $bg-colour){
+  color: $text-colour;
+  .thumbnail .caption, .btn-default{
+    color: $text-colour;
+  }
+  .text-muted, .nav > li.disabled > a, .breadcrumb > .active{
+    color: lighten-colour($text-colour, $bg-colour, 40%);
+  }
+}
+
+@mixin link-colour($link-colour, $bg-colour){
+  a{
+    color: $link-colour;
+    &:hover{
+      color: darken-colour($link-colour, 15%);
+    }
+  }
+  .nav > li > a:hover, .nav > li > a:focus{
+    background-color: darken-colour($bg-colour, 7.5%);
+  }
+  .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+    color: button-colour($link-colour);
+    background-color: $link-colour;
+  }
+  .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+    color: button-colour($link-colour);
+    background-color: $link-colour;
+  }
+  .dropdown-menu{
+      background-color: darken-colour($bg-colour, 5%);
+  }
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+      background-color: darken-colour($bg-colour, 7.5%);
+  }
+  .navbar-nav>.active>a, .navbar-nav>.active>a:hover,
+  .navbar-nav>.active>a:focus,.navbar-nav .open>a,
+  .navbar-nav .open>a:hover, .navbar-nav .open>a:focus,
+  .navbar-nav > li > a:hover, .nav > li > a:focus{
+    color: darken-colour($link-colour, 15%);
+    background-color: darken-colour($bg-colour, 7.5%);
+  }
+  .btn-primary {
+    $text-colour: button-colour($link-colour);
+    @if $button-text-colour {
+      $text-colour: $button-text-colour;
+    }
+    @include button-variant($text-colour, $button-colour, darken($button-colour, 5%), $bg-colour);
+  }
+  .btn-default{
+    border-color: darken-colour($bg-colour, 7.5%);
+    &:hover, &:focus{
+      background-color: darken-colour($bg-colour, 7.5%);
+      border-color: darken-colour($bg-colour, 12%);
+    }
+  }
+  .pagination > li > a, .pagination > li > span{
+    color: $link-colour;
+    border-color: darken-colour($bg-colour, 7.5%);
+    &:hover, &:focus{
+      color: darken-colour($link-colour, 15%);
+      background-color: darken-colour($bg-colour, 7.5%);
+      border-color: darken-colour($bg-colour, 12%);
+    }
+  }
+  .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus{
+    color: lighten-colour($link-colour, $bg-colour, 40%);
+  }
+  .form-control{
+    border-color: darken-colour($bg-colour, 7.5%);
+    &:focus {
+      border-color: $link-colour;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($link-colour, 0.6);
+    }
+  }
+}
+
+@mixin fonts($font-family, $font-size, $font-italic, $font-transform, $font-weight){
+  @if $font-family{
+    font-family: $font-family;
+  }
+  @if $font-size{
+    font-size: $font-size;
+  }
+  @if $font-italic {
+    font-style: italic;
+  }
+  text-transform: $font-transform;
+  font-weight: $font-weight;
+}
+
+@mixin slide($slide-dark, $slide-position, $text-colour){
+  .carousel-caption{
+    @if nth($slide-position, 1) == 'top' {
+      top: 0;
+      bottom: auto;
+    } @else if nth($slide-position, 1) == 'middle' {
+      top: 31%;
+      bottom: auto;
+    }
+    @if nth($slide-position, 2) == 'left' {
+      text-align: left;
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        text-align: left;
+      }
+    } @else if nth($slide-position, 2) == 'right' {
+      text-align: right;
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        text-align: right;
+      }
+    }
+    color: slide-colour($slide-dark, $text-colour);
+    @if $slide-dark {
+      text-shadow: none;
+    }
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+      color: slide-colour($slide-dark, $text-colour);
+      @if $slide-dark {
+        text-shadow: none;
+      }
+    }
+  }
+}
+
+/*
+ * Styles
+ */
+body{
+  /* Layout Adjustments */
+  &.has-top-navbar.has-fixed-top-navbar{
+    padding-top: $body_navbar_padding + $body_padding;
+  	#content {
+  		margin-top: $body_padding;
+  	}
+  	&.banner-window-width {
+  		padding-top: $body_navbar_padding;
+  	}
+  }
+  @media (max-width: $screen-xs-max){
+    &.has-fixed-top-navbar{
+      padding-top: $body_navbar_padding + $body_padding;
+    }
+  }
+  &.has-footer-navbar.has-fixed-footer-navbar{
+    #footer-content{
+      padding-bottom: $body_navbar_padding;
+    }
+  }
+  &.has-footer{
+    #content{
+      padding-bottom: $footer-height;
+    }
+    #footer-content{
+      > .container{        
+        margin-top: -$footer-height;
+        min-height: $footer-height;
+      }
+    }
+  }
+  
+  /* Design and colour schemes */
+  @if $font-family-body{
+    font-family: $font-family-body;
+  }
+  @if $font-size-body{
+    font-size: $font-size-body;
+  }
+  @if $font-body-italic {
+    font-style: italic;
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .navbar{
+      font-style: normal;
+    }
+  }
+  text-transform: $font-transform-body;
+  font-weight: $font-weight-body;
+  
+  @if $site-background-image {
+    background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');
+    {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
+    {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
+  }
+
+  @include background-colour($body-background-colour);
+  @include heading-colour($body-heading-colour, $body-background-colour);
+  @include text-colour($body-text-colour, $body-background-colour);
+  @include link-colour($body-link-colour, $body-background-colour);
+  
+  @if $show-borders == false{
+    .page-header, .thumbnail, .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+      border: none;
+    }
+    hr {
+      border-color: transparent;
+    }
+    .thumbnail {
+      padding: 0;
+      background-color: transparent;
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+  @if $font-family-heading {
+    font-family: $font-family-heading;
+  }
+  @if $font-heading-italic {
+    font-style: italic;
+  }
+  text-transform: $font-transform-heading;
+  font-weight: $font-weight-heading;
+}
+
+@if $font-size-heading{
+  h1{
+    font-size: $font-size-heading;
+  }
+  h2{
+    font-size: floor($font-size-heading / 1.2);
+  }
+  h3{
+    font-size: floor($font-size-heading / 1.5);
+  }
+  h4{
+    font-size: floor($font-size-heading / 2);
+  }
+  h5{
+    font-size: floor($font-size-heading / 2.5);
+  }
+  h6{
+    font-size: floor($font-size-heading / 3);
+  }
+}
+
+.brand h1, .navbar-brand{
+  @if $font-family-brand {
+    font-family: $font-family-brand;
+  }
+  @if $font-size-brand{
+    font-size: $font-size-brand;
+  }
+  @if $font-brand-italic {
+    font-style: italic;
+  }
+  text-transform: $font-transform-brand;
+  font-weight: $font-weight-brand;
+}
+
+.breadcrumb, .image-placeholder{
+  background-color: darken-colour($body-background-colour, 4.5%);
+}
+.breadcrumb > li + li:before, body .image-placeholder{
+  color: lighten-colour($body-text-colour, $body-background-colour, 45%);
+}
+
+.pagination > .active > a {
+  background-color: $button-colour;
+  border-color: $button-colour;
+  color: $button-text-colour;
+  
+  &:hover {
+    background-color: darken($button-colour, 2%);
+    border-color: darken($button-colour, 2%);
+    color: $button-text-colour;
+  }
+}
+
+#navbar-top, #navbar-footer{
+  @include background-colour($navbar-background-colour);
+  @include link-colour($navbar-link-colour, $navbar-background-colour);
+  @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
+  @if $site-background-image and $navbar-background-colour == $body-background-colour and $fix-top-navbar == false{
+    background-color: transparent;
+  }
+  .navbar-toggle{
+    border-color: darken-colour($navbar-background-colour, 9%);
+    .icon-bar{
+      background-color: darken-colour($navbar-background-colour, 9%);
+    }
+    &:hover, &:focus{
+      background-color: darken-colour($navbar-background-colour, 6%);
+    }
+  }
+}
+
+#navbar-main{
+  @include background-colour($main-navbar-background-colour);
+  @include link-colour($main-navbar-link-colour, $main-navbar-background-colour);
+  @include fonts($font-family-navbar, $font-size-navbar, $font-navbar-italic, $font-transform-navbar, $font-weight-navbar);
+}
+
+@media (min-width: $screen-sm-min){
+  #navbar-top, #navbar-footer, #navbar-main{
+    .dropdown-menu{
+      background-color: white;
+    }
+    .dropdown-menu > li > a, .dropdown-menu .nav > li > a{
+      color: $default-text-colour;
+    }
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu .nav > li > a:hover, .dropdown-menu .nav > li > a:focus{
+      background-color: whitesmoke;
+    }
+  }
+}
+
+.sidebar{
+  @include background-colour($sidebar-background-colour);
+  @include heading-colour($sidebar-heading-colour, $sidebar-background-colour);
+  @include text-colour($sidebar-text-colour, $sidebar-background-colour);
+  @include link-colour($sidebar-link-colour, $sidebar-background-colour);
+  .nav{
+    @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
+  }
+}
+@media (min-width: $screen-sm-min){
+  .sidebar{
+    background-color: transparent;
+    .sidebar-content{
+      background-color: $sidebar-background-colour;
+      @if $site-background-image == false and ($sidebar-background-colour == $body-background-colour or $sidebar-background-colour == transparent) {
+        padding: 0;
+      }
+    }
+  }
+}
+
+#footer-content{
+  @include background-colour($footer-background-colour);
+  > .container{
+    @include heading-colour($footer-heading-colour, $footer-background-colour);
+    @include text-colour($footer-text-colour, $footer-background-colour);
+    @include link-colour($footer-link-colour, $footer-background-colour);
+    .nav{
+      @include fonts($font-family-nav-secondary, $font-size-nav-secondary, $font-nav-secondary-italic, $font-transform-nav-secondary, $font-weight-nav-secondary);
+    }
+  }
+}
+
+.carousel-caption{
+  color: $body-text-colour;
+}
+.carousel-indicators li{
+  border-color: $body-text-colour;
+}
+.carousel-indicators .active{
+  background-color: $body-text-colour;
+}
+@media (min-width: $screen-sm-min){
+  $i: 1;
+  @each $slide in $slides{
+    #slide-#{$i}{
+      @include slide(nth($slide, 1), nth($slide, 2), $body-text-colour);
+    }
+    $i: $i + 1;
+  }
+  .carousel-caption{
+    left: 50%;
+    width: $container-width-small-devices;
+    margin-left: -($container-width-small-devices/2);
+    background-color: transparent;
+  }
+  .carousel-indicators li{
+    border-color: white;
+  }
+  .carousel-indicators .active{
+    background-color: white;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .container {
+    width: $container-width-medium-devices;
+  }
+  .carousel-caption{
+    width: $container-width-medium-devices;
+    margin-left: -($container-width-medium-devices/2);
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  .container {
+    width: $container-width-large-devices;
+  }
+  .carousel-caption{
+    width: $container-width-large-devices;
+    margin-left: -($container-width-large-devices/2);
+  }
+}
+
+{% unless settings.custom-css == blank %}{{ settings.custom-css }}{% endunless %}

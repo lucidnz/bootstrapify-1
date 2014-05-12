@@ -352,12 +352,17 @@ body{
   /* Layout Adjustments */
   &.has-top-navbar.has-fixed-top-navbar{
     padding-top: $body_navbar_padding + $body_padding;
-	#content {
-		margin-top: $body_padding;
-	}
-	&.banner-window-width {
-		padding-top: $body_navbar_padding;
-	}
+  	#content {
+  		margin-top: $body_padding;
+  	}
+  	&.banner-window-width {
+  		padding-top: $body_navbar_padding;
+  	}
+  }
+  @media (max-width: $screen-xs-max){
+    &.has-fixed-top-navbar{
+      padding-top: $body_navbar_padding + $body_padding;
+    }
   }
   &.has-footer-navbar.has-fixed-footer-navbar{
     #footer-content{
