@@ -59,6 +59,8 @@
       <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
     
       {% include 'product-specs' %}
+      
+      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
     </div>
   </div>
 </form>
