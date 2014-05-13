@@ -1,4 +1,6 @@
 //$line-height-base: 1.42858; // fix rounding issue as sass var can only hold 5 decimal places (orig: 1.428571429)
+$text-muted: inherit !default;
+
 //@import "bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 
 // sticky footer
@@ -15,6 +17,10 @@ body > #wrap {height: auto; min-height: 100%;}
 
 img {
   @extend .img-responsive;
+}
+
+.text-muted {
+  opacity: .5;
 }
 
 h1,
@@ -46,6 +52,14 @@ h6 {
       }
     }
   }
+}
+
+.testimonials {
+  margin-top: $grid-gutter-width * -1;
+}
+
+.testimonial {
+  margin-top: $grid-gutter-width;
 }
 
 .footer-credits {
@@ -140,12 +154,6 @@ a.icon:hover {
 }
 
 #product-form{
-  #quantity{
-    max-width: 5em;
-  }
-  #purchase{
-    margin-top: $grid-gutter-width;
-  }
   .product-price{
     font-size: floor($font-size-large * 1.15);
   }

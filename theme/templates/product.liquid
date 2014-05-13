@@ -12,7 +12,7 @@
   <h1 class="page-header" itemprop="name">{{ page_title }}</h1>
 </div>
 
-<form id="product-form" action="/cart/add" method="post">
+<form id="product-form" action="/cart/add" method="post" role="form">
   <div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
 	
     <!-- images col -->
@@ -59,6 +59,8 @@
       <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
     
       {% include 'product-specs' %}
+      
+      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
     </div>
   </div>
 </form>
