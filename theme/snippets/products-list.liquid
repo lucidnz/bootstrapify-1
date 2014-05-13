@@ -6,7 +6,7 @@
   {% assign product_collection = collection %}
   {% endif %}
   {% for p in product_collection.products | limit: limit %}
-  {% assign product_results = forloop.length %}
+  {% assign product_count = forloop.length %}
   {% include '_product' with p %}
   {% endfor %}
 </div>
