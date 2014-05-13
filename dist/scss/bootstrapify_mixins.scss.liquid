@@ -1,0 +1,11 @@
+/* Bootstrapify functions */
+
+@function hover-colour ( $colour, $strength: 15% ) {
+  @return if( lightness( $colour ) > 25%, darken( $colour, $strength ), lighten( $colour, $strength * 2 ) );
+}
+
+@function text-colour( $colour, $strength: 100% ) {
+  @return if( lightness( $colour ) > 80%, darken( $colour, $strength ), lighten( $colour, $strength ) );
+}
+
+/* Bootstrapify mixins */

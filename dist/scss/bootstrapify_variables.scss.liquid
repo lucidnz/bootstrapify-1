@@ -1,0 +1,161 @@
+/* Set up base Bootstrap and Bootstrapify variables with values from Shopify settings */
+
+/* Colours */
+{% if settings.body-link-colour != blank %}
+  $brand-primary:   {{ settings.body-link-colour }} !default;
+{% endif %}
+
+
+/* Scaffolding */
+// background colour for body
+{% if settings.body-background-colour != blank %}
+  $body-bg:   {{ settings.body-background-colour }} !default;
+{% endif %}
+
+// Global text color on body
+{% if settings.body-text-colour != blank %}
+  $text-color:    {{ settings.body-text-colour }} !default;
+{% endif %}
+
+// Global link color on body
+{% if settings.body-link-colour != blank %}
+        $link-color:    {{ settings.body-link-colour }} !default;
+  $link-hover-color:    hover-colour( $link-color ) !default;
+{% endif %}
+
+
+/* Typography */
+// Global font family on body
+{% if settings.font-body-custom != blank %}
+  $font-family-base:    '{{ settings.font-body-custom | remove: "'" | remove: '"' }}'{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %} !default;
+{% elsif settings.font-body != blank %}
+  $font-family-base:    {{ settings.font-body }} !default;
+{% endif %}
+
+// Global font size on body
+{% if settings.font-body-size != blank %}
+  $font-size-base:    {{ settings.font-body-size }} !default;
+{% endif %}
+
+// Global heading font size on body
+{% if settings.font-heading-size != blank %}
+  // Work out sensible sizing for inbetween headings
+  // h5 should always be the same as $font-size-base
+  
+       $heading-size:   {{ settings.font-heading-size }};
+  $heading-size-step:   ($heading-size - $font-size-base) / 4;
+  
+       $font-size-h1:   $heading-size !default;
+       $font-size-h2:   floor(($heading-size - $heading-size-step)) !default;
+       $font-size-h3:   floor(($heading-size - ($heading-size-step * 2))) !default;
+       $font-size-h4:   floor(($heading-size - ($heading-size-step * 3))) !default;
+{% endif %}
+
+// Fix rounding issue as sass var can only hold 5 decimal places (orig: 1.428571429)
+$line-height-base:    1.42858;
+
+// Font family for headings
+{% if settings.font-heading-custom != blank %}
+  $headings-font-family:    '{{ settings.font-heading-custom | remove: "'" | remove: '"' }}'{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %} !default;
+{% elsif settings.font-heading != blank %}
+  $headings-font-family:    {{ settings.font-heading }} !default;
+{% endif %}
+
+// Font weight for headings
+{% if settings.font-heading-weight != blank %}
+  $headings-font-weight:    {{ settings.font-heading-weight }} !default;
+{% endif %}
+
+// Font colour for headings
+{% if settings.body-heading-colour != blank %}
+  $headings-color:    {{ settings.body-heading-colour }} !default;
+{% endif %}
+
+
+/* Components */
+
+
+/* Tables */
+{% if settings.body-background-colour != blank %}
+       $table-bg-accent:   lighten($body-bg, 2%) !default;  // Background color used for `.table-striped`.
+        $table-bg-hover:   lighten($body-bg, 4%) !default;  // Background color used for `.table-hover`.
+   
+  // Border color for table and cell borders.
+  {% if settings.show-borders %}
+    $table-border-color:   darken($body-bg, 5%) !default;   
+  {% else %}
+    $table-border-color:   transparent !default;
+  {% endif %}
+{% endif %}
+
+
+/* Buttons */
+{% if settings.body-background-colour != blank %}
+   $btn-default-color:    $text-color !default;
+      $btn-default-bg:    $body-bg !default;
+  $btn-default-border:    darken($body-bg, 5%) !default;
+{% endif %}
+
+{% if settings.button-colour != blank %}
+       $btn-primary-bg:    {{ settings.button-colour }} !default;
+  {% if settings.button-text-colour != blank %}
+    $btn-primary-color:    {{ settings.button-text-colour }} !default;
+  {% else %}
+    $btn-primary-color:    text-colour($btn-primary-bg) !default;
+  {% endif %}
+{% endif %}
+
+
+/* Forms */
+{% if settings.body-background-colour != blank %}
+                 $input-bg:    lighten($body-bg, 10%) !default;
+              $input-color:    $text-color !default;
+             $input-border:    darken($body-bg, 5%) !default;
+       $input-border-focus:    $brand-primary !default;
+  $input-color-placeholder:    darken($input-bg, 15%) !default;
+  
+             $legend-color:    $text-color !default;
+      $legend-border-color:    darken($body-bg, 5%) !default;
+
+     // Background color for textual input addons
+     $input-group-addon-bg:    $body-bg !default;
+{% endif %}
+
+
+/* Dropdowns */
+{% if settings.body-background-colour != blank or settings.navbar-background-colour != blank %}
+                   $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 5%) {% else %} lighten($body-bg, 5%) {% endif %} !default;
+           $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
+           $dropdown-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default;
+     $dropdown-link-hover-color:    hover-colour( $dropdown-link-color ) !default;
+        $dropdown-link-hover-bg:    darken($dropdown-bg, 5%) !default;
+  $dropdown-link-disabled-color:    lighten($dropdown-link-color, 5%) !default;
+         $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
+{% endif %}
+
+
+/* Media queries breakpoints */
+
+
+/* Container sizes */
+{% if settings.container-width-medium-devices != blank %}
+  $container-md:    {{ settings.container-width-medium-devices }} !default;
+{% endif %}
+{% if settings.container-width-large-devices != blank %}
+  $container-lg:    {{ settings.container-width-large-devices }} !default;
+{% endif %}
+
+
+/* Navbar */
+{% if settings.body-background-colour != blank or settings.navbar-background-colour != blank %}
+                // Basics of a navbar
+                $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
+                   $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} desaturate(darken($body-bg, 1.5%), 15%) {% endif %} !default;
+               $navbar-default-border:    darken($navbar-default-bg, 5%) !default;
+               // Navbar links
+           $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
+     $navbar-default-link-hover-color:    hover-colour($navbar-default-link-color) !default;
+    $navbar-default-link-active-color:    hover-colour($navbar-default-link-color) !default;
+       $navbar-default-link-active-bg:    darken($navbar-default-bg, 5%) !default;
+  $navbar-default-link-disabled-color:    lighten($navbar-default-link-color, 5%) !default;
+{% endif %}

@@ -53,7 +53,8 @@ module.exports = function(grunt) {
       },
       styles: {
         src: [
-          'dist/scss/pre_styles.scss.liquid',
+          'dist/scss/bootstrapify_mixins.scss.liquid',
+          'dist/scss/bootstrapify_variables.scss.liquid',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_variables.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins/_hide-text.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins/_opacity.scss',
@@ -120,9 +121,9 @@ module.exports = function(grunt) {
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_popovers.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_carousel.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_utilities.scss',
-          'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_responsive-utilities.scss',
-          'dist/scss/post_styles.scss.liquid',
-          'dist/scss/settings.scss.liquid'
+          'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_responsive-utilities.scss'
+          //'dist/scss/bootstrapify_overrides.scss.liquid'
+          //'dist/scss/settings.scss.liquid'
         ],
         dest: 'theme/assets/_base.scss.liquid'
       }
