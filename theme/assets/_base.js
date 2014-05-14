@@ -1,7 +1,7 @@
 /*
-* jquery.bootstrapify-dropdown.js
-* Handle nested linklists inside dropdowns better
-*/
+ * jquery.bootstrapify-dropdown.js
+ * Handle nested linklists inside dropdowns better
+ */
 
 (function($){
   
@@ -124,7 +124,7 @@ var preloadProductImages = function(){
   }
 };
 
-$(function() {  
+$(function() {
   /* Multiple currencies */
   if ($('body').hasClass('currencies')) {
     $('#currency-picker-toggle a').click(function() {
@@ -157,9 +157,6 @@ $(function() {
 $(window).load(function(){
   preloadProductImages();
   
-  $(".thumbnails-cropped .thumbnail-image").imgLiquid({fill:true});
-  $(".thumbnails-fit .thumbnail-image").imgLiquid({fill:false});
-  
   /* Isotope */
   var $container = $('.masonry-collection');
   // init
@@ -185,6 +182,7 @@ $('[data-main-image]').click(function(event) {
   }
   event.preventDefault();
 });
+
 
 /* modal signin forms */
 var modalForm = getID('signinModal');

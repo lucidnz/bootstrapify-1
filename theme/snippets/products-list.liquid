@@ -1,15 +1,12 @@
 <div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
-{% if products-list == 'featured' %}
-  {% if settings.featured-products-limit contains 'row' %}{% assign limit = settings.featured-products-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
-  {% for p in collections[settings.homepage-featured-products-collection].products | limit: limit %}
-    {% include '_product' with p %}
-  {% endfor %}
-{% else %}
-  {% if products-list == 'limit' %}
-    {% if settings.featured-products-limit contains 'row' %}{% assign limit = settings.featured-products-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
+  {% if template contains 'index' %}
+  {% if settings.featured-products-limit contains 'limited' %}{% assign limit = nil %}{% else %}{% assign limit = settings.featured-products-limit %}{% endif %}
+  {% assign product_collection = collections[settings.homepage-featured-products-collection] %}
+  {% else %}
+  {% assign product_collection = collection %}
   {% endif %}
-  {% for p in collection.products | limit: limit %}
-		{% include '_product' with p %}
-	{% endfor %}
-{% endif %}
+  {% for p in product_collection.products | limit: limit %}
+  {% assign product_count = forloop.length %}
+  {% include '_product' with p %}
+  {% endfor %}
 </div>

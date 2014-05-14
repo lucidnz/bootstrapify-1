@@ -1,16 +1,19 @@
-<div class="form-group">
-  <label for="quantity">Qty: </label> 
-  <input class="form-control" min="1" type="number" id="quantity" name="quantity" value="1" />
-</div>
 <div id="product-variants">
-  <select id="product-select" name="id" class="form-control">
+  <select id="product-select" name="id" class="form-control input-lg">
     {% for v in product.variants %}
     <option value="{{ v.id }}">{{ v.title }}</option>
     {% endfor %}
   </select>
 </div>
 
-<input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="btn btn-primary btn-lg" />
+<div class="row">
+  <div class="col-xs-4">
+    <input class="form-control input-lg" min="1" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" />
+  </div>
+  <div class="col-xs-8">
+    <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="btn btn-primary btn-lg btn-block" />
+  </div>
+</div>
 
 <hr>
 

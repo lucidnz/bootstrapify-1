@@ -14,11 +14,12 @@
   // ======================
 
   var Modal = function (element, options) {
-    this.options   = options
-    this.$body     = $(document.body)
-    this.$element  = $(element)
-    this.$backdrop =
-    this.isShown   = null
+    this.options        = options
+    this.$body          = $(document.body)
+    this.$element       = $(element)
+    this.$backdrop      =
+    this.isShown        = null
+    this.scrollbarWidth = 0
 
     if (this.options.remote) {
       this.$element
@@ -49,6 +50,7 @@
 
     this.isShown = true
 
+    this.checkScrollbar()
     this.$body.addClass('modal-open')
 
     this.setScrollbar()
@@ -143,7 +145,6 @@
     var that = this
     this.$element.hide()
     this.backdrop(function () {
-      that.removeBackdrop()
       that.$element.trigger('hidden.bs.modal')
     })
   }
@@ -154,6 +155,7 @@
   }
 
   Modal.prototype.backdrop = function (callback) {
+    var that = this
     var animate = this.$element.hasClass('fade') ? 'fade' : ''
 
     if (this.isShown && this.options.backdrop) {
@@ -184,22 +186,29 @@
     } else if (!this.isShown && this.$backdrop) {
       this.$backdrop.removeClass('in')
 
+      var callbackRemove = function() {
+        that.removeBackdrop()
+        callback && callback()
+      }
       $.support.transition && this.$element.hasClass('fade') ?
         this.$backdrop
-          .one($.support.transition.end, callback)
+          .one($.support.transition.end, callbackRemove)
           .emulateTransitionEnd(150) :
-        callback()
+        callbackRemove()
 
     } else if (callback) {
       callback()
     }
   }
 
+  Modal.prototype.checkScrollbar = function () {
+    if (document.body.clientWidth >= window.innerWidth) return
+    this.scrollbarWidth = this.scrollbarWidth || this.measureScrollbar()
+  }
+
   Modal.prototype.setScrollbar =  function () {
-    if (document.body.clientHeight <= window.innerHeight) return
-    var scrollbarWidth = this.measureScrollbar()
-    var bodyPad        = parseInt(this.$body.css('padding-right') || 0)
-    if (scrollbarWidth) this.$body.css('padding-right', bodyPad + scrollbarWidth)
+    var bodyPad = parseInt(this.$body.css('padding-right') || 0)
+    if (this.scrollbarWidth) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
   }
 
   Modal.prototype.resetScrollbar = function () {
@@ -219,9 +228,7 @@
   // MODAL PLUGIN DEFINITION
   // =======================
 
-  var old = $.fn.modal
-
-  $.fn.modal = function (option, _relatedTarget) {
+  function Plugin(option, _relatedTarget) {
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.modal')
@@ -233,6 +240,9 @@
     })
   }
 
+  var old = $.fn.modal
+
+  $.fn.modal             = Plugin
   $.fn.modal.Constructor = Modal
 
 
@@ -256,11 +266,10 @@
 
     if ($this.is('a')) e.preventDefault()
 
-    $target
-      .modal(option, this)
-      .one('hide', function () {
-        $this.is(':visible') && $this.trigger('focus')
-      })
+    Plugin.call($target, option, this)
+    $target.one('hide', function () {
+      $this.is(':visible') && $this.trigger('focus')
+    })
   })
 
 }(jQuery);

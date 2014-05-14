@@ -357,42 +357,6 @@
   
   <table>
     <tr>
-      <th><label for="show-product-collections">Show product collections</label></th>
-      <td>
-        <input type="checkbox" name="show-product-collections" id="show-product-collections" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="show-product-tags">Show product tags</label></th>
-      <td>
-        <input type="checkbox" name="show-product-tags" id="show-product-tags" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="show-product-type">Show product type</label></th>
-      <td>
-        <input type="checkbox" name="show-product-type" id="show-product-type" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="show-product-vendor">Show product vendor</label></th>
-      <td>
-        <input type="checkbox" name="show-product-vendor" id="show-product-vendor" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
       <th><label for="show-related-products">Show related products on products page</label></th>
       <td>
         <input type="checkbox" name="show-related-products" id="show-related-products" value="1" /> Yes
@@ -402,11 +366,70 @@
   
   <table>
     <tr>
-      <th><label for="thumbnails-per-row">Thumbnails per row</label></th>
+      <th><label for="thumbnails-per-row-desktop">Thumbnails per row, desktop</label></th>
       <td>
-           <div><input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="3" checked="checked" /> 3</div>
-           <div><input type="radio" name="thumbnails-per-row" id="thumbnails-per-row" value="4" /> 4</div>
+           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="1" checked="checked" /> 1</div>
+           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="2" /> 2</div>
+           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="3" /> 3</div>
+           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="4" /> 4</div>
+           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="6" /> 6</div>
+           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="12" /> 12</div>
            
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="thumbnails-per-row-laptop">Thumbnails per row, laptop</label></th>
+      <td>
+           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="1" checked="checked" /> 1</div>
+           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="2" /> 2</div>
+           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="3" /> 3</div>
+           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="4" /> 4</div>
+           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="6" /> 6</div>
+           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="12" /> 12</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="thumbnails-per-row-mobile">Thumbnails per row, mobile</label></th>
+      <td>
+           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="1" checked="checked" /> 1</div>
+           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="2" /> 2</div>
+           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="3" /> 3</div>
+           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="4" /> 4</div>
+           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="6" /> 6</div>
+           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="12" /> 12</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="thumbnails-per-row-tablet">Thumbnails per row, tablet</label></th>
+      <td>
+           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="1" checked="checked" /> 1</div>
+           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="2" /> 2</div>
+           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="3" /> 3</div>
+           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="4" /> 4</div>
+           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="6" /> 6</div>
+           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="12" /> 12</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="use-adaptive-thumbnails-per-row">Use “adaptive” thumbnails per row</label></th>
+      <td>
+        <input type="checkbox" name="use-adaptive-thumbnails-per-row" id="use-adaptive-thumbnails-per-row" value="1" /> Yes
+        <small>The number of thumbnails per row will adapt for best fit. This is particularly useful if you have a small number of products.</small>
       </td>
     </tr>
   </table>
@@ -471,10 +494,12 @@
     <tr>
       <th><label for="featured-products-limit">Featured products limit</label></th>
       <td>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="1-row" checked="checked" /> 1 row</div>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="2-rows" /> 2 rows</div>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="3-rows" /> 3 rows</div>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="4-rows" /> 4 rows</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="1" checked="checked" /> 1</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="2" /> 2</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="3" /> 3</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="4" /> 4</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="6" /> 6</div>
+           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="12" /> 12</div>
            <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="unlimited" /> Unlimited</div>
            
       </td>
@@ -1238,7 +1263,7 @@
 </fieldset>
 <fieldset>
   	
-  <legend>Collections</legend>
+  <legend>Products</legend>
   
   <table>
     <tr>
@@ -1246,6 +1271,78 @@
       <td>
         <input type="text" name="hidden-tag-prefixes" id="hidden-tag-prefixes" class="text" value="hd,hidden" />
         <small>Comma-separated list of tag prefixes to never display on the site. These can be used for creating more complex collection.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-product-collections">Show product collections</label></th>
+      <td>
+        <input type="checkbox" name="show-product-collections" id="show-product-collections" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-product-tags">Show product tags</label></th>
+      <td>
+        <input type="checkbox" name="show-product-tags" id="show-product-tags" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-product-type">Show product type</label></th>
+      <td>
+        <input type="checkbox" name="show-product-type" id="show-product-type" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="show-product-vendor">Show product vendor</label></th>
+      <td>
+        <input type="checkbox" name="show-product-vendor" id="show-product-vendor" value="1" /> Yes
+      </td>
+    </tr>
+  </table>
+  
+</fieldset>
+<fieldset>
+  	
+  <legend>Collections</legend>
+  
+  <table>
+    <tr>
+      <th><label for="all-collections-linklist">"All collections" collection linklist</label></th>
+      <td>
+        <select class="linklist" name="all-collections-linklist" />
+        <small>If you would like to specify which collections show on the /collections page, create a linklist of collections.</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="collections-per-row">Collections per row</label></th>
+      <td>
+           <div><input type="radio" name="collections-per-row" id="collections-per-row" value="2" checked="checked" /> 2</div>
+           <div><input type="radio" name="collections-per-row" id="collections-per-row" value="3" /> 3</div>
+           <div><input type="radio" name="collections-per-row" id="collections-per-row" value="4" /> 4</div>
+           
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="hide-products-with-less-than-this-number-of-products">Hide products with less than this number of products</label></th>
+      <td>
+        <input type="text" name="hide-products-with-less-than-this-number-of-products" id="hide-products-with-less-than-this-number-of-products" class="text" value="0" />
       </td>
     </tr>
   </table>
