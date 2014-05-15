@@ -8,7 +8,45 @@
   @return if( lightness( $colour ) > 80%, darken( $colour, $strength ), lighten( $colour, $strength ) );
 }
 
+@function text-muted( $colour ) {
+  @return rgba($colour, .5);
+}
+
+@function border-color( $colour ) {
+  @return if( $colour != transparent, darken( $colour, 5% ), transparent );
+}
+
 /* Bootstrapify mixins */
+
+@mixin background-color ( $colour ) {
+  background-color: $colour;
+  hr, blockquote, .page-header, .thumbnail, .well {
+    border-color: {% if settings.show-borders %} border-color($colour) {% else %} transparent {% endif %};
+  }
+}
+
+@mixin text-color ( $colour ) {
+  color: $colour;
+  .text-muted {
+    color: text-muted($colour);
+  }
+}
+
+@mixin heading-color ( $colour ) {
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: $colour;
+  }
+}
+
+@mixin link-color ( $colour ) {
+  a {
+    color: $colour;
+    &:hover {
+      color: hover-colour( $colour );
+    }
+  }
+}
 /* Set up base Bootstrap and Bootstrapify variables with values from Shopify settings */
 
 /* Colours */
@@ -20,7 +58,8 @@
 /* Scaffolding */
 // background colour for body
 {% if settings.body-background-colour != blank %}
-  $body-bg:   {{ settings.body-background-colour }} !default;
+       $body-bg:    {{ settings.body-background-colour }} !default;
+  $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
 {% endif %}
 
 // Global text color on body
@@ -92,18 +131,14 @@ $line-height-base:    1.42858;
         $table-bg-hover:   lighten($body-bg, 4%) !default;  // Background color used for `.table-hover`.
    
   // Border color for table and cell borders.
-  {% if settings.show-borders %}
-    $table-border-color:   darken($body-bg, 5%) !default;   
-  {% else %}
-    $table-border-color:   transparent !default;
-  {% endif %}
+    $table-border-color:   $border-color !default;
 {% endif %}
 
 
 /* Buttons */
 {% if settings.body-background-colour != blank %}
    $btn-default-color:    $text-color !default;
-      $btn-default-bg:    $body-bg !default;
+      $btn-default-bg:    darken($body-bg, 2%) !default;
   $btn-default-border:    darken($body-bg, 5%) !default;
 {% endif %}
 
@@ -121,12 +156,12 @@ $line-height-base:    1.42858;
 {% if settings.body-background-colour != blank %}
                  $input-bg:    lighten($body-bg, 10%) !default;
               $input-color:    $text-color !default;
-             $input-border:    darken($body-bg, 5%) !default;
+             $input-border:    $border-color !default;
        $input-border-focus:    $brand-primary !default;
   $input-color-placeholder:    darken($input-bg, 15%) !default;
   
              $legend-color:    $text-color !default;
-      $legend-border-color:    darken($body-bg, 5%) !default;
+      $legend-border-color:    $border-color !default;
 
      // Background color for textual input addons
      $input-group-addon-bg:    $body-bg !default;
@@ -146,7 +181,18 @@ $line-height-base:    1.42858;
 
 
 /* Media queries breakpoints */
-
+{% if settings.container-width-medium-devices != blank %}
+  {% assign medium_container = settings.container-width-medium-devices | remove: 'px' | times: 1 %}
+  {% if medium_container > 992 %}
+    $screen-md-min:   {{ medium_container | plus: 1 }}px !default;
+  {% endif %}
+{% endif %}
+{% if settings.container-width-large-devices != blank %}
+  {% assign large_container = settings.container-width-large-devices | remove: 'px' | times: 1 %}
+  {% if large_container > 1200 %}
+    $screen-lg-min:   {{ large_container | plus: 1 }}px !default;
+  {% endif %}
+{% endif %}
 
 /* Container sizes */
 {% if settings.container-width-medium-devices != blank %}
@@ -171,6 +217,87 @@ $line-height-base:    1.42858;
   $navbar-default-link-disabled-color:    lighten($navbar-default-link-color, 5%) !default;
 {% endif %}
 
+
+/* Navs */
+{% if settings.body-background-colour != blank %}
+          $nav-link-hover-bg:   darken($body-bg, 10%) !default;
+  //$nav-open-link-hover-color:   hover-colour( $dropdown-link-color ) !default;
+  
+                      // Tabs
+                    $nav-tabs-border-color:   border-color($body-bg) !default;
+         $nav-tabs-link-hover-border-color:   $nav-link-hover-bg !default;
+         $nav-tabs-active-link-hover-color:   $text-color !default;
+  $nav-tabs-active-link-hover-border-color:   $nav-tabs-border-color !default;
+     $nav-tabs-justified-link-border-color:   $nav-tabs-border-color !default;
+{% endif %}
+
+
+/* Pagination */
+{% if settings.body-background-colour != blank %}
+               $pagination-bg:    $body-bg !default;
+           $pagination-border:    darken($body-bg, 5%) !default;
+  
+         $pagination-hover-bg:    darken($body-bg, 10%) !default;
+     $pagination-hover-border:    $pagination-border !default;
+  
+     $pagination-active-color:    text-colour($link-color) !default;
+  
+   $pagination-disabled-color:    lighten($text-color, 5%) !default;
+      $pagination-disabled-bg:    $body-bg !default;
+  $pagination-disabled-border:    $pagination-border !default;
+{% endif %}
+
+
+/* Pager - inherits from Pagination */
+
+
+/* Jumbotron */
+{% if settings.body-background-colour != blank %}
+  $jumbotron-bg:    darken($body-bg, 5%) !default;
+{% endif %}
+
+
+/* Thumbnails */
+{% if settings.body-background-colour != blank %}
+           $thumbnail-border:   $border-color !default;
+  {% unless settings.show-borders %}
+           $thumbnail-border:   transparent !default;
+          $thumbnail-padding:   0px !default;
+    $thumbnail-border-radius:   0px !default;
+  {% endunless %}
+{% endif %}
+
+
+/* Wells */
+{% if settings.body-background-colour != blank %}
+      $well-bg:   rgba(darken($body-bg, 3%), .5) !default;
+  $well-border:   $border-color !default;
+{% endif %}
+
+
+/* Breadcrumbs */
+{% if settings.body-background-colour != blank %}
+            $breadcrumb-bg:   rgba(darken($body-bg, 3%), .5) !default;
+         $breadcrumb-color:   lighten($text-color, 15%) !default;
+  $breadcrumb-active-color:   lighten($text-color, 15%) !default;
+{% endif %}
+
+
+/* Type */
+{% if settings.body-text-colour != blank %}
+                $text-muted:    text-muted($text-color) !default;
+         $abbr-border-color:    $border-color !default;
+      $headings-small-color:    $text-muted !default;
+    $blockquote-small-color:    $text-muted !default;
+   $blockquote-border-color:    $border-color !default;
+  $page-header-border-color:    $border-color !default;
+{% endif %}
+
+
+/* Miscellaneous */
+{% if settings.body-background-colour != blank %}
+  $hr-border:   border-color($body-bg) !default;
+{% endif %}
 // a flag to toggle asset pipeline / compass integration
 // defaults to true if twbs-font-path function is present (no function => twbs-font-path('') parsed as string == right side)
 // in Sass 3.3 this can be improved with: function-exists(twbs-font-path)
@@ -7750,4 +7877,89 @@ button.close {
 
 @media print {
   @include responsive-invisibility('.hidden-print');
+}
+
+/* Sticky Footer */
+$footer-height: $navbar-height;
+html, body, #wrap { height: 100%; }
+body > #wrap {height: auto; min-height: 100%;}
+#content { padding-bottom: $footer-height; }
+#footer-content { 
+  position: relative;
+  margin-top: -$footer-height;
+  min-height: $footer-height;
+  clear:both;
+}
+
+img {
+  @extend .img-responsive;
+}
+
+/* Body */
+body {
+  {% if settings.site-background-image %}
+    background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');
+    {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
+    {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
+  {% endif %}
+  
+  font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %};
+  font-style: {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %};
+  text-transform: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %} {{ settings.font-body-case }} {% elsif settings.font-body-case == 'title-case'%} capitalize {% else %} none {% endif %};
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-style: {% if settings.font-heading-style == 'italic' %} italic {% else %} normal {% endif %};
+  text-transform: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %} {{ settings.font-heading-case }} {% elsif settings.font-heading-case == 'title-case'%} capitalize {% else %} none {% endif %};
+}
+
+/* Navbars */
+#navbar-top, #navbar-footer {
+  font-weight: {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} normal {% endif %};
+  font-style: {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
+  text-transform: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
+}
+
+/* Sidebar */
+.sidebar {
+  padding-top: $padding-base-horizontal;
+  padding-bottom: $padding-base-horizontal;
+  {% if settings.sidebar-background-colour != blank %} @include background-color({{ settings.sidebar-background-colour }}); {% endif %}
+  {% if settings.sidebar-heading-colour != blank %} @include heading-color({{ settings.sidebar-heading-colour }}); {% endif %}
+  {% if settings.sidebar-link-colour != blank %} @include link-color({{ settings.sidebar-link-colour }}); {% endif %}
+  {% if settings.sidebar-text-colour != blank %} @include text-color({{ settings.sidebar-text-colour }}); {% endif %}
+  
+  @media (min-width: $screen-sm-min) {
+    // Move background color onto .sidebar-content
+    padding-top: $grid-gutter-width;
+    padding-bottom: 0;
+    margin-bottom: $grid-gutter-width;
+    {% if settings.body-background-colour != blank %} background-color: transparent; {% endif %}
+    .sidebar-content{
+      {% if settings.sidebar-background-colour != blank and settings.sidebar-background-colour != settings.body-background-colour %}
+        @include background-color({{ settings.sidebar-background-colour }});
+        padding: $padding-base-horizontal;
+      {% endif %}
+    }
+  }
+}
+
+/* Footer */
+#footer-content {
+  {% if settings.footer-background-colour != blank %} background-color:{{ settings.footer-background-colour }}; {% endif %}
+  > .container {
+    {% if settings.footer-background-colour != blank %} @include background-color({{ settings.footer-background-colour }}); {% endif %}
+    {% if settings.footer-heading-colour != blank %} @include heading-color({{ settings.footer-heading-colour }}); {% endif %}
+    {% if settings.footer-link-colour != blank %} @include link-color({{ settings.footer-link-colour }}); {% endif %}
+    {% if settings.footer-text-colour != blank %}
+      @include text-color({{ settings.footer-text-colour }});
+      .footer-credits {
+        color: text-muted({{ settings.footer-text-colour }});
+      }
+    {% endif %}
+  }
+}
+
+#navbar-footer {
+  margin-bottom: 0;
 }

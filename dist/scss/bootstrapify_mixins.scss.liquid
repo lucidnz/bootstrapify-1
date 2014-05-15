@@ -8,4 +8,42 @@
   @return if( lightness( $colour ) > 80%, darken( $colour, $strength ), lighten( $colour, $strength ) );
 }
 
+@function text-muted( $colour ) {
+  @return rgba($colour, .5);
+}
+
+@function border-color( $colour ) {
+  @return if( $colour != transparent, darken( $colour, 5% ), transparent );
+}
+
 /* Bootstrapify mixins */
+
+@mixin background-color ( $colour ) {
+  background-color: $colour;
+  hr, blockquote, .page-header, .thumbnail, .well {
+    border-color: {% if settings.show-borders %} border-color($colour) {% else %} transparent {% endif %};
+  }
+}
+
+@mixin text-color ( $colour ) {
+  color: $colour;
+  .text-muted {
+    color: text-muted($colour);
+  }
+}
+
+@mixin heading-color ( $colour ) {
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: $colour;
+  }
+}
+
+@mixin link-color ( $colour ) {
+  a {
+    color: $colour;
+    &:hover {
+      color: hover-colour( $colour );
+    }
+  }
+}

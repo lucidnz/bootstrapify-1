@@ -121,9 +121,8 @@ module.exports = function(grunt) {
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_popovers.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_carousel.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_utilities.scss',
-          'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_responsive-utilities.scss'
-          //'dist/scss/bootstrapify_overrides.scss.liquid'
-          //'dist/scss/settings.scss.liquid'
+          'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_responsive-utilities.scss',
+          'dist/scss/bootstrapify_overrides.scss.liquid'
         ],
         dest: 'theme/assets/_base.scss.liquid'
       }
