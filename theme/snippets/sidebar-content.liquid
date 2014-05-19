@@ -15,11 +15,12 @@
     {% endif %}
     
     {% unless linklists[settings.sidebar-linklist] == empty %}
-      <h3 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h3>
+      {% comment %}<h3 class="page-header">{{ linklists[settings.sidebar-linklist].title }}</h3>{% endcomment %}
       <ul class="list-unstyled">
         {% for l in linklists[settings.sidebar-linklist].links %}
         <li{% if l.active %} class="active"{% endif %}>
-          <h4>{{ l.title | link_to: l.url, l.title }}</h4>
+          <h3 class="page-header">{{ l.title | link_to: l.url, l.title }}</h3>
+          {% include 'submenu' with linklists[l.handle] %}
         </li>
         {% endfor %}
       </ul>

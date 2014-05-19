@@ -119,10 +119,6 @@ h6 {
   }
 }
 
-aside .page-header:first-child{
-  margin-top: 0;
-}
-
 a.icon:hover {
   text-decoration: none;
 }
@@ -338,7 +334,18 @@ a.icon:hover {
 .sidebar{
   padding-top: $padding-base-horizontal;
   padding-bottom: $padding-base-horizontal;
+  
+  li.active a {
+    @extend strong;
+  }
 }
+
+.list-indented {
+  ul,
+  ol {
+    margin-left: 1em;
+  }
+} 
 
 .list-nav {
   @extend .list-unstyled;
@@ -570,6 +577,37 @@ body:after{
   line-height: 0;
   margin-top: -1em;
 }
+
+/* START mega dropdowns */
+
+/*!
+* Based on Yamm!3, http://geedmo.github.com/yamm3
+*/
+.megamenu .nav,
+.megamenu .collapse,
+.megamenu .dropup,
+.megamenu .dropdown {
+  position: static;
+}
+.megamenu .container {
+  position: relative;
+}
+.megamenu .dropdown-menu {
+  left: auto;
+}
+.megamenu .nav.navbar-right .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.megamenu .megamenu-content {
+  padding: 20px 30px;
+}
+.megamenu .dropdown.megamenu-fw .dropdown-menu {
+  left: 0;
+  right: 0;
+}
+
+/* END mega dropdowns */
 
 @media (max-width: $screen-xs-max) {
   body:after{

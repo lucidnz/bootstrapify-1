@@ -1,0 +1,26 @@
+{% assign submenu_linklist = linklists[submenu-link.handle] %}
+<li{% if submenu-link.active %} class="active"{% endif %}>
+  {% if submenu_linklist.links.size == 0 %}
+  {% capture submenu_link %}<a href="{{ submenu-link.url }}" title="View {{ submenu-link.title }}">{{ submenu-link.title }}</a>{% endcapture %}
+  <h5>
+    {% unless submenu-link.url == "#" %}
+      {% if submenu-link.type == 'collection_link' %}
+        {% if submenu-link.object.all_products_count > 2 %}
+          {{ submenu_link }}
+          <small class="text-muted">{{ submenu-link.object.all_products_count }} products</small>      
+        {% endif %}
+      {% else %}
+        {{ submenu_link }}
+      {% endif %}
+    {% endunless %}
+  </h5>
+  {% else %}
+  <h5>
+    {% assign submenu_all_links = submenu_linklist.links | map: 'url' %}
+    <a data-toggle="collapse" href="#submenu_{{ submenu-link.handle }}" title="View {{ submenu-link.title }}">{{ submenu-link.title }} <i class="fa fa-angle-right fa-fw text-muted"></i></a>{% unless submenu-link.url == "#" %} <small><a href="{{ submenu-link.url }}">{% include '__localize' with 'View all' %}</a></small>{% endunless %}
+  </h5>
+  <div class="collapse{% if submenu_all_links contains collection.url or submenu_all_links contains page.url %} in{% endif %}" id="submenu_{{ submenu-link.handle }}">
+    {% include 'submenu' with submenu_linklist %}
+  </div>
+  {% endif %}
+</li>
