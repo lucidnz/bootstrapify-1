@@ -25,7 +25,8 @@
     "typeahead.js": "~0.9.3",
     "jquery": "~2.1.0",
     "respond": "~1.4.2",
-    "jquery-instagram": "git@github.com:potomak/jquery-instagram.git#~0.3.0"
+    "jquery-instagram": "git@github.com:potomak/jquery-instagram.git#~0.3.0",
+    "uniformThumbnails": "git@github.com:luciddesign/uniform-thumbnails.git"
   },
   "resolutions": {
     "jquery": "~2.1.0"
