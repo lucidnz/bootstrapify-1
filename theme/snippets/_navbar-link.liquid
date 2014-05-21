@@ -1,7 +1,8 @@
 {% assign submenu = l.title | handleize %}
 {% if linklists[submenu].links.size > 0 %}
+{% unless is_sidebar == true %}
 <li class="{% if l.active %}active{% endif %} dropdown">
-  <a href="#" title="{{ l.title }}" class="dropdown-toggle" data-toggle="dropdown">
+  <a href="#" title="{{ l.title }}"class="dropdown-toggle" data-toggle="dropdown">
     {{ l.title }}
     <b class="caret"></b>
   </a>
@@ -11,9 +12,21 @@
     {% endfor %}
   </ul>
 </li>
-{% if l.active %}{% assign current_list = l.handle %}{% endif %}
+{% else %}
+<li class="{% if l.active %}active{% endif %}">
+  <a href="{{ l.url }}" title="{{ l.title }}">
+    {{ l.title }}
+  </a>
+  <ul>
+    {% for ll in linklists[submenu].links %}
+      {% include '_navbar-sub-links' with 0 %}
+    {% endfor %}
+  </ul>
+</li>
+{% endunless %}
 {% else %}
 <li class="{% if l.active %}active{% endif %}">
   <a href="{{ l.url }}" title="{{ l.title | strip_html }}">{{ l.title }}</a>
 </li>
 {% endif %}
+{% if l.active %}{% assign current_list = l.handle %}{% endif %}

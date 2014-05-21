@@ -1,6 +1,6 @@
 {% unless tags == blank %}
 {% if settings.tag-placement == 'sidebar' %}
-<h4>By {{ tags }}</h4>
+<h4>{% include '__localize' with 'Filter' %} by {{ tags }}</h4>
 {% endif %}
 
 {% if settings.tag-format == 'Menu' or all_tags.size > 10 and settings.tag-placement != 'sidebar' %}

@@ -1,47 +1,54 @@
 {% assign navbar-placement = navbar | append: '-navbar-placement' %}
 {% case settings[navbar-placement] %}
 {% when 'fixed-to-top' %}
-  {% assign placement = 'navbar-fixed-top' %}
+{% assign placement = 'navbar-fixed-top' %}
 {% when 'fixed-to-bottom' %}
-  {% assign placement = 'navbar-fixed-bottom' %}
+{% assign placement = 'navbar-fixed-bottom' %}
 {% when 'static-top' or 'full-width' %}
-  {% assign placement = 'navbar-static-top' %}
+{% assign placement = 'navbar-static-top' %}
 {% else %}
-  {% assign placement = false %}
+{% assign placement = false %}
 {% endcase %}
 
 <nav id="navbar-{{ navbar }}" class="navbar{% if placement %} {{ placement }}{% endif %}{% if navbar == 'main' %} hidden-xs{% endif %}" role="navigation">
-  {% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}<div class="container">{% endunless %}
-    {% if navbar == 'footer' %}
-      <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
-        {% include 'navbar-nav' with 'footer-left' %}
-        {% include 'navbar-nav' with 'footer-right' %}
-      </div>
-    {% endif %}
+	{% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}<div class="container">{% endunless %}
+		{% if navbar == 'footer' %}
+		<div class="collapse navbar-collapse" id="{{ navbar }}-nav">
+			{% include 'navbar-nav' with 'footer-left' %}
+			{% include 'navbar-nav' with 'footer-right' %}
+		</div>
+		{% endif %}
   
-    <div class="navbar-header">
-      {% unless navbar == 'main' %}
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ navbar }}-nav">
-        <span class="sr-only">Toggle main navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      {% endunless %}
-      {% if settings.logo-placement == "navbar" and navbar == 'top' %}<a class="navbar-brand" href="/">{% include 'logo' %}</a>{% endif %}
-    </div>
+		<div class="navbar-header">
+			{% unless navbar == 'main' %}
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ navbar }}-nav">
+				<span class="sr-only">Toggle main navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			{% endunless %}
+			{% if settings.logo-placement == "navbar" and navbar == 'top' %}<a class="navbar-brand" href="/">{% include 'logo' %}</a>{% endif %}
+		</div>
     
-    {% unless navbar == 'footer' %}
-    <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
-      {% if navbar == 'top' %}
-        {% include '_navbar-top' %}
-        <div class="visible-xs">
-          {% include '_navbar-main' %}
-        </div>
-      {% else %}
-        {% include '_navbar-main' %}
-      {% endif %}
-    </div>
-    {% endunless %}
-  {% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}</div>{% endunless %}
-</nav>
+		{% unless navbar == 'footer' %}
+		<div class="collapse navbar-collapse" id="{{ navbar }}-nav">
+			{% if navbar == 'top' %}
+			{% include '_navbar-top' %}
+			<div class="visible-xs">
+				{% if settings.main-navbar-linklist %}
+				{% assign main_linklist = linklists[settings.main-navbar-linklist] %}
+				{% include '_navbar-main' %}
+				{% endif %}
+				
+			</div>
+			{% else %}
+			{% if settings.main-navbar-linklist %}
+			{% assign main_linklist = linklists[settings.main-navbar-linklist] %}
+			{% include '_navbar-main' %}
+			{% endif %}
+			{% endif %}
+		</div>
+		{% endunless %}
+		{% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}</div>{% endunless %}
+	</nav>
