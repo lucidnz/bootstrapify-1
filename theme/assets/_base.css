@@ -48,7 +48,8 @@ abbr[title] {
 
 b,
 strong,
-.sidebar li.active a {
+.sidebar .active a,
+.sidebar .active {
   font-weight: bold; }
 
 dfn {
@@ -5260,6 +5261,9 @@ body > #wrap {
   margin-top: -50px;
   min-height: 50px;
   clear: both; }
+
+a {
+  white-space: nowrap; }
 
 .text-muted, .article-meta, .article-meta a {
   opacity: .5; }

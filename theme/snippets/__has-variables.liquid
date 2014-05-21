@@ -10,4 +10,15 @@
 {% include '__has-footer-navbar' %}
 {% include '__has-fixed-footer-navbar' %}
 {% if settings.featured-products-limit contains 'limit' %}{% assign featured_products_limit = nil %}{% else %}{% assign featured_products_limit = settings.featured-products-limit | times: 1 %}{% endif %}
+{% assign collection_minimum_products = settings.hide-products-with-less-than-this-number-of-products | plus: 0 %}
+
+{% if collection %}
+  {% assign current_handle = collection.handle %}
+{% elsif page %}
+  {% assign current_handle = page.handle %}
+{% elsif article %}
+  {% assign current_handle = article.url | split: '/' | last | split: '#' | first %}
+{% elsif blog %}
+  {% assign current_handle = blog.handle %}
+{% endif %}
 {% endcapture %}

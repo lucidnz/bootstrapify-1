@@ -335,7 +335,7 @@ a.icon:hover {
   padding-top: $padding-base-horizontal;
   padding-bottom: $padding-base-horizontal;
   
-  li.active a {
+  .active a, .active {
     @extend strong;
   }
 }

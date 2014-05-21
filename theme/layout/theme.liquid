@@ -76,6 +76,14 @@
   {{ '_base.js' | asset_url | script_tag }}
   {{ 'imgLiquid-min.js' | asset_url | script_tag }}
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
+  
+  {% unless current_handle == blank %}
+  <script>
+    jQuery(document).ready(function(){
+    	jQuery('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
+    });
+  </script>
+  {% endunless %}
 
   <script type="text/javascript">
   $(document).ready(function(){
