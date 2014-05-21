@@ -96,7 +96,9 @@
   {% endif %}
   
   <script type="text/javascript">
+    {% unless settings.thumbnail-ratio == blank %}
     $('.thumbnail-image, .thumbnail.product-image').uniform_thumbnails(uniformThumbnailsOpts);
+    {% endunless %}
   </script>
 </body>
 </html>

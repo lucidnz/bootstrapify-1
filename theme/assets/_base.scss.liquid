@@ -83,9 +83,7 @@
 {% endif %}
 
 // Global font size on body
-{% if settings.font-body-size != blank %}
-  $font-size-base:    {{ settings.font-body-size }} !default;
-{% endif %}
+$font-size-base:    {% if settings.font-body-size != blank %} {{ settings.font-body-size }} {% else %} 14px {% endif %} !default;
 
 // Global heading font size on body
 {% if settings.font-heading-size != blank %}
