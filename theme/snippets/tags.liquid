@@ -10,11 +10,13 @@
     <ul class="dropdown-menu" role="menu" aria-labelledby="group_{{ tags }}">
       {% else %}
       <ul class="{% if settings.tag-placement == 'sidebar' %}list-unstyled{% else %}nav nav-pills{% endif %}">
+      <li class="disabled"><a href="#">{% include '__localize' with 'Filter by' %} {{ tags }}</a></li>
         {% endif %}
         <!-- Loop through tags in filter groups -->
         {% for t in all_tags %}
         {% if t contains tags or tags == 'tag' %}
         {% unless tags == 'tag' and t contains ':' %}
+        {% assign current_tags = current_tags | downcase %}
         {% if current_tags contains t %}
         <li class="active">{{ t | remove: tags | remove: ':' | append: '&ensp;<i class="fa fa-times-circle"></i>' | link_to_remove_tag: t }}</li>
         {% else %}
