@@ -5265,7 +5265,7 @@ body > #wrap {
 .thumbnail-image {
   opacity: 0; }
 
-a {
+.nav-pills a {
   white-space: nowrap; }
 
 .text-muted, .article-meta, .article-meta a {
