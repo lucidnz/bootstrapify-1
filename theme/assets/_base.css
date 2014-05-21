@@ -5262,6 +5262,9 @@ body > #wrap {
   min-height: 50px;
   clear: both; }
 
+.thumbnail-image {
+  opacity: 0; }
+
 a {
   white-space: nowrap; }
 
