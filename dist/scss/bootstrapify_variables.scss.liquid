@@ -88,30 +88,34 @@ $line-height-base:    1.42858;
 
 /* Buttons */
 {% if settings.body-background-colour != blank %}
+  {% if settings.body-text-colour != blank %}
    $btn-default-color:    $text-color !default;
+  {% endif %}
       $btn-default-bg:    darken($body-bg, 2%) !default;
   $btn-default-border:    darken($body-bg, 5%) !default;
 {% endif %}
 
 {% if settings.button-colour != blank %}
        $btn-primary-bg:    {{ settings.button-colour }} !default;
-  {% if settings.button-text-colour != blank %}
-    $btn-primary-color:    {{ settings.button-text-colour }} !default;
-  {% else %}
-    $btn-primary-color:    text-colour($btn-primary-bg) !default;
-  {% endif %}
+    $btn-primary-color:    {% if settings.button-text-colour != blank %} {{ settings.button-text-colour }} {% else %} text-colour($btn-primary-bg) {% endif %} !default;
 {% endif %}
 
 
 /* Forms */
 {% if settings.body-background-colour != blank %}
                  $input-bg:    lighten($body-bg, 10%) !default;
+  {% if settings.body-text-colour != blank %}
               $input-color:    $text-color !default;
+  {% endif %}
              $input-border:    $border-color !default;
+  {% if settings.body-link-colour != blank %}
        $input-border-focus:    $brand-primary !default;
+  {% endif %}
   $input-color-placeholder:    darken($input-bg, 15%) !default;
   
+  {% if settings.body-text-colour != blank %}
              $legend-color:    $text-color !default;
+  {% endif %}
       $legend-border-color:    $border-color !default;
 
      // Background color for textual input addons
@@ -123,11 +127,13 @@ $line-height-base:    1.42858;
 {% if settings.body-background-colour != blank or settings.navbar-background-colour != blank %}
                    $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 5%) {% else %} lighten($body-bg, 5%) {% endif %} !default;
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
+  {% if settings.navbar-link-colour != blank or settings.body-link-colour != blank %}
            $dropdown-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default;
      $dropdown-link-hover-color:    hover-colour( $dropdown-link-color ) !default;
-        $dropdown-link-hover-bg:    darken($dropdown-bg, 5%) !default;
   $dropdown-link-disabled-color:    lighten($dropdown-link-color, 5%) !default;
          $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
+  {% endif %}
+        $dropdown-link-hover-bg:    darken($dropdown-bg, 5%) !default;
 {% endif %}
 
 
@@ -156,28 +162,32 @@ $line-height-base:    1.42858;
 
 /* Navbar */
 {% if settings.body-background-colour != blank or settings.navbar-background-colour != blank %}
-                // Basics of a navbar
-                $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
                    $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} desaturate(darken($body-bg, 1.5%), 15%) {% endif %} !default;
+ {% if settings.navbar-background-colour != blank or settings.body-text-colour != blank %}
+                $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
                $navbar-default-border:    darken($navbar-default-bg, 5%) !default;
-               // Navbar links
+       $navbar-default-link-active-bg:    darken($navbar-default-bg, 5%) !default;
+ {% endif %}
+  {% if settings.navbar-link-colour != blank or settings.body-link-colour != blank %}
            $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
      $navbar-default-link-hover-color:    hover-colour($navbar-default-link-color) !default;
     $navbar-default-link-active-color:    hover-colour($navbar-default-link-color) !default;
-       $navbar-default-link-active-bg:    darken($navbar-default-bg, 5%) !default;
   $navbar-default-link-disabled-color:    lighten($navbar-default-link-color, 5%) !default;
+  {% endif %}
 {% endif %}
 
 
 /* Navs */
 {% if settings.body-background-colour != blank %}
-          $nav-link-hover-bg:   darken($body-bg, 10%) !default;
+                        $nav-link-hover-bg:   darken($body-bg, 10%) !default;
   //$nav-open-link-hover-color:   hover-colour( $dropdown-link-color ) !default;
   
                       // Tabs
                     $nav-tabs-border-color:   border-color($body-bg) !default;
          $nav-tabs-link-hover-border-color:   $nav-link-hover-bg !default;
+  {% if settings.body-text-colour != blank %}
          $nav-tabs-active-link-hover-color:   $text-color !default;
+  {% endif %}
   $nav-tabs-active-link-hover-border-color:   $nav-tabs-border-color !default;
      $nav-tabs-justified-link-border-color:   $nav-tabs-border-color !default;
 {% endif %}
@@ -190,10 +200,12 @@ $line-height-base:    1.42858;
   
          $pagination-hover-bg:    darken($body-bg, 10%) !default;
      $pagination-hover-border:    $pagination-border !default;
-  
+  {% if settings.body-link-colour != blank %}
      $pagination-active-color:    text-colour($link-color) !default;
-  
+  {% endif %}
+  {% if settings.body-text-colour != blank %}
    $pagination-disabled-color:    lighten($text-color, 5%) !default;
+  {% endif %}
       $pagination-disabled-bg:    $body-bg !default;
   $pagination-disabled-border:    $pagination-border !default;
 {% endif %}
@@ -229,8 +241,10 @@ $line-height-base:    1.42858;
 /* Breadcrumbs */
 {% if settings.body-background-colour != blank %}
             $breadcrumb-bg:   rgba(darken($body-bg, 3%), .5) !default;
+  {% if settings.body-text-colour != blank %}
          $breadcrumb-color:   lighten($text-color, 15%) !default;
   $breadcrumb-active-color:   lighten($text-color, 15%) !default;
+  {% endif %}
 {% endif %}
 
 

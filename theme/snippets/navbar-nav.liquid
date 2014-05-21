@@ -22,3 +22,7 @@
   {% include 'social-links' %}
 </div>
 {% endif %}
+
+{% if placement == 'footer-navbar-right' and settings.currency-switcher-position == 'footer-navbar' %}
+  {% include 'currency-switcher' %}
+{% endif %}

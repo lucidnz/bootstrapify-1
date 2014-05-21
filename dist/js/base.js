@@ -16,6 +16,18 @@ var preloadProductImages = function(){
   }
 };
 
+var stickyFooterHeight = function(){
+  var footerHeight = $('#footer-content').height(),
+    margin = parseInt($('#navbar-top').css('margin-bottom').replace('px', ''));
+  
+  $('#footer-content').css({
+    marginTop: (footerHeight * -1)
+  });
+  $('#content').css({
+    paddingBottom: (footerHeight + margin)
+  });
+};
+
 $(function() {
   /* Multiple currencies */
   if ($('body').hasClass('currencies')) {
@@ -44,6 +56,9 @@ $(function() {
     placement: 'left',
     html: true
   });
+  
+  // resize sticky footer
+  stickyFooterHeight();
 });
 
 $(window).load(function(){

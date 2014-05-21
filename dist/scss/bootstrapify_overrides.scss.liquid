@@ -1,5 +1,5 @@
 /* Sticky Footer */
-$footer-height: $navbar-height;
+$footer-height: $navbar-height + $navbar-margin-bottom;
 html, body, #wrap { height: 100%; }
 body > #wrap {height: auto; min-height: 100%;}
 #content { padding-bottom: $footer-height; }
@@ -16,11 +16,40 @@ img {
 
 /* Body */
 body {
+  &.has-top-navbar.has-fixed-top-navbar {
+    padding-top: $navbar-height + $navbar-margin-bottom;
+  	&.banner-window-width {
+  		padding-top: $navbar-height;
+  	}
+  }
+  @media (max-width: $screen-xs-max){
+    &.has-fixed-top-navbar{
+      padding-top: $navbar-height + $navbar-margin-bottom;
+    }
+  }
+  &.has-footer-navbar.has-fixed-footer-navbar{
+    #footer-content{
+      padding-bottom: $navbar-height;
+    }
+  }
+  &.has-footer{
+    #content{
+      padding-bottom: $footer-height;
+    }
+    #footer-content{
+      > .container{        
+        margin-top: -$footer-height;
+        min-height: $footer-height;
+      }
+    }
+  }
+
   {% if settings.site-background-image %}
     background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');
     {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
     {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
   {% endif %}
+  {% if settings.body-background-colour != blank %} @include background-color({{ settings.body-background-colour }}); {% endif %}
   
   font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %};
   font-style: {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %};
@@ -32,11 +61,39 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   text-transform: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %} {{ settings.font-heading-case }} {% elsif settings.font-heading-case == 'title-case'%} capitalize {% else %} none {% endif %};
 }
 
+.label {
+  font-weight: normal;
+}
+
+.money {
+  @extend .text-right;
+}
+
 /* Navbars */
 #navbar-top, #navbar-footer {
   font-weight: {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} normal {% endif %};
   font-style: {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
   text-transform: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
+}
+
+.navbar-brand img {
+  height: $navbar-height - ($grid-gutter-width);
+}
+
+#currencies-picker {
+  padding: 0;
+}
+
+/* Products */
+
+/* Checkout */
+.additional-checkout-buttons, .shipping-calculator-wrapper{
+  margin-top: $grid-gutter-width / 2;
+}
+.additional-checkout-buttons span{
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 0.5em;
 }
 
 /* Sidebar */
@@ -67,6 +124,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #footer-content {
   {% if settings.footer-background-colour != blank %} background-color:{{ settings.footer-background-colour }}; {% endif %}
   > .container {
+    padding-top: $grid-gutter-width;
+    padding-bottom: $grid-gutter-width;
     {% if settings.footer-background-colour != blank %} @include background-color({{ settings.footer-background-colour }}); {% endif %}
     {% if settings.footer-heading-colour != blank %} @include heading-color({{ settings.footer-heading-colour }}); {% endif %}
     {% if settings.footer-link-colour != blank %} @include link-color({{ settings.footer-link-colour }}); {% endif %}
@@ -77,6 +136,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
       }
     {% endif %}
   }
+}
+
+.footer-credits {
+  margin-top: $grid-gutter-width;
 }
 
 #navbar-footer {

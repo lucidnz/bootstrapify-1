@@ -137,30 +137,34 @@ $line-height-base:    1.42858;
 
 /* Buttons */
 {% if settings.body-background-colour != blank %}
+  {% if settings.body-text-colour != blank %}
    $btn-default-color:    $text-color !default;
+  {% endif %}
       $btn-default-bg:    darken($body-bg, 2%) !default;
   $btn-default-border:    darken($body-bg, 5%) !default;
 {% endif %}
 
 {% if settings.button-colour != blank %}
        $btn-primary-bg:    {{ settings.button-colour }} !default;
-  {% if settings.button-text-colour != blank %}
-    $btn-primary-color:    {{ settings.button-text-colour }} !default;
-  {% else %}
-    $btn-primary-color:    text-colour($btn-primary-bg) !default;
-  {% endif %}
+    $btn-primary-color:    {% if settings.button-text-colour != blank %} {{ settings.button-text-colour }} {% else %} text-colour($btn-primary-bg) {% endif %} !default;
 {% endif %}
 
 
 /* Forms */
 {% if settings.body-background-colour != blank %}
                  $input-bg:    lighten($body-bg, 10%) !default;
+  {% if settings.body-text-colour != blank %}
               $input-color:    $text-color !default;
+  {% endif %}
              $input-border:    $border-color !default;
+  {% if settings.body-link-colour != blank %}
        $input-border-focus:    $brand-primary !default;
+  {% endif %}
   $input-color-placeholder:    darken($input-bg, 15%) !default;
   
+  {% if settings.body-text-colour != blank %}
              $legend-color:    $text-color !default;
+  {% endif %}
       $legend-border-color:    $border-color !default;
 
      // Background color for textual input addons
@@ -172,11 +176,13 @@ $line-height-base:    1.42858;
 {% if settings.body-background-colour != blank or settings.navbar-background-colour != blank %}
                    $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 5%) {% else %} lighten($body-bg, 5%) {% endif %} !default;
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
+  {% if settings.navbar-link-colour != blank or settings.body-link-colour != blank %}
            $dropdown-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default;
      $dropdown-link-hover-color:    hover-colour( $dropdown-link-color ) !default;
-        $dropdown-link-hover-bg:    darken($dropdown-bg, 5%) !default;
   $dropdown-link-disabled-color:    lighten($dropdown-link-color, 5%) !default;
          $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
+  {% endif %}
+        $dropdown-link-hover-bg:    darken($dropdown-bg, 5%) !default;
 {% endif %}
 
 
@@ -205,28 +211,32 @@ $line-height-base:    1.42858;
 
 /* Navbar */
 {% if settings.body-background-colour != blank or settings.navbar-background-colour != blank %}
-                // Basics of a navbar
-                $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
                    $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} desaturate(darken($body-bg, 1.5%), 15%) {% endif %} !default;
+ {% if settings.navbar-background-colour != blank or settings.body-text-colour != blank %}
+                $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
                $navbar-default-border:    darken($navbar-default-bg, 5%) !default;
-               // Navbar links
+       $navbar-default-link-active-bg:    darken($navbar-default-bg, 5%) !default;
+ {% endif %}
+  {% if settings.navbar-link-colour != blank or settings.body-link-colour != blank %}
            $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
      $navbar-default-link-hover-color:    hover-colour($navbar-default-link-color) !default;
     $navbar-default-link-active-color:    hover-colour($navbar-default-link-color) !default;
-       $navbar-default-link-active-bg:    darken($navbar-default-bg, 5%) !default;
   $navbar-default-link-disabled-color:    lighten($navbar-default-link-color, 5%) !default;
+  {% endif %}
 {% endif %}
 
 
 /* Navs */
 {% if settings.body-background-colour != blank %}
-          $nav-link-hover-bg:   darken($body-bg, 10%) !default;
+                        $nav-link-hover-bg:   darken($body-bg, 10%) !default;
   //$nav-open-link-hover-color:   hover-colour( $dropdown-link-color ) !default;
   
                       // Tabs
                     $nav-tabs-border-color:   border-color($body-bg) !default;
          $nav-tabs-link-hover-border-color:   $nav-link-hover-bg !default;
+  {% if settings.body-text-colour != blank %}
          $nav-tabs-active-link-hover-color:   $text-color !default;
+  {% endif %}
   $nav-tabs-active-link-hover-border-color:   $nav-tabs-border-color !default;
      $nav-tabs-justified-link-border-color:   $nav-tabs-border-color !default;
 {% endif %}
@@ -239,10 +249,12 @@ $line-height-base:    1.42858;
   
          $pagination-hover-bg:    darken($body-bg, 10%) !default;
      $pagination-hover-border:    $pagination-border !default;
-  
+  {% if settings.body-link-colour != blank %}
      $pagination-active-color:    text-colour($link-color) !default;
-  
+  {% endif %}
+  {% if settings.body-text-colour != blank %}
    $pagination-disabled-color:    lighten($text-color, 5%) !default;
+  {% endif %}
       $pagination-disabled-bg:    $body-bg !default;
   $pagination-disabled-border:    $pagination-border !default;
 {% endif %}
@@ -278,8 +290,10 @@ $line-height-base:    1.42858;
 /* Breadcrumbs */
 {% if settings.body-background-colour != blank %}
             $breadcrumb-bg:   rgba(darken($body-bg, 3%), .5) !default;
+  {% if settings.body-text-colour != blank %}
          $breadcrumb-color:   lighten($text-color, 15%) !default;
   $breadcrumb-active-color:   lighten($text-color, 15%) !default;
+  {% endif %}
 {% endif %}
 
 
@@ -7880,7 +7894,7 @@ button.close {
 }
 
 /* Sticky Footer */
-$footer-height: $navbar-height;
+$footer-height: $navbar-height + $navbar-margin-bottom;
 html, body, #wrap { height: 100%; }
 body > #wrap {height: auto; min-height: 100%;}
 #content { padding-bottom: $footer-height; }
@@ -7897,11 +7911,40 @@ img {
 
 /* Body */
 body {
+  &.has-top-navbar.has-fixed-top-navbar {
+    padding-top: $navbar-height + $navbar-margin-bottom;
+  	&.banner-window-width {
+  		padding-top: $navbar-height;
+  	}
+  }
+  @media (max-width: $screen-xs-max){
+    &.has-fixed-top-navbar{
+      padding-top: $navbar-height + $navbar-margin-bottom;
+    }
+  }
+  &.has-footer-navbar.has-fixed-footer-navbar{
+    #footer-content{
+      padding-bottom: $navbar-height;
+    }
+  }
+  &.has-footer{
+    #content{
+      padding-bottom: $footer-height;
+    }
+    #footer-content{
+      > .container{        
+        margin-top: -$footer-height;
+        min-height: $footer-height;
+      }
+    }
+  }
+
   {% if settings.site-background-image %}
     background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');
     {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
     {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
   {% endif %}
+  {% if settings.body-background-colour != blank %} @include background-color({{ settings.body-background-colour }}); {% endif %}
   
   font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %};
   font-style: {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %};
@@ -7913,11 +7956,39 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   text-transform: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %} {{ settings.font-heading-case }} {% elsif settings.font-heading-case == 'title-case'%} capitalize {% else %} none {% endif %};
 }
 
+.label {
+  font-weight: normal;
+}
+
+.money {
+  @extend .text-right;
+}
+
 /* Navbars */
 #navbar-top, #navbar-footer {
   font-weight: {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} normal {% endif %};
   font-style: {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
   text-transform: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
+}
+
+.navbar-brand img {
+  height: $navbar-height - ($grid-gutter-width);
+}
+
+#currencies-picker {
+  padding: 0;
+}
+
+/* Products */
+
+/* Checkout */
+.additional-checkout-buttons, .shipping-calculator-wrapper{
+  margin-top: $grid-gutter-width / 2;
+}
+.additional-checkout-buttons span{
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 0.5em;
 }
 
 /* Sidebar */
@@ -7948,6 +8019,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #footer-content {
   {% if settings.footer-background-colour != blank %} background-color:{{ settings.footer-background-colour }}; {% endif %}
   > .container {
+    padding-top: $grid-gutter-width;
+    padding-bottom: $grid-gutter-width;
     {% if settings.footer-background-colour != blank %} @include background-color({{ settings.footer-background-colour }}); {% endif %}
     {% if settings.footer-heading-colour != blank %} @include heading-color({{ settings.footer-heading-colour }}); {% endif %}
     {% if settings.footer-link-colour != blank %} @include link-color({{ settings.footer-link-colour }}); {% endif %}
@@ -7958,6 +8031,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
       }
     {% endif %}
   }
+}
+
+.footer-credits {
+  margin-top: $grid-gutter-width;
 }
 
 #navbar-footer {
