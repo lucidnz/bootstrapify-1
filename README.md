@@ -33,17 +33,16 @@ We use the [Shopify Theme gem](https://github.com/Shopify/shopify_theme) to watc
 You will need to install both [Ruby](https://www.ruby-lang.org) and [Node.js](http://nodejs.org/).
 The Shopify theme gem and SASS require Ruby. Grunt.js and Bower use Node.js. Once these are installed you can setup the project.
 
-#### Installation
+**Before you start!**
 
-**Before you start.**
-If you already have Grunt and Bower installed globally on your system you can skip this first step.
+If you don't already have Grunt and Bower installed globally on your system you need to do this, otherwise you can jump to the project setup.
 To install Grunt and Bower globally using npm:
 
     npm install -g bower
 
     npm install -g grunt-cli
 
-**Setting up the project**
+#### Project Setup
 Install Grunts dependancies:
 
     npm install
