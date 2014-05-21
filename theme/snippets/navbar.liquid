@@ -10,6 +10,7 @@
 {% assign placement = false %}
 {% endcase %}
 
+<<<<<<< HEAD
 <nav id="navbar-{{ navbar }}" class="navbar{% if placement %} {{ placement }}{% endif %}{% if navbar == 'main' %} hidden-xs{% endif %}" role="navigation">
 	{% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}<div class="container">{% endunless %}
 		{% if navbar == 'footer' %}
@@ -30,6 +31,28 @@
 			{% endunless %}
 			{% if settings.logo-placement == "navbar" and navbar == 'top' %}<a class="navbar-brand" href="/">{% include 'logo' %}</a>{% endif %}
 		</div>
+=======
+<nav id="navbar-{{ navbar }}" class="navbar{% if placement %} {{ placement }}{% endif %}{% if navbar == 'main' %} hidden-xs{% endif %}{% if has_top_navbar == false and navbar == 'top' %} visible-xs{% endif %}" role="navigation">
+  {% unless navbar == 'main' and settings.main-navbar-placement == 'main-content-width' %}<div class="container">{% endunless %}
+    {% if navbar == 'footer' %}
+      <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
+        {% include 'navbar-nav' with 'footer-left' %}
+        {% include 'navbar-nav' with 'footer-right' %}
+      </div>
+    {% endif %}
+  
+    {% unless has_top_navbar and navbar == 'main' %}
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ navbar }}-nav">
+        <span class="sr-only">Toggle main navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {% if settings.logo-placement == "navbar" and navbar == 'top' %}<a class="navbar-brand" href="/">{% include 'logo' %}</a>{% endif %}
+    </div>
+    {% endunless %}
+>>>>>>> master
     
 		{% unless navbar == 'footer' %}
 		<div class="collapse navbar-collapse" id="{{ navbar }}-nav">

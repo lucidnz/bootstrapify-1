@@ -78,6 +78,12 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
+            cwd: 'bower_components/uniformThumbnails/dist/',
+            src: 'jquery.uniform_thumbnails.min.js',
+            dest: 'theme/assets/'
+          },
+          {
+            expand: true,
             cwd: 'bower_components/jquery/dist/',
             src: 'jquery.min.*',
             dest: 'theme/assets/'

@@ -17,7 +17,7 @@
   {% include 'newsletter-signup-form' with form-placement %}
 {% endif %}
 
-{% if settings.social-links-placement == placement %}
+{% if has_social and settings.social-links-placement == placement %}
 <div class="nav navbar-text navbar-{{ linklist_parts[1] }} social-icons">
   {% include 'social-links' %}
 </div>

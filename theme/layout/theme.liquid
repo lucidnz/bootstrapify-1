@@ -25,6 +25,7 @@
   {{ "customer_area.js"  | shopify_asset_url | script_tag }}
   {% endif %}
 
+  {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
   {{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
   {{ 'transition.js' | asset_url | script_tag }}
   {{ 'button.js' | asset_url | script_tag }}
@@ -46,7 +47,7 @@
 {% include '__has-variables' %}
 <body class="{% include '__body-classes' %}">
   <div id="wrap">
-    {% if has_top_navbar %}{% include 'navbar' with 'top' %}{% endif %}
+    {% include 'navbar' with 'top' %}
 
     {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
   
@@ -74,29 +75,31 @@
   {% include 'currencies' %}
 
   {{ '_base.js' | asset_url | script_tag }}
-  {{ 'imgLiquid-min.js' | asset_url | script_tag }}
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
 
   <script type="text/javascript">
-  $(document).ready(function(){
-    $('.search').typeahead({
-      name: 'Products',
-      local: [{% include 'search-typeahead' %}]
-    }).on('typeahead:selected', function (object, datum) {
-      $(this).closest('form').submit();
-    });    
-    {% unless settings.thumbnail-ratio == blank %}{% capture vars %}
-    {% assign ratio_parts = settings.thumbnail-ratio | split: ':' %}
-    {% assign width = ratio_parts.first | default: 1 %}
-    {% assign height = ratio_parts.last | default: 1 %}{% endcapture %}
-    $('.thumbnail-image').each(function(){
-      $(this).height($(this).width() * ({{ height }} / {{ width }}));
-    });{% endunless %}
-  });
+    var uniformThumbnailsOpts = {};
+    {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
+    {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
+    
+    $(document).ready(function(){
+      $('.search').typeahead({
+        name: 'Products',
+        local: [{% include 'search-typeahead' %}]
+      }).on('typeahead:selected', function (object, datum) {
+        $(this).closest('form').submit();
+      });   
+    });
   </script>
 
   {% if settings.custom-footer-code != '' %}
   {{ settings.custom-footer-code }}
   {% endif %}
+  
+  <script type="text/javascript">
+    {% unless settings.thumbnail-ratio == blank %}
+    $('.thumbnail-image, .thumbnail.product-image').uniform_thumbnails(uniformThumbnailsOpts);
+    {% endunless %}
+  </script>
 </body>
 </html>
