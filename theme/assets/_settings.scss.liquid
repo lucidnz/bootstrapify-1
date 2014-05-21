@@ -422,6 +422,13 @@ body{
   }
 }
 
+{% if settings.thumbnail-ratio != blank %}
+  // Stop image flicker before fade in from uniform thumbs
+.thumbnail-image {
+  opacity: 0;
+}
+{% endif %}
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   @if $font-family-heading {
     font-family: $font-family-heading;

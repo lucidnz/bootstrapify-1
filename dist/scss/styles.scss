@@ -18,10 +18,6 @@ body > #wrap {height: auto; min-height: 100%;}
 img {
   @extend .img-responsive;
 }
-// Stop image flicker before fade in from uniform thumbs
-.thumbnail-image {
-  opacity: 0;
-}
 
 .text-muted {
   opacity: .5;
