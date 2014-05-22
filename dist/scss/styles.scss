@@ -7,6 +7,7 @@ $text-muted: inherit !default;
 $footer-height: $navbar-height;
 html, body, #wrap { height: 100%; }
 body > #wrap {height: auto; min-height: 100%;}
+section { margin-bottom: 2em;}
 #content { padding-bottom: $footer-height; }
 #footer-content { 
   position: relative;

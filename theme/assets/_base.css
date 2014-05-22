@@ -5265,6 +5265,9 @@ body > #wrap {
   height: auto;
   min-height: 100%; }
 
+section {
+  margin-bottom: 2em; }
+
 #content {
   padding-bottom: 50px; }
 
