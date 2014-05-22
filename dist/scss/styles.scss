@@ -36,6 +36,15 @@ h6 {
   font-weight: normal;
 }
 
+body.has-site-wide-thumbnail-container {
+	.section-wrap {
+		@extend .container;
+		&#product-list {
+			width: auto;
+		}
+	}
+}
+
 #product-form h1:first-child {
   margin-top: 0;
 }
