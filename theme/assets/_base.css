@@ -5386,7 +5386,8 @@ a.icon:hover {
   margin-right: 0.5em; }
 
 .thumbnail {
-  overflow: auto; }
+  overflow: auto;
+  border-radius: 0; }
   .thumbnail img {
     text-align: center;
     margin: auto; }
