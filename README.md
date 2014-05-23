@@ -11,15 +11,15 @@ Clone Bootstrapify using git or download the [zip file](https://github.com/lucid
 
     git clone git@github.com:luciddesign/bootstrapify.git
 
-### Simple setup
+## Simple setup
 
 If you wish to use the theme without touching the SASS or Bootstrap files then just remove everything except the theme folder. Create a zipped file of the theme folder and upload this to Shopify.
 
-### Advanced setup
+## Advanced setup
 
 If you wish to develop locally and push your changes to Shopify you will need to use [Grunt.js](http://gruntjs.com/) and the [Shopify Theme gem](https://github.com/Shopify/shopify_theme).
 
-#### Workflow
+### Workflow
 
 There is one caveat with using SCSS with Shopify: They don't support `@import`... yet.
 So to keep Bootstrap intact and updateable we have created a workflow for working with this theme.
@@ -28,22 +28,21 @@ Styles.scss is kept outside the theme directory and is compiled using Grunt into
 
 We use the [Shopify Theme gem](https://github.com/Shopify/shopify_theme) to watch the theme directory and push any changes up to Shopify.
 
-#### Requirements
+### Requirements
 
 You will need to install both [Ruby](https://www.ruby-lang.org) and [Node.js](http://nodejs.org/).
 The Shopify theme gem and SASS require Ruby. Grunt.js and Bower use Node.js. Once these are installed you can setup the project.
 
-#### Installation
+**Before you start!**
 
-**Before you start.**
-If you already have Grunt and Bower installed globally on your system you can skip this first step.
+If you don't already have Grunt and Bower installed globally on your system you need to do this, otherwise you can jump to the project setup.
 To install Grunt and Bower globally using npm:
 
     npm install -g bower
 
     npm install -g grunt-cli
 
-**Setting up the project**
+### Project Setup
 Install Grunts dependancies:
 
     npm install
@@ -56,7 +55,7 @@ Install the SASS gem and the Shopify theme gem:
 
     bundle install
 
-#### Setup the Shopify theme gem
+### Setup the Shopify theme gem
 
 Inside the theme folder run:
 
@@ -64,7 +63,7 @@ Inside the theme folder run:
     
 More detail can be found on the [Shopify theme gems readme](https://github.com/Shopify/shopify_theme#usage)
 
-#### Build
+### Build
 
 To build the project run:
 
