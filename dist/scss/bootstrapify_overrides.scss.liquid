@@ -69,6 +69,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   @extend .text-right;
 }
 
+.social-icons {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
 /* Navbars */
 #navbar-top, #navbar-footer {
   font-weight: {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} normal {% endif %};
@@ -104,6 +110,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   {% if settings.sidebar-heading-colour != blank %} @include heading-color({{ settings.sidebar-heading-colour }}); {% endif %}
   {% if settings.sidebar-link-colour != blank %} @include link-color({{ settings.sidebar-link-colour }}); {% endif %}
   {% if settings.sidebar-text-colour != blank %} @include text-color({{ settings.sidebar-text-colour }}); {% endif %}
+  
+  {% if settings.font-nav-secondary-custom != blank %}
+    $font-family-sidebar:   '{{ settings.font-nav-secondary-custom | remove: "'" | remove: '"' }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %} !default;
+  {% elsif settings.font-nav-secondary != blank %}
+    $font-family-sidebar:   {{ settings.font-nav-secondary }} !default;
+  {% else %}
+    $font-family-sidebar:   false;
+  {% endif %}
+  @include font-styles($font-family-sidebar);
   
   @media (min-width: $screen-sm-min) {
     // Move background color onto .sidebar-content
