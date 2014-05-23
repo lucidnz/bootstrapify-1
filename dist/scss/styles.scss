@@ -37,11 +37,34 @@ h6 {
   font-weight: normal;
 }
 
-body.has-site-wide-thumbnail-container {
-	.section-wrap {
-		@extend .container;
-		&#product-list {
-			width: auto;
+body {
+	&.has-site-wide-thumbnail-container {
+		.section-wrap {
+			@extend .container;
+			&#product-list {
+				width: auto;
+			}
+		}
+	}
+	&.has-overlay-title-on-hover {
+		.thumbnail {
+			position: relative;
+			.caption {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				-webkit-transition: all 200ms ease;
+				-moz-transition: all 200ms ease;
+				-ms-transition: all 200ms ease;
+				-o-transition: all 200ms ease;
+				transition: all 200ms ease;
+				&:hover {
+					opacity: 1;
+				}
+			}
 		}
 	}
 }
