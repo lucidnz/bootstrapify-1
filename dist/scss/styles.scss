@@ -41,7 +41,7 @@ body {
 	&.has-site-wide-thumbnail-container {
 		.section-wrap {
 			@extend .container;
-			&#product-list {
+			&#product-list, &#collection-list {
 				width: auto;
 			}
 		}
@@ -66,6 +66,12 @@ body {
 				}
 			}
 		}
+	}
+}
+
+#featured-blog {
+	img {
+		margin-bottom: 1em;
 	}
 }
 

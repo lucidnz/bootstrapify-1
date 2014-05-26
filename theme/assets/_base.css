@@ -5291,7 +5291,7 @@ h6 {
 .label {
   font-weight: normal; }
 
-body.has-site-wide-thumbnail-container .section-wrap#product-list {
+body.has-site-wide-thumbnail-container .section-wrap#product-list, body.has-site-wide-thumbnail-container .section-wrap#collection-list {
   width: auto; }
 body.has-overlay-title-on-hover .thumbnail {
   position: relative; }
@@ -5309,6 +5309,9 @@ body.has-overlay-title-on-hover .thumbnail {
     transition: all 200ms ease; }
     body.has-overlay-title-on-hover .thumbnail .caption:hover {
       opacity: 1; }
+
+#featured-blog img {
+  margin-bottom: 1em; }
 
 #product-form h1:first-child {
   margin-top: 0; }
