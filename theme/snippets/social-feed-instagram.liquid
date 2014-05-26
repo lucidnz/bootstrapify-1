@@ -4,7 +4,7 @@
 {% endif %}
 
 {% if settings.instagram-feed and settings.instagram-client-id != blank %}
-  <section id="instagram-widget" data-client-id="{{ settings.instagram-client-id }}" data-hashtag="{{ page_hashtag }}" data-default-hashtag="{{ settings.instagram-default-hashtag }}" data-blacklist="{{ settings.instagram-blacklist }}" data-image-count="8">
+  <section id="instagram-widget" class="section-wrap" data-client-id="{{ settings.instagram-client-id }}" data-hashtag="{{ page_hashtag }}" data-default-hashtag="{{ settings.instagram-default-hashtag }}" data-blacklist="{{ settings.instagram-blacklist }}" data-image-count="8">
     {% if template != "article" %}
     <h2>Instagram</h2>
     <p>Tag your photos using #<span class="hashtag">{{ settings.instagram-default-hashtag }}</span> to be seen on {% if settings.social-links-instagram != blank %}<a href="{{ settings.social-links-instagram }}">our feed</a>{% else %}our feed{% endif %}.</p>

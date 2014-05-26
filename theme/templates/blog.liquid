@@ -1,46 +1,48 @@
 {% include '__has-variables' %}
 
-<h1 class="page-header">{{ page_title }}</h1>
-{% unless settings.tag-placement == 'sidebar' %}{% include 'tag-buttons' %}{% endunless %}
+<section id="blog-wrap" class="section-wrap">
+	<h1 class="page-header">{{ page_title }}</h1>
+	{% unless settings.tag-placement == 'sidebar' %}{% include 'tag-buttons' %}{% endunless %}
 
-{% include '__default-pagination' %}
-{% paginate blog.articles by default-pagination %}
+	{% include '__default-pagination' %}
+	{% paginate blog.articles by default-pagination %}
 
-{% for a in blog.articles %}
-<article class="excerpt row">
-  <header class="col-xs-12">
-    <h2>{{ a.title | link_to: a.url, a.title }}</h2>
-    <div class="excerpt-meta hidden-lg {% unless has_sidebar %} hidden-md{% endunless %}">
-      {% include 'article-meta' with a %}
-    </div>
-  </header>
+	{% for a in blog.articles %}
+	<article class="excerpt row">
+		<header class="col-xs-12">
+			<h2>{{ a.title | link_to: a.url, a.title }}</h2>
+			<div class="excerpt-meta hidden-lg {% unless has_sidebar %} hidden-md{% endunless %}">
+				{% include 'article-meta' with a %}
+			</div>
+		</header>
   
-  <section class="col-xs-12{% unless has_sidebar %} col-md-9{% endunless %} col-lg-9{% if settings.sidebar-placement == 'right' %} col-md-push-3 col-lg-push-3{% endif %}">
-    {% if a.excerpt != blank %}
-      {{ a.excerpt }}
-    {% else %}
-      {% if settings.truncate-words == '' %}{{ a.content }}{% else %}<p>{{ a.content | strip_html | truncatewords: settings.truncate-words }}</p>{% endif %}
-    {% endif %}
-  </section>
+		<section class="col-xs-12{% unless has_sidebar %} col-md-9{% endunless %} col-lg-9{% if settings.sidebar-placement == 'right' %} col-md-push-3 col-lg-push-3{% endif %}">
+			{% if a.excerpt != blank %}
+			{{ a.excerpt }}
+			{% else %}
+			{% if settings.truncate-words == '' %}{{ a.content }}{% else %}<p>{{ a.content | strip_html | truncatewords: settings.truncate-words }}</p>{% endif %}
+			{% endif %}
+		</section>
   
-  <section class="excerpt-meta visible-lg {% unless has_sidebar %} visible-md{% endunless %} col-xs-12{% unless has_sidebar %} col-md-3{% endunless %} col-lg-3{% if settings.sidebar-placement == 'right' %} col-md-pull-9 col-lg-pull-9{% endif %}">
-    {% include 'article-meta' with a %}
-  </section>
+		<section class="excerpt-meta visible-lg {% unless has_sidebar %} visible-md{% endunless %} col-xs-12{% unless has_sidebar %} col-md-3{% endunless %} col-lg-3{% if settings.sidebar-placement == 'right' %} col-md-pull-9 col-lg-pull-9{% endif %}">
+			{% include 'article-meta' with a %}
+		</section>
   
-  {% if a.excerpt != blank or settings.truncate-words != '' %}
-  <footer class="col-xs-12">
-    <ul class="pager">
-      <li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></li>
-    </ul>
-  </footer>
-  {% endif %}
-</article>
-<hr>
-{% endfor %}
+		{% if a.excerpt != blank or settings.truncate-words != '' %}
+		<footer class="col-xs-12">
+			<ul class="pager">
+				<li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></li>
+			</ul>
+		</footer>
+		{% endif %}
+	</article>
+	<hr>
+	{% endfor %}
 
-{% include 'pagination' %}
-{% endpaginate %}
+	{% include 'pagination' %}
+	{% endpaginate %}
 
-<p class="text-right rss-subscribe">
-  <i class="fa fa-rss-square text-muted"></i> <a class="text-muted" href="{{ blog.url | append: '.atom' }}">{% include '__localize' with 'Subscribe to RSS feed for ' %} {{ blog.title }}</a>
-</p>
+	<p class="text-right rss-subscribe">
+		<i class="fa fa-rss-square text-muted"></i> <a class="text-muted" href="{{ blog.url | append: '.atom' }}">{% include '__localize' with 'Subscribe to RSS feed for ' %} {{ blog.title }}</a>
+	</p>
+</section>

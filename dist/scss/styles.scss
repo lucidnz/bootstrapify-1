@@ -7,6 +7,7 @@ $text-muted: inherit !default;
 $footer-height: $navbar-height;
 html, body, #wrap { height: 100%; }
 body > #wrap {height: auto; min-height: 100%;}
+section { margin-bottom: 2em;}
 #content { padding-bottom: $footer-height; }
 #footer-content { 
   position: relative;
@@ -34,6 +35,44 @@ h6 {
 
 .label {
   font-weight: normal;
+}
+
+body {
+	&.has-site-wide-thumbnail-container {
+		.section-wrap {
+			@extend .container;
+			&#product-list, &#collection-list {
+				width: auto;
+			}
+		}
+	}
+	&.has-overlay-title-on-hover {
+		.thumbnail {
+			position: relative;
+			.caption {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				-webkit-transition: all 200ms ease;
+				-moz-transition: all 200ms ease;
+				-ms-transition: all 200ms ease;
+				-o-transition: all 200ms ease;
+				transition: all 200ms ease;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+#featured-blog {
+	img {
+		margin-bottom: 1em;
+	}
 }
 
 #product-form h1:first-child {
@@ -174,6 +213,7 @@ a.icon:hover {
 
 .thumbnail{
   overflow: auto;
+  border-radius: 0;
   img{
     text-align: center;
     margin: auto;
