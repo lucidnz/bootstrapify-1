@@ -5371,7 +5371,7 @@ body.has-overlay-title-on-hover .thumbnail {
 .brand {
   overflow: auto; }
   .brand .text-center img {
-    margin: auto; }
+    display: inline-block; }
   .brand h1 {
     margin: 1em auto 1.5em; }
   .brand a:hover {
