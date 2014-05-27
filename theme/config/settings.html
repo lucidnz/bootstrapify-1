@@ -199,9 +199,19 @@
   
   <table>
     <tr>
-      <th><label for="round-product-images">Round product images</label></th>
+      <th><label for="round-thumbnail-images">Round thumbnail images</label></th>
       <td>
-        <input type="checkbox" name="round-product-images" id="round-product-images" value="1" /> Yes
+        <input type="checkbox" name="round-thumbnail-images" id="round-thumbnail-images" value="1" /> Yes
+        <small>Only use this if your images are cropped to square dimensions</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="round-thumbnail-images-on-homepage">Round thumbnail images on homepage</label></th>
+      <td>
+        <input type="checkbox" name="round-thumbnail-images-on-homepage" id="round-thumbnail-images-on-homepage" value="1" /> Yes
         <small>Only use this if your images are cropped to square dimensions</small>
       </td>
     </tr>
@@ -1408,7 +1418,8 @@
     <tr>
       <th><label for="tag-placement">Tag placement</label></th>
       <td>
-           <div><input type="radio" name="tag-placement" id="tag-placement" value="sidebar" checked="checked" /> Sidebar</div>
+           <div><input type="radio" name="tag-placement" id="tag-placement" value="do-not-show" checked="checked" /> Do not show</div>
+           <div><input type="radio" name="tag-placement" id="tag-placement" value="sidebar" /> Sidebar</div>
            <div><input type="radio" name="tag-placement" id="tag-placement" value="main-content" /> Main content</div>
            
       </td>
