@@ -4,12 +4,45 @@
 
 {% unless collection.description == blank %}{{ collection.description }}{% endunless %}
 
-{% unless settings.tag-placement == 'sidebar' %}
 <div class="clearfix">
-  {% include 'tag-buttons' %}
+  {% unless settings.tag-placement == 'sidebar' %}
+  <div class="pull-left">
+    {% include 'tag-buttons' %}
+  </div>
+  {% endunless %}
+
+  <div class="pull-right">
+    <label for="sort-by">Sort by</label> 
+    <select id="sort-by">
+      <option value="manual">Featured</option>
+      <option value="price-ascending">Price: Low to High</option>
+      <option value="price-descending">Price: High to Low</option>
+      <option value="title-ascending">A-Z</option>
+      <option value="title-descending">Z-A</option>
+      <option value="created-ascending">Oldest to Newest</option>
+      <option value="created-descending">Newest to Oldest</option>
+      <option value="best-selling">Best Selling</option>
+    </select>
+  </div>
+  <script>
+  Shopify.queryParams = {};
+  if (location.search.length) {
+    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+      aKeyValue = aCouples[i].split('=');
+      if (aKeyValue.length > 1) {
+        Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+      }
+    }
+  }
+  jQuery('#sort-by')
+  .val('{{ collection.sort_by | default: collection.default_sort_by  }}')
+  .bind('change', function() {
+    Shopify.queryParams.sort_by = jQuery(this).val();
+    location.search = jQuery.param(Shopify.queryParams);
+  });
+  </script>
 </div>
 <hr>
-{% endunless %}
 
 {% if collection.all_products_count == 0 %}
 <p>Sorry, no {% include '__localize' with 'products' %} were found in the {{ collection.title }} collection.</p>
