@@ -251,7 +251,6 @@ th {
   font-family: 'Glyphicons Halflings';
   src: url("bootstrap/glyphicons-halflings-regular.eot");
   src: url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
-
 .glyphicon {
   position: relative;
   top: 1px;
@@ -876,7 +875,7 @@ th {
 
 html {
   font-size: 62.5%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: transparent; }
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -4047,7 +4046,6 @@ a.thumbnail.active {
 
   to {
     background-position: 0 0; } }
-
 .progress {
   overflow: hidden;
   height: 20px;
@@ -5005,7 +5003,7 @@ button.close {
     border-radius: 10px;
     cursor: pointer;
     background-color: #000 \9;
-    background-color: rgba(0, 0, 0, 0); }
+    background-color: transparent; }
   .carousel-indicators .active {
     margin: 0;
     width: 12px;
@@ -5091,7 +5089,6 @@ button.close {
 
 @-ms-viewport {
   width: device-width; }
-
 .visible-xs, .visible-sm, .visible-md, .visible-lg {
   display: none !important; }
 
@@ -5287,6 +5284,14 @@ h4,
 h5,
 h6 {
   margin-top: 1em; }
+  td h1:first-child, td
+  h2:first-child, td
+  h3:first-child, td
+  h4:first-child, td
+  h5:first-child, td
+  h6:first-child {
+    margin-top: 0;
+    margin-bottom: 0; }
 
 .label {
   font-weight: normal; }
@@ -5434,6 +5439,11 @@ a.icon:hover {
   margin-top: 30px;
   margin-bottom: 30px; }
 
+#cart table {
+  margin-top: 0; }
+  #cart table td {
+    vertical-align: middle; }
+
 .gutter-top {
   margin-top: 30px; }
 
@@ -5481,9 +5491,6 @@ a.icon:hover {
     font-size: 4em; }
   .carousel-caption .btn {
     margin-top: 30px; }
-
-.centered-layout .carousel-caption {
-  text-align: center; }
 
 .carousel-indicators {
   bottom: 0;
@@ -5617,10 +5624,42 @@ a.icon:hover {
   text-align: center; }
 .centered-layout .rss-subscribe {
   text-align: center; }
-.centered-layout .text-left {
+.centered-layout .carousel-caption {
+  text-align: center; }
+.centered-layout .text-left h1,
+.centered-layout .text-left h2,
+.centered-layout .text-left h3,
+.centered-layout .text-left .main-content .lead,
+.centered-layout .text-left .caption, .author
+.centered-layout .text-left, .text-left .centered-layout h1,
+.text-left .centered-layout h2,
+.text-left .centered-layout h3,
+.text-left .centered-layout .main-content .lead,
+.text-left .centered-layout .caption, .author
+.text-left .centered-layout {
   text-align: left; }
-.centered-layout .text-right, .centered-layout .money {
-  text-align: left; }
+.centered-layout .text-right h1, .centered-layout .money h1,
+.centered-layout .text-right h2,
+.centered-layout .money h2,
+.centered-layout .text-right h3,
+.centered-layout .money h3,
+.centered-layout .text-right .main-content .lead,
+.centered-layout .money .main-content .lead,
+.centered-layout .text-right .caption,
+.centered-layout .money .caption, .author
+.centered-layout .text-right, .author
+.centered-layout .money, .text-right .centered-layout h1, .money .centered-layout h1,
+.text-right .centered-layout h2,
+.money .centered-layout h2,
+.text-right .centered-layout h3,
+.money .centered-layout h3,
+.text-right .centered-layout .main-content .lead,
+.money .centered-layout .main-content .lead,
+.text-right .centered-layout .caption,
+.money .centered-layout .caption, .author
+.text-right .centered-layout, .author
+.money .centered-layout {
+  text-align: right; }
 
 .centered-layout #product-form h1,
 .centered-layout #product-form h2,
