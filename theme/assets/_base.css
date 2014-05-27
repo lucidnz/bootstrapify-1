@@ -2539,8 +2539,11 @@ select[multiple].input-lg,
     display: inline-block;
     margin-top: 0;
     margin-bottom: 0;
-    padding-left: 0;
     vertical-align: middle; }
+    .form-inline .radio label, .navbar-form .radio label,
+    .form-inline .checkbox label,
+    .navbar-form .checkbox label {
+      padding-left: 0; }
   .form-inline .radio input[type="radio"], .navbar-form .radio input[type="radio"],
   .form-inline .checkbox input[type="checkbox"],
   .navbar-form .checkbox input[type="checkbox"] {
@@ -3131,12 +3134,15 @@ tbody.collapse.in {
     width: 1%; }
   .btn-group-justified > .btn-group .btn {
     width: 100%; }
+  .btn-group-justified > .btn-group .dropdown-menu {
+    left: auto; }
 
 [data-toggle="buttons"] > .btn > input[type="radio"],
 [data-toggle="buttons"] > .btn > input[type="checkbox"] {
   position: absolute;
   z-index: -1;
-  opacity: 0; }
+  opacity: 0;
+  filter: alpha(opacity=0); }
 
 .input-group {
   position: relative;
@@ -5287,6 +5293,14 @@ h4,
 h5,
 h6 {
   margin-top: 1em; }
+  td h1:first-child, td
+  h2:first-child, td
+  h3:first-child, td
+  h4:first-child, td
+  h5:first-child, td
+  h6:first-child {
+    margin-top: 0;
+    margin-bottom: 0; }
 
 .label {
   font-weight: normal; }
@@ -5434,6 +5448,11 @@ a.icon:hover {
   margin-top: 30px;
   margin-bottom: 30px; }
 
+#cart table {
+  margin-top: 0; }
+  #cart table td {
+    vertical-align: middle; }
+
 .gutter-top {
   margin-top: 30px; }
 
@@ -5481,9 +5500,6 @@ a.icon:hover {
     font-size: 4em; }
   .carousel-caption .btn {
     margin-top: 30px; }
-
-.centered-layout .carousel-caption {
-  text-align: center; }
 
 .carousel-indicators {
   bottom: 0;
@@ -5617,10 +5633,42 @@ a.icon:hover {
   text-align: center; }
 .centered-layout .rss-subscribe {
   text-align: center; }
-.centered-layout .text-left {
+.centered-layout .carousel-caption {
+  text-align: center; }
+.centered-layout .text-left h1,
+.centered-layout .text-left h2,
+.centered-layout .text-left h3,
+.centered-layout .text-left .main-content .lead,
+.centered-layout .text-left .caption, .author
+.centered-layout .text-left, .text-left .centered-layout h1,
+.text-left .centered-layout h2,
+.text-left .centered-layout h3,
+.text-left .centered-layout .main-content .lead,
+.text-left .centered-layout .caption, .author
+.text-left .centered-layout {
   text-align: left; }
-.centered-layout .text-right, .centered-layout .money {
-  text-align: left; }
+.centered-layout .text-right h1, .centered-layout .money h1,
+.centered-layout .text-right h2,
+.centered-layout .money h2,
+.centered-layout .text-right h3,
+.centered-layout .money h3,
+.centered-layout .text-right .main-content .lead,
+.centered-layout .money .main-content .lead,
+.centered-layout .text-right .caption,
+.centered-layout .money .caption, .author
+.centered-layout .text-right, .author
+.centered-layout .money, .text-right .centered-layout h1, .money .centered-layout h1,
+.text-right .centered-layout h2,
+.money .centered-layout h2,
+.text-right .centered-layout h3,
+.money .centered-layout h3,
+.text-right .centered-layout .main-content .lead,
+.money .centered-layout .main-content .lead,
+.text-right .centered-layout .caption,
+.money .centered-layout .caption, .author
+.text-right .centered-layout, .author
+.money .centered-layout {
+  text-align: right; }
 
 .centered-layout #product-form h1,
 .centered-layout #product-form h2,

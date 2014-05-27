@@ -31,6 +31,11 @@ h4,
 h5,
 h6 {
   margin-top: 1em;
+  
+  td &:first-child {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
 .label {
@@ -245,6 +250,14 @@ a.icon:hover {
   margin-bottom: $grid-gutter-width;
 }
 
+#cart table {
+  margin-top: 0;
+  
+  td {
+    vertical-align: middle;
+  } 
+}
+
 .gutter-top {
   margin-top: $grid-gutter-width;
 }
@@ -323,9 +336,7 @@ a.icon:hover {
     margin-top: 30px;
   }
 }
-.centered-layout .carousel-caption{
-  text-align: center;
-}
+
 .carousel-indicators{
   bottom: 0;
   margin-bottom: 0;
@@ -504,12 +515,34 @@ header .article-meta{
     text-align: center;
   }
   
-  .text-left {
-    text-align: left;
+  .carousel-caption{
+    text-align: center;
   }
   
-  .text-right {
-    text-align: left;
+  .text-left,
+  .text-left & {
+    h1,
+    h2,
+    h3,
+    .main-content .lead,
+    .caption,
+    .author
+    & {
+      text-align: left;
+    }
+  }
+  
+  .text-right,
+  .text-right & {
+    h1,
+    h2,
+    h3,
+    .main-content .lead,
+    .caption,
+    .author
+    & {
+      text-align: right;
+    }
   }
 }
 

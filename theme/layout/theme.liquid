@@ -80,9 +80,11 @@
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
 
   <script type="text/javascript">
+    {% unless settings.thumbnail-ratio == blank %}
     var uniformThumbnailsOpts = {};
     {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
     {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
+    {% endunless %}
     
     $(document).ready(function(){
       $('.search').typeahead({
@@ -98,10 +100,10 @@
   {{ settings.custom-footer-code }}
   {% endif %}
   
+  {% unless settings.thumbnail-ratio == blank %}
   <script type="text/javascript">
-    {% unless settings.thumbnail-ratio == blank %}
     $('.thumbnail-image, .thumbnail.product-image').uniform_thumbnails(uniformThumbnailsOpts);
-    {% endunless %}
   </script>
+  {% endunless %}
 </body>
 </html>
