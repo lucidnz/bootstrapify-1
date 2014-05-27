@@ -7,6 +7,7 @@ $text-muted: inherit !default;
 $footer-height: $navbar-height;
 html, body, #wrap { height: 100%; }
 body > #wrap {height: auto; min-height: 100%;}
+section { margin-bottom: 2em;}
 #content { padding-bottom: $footer-height; }
 #footer-content { 
   position: relative;
@@ -17,10 +18,6 @@ body > #wrap {height: auto; min-height: 100%;}
 
 img {
   @extend .img-responsive;
-}
-// Stop image flicker before fade in from uniform thumbs
-.thumbnail-image {
-  opacity: 0;
 }
 
 .nav-pills a {
@@ -38,10 +35,53 @@ h4,
 h5,
 h6 {
   margin-top: 1em;
+  
+  td &:first-child {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
 .label {
   font-weight: normal;
+}
+
+body {
+	&.has-site-wide-thumbnail-container {
+		.section-wrap {
+			@extend .container;
+			&#product-list, &#collection-list {
+				width: auto;
+			}
+		}
+	}
+	&.has-overlay-title-on-hover {
+		.thumbnail {
+			position: relative;
+			.caption {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				-webkit-transition: all 200ms ease;
+				-moz-transition: all 200ms ease;
+				-ms-transition: all 200ms ease;
+				-o-transition: all 200ms ease;
+				transition: all 200ms ease;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+#featured-blog {
+	img {
+		margin-bottom: 1em;
+	}
 }
 
 #product-form h1:first-child {
@@ -178,6 +218,7 @@ a.icon:hover {
 
 .thumbnail{
   overflow: auto;
+  border-radius: 0;
   img{
     text-align: center;
     margin: auto;
@@ -207,6 +248,14 @@ a.icon:hover {
 .main-content table {
   margin-top: $grid-gutter-width;
   margin-bottom: $grid-gutter-width;
+}
+
+#cart table {
+  margin-top: 0;
+  
+  td {
+    vertical-align: middle;
+  } 
 }
 
 .gutter-top {
@@ -287,9 +336,7 @@ a.icon:hover {
     margin-top: 30px;
   }
 }
-.centered-layout .carousel-caption{
-  text-align: center;
-}
+
 .carousel-indicators{
   bottom: 0;
   margin-bottom: 0;
@@ -479,12 +526,34 @@ header .article-meta{
     text-align: center;
   }
   
-  .text-left {
-    text-align: left;
+  .carousel-caption{
+    text-align: center;
   }
   
-  .text-right {
-    text-align: left;
+  .text-left,
+  .text-left & {
+    h1,
+    h2,
+    h3,
+    .main-content .lead,
+    .caption,
+    .author
+    & {
+      text-align: left;
+    }
+  }
+  
+  .text-right,
+  .text-right & {
+    h1,
+    h2,
+    h3,
+    .main-content .lead,
+    .caption,
+    .author
+    & {
+      text-align: right;
+    }
   }
 }
 

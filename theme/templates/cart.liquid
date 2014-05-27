@@ -1,78 +1,76 @@
 {% include '__has-variables' %}
-<h1 class="page-header">{{ page_title }}</h1>
-{% if has_cart and cart.item_count > 0 %}
-<script type="text/javascript">
-function remove_item(id) {
-  document.getElementById('updates_'+id).value = 0;
-  document.getElementById('cart').submit();
-}
-</script>
+<section id="cart-wrap" class="section-wrap">
+  <h1 class="page-header">{{ page_title }}</h1>
+  {% if has_cart and cart.item_count > 0 %}
+  <script type="text/javascript">
+  function remove_item(id) {
+    document.getElementById('updates_'+id).value = 0;
+    document.getElementById('cart').submit();
+  }
+  </script>
 
-<form action="/cart" method="post" id="cart">
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table {% include '__table-formatting' %}">
-        <thead>
-          <tr>
-            <th class="hidden-xs">&nbsp;</th>
-            <th>{% include '__localize' with 'Item' %}</th>
-            <th class="money hidden-xs">{% include '__localize' with 'Price' %}</th>
-            <th class="text-center" style="width: 50px;">{% include '__localize' with 'Qty' %}</th>
-            <th class="hidden-xs">&nbsp;</th>
-            <th class="money">{% include '__localize' with 'Line total' %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for i in cart.items %}
-          <tr>
-            <td class="col-sm-2 hidden-xs"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
-            <td>
-              <strong>{{ i.product.title | link_to: i.product.url }}</strong>
-              <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
-            </td>
-            <td class="money hidden-xs"><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
-            <td class="text-center">
-              <input type="text" class="form-control" name="updates[{{ i.variant.id }}]" id="updates_{{ i.variant.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
-            </td>
-            <td class="hidden-xs"><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>
-            <td class="money">
-              <span class='money'>{{ i.line_price | money_with_currency | replace: ' ','&nbsp' }}</span>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-6">
-      <label for="cart-note">Extra notes or special instructions</label>
-      <textarea id="note" name="note" class="form-control" rows="4">{{ cart.note }}</textarea>
-    </div>
+  <div class="text-left">
+    <form action="/cart" method="post" id="cart">
+      <div class="row">
+        <div class="{% if settings.show-shipping-estimator %}col-md-9{% else %}col-md-12{% endif %}">
+          <h3>{% include '__localize' with 'Your items' %}</h3>
+          <table class="table {% include '__table-formatting' %}">
+            <tbody>
+              {% for i in cart.items %}
+              <tr>
+                <td class="col-sm-2 hidden-xs"><img src="{{ i.product.featured_image | product_img_url: 'medium' }}"></td>
+                <td>
+                  <h4>
+                    {{ i.product.title | link_to: i.product.url }}
+                    <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
+                  </h4>
+                </td>
+                <td><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
+                <td class="text-center col-xs-2">
+                  <input type="text" class="form-control" name="updates[{{ i.variant.id }}]" id="updates_{{ i.variant.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
+                </td>
+                <td><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% if settings.show-shipping-estimator %}
+        <div class="col-md-3">
+          {% include 'shipping-calculator' %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-8 col-md-9">
+          <h3>{% include '__localize' with 'Any comments or special instructions?' %}</h3>
+          <div class="collapse in cart-note">
+            <a href="#" class="btn btn-default" data-toggle="collapse" data-target=".cart-note">Add note</a>
+          </div>
+          <div class="collapse cart-note">
+            <textarea id="note" name="note" class="form-control" rows="3">{{ cart.note }}</textarea>
+          </div>
+        </div>
     
-    <div class="form-actions text-right col-md-6">
-      <h3><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></h3>
-      <div class="btn-group">
-        <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'Update' %}" class="btn btn-default" />
-        <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary" />
+        <div class="form-actions text-right col-sm-4 col-md-3">
+          <h3><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></h3>
+          <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary btn-block" />
+          {% if additional_checkout_buttons %}
+          <div class="additional-checkout-buttons">
+            <span class="text-muted">or</span>
+            {{ content_for_additional_checkout_buttons }}
+          </div>
+          {% endif %}
+        </div>
       </div>
-      {% if additional_checkout_buttons %}
-      <div class="additional-checkout-buttons">
-        <span class="text-muted">or</span>
-        {{ content_for_additional_checkout_buttons }}
-      </div>
-      {% endif %}
-    </div>
+    </form>
   </div>
-</form>
 
-<div class="row">
-  <div class="col-md-6">{% include 'shipping-calculator' %}</div>
-</div>
-{% else %}
-{% assign cart_message = 'Your cart is empty' %}
-{% unless has_cart %}{% assign cart_message = 'The shopping cart is currently disabled' %}{% endunless %}
-<p class="lead">
-  {% include '__localize' with cart_message %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all products' %}</a>.{% endunless %}
-</p>
-{% endif %}
+  {% else %}
+  {% assign cart_message = 'Your cart is empty' %}
+  {% unless has_cart %}{% assign cart_message = 'The shopping cart is currently disabled' %}{% endunless %}
+  <p class="lead">
+    {% include '__localize' with cart_message %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all' %} {{ collections.[settings.collection-to-link-to-if-cart-empty].title }}</a>.{% endunless %}
+  </p>
+  {% endif %}
+</section>

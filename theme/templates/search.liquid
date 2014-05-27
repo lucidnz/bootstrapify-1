@@ -3,6 +3,7 @@
 {% assign respond_js_secret_key = (shop.domain | md5) %}
 {% unless search.terms == respond_js_secret_key %}
 
+<section id="search-wrap" class="section-wrap">
   <h1 class="page-header">{% include 'smart-title' %}</h1>
 
   {% if search.performed and search.results.size > 0 %}
@@ -29,6 +30,7 @@
       </div>
     </form>
   {% endif %}
+</section>
 
 {% else %}
   {% layout none %}
