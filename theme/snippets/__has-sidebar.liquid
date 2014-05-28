@@ -1,11 +1,13 @@
 {% assign has_sidebar = false %}
-{% if settings.logo-placement == 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
-{% if settings.tag-placement == 'sidebar' %}
-  {% if template == 'collection' or template == 'blog' or template == 'article' %}
-    {% assign has_sidebar = true %}
-  {% endif %}
-{% endif %}
-{% if settings.sidebar-linklist != blank %}{% assign has_sidebar = true %}{% endif %}
-{% if settings.sidebar-blog != blank %}{% assign has_sidebar = true %}{% endif %}
-{% if settings.newsletter-signup-placement contains 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
-{% if settings.social-links-placement contains 'sidebar' and has_social %}{% assign has_sidebar = true %}{% endif %}
+{% unless settings.site-wide-thumbnail-container %}
+	{% if settings.logo-placement == 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
+	{% if settings.tag-placement == 'sidebar' %}
+	  {% if template == 'collection' or template == 'blog' or template == 'article' %}
+	    {% assign has_sidebar = true %}
+	  {% endif %}
+	{% endif %}
+	{% if settings.sidebar-linklist != blank %}{% assign has_sidebar = true %}{% endif %}
+	{% if settings.sidebar-blog != blank %}{% assign has_sidebar = true %}{% endif %}
+	{% if settings.newsletter-signup-placement contains 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
+	{% if settings.social-links-placement contains 'sidebar' and has_social %}{% assign has_sidebar = true %}{% endif %}
+{% endunless %}

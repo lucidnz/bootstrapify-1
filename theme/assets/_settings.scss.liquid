@@ -37,6 +37,7 @@ $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-t
 $body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %};
 $button-colour: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}$body-link-colour{% endif %};
 $button-text-colour: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}false{% endif %};
+$overlay-hover-background-colour: {% if settings.overlay-title-on-hover-background-color != blank %}{{ settings.overlay-title-on-hover-background-color }}{% else %}$body-text-colour{% endif %};
 
 $main-navbar-background-colour: {% if settings.main-navbar-background-colour != blank %}{{ settings.main-navbar-background-colour }}{% else %}transparent{% endif %};
 $main-navbar-link-colour: {% if settings.main-navbar-link-colour != blank %}{{ settings.main-navbar-link-colour }}{% else %}$body-link-colour{% endif %};
@@ -349,77 +350,92 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
  * Styles
  */
 body{
-  /* Layout Adjustments */
-  &.has-top-navbar.has-fixed-top-navbar{
-    padding-top: $body_navbar_padding + $body_padding;
-  	#content {
-  		margin-top: $body_padding;
-  	}
-  	&.banner-window-width {
-  		padding-top: $body_navbar_padding;
-  	}
-  }
-  @media (max-width: $screen-xs-max){
-    &.has-fixed-top-navbar{
-      padding-top: $body_navbar_padding + $body_padding;
-    }
-  }
-  &.has-footer-navbar.has-fixed-footer-navbar{
-    #footer-content{
-      padding-bottom: $body_navbar_padding;
-    }
-  }
-  &.has-footer{
-    #content{
-      padding-bottom: $footer-height;
-    }
-    #footer-content{
-      > .container{        
-        margin-top: -$footer-height;
-        min-height: $footer-height;
-      }
-    }
-  }
+	/* Layout Adjustments */
+	&.has-top-navbar.has-fixed-top-navbar{
+		padding-top: $body_navbar_padding + $body_padding;
+		#content {
+			margin-top: $body_padding;
+		}
+		&.banner-window-width {
+			padding-top: $body_navbar_padding;
+		}
+	}
+	@media (max-width: $screen-xs-max){
+		&.has-fixed-top-navbar{
+			padding-top: $body_navbar_padding + $body_padding;
+		}
+	}
+	&.has-footer-navbar.has-fixed-footer-navbar{
+		#footer-content{
+			padding-bottom: $body_navbar_padding;
+		}
+	}
+	&.has-footer{
+		#content{
+			padding-bottom: $footer-height;
+		}
+		#footer-content{
+			> .container{        
+				margin-top: -$footer-height;
+				min-height: $footer-height;
+			}
+		}
+	}
+	&.has-overlay-title-on-hover {
+		.thumbnail {
+			.caption {
+				background-color: rgba($overlay-hover-background-colour, 0.8);
+				color: lighten($overlay-hover-background-colour, 80%);
+				h4 {
+					color: lighten($overlay-hover-background-colour, 100%);
+					font-size: $font-size-heading;
+					height: auto;
+				}
+			}
+		}
+	}
   
-  /* Design and colour schemes */
-  @if $font-family-body{
-    font-family: $font-family-body;
-  }
-  @if $font-size-body{
-    font-size: $font-size-body;
-  }
-  @if $font-body-italic {
-    font-style: italic;
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .navbar{
-      font-style: normal;
-    }
-  }
-  text-transform: $font-transform-body;
-  font-weight: $font-weight-body;
+	
   
-  @if $site-background-image {
-    background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');
-    {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
-    {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
-  }
+	/* Design and colour schemes */
+	@if $font-family-body{
+		font-family: $font-family-body;
+	}
+	@if $font-size-body{
+		font-size: $font-size-body;
+	}
+	@if $font-body-italic {
+		font-style: italic;
+		h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .navbar{
+			font-style: normal;
+		}
+	}
+	text-transform: $font-transform-body;
+	font-weight: $font-weight-body;
+  
+	@if $site-background-image {
+		background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');
+		{% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
+		{% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
+	}
 
-  @include background-colour($body-background-colour);
-  @include heading-colour($body-heading-colour, $body-background-colour);
-  @include text-colour($body-text-colour, $body-background-colour);
-  @include link-colour($body-link-colour, $body-background-colour);
+	@include background-colour($body-background-colour);
+	@include heading-colour($body-heading-colour, $body-background-colour);
+	@include text-colour($body-text-colour, $body-background-colour);
+	@include link-colour($body-link-colour, $body-background-colour);
   
-  @if $show-borders == false{
-    .page-header, .thumbnail, .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
-      border: none;
-    }
-    hr {
-      border-color: transparent;
-    }
-    .thumbnail {
-      padding: 0;
-      background-color: transparent;
-    }
-  }
+	@if $show-borders == false{
+		.page-header, .thumbnail, .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+			border: none;
+		}
+		hr {
+			border-color: transparent;
+		}
+		.thumbnail {
+			padding: 0;
+			background-color: transparent;
+		}
+	}
 }
 
 {% if settings.thumbnail-ratio != blank %}

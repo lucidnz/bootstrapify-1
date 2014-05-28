@@ -1,27 +1,33 @@
 {% include '__has-variables' %}
 
-<h1 class="page-header">{{ page_title }}</h1>
+<section id="collection-intro" class="section-wrap">
+	<h1 class="page-header">{{ page_title }}</h1>
 
-{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
+	{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
 
-{% unless settings.tag-placement == 'sidebar' %}
-<div class="clearfix">
-  {% include 'tag-buttons' %}
-</div>
-<hr>
-{% endunless %}
+	{% if settings.tag-placement == 'main-content' %}
+	<div class="clearfix">
+		{% include 'tag-buttons' %}
+	</div>
+	<hr>
+	{% endif %}
+</section>
 
 {% if collection.all_products_count == 0 %}
-<p>Sorry, no {% include '__localize' with 'products' %} were found in the {{ collection.title }} collection.</p>
+<section class="section-wrap">
+	<p>Sorry, no {% include '__localize' with 'products' %} were found in the {{ collection.title }} collection.</p>
+</section>
 {% elsif collection.products_count == 0 %}
-<h2>Whoops! You might need to broaden your search.</h2>
-<p>There {{ collection.all_products_count | pluralize: 'is', 'are' }}<strong> {{ collection.all_products_count | count }} {{ collection.all_products_count | pluralize: 'style', 'styles' }} of {% include '__localize' with 'Products' %}</strong> in the {{ collection.title }} collection&mdash;try removing some filters.</p>
-<ul>
-  {% for tag in current_tags %}
-  <li>{{ tag }} ({{ 'remove' | link_to_remove_tag: tag }})</li>
-  {% endfor %}
-</ul>
-<p><br>Or, view <strong><a href="{{ collection.url }}">all {{ collection.all_products_count }} {% include '__localize' with 'Products' %} in the {{ collection.title }} {% include '__localize' with 'Collection' %}</a></strong>.</p>
+<section class="section-wrap">
+	<h2>Whoops! You might need to broaden your search.</h2>
+	<p>There {{ collection.all_products_count | pluralize: 'is', 'are' }}<strong> {{ collection.all_products_count | count }} {{ collection.all_products_count | pluralize: 'style', 'styles' }} of {% include '__localize' with 'Products' %}</strong> in the {{ collection.title }} collection&mdash;try removing some filters.</p>
+	<ul>
+		{% for tag in current_tags %}
+		<li>{{ tag }} ({{ 'remove' | link_to_remove_tag: tag }})</li>
+		{% endfor %}
+	</ul>
+	<p><br>Or, view <strong><a href="{{ collection.url }}">all {{ collection.all_products_count }} {% include '__localize' with 'Products' %} in the {{ collection.title }} {% include '__localize' with 'Collection' %}</a></strong>.</p>
+</section>
 {% else %}
 {% include '__default-pagination' %}
 {% paginate collection.products by default-pagination %}
