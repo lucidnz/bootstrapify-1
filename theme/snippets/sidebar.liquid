@@ -1,9 +1,6 @@
 {% if has_sidebar %}
-  {% if settings.show-sidebar %}
-    {% unless settings.show-sidebar-on-homepage == blank and template == "index" %}
-      {% include 'sidebar-content' %}
-    {% endunless %}
-  {% elsif settings.show-sidebar-on-homepage and template == "index" %}
+  {% assign sidebar-template = template | prepend: 'show-sidebar-on-' %}
+  {% if settings[sidebar-template] %}
     {% include 'sidebar-content' %}
   {% endif %}
 {% endif %}
