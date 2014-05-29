@@ -27,7 +27,7 @@
 
 @mixin text-color ( $colour ) {
   color: $colour;
-  .text-muted {
+  .text-muted, .help-block {
     color: text-muted($colour);
   }
 }
@@ -48,8 +48,36 @@
   }
 }
 
-@mixin font-styles ($font-family) {
+@mixin font-styles ($font-family, $font-size, $font-weight, $font-style, $text-transform) {
   @if $font-family {
     font-family: $font-family;
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      font-family: $font-family;
+    }
+  }
+  @if $font-size {
+    font-size: $font-size;
+  }
+  @if $font-weight {
+    font-weight: $font-weight;
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      font-weight: $font-weight;
+    }
+  }
+  @if $font-style {
+    font-style: $font-style;
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      font-style: $font-style;
+    }
+  }
+  @if $text-transform {
+    text-transform: $text-transform;
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      text-transform: $text-transform;
+    }
   }
 };

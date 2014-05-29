@@ -59,10 +59,40 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-style: {% if settings.font-heading-style == 'italic' %} italic {% else %} normal {% endif %};
   text-transform: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %} {{ settings.font-heading-case }} {% elsif settings.font-heading-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  {% if settings.heading-letterpress %}
+    text-shadow: 0 1px 0 rgba(if(lightness($body-bg) > 60%, lighten($body-bg, 100%), darken($body-bg, 100%)), .25);
+  {% endif %}
+}
+
+.list-nav {
+  @extend .list-unstyled;
+  
+  li {
+    margin-top: 1em;
+  }
+  
+  li:first-child {
+    margin-top: 0;
+  }
+}
+
+.article-meta{
+  @extend .list-unstyled;
+  @extend .text-muted;
+  a{
+    @extend .text-muted;
+  }
+}
+header .article-meta{
+  @extend .list-inline;
 }
 
 .label {
   font-weight: normal;
+}
+
+.help-block {
+  color: text-muted($text-color);
 }
 
 .money {
@@ -73,21 +103,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   a:hover {
     text-decoration: none;
   }
-}
-
-/* Navbars */
-#navbar-top, #navbar-footer {
-  font-weight: {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} normal {% endif %};
-  font-style: {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
-  text-transform: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
-}
-
-.navbar-brand img {
-  height: $navbar-height - ($grid-gutter-width);
-}
-
-#currencies-picker {
-  padding: 0;
 }
 
 /* Products */
@@ -103,23 +118,26 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 /* Sidebar */
+{% if settings.font-nav-secondary-custom != blank %}
+  $font-family-secondary:   '{{ settings.font-nav-secondary-custom | remove: "'" | remove: '"' }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %} !default;
+{% elsif settings.font-nav-secondary != blank %}
+  $font-family-secondary:   {{ settings.font-nav-secondary }} !default;
+{% else %}
+  $font-family-secondary:   false;
+{% endif %}
+$font-size-secondary:         {% if settings.font-nav-secondary-size != blank %} {{ settings.font-nav-secondary-size }} {% else %} false {% endif %};
+$font-weight-secondary:       {% if settings.font-nav-secondary-weight != blank %} {{ settings.font-nav-secondary-weight }} {% else %} false {% endif %};
+$font-style-secondary:        {% if settings.font-nav-secondary-style == 'italic' %} italic {% else %} normal {% endif %};
+$text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowercase' or settings.font-nav-secondary-case == 'uppercase' %} {{ settings.font-nav-secondary-case }} {% elsif settings.font-nav-secondary-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  
 .sidebar {
   padding-top: $padding-base-horizontal;
   padding-bottom: $padding-base-horizontal;
+  @include font-styles($font-family-secondary, $font-size-secondary, $font-weight-secondary, $font-style-secondary, $text-transform-secondary);
   {% if settings.sidebar-background-colour != blank %} @include background-color({{ settings.sidebar-background-colour }}); {% endif %}
   {% if settings.sidebar-heading-colour != blank %} @include heading-color({{ settings.sidebar-heading-colour }}); {% endif %}
   {% if settings.sidebar-link-colour != blank %} @include link-color({{ settings.sidebar-link-colour }}); {% endif %}
   {% if settings.sidebar-text-colour != blank %} @include text-color({{ settings.sidebar-text-colour }}); {% endif %}
-  
-  {% if settings.font-nav-secondary-custom != blank %}
-    $font-family-sidebar:   '{{ settings.font-nav-secondary-custom | remove: "'" | remove: '"' }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %} !default;
-  {% elsif settings.font-nav-secondary != blank %}
-    $font-family-sidebar:   {{ settings.font-nav-secondary }} !default;
-  {% else %}
-    $font-family-sidebar:   false;
-  {% endif %}
-  @include font-styles($font-family-sidebar);
-  
   @media (min-width: $screen-sm-min) {
     // Move background color onto .sidebar-content
     padding-top: $grid-gutter-width;
@@ -135,12 +153,46 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
+/* Navbars */
+#navbar-top, #navbar-footer {
+  font-weight: {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} normal {% endif %};
+  font-style: {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
+  text-transform: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
+}
+
+.navbar-brand, .brand {
+  {% if settings.font-brand-custom != blank %}
+    $font-family-brand:   '{{ settings.font-brand-custom | remove: "'" | remove: '"' }}'{% if settings.font-brand != blank %},{{ settings.font-brand }}{% endif %} !default;
+  {% elsif settings.font-brand != blank %}
+    $font-family-brand:   {{ settings.font-brand }} !default;
+  {% else %}
+    $font-family-brand:   false;
+  {% endif %}
+  $font-size-brand:         {% if settings.font-brand-size != blank %} {{ settings.font-brand-size }} {% else %} false {% endif %};
+  $font-weight-brand:       {% if settings.font-brand-weight != blank %} {{ settings.font-brand-weight }} {% else %} false {% endif %};
+  $font-style-brand:        {% if settings.font-brand-style == 'italic' %} italic {% else %} normal {% endif %};
+  $text-transform-brand:    {% if settings.font-brand-case == 'lowercase' or settings.font-brand-case == 'uppercase' %} {{ settings.font-brand-case }} {% elsif settings.font-brand-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  @include font-styles($font-family-brand, $font-size-brand, $font-weight-brand, $font-style-brand, $text-transform-brand);
+  h1 {
+    font-size: $font-size-brand;
+  }
+}
+
+.navbar-brand img {
+  height: $navbar-height - ($grid-gutter-width);
+}
+
+#currencies-picker {
+  padding: 0;
+}
+
 /* Footer */
 #footer-content {
   {% if settings.footer-background-colour != blank %} background-color:{{ settings.footer-background-colour }}; {% endif %}
   > .container {
     padding-top: $grid-gutter-width;
     padding-bottom: $grid-gutter-width;
+    @include font-styles($font-family-secondary, $font-size-secondary, $font-weight-secondary, $font-style-secondary, $text-transform-secondary);
     {% if settings.footer-background-colour != blank %} @include background-color({{ settings.footer-background-colour }}); {% endif %}
     {% if settings.footer-heading-colour != blank %} @include heading-color({{ settings.footer-heading-colour }}); {% endif %}
     {% if settings.footer-link-colour != blank %} @include link-color({{ settings.footer-link-colour }}); {% endif %}
@@ -148,6 +200,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
       @include text-color({{ settings.footer-text-colour }});
       .footer-credits {
         color: text-muted({{ settings.footer-text-colour }});
+      }
+    {% else %}
+      .footer-credits {
+        color: text-muted($text-color);
       }
     {% endif %}
   }

@@ -241,7 +241,7 @@ $line-height-base:    1.42858;
             $breadcrumb-bg:   rgba(darken($body-bg, 3%), .5) !default;
   {% if settings.body-text-colour != blank %}
          $breadcrumb-color:   lighten($text-color, 15%) !default;
-  $breadcrumb-active-color:   lighten($text-color, 15%) !default;
+  $breadcrumb-active-color:   text-muted($text-color) !default;
   {% endif %}
 {% endif %}
 
