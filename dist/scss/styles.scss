@@ -43,6 +43,7 @@ h6 {
 }
 
 body {
+	line-height: 160%;
 	&.has-site-wide-thumbnail-container {
 		.section-wrap {
 			@extend .container;
