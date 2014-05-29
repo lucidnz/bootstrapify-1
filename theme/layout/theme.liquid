@@ -25,6 +25,7 @@
   {% endif %}
 
   {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
+  {{ 'jquery.orderly.min.js' | asset_url | script_tag }}
   {{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
   {{ 'transition.js' | asset_url | script_tag }}
   {{ 'button.js' | asset_url | script_tag }}
@@ -102,6 +103,7 @@
   {% unless settings.thumbnail-ratio == blank %}
   <script type="text/javascript">
     $('.thumbnail-image, .thumbnail.product-image').uniform_thumbnails(uniformThumbnailsOpts);
+    $('.product-thumbnail, .collection-thumbnail').orderly({ method: 'children' });
   </script>
   {% endunless %}
 </body>

@@ -1291,7 +1291,7 @@ $component-offset-horizontal: 180px !default;
 
 @mixin resizable($direction) {
   resize: $direction; // Options: horizontal, vertical, both
-  overflow: auto; // Safari fix
+  overflow: auto; // Per CSS3 UI, `resize` only applies when `overflow` isn't `visible`
 }
 
 // Responsive utilities
@@ -3969,9 +3969,11 @@ input[type="search"] {
 }
 
 
-// Special styles for iOS date input
+// Special styles for iOS temporal inputs
 //
-// In Mobile Safari, date inputs require a pixel line-height that matches the
+// In Mobile Safari, setting `display: block` on temporal inputs causes the
+// text within the input to become vertically misaligned.
+// As a workaround, we set a pixel line-height that matches the
 // given height of the input. Since this fucks up everything else, we have to
 // appropriately reset it for Internet Explorer and the size variations.
 
@@ -4210,8 +4212,11 @@ input[type="checkbox"],
       display: inline-block;
       margin-top: 0;
       margin-bottom: 0;
-      padding-left: 0;
       vertical-align: middle;
+
+      label {
+        padding-left: 0;
+      }
     }
     .radio input[type="radio"],
     .checkbox input[type="checkbox"] {
@@ -4914,6 +4919,10 @@ tbody.collapse.in { display: table-row-group; }
   > .btn-group .btn {
     width: 100%;
   }
+
+  > .btn-group .dropdown-menu {
+    left: auto;
+  }
 }
 
 
@@ -4930,7 +4939,7 @@ tbody.collapse.in { display: table-row-group; }
 [data-toggle="buttons"] > .btn > input[type="checkbox"] {
   position: absolute;
   z-index: -1;
-  opacity: 0;
+  @include opacity(0);
 }
 
 //
@@ -7769,7 +7778,8 @@ button.close {
 // For more information, see the following:
 //
 // Issue: https://github.com/twbs/bootstrap/issues/10497
-// Docs: http://getbootstrap.com/getting-started/#browsers
+// Docs: http://getbootstrap.com/getting-started/#support-ie10-width
+// Source: http://timkadlec.com/2013/01/windows-phone-8-and-device-width/
 // Source: http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
 
 @-ms-viewport {
@@ -8095,6 +8105,17 @@ header .article-meta{
 }
 
 /* Products */
+.product-thumbnail, .collection-thumbnail {
+  @extend .thumbnail;
+  .caption {
+    display: block;
+    color: $brand-primary;
+    &:hover .label {
+      text-decoration: none;
+    }
+  }
+}
+
 .image-placeholder {
   display: block;
   width: 100%;

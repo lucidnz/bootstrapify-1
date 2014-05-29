@@ -166,6 +166,17 @@ header .article-meta{
 }
 
 /* Products */
+.product-thumbnail, .collection-thumbnail {
+  @extend .thumbnail;
+  .caption {
+    display: block;
+    color: $brand-primary;
+    &:hover .label {
+      text-decoration: none;
+    }
+  }
+}
+
 .image-placeholder {
   display: block;
   width: 100%;
