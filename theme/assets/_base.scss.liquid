@@ -344,6 +344,8 @@ $line-height-base:    1.42858;
 {% if settings.body-background-colour != blank %}
   $hr-border:   border-color($body-bg) !default;
 {% endif %}
+
+{% unless settings.custom-pre-css == blank %}{{ settings.custom-pre-css }}{% endunless %}
 // a flag to toggle asset pipeline / compass integration
 // defaults to true if twbs-font-path function is present (no function => twbs-font-path('') parsed as string == right side)
 // in Sass 3.3 this can be improved with: function-exists(twbs-font-path)
@@ -7937,10 +7939,6 @@ body > #wrap {height: auto; min-height: 100%;}
   clear:both;
 }
 
-img {
-  @extend .img-responsive;
-}
-
 /* Body */
 body {
   &.has-top-navbar.has-fixed-top-navbar {
@@ -7971,6 +7969,36 @@ body {
     }
   }
 
+	&.has-site-wide-thumbnail-container {
+		.section-wrap {
+			@extend .container;
+			&#product-list, &#collection-list {
+				width: auto;
+			}
+		}
+	}
+	&.has-overlay-title-on-hover {
+		.thumbnail {
+			position: relative;
+			.caption {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				-webkit-transition: all 200ms ease;
+				-moz-transition: all 200ms ease;
+				-ms-transition: all 200ms ease;
+				-o-transition: all 200ms ease;
+				transition: all 200ms ease;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
   {% if settings.site-background-image %}
     background-image: url('{{ 'site-background-image-file.jpg' | asset_url }}');
     {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
@@ -7989,6 +8017,20 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   {% if settings.heading-letterpress %}
     text-shadow: 0 1px 0 rgba(if(lightness($body-bg) > 60%, lighten($body-bg, 100%), darken($body-bg, 100%)), .25);
   {% endif %}
+  margin-top: 1em;
+  
+  td & {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+small, .small {
+  font-weight: inherit !important;
+}
+
+img {
+  @extend .img-responsive;
 }
 
 .list-nav {
@@ -8032,7 +8074,49 @@ header .article-meta{
   }
 }
 
+/* Navbars */
+#navbar-top, #navbar-footer {
+  {% if settings.font-navbar-custom != blank %}
+    $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
+  {% elsif settings.font-navbar != blank %}
+    $font-family-navbar:   {{ settings.font-navbar }} !default;
+  {% else %}
+    $font-family-navbar:   false;
+  {% endif %}
+  $font-size-navbar:         {% if settings.font-navbar-size != blank %} {{ settings.font-navbar-size }} {% else %} false {% endif %};
+  $font-weight-navbar:       {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} false {% endif %};
+  $font-style-navbar:        {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
+  $text-transform-navbar:    {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  @include font-styles($font-family-navbar, $font-size-navbar, $font-weight-navbar, $font-style-navbar, $text-transform-navbar);
+}
+
+#currencies-picker {
+  padding: 0;
+}
+
 /* Products */
+.image-placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  color: $body-bg;
+  background-color: darken($body-bg, 8%);
+  
+  .image-placeholder-content {
+    bottom: 0;
+    left: 0;
+    margin-top: 25%;
+    margin-bottom: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
 
 /* Checkout */
 .additional-checkout-buttons, .shipping-calculator-wrapper{
@@ -8078,39 +8162,10 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
       {% endif %}
     }
   }
-}
-
-/* Navbars */
-#navbar-top, #navbar-footer {
-  font-weight: {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} normal {% endif %};
-  font-style: {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
-  text-transform: {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
-}
-
-.navbar-brand, .brand {
-  {% if settings.font-brand-custom != blank %}
-    $font-family-brand:   '{{ settings.font-brand-custom | remove: "'" | remove: '"' }}'{% if settings.font-brand != blank %},{{ settings.font-brand }}{% endif %} !default;
-  {% elsif settings.font-brand != blank %}
-    $font-family-brand:   {{ settings.font-brand }} !default;
-  {% else %}
-    $font-family-brand:   false;
-  {% endif %}
-  $font-size-brand:         {% if settings.font-brand-size != blank %} {{ settings.font-brand-size }} {% else %} false {% endif %};
-  $font-weight-brand:       {% if settings.font-brand-weight != blank %} {{ settings.font-brand-weight }} {% else %} false {% endif %};
-  $font-style-brand:        {% if settings.font-brand-style == 'italic' %} italic {% else %} normal {% endif %};
-  $text-transform-brand:    {% if settings.font-brand-case == 'lowercase' or settings.font-brand-case == 'uppercase' %} {{ settings.font-brand-case }} {% elsif settings.font-brand-case == 'title-case'%} capitalize {% else %} none {% endif %};
-  @include font-styles($font-family-brand, $font-size-brand, $font-weight-brand, $font-style-brand, $text-transform-brand);
-  h1 {
-    font-size: $font-size-brand;
+  
+  .page-header:first-child{
+    margin-top: 0.5em;
   }
-}
-
-.navbar-brand img {
-  height: $navbar-height - ($grid-gutter-width);
-}
-
-#currencies-picker {
-  padding: 0;
 }
 
 /* Footer */
@@ -8143,3 +8198,41 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
 #navbar-footer {
   margin-bottom: 0;
 }
+
+/* Brand */
+.navbar-brand, .brand {
+  {% if settings.font-brand-custom != blank %}
+    $font-family-brand:   '{{ settings.font-brand-custom | remove: "'" | remove: '"' }}'{% if settings.font-brand != blank %},{{ settings.font-brand }}{% endif %} !default;
+  {% elsif settings.font-brand != blank %}
+    $font-family-brand:   {{ settings.font-brand }} !default;
+  {% else %}
+    $font-family-brand:   false;
+  {% endif %}
+  $font-size-brand:         {% if settings.font-brand-size != blank %} {{ settings.font-brand-size }} {% else %} false {% endif %};
+  $font-weight-brand:       {% if settings.font-brand-weight != blank %} {{ settings.font-brand-weight }} {% else %} false {% endif %};
+  $font-style-brand:        {% if settings.font-brand-style == 'italic' %} italic {% else %} normal {% endif %};
+  $text-transform-brand:    {% if settings.font-brand-case == 'lowercase' or settings.font-brand-case == 'uppercase' %} {{ settings.font-brand-case }} {% elsif settings.font-brand-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  @include font-styles($font-family-brand, $font-size-brand, $font-weight-brand, $font-style-brand, $text-transform-brand);
+  h1 {
+    font-size: $font-size-brand;
+  }
+}
+
+.navbar-brand img {
+  height: $navbar-height - ($grid-gutter-width);
+}
+
+.brand{
+  overflow: auto;
+  .text-center img{
+    margin: auto;
+  }
+  h1{
+    margin: 1em auto 1.5em;
+  }
+  a:hover{
+    text-decoration: none;
+  }
+}
+
+{% unless settings.custom-css == blank %}{{ settings.custom-css }}{% endunless %}

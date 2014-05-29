@@ -261,3 +261,5 @@ $line-height-base:    1.42858;
 {% if settings.body-background-colour != blank %}
   $hr-border:   border-color($body-bg) !default;
 {% endif %}
+
+{% unless settings.custom-pre-css == blank %}{{ settings.custom-pre-css }}{% endunless %}
