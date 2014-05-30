@@ -502,58 +502,10 @@ header .article-meta{
 }
 
 .centered-layout {
-  h1,
-  h2,
-  h3,
-  .main-content .lead,
-  .caption,
-  .author {
-    text-align: center;
-  }
-  
+  .page-header,
+  .thumbnail, 
   .rss-subscribe {
     text-align: center;
-  }
-  
-  .carousel-caption{
-    text-align: center;
-  }
-  
-  .text-left,
-  .text-left & {
-    h1,
-    h2,
-    h3,
-    .main-content .lead,
-    .caption,
-    .author
-    & {
-      text-align: left;
-    }
-  }
-  
-  .text-right,
-  .text-right & {
-    h1,
-    h2,
-    h3,
-    .main-content .lead,
-    .caption,
-    .author
-    & {
-      text-align: right;
-    }
-  }
-}
-
-.centered-layout {
-  #product-form {
-    h1,
-    h2,
-    h3,
-    .lead {
-      text-align: left;
-    }
   }
 }
 

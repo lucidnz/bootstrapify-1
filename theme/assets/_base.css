@@ -5625,57 +5625,10 @@ a.icon:hover {
 .tt-suggestion p {
   margin: 0; }
 
-.centered-layout h1,
-.centered-layout h2,
-.centered-layout h3,
-.centered-layout .main-content .lead,
-.centered-layout .caption,
-.centered-layout .author {
-  text-align: center; }
+.centered-layout .page-header,
+.centered-layout .thumbnail,
 .centered-layout .rss-subscribe {
   text-align: center; }
-.centered-layout .carousel-caption {
-  text-align: center; }
-.centered-layout .text-left h1,
-.centered-layout .text-left h2,
-.centered-layout .text-left h3,
-.centered-layout .text-left .main-content .lead,
-.centered-layout .text-left .caption, .author
-.centered-layout .text-left, .text-left .centered-layout h1,
-.text-left .centered-layout h2,
-.text-left .centered-layout h3,
-.text-left .centered-layout .main-content .lead,
-.text-left .centered-layout .caption, .author
-.text-left .centered-layout {
-  text-align: left; }
-.centered-layout .text-right h1, .centered-layout .money h1,
-.centered-layout .text-right h2,
-.centered-layout .money h2,
-.centered-layout .text-right h3,
-.centered-layout .money h3,
-.centered-layout .text-right .main-content .lead,
-.centered-layout .money .main-content .lead,
-.centered-layout .text-right .caption,
-.centered-layout .money .caption, .author
-.centered-layout .text-right, .author
-.centered-layout .money, .text-right .centered-layout h1, .money .centered-layout h1,
-.text-right .centered-layout h2,
-.money .centered-layout h2,
-.text-right .centered-layout h3,
-.money .centered-layout h3,
-.text-right .centered-layout .main-content .lead,
-.money .centered-layout .main-content .lead,
-.text-right .centered-layout .caption,
-.money .centered-layout .caption, .author
-.text-right .centered-layout, .author
-.money .centered-layout {
-  text-align: right; }
-
-.centered-layout #product-form h1,
-.centered-layout #product-form h2,
-.centered-layout #product-form h3,
-.centered-layout #product-form .lead {
-  text-align: left; }
 
 @media (max-width: 767px) {
   .dropdown-menu > li.submenu > .nav > li > a {
