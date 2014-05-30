@@ -1,4 +1,5 @@
 {% if has_sidebar %}
+  {% if template == 'index' %}{% assign template = 'homepage' %}{% endif %}
   {% assign sidebar-template = template | prepend: 'show-sidebar-on-' %}
   {% if settings[sidebar-template] %}
     {% include 'sidebar-content' %}
