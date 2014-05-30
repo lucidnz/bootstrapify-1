@@ -54,6 +54,10 @@ Install Bootstrap and other Bower dependancies:
 Install the SASS gem and the Shopify theme gem:
 
     bundle install
+    
+Or as a nifty one liner:
+
+    npm install && bower install && bundle install
 
 ### Setup the Shopify theme gem
 
