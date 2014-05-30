@@ -10,4 +10,24 @@
 {% include '__has-footer-navbar' %}
 {% include '__has-fixed-footer-navbar' %}
 {% if settings.featured-products-limit contains 'limit' %}{% assign featured_products_limit = nil %}{% else %}{% assign featured_products_limit = settings.featured-products-limit | times: 1 %}{% endif %}
+
+{% assign current_url = false %}
+{% case template %}
+	{% when 'page' %}
+		{% assign current_url = page.url %}
+	{% when 'blog' %}
+		{% assign current_url = blog.url %}
+	{% when 'article' %}
+		{% assign current_url = article.url %}
+	{% when 'collection' %}
+	  {% if collection.url %}
+  		{% assign current_url = collection.url %}
+    {% else %}
+      {% assign current_url = '/collections/all' %}
+    {% endif %}
+	{% when 'product' %}
+		{% assign current_url = product.url %}
+  {% when 'index' %}
+    {% assign current_url = '/' %}
+{% endcase %}
 {% endcapture %}

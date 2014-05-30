@@ -20,7 +20,7 @@
 
 @mixin background-color ( $colour ) {
   background-color: $colour;
-  hr, blockquote, .page-header, .thumbnail, .well {
+  hr, .page-header, .thumbnail, .well {
     border-color: {% if settings.show-borders %} border-color($colour) {% else %} transparent {% endif %};
   }
 }

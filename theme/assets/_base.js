@@ -188,6 +188,14 @@ $(window).load(function(){
   });
 });
 
+/* Show/Hide Cart Note */
+$('#cart-note').on('show.bs.collapse', function(){
+  $('.cart-note-action').hide();
+});
+$('#cart-note').on('shown.bs.collapse', function(){
+  $(this).find('#note').focus();
+});
+
 /* Product Image Switcher */
 $('[data-main-image]').click(function(event) {
   var targetImage = $(this).attr('data-main-image');
@@ -199,48 +207,6 @@ $('[data-main-image]').click(function(event) {
 });
 
 
-/* modal signin forms */
-var modalForm = getID('signinModal');
-modalForm.on('submit', 'form', function(e){
-  // collect form data and validate
-  var form = $(this),
-  inputArray = [],
-  valid = true;
-  form.find('input').each(function(){
-    var input = $(this);
-    if(input.attr('name')){
-      if(input.val() === ''){
-        valid = false;
-        input.closest('.form-group').addClass('has-error').append('<p class="help-block">Field can\'t be blank.</p>');
-      }
-      inputArray.push(input.attr('name') +'='+ input.val());
-    }
-  });
-  var dataString = inputArray.join('&');
-  
-  // POST form data
-  if(valid){
-    $.ajax({
-      type: "POST",
-      url: $(this).attr('action'),
-      data: dataString,
-      success: function(data) {
-        // check for error and refresh page if none found
-        var formAlert = $(data).find('form .alert');
-        if(formAlert.length > 0){
-          form.prepend('<div class="alert alert-danger">'+formAlert.html()+'</div>');
-        } else {
-          window.location.reload();
-        }
-      },
-      error: function(data) {
-        console.log('Form post error:');
-        console.log(data);
-      }
-    });
-  }
-  e.preventDefault();
-});
 
 /* Recover password form */
 var recoverForm = getID('customer-recover-password-form'),

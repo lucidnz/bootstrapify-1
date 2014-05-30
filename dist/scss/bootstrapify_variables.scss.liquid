@@ -249,10 +249,14 @@ $line-height-base:    1.42858;
 /* Type */
 {% if settings.body-text-colour != blank %}
                 $text-muted:    text-muted($text-color) !default;
-         $abbr-border-color:    $border-color !default;
       $headings-small-color:    $text-muted !default;
     $blockquote-small-color:    $text-muted !default;
-   $blockquote-border-color:    $border-color !default;
+               $close-color:    $text-color !default;
+         $close-text-shadow:    0 1px 0 rgba(if(lightness($body-bg) > 60%, lighten($body-bg, 100%), darken($body-bg, 100%)), .25) !default;
+{% endif %}
+{% if settings.body-background-colour != blank %}
+   $blockquote-border-color:    border-color($body-bg) !default;
+         $abbr-border-color:    $border-color !default;
   $page-header-border-color:    $border-color !default;
 {% endif %}
 

@@ -102,8 +102,8 @@
   
   {% unless settings.thumbnail-ratio == blank %}
   <script type="text/javascript">
-    $('.thumbnail-image, .thumbnail.product-image').uniform_thumbnails(uniformThumbnailsOpts);
     $('.product-thumbnail, .collection-thumbnail').orderly({ method: 'children' });
+    $('.thumbnail-image .caption, .thumbnail.product-image .caption').uniform_thumbnails(uniformThumbnailsOpts);
   </script>
   {% endunless %}
 </body>

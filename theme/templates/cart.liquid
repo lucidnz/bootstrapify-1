@@ -43,17 +43,17 @@
       </div>
       <div class="row">
         <div class="form-group col-sm-8 col-md-9">
-          <h3>{% include '__localize' with 'Any comments or special instructions?' %}</h3>
-          <div class="collapse in cart-note">
-            <a href="#" class="btn btn-default" data-toggle="collapse" data-target=".cart-note">Add note</a>
+          <h4>{% include '__localize' with 'Any comments or special instructions?' %}</h4>
+          <div class="collapse in cart-note-action">
+            <a href="#cart-note" class="btn btn-default" data-toggle="collapse">Add note</a>
           </div>
-          <div class="collapse cart-note">
+          <div class="collapse cart-note" id="cart-note">
             <textarea id="note" name="note" class="form-control" rows="3">{{ cart.note }}</textarea>
           </div>
         </div>
     
         <div class="form-actions text-right col-sm-4 col-md-3">
-          <h3><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></h3>
+          <div class="product-price"><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></div>
           <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary btn-block" />
           {% if additional_checkout_buttons %}
           <div class="additional-checkout-buttons">
