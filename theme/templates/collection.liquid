@@ -5,12 +5,12 @@
 
 	{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
 
-	{% unless settings.tag-placement == 'sidebar' %}
+	{% if settings.tag-placement == 'main-content' %}
 	<div class="clearfix">
 		{% include 'tag-buttons' %}
 	</div>
 	<hr>
-	{% endunless %}
+	{% endif %}
 </section>
 
 {% if collection.all_products_count == 0 %}

@@ -37,7 +37,7 @@ $body-text-colour: {% if settings.body-text-colour != blank %}{{ settings.body-t
 $body-link-colour: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}$default-link-colour{% endif %};
 $button-colour: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}$body-link-colour{% endif %};
 $button-text-colour: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}false{% endif %};
-$overlay-hover-background-colour: {% if settings.overlay-title-on-hover-background-color != blank %}{{ settings.overlay-title-on-hover-background-color }}{% else %}false{% endif %};
+$overlay-hover-background-colour: {% if settings.overlay-title-on-hover-background-color != blank %}{{ settings.overlay-title-on-hover-background-color }}{% else %}$body-text-colour{% endif %};
 
 $main-navbar-background-colour: {% if settings.main-navbar-background-colour != blank %}{{ settings.main-navbar-background-colour }}{% else %}transparent{% endif %};
 $main-navbar-link-colour: {% if settings.main-navbar-link-colour != blank %}{{ settings.main-navbar-link-colour }}{% else %}$body-link-colour{% endif %};

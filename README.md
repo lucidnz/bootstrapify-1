@@ -43,7 +43,7 @@ To install Grunt and Bower globally using npm:
     npm install -g grunt-cli
 
 ### Project Setup
-Install Grunts dependancies:
+Install Grunt's dependancies:
 
     npm install
 
@@ -54,6 +54,8 @@ Install Bootstrap and other Bower dependancies:
 Install the SASS gem and the Shopify theme gem:
 
     bundle install
+    
+Or you can do this as a nifty one liner: `npm install && bower install && bundle install`
 
 ### Setup the Shopify theme gem
 

@@ -199,9 +199,19 @@
   
   <table>
     <tr>
-      <th><label for="round-product-images">Round product images</label></th>
+      <th><label for="round-thumbnail-images">Round thumbnail images</label></th>
       <td>
-        <input type="checkbox" name="round-product-images" id="round-product-images" value="1" /> Yes
+        <input type="checkbox" name="round-thumbnail-images" id="round-thumbnail-images" value="1" /> Yes
+        <small>Only use this if your images are cropped to square dimensions</small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="round-thumbnail-images-on-homepage">Round thumbnail images on homepage</label></th>
+      <td>
+        <input type="checkbox" name="round-thumbnail-images-on-homepage" id="round-thumbnail-images-on-homepage" value="1" /> Yes
         <small>Only use this if your images are cropped to square dimensions</small>
       </td>
     </tr>
@@ -543,6 +553,16 @@
         <small><p>If you wish to display testimonials on the homepage, you can create a blog for this.</p>
 <p>The title of the blog article needs to be the name of the person and the content of the article is the testimonial itself.</p>
 <p>You can place an optional image in the excerpt to represent their photo.</p></small>
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <th><label for="testimonials-blog-post-limit">Testimonials blog post limit</label></th>
+      <td>
+        <input type="text" name="testimonials-blog-post-limit" id="testimonials-blog-post-limit" class="text" value="4" />
+        <small>Maximum number of testimonial posts to show on the homepage.</small>
       </td>
     </tr>
   </table>
@@ -1408,7 +1428,8 @@
     <tr>
       <th><label for="tag-placement">Tag placement</label></th>
       <td>
-           <div><input type="radio" name="tag-placement" id="tag-placement" value="sidebar" checked="checked" /> Sidebar</div>
+           <div><input type="radio" name="tag-placement" id="tag-placement" value="do-not-show" checked="checked" /> Do not show</div>
+           <div><input type="radio" name="tag-placement" id="tag-placement" value="sidebar" /> Sidebar</div>
            <div><input type="radio" name="tag-placement" id="tag-placement" value="main-content" /> Main content</div>
            
       </td>
@@ -1444,16 +1465,7 @@
     <tr>
       <th><label for="show-sidebar">Show sidebar</label></th>
       <td>
-        <input type="checkbox" name="show-sidebar" id="show-sidebar" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="show-sidebar-on-homepage">Show sidebar on homepage</label></th>
-      <td>
-        <input type="checkbox" name="show-sidebar-on-homepage" id="show-sidebar-on-homepage" value="1" /> Yes
+        <input type="checkbox" name="show-sidebar-on-homepage" id="show-sidebar-on-homepage" value="1" /> on Homepage<br /><input type="checkbox" name="show-sidebar-on-collection" id="show-sidebar-on-collection" value="1" /> on Collection<br /><input type="checkbox" name="show-sidebar-on-product" id="show-sidebar-on-product" value="1" /> on Product<br /><input type="checkbox" name="show-sidebar-on-cart" id="show-sidebar-on-cart" value="1" /> on Cart<br /><input type="checkbox" name="show-sidebar-on-page" id="show-sidebar-on-page" value="1" /> on Page<br /><input type="checkbox" name="show-sidebar-on-blog" id="show-sidebar-on-blog" value="1" /> on Blog<br /><input type="checkbox" name="show-sidebar-on-article" id="show-sidebar-on-article" value="1" /> on Article<br /><input type="checkbox" name="show-sidebar-on-search" id="show-sidebar-on-search" value="1" /> on Search<br /><input type="checkbox" name="show-sidebar-on-404" id="show-sidebar-on-404" value="1" /> on 404<br />
       </td>
     </tr>
   </table>
@@ -1883,7 +1895,7 @@
     <tr>
       <th><label for="show-currency-with-prices">Show currency with prices</label></th>
       <td>
-        <input type="checkbox" name="show-currency-with-prices" id="show-currency-with-prices" value="1" /> Yes
+        <input type="checkbox" name="show-currency-with-prices-with-currency" id="show-currency-with-prices-with-currency" value="1" /> With currency<br /><input type="checkbox" name="show-currency-with-prices-without-currency" id="show-currency-with-prices-without-currency" value="1" /> Without currency<br />
         <small><p>E.g., <strong>$123.45 NZD</strong></p></small>
       </td>
     </tr>

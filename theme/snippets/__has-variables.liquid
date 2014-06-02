@@ -9,5 +9,7 @@
 {% include '__has-footer' %}
 {% include '__has-footer-navbar' %}
 {% include '__has-fixed-footer-navbar' %}
+{% assign truncate_words = settings.truncate-words | plus: 0 %}
+{% assign testimonials_blog_post_limit = settings.testimonials-blog-post-limit | plus: 0 %}
 {% if settings.featured-products-limit contains 'limit' %}{% assign featured_products_limit = nil %}{% else %}{% assign featured_products_limit = settings.featured-products-limit | times: 1 %}{% endif %}
 {% endcapture %}
