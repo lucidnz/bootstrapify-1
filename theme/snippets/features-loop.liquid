@@ -1,10 +1,15 @@
-{% assign span = 12 | divided_by: cols %}
+{% assign span = cols | modulo: 12 %}
+{% assign span = 12 | divided_by: span %}
 {% if features-loop == 'linklist' %}
 {% assign object = l.object %}
 {% capture excerpt %}{% include '__excerpt' with object.content %}{% endcapture %}
 {% else %}
 {% assign object = l %}
+{% if object.excerpt == blank %}
+{% capture excerpt %}{% include '__excerpt' with object.content %}{% endcapture %}
+{% else %}
 {% assign excerpt = object.excerpt %}
+{% endif %}
 {% assign src = null %}
 {% if excerpt contains "<img" %}
     {% assign src = excerpt | split: 'src="' %}
@@ -16,7 +21,7 @@
 {% if src != null %}
 <a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}"><img src="{{ src }}" alt="{{ object.title }}"></a>
 {% endif %}
-<h4 class="text-left media-heading"><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h4>
+<h3 class="media-heading"><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h3>
 {% if features-loop == 'blog' %}<small>{% include 'article-meta' with object %}</small>{% endif %}
 <p>{% if excerpt == blank and shop.url contains 'myshopify' and settings.development-mode %}This will show an excerpt of the content (if one exists). To hide this placeholder text, disable development mode in Settings > Advanced.{% elsif src == null %}{{ excerpt | strip_html }}{% endif %}</p>
 {% endcapture %}
