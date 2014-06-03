@@ -37,8 +37,9 @@
     
 			{% if blog.previous_article or blog.next_article %}
 			<ul class="pager">
-				{% if blog.previous_article %}<li>{{ '&laquo; Previous article' | link_to: blog.previous_article }}</li>{% endif %}
-				{% if blog.next_article %}<li>{{ 'Next article &raquo;' | link_to: blog.next_article }}</li>{% endif %}
+				{% if blog.previous_article %}<li>{{ '&laquo; Previous' | link_to: blog.previous_article }}</li>{% endif %}
+        <li>{{ blog.title | link_to: blog.url }}</li>
+				{% if blog.next_article %}<li>{{ 'Next &raquo;' | link_to: blog.next_article }}</li>{% endif %}
 			</ul>
 			{% endif %}
 			<hr>

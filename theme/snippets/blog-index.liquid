@@ -37,12 +37,12 @@
 		{% if has_excerpt %}
 		<footer class="col-xs-12">
 			<ul class="pager">
-				<li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'Read more' %}&nbsp;&rarr;</a></li>
+				<li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'View' %}&nbsp;&rarr;</a></li>
 			</ul>
 		</footer>
 		{% endif %}
 	</article>
-	<hr>
+	{% unless forloop.last %}<hr>{% endunless %}
 	{% endfor %}
 
 	{% include 'pagination' %}
