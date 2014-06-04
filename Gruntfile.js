@@ -48,7 +48,7 @@ module.exports = function(grunt) {
     },
     concat: {
       dist: {
-        src: ['dist/js/jquery.bootstrapify-dropdowns.js', 'dist/js/base.js', 'dist/js/images.js', 'dist/js/facebook-gallery.js', 'dist/js/recover-password.js'],
+        src: ['dist/js/base.js', 'dist/js/images.js', 'dist/js/facebook-gallery.js', 'dist/js/recover-password.js'],
         dest: 'theme/assets/_base.js'
       },
       styles: {

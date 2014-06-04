@@ -33,21 +33,9 @@ $(function() {
       return true;
     });
   }
-<<<<<<< HEAD
-  
-  $('.navbar .dropdown').bootstrapifyDropdown();
-  
-  $('.localize').tooltip();
-  $('.tip').popover({
-    trigger: 'click',
-    placement: 'left',
-    html: true
-  });
   
   // resize sticky footer
   stickyFooterHeight();
-=======
->>>>>>> submenus
 });
 
 /* Show/Hide Cart Note */
