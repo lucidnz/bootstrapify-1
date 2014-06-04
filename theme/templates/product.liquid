@@ -22,15 +22,14 @@
 			<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
 				<div class="row">
 					<div class="col-xs-12 col-sm-12">
-						<div class="thumbnail">
+						<div class="thumbnail product-main-image">
 							{{ image }}
-							<!--             <div class="loader"></div> -->
 						</div>
 					</div>
 					{% if product.images.size > 1 %}
 					{% for image in product.images %}
 					<div class="col-xs-6 col-sm-4">
-						<a href="#" class="thumbnail product-image" data-main-image="{{ image.src | product_img_url: 'grande' }}">
+						<a href="#" class="thumbnail product-main-thumb" data-main-image="{{ image.src | product_img_url: 'grande' }}">
 							{% if settings.round-thumbnail-images %}
 							{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
 							{% else %}

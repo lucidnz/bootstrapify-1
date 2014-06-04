@@ -110,20 +110,6 @@
 * Base JS file
 */
 
-function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
-  return jQuery(document.getElementById(id));
-}
-
-var preloadProductImages = function(){
-  var $thumbs = $('[data-main-image]');
-  if($thumbs.length > 0){
-    $thumbs.each(function(){
-      var image = new Image();
-      image.src = $(this).attr('data-main-image');
-    });
-  }
-};
-
 var stickyFooterHeight = function(){
   var footerHeight = $('#footer-content').height(),
     margin = parseInt($('#navbar-top').css('margin-bottom').replace('px', ''));
@@ -169,6 +155,24 @@ $(function() {
   stickyFooterHeight();
 });
 
+/* Show/Hide Cart Note */
+$('#cart-note').on('show.bs.collapse', function(){
+  $('.cart-note-action').hide();
+});
+$('#cart-note').on('shown.bs.collapse', function(){
+  $(this).find('#note').focus();
+});
+
+var preloadProductImages = function(){
+  var $thumbs = $('[data-main-image]');
+  if($thumbs.length > 0){
+    $thumbs.each(function(){
+      var image = new Image();
+      image.src = $(this).attr('data-main-image');
+    });
+  }
+};
+
 $(window).load(function(){
   preloadProductImages();
   
@@ -188,57 +192,15 @@ $(window).load(function(){
   });
 });
 
-/* Show/Hide Cart Note */
-$('#cart-note').on('show.bs.collapse', function(){
-  $('.cart-note-action').hide();
-});
-$('#cart-note').on('shown.bs.collapse', function(){
-  $(this).find('#note').focus();
-});
-
 /* Product Image Switcher */
 $('[data-main-image]').click(function(event) {
   var targetImage = $(this).attr('data-main-image');
-  var $mainImage = getID('main');
+  var $mainImage = $('#main');
   if($mainImage.attr('src') !== targetImage){
     $mainImage.hide().attr('src', targetImage).fadeIn();
   }
   event.preventDefault();
 });
-
-
-
-/* Recover password form */
-var recoverForm = getID('customer-recover-password-form'),
-loginForm = getID('customer-login-form');
-
-function showRecoverPasswordForm() {
-  recoverForm.parent().show();
-  loginForm.parent().hide();
-}
-
-function hideRecoverPasswordForm() {
-  recoverForm.parent().hide();
-  loginForm.parent().show();
-}
-
-$('.hide-recover-password-form').on('click', function(e){
-  hideRecoverPasswordForm();
-  e.preventDefault();
-});
-
-$('.show-recover-password-form').on('click', function(e){
-  showRecoverPasswordForm();
-  e.preventDefault();
-});
-
-// dont show links if we dont have both includes present
-if(recoverForm === null){ getID('forgotten-password-link').style.display='none'; }
-if(loginForm === null){ getID('recover-password-link').style.display='none'; }
-
-hideRecoverPasswordForm();
-if (window.location.hash === '#recover') { showRecoverPasswordForm(); }
-
 /* Facebook gallery via https://gist.github.com/alexdunae/1239554 */
 
 (function(){
@@ -272,3 +234,38 @@ if (window.location.hash === '#recover') { showRecoverPasswordForm(); }
     });
   }
 }());
+/* Recover password form */
+
+function getID(id){ // http://jsperf.com/getelementbyid-vs-jquery-id/44
+  return jQuery(document.getElementById(id));
+}
+
+var recoverForm = getID('customer-recover-password-form'),
+loginForm = getID('customer-login-form');
+
+function showRecoverPasswordForm() {
+  recoverForm.parent().show();
+  loginForm.parent().hide();
+}
+
+function hideRecoverPasswordForm() {
+  recoverForm.parent().hide();
+  loginForm.parent().show();
+}
+
+$('.hide-recover-password-form').on('click', function(e){
+  hideRecoverPasswordForm();
+  e.preventDefault();
+});
+
+$('.show-recover-password-form').on('click', function(e){
+  showRecoverPasswordForm();
+  e.preventDefault();
+});
+
+// dont show links if we dont have both includes present
+if(recoverForm === null){ getID('forgotten-password-link').style.display='none'; }
+if(loginForm === null){ getID('recover-password-link').style.display='none'; }
+
+hideRecoverPasswordForm();
+if (window.location.hash === '#recover') { showRecoverPasswordForm(); }

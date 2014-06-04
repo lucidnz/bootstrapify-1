@@ -11,6 +11,12 @@ body > #wrap {height: auto; min-height: 100%;}
 }
 
 /* Body */
+.has-js {
+  .thumbnail-image, .product-main-thumb {
+    opacity: 0;
+  }
+}
+
 body {
   &.has-top-navbar.has-fixed-top-navbar {
     padding-top: $navbar-height + $navbar-margin-bottom;
@@ -49,7 +55,8 @@ body {
 		}
 	}
 	&.has-overlay-title-on-hover {
-		.thumbnail {
+	  $overlay-hover-background-colour: {% if settings.overlay-title-on-hover-background-color != blank %} {{ settings.overlay-title-on-hover-background-color }} {% else %} $text-color {% endif %};
+		.product-thumbnail {
 			position: relative;
 			.caption {
 				position: absolute;
@@ -57,6 +64,8 @@ body {
 				left: 0;
 				width: 100%;
 				height: 100%;
+				background-color: rgba($overlay-hover-background-colour, 0.8);
+				color: lighten($overlay-hover-background-colour, 80%);
 				opacity: 0;
 				-webkit-transition: all 200ms ease;
 				-moz-transition: all 200ms ease;
@@ -65,6 +74,10 @@ body {
 				transition: all 200ms ease;
 				&:hover {
 					opacity: 1;
+				}
+				h4 {
+					color: lighten($overlay-hover-background-colour, 100%);
+					height: auto;
 				}
 			}
 		}
@@ -168,6 +181,7 @@ header .article-meta{
 /* Products */
 .product-thumbnail, .collection-thumbnail {
   @extend .thumbnail;
+  margin-bottom: 3em;
   .caption {
     display: block;
     color: $brand-primary;
@@ -361,3 +375,39 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
 }
 
 {% unless settings.custom-css == blank %}{{ settings.custom-css }}{% endunless %}
+
+/* Pass screen size to js: http://adactio.com/journal/5429/ */
+body:after{
+  // newer chrome is a lame about not giving us content of display:none element in js
+  // so hide it this way
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  display: block;
+  line-height: 0;
+  margin-top: -1em;
+}
+
+@media (max-width: $screen-xs-max) {
+  body:after{
+    content: 'xs';
+  }
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  body:after{
+    content: 'sm';
+  }
+}
+
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+  body:after{
+    content: 'md';
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  body:after{
+    content: 'lg';
+  }
+}
