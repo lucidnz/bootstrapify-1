@@ -29,14 +29,18 @@
 					{% if product.images.size > 1 %}
 					{% for image in product.images %}
 					<div class="col-xs-6 col-sm-4">
-						<a href="#" class="thumbnail product-main-thumb" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-							{% if settings.round-thumbnail-images %}
-							{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
-							{% else %}
-							{{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
-							{% endif %}
-						</a>
-					</div>
+            <div class="thumbnail">
+              <div class="thumbnail-image product-main-thumb">
+                <a href="#" data-main-image="{{ image.src | product_img_url: 'grande' }}">
+                  {% if settings.round-product-images %}
+                  {{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
+                  {% else %}
+                  {{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
+                  {% endif %}
+                </a>
+              </div>
+            </div>
+          </div>
 					{% endfor %}
 					{% endif %}
 				</div>
@@ -55,7 +59,6 @@
 				</div>
 				{% endif %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
-
 				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
     
 				{% include 'product-specs' %}

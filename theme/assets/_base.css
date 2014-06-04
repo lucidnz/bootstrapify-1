@@ -47,7 +47,9 @@ abbr[title] {
   border-bottom: 1px dotted; }
 
 b,
-strong {
+strong,
+.sidebar .active a,
+.sidebar .active {
   font-weight: bold; }
 
 dfn {
@@ -1038,7 +1040,7 @@ p {
 .lead {
   margin-bottom: 20px;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 200;
   line-height: 1.4; }
   @media (min-width: 768px) {
     .lead {
@@ -2497,9 +2499,6 @@ select[multiple].input-lg,
   background-color: #f2dede; }
 .has-error .form-control-feedback {
   color: #a94442; }
-
-.has-feedback label.sr-only ~ .form-control-feedback {
-  top: 0; }
 
 .form-control-static {
   margin-bottom: 0; }
@@ -4699,7 +4698,7 @@ button.close {
     width: 900px; } }
 .tooltip {
   position: absolute;
-  z-index: 1070;
+  z-index: 1030;
   display: block;
   visibility: visible;
   font-size: 12px;
@@ -4787,7 +4786,7 @@ button.close {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1060;
+  z-index: 1010;
   display: none;
   max-width: 276px;
   padding: 1px;
@@ -4842,7 +4841,7 @@ button.close {
   margin-left: -11px;
   border-bottom-width: 0;
   border-top-color: #999999;
-  border-top-color: rgba(0, 0, 0, 0.25);
+  border-top-color: rgba(0, 0, 0, 0.05);
   bottom: -11px; }
   .popover.top > .arrow:after {
     content: " ";
@@ -4856,7 +4855,7 @@ button.close {
   margin-top: -11px;
   border-left-width: 0;
   border-right-color: #999999;
-  border-right-color: rgba(0, 0, 0, 0.25); }
+  border-right-color: rgba(0, 0, 0, 0.05); }
   .popover.right > .arrow:after {
     content: " ";
     left: 1px;
@@ -4868,7 +4867,7 @@ button.close {
   margin-left: -11px;
   border-top-width: 0;
   border-bottom-color: #999999;
-  border-bottom-color: rgba(0, 0, 0, 0.25);
+  border-bottom-color: rgba(0, 0, 0, 0.05);
   top: -11px; }
   .popover.bottom > .arrow:after {
     content: " ";
@@ -4882,7 +4881,7 @@ button.close {
   margin-top: -11px;
   border-right-width: 0;
   border-left-color: #999999;
-  border-left-color: rgba(0, 0, 0, 0.25); }
+  border-left-color: rgba(0, 0, 0, 0.05); }
   .popover.left > .arrow:after {
     content: " ";
     right: 1px;
@@ -4974,17 +4973,16 @@ button.close {
     display: inline-block; }
   .carousel-control .icon-prev,
   .carousel-control .glyphicon-chevron-left {
-    left: 50%;
-    margin-left: -10px; }
+    left: 50%; }
   .carousel-control .icon-next,
   .carousel-control .glyphicon-chevron-right {
-    right: 50%;
-    margin-right: -10px; }
+    right: 50%; }
   .carousel-control .icon-prev,
   .carousel-control .icon-next {
     width: 20px;
     height: 20px;
     margin-top: -10px;
+    margin-left: -10px;
     font-family: serif; }
   .carousel-control .icon-prev:before {
     content: '\2039'; }
@@ -5040,13 +5038,8 @@ button.close {
     width: 30px;
     height: 30px;
     margin-top: -15px;
+    margin-left: -15px;
     font-size: 30px; }
-  .carousel-control .glyphicon-chevron-left,
-  .carousel-control .icon-prev {
-    margin-left: -15px; }
-  .carousel-control .glyphicon-chevron-right,
-  .carousel-control .icon-next {
-    margin-right: -15px; }
 
   .carousel-caption {
     left: 20%;
@@ -5283,6 +5276,9 @@ section {
   min-height: 50px;
   clear: both; }
 
+.nav-pills a {
+  white-space: nowrap; }
+
 .text-muted, .article-meta, .article-meta a {
   opacity: .5; }
 
@@ -5383,9 +5379,6 @@ body {
   margin-bottom: 30px; }
   .main-content .tags-list {
     margin-bottom: 30px; }
-
-aside .page-header:first-child {
-  margin-top: 0; }
 
 a.icon:hover {
   text-decoration: none; }
@@ -5545,6 +5538,10 @@ a.icon:hover {
   padding-top: 12px;
   padding-bottom: 12px; }
 
+.list-indented ul,
+.list-indented ol {
+  margin-left: 1em; }
+
 .list-nav li {
   margin-top: 1em; }
 .list-nav li:first-child {
@@ -5692,6 +5689,34 @@ body:after {
   line-height: 0;
   margin-top: -1em; }
 
+/* START mega dropdowns */
+/*!
+* Based on Yamm!3, http://geedmo.github.com/yamm3
+*/
+.megamenu .nav,
+.megamenu .collapse,
+.megamenu .dropup,
+.megamenu .dropdown {
+  position: static; }
+
+.megamenu .container, .megamenu body.has-site-wide-thumbnail-container .section-wrap, body.has-site-wide-thumbnail-container .megamenu .section-wrap {
+  position: relative; }
+
+.megamenu .dropdown-menu {
+  left: auto; }
+
+.megamenu .nav.navbar-right .dropdown-menu {
+  left: auto;
+  right: 0; }
+
+.megamenu .megamenu-content {
+  padding: 20px 30px; }
+
+.megamenu .dropdown.megamenu-fw .dropdown-menu {
+  left: 0;
+  right: 0; }
+
+/* END mega dropdowns */
 @media (max-width: 767px) {
   body:after {
     content: 'xs'; } }
