@@ -244,17 +244,24 @@ $line-height-base:    1.42858;
 /* Navbar */
 {% if settings.body-background-colour != blank or settings.navbar-background-colour != blank %}
                    $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} desaturate(darken($body-bg, 1.5%), 15%) {% endif %} !default;
- {% if settings.navbar-background-colour != blank or settings.body-text-colour != blank %}
+                   
+  {% if settings.navbar-background-colour != blank or settings.body-text-colour != blank %}
                 $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
                $navbar-default-border:    darken($navbar-default-bg, 5%) !default;
        $navbar-default-link-active-bg:    darken($navbar-default-bg, 5%) !default;
- {% endif %}
+            // Navbar toggle
+      $navbar-default-toggle-hover-bg:    darken($navbar-default-bg, 5%) !default;
+   $navbar-default-toggle-icon-bar-bg:    text-muted($navbar-default-color) !default;
+  $navbar-default-toggle-border-color:    darken($navbar-default-bg, 5%) !default;
+  {% endif %}
+
   {% if settings.navbar-link-colour != blank or settings.body-link-colour != blank %}
            $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
      $navbar-default-link-hover-color:    hover-colour($navbar-default-link-color) !default;
     $navbar-default-link-active-color:    hover-colour($navbar-default-link-color) !default;
   $navbar-default-link-disabled-color:    lighten($navbar-default-link-color, 5%) !default;
   {% endif %}
+  
 {% endif %}
 
 
