@@ -1,8 +1,8 @@
 <div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
 {% if collections-list == 'featured' %}
-  {% if settings.featured-collections-limit contains 'row' %}{% assign limit = settings.featured-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: settings.collections-per-row %}{% else %}{% assign limit = 50 %}{% endif %}
+  {% if settings.homepage-collections-limit contains 'row' %}{% assign limit = settings.homepage-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: settings.collections-per-row %}{% else %}{% assign limit = 50 %}{% endif %}
   {% assign collection_count = 1 %}
-  {% for l in linklists[settings.featured-collections-linklist].links %}
+  {% for l in linklists[settings.homepage-collections-linklist].links %}
     {% assign collection_object = l.object %}
     {% if collection_object.all_products_count >= collection_minimum_products and collection_count <= limit and collection_object.all_products_count > 0 %}
     {% include '_collection' with collection_object %}

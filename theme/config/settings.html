@@ -419,6 +419,59 @@
       
         <table>
           <tr>
+            <th><label for="homepage-content">Homepage content</label></th>
+            <td>
+              <select class="page" name="homepage-content" selected="frontpage" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="homepage-products-collection">Products collection</label></th>
+            <td>
+              <select class="collection" name="homepage-products-collection" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="homepage-products-limit">Products limit</label></th>
+            <td>
+              <select name="homepage-products-limit" id="homepage-products-limit">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="12">12</option>
+          <option value="unlimited">Unlimited</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="homepage-collections-linklist">Collections linklist</label></th>
+            <td>
+              <select class="linklist" name="homepage-collections-linklist" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="homepage-collections-limit">Collections limit</label></th>
+            <td>
+              <select name="homepage-collections-limit" id="homepage-collections-limit">
+          <option value="1-row" selected="selected">1 row</option>
+          <option value="2-rows">2 rows</option>
+          <option value="3-rows">3 rows</option>
+          <option value="unlimited">Unlimited</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="homepage-blog">Blog</label></th>
             <td>
               <select class="blog" name="homepage-blog" />
@@ -437,49 +490,6 @@
         </table>
         <table>
           <tr>
-            <th><label for="featured-collections-limit">Featured collections limit</label></th>
-            <td>
-                 <div><input type="radio" name="featured-collections-limit" id="featured-collections-limit" value="1-row" checked="checked" /> 1 row</div>
-           <div><input type="radio" name="featured-collections-limit" id="featured-collections-limit" value="2-rows" /> 2 rows</div>
-           <div><input type="radio" name="featured-collections-limit" id="featured-collections-limit" value="3-rows" /> 3 rows</div>
-           <div><input type="radio" name="featured-collections-limit" id="featured-collections-limit" value="unlimited" /> Unlimited</div>
-           
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="featured-collections-linklist">Featured collections linklist</label></th>
-            <td>
-              <select class="linklist" name="featured-collections-linklist" />
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="homepage-featured-products-collection">Featured products collection</label></th>
-            <td>
-              <select class="collection" name="homepage-featured-products-collection" />
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="featured-products-limit">Featured products limit</label></th>
-            <td>
-                 <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="1" checked="checked" /> 1</div>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="2" /> 2</div>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="3" /> 3</div>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="4" /> 4</div>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="6" /> 6</div>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="12" /> 12</div>
-           <div><input type="radio" name="featured-products-limit" id="featured-products-limit" value="unlimited" /> Unlimited</div>
-           
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
             <th><label for="features-linklist">Features linklist</label></th>
             <td>
               <select class="linklist" name="features-linklist" />
@@ -489,18 +499,10 @@
         </table>
         <table>
           <tr>
-            <th><label for="homepage">Homepage</label></th>
-            <td>
-              <select class="page" name="homepage" selected="frontpage" />
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="instagram-feed">Show instagram feed</label></th>
+            <th><label for="instagram-feed">Instagram feed</label></th>
             <td>
               <input type="checkbox" name="instagram-feed" id="instagram-feed" value="1" /> Yes
-              <small>Show an Instagram feed on your home page.</small>
+              <small>Show an Instagram feed on your home page. You can set the feeds <a href="#instagram-default-hashtag">hashtag in the social settings</a>.</small>
             </td>
           </tr>
         </table>
