@@ -285,23 +285,10 @@ header .article-meta{
   }
 }
 
-/* Sidebar */
-{% if settings.font-nav-secondary-custom != blank %}
-  $font-family-secondary:   '{{ settings.font-nav-secondary-custom | remove: "'" | remove: '"' }}'{% if settings.font-nav-secondary != blank %},{{ settings.font-nav-secondary }}{% endif %} !default;
-{% elsif settings.font-nav-secondary != blank %}
-  $font-family-secondary:   {{ settings.font-nav-secondary }} !default;
-{% else %}
-  $font-family-secondary:   false;
-{% endif %}
-$font-size-secondary:         {% if settings.font-nav-secondary-size != blank %} {{ settings.font-nav-secondary-size }} {% else %} false {% endif %};
-$font-weight-secondary:       {% if settings.font-nav-secondary-weight != blank %} {{ settings.font-nav-secondary-weight }} {% else %} false {% endif %};
-$font-style-secondary:        {% if settings.font-nav-secondary-style == 'italic' %} italic {% else %} normal {% endif %};
-$text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowercase' or settings.font-nav-secondary-case == 'uppercase' %} {{ settings.font-nav-secondary-case }} {% elsif settings.font-nav-secondary-case == 'title-case'%} capitalize {% else %} none {% endif %};
-  
+/* Sidebar */  
 .sidebar {
   padding-top: $padding-base-horizontal;
   padding-bottom: $padding-base-horizontal;
-  @include font-styles($font-family-secondary, $font-size-secondary, $font-weight-secondary, $font-style-secondary, $text-transform-secondary);
   {% if settings.sidebar-background-colour != blank %} @include background-color({{ settings.sidebar-background-colour }}); {% endif %}
   {% if settings.sidebar-heading-colour != blank %} @include heading-color({{ settings.sidebar-heading-colour }}); {% endif %}
   {% if settings.sidebar-link-colour != blank %} @include link-color({{ settings.sidebar-link-colour }}); {% endif %}
@@ -331,7 +318,6 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
   > .container {
     padding-top: $grid-gutter-width;
     padding-bottom: $grid-gutter-width;
-    @include font-styles($font-family-secondary, $font-size-secondary, $font-weight-secondary, $font-style-secondary, $text-transform-secondary);
     {% if settings.footer-background-colour != blank %} @include background-color({{ settings.footer-background-colour }}); {% endif %}
     {% if settings.footer-heading-colour != blank %} @include heading-color({{ settings.footer-heading-colour }}); {% endif %}
     {% if settings.footer-link-colour != blank %} @include link-color({{ settings.footer-link-colour }}); {% endif %}
