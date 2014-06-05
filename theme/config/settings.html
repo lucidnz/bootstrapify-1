@@ -28,10 +28,11 @@
           <tr>
             <th><label for="logo-placement">Logo placement</label></th>
             <td>
-                 <div><input type="radio" name="logo-placement" id="logo-placement" value="top-navbar" checked="checked" /> Top navbar</div>
-           <div><input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar</div>
-           <div><input type="radio" name="logo-placement" id="logo-placement" value="above-main-content" /> Above main content</div>
-           
+              <select name="logo-placement" id="logo-placement">
+          <option value="top-navbar" selected="selected">Top navbar</option>
+          <option value="sidebar">Sidebar</option>
+          <option value="above-main-content">Above main content</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -267,12 +268,13 @@
           <tr>
             <th><label for="site-background-image-repeat">Site background image repeat</label></th>
             <td>
-                 <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat" checked="checked" /> repeat</div>
-           <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat-x" /> repeat-x</div>
-           <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="repeat-y" /> repeat-y</div>
-           <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="no-repeat" /> no-repeat</div>
-           <div><input type="radio" name="site-background-image-repeat" id="site-background-image-repeat" value="inherit" /> inherit</div>
-           
+              <select name="site-background-image-repeat" id="site-background-image-repeat">
+          <option value="repeat" selected="selected">repeat</option>
+          <option value="repeat-x">repeat-x</option>
+          <option value="repeat-y">repeat-y</option>
+          <option value="no-repeat">no-repeat</option>
+          <option value="inherit">inherit</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -307,6 +309,75 @@
         </table>
         <table>
           <tr>
+            <th><label for="thumbnails-per-row-mobile">Thumbnails per row, mobile</label></th>
+            <td>
+              <select name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="12">12</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="thumbnails-per-row-tablet">Thumbnails per row, tablet</label></th>
+            <td>
+              <select name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="12">12</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="thumbnails-per-row-laptop">Thumbnails per row, laptop</label></th>
+            <td>
+              <select name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="12">12</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="thumbnails-per-row-desktop">Thumbnails per row, desktop</label></th>
+            <td>
+              <select name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="12">12</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="use-adaptive-thumbnails-per-row">Use “adaptive” thumbnails per row</label></th>
+            <td>
+              <input type="checkbox" name="use-adaptive-thumbnails-per-row" id="use-adaptive-thumbnails-per-row" value="1" /> Yes
+              <small>The number of thumbnails per row will adapt for best fit. This is particularly useful if you have a small number of products.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="default-pagination">Default pagination</label></th>
             <td>
               <input type="text" name="default-pagination" id="default-pagination" class="text" value="24" />
@@ -318,9 +389,10 @@
           <tr>
             <th><label for="product-page-image-placement">Product page image placement</label></th>
             <td>
-                 <div><input type="radio" name="product-page-image-placement" id="product-page-image-placement" value="left" checked="checked" /> Left</div>
-           <div><input type="radio" name="product-page-image-placement" id="product-page-image-placement" value="right" /> Right</div>
-           
+              <select name="product-page-image-placement" id="product-page-image-placement">
+          <option value="left" selected="selected">Left</option>
+          <option value="right">Right</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -340,71 +412,6 @@
             </td>
           </tr>
         </table>
-        <table>
-          <tr>
-            <th><label for="thumbnails-per-row-desktop">Thumbnails per row, desktop</label></th>
-            <td>
-                 <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="1" checked="checked" /> 1</div>
-           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="2" /> 2</div>
-           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="3" /> 3</div>
-           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="4" /> 4</div>
-           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="6" /> 6</div>
-           <div><input type="radio" name="thumbnails-per-row-desktop" id="thumbnails-per-row-desktop" value="12" /> 12</div>
-           
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="thumbnails-per-row-laptop">Thumbnails per row, laptop</label></th>
-            <td>
-                 <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="1" checked="checked" /> 1</div>
-           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="2" /> 2</div>
-           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="3" /> 3</div>
-           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="4" /> 4</div>
-           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="6" /> 6</div>
-           <div><input type="radio" name="thumbnails-per-row-laptop" id="thumbnails-per-row-laptop" value="12" /> 12</div>
-           
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="thumbnails-per-row-mobile">Thumbnails per row, mobile</label></th>
-            <td>
-                 <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="1" checked="checked" /> 1</div>
-           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="2" /> 2</div>
-           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="3" /> 3</div>
-           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="4" /> 4</div>
-           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="6" /> 6</div>
-           <div><input type="radio" name="thumbnails-per-row-mobile" id="thumbnails-per-row-mobile" value="12" /> 12</div>
-           
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="thumbnails-per-row-tablet">Thumbnails per row, tablet</label></th>
-            <td>
-                 <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="1" checked="checked" /> 1</div>
-           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="2" /> 2</div>
-           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="3" /> 3</div>
-           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="4" /> 4</div>
-           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="6" /> 6</div>
-           <div><input type="radio" name="thumbnails-per-row-tablet" id="thumbnails-per-row-tablet" value="12" /> 12</div>
-           
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="use-adaptive-thumbnails-per-row">Use “adaptive” thumbnails per row</label></th>
-            <td>
-              <input type="checkbox" name="use-adaptive-thumbnails-per-row" id="use-adaptive-thumbnails-per-row" value="1" /> Yes
-              <small>The number of thumbnails per row will adapt for best fit. This is particularly useful if you have a small number of products.</small>
-            </td>
-          </tr>
-        </table>
       </fieldset>
       <fieldset>
       	
@@ -412,9 +419,9 @@
       
         <table>
           <tr>
-            <th><label for="blog-for-facebook-album">Blog for Facebook album</label></th>
+            <th><label for="facebook-album-blog">Facebook album blog</label></th>
             <td>
-              <select class="blog" name="blog-for-facebook-album" />
+              <select class="blog" name="facebook-album-blog" />
               <small>Choose a blog that is linked to Facebook albums.</small>
             </td>
           </tr>

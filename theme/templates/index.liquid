@@ -31,7 +31,7 @@
 {% include 'index-testimonials' %}
 
 {% assign album_set = false %}
-{% for fb in blogs[settings.blog-for-facebook-album].articles %}
+{% for fb in blogs[settings.facebook-album-blog].articles %}
   {% if fb.metafields.social-feed.facebook-album != blank and album_set != true %}
     {% include 'social-feed-facebook' with fb %}
     {% assign album_set = true %}
