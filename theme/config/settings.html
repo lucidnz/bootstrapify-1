@@ -541,6 +541,28 @@
         </table>
         <table>
           <tr>
+            <th><label for="slider-width">Slider width</label></th>
+            <td>
+              <select name="slider-width" id="slider-width">
+          <option value="window-width" selected="selected">Window width</option>
+          <option value="site-width">Site width</option>
+          <option value="main-content-width">Main content width</option>
+        </select>
+              <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="auto-play-slider">Auto-play slider</label></th>
+            <td>
+              <input type="checkbox" name="auto-play-slider" id="auto-play-slider" value="1" /> Yes
+              <small>Have the slider start sliding automatically when the page is loaded.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="slide-1">Slide 1</label></th>
             <td>
               <table class="standard-table">
@@ -846,18 +868,6 @@
     </tr>
   </tbody>
 </table>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="slider-width">Slider width</label></th>
-            <td>
-                 <div><input type="radio" name="slider-width" id="slider-width" value="window-width" checked="checked" /> Window width</div>
-           <div><input type="radio" name="slider-width" id="slider-width" value="site-width" /> Site width</div>
-           <div><input type="radio" name="slider-width" id="slider-width" value="main-content-width" /> Main content width</div>
-           
-              <small><p><strong>Important. </strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site.</p></small>
             </td>
           </tr>
         </table>
