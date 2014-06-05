@@ -84,8 +84,8 @@
 /* Set up base Bootstrap and Bootstrapify variables with values from Shopify settings */
 
 /* Colours */
-{% if settings.link-colour != blank %}
-  $brand-primary:   {{ settings.link-colour }} !default;
+{% if settings.brand-primary != blank %}
+  $brand-primary:   {{ settings.brand-primary }} !default;
 {% endif %}
 
 
@@ -189,7 +189,7 @@ $line-height-base:    1.42858;
               $input-color:    $text-color !default;
   {% endif %}
              $input-border:    $border-color !default;
-  {% if settings.link-colour != blank %}
+  {% if settings.brand-primary != blank %}
        $input-border-focus:    $brand-primary !default;
   {% endif %}
   $input-color-placeholder:    darken($input-bg, 15%) !default;
