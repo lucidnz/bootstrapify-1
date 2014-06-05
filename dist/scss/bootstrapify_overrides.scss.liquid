@@ -54,34 +54,6 @@ body {
 			}
 		}
 	}
-	&.has-overlay-title-on-hover {
-	  $overlay-hover-background-colour: {% if settings.overlay-title-on-hover-background-color != blank %} {{ settings.overlay-title-on-hover-background-color }} {% else %} $text-color {% endif %};
-		.product-thumbnail {
-			position: relative;
-			.caption {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background-color: rgba($overlay-hover-background-colour, 0.8);
-				color: lighten($overlay-hover-background-colour, 80%);
-				opacity: 0;
-				-webkit-transition: all 200ms ease;
-				-moz-transition: all 200ms ease;
-				-ms-transition: all 200ms ease;
-				-o-transition: all 200ms ease;
-				transition: all 200ms ease;
-				&:hover {
-					opacity: 1;
-				}
-				h4 {
-					color: lighten($overlay-hover-background-colour, 100%);
-					height: auto;
-				}
-			}
-		}
-	}
 
   {% if settings.site-background-image  %}
     background-image: url('{{ "site-background-image-file.jpg" | asset_url }}');
@@ -129,6 +101,12 @@ img {
   }
 }
 
+.list-indented {
+  ul, ol {
+    margin-left: 1em;
+  }
+}
+
 .article-meta{
   @extend .list-unstyled;
   @extend .text-muted;
@@ -156,6 +134,10 @@ header .article-meta{
   a:hover {
     text-decoration: none;
   }
+}
+
+.nav-pills a {
+  white-space: nowrap;
 }
 
 /* Navbars */
@@ -195,6 +177,38 @@ header .article-meta{
       margin-top: 0.5em;
     }
   }
+}
+
+.has-overlay-title-on-hover {
+  $overlay-hover-background-colour: {% if settings.overlay-title-on-hover-background-color != blank %} {{ settings.overlay-title-on-hover-background-color }} {% else %} $text-color {% endif %};
+	.product-thumbnail {
+		position: relative;
+		.caption {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba($overlay-hover-background-colour, 0.8);
+			color: lighten($overlay-hover-background-colour, 80%);
+			opacity: 0;
+			-webkit-transition: all 200ms ease;
+			-moz-transition: all 200ms ease;
+			-ms-transition: all 200ms ease;
+			-o-transition: all 200ms ease;
+			transition: all 200ms ease;
+			&:hover {
+				opacity: 1;
+				h4 {
+  				text-decoration: none;
+				}
+			}
+			h4 {
+				color: lighten($overlay-hover-background-colour, 100%);
+				height: auto;
+			}
+		}
+	}
 }
 
 .product-price{
@@ -304,6 +318,10 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
         padding: $padding-base-horizontal;
       {% endif %}
     }
+  }
+  
+  .active a, .active {
+    @extend strong;
   }
 }
 
