@@ -60,7 +60,7 @@ body {
     {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
     {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
   {% endif %}
-  {% if settings.body-background-colour != blank %} @include background-color({{ settings.body-background-colour }}); {% endif %}
+  {% if settings.background-colour != blank %} @include background-color({{ settings.background-colour }}); {% endif %}
   
   font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %};
   font-style: {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %};
@@ -311,9 +311,9 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
     padding-top: $grid-gutter-width;
     padding-bottom: 0;
     margin-bottom: $grid-gutter-width;
-    {% if settings.body-background-colour != blank %} background-color: transparent; {% endif %}
+    {% if settings.background-colour != blank %} background-color: transparent; {% endif %}
     .sidebar-content{
-      {% if settings.sidebar-background-colour != blank and settings.sidebar-background-colour != settings.body-background-colour %}
+      {% if settings.sidebar-background-colour != blank and settings.sidebar-background-colour != settings.background-colour %}
         @include background-color({{ settings.sidebar-background-colour }});
         padding: $padding-base-horizontal;
       {% endif %}
@@ -370,8 +370,10 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
   $font-style-brand:        {% if settings.font-brand-style == 'italic' %} italic {% else %} normal {% endif %};
   $text-transform-brand:    {% if settings.font-brand-case == 'lowercase' or settings.font-brand-case == 'uppercase' %} {{ settings.font-brand-case }} {% elsif settings.font-brand-case == 'title-case'%} capitalize {% else %} none {% endif %};
   @include font-styles($font-family-brand, $font-size-brand, $font-weight-brand, $font-style-brand, $text-transform-brand);
-  h1 {
-    font-size: $font-size-brand;
+  @if $font-size-brand {
+    h1 {
+      font-size: $font-size-brand;
+    }
   }
 }
 
@@ -381,15 +383,19 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
 
 .brand{
   overflow: auto;
-  .text-center img{
+  img{
     margin: auto;
   }
   h1{
+    @extend .text-center;
     margin: 1em auto 1.5em;
   }
   a:hover{
     text-decoration: none;
   }
+}
+.sidebar .brand h1 {
+  margin: auto;
 }
 
 {% unless settings.custom-css == blank %}{{ settings.custom-css }}{% endunless %}

@@ -40,7 +40,7 @@
   <div id="wrap">
     {% include 'navbar' with 'top' %}
 
-    {% if settings.logo-placement == "above-navbar" %}{% include 'brand' %}{% endif %}
+    {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
   
     {% if has_main_navbar and settings.main-navbar-placement != 'main-content-width' %}{% include 'navbar' with 'main' %}{% endif %}
 

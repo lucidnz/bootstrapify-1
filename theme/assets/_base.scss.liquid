@@ -84,26 +84,26 @@
 /* Set up base Bootstrap and Bootstrapify variables with values from Shopify settings */
 
 /* Colours */
-{% if settings.body-link-colour != blank %}
-  $brand-primary:   {{ settings.body-link-colour }} !default;
+{% if settings.link-colour != blank %}
+  $brand-primary:   {{ settings.link-colour }} !default;
 {% endif %}
 
 
 /* Scaffolding */
 // background colour for body
-{% if settings.body-background-colour != blank %}
-       $body-bg:    {{ settings.body-background-colour }} !default;
+{% if settings.background-colour != blank %}
+       $body-bg:    {{ settings.background-colour }} !default;
   $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
 {% endif %}
 
 // Global text color on body
-{% if settings.body-text-colour != blank %}
-  $text-color:    {{ settings.body-text-colour }} !default;
+{% if settings.text-colour != blank %}
+  $text-color:    {{ settings.text-colour }} !default;
 {% endif %}
 
 // Global link color on body
-{% if settings.body-link-colour != blank %}
-        $link-color:    {{ settings.body-link-colour }} !default;
+{% if settings.link-colour != blank %}
+        $link-color:    {{ settings.link-colour }} !default;
   $link-hover-color:    hover-colour( $link-color ) !default;
 {% endif %}
 
@@ -149,8 +149,8 @@ $line-height-base:    1.42858;
 {% endif %}
 
 // Font colour for headings
-{% if settings.body-heading-colour != blank %}
-  $headings-color:    {{ settings.body-heading-colour }} !default;
+{% if settings.heading-colour != blank %}
+  $headings-color:    {{ settings.heading-colour }} !default;
 {% endif %}
 
 
@@ -158,7 +158,7 @@ $line-height-base:    1.42858;
 
 
 /* Tables */
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
        $table-bg-accent:   lighten($body-bg, 2%) !default;  // Background color used for `.table-striped`.
         $table-bg-hover:   lighten($body-bg, 4%) !default;  // Background color used for `.table-hover`.
    
@@ -168,8 +168,8 @@ $line-height-base:    1.42858;
 
 
 /* Buttons */
-{% if settings.body-background-colour != blank %}
-  {% if settings.body-text-colour != blank %}
+{% if settings.background-colour != blank %}
+  {% if settings.text-colour != blank %}
    $btn-default-color:    $text-color !default;
   {% endif %}
       $btn-default-bg:    darken($body-bg, 2%) !default;
@@ -183,18 +183,18 @@ $line-height-base:    1.42858;
 
 
 /* Forms */
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
                  $input-bg:    lighten($body-bg, 10%) !default;
-  {% if settings.body-text-colour != blank %}
+  {% if settings.text-colour != blank %}
               $input-color:    $text-color !default;
   {% endif %}
              $input-border:    $border-color !default;
-  {% if settings.body-link-colour != blank %}
+  {% if settings.link-colour != blank %}
        $input-border-focus:    $brand-primary !default;
   {% endif %}
   $input-color-placeholder:    darken($input-bg, 15%) !default;
   
-  {% if settings.body-text-colour != blank %}
+  {% if settings.text-colour != blank %}
              $legend-color:    $text-color !default;
   {% endif %}
       $legend-border-color:    $border-color !default;
@@ -205,10 +205,10 @@ $line-height-base:    1.42858;
 
 
 /* Dropdowns */
-{% if settings.body-background-colour != blank or settings.navbar-background-colour != blank %}
+{% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
                    $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 5%) {% else %} lighten($body-bg, 5%) {% endif %} !default;
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
-  {% if settings.navbar-link-colour != blank or settings.body-link-colour != blank %}
+  {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
            $dropdown-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default;
      $dropdown-link-hover-color:    hover-colour( $dropdown-link-color ) !default;
   $dropdown-link-disabled-color:    lighten($dropdown-link-color, 5%) !default;
@@ -242,10 +242,10 @@ $line-height-base:    1.42858;
 
 
 /* Navbar */
-{% if settings.body-background-colour != blank or settings.navbar-background-colour != blank %}
+{% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
                    $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} desaturate(darken($body-bg, 1.5%), 15%) {% endif %} !default;
                    
-  {% if settings.navbar-background-colour != blank or settings.body-text-colour != blank %}
+  {% if settings.navbar-background-colour != blank or settings.text-colour != blank %}
                 $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
                $navbar-default-border:    darken($navbar-default-bg, 5%) !default;
        $navbar-default-link-active-bg:    darken($navbar-default-bg, 5%) !default;
@@ -255,7 +255,7 @@ $line-height-base:    1.42858;
   $navbar-default-toggle-border-color:    darken($navbar-default-bg, 5%) !default;
   {% endif %}
 
-  {% if settings.navbar-link-colour != blank or settings.body-link-colour != blank %}
+  {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
            $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
      $navbar-default-link-hover-color:    hover-colour($navbar-default-link-color) !default;
     $navbar-default-link-active-color:    hover-colour($navbar-default-link-color) !default;
@@ -266,14 +266,14 @@ $line-height-base:    1.42858;
 
 
 /* Navs */
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
                         $nav-link-hover-bg:   darken($body-bg, 10%) !default;
   //$nav-open-link-hover-color:   hover-colour( $dropdown-link-color ) !default;
   
                       // Tabs
                     $nav-tabs-border-color:   border-color($body-bg) !default;
          $nav-tabs-link-hover-border-color:   $nav-link-hover-bg !default;
-  {% if settings.body-text-colour != blank %}
+  {% if settings.text-colour != blank %}
          $nav-tabs-active-link-hover-color:   $text-color !default;
   {% endif %}
   $nav-tabs-active-link-hover-border-color:   $nav-tabs-border-color !default;
@@ -282,16 +282,16 @@ $line-height-base:    1.42858;
 
 
 /* Pagination */
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
                $pagination-bg:    $body-bg !default;
            $pagination-border:    darken($body-bg, 5%) !default;
   
          $pagination-hover-bg:    darken($body-bg, 10%) !default;
      $pagination-hover-border:    $pagination-border !default;
-  {% if settings.body-link-colour != blank %}
+  {% if settings.link-colour != blank %}
      $pagination-active-color:    text-colour($link-color) !default;
   {% endif %}
-  {% if settings.body-text-colour != blank %}
+  {% if settings.text-colour != blank %}
    $pagination-disabled-color:    lighten($text-color, 5%) !default;
   {% endif %}
       $pagination-disabled-bg:    $body-bg !default;
@@ -303,13 +303,13 @@ $line-height-base:    1.42858;
 
 
 /* Jumbotron */
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
   $jumbotron-bg:    darken($body-bg, 5%) !default;
 {% endif %}
 
 
 /* Thumbnails */
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
            $thumbnail-border:   $border-color !default;
   {% unless settings.show-borders %}
            $thumbnail-border:   transparent !default;
@@ -320,16 +320,16 @@ $line-height-base:    1.42858;
 
 
 /* Wells */
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
       $well-bg:   rgba(darken($body-bg, 3%), .5) !default;
   $well-border:   $border-color !default;
 {% endif %}
 
 
 /* Breadcrumbs */
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
             $breadcrumb-bg:   rgba(darken($body-bg, 3%), .5) !default;
-  {% if settings.body-text-colour != blank %}
+  {% if settings.text-colour != blank %}
          $breadcrumb-color:   lighten($text-color, 15%) !default;
   $breadcrumb-active-color:   text-muted($text-color) !default;
   {% endif %}
@@ -337,14 +337,14 @@ $line-height-base:    1.42858;
 
 
 /* Type */
-{% if settings.body-text-colour != blank %}
+{% if settings.text-colour != blank %}
                 $text-muted:    text-muted($text-color) !default;
       $headings-small-color:    $text-muted !default;
     $blockquote-small-color:    $text-muted !default;
                $close-color:    $text-color !default;
          $close-text-shadow:    0 1px 0 rgba(if(lightness($body-bg) > 60%, lighten($body-bg, 100%), darken($body-bg, 100%)), .25) !default;
 {% endif %}
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
    $blockquote-border-color:    border-color($body-bg) !default;
          $abbr-border-color:    $border-color !default;
   $page-header-border-color:    $border-color !default;
@@ -352,7 +352,7 @@ $line-height-base:    1.42858;
 
 
 /* Miscellaneous */
-{% if settings.body-background-colour != blank %}
+{% if settings.background-colour != blank %}
   $hr-border:   border-color($body-bg) !default;
 {% endif %}
 
@@ -8010,7 +8010,7 @@ body {
     {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
     {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
   {% endif %}
-  {% if settings.body-background-colour != blank %} @include background-color({{ settings.body-background-colour }}); {% endif %}
+  {% if settings.background-colour != blank %} @include background-color({{ settings.background-colour }}); {% endif %}
   
   font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %};
   font-style: {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %};
@@ -8261,9 +8261,9 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
     padding-top: $grid-gutter-width;
     padding-bottom: 0;
     margin-bottom: $grid-gutter-width;
-    {% if settings.body-background-colour != blank %} background-color: transparent; {% endif %}
+    {% if settings.background-colour != blank %} background-color: transparent; {% endif %}
     .sidebar-content{
-      {% if settings.sidebar-background-colour != blank and settings.sidebar-background-colour != settings.body-background-colour %}
+      {% if settings.sidebar-background-colour != blank and settings.sidebar-background-colour != settings.background-colour %}
         @include background-color({{ settings.sidebar-background-colour }});
         padding: $padding-base-horizontal;
       {% endif %}
@@ -8320,8 +8320,10 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
   $font-style-brand:        {% if settings.font-brand-style == 'italic' %} italic {% else %} normal {% endif %};
   $text-transform-brand:    {% if settings.font-brand-case == 'lowercase' or settings.font-brand-case == 'uppercase' %} {{ settings.font-brand-case }} {% elsif settings.font-brand-case == 'title-case'%} capitalize {% else %} none {% endif %};
   @include font-styles($font-family-brand, $font-size-brand, $font-weight-brand, $font-style-brand, $text-transform-brand);
-  h1 {
-    font-size: $font-size-brand;
+  @if $font-size-brand {
+    h1 {
+      font-size: $font-size-brand;
+    }
   }
 }
 
@@ -8331,15 +8333,19 @@ $text-transform-secondary:    {% if settings.font-nav-secondary-case == 'lowerca
 
 .brand{
   overflow: auto;
-  .text-center img{
+  img{
     margin: auto;
   }
   h1{
+    @extend .text-center;
     margin: 1em auto 1.5em;
   }
   a:hover{
     text-decoration: none;
   }
+}
+.sidebar .brand h1 {
+  margin: auto;
 }
 
 {% unless settings.custom-css == blank %}{{ settings.custom-css }}{% endunless %}
