@@ -136,20 +136,29 @@ $line-height-base:    1.42858;
 
 
 /* Media queries breakpoints */
+{% if settings.container-width-small-devices != blank %}
+  {% assign small_container = settings.container-width-small-devices | remove: 'px' | times: 1 %}
+  {% if small_container > 768 %} /* 768: bootstrap default $screen-sm-min */
+    $screen-md-min:   {{ small_container | plus: 1 }}px !default;
+  {% endif %}
+{% endif %}
 {% if settings.container-width-medium-devices != blank %}
   {% assign medium_container = settings.container-width-medium-devices | remove: 'px' | times: 1 %}
-  {% if medium_container > 992 %}
+  {% if medium_container > 992 %} /* 992: bootstrap default $screen-md-min */
     $screen-md-min:   {{ medium_container | plus: 1 }}px !default;
   {% endif %}
 {% endif %}
 {% if settings.container-width-large-devices != blank %}
   {% assign large_container = settings.container-width-large-devices | remove: 'px' | times: 1 %}
-  {% if large_container > 1200 %}
+  {% if large_container > 1200 %} /* 1200: bootstrap default $screen-lg-min */
     $screen-lg-min:   {{ large_container | plus: 1 }}px !default;
   {% endif %}
 {% endif %}
 
 /* Container sizes */
+{% if settings.container-width-small-devices != blank %}
+  $container-sm:    {{ settings.container-width-small-devices }} !default;
+{% endif %}
 {% if settings.container-width-medium-devices != blank %}
   $container-md:    {{ settings.container-width-medium-devices }} !default;
 {% endif %}
