@@ -1429,9 +1429,10 @@
           <tr>
             <th><label for="sidebar-placement">Sidebar placement</label></th>
             <td>
-                 <div><input type="radio" name="sidebar-placement" id="sidebar-placement" value="left" checked="checked" /> Left</div>
-           <div><input type="radio" name="sidebar-placement" id="sidebar-placement" value="right" /> Right</div>
-           
+              <select name="sidebar-placement" id="sidebar-placement">
+          <option value="left" selected="selected">Left</option>
+          <option value="right">Right</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -1460,9 +1461,10 @@
           <tr>
             <th><label for="top-navbar-placement">Top navbar placement</label></th>
             <td>
-                 <div><input type="radio" name="top-navbar-placement" id="top-navbar-placement" value="fixed-to-top" checked="checked" /> Fixed to top</div>
-           <div><input type="radio" name="top-navbar-placement" id="top-navbar-placement" value="static-top" /> Static top</div>
-           
+              <select name="top-navbar-placement" id="top-navbar-placement">
+          <option value="fixed-to-top" selected="selected">Fixed to top</option>
+          <option value="static-top">Static top</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -1479,10 +1481,11 @@
           <tr>
             <th><label for="main-menu-alignment">Main menu alignment</label></th>
             <td>
-                 <div><input type="radio" name="main-menu-alignment" id="main-menu-alignment" value="left" checked="checked" /> Left</div>
-           <div><input type="radio" name="main-menu-alignment" id="main-menu-alignment" value="center" /> Center</div>
-           <div><input type="radio" name="main-menu-alignment" id="main-menu-alignment" value="right" /> Right</div>
-           
+              <select name="main-menu-alignment" id="main-menu-alignment">
+          <option value="left" selected="selected">Left</option>
+          <option value="center">Center</option>
+          <option value="right">Right</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -1506,9 +1509,10 @@
           <tr>
             <th><label for="footer-navbar-placement">Footer navbar placement</label></th>
             <td>
-                 <div><input type="radio" name="footer-navbar-placement" id="footer-navbar-placement" value="fixed-to-bottom" checked="checked" /> Fixed to bottom</div>
-           <div><input type="radio" name="footer-navbar-placement" id="footer-navbar-placement" value="static-bottom" /> Static bottom</div>
-           
+              <select name="footer-navbar-placement" id="footer-navbar-placement">
+          <option value="fixed-to-bottom" selected="selected">Fixed to bottom</option>
+          <option value="static-bottom">Static bottom</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -1667,17 +1671,6 @@
   </tbody>
 </table>
               <small>The footer can have <em>up to</em> four columns which can contain none, one or all of a <strong>blog</strong>, <strong>menu</strong> (linklist), <strong>html text</strong> or <strong>social media icons</strong>.</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="footer-columns">Columns</label></th>
-            <td>
-                 <div><input type="radio" name="footer-columns" id="footer-columns" value="2" checked="checked" /> 2</div>
-           <div><input type="radio" name="footer-columns" id="footer-columns" value="3" /> 3</div>
-           <div><input type="radio" name="footer-columns" id="footer-columns" value="4" /> 4</div>
-           
             </td>
           </tr>
         </table>

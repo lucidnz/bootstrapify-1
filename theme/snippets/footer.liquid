@@ -2,9 +2,22 @@
   <div class="container">
     {% if has_footer %}
     <div class="row">
-      {% assign footer_columns = settings.footer-columns | plus: 0 %}
-      {% for i in (1..footer_columns) %}
-      {% include '_footer-columns' with footer_columns %}
+      
+      {% assign cols = '' %}
+      {% for i in (i..3) %}
+        {% assign c = i | plus: 1 %}
+        {% assign col = 'column-' | append: c %}
+        {% assign col_blog = col | append: '-blog' %}
+        {% assign col_menu = col | append: '-menu' %}
+        {% assign col_text = col | append: '-text' %}
+        {% if settings[col_blog] != blank or settings[col_menu] != blank or settings[col_text] != blank or settings.newsletter-signup-placement contains col or settings.social-links-placement contains col %}
+          {% assign cols = cols | append: col | append: '|' %}
+        {% endif %}
+      {% endfor %}
+      {% assign footer_columns = cols | split: '|' %}
+      
+      {% for footer_column in footer_columns %}
+        {% include '_footer-columns' %}
       {% endfor %}
     </div>
     {% endif %}
