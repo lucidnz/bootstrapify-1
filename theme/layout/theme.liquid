@@ -46,7 +46,7 @@
 	
     <div id="content"{% unless settings.site-wide-thumbnail-container %} class="container"{% endunless %}>
    
-      {% include 'navbar' with 'main' %}
+      {% if has_main_menu %}{% include 'navbar' with 'main' %}{% endif %}
     
       {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
     

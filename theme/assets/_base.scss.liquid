@@ -8121,6 +8121,33 @@ header .article-meta{
   padding: 0;
 }
 
+@media (max-width: $screen-xs-max) {
+  .dropdown-menu > li.submenu > .nav > li > a{
+    padding: 5px 15px 5px 25px;
+  }
+}
+
+@media (min-width: $screen-sm-min){
+  .navbar-nav.navbar-left:first-child{
+    margin-left: ($grid-gutter-width / -2);
+  }
+  .navbar-text.navbar-left:first-child{
+    margin-left: 0;
+  }
+  
+  .navbar-center{
+    float: none;
+    text-align: center;
+    > li{
+      float: none;
+      display: inline-block;
+    }
+    .dropdown-menu{
+      text-align: left;
+    }
+  }
+}
+
 /* Products */
 .product-thumbnail, .collection-thumbnail {
   @extend .thumbnail;
