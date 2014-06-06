@@ -13,10 +13,9 @@ template-{{ template }}
 {% if has_fixed_footer_navbar %} has-fixed-footer-navbar{% endif %}
 {% if settings.site-wide-thumbnail-container %} has-site-wide-thumbnail-container{% endif %}
 {% if settings.overlay-title-on-hover %} has-overlay-title-on-hover{% endif %}
-
  {{ settings.slider-width | prepend: 'banner-' }}
-
 {% unless settings.thumbnail-ratio == blank %}{% if settings.thumbnails-cropped %} thumbnails-cropped{% else %} thumbnails-fit{% endif %}{% endunless %}
 {% if settings.show-multiple-currencies %} currencies{% endif %}
  {{ template | replace: '.', '-' }}
+ {{ thumbnail_layout | prepend: 'thumbnail-layout-' }}
 {% endcapture %}{{ body_classes | strip_newlines | strip }}

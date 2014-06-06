@@ -81,21 +81,26 @@
   {{ 'popover.js' | asset_url | script_tag }}
   {{ 'typeahead.js' | asset_url | script_tag }}
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
-  
-  {% unless current_handle == blank %}
-  <script>
-    jQuery(document).ready(function(){
-    	jQuery('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
-    });
-  </script>
-  {% endunless %}
 
   <script type="text/javascript">
-    {% unless settings.thumbnail-ratio == blank %}
-    var uniformThumbnailsOpts = {};
-    {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
-    {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
+    {% unless current_handle == blank %}
+      $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
     {% endunless %}
+  
+    {% if thumbnail_layout == 'masonry' %}
+      $('.masonry-collection').isotope({
+        itemSelector: '.masonry',
+        layoutMode: 'masonry'
+      });
+    {% else %}
+      var uniformThumbnailsOpts = {};
+      {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
+      {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
+      {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
+      $('.thumbnail-image, .product-main-thumb').uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
+        $('.product-thumbnail .caption, .collection-thumbnail .caption').orderly({ method: 'children' });
+      });
+    {% endif %}
     
     $(document).ready(function(){
       $('.search').typeahead({
@@ -110,13 +115,5 @@
   {% if settings.custom-footer-code != '' %}
     {{ settings.custom-footer-code }}
   {% endif %}
-  
-  {% unless settings.thumbnail-ratio == blank %}
-  <script type="text/javascript">
-    $('.thumbnail-image, .product-main-thumb').uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
-      $('.product-thumbnail .caption, .collection-thumbnail .caption').orderly({ method: 'children' });
-    });
-  </script>
-  {% endunless %}
 </body>
 </html>

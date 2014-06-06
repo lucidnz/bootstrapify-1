@@ -1,5 +1,5 @@
 <section id="product-list" class="section-wrap">
-	<div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
+	<div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
 		{% if template contains 'index' %}
 		{% if settings.homepage-products-limit contains 'limited' %}{% assign limit = nil %}{% else %}{% assign limit = settings.homepage-products-limit %}{% endif %}
 		{% assign product_collection = collections[settings.homepage-products-collection] %}

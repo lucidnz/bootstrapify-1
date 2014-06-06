@@ -1,4 +1,4 @@
-<div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
+<div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
 {% if collections-list == 'featured' %}
   {% if settings.homepage-collections-limit contains 'row' %}{% assign limit = settings.homepage-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: settings.collections-per-row %}{% else %}{% assign limit = 50 %}{% endif %}
   {% assign collection_count = 1 %}

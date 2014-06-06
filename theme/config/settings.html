@@ -412,6 +412,14 @@
             </td>
           </tr>
         </table>
+        <table>
+          <tr>
+            <th><label for="site-wide-thumbnail-container">Window width thumbnail container</label></th>
+            <td>
+              <input type="checkbox" name="site-wide-thumbnail-container" id="site-wide-thumbnail-container" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
       </fieldset>
       <fieldset>
       	
@@ -928,8 +936,6 @@
       <td>
         <p>Case</p>
         <p>
-          
-        
         <select name="font-body-case" id="font-body-case">
           
             <option value="normal" selected="selected">Normal (as typed)</option>
@@ -1001,8 +1007,6 @@
       <td>
         <p>Case</p>
         <p>
-          
-        
         <select name="font-brand-case" id="font-brand-case">
           
             <option value="normal" selected="selected">Normal (as typed)</option>
@@ -1074,8 +1078,6 @@
       <td>
         <p>Case</p>
         <p>
-          
-        
         <select name="font-heading-case" id="font-heading-case">
           
             <option value="normal" selected="selected">Normal (as typed)</option>
@@ -1147,8 +1149,6 @@
       <td>
         <p>Case</p>
         <p>
-          
-        
         <select name="font-navbar-case" id="font-navbar-case">
           
             <option value="normal" selected="selected">Normal (as typed)</option>
@@ -1186,10 +1186,11 @@
           <tr>
             <th><label for="blog-list-limit">Blog list limit</label></th>
             <td>
-                 <div><input type="radio" name="blog-list-limit" id="blog-list-limit" value="1" checked="checked" /> 1</div>
-           <div><input type="radio" name="blog-list-limit" id="blog-list-limit" value="2" /> 2</div>
-           <div><input type="radio" name="blog-list-limit" id="blog-list-limit" value="3" /> 3</div>
-           
+              <select name="blog-list-limit" id="blog-list-limit">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
               <small><p>Number of blog articles shown in the footer and sidebar blog lists.</p></small>
             </td>
           </tr>
@@ -1291,26 +1292,58 @@
           <tr>
             <th><label for="collections-per-row">Collections per row</label></th>
             <td>
-                 <div><input type="radio" name="collections-per-row" id="collections-per-row" value="2" checked="checked" /> 2</div>
-           <div><input type="radio" name="collections-per-row" id="collections-per-row" value="3" /> 3</div>
-           <div><input type="radio" name="collections-per-row" id="collections-per-row" value="4" /> 4</div>
-           
+              <select name="collections-per-row" id="collections-per-row">
+          <option value="2" selected="selected">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
             </td>
           </tr>
         </table>
         <table>
           <tr>
-            <th><label for="hide-products-with-less-than-this-number-of-products">Hide products with less than this number of products</label></th>
+            <th><label for="hide-collections-with-less-than-this-number-of-products">Hide collections with less than this number of products</label></th>
             <td>
-              <input type="text" name="hide-products-with-less-than-this-number-of-products" id="hide-products-with-less-than-this-number-of-products" class="text" value="0" />
+              <input type="text" name="hide-collections-with-less-than-this-number-of-products" id="hide-collections-with-less-than-this-number-of-products" class="text" value="0" />
             </td>
           </tr>
         </table>
         <table>
           <tr>
-            <th><label for="masonry-style-layout">Masonry-style layout</label></th>
+            <th><label for="thumbnail-layout">Thumbnail layout</label></th>
             <td>
-              <input type="checkbox" name="masonry-style-layout" id="masonry-style-layout" value="1" /> Yes
+              <input type="checkbox" name="thumbnail-layout-masonry" id="thumbnail-layout-masonry" value="1" /> Masonry<br /><input type="checkbox" name="thumbnail-layout-ordered" id="thumbnail-layout-ordered" value="1" /> Ordered<br />
+              <small>Thumbnail ratio, alignment and crop settings will only be applied if thumbnail layout is set to 'ordered'.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="thumbnail-ratio">Thumbnail ratio</label></th>
+            <td>
+              <input type="text" name="thumbnail-ratio" id="thumbnail-ratio" class="text" value="1:1" />
+              <small><strong>Important:</strong> must be in the format w:h (i.e., 1:1 would be square)</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="thumbnail-alignment">Thumbnail alignment</label></th>
+            <td>
+              <select name="thumbnail-alignment" id="thumbnail-alignment">
+          <option value="top" selected="selected">Top</option>
+          <option value="middle">Middle</option>
+          <option value="bottom">Bottom</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="thumbnails-cropped">Thumbnails cropped</label></th>
+            <td>
+              <input type="checkbox" name="thumbnails-cropped" id="thumbnails-cropped" value="1" /> Yes
+              <small>If checked, thumbnails will be cropped to fit their container. If unchecked, thumbnails will fit <em>inside</em> the container.</small>
             </td>
           </tr>
         </table>
@@ -1340,14 +1373,6 @@
         </table>
         <table>
           <tr>
-            <th><label for="site-wide-thumbnail-container">Site wide thumbnail container</label></th>
-            <td>
-              <input type="checkbox" name="site-wide-thumbnail-container" id="site-wide-thumbnail-container" value="1" /> Yes
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
             <th><label for="tag-format">Tag format</label></th>
             <td>
                  <div><input type="radio" name="tag-format" id="tag-format" value="dropdown" checked="checked" /> Dropdown</div>
@@ -1361,28 +1386,11 @@
           <tr>
             <th><label for="tag-placement">Tag placement</label></th>
             <td>
-                 <div><input type="radio" name="tag-placement" id="tag-placement" value="do-not-show" checked="checked" /> Do not show</div>
-           <div><input type="radio" name="tag-placement" id="tag-placement" value="sidebar" /> Sidebar</div>
-           <div><input type="radio" name="tag-placement" id="tag-placement" value="main-content" /> Main content</div>
-           
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="thumbnail-ratio">Thumbnail ratio</label></th>
-            <td>
-              <input type="text" name="thumbnail-ratio" id="thumbnail-ratio" class="text" value="1:1" />
-              <small><strong>Important:</strong> must be in the format w:h (i.e., 1:1 would be square)</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="thumbnails-cropped">Thumbnails cropped</label></th>
-            <td>
-              <input type="checkbox" name="thumbnails-cropped" id="thumbnails-cropped" value="1" /> Yes
-              <small>If checked, thumbnails will be cropped to fit their container. If unchecked, thumbnails will fit <em>inside</em> the container.</small>
+              <select name="tag-placement" id="tag-placement">
+          <option value="do-not-show" selected="selected">Do not show</option>
+          <option value="sidebar">Sidebar</option>
+          <option value="main-content">Main content</option>
+        </select>
             </td>
           </tr>
         </table>

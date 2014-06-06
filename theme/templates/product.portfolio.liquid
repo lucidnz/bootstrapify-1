@@ -27,7 +27,7 @@
 			{% assign image_cols = product.images.size | times: 4 %}
 			{% assign offset = 12 | minus: image_cols | divided_by: 2 %}
 			{% for image in product.images %}
-			<div class="{% if forloop.index == 1 %}col-sm-offset-{{ offset }} {% endif %}col-xs-6 col-sm-4{% if settings.masonry-style-layout %} masonry{% endif %}">
+			<div class="{% if forloop.index == 1 %}col-sm-offset-{{ offset }} {% endif %}col-xs-6 col-sm-4{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
 				<div class="thumbnail">
 					<a href="#" data-main-image="{{ image.src | product_img_url: 'original' }}">
 						{{ image.src | product_img_url: 'large' | img_tag }}
