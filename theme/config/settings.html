@@ -1719,14 +1719,6 @@
       
         <table>
           <tr>
-            <th><label for="left-quote">Left quote</label></th>
-            <td>
-              <input type="text" name="left-quote" id="left-quote" class="text" value="&ldquo;" />
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
             <th><label for="localizations">Localizations</label></th>
             <td>
               <textarea name="localizations" id="localizations"></textarea>
@@ -1739,14 +1731,6 @@
             <th><label for="long-date-format">Long date format</label></th>
             <td>
               <input type="text" name="long-date-format" id="long-date-format" class="text" value="%d %B %Y at %H:%M" />
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="right-quote">Right quote</label></th>
-            <td>
-              <input type="text" name="right-quote" id="right-quote" class="text" value="&rdquo;" />
             </td>
           </tr>
         </table>
@@ -1776,9 +1760,10 @@
           <tr>
             <th><label for="currency-switcher-position">Currency switcher position</label></th>
             <td>
-                 <div><input type="radio" name="currency-switcher-position" id="currency-switcher-position" value="navbar" checked="checked" /> Navbar</div>
-           <div><input type="radio" name="currency-switcher-position" id="currency-switcher-position" value="footer-navbar" /> Footer navbar</div>
-           
+              <select name="currency-switcher-position" id="currency-switcher-position">
+          <option value="top-navbar" selected="selected">Top navbar</option>
+          <option value="footer-navbar">Footer navbar</option>
+        </select>
               <small><p> </p></small>
             </td>
           </tr>
@@ -1815,60 +1800,6 @@
       	
       <legend>Social</legend>
       
-        <table>
-          <tr>
-            <th><label for="instagram-blacklist">Instagram blacklist</label></th>
-            <td>
-              <textarea name="instagram-blacklist" id="instagram-blacklist"></textarea>
-              <small>A comma separated list of image id's that you don't wish to show in your instagram feeds.</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="instagram-client-id">Instagram client id</label></th>
-            <td>
-              <input type="text" name="instagram-client-id" id="instagram-client-id" class="text" value="" />
-              <small>You can obtain a client id registering a new Instagram API client app at <a href="http://instagram.com/developer/clients/register/">http://instagram.com/developer/clients/register/</a></small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="instagram-default-hashtag">Instagram default hashtag</label></th>
-            <td>
-              <input type="text" name="instagram-default-hashtag" id="instagram-default-hashtag" class="text" value="" />
-              <small>A default hashtag for all instagram feeds to use if a page specific one is not set.</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="mailchimp">Mailchimp form action URL</label></th>
-            <td>
-              <input type="text" name="mailchimp" id="mailchimp" class="text" value="" />
-              <small>Use Mailchimp's form action URL for the newsletter signup form. If left blank Shopify's default action will be used.</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="newsletter-signup-placement">Newsletter signup placement</label></th>
-            <td>
-                 <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="dont-show" checked="checked" /> Don't show</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="top-navbar-left" /> Top navbar left</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="top-navbar-right" /> Top navbar right</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="sidebar" /> Sidebar</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-1" /> Footer column 1</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-2" /> Footer column 2</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-3" /> Footer column 3</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-column-4" /> Footer column 4</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-navbar-left" /> Footer navbar left</div>
-           <div><input type="radio" name="newsletter-signup-placement" id="newsletter-signup-placement" value="footer-navbar-right" /> Footer navbar right</div>
-           
-            </td>
-          </tr>
-        </table>
         <table>
           <tr>
             <th><label for="social-links">Social links</label></th>
@@ -2005,16 +1936,72 @@
           <tr>
             <th><label for="social-links-placement">Social links placement</label></th>
             <td>
-                 <div><input type="radio" name="social-links-placement" id="social-links-placement" value="top-navbar-left" checked="checked" /> Top navbar left</div>
-           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="top-navbar-right" /> Top navbar right</div>
-           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-1" /> Footer column 1</div>
-           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-2" /> Footer column 2</div>
-           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-3" /> Footer column 3</div>
-           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-column-4" /> Footer column 4</div>
-           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="sidebar" /> Sidebar</div>
-           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-navbar-left" /> Footer navbar left</div>
-           <div><input type="radio" name="social-links-placement" id="social-links-placement" value="footer-navbar-right" /> Footer navbar right</div>
-           
+              <select name="social-links-placement" id="social-links-placement">
+          <option value="top-navbar-left" selected="selected">Top navbar left</option>
+          <option value="top-navbar-right">Top navbar right</option>
+          <option value="footer-column-1">Footer column 1</option>
+          <option value="footer-column-2">Footer column 2</option>
+          <option value="footer-column-3">Footer column 3</option>
+          <option value="footer-column-4">Footer column 4</option>
+          <option value="sidebar">Sidebar</option>
+          <option value="footer-navbar-left">Footer navbar left</option>
+          <option value="footer-navbar-right">Footer navbar right</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="instagram-default-hashtag">Instagram default hashtag</label></th>
+            <td>
+              <input type="text" name="instagram-default-hashtag" id="instagram-default-hashtag" class="text" value="" />
+              <small>A default hashtag for all instagram feeds to use if a page specific one is not set.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="instagram-client-id">Instagram client id</label></th>
+            <td>
+              <input type="text" name="instagram-client-id" id="instagram-client-id" class="text" value="" />
+              <small>You can obtain a client id registering a new Instagram API client app at <a href="http://instagram.com/developer/clients/register/">http://instagram.com/developer/clients/register/</a></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="instagram-blacklist">Instagram blacklist</label></th>
+            <td>
+              <textarea name="instagram-blacklist" id="instagram-blacklist"></textarea>
+              <small>A comma separated list of image id's that you don't wish to show in your instagram feeds.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="mailchimp">Mailchimp form action URL</label></th>
+            <td>
+              <input type="text" name="mailchimp" id="mailchimp" class="text" value="" />
+              <small>Use Mailchimp's form action URL for the newsletter signup form. If left blank Shopify's default action will be used.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="newsletter-signup-placement">Newsletter signup placement</label></th>
+            <td>
+              <select name="newsletter-signup-placement" id="newsletter-signup-placement">
+          <option value="dont-show" selected="selected">Don't show</option>
+          <option value="top-navbar-left">Top navbar left</option>
+          <option value="top-navbar-right">Top navbar right</option>
+          <option value="sidebar">Sidebar</option>
+          <option value="footer-column-1">Footer column 1</option>
+          <option value="footer-column-2">Footer column 2</option>
+          <option value="footer-column-3">Footer column 3</option>
+          <option value="footer-column-4">Footer column 4</option>
+          <option value="footer-navbar-left">Footer navbar left</option>
+          <option value="footer-navbar-right">Footer navbar right</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -2025,19 +2012,28 @@
       
         <table>
           <tr>
-            <th><label for="custom-checkout-css">Custom checkout CSS</label></th>
+            <th><label for="custom-css">Custom CSS</label></th>
             <td>
-              <textarea name="custom-checkout-css" id="custom-checkout-css"></textarea>
-              <small><p>Feel free to override any of the checkout CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS is <strong>not</strong> allowed.</p></small>
+              <textarea name="custom-css" id="custom-css"></textarea>
+              <small><p>Feel free to override any of the CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS allowed.</p></small>
             </td>
           </tr>
         </table>
         <table>
           <tr>
-            <th><label for="custom-css">Custom CSS</label></th>
+            <th><label for="sass-variables">SASS variables</label></th>
             <td>
-              <textarea name="custom-css" id="custom-css"></textarea>
-              <small><p>Feel free to override any of the CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS allowed.</p></small>
+              <textarea name="sass-variables" id="sass-variables"></textarea>
+              <small><p>Feel free to override any of Bootstraps SASS variables here.</p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="custom-checkout-css">Custom checkout CSS</label></th>
+            <td>
+              <textarea name="custom-checkout-css" id="custom-checkout-css"></textarea>
+              <small><p>Feel free to override any of the checkout CSS here. This is included <strong>inside </strong>the stylesheet at the end. SCSS is <strong>not</strong> allowed.</p></small>
             </td>
           </tr>
         </table>
