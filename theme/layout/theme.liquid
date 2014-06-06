@@ -41,14 +41,12 @@
     {% include 'navbar' with 'top' %}
 
     {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
-  
-    {% if has_main_navbar and settings.main-navbar-placement != 'main-content-width' %}{% include 'navbar' with 'main' %}{% endif %}
 
     {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
 	
     <div id="content"{% unless settings.site-wide-thumbnail-container %} class="container"{% endunless %}>
    
-      {% if has_main_navbar and settings.main-navbar-placement == 'main-content-width' %}{% include 'navbar' with 'main' %}{% endif %}
+      {% include 'navbar' with 'main' %}
     
       {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
     
