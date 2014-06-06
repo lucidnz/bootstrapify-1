@@ -1312,7 +1312,10 @@
           <tr>
             <th><label for="thumbnail-layout">Thumbnail layout</label></th>
             <td>
-              <input type="checkbox" name="thumbnail-layout-masonry" id="thumbnail-layout-masonry" value="1" /> Masonry<br /><input type="checkbox" name="thumbnail-layout-ordered" id="thumbnail-layout-ordered" value="1" /> Ordered<br />
+              <select name="thumbnail-layout" id="thumbnail-layout">
+          <option value="ordered" selected="selected">Ordered</option>
+          <option value="masonry">Masonry</option>
+        </select>
               <small>Thumbnail ratio, alignment and crop settings will only be applied if thumbnail layout is set to 'ordered'.</small>
             </td>
           </tr>

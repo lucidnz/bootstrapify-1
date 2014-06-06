@@ -7971,9 +7971,11 @@ body > #wrap {height: auto; min-height: 100%;}
 
 /* Body */
 .has-js {
+  {% if settings.thumbnail-layout == 'ordered' %}
   .thumbnail-image, .product-main-thumb {
     opacity: 0;
   }
+  {% endif %}
 }
 
 body {
