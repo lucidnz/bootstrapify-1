@@ -101,7 +101,7 @@
     {% endif %}
     
     $(document).ready(function(){
-      $('.search').typeahead({
+      $('.search-bar').typeahead({
         name: 'Products',
         local: [{% include 'search-typeahead' %}]
       }).on('typeahead:selected', function (object, datum) {

@@ -8117,14 +8117,27 @@ header .article-meta{
   @include font-styles($font-family-navbar, $font-size-navbar, $font-weight-navbar, $font-style-navbar, $text-transform-navbar);
 }
 
-#currencies-picker {
-  padding: 0;
+.submenu > .nav > li > a{
+  padding: 3px 20px;
+  color: $dropdown-link-color;
+  font-weight: normal;
+  &:hover,
+  &:focus {
+    color: $dropdown-link-hover-color;
+    background-color: $dropdown-link-hover-bg;
+  }
 }
 
-@media (max-width: $screen-xs-max) {
-  .dropdown-menu > li.submenu > .nav > li > a{
-    padding: 5px 15px 5px 25px;
+.submenu > .nav > .dropdown-header {
+  padding: 0;
+  font-size: $font-size-base;
+  a {
+    font-weight: bold;
   }
+}
+
+#currencies-picker {
+  padding: 0;
 }
 
 @media (min-width: $screen-sm-min){
@@ -8146,6 +8159,87 @@ header .article-meta{
       text-align: left;
     }
   }
+}
+
+/* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
+.twitter-typeahead {
+  width: 100%;
+  position: relative;
+}
+
+
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+  margin-bottom: 0;
+  width: 100%;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.twitter-typeahead .tt-hint {
+  color: #a1a1a1;
+  z-index: 1;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.twitter-typeahead .tt-query {
+  z-index: 2;
+  border-radius: 4px !important;
+}
+
+.input-group-addon + .twitter-typeahead > .tt-query {
+  border-top-left-radius: 0!important;
+  border-bottom-left-radius: 0!important;
+}
+
+.input-group-appended > .twitter-typeahead {
+  margin-top: 5px;
+  & > .tt-query {
+    border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+  }
+} 
+
+.tt-dropdown-menu {
+  min-width: 160px;
+  margin-top: 2px;
+  padding: 5px 0;
+  background-color: $dropdown-bg;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.tt-suggestion {
+  display: block;
+  padding: 3px 20px;
+}
+
+.tt-suggestion.tt-is-under-cursor {
+  color: $text-color;
+  background-color: $brand-primary;
+}
+
+.tt-suggestion.tt-is-under-cursor a {
+  color: $text-color;
+}
+
+.tt-suggestion p {
+  margin: 0;
 }
 
 /* Products */
