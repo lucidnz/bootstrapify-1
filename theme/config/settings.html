@@ -1749,10 +1749,28 @@
       
         <table>
           <tr>
+            <th><label for="show-multiple-currencies">Show multiple currencies</label></th>
+            <td>
+              <input type="checkbox" name="show-multiple-currencies" id="show-multiple-currencies" value="1" /> Yes
+              <small><p>Although you will be able to display prices on your store front in different currencies, Shopify will still process orders in your shop's currency.</p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="currency-switcher-default">Currency switcher default</label></th>
             <td>
               <input type="text" name="currency-switcher-default" id="currency-switcher-default" class="text" value="" />
               <small><p> If left blank the currency switcher will be set to your shops default currency.</p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="supported-currencies">Supported currencies</label></th>
+            <td>
+              <input type="text" name="supported-currencies" id="supported-currencies" class="text" value="" />
+              <small><p>Separate your currency codes with a space. Use the ISO 4217 3-letter currency code. Click <a href="http://www.xe.com/iso4217.php" target="_blank">here</a> for a complete list of currency codes. <strong>E.g., NZD USD CAD</strong></p></small>
             </td>
           </tr>
         </table>
@@ -1772,26 +1790,11 @@
           <tr>
             <th><label for="show-currency-with-prices">Show currency with prices</label></th>
             <td>
-              <input type="checkbox" name="show-currency-with-prices-with-currency" id="show-currency-with-prices-with-currency" value="1" /> With currency<br /><input type="checkbox" name="show-currency-with-prices-without-currency" id="show-currency-with-prices-without-currency" value="1" /> Without currency<br />
+              <select name="show-currency-with-prices" id="show-currency-with-prices">
+          <option value="with-currency" selected="selected">With currency</option>
+          <option value="without-currency">Without currency</option>
+        </select>
               <small><p>E.g., <strong>$123.45 NZD</strong></p></small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="show-multiple-currencies">Show multiple currencies</label></th>
-            <td>
-              <input type="checkbox" name="show-multiple-currencies" id="show-multiple-currencies" value="1" /> Yes
-              <small><p>Although you will be able to display prices on your store front in different currencies, Shopify will still process orders in your shop's currency.</p></small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="supported-currencies">Supported currencies</label></th>
-            <td>
-              <input type="text" name="supported-currencies" id="supported-currencies" class="text" value="" />
-              <small><p>Separate your currency codes with a space. Use the ISO 4217 3-letter currency code. Click <a href="http://www.xe.com/iso4217.php" target="_blank">here</a> for a complete list of currency codes. <strong>E.g., NZD USD CAD</strong></p></small>
             </td>
           </tr>
         </table>
