@@ -1302,9 +1302,10 @@
         </table>
         <table>
           <tr>
-            <th><label for="hide-collections-with-less-than-this-number-of-products">Hide collections with less than this number of products</label></th>
+            <th><label for="hidden-collection-limit">Hidden collection limit</label></th>
             <td>
-              <input type="text" name="hide-collections-with-less-than-this-number-of-products" id="hide-collections-with-less-than-this-number-of-products" class="text" value="0" />
+              <input type="text" name="hidden-collection-limit" id="hidden-collection-limit" class="text" value="0" />
+              <small>Hides collections that have less than this number of products.</small>
             </td>
           </tr>
         </table>
@@ -1376,12 +1377,10 @@
         </table>
         <table>
           <tr>
-            <th><label for="tag-format">Tag format</label></th>
+            <th><label for="tag-button-limit">Tag button limit</label></th>
             <td>
-                 <div><input type="radio" name="tag-format" id="tag-format" value="dropdown" checked="checked" /> Dropdown</div>
-           <div><input type="radio" name="tag-format" id="tag-format" value="buttons" /> Buttons</div>
-           
-              <small>If tag format is set to buttons and there are more than 20 tags a dropdown will be shown instead.</small>
+              <input type="text" name="tag-button-limit" id="tag-button-limit" class="text" value="10" />
+              <small><p>Tags will be shown as buttons until the amount of tags is equal or grater than this limit. If left blank tags will always be shown as buttons.</p></small>
             </td>
           </tr>
         </table>
