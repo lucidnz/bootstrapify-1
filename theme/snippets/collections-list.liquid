@@ -1,23 +1,25 @@
-<div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
-{% if collections-list == 'featured' %}
-  {% if settings.featured-collections-limit contains 'row' %}{% assign limit = settings.featured-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: settings.collections-per-row %}{% else %}{% assign limit = 50 %}{% endif %}
-  {% assign collection_count = 1 %}
-  {% for l in linklists[settings.featured-collections-linklist].links %}
-    {% assign collection = l.object %}
-    {% assign min_products = settings.hide-products-with-less-than-this-number-of-products | plus: 0 %}
-    {% if collection.all_products.size >= min_products and collection_count <= limit %}
-    {% include '_collection' with collection %}
-    {% assign collection_count = collection_count | plus: 1 %}
-    {% endif %}
-  {% endfor %}
-{% elsif collections-list == 'all-collections' %}
-  {% for l in linklists[settings.all-collections-linklist].links %}
-    {% assign collection = l.object %}
-    {% include '_collection' with collection %}
-  {% endfor %}
-{% else %}
-  {% for collection in collections %}
-    {% include '_collection' with collection %}
-  {% endfor %}
-{% endif %}
-</div>
+<section id="collection-list" class="section-wrap">
+	<div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
+	{% if collections-list == 'featured' %}
+	  {% if settings.featured-collections-limit contains 'row' %}{% assign limit = settings.featured-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: settings.collections-per-row %}{% else %}{% assign limit = 50 %}{% endif %}
+	  {% assign collection_count = 1 %}
+	  {% for l in linklists[settings.featured-collections-linklist].links %}
+	    {% assign collection = l.object %}
+	    {% assign min_products = settings.hide-products-with-less-than-this-number-of-products | plus: 0 %}
+	    {% if collection.all_products.size >= min_products and collection_count <= limit %}
+	    {% include '_collection' with collection %}
+	    {% assign collection_count = collection_count | plus: 1 %}
+	    {% endif %}
+	  {% endfor %}
+	{% elsif collections-list == 'all-collections' %}
+	  {% for l in linklists[settings.all-collections-linklist].links %}
+	    {% assign collection = l.object %}
+	    {% include '_collection' with collection %}
+	  {% endfor %}
+	{% else %}
+	  {% for collection in collections %}
+	    {% include '_collection' with collection %}
+	  {% endfor %}
+	{% endif %}
+	</div>
+</section>

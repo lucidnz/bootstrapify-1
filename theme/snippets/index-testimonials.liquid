@@ -1,25 +1,32 @@
 {% unless settings.testimonials-blog == blank %}
 {% assign testimonials_blog = blogs[settings.testimonials-blog] %}
-<h2 class="page-header">{{ testimonials_blog.title }}</h2>
-<div class="row masonry-collection testimonials">
-  {% for t in testimonials_blog.articles %}
-  {% capture testimonial %}<p><i class="fa fa-quote-left pull-left text-muted"></i>{{ t.content | strip_html }}</p>
-  <p class="text-muted"> &mdash; {{ t.title }}</p>{% endcapture %}
-        
-  <div class="col-sm-6 masonry testimonial">
-    {% if t.excerpt == blank %}
-    {{ testimonial }}
+<section id="index-testimonials" class="section-wrap">
+	<h2 class="page-header">{{ testimonials_blog.title }}{% if testimonials_blog.articles.size > testimonials_blog_post_limit %}&ensp;<a class="small" href="{{ testimonials_blog.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
+	<div class="row masonry-collection testimonials">
+		{% for t in testimonials_blog.articles | limit: testimonials_blog_post_limit %}
+		{% capture testimonial %}<i class="fa fa-quote-left pull-left text-muted"></i>{% include '__excerpt' with t.content %}{% if is_truncated %}<a href="{{ t.url }}" title="{% include '__localize' with 'View testimonial by' %} {{ t.title }}">{% include '__localize' with 'Read&nbsp;more' %}</a>{% endif %}
+		<p class="text-muted"> &mdash; {{ t.title }}</p>{% endcapture %}
+    {% if forloop.length <= 4 %}
+    {% assign span = forloop.length | modulo: 12 %}
+    {% assign span = 12 | divided_by: span %}
     {% else %}
-    <div class="media">
-      <div class="pull-left col-xs-3">
-        <p>{{ t.excerpt | replace: '_small', '_medium' | replace: '<img', '<img class="img-circle"' }}</p>
-      </div>
-      <div class="media-body">
-        {{ testimonial }}
-      </div>
-    </div>
+    {% assign span = 4 %}
     {% endif %}
-  </div>
-  {% endfor %}
-</div>
+		<div class="col-sm-{{ span }} testimonial">
+			{% if t.excerpt == blank %}
+			{{ testimonial }}
+			{% else %}
+			<div class="media">
+				<div class="pull-left col-xs-3">
+					<p>{{ t.excerpt | replace: '_small', '_medium' | replace: '<img', '<img class="img-circle"' }}</p>
+				</div>
+				<div class="media-body">
+					{{ testimonial }}
+				</div>
+			</div>
+			{% endif %}
+		</div>
+		{% endfor %}
+	</div>
+</section>
 {% endunless %}

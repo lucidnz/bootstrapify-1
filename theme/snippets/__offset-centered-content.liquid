@@ -1,9 +1,34 @@
-{% if settings.show-sidebar != true and settings.centered-layout == true %}
+{% assign sidebar-template = template | split: '.' | first | prepend: 'show-sidebar-on-' %}
+{% if settings[sidebar-template] == false and settings.centered-layout == true %}
 <div class="row">
   <div class="col-lg-offset-2 col-lg-8">
+	{% if template contains 'contact' %}
+	<div class="row">
+		<div class="col-md-6 col-md-push-6">
+			{% include '__formatted-content' with __offset-centered-content %}
+			<hr class="visible-sm visible-xs">
+		</div>
+		<div class="col-md-6 col-md-pull-6">
+			{% include 'contact-form' %}
+		</div>
+	</div>
+	{% else %}
     {% include '__formatted-content' with __offset-centered-content %}
+	{% endif %}
   </div>
 </div>
 {% else %}
-  {% include '__formatted-content' with __offset-centered-content %}
+	{% if template contains 'contact' %}
+	<div class="row">
+		<div class="col-md-6 col-md-push-6">
+			{% include '__formatted-content' with __offset-centered-content %}
+			<hr class="visible-sm visible-xs">
+		</div>
+		<div class="col-md-6 col-md-pull-6">
+			{% include 'contact-form' %}
+		</div>
+	</div>
+	{% else %}
+    {% include '__formatted-content' with __offset-centered-content %}
+	{% endif %}
 {% endif %}

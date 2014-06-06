@@ -1,4 +1,6 @@
 {% include '__has-variables' %}
-<h1 class="page-header">{{ page_title }}</h1>
+<section id="page-wrap" class="section-wrap">
+	<h1 class="page-header">{{ page_title }}</h1>
 
-<p>{% include '__offset-centered-content' with page.content %}</p>
+	{% include '__offset-centered-content' with page.content %}
+</section>

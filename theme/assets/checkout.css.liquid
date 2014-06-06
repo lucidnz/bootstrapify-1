@@ -350,6 +350,7 @@ th {
   font-family: 'Glyphicons Halflings';
   src: url("bootstrap/glyphicons-halflings-regular.eot");
   src: url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
+
 .glyphicon {
   position: relative;
   top: 1px;
@@ -974,7 +975,7 @@ th {
 
 html {
   font-size: 62.5%;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -3076,8 +3077,29 @@ select[multiple].input-lg,
     display: inline-block;
     margin-top: 0;
     margin-bottom: 0;
-    padding-left: 0;
     vertical-align: middle; }
+    .form-inline .radio label, .navbar-form .radio label, .form-inline .radio #shipping-same label, #shipping-same .form-inline .radio label, .navbar-form .radio #shipping-same label, #shipping-same .navbar-form .radio label, .form-inline .radio td.label, .navbar-form .radio td.label, .form-inline .radio .form ul.inline li label, .form ul.inline li .form-inline .radio label, .navbar-form .radio .form ul.inline li label, .form ul.inline li .navbar-form .radio label,
+    .form-inline .checkbox label,
+    .navbar-form .checkbox label,
+    .form-inline .form td input#shipping-toggle label,
+    .form td .form-inline input#shipping-toggle label,
+    .navbar-form .form td input#shipping-toggle label,
+    .form td .navbar-form input#shipping-toggle label,
+    .form-inline .checkbox #shipping-same label,
+    #shipping-same .form-inline .checkbox label,
+    .navbar-form .checkbox #shipping-same label,
+    #shipping-same .navbar-form .checkbox label,
+    .form-inline .checkbox td.label,
+    .navbar-form .checkbox td.label,
+    .form-inline .form td input#shipping-toggle td.label,
+    .form td .form-inline input#shipping-toggle td.label,
+    .navbar-form .form td input#shipping-toggle td.label,
+    .form td .navbar-form input#shipping-toggle td.label,
+    .form-inline .checkbox .form ul.inline li label,
+    .form ul.inline li .form-inline .checkbox label,
+    .navbar-form .checkbox .form ul.inline li label,
+    .form ul.inline li .navbar-form .checkbox label {
+      padding-left: 0; }
   .form-inline .radio input[type="radio"], .navbar-form .radio input[type="radio"],
   .form-inline .checkbox input[type="checkbox"],
   .navbar-form .checkbox input[type="checkbox"],
@@ -3659,6 +3681,8 @@ tbody.collapse.in {
     width: 1%; }
   .btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group input[type=submit], .btn-group-justified > .btn-group #buttons input, #buttons .btn-group-justified > .btn-group input, .btn-group-justified > .btn-group #create-account-btn {
     width: 100%; }
+  .btn-group-justified > .btn-group .dropdown-menu {
+    left: auto; }
 
 [data-toggle="buttons"] > .btn > input[type="radio"], [data-toggle="buttons"] > input[type=submit] > input[type="radio"], #buttons [data-toggle="buttons"] > input > input[type="radio"], [data-toggle="buttons"] > #create-account-btn > input[type="radio"],
 [data-toggle="buttons"] > .btn > input[type="checkbox"],
@@ -3667,7 +3691,8 @@ tbody.collapse.in {
 [data-toggle="buttons"] > #create-account-btn > input[type="checkbox"] {
   position: absolute;
   z-index: -1;
-  opacity: 0; }
+  opacity: 0;
+  filter: alpha(opacity=0); }
 
 .input-group {
   position: relative;
@@ -4664,6 +4689,7 @@ a.thumbnail.active,
 
   to {
     background-position: 0 0; } }
+
 .progress {
   overflow: hidden;
   height: 20px;
@@ -5621,7 +5647,7 @@ button.close {
     border-radius: 10px;
     cursor: pointer;
     background-color: #000 \9;
-    background-color: transparent; }
+    background-color: rgba(0, 0, 0, 0); }
   .carousel-indicators .active {
     margin: 0;
     width: 12px;
@@ -5707,6 +5733,7 @@ button.close {
 
 @-ms-viewport {
   width: device-width; }
+
 .visible-xs, .visible-sm, .visible-md, .visible-lg {
   display: none !important; }
 
