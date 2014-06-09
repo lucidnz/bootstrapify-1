@@ -82,13 +82,13 @@
   }
 }
 
-@mixin slide($slide-dark, $slide-position, $text-colour){
+@mixin slide($slide-dark, $slide-position){
   .carousel-caption{
     @if nth($slide-position, 1) == 'top' {
       top: 0;
       bottom: auto;
     } @else if nth($slide-position, 1) == 'middle' {
-      top: 31%;
+      top: 35%;
       bottom: auto;
     }
     @if nth($slide-position, 2) == 'left' {
@@ -102,12 +102,11 @@
         text-align: right;
       }
     }
-    color: slide-colour($slide-dark, $text-colour);
     @if $slide-dark {
+      color: $gray-dark;
       text-shadow: none;
     }
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-      color: slide-colour($slide-dark, $text-colour);
       @if $slide-dark {
         text-shadow: none;
       }
@@ -295,6 +294,12 @@ $line-height-base:    1.42858;
       $navbar-default-toggle-hover-bg:    darken($navbar-default-bg, 5%) !default;
    $navbar-default-toggle-icon-bar-bg:    text-muted($navbar-default-color) !default;
   $navbar-default-toggle-border-color:    darken($navbar-default-bg, 5%) !default;
+  {% endif %}
+
+  {% if settings.brand-primary != blank %}
+              // Navbar brand label
+          $navbar-default-brand-color:    $brand-primary !default;
+    $navbar-default-brand-hover-color:    hover-colour($navbar-default-brand-color, 10%) !default;
   {% endif %}
 
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
@@ -8457,7 +8462,52 @@ header .article-meta{
   margin-bottom: 0;
 }
 
-/* Homepage slider */
+/* Homepage slider & Banner */
+.carousel {
+  margin-bottom: 3em;
+}
+
+.carousel-control {
+  &.left, &.right {
+    background: none;
+  }
+  .fa{
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+  }
+  .fa-chevron-left {
+    left: 50%;
+    margin-left:  ($grid-gutter-width / -2);
+  }
+  .fa-chevron-right {
+    right: 50%;
+    margin-right: ($grid-gutter-width / -2);
+  }
+}
+
+.carousel-indicators {
+  li{
+    margin: 3px;
+    border-color: $text-color;
+  }
+  .active{
+    margin: 3px;
+    width: 10px;
+    height: 10px;
+    background-color: $text-color;
+  }
+}
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+  margin: auto;
+}
+
+// Slider caption postitions
 {% for i in (i..5) %}
   {% assign c = i | plus: 1 %}
   {% assign slide = 'slide-' | append: c %}
@@ -8467,137 +8517,64 @@ header .article-meta{
   ${{ slide_position }}: {% if settings[slide_position] != blank %}{{ settings[slide_position] }}{% else %}bottom center{% endif %};
 {% endfor %}
 $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($slide-3-dark $slide-3-position) ($slide-4-dark $slide-4-position) ($slide-5-dark $slide-5-position);
-
-.carousel-caption{
-  color: $text-color;
-}
-.carousel-indicators li{
-  border-color: $text-color;
-}
-.carousel-indicators .active{
-  background-color: $text-color;
-}
-@media (min-width: $screen-sm-min){
-  $i: 1;
-  @each $slide in $slides{
-    #slide-#{$i}{
-      @include slide(nth($slide, 1), nth($slide, 2), $text-color);
-    }
-    $i: $i + 1;
+$i: 1;
+@each $slide in $slides{
+  #slide-#{$i}{
+    @include slide(nth($slide, 1), nth($slide, 2));
   }
+  $i: $i + 1;
+}
+
+.carousel-caption {
+  color: $text-color;
+  h2 {
+    margin-top: 0.35em;
+  }
+}
+
+@media (max-width: $screen-xs-max){
+  .carousel-caption {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    padding: 0 $grid-gutter-width/2 $grid-gutter-width/2;
+    color: $text-color !important;
+    text-align: left !important;
+    text-shadow: none;
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+      text-align: left !important;
+    }
+  }
+  .carousel-indicators{
+    bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: $screen-sm-min){
+  $caption-container-sm: ($container-sm - $grid-gutter-width);
   .carousel-caption{
     left: 50%;
-    width: $container-sm;
-    margin-left: -($container-sm/2);
-    background-color: transparent;
-  }
-  .carousel-indicators li{
-    border-color: white;
-  }
-  .carousel-indicators .active{
-    background-color: white;
+    width: $caption-container-sm;
+    margin-left: -($caption-container-sm / 2);
   }
 }
 
 @media (min-width: $screen-md-min) {
-  .container {
-    width: $container-md;
-  }
+  $caption-container-md: ($container-md - $grid-gutter-width);
   .carousel-caption{
-    width: $container-md;
-    margin-left: -($container-md/2);
+    width: $caption-container-md;
+    margin-left: -($caption-container-md / 2);
   }
 }
 
 @media (min-width: $screen-lg-min) {
-  .container {
-    width: $container-lg;
-  }
+  $caption-container-lg: ($container-lg - $grid-gutter-width);
   .carousel-caption{
-    width: $container-lg;
-    margin-left: -($container-lg/2);
-  }
-}
-
-.carousel-control{
-  &.left, &.right{
-    background: none;
-  }
-  .fa{
-    position: absolute;
-    top: 50%;
-    z-index: 5;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-  }
-  .fa-chevron-left{
-    margin-left: -10px;
-  }
-  .fa-chevron-right{
-    margin-right: -10px;
-  }
-}
-.carousel-caption{
-  position: relative;
-  top: auto;
-  right: auto;
-  bottom: auto;
-  left: auto;
-  text-align: left;
-  text-shadow: none;
-  padding: 0 $grid-gutter-width/2 $grid-gutter-width/2;
-  
-  h2 {
-    font-size: 4em;
-  }
-  
-  .btn {
-    margin-top: 30px;
-  }
-}
-
-.carousel-indicators{
-  bottom: 0;
-  margin-bottom: 0;
-  li{
-    margin: 3px;
-  }
-  .active{
-    margin: 3px;
-    width: 10px;
-    height: 10px;
-  }
-}
-.carousel-inner > .item > img, .carousel-inner > .item > a > img{
-  margin: auto;
-}
-@media (min-width: $screen-sm-min){
-  .carousel-indicators{
-    bottom: 10px;
-    margin-bottom: 10px;
-  }
-  .carousel-control{
-    .fa{
-      font-size: 30px;
-      width: 30px;
-      height: 30px;
-      margin-top: -15px;
-    }
-    .fa-chevron-left{
-      margin-left:  ($grid-gutter-width / -2);
-    }
-    .fa-chevron-right{
-      margin-right: ($grid-gutter-width / -2);
-    }
-  }
-  .carousel-caption{
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: $grid-gutter-width;
-    text-align: center;
-    text-shadow: $carousel-text-shadow;
+    width: $caption-container-lg;
+    margin-left: -($caption-container-lg / 2);
   }
 }
 
@@ -8635,7 +8612,11 @@ $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($s
     @extend .text-center;
     margin: 1em auto 1.5em;
   }
+  a {
+    color: $brand-primary;
+  }
   a:hover{
+    color: hover-colour($brand-primary);
     text-decoration: none;
   }
 }

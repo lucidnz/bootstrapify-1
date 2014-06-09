@@ -1,6 +1,6 @@
 {% capture body_classes %}
 page-{{ page.handle }} 
-template-{{ template }} 
+template-{{ template | replace: '.', '-' }} 
 {% if has_cart %} has-cart{% endif %}
 {% if has_prices %} has-prices{% endif %}
 {% if has_social %} has-social{% endif %}
@@ -16,6 +16,5 @@ template-{{ template }}
  {{ settings.slider-width | prepend: 'banner-' }}
 {% unless settings.thumbnail-ratio == blank %}{% if settings.thumbnails-cropped %} thumbnails-cropped{% else %} thumbnails-fit{% endif %}{% endunless %}
 {% if settings.show-multiple-currencies %} currencies{% endif %}
- {{ template | replace: '.', '-' }}
  {{ thumbnail_layout | prepend: 'thumbnail-layout-' }}
 {% endcapture %}{{ body_classes | strip_newlines | strip }}

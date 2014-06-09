@@ -181,6 +181,12 @@ $line-height-base:    1.42858;
   $navbar-default-toggle-border-color:    darken($navbar-default-bg, 5%) !default;
   {% endif %}
 
+  {% if settings.brand-primary != blank %}
+              // Navbar brand label
+          $navbar-default-brand-color:    $brand-primary !default;
+    $navbar-default-brand-hover-color:    hover-colour($navbar-default-brand-color, 10%) !default;
+  {% endif %}
+
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
            $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
      $navbar-default-link-hover-color:    hover-colour($navbar-default-link-color) !default;

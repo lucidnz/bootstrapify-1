@@ -56,16 +56,11 @@ var preloadProductImages = function(){
   }
 };
 
-$(window).load(function(){
-  preloadProductImages();
-  
-/*
-  $('.carousel').on('slid.bs.carousel', function () {
-    var imgHeight = $(this).find('.item.active img').height();
-    $('.carousel-control').css({maxHeight: imgHeight});
-  });
-*/
-});
+/* Carousel control heights */
+var carouselControlHeight = function(){
+  var imgHeight = $('.carousel').find('.item.active img').height();
+  $('.carousel-control').css({maxHeight: imgHeight});
+};
 
 /* Product Image Switcher */
 $('[data-main-image]').click(function(event) {
@@ -75,6 +70,20 @@ $('[data-main-image]').click(function(event) {
     $mainImage.hide().attr('src', targetImage).fadeIn();
   }
   event.preventDefault();
+});
+
+/* window events */
+$(window).load(function(){
+  preloadProductImages();
+  
+  carouselControlHeight();
+  $('.carousel').on('slid.bs.carousel', function(){
+    carouselControlHeight();
+  });
+});
+
+$(window).on('resize', function(){
+  carouselControlHeight();
 });
 /* Facebook gallery via https://gist.github.com/alexdunae/1239554 */
 
