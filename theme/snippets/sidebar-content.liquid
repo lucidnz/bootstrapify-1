@@ -2,7 +2,7 @@
   <div class="sidebar-content">
     {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
     
-    {% if settings.tag-placement == 'sidebar' %}
+    {% if settings.tag-placement == 'sidebar' and template contains 'collection' %}
     <h3>{% include '__localize' with 'Filter' %}</h3>
     {% include 'tag-buttons' %}
     {% endif %}
@@ -16,13 +16,7 @@
     
     {% unless linklists[settings.sidebar-linklist] == empty %}
       <h3>{{ linklists[settings.sidebar-linklist].title }}</h3>
-      <ul class="list-unstyled">
-        {% for l in linklists[settings.sidebar-linklist].links %}
-        <li{% if l.active %} class="active"{% endif %}>
-          <h4>{{ l.title | link_to: l.url, l.title }}</h4>
-        </li>
-        {% endfor %}
-      </ul>
+      {% include 'submenu' with linklists[settings.sidebar-linklist] %}
     {% endunless %}
   
     {% unless blogs[settings.sidebar-blog] == empty %}

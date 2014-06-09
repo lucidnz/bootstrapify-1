@@ -28,6 +28,7 @@
   
     <div class="form-group">
       <div class="{% include '__form-horizontal-offset' %}">
+        {% if current_url %}<input type="hidden" name="checkout_url" value="{{ current_url }}" />{% endif %}
         <input class="btn btn-primary" type="submit" value="Sign In" />
         <span class="note">or <a href="{{ shop.url }}">Return to Store</a></span>
       </div>

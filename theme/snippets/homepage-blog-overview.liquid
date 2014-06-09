@@ -1,6 +1,6 @@
-{% assign blog = blogs[settings.featured-blog] %}
+{% assign blog = blogs[settings.homepage-blog] %}
 {% if blog != empty and blog.articles.size > 0 %}
-<section id="featured-blog" class="section-wrap">
+<section id="homepage-blog" class="section-wrap">
 	<h2 class="page-header">{{ blog.title }}{% if blog.articles.size > 4 %}&ensp;<a class="small" href="{{ blog.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
 
 	<div class="row">

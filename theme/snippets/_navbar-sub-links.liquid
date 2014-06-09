@@ -1,7 +1,7 @@
 {% if _navbar-sub-links < 2 %}
   {% assign submenu = l.title | handleize %}
   {% assign show = true %}
-  {% assign min_products = settings.hide-products-with-less-than-this-number-of-products | plus: 0 %}
+  {% assign min_products = settings.hide-collections-with-less-than-this-number-of-products | plus: 0 %}
   {% if l.type == 'collection_link' and l.object.all_products.size <= min_products %}{% assign show = false %}{% endif %}
   {% if linklists[submenu].links.size > 0 and _navbar-sub-links < 1 and show %}
     <li class="submenu">

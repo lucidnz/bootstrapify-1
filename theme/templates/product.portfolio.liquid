@@ -19,23 +19,26 @@
       <div class="col-xs-12">
         <div class="thumbnail">
           {{ image }}
-          <div class="loader"></div>
         </div>
       </div>
     </div>
-		{% if product.images.size > 1 %}
-		{% for image in product.images %}
-		<div class="{% include '__thumbnail-span' %}">
-			<a href="#" class="thumbnail product-image" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-				{% if settings.round-thumbnail-images %}
-				{{ image.src | product_img_url: 'grande' | img_tag: image.alt, 'img-circle' }}
-				{% else %}
-				{{ image.src | product_img_url: 'grande' | img_tag: image.alt }}
-				{% endif %}
-			</a>
-		</div>
-		{% endfor %}
-		{% endif %}
+    {% if product.images.size > 1 %}
+    <div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
+      {% for image in product.images %}
+      <div class="{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
+        <div class="thumbnail">
+          <a href="#" data-main-image="{{ image.src | product_img_url: '1024x1024' }}">
+            {% if settings.round-thumbnail-images %}
+            {{ image.src | product_img_url: 'grande' | img_tag: image.alt, 'img-circle' }}
+            {% else %}
+            {{ image.src | product_img_url: 'grande' | img_tag: image.alt }}
+            {% endif %}
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
 	
     <!-- details col -->
     <div class="row">

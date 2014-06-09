@@ -34,7 +34,7 @@
 {% endfor %}
 
 {% unless items == '' %}
-  <div id="myCarousel" class="carousel slide">
+  <div id="myCarousel" class="carousel slide"{% if settings.auto-play-slider %} data-ride="carousel"{% endif %}>
     <!-- Indicators -->
     {% if s > 1 %}
     <ol class="carousel-indicators">

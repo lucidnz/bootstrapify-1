@@ -350,7 +350,6 @@ th {
   font-family: 'Glyphicons Halflings';
   src: url("bootstrap/glyphicons-halflings-regular.eot");
   src: url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
-
 .glyphicon {
   position: relative;
   top: 1px;
@@ -975,7 +974,7 @@ th {
 
 html {
   font-size: 62.5%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: transparent; }
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -4689,7 +4688,6 @@ a.thumbnail.active,
 
   to {
     background-position: 0 0; } }
-
 .progress {
   overflow: hidden;
   height: 20px;
@@ -5647,7 +5645,7 @@ button.close {
     border-radius: 10px;
     cursor: pointer;
     background-color: #000 \9;
-    background-color: rgba(0, 0, 0, 0); }
+    background-color: transparent; }
   .carousel-indicators .active {
     margin: 0;
     width: 12px;
@@ -5733,7 +5731,6 @@ button.close {
 
 @-ms-viewport {
   width: device-width; }
-
 .visible-xs, .visible-sm, .visible-md, .visible-lg {
   display: none !important; }
 
@@ -6016,7 +6013,7 @@ h1#tagline {
 /* Setting variables */
 /* Design and typography styles */
 body {
-  background-color: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}white{% endif %};
+  background-color: {% if settings.background-colour != blank %}{{ settings.background-colour }}{% else %}white{% endif %};
   /* {% if settings.site-background-image != blank %} */
   background-image: url({{ "site-background-image-file.jpg" | asset_url }});
   /* {% unless settings.site-background-image-repeat == blank %} */
@@ -6027,7 +6024,7 @@ body {
   /* {% endunless %} */
   /* {% endif %} */ }
   body h1, body #header h1, #header body h1, body #wallet #cost, #wallet body #cost, body h2, body #overview h2, #overview body h2, body h3, body h3.divider, body #pay-with h3, #pay-with body h3, body .group h3, .group body h3, body .pgroup h3, .pgroup body h3, body #thumbs .plisthead, #thumbs body .plisthead, body #email label, #email body label, body #email td.label, #email body td.label, body h4, body .pageform h4, .pageform body h4, body h4.active-customer, body .group h4, .group body h4, body h5, body h6, body .h1, body .h2, body .h3, body .h4, body .h5, body .h6 {
-    color: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}#333333{% endif %};
+    color: {% if settings.heading-colour != blank %}{{ settings.heading-colour }}{% else %}#333333{% endif %};
     font-family: {% if settings.font-heading-custom != blank %}"{{ settings.font-heading-custom }}"{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %}{% elsif settings.font-heading != blank %}{{ settings.font-heading }}{% else %}"Helvetica Neue", Helvetica, Arial, sans-serif{% endif %};
     text-transform: {% if settings.font-heading-case == "lowercase" or settings.font-heading-case == "uppercase" %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == "title-case"%}capitalize{% else %}none{% endif %};
     font-weight: {% if settings.font-heading-weight != blank %}{{ settings.font-heading-weight }}{% else %}normal{% endif %};
@@ -6035,9 +6032,9 @@ body {
     font-style: italic;
     /* {% endif %} */ }
     body h1 a, body #header h1 a, #header body h1 a, body #wallet #cost a, #wallet body #cost a, body h2 a, body #overview h2 a, #overview body h2 a, body h3 a, body h3.divider a, body #pay-with h3 a, #pay-with body h3 a, body .group h3 a, .group body h3 a, body .pgroup h3 a, .pgroup body h3 a, body #thumbs .plisthead a, #thumbs body .plisthead a, body #email label a, #email body label a, body #email td.label a, #email body td.label a, body h4 a, body .pageform h4 a, .pageform body h4 a, body h4.active-customer a, body .group h4 a, .group body h4 a, body h5 a, body h6 a, body .h1 a, body .h2 a, body .h3 a, body .h4 a, body .h5 a, body .h6 a {
-      color: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}#333333{% endif %}; }
+      color: {% if settings.heading-colour != blank %}{{ settings.heading-colour }}{% else %}#333333{% endif %}; }
       body h1 a:hover, body #header h1 a:hover, #header body h1 a:hover, body #wallet #cost a:hover, #wallet body #cost a:hover, body h2 a:hover, body #overview h2 a:hover, #overview body h2 a:hover, body h3 a:hover, body #pay-with h3 a:hover, #pay-with body h3 a:hover, body #thumbs .plisthead a:hover, #thumbs body .plisthead a:hover, body #email label a:hover, #email body label a:hover, body #email td.label a:hover, #email body td.label a:hover, body h4 a:hover, body h5 a:hover, body h6 a:hover, body .h1 a:hover, body .h2 a:hover, body .h3 a:hover, body .h4 a:hover, body .h5 a:hover, body .h6 a:hover {
-        color: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %};
+        color: {% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %};
         opacity: 0.4; }
   body h1, body #header h1, #header body h1, body #wallet #cost, #wallet body #cost, body .h1 {
     font-size: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size }}{% else %}36px{% endif %}; }
@@ -6054,7 +6051,7 @@ body {
   body #wallet #cost {
     font-size: 4.5em; }
   body p, body .medium p, .medium body p, body fieldset#switchsolo p, fieldset#switchsolo body p, body .header-description p, .header-description body p, body #footer p, #footer body p, body #container.slim #footer p, #container.slim #footer body p, body #header h1 span.subtitle, body #header #wallet #cost span.subtitle, #wallet body #header #cost span.subtitle, body #wallet, body #wallet #steps, body #overview .hint, body #thumbs, body #thumbs span, body span.sign-in-message, body .address-notification, body label, body label.inline, body #shipping-same label, #shipping-same body label, body .soft label, .soft body label, body .medium label, .medium body label, body td.label, body .form ul.inline li label, .form ul.inline li body label, body .item-inventory-action label, .item-inventory-action body label, body #buttons {
-    color: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}#333333{% endif %};
+    color: {% if settings.text-colour != blank %}{{ settings.text-colour }}{% else %}#333333{% endif %};
     font-family: {% if settings.font-body-custom != blank %}"{{ settings.font-body-custom }}"{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %}{% elsif settings.font-body != blank %}{{ settings.font-body }}{% else %}"Helvetica Neue", Helvetica, Arial, sans-serif{% endif %};
     font-size: {% if settings.font-body-size != blank %}{{ settings.font-body-size }}{% else %}14px{% endif %};
     text-transform: {% if settings.font-body-case == "lowercase" or settings.font-body-case == "uppercase" %}{{ settings.font-body-case }}{% elsif settings.font-body-case == "title-case"%}capitalize{% else %}none{% endif %};
@@ -6071,18 +6068,18 @@ body {
     font-style: italic;
     /* {% endif %} */ }
   body a, body span.hint a {
-    color: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}; }
+    color: {% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}; }
     body a:hover, body span.hint a:hover {
-      color: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %};
+      color: {% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %};
       opacity: 0.4; }
   body .btn-primary, body #buttons input, #buttons body input, body #buttons input {
     color: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}white{% endif %};
-    background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}{% endif %};
-    border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}{% endif %}; }
+    background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %};
+    border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %}; }
     body .btn-primary:hover, body #buttons input:hover, #buttons body input:hover, body .btn-primary:active, body #buttons input:active, #buttons body input:active, body .btn-primary:focus, body #buttons input:focus, #buttons body input:focus, body #buttons input:hover, body #buttons input:active, body #buttons input:focus {
       color: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}white{% endif %};
-      background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}{% endif %};
-      border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}{% endif %};
+      background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %};
+      border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %};
       opacity: 0.4; }
   body #footer {
     /* {% if settings.footer-background-colour != blank %} */

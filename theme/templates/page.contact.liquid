@@ -1,6 +1,13 @@
 {% include '__has-variables' %}
-<section id="contect-page-wrap" class="section-wrap">
+<section id="contact-page-wrap" class="section-wrap">
 	<h1 class="page-header">{{ page_title }}</h1>
-
-	{% include '__offset-centered-content' with page.content %}
+  <div class="row">
+  	<div class="col-md-6 col-md-push-6">
+  		{% include '__formatted-content' with page.content %}
+  		<hr class="visible-sm visible-xs">
+  	</div>
+  	<div class="col-md-6 col-md-pull-6">
+  		{% include 'contact-form' %}
+  	</div>
+  </div>
 </section>
