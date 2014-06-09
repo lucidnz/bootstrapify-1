@@ -6,11 +6,11 @@
 	{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
 
 <div class="clearfix">
-  {% unless settings.tag-placement == 'sidebar' %}
+  {% if settings.tag-placement == 'main-content' %}
   <div class="pull-left">
     {% include 'tag-buttons' %}
   </div>
-  {% endunless %}
+  {% endif %}
 
   <div class="pull-right">
     <label for="sort-by">Sort by</label> 
