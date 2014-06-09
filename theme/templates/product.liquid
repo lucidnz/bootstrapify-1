@@ -29,12 +29,12 @@
 					</div>
 					{% if product.images.size > 1 %}
 					{% for image in product.images %}
-					<div class="col-xs-6 col-sm-4">
+					<div class="{% include '__thumbnail-span' %}">
 						<a href="#" class="thumbnail product-image" data-main-image="{{ image.src | product_img_url: 'grande' }}">
 							{% if settings.round-thumbnail-images %}
-							{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
+							{{ image.src | product_img_url: 'grande' | img_tag: image.alt, 'img-circle' }}
 							{% else %}
-							{{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
+							{{ image.src | product_img_url: 'grande' | img_tag: image.alt }}
 							{% endif %}
 						</a>
 					</div>

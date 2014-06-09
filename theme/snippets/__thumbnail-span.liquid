@@ -1,13 +1,55 @@
 {% capture strip_space %}
-{% assign col-xs = 12 | divided_by: settings.thumbnails-per-row-mobile %}
-{% assign col-sm = 12 | divided_by: settings.thumbnails-per-row-tablet %}
-{% assign col-md = 12 | divided_by: settings.thumbnails-per-row-laptop %}
-{% assign col-lg = 12 | divided_by: settings.thumbnails-per-row-desktop %}
-{% endcapture %}
-{% if product_count <= 4 and settings.use-adaptive-thumbnails-per-row == true %}
-{% assign adaptive_cols = product_count | modulo: 12 %}
-{% assign adaptive_cols = 12 | divided_by: adaptive_cols %}
-col-xs-{{ adaptive_cols }}
-{% else %}
-col-xs-{{ col-xs }} col-sm-{{ col-sm }} col-md-{{ col-md }} col-lg-{{ col-lg }}
+{% if settings.use-adaptive-thumbnails-per-row %}
+  {% assign image_count = forloop.length %}
 {% endif %}
+    
+{% if image_count == 1 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 6 %}
+  {% assign col-lg = 6 %}
+  {% assign md-offset = 3 %}
+  {% assign lg-offset = 3 %}
+{% elsif image_count == 2 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 6 %}
+  {% assign col-lg = 6 %}
+  {% assign md-offset = 0 %}
+  {% assign lg-offset = 0 %}
+{% elsif image_count == 3 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 4 %}
+  {% assign col-lg = 4 %}
+  {% assign md-offset = 0 %}
+  {% assign lg-offset = 0 %}
+{% elsif image_count == 4 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 3 %}
+  {% assign col-lg = 3 %}
+  {% assign md-offset = 0 %}
+  {% assign lg-offset = 0 %}
+{% elsif image_count == 5 or image_count == 10 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 2 %}
+  {% assign col-lg = 2 %}
+  {% assign md-offset = 1 %}
+  {% assign lg-offset = 1 %}
+{% elsif image_count == 6 or image_count == 12 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 2 %}
+  {% assign col-lg = 2 %}
+  {% assign md-offset = 0 %}
+  {% assign lg-offset = 0 %}
+{% else %}
+  {% assign col-xs = 12 | divided_by: settings.thumbnails-per-row-mobile %}
+  {% assign col-sm = 12 | divided_by: settings.thumbnails-per-row-tablet %}
+  {% assign col-md = 12 | divided_by: settings.thumbnails-per-row-laptop %}
+  {% assign col-lg = 12 | divided_by: settings.thumbnails-per-row-desktop %}
+{% endif %}
+  
+{% endcapture %}{% if forloop.index == 1 %}col-xs-offset-0 col-sm-offset-0 col-md-offset-{{ md-offset }} col-lg-offset-{{ lg-offset }} {% endif %}col-xs-{{ col-xs }} col-sm-{{ col-sm }} col-md-{{ col-md }} col-lg-{{ col-lg }}
