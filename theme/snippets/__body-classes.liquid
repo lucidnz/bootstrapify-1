@@ -1,23 +1,20 @@
 {% capture body_classes %}
 page-{{ page.handle }} 
-template-{{ template }} 
+template-{{ template | replace: '.', '-' }} 
 {% if has_cart %} has-cart{% endif %}
 {% if has_prices %} has-prices{% endif %}
 {% if has_social %} has-social{% endif %}
 {% if has_top_navbar %} has-top-navbar{% endif %}
 {% if has_fixed_top_navbar %} has-fixed-top-navbar{% else %} has-static-top-navbar{% endif %}
-{% if has_main_navbar %} has-main-navbar{% endif %}
+{% if has_main_menu %} has-main-menu{% endif %}
 {% if has_sidebar %} has-sidebar{% endif %}
 {% if has_footer %} has-footer{% endif %}
 {% if has_footer_navbar %} has-footer-navbar{% endif %}
 {% if has_fixed_footer_navbar %} has-fixed-footer-navbar{% endif %}
 {% if settings.site-wide-thumbnail-container %} has-site-wide-thumbnail-container{% endif %}
 {% if settings.overlay-title-on-hover %} has-overlay-title-on-hover{% endif %}
-
  {{ settings.slider-width | prepend: 'banner-' }}
-
 {% unless settings.thumbnail-ratio == blank %}{% if settings.thumbnails-cropped %} thumbnails-cropped{% else %} thumbnails-fit{% endif %}{% endunless %}
 {% if settings.show-multiple-currencies %} currencies{% endif %}
-{% if settings.centered-layout %} centered-layout{% endif %}
- {{ template | replace: '.', '-' }}
+ {{ thumbnail_layout | prepend: 'thumbnail-layout-' }}
 {% endcapture %}{{ body_classes | strip_newlines | strip }}

@@ -1,9 +1,9 @@
 {% assign has_top_navbar = false %}
-{% if settings.logo-placement == 'navbar' %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.logo-placement == 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}
 {% if settings.disable-cart == blank %}{% assign has_top_navbar = true %}{% endif %}
 {% if shop.customer_accounts_enabled %}{% assign has_top_navbar = true %}{% endif %}
 {% if settings.show-search-in-navbar != blank %}{% assign has_top_navbar = true %}{% endif %}
-{% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'navbar' %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}
 {% if settings.top-navbar-linklist-left != blank %}{% assign has_top_navbar = true %}{% endif %}
 {% if settings.top-navbar-linklist-right != blank %}{% assign has_top_navbar = true %}{% endif %}
 {% if settings.newsletter-signup-placement contains 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}

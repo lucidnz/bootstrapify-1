@@ -2,7 +2,7 @@
 {% capture codes %}USD,EUR,GBP,CAD,ARS,AUD,BBD,BDT,BSD,BHD,BRL,BOB,BND,BGN,MMK,KYD,CLP,CNY,COP,CRC,HRK,CZK,DKK,DOP,XCD,EGP,XPF,FJD,GHS,GTQ,GYD,GEL,HKD,HUF,ISK,INR,IDR,NIS,JMD,JPY,JOD,KZT,KES,KWD,LVL,LTL,MXN,MYR,MUR,MDL,MAD,MNT,MZN,ANG,NZD,NGN,NOK,OMR,PKR,PYG,PEN,PHP,PLN,QAR,RON,RUB,SAR,RSD,SCR,SGD,SYP,ZAR,KRW,LKR,SEK,CHF,TWD,THB,TZS,TTD,TRY,UAH,AED,UYU,VEB,VND,ZMK{% endcapture %}
 {% assign supported_codes = settings.supported-currencies | remove: ',' | split: ' ' %}
 <div class="navbar-right">
-  {% if settings.currency-switcher-position == 'navbar' %}
+  {% if settings.currency-switcher-position == 'top-navbar' %}
   <ul id="currency-picker-toggle" class="nav navbar-nav">
     <li>
       <a href="#" id="current-currency" class="selected-currency">{{ shop.currency }}</a>
