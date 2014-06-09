@@ -13,7 +13,7 @@
     <ul class="dropdown-menu" role="menu" aria-labelledby="group_{{ tags }}">
     {% endif %}
       {% if tag_style == 'buttons' %}<li class="disabled"><a href="#">{% include '__localize' with 'Filter by' %} {{ tags }}</a></li>{% endif %}
-      {% for t in collection.all_tags %}
+      {% for t in all_tags %}
         {% assign current_tags_downcase = current_tags | downcase %}
         {% assign t_downcase = t | downcase %}
         {% assign t_parts = t_downcase | split: ':' %}
