@@ -10,10 +10,14 @@
 {% else %}
 {% assign excerpt = object.excerpt %}
 {% endif %}
+{% assign sizes = '_pico.,_icon.,_thumb.,_small.,_compact.,_medium.,_large.,_grande.,_1024x1024.,_2048x2048.,_master' | split: ',' %}
 {% assign src = null %}
 {% if excerpt contains "<img" %}
     {% assign src = excerpt | split: 'src="' %}
     {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn'; | replace: 'http:http://';, 'http://'; | remove: 'https:' %}
+	{% for s in sizes %}
+	{% assign src = src | replace: s, '_large.' %}
+	{% endfor %}
 {% endif %}
 {% endif %}
 
