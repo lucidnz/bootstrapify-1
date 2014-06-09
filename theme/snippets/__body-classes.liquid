@@ -15,6 +15,7 @@ template-{{ template | replace: '.', '-' }}
 {% if settings.overlay-title-on-hover %} has-overlay-title-on-hover{% endif %}
  {{ settings.slider-width | prepend: 'banner-' }}
 {% if banner_img != null %} has-banner{% endif %}
+{% if settings.show-slider and template == 'index' %} has-slider{% endif %}
 {% unless settings.thumbnail-ratio == blank %}{% if settings.thumbnails-cropped %} thumbnails-cropped{% else %} thumbnails-fit{% endif %}{% endunless %}
 {% if settings.show-multiple-currencies %} currencies{% endif %}
  {{ thumbnail_layout | prepend: 'thumbnail-layout-' }}
