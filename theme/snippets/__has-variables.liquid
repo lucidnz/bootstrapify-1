@@ -19,6 +19,9 @@
 {% if template == 'index' %}{% assign sidebar_template = 'homepage' %}{% else %}{% assign sidebar_template = template %}{% endif %}
 {% assign sidebar_template = sidebar_template | prepend: 'show-sidebar-on-' %}
 
+{% assign banner_template = template | split: '.' | first %}
+{% assign banner_img = [banner_template]metafields.banner.image %}
+
 {% assign current_url = false %}
 {% assign current_handle = false %}
 {% case template %}
