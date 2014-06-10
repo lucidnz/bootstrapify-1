@@ -1,13 +1,33 @@
-/* Sticky Footer */
-$footer-height: $navbar-height + $navbar-margin-bottom;
-html, body, #wrap { height: 100%; }
-body > #wrap {height: auto; min-height: 100%;}
-#content { padding-bottom: $footer-height; }
-#footer-content { 
-  position: relative;
-  margin-top: -$footer-height;
-  min-height: $footer-height;
-  clear:both;
+/* Sticky Footer: https://gist.github.com/goldsky/7322156 */
+html, body {
+  height: 100%;
+}
+
+body {
+  /* only to force vertical scroll on browsers */
+  overflow-y: scroll;
+  /* remove default paddings and margins on browsers */
+  padding: 0;
+  margin: 0;
+}
+
+#wrap {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+#content {
+  display: table-row;
+  height: 100%;
+}
+
+#footer-content {
+  display: table-row;
+  height: 1px;
 }
 
 /* Body */
@@ -34,17 +54,6 @@ body {
   &.has-footer-navbar.has-fixed-footer-navbar{
     #footer-content{
       padding-bottom: $navbar-height;
-    }
-  }
-  &.has-footer{
-    #content{
-      padding-bottom: $footer-height;
-    }
-    #footer-content{
-      > .container{        
-        margin-top: -$footer-height;
-        min-height: $footer-height;
-      }
     }
   }
 
