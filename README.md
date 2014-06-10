@@ -13,7 +13,7 @@ Clone Bootstrapify using git or download the [zip file](https://github.com/lucid
 
 ## Simple setup
 
-If you wish to use the theme without touching the SASS or Bootstrap files then just remove everything except the theme folder. Create a zipped file of the theme folder and upload this to Shopify.
+If you wish to use the theme without touching the SASS or Bootstrap files then just upload `Bootstrapify.zip` to Shopify.
 
 ## Advanced setup
 
