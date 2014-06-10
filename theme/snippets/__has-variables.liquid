@@ -18,7 +18,7 @@
 
 {% assign has_window_width_thumbnail_container = false %}
 {% if template == 'index' or template == 'collection' or template == 'product' %}
-  {% if settings.site-wide-thumbnail-container %}
+  {% if settings.window-width-thumbnail-container %}
     {% assign has_window_width_thumbnail_container = true %}
   {% endif %}
 {% endif %}
