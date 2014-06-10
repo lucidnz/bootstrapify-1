@@ -6635,7 +6635,7 @@ a.thumbnail.active {
 
 // Reset margins on headings for tighter default spacing
 .media-heading {
-  margin: 0 0 5px;
+  margin: 10px 0 5px;
 }
 
 
@@ -8132,7 +8132,7 @@ header .article-meta{
 }
 
 /* Navbars */
-#navbar-top, #navbar-footer {
+#navbar-top, #navbar-footer, #navbar-main {
   {% if settings.font-navbar-custom != blank %}
     $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
   {% elsif settings.font-navbar != blank %}
