@@ -1,9 +1,8 @@
-{% capture strip_space %}
+{% capture thumbnail_span %}
 {% assign col-xs = 12 | divided_by: settings.thumbnails-per-row-mobile %}
 {% assign col-sm = 12 | divided_by: settings.thumbnails-per-row-tablet %}
 {% assign col-md = 12 | divided_by: settings.thumbnails-per-row-laptop %}
 {% assign col-lg = 12 | divided_by: settings.thumbnails-per-row-desktop %}
-{% endcapture %}
 {% if product_count <= 4 and settings.use-adaptive-thumbnails-per-row == true %}
 {% assign adaptive_cols = product_count | modulo: 12 %}
 {% assign adaptive_cols = 12 | divided_by: adaptive_cols %}
@@ -11,3 +10,4 @@ col-xs-{{ adaptive_cols }}
 {% else %}
 col-xs-{{ col-xs }} col-sm-{{ col-sm }} col-md-{{ col-md }} col-lg-{{ col-lg }}
 {% endif %}
+{% endcapture %}{{ thumbnail_span | strip_newlines | strip }}
