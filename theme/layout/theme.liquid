@@ -49,15 +49,15 @@
         {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
       </div>
    
-      <div {% unless has_window_width_thumbnail_container %} class="container"{% endunless %}>
-        <div{% unless has_window_width_thumbnail_container %} class="row"{% endunless %}>
+      {% unless has_window_width_thumbnail_container %}<div class="container">{% endunless %}
+        {% unless has_window_width_thumbnail_container %}<div class="row">{% endunless %}
           <div class="main-content {% include '__main-span' %}">
             {% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
             {{ content_for_layout }}
           </div>
           {% include 'sidebar' %}
-        </div>
-      </div>
+        {% unless has_window_width_thumbnail_container %}</div>{% endunless %}
+      {% unless has_window_width_thumbnail_container %}</div>{% endunless %}
     </div>
     
     {% include 'footer' %}
