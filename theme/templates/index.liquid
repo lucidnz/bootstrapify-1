@@ -18,13 +18,13 @@
 </section>
 {% endunless %}
 
-{% if settings.homepage-products-collection %}
+{% unless settings.homepage-products-collection == blank %}
 {% assign homepage_collection = collections[settings.homepage-products-collection] %}
 <section id="featured-products-title" class="section-wrap">
 	<h2 class="page-header"><a href="{{ homepage_collection.url }}">{{ homepage_collection.title }}</a>{% if homepage_collection.all_products_count > homepage_products_limit %}&emsp;<a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
 </section>
   {% include 'products-list' %}
-{% endif %}
+{% endunless %}
 
 {% include 'homepage-blog-overview' with 'blog' %}
 

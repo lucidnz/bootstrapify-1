@@ -11,4 +11,11 @@
     {% endif %}
     <div class="instagram-images row"></div>
   </section>
+  <script>
+    $(function(){
+      $('#instagram-widget').bootstrapifyInstagram({
+        thumbClass: "{% include '__thumbnail-span' %}"
+      });
+    });
+  </script>
 {% endif %}

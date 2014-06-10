@@ -123,14 +123,12 @@
 
 /* Scaffolding */
 // background colour for body
-{% if settings.background-colour != blank %}
-       $body-bg:    {{ settings.background-colour }} !default;
+       $body-bg:    {% if settings.background-colour != blank %} {{ settings.background-colour }} {% else %} #fff {% endif %} !default;
   $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
-{% endif %}
 
 // Global text color on body
 {% if settings.text-colour != blank %}
-  $text-color:    {{ settings.text-colour }} !default;
+    $text-color:    {{ settings.text-colour }} !default;
 {% endif %}
 
 // Global link color on body
@@ -356,14 +354,12 @@ $line-height-base:    1.42858;
 
 
 /* Thumbnails */
-{% if settings.background-colour != blank %}
            $thumbnail-border:   $border-color !default;
   {% unless settings.show-borders %}
            $thumbnail-border:   transparent !default;
           $thumbnail-padding:   0px !default;
     $thumbnail-border-radius:   0px !default;
   {% endunless %}
-{% endif %}
 
 
 /* Wells */
@@ -391,17 +387,13 @@ $line-height-base:    1.42858;
                $close-color:    $text-color !default;
          $close-text-shadow:    0 1px 0 rgba(if(lightness($body-bg) > 60%, lighten($body-bg, 100%), darken($body-bg, 100%)), .25) !default;
 {% endif %}
-{% if settings.background-colour != blank %}
    $blockquote-border-color:    border-color($body-bg) !default;
          $abbr-border-color:    $border-color !default;
   $page-header-border-color:    $border-color !default;
-{% endif %}
 
 
 /* Miscellaneous */
-{% if settings.background-colour != blank %}
   $hr-border:   border-color($body-bg) !default;
-{% endif %}
 
 {% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
 // a flag to toggle asset pipeline / compass integration
@@ -6643,7 +6635,7 @@ a.thumbnail.active {
 
 // Reset margins on headings for tighter default spacing
 .media-heading {
-  margin: 10px 0 5px;
+  margin: 0 0 5px;
 }
 
 
@@ -8019,7 +8011,7 @@ body > #wrap {height: auto; min-height: 100%;}
 body {
   &.has-top-navbar.has-fixed-top-navbar {
     padding-top: $navbar-height + $navbar-margin-bottom;
-  	&.banner-window-width.has-banner {
+  	&.banner-window-width.has-banner, &.banner-window-width.has-slider {
   		padding-top: $navbar-height;
   	}
   }
@@ -8140,7 +8132,7 @@ header .article-meta{
 }
 
 /* Navbars */
-#navbar-top, #navbar-footer, #navbar-main {
+#navbar-top, #navbar-footer {
   {% if settings.font-navbar-custom != blank %}
     $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
   {% elsif settings.font-navbar != blank %}
