@@ -184,6 +184,18 @@ module.exports = function(grunt) {
         ]
       }
     },
+    compress: {
+      zip: {
+        options: {
+          archive: 'Bootstrapify.zip'
+        },
+        files: [{
+          expand: true,
+          cwd: './theme/',
+          src: ['assets/**', 'config/**', 'layout/**', 'snippets/**', 'templates/**']
+        }]
+      }
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -215,7 +227,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass', 'compress']);
 };
