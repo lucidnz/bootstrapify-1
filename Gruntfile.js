@@ -218,7 +218,7 @@ module.exports = function(grunt) {
         tasks: ['sass']
       },
       compress: {
-        files: ['dist/**', 'theme/**'],
+        files: ['theme/**'],
         tasks: ['compress']
       }
     }
