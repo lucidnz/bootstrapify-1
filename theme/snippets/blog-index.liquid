@@ -2,7 +2,7 @@
 
 <section id="blog-wrap" class="section-wrap">
 	<h1 class="page-header">{{ page_title }}</h1>
-	{% unless settings.tag-placement == 'sidebar' %}{% include 'tag-buttons' %}{% endunless %}
+	{% if settings.tag-placement == 'main-content' %}{% include 'tag-buttons' %}{% endif %}
 
 	{% include '__default-pagination' %}
 	{% paginate blog.articles by default-pagination %}
@@ -34,13 +34,6 @@
 			{% include 'article-meta' with a %}
 		</section>
   
-		{% if has_excerpt %}
-		<footer class="col-xs-12">
-			<ul class="pager">
-				<li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'View' %}&nbsp;&rarr;</a></li>
-			</ul>
-		</footer>
-		{% endif %}
 	</article>
 	{% unless forloop.last %}<hr>{% endunless %}
 	{% endfor %}
