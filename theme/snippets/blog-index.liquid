@@ -34,13 +34,6 @@
 			{% include 'article-meta' with a %}
 		</section>
   
-		{% if has_excerpt %}
-		<footer class="col-xs-12">
-			<ul class="pager">
-				<li><a href="{{ a.url }}" class="pager">{% include '__localize' with 'View' %}&nbsp;&rarr;</a></li>
-			</ul>
-		</footer>
-		{% endif %}
 	</article>
 	{% unless forloop.last %}<hr>{% endunless %}
 	{% endfor %}
