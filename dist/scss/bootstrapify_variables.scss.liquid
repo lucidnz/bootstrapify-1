@@ -239,14 +239,12 @@ $line-height-base:    1.42858;
 
 
 /* Thumbnails */
-{% if settings.background-colour != blank %}
            $thumbnail-border:   $border-color !default;
   {% unless settings.show-borders %}
            $thumbnail-border:   transparent !default;
           $thumbnail-padding:   0px !default;
     $thumbnail-border-radius:   0px !default;
   {% endunless %}
-{% endif %}
 
 
 /* Wells */
@@ -274,16 +272,12 @@ $line-height-base:    1.42858;
                $close-color:    $text-color !default;
          $close-text-shadow:    0 1px 0 rgba(if(lightness($body-bg) > 60%, lighten($body-bg, 100%), darken($body-bg, 100%)), .25) !default;
 {% endif %}
-{% if settings.background-colour != blank %}
    $blockquote-border-color:    border-color($body-bg) !default;
          $abbr-border-color:    $border-color !default;
   $page-header-border-color:    $border-color !default;
-{% endif %}
 
 
 /* Miscellaneous */
-{% if settings.background-colour != blank %}
   $hr-border:   border-color($body-bg) !default;
-{% endif %}
 
 {% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
