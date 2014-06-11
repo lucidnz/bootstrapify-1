@@ -113,6 +113,66 @@
     }
   }
 }
+
+@mixin navbar-style($navbar-bg, $navbar-link-color){
+  background-color: $navbar-bg;
+  border-color: darken($navbar-bg, 5%);
+
+  .navbar-nav, .dropdown-menu, .submenu > .nav {
+    > li > a {
+      color: $navbar-link-color;
+      &:hover,
+      &:focus {
+        color: hover-colour($navbar-link-color);
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: darken($navbar-bg, 5%);
+      }
+    }
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: darken($navbar-bg, 5%);
+        color: hover-colour($navbar-link-color);
+      }
+    }
+  }
+
+  .dropdown-menu, .submenu > .nav {
+    background-color: lighten($navbar-bg, 80%);
+    > li > a{
+      &:hover,
+      &:focus {
+        background-color: darken(lighten($navbar-bg, 80%), 5%);
+      }
+    }
+  }
+
+  .navbar-collapse,
+  .navbar-form {
+    border-color: darken($navbar-bg, 5%);
+  }
+
+  .navbar-link {
+    color: $navbar-link-color;
+    &:hover {
+      color: hover-colour($navbar-link-color);
+    }
+  }
+
+  .btn-link {
+    color: $navbar-link-color;
+    &:hover,
+    &:focus {
+      color: hover-colour($navbar-link-color);
+    }
+  }
+}
 /* Set up base Bootstrap and Bootstrapify variables with values from Shopify settings */
 
 /* Colours */
@@ -236,7 +296,7 @@ $line-height-base:    1.42858;
 
 /* Dropdowns */
 {% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
-                   $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 5%) {% else %} lighten($body-bg, 5%) {% endif %} !default;
+                   $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 80%) {% else %} lighten($body-bg, 80%) {% endif %} !default;
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
            $dropdown-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default;
@@ -1522,12 +1582,7 @@ $component-offset-horizontal: 180px !default;
        -o-transform: scale($ratio);
           transform: scale($ratio);
 }
-@mixin scale($ratioX, $ratioY...) {
-  -webkit-transform: scale($ratioX, $ratioY);
-      -ms-transform: scale($ratioX, $ratioY); // IE9 only
-       -o-transform: scale($ratioX, $ratioY);
-          transform: scale($ratioX, $ratioY);
-}
+
 @mixin scaleX($ratio) {
   -webkit-transform: scaleX($ratio);
       -ms-transform: scaleX($ratio); // IE9 only
@@ -1950,7 +2005,7 @@ $component-offset-horizontal: 180px !default;
 // Creates two color stops, start and end, by specifying a color and position for each color stop.
 // Color stops are not available in IE9 and below.
 @mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
-  background-image: -webkit-linear-gradient(left, color-stop($start-color $start-percent), color-stop($end-color $end-percent)); // Safari 5.1-6, Chrome 10+
+  background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
   background-image: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Opera 12
   background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
   background-repeat: repeat-x;
@@ -2134,7 +2189,7 @@ $component-offset-horizontal: 180px !default;
 // Generate semantic grid columns with these mixins.
 
 // Centered container element
-@mixin container-fixed() {
+@mixin container-fixed($gutter: $grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
   padding-left:  ($grid-gutter-width / 2);
@@ -3040,7 +3095,7 @@ th {
 // Body reset
 
 html {
-  font-size: 62.5%;
+  font-size: 10px;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -3622,7 +3677,6 @@ pre {
 
 
 table {
-  max-width: 100%;
   background-color: $table-bg;
 }
 th {
@@ -3634,6 +3688,7 @@ th {
 
 .table {
   width: 100%;
+  max-width: 100%;
   margin-bottom: $line-height-computed;
   // Cells
   > thead,
@@ -3791,7 +3846,7 @@ table {
     width: 100%;
     margin-bottom: ($line-height-computed * 0.75);
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     border: 1px solid $table-border-color;
     -webkit-overflow-scrolling: touch;
@@ -4101,17 +4156,33 @@ input[type="month"] {
 }
 
 // Apply same disabled cursor tweak as for inputs
+// Some special care is needed because <label>s don't inherit their parent's `cursor`.
 //
 // Note: Neither radios nor checkboxes can be readonly.
 input[type="radio"],
-input[type="checkbox"],
-.radio,
-.radio-inline,
-.checkbox,
-.checkbox-inline {
+input[type="checkbox"] {
   &[disabled],
+  &.disabled,
   fieldset[disabled] & {
     cursor: not-allowed;
+  }
+}
+// These classes are used directly on <label>s
+.radio-inline,
+.checkbox-inline {
+  &.disabled,
+  fieldset[disabled] & {
+    cursor: not-allowed;
+  }
+}
+// These classes are used on elements with <label> descendants
+.radio,
+.checkbox {
+  &.disabled,
+  fieldset[disabled] & {
+    label {
+      cursor: not-allowed;
+    }
   }
 }
 
@@ -5545,6 +5616,7 @@ tbody.collapse.in { display: table-row-group; }
   right: 0;
   left: 0;
   z-index: $zindex-navbar-fixed;
+  @include translate3d(0, 0, 0);
 
   // Undo the rounded corners
   @media (min-width: $grid-float-breakpoint) {
@@ -6635,7 +6707,7 @@ a.thumbnail.active {
 
 // Reset margins on headings for tighter default spacing
 .media-heading {
-  margin: 10px 0 5px;
+  margin: 0 0 5px;
 }
 
 
@@ -6879,7 +6951,9 @@ a.list-group-item {
     border-top-width: 0;
   }
 }
-
+.list-group + .panel-footer {
+  border-top-width: 0;
+}
 
 // Tables in panels
 //
@@ -6888,7 +6962,8 @@ a.list-group-item {
 
 .panel {
   > .table,
-  > .table-responsive > .table {
+  > .table-responsive > .table,
+  > .panel-collapse > .table {
     margin-bottom: 0;
   }
   // Add border top radius for first one
@@ -6999,7 +7074,7 @@ a.list-group-item {
 
   .panel-heading {
     border-bottom: 0;
-    + .panel-collapse .panel-body {
+    + .panel-collapse > .panel-body {
       border-top: 1px solid $panel-inner-border;
     }
   }
@@ -7166,10 +7241,10 @@ button.close {
 
   // When fading in the modal, animate it to slide down
   &.fade .modal-dialog {
-    @include translate(0, -25%);
+    @include translate3d(0, -25%, 0);
     @include transition-transform(0.3s ease-out);
   }
-  &.in .modal-dialog { @include translate(0, 0)}
+  &.in .modal-dialog { @include translate3d(0, 0, 0) }
 }
 
 // Shell div to position the modal with bottom padding
@@ -7810,6 +7885,7 @@ button.close {
 
 .affix {
   position: fixed;
+  @include translate3d(0, 0, 0);
 }
 
 //
@@ -7987,16 +8063,36 @@ button.close {
   @include responsive-invisibility('.hidden-print');
 }
 
-/* Sticky Footer */
-$footer-height: $navbar-height + $navbar-margin-bottom;
-html, body, #wrap { height: 100%; }
-body > #wrap {height: auto; min-height: 100%;}
-#content { padding-bottom: $footer-height; }
-#footer-content { 
-  position: relative;
-  margin-top: -$footer-height;
-  min-height: $footer-height;
-  clear:both;
+/* Sticky Footer: https://gist.github.com/goldsky/7322156 */
+html, body {
+  height: 100%;
+}
+
+body {
+  /* only to force vertical scroll on browsers */
+  overflow-y: scroll;
+  /* remove default paddings and margins on browsers */
+  padding: 0;
+  margin: 0;
+}
+
+#wrap {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+#content {
+  display: table-row;
+  height: 100%;
+}
+
+#footer-content {
+  display: table-row;
+  height: 1px;
 }
 
 /* Body */
@@ -8025,19 +8121,8 @@ body {
       padding-bottom: $navbar-height;
     }
   }
-  &.has-footer{
-    #content{
-      padding-bottom: $footer-height;
-    }
-    #footer-content{
-      > .container{        
-        margin-top: -$footer-height;
-        min-height: $footer-height;
-      }
-    }
-  }
 
-	&.has-site-wide-thumbnail-container {
+	&.has-window-width-thumbnail-container {
 		.section-wrap {
 			@extend .container;
 			&#product-list, &#collection-list {
@@ -8145,6 +8230,12 @@ header .article-meta{
   $font-style-navbar:        {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
   $text-transform-navbar:    {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
   @include font-styles($font-family-navbar, $font-size-navbar, $font-weight-navbar, $font-style-navbar, $text-transform-navbar);
+}
+
+#navbar-main {
+  $navbar-bg:   {% if settings.main-navbar-background-colour != blank %} {{ settings.main-navbar-background-colour }} {% else %} $navbar-default-bg {% endif %};
+  $navbar-link-color: {% if settings.main-navbar-link-colour != blank %} {{ settings.main-navbar-link-colour }} {% else %} $navbar-default-link-color {% endif %};
+  @include navbar-style($navbar-bg, $navbar-link-color);
 }
 
 .submenu > .nav > li > a{

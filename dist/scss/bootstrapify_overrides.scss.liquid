@@ -1,13 +1,33 @@
-/* Sticky Footer */
-$footer-height: $navbar-height + $navbar-margin-bottom;
-html, body, #wrap { height: 100%; }
-body > #wrap {height: auto; min-height: 100%;}
-#content { padding-bottom: $footer-height; }
-#footer-content { 
-  position: relative;
-  margin-top: -$footer-height;
-  min-height: $footer-height;
-  clear:both;
+/* Sticky Footer: https://gist.github.com/goldsky/7322156 */
+html, body {
+  height: 100%;
+}
+
+body {
+  /* only to force vertical scroll on browsers */
+  overflow-y: scroll;
+  /* remove default paddings and margins on browsers */
+  padding: 0;
+  margin: 0;
+}
+
+#wrap {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+#content {
+  display: table-row;
+  height: 100%;
+}
+
+#footer-content {
+  display: table-row;
+  height: 1px;
 }
 
 /* Body */
@@ -36,19 +56,8 @@ body {
       padding-bottom: $navbar-height;
     }
   }
-  &.has-footer{
-    #content{
-      padding-bottom: $footer-height;
-    }
-    #footer-content{
-      > .container{        
-        margin-top: -$footer-height;
-        min-height: $footer-height;
-      }
-    }
-  }
 
-	&.has-site-wide-thumbnail-container {
+	&.has-window-width-thumbnail-container {
 		.section-wrap {
 			@extend .container;
 			&#product-list, &#collection-list {
@@ -143,7 +152,7 @@ header .article-meta{
 }
 
 /* Navbars */
-#navbar-top, #navbar-footer {
+#navbar-top, #navbar-footer, #navbar-main {
   {% if settings.font-navbar-custom != blank %}
     $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
   {% elsif settings.font-navbar != blank %}
@@ -156,6 +165,12 @@ header .article-meta{
   $font-style-navbar:        {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
   $text-transform-navbar:    {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
   @include font-styles($font-family-navbar, $font-size-navbar, $font-weight-navbar, $font-style-navbar, $text-transform-navbar);
+}
+
+#navbar-main {
+  $navbar-bg:   {% if settings.main-navbar-background-colour != blank %} {{ settings.main-navbar-background-colour }} {% else %} $navbar-default-bg {% endif %};
+  $navbar-link-color: {% if settings.main-navbar-link-colour != blank %} {{ settings.main-navbar-link-colour }} {% else %} $navbar-default-link-color {% endif %};
+  @include navbar-style($navbar-bg, $navbar-link-color);
 }
 
 .submenu > .nav > li > a{
