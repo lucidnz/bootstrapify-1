@@ -5627,7 +5627,8 @@ a.icon:hover {
 
 .centered-layout .page-header,
 .centered-layout .thumbnail,
-.centered-layout .rss-subscribe {
+.centered-layout .rss-subscribe,
+.centered-layout #featured-blog {
   text-align: center; }
 
 @media (max-width: 767px) {
