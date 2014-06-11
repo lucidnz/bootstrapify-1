@@ -128,6 +128,9 @@ img {
 header .article-meta{
   @extend .list-inline;
 }
+.media-heading {
+	margin-top: 1em;
+}
 
 .label {
   font-weight: normal;
@@ -184,6 +187,10 @@ header .article-meta{
   }
 }
 
+.navbar-form .form-control {
+	font-size: inherit;
+}
+
 .submenu > .nav > .dropdown-header {
   padding: 0;
   font-size: $font-size-base;
@@ -194,10 +201,6 @@ header .article-meta{
 
 #currencies-picker {
   padding: 0;
-}
-
-.navbar-form .form-control {
-  font-size: inherit;
 }
 
 @media (min-width: $screen-sm-min){
@@ -548,10 +551,10 @@ $i: 1;
 }
 
 .carousel-caption {
-  color: #fff;
+  color: white;
   h2 {
-    color: #fff;
     margin-top: 0.35em;
+	color: white;
   }
 }
 
@@ -577,7 +580,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-sm-min){
-  $caption-container-sm: {% if settings.slider-width == 'window-width' %} $container-sm - $grid-gutter-width {% else %} 70% {% endif %};
+  $caption-container-sm: ($container-sm - $grid-gutter-width);
   .carousel-caption{
     left: 50%;
     width: $caption-container-sm;
@@ -586,7 +589,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-md-min) {
-  $caption-container-md: {% if settings.slider-width == 'window-width' %} $container-md - $grid-gutter-width {% else %} 70% {% endif %};
+  $caption-container-md: ($container-md - $grid-gutter-width);
   .carousel-caption{
     width: $caption-container-md;
     margin-left: -($caption-container-md / 2);
@@ -594,7 +597,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-lg-min) {
-  $caption-container-lg: {% if settings.slider-width == 'window-width' %} $container-lg - $grid-gutter-width {% else %} 70% {% endif %};
+  $caption-container-lg: ($container-lg - $grid-gutter-width);
   .carousel-caption{
     width: $caption-container-lg;
     margin-left: -($caption-container-lg / 2);
