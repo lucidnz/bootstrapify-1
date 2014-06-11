@@ -973,7 +973,11 @@ th {
   box-sizing: border-box; }
 
 html {
+<<<<<<< HEAD
   font-size: 62.5%;
+=======
+  font-size: 10px;
+>>>>>>> master
   -webkit-tap-highlight-color: transparent; }
 
 body {
@@ -2320,7 +2324,6 @@ pre {
   .col-lg-offset-12 {
     margin-left: 100%; } }
 table {
-  max-width: 100%;
   background-color: transparent; }
 
 th {
@@ -2328,6 +2331,7 @@ th {
 
 .table {
   width: 100%;
+  max-width: 100%;
   margin-bottom: 20px; }
   .table > thead > tr > th,
   .table > thead > tr > td,
@@ -2479,7 +2483,7 @@ table th[class*="col-"] {
     width: 100%;
     margin-bottom: 15px;
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     border: 1px solid #dddddd;
     -webkit-overflow-scrolling: touch; }
@@ -2794,23 +2798,36 @@ input[type="month"] {
   margin-top: 0;
   margin-left: 10px; }
 
-input[type="radio"][disabled], fieldset[disabled] input[type="radio"], fieldset[disabled]#switchsolo input[type="radio"],
-input[type="checkbox"][disabled], fieldset[disabled]
+input[type="radio"][disabled], input[type="radio"].disabled, fieldset[disabled] input[type="radio"], fieldset[disabled]#switchsolo input[type="radio"],
+input[type="checkbox"][disabled],
+input[type="checkbox"].disabled, fieldset[disabled]
 input[type="checkbox"], fieldset[disabled]#switchsolo
-input[type="checkbox"],
-.radio[disabled], fieldset[disabled]
-.radio, fieldset[disabled]#switchsolo
-.radio,
-.radio-inline[disabled], fieldset[disabled]
-.radio-inline, fieldset[disabled]#switchsolo
-.radio-inline,
-.checkbox[disabled],
-.form td input[disabled]#shipping-toggle, fieldset[disabled]
-.checkbox, fieldset[disabled]#switchsolo
-.checkbox, fieldset[disabled] .form td input#shipping-toggle, .form td fieldset[disabled] input#shipping-toggle,
-.checkbox-inline[disabled], fieldset[disabled]
+input[type="checkbox"] {
+  cursor: not-allowed; }
+
+.radio-inline.disabled, fieldset[disabled] .radio-inline, fieldset[disabled]#switchsolo .radio-inline,
+.checkbox-inline.disabled, fieldset[disabled]
 .checkbox-inline, fieldset[disabled]#switchsolo
 .checkbox-inline {
+  cursor: not-allowed; }
+
+.radio.disabled label, .radio.disabled #shipping-same label, #shipping-same .radio.disabled label, .radio.disabled td.label, .radio.disabled .form ul.inline li label, .form ul.inline li .radio.disabled label, fieldset[disabled] .radio label, fieldset[disabled]#switchsolo .radio label, fieldset[disabled] .radio #shipping-same label, #shipping-same fieldset[disabled] .radio label, fieldset[disabled] .radio td.label, fieldset[disabled]#switchsolo .radio td.label, fieldset[disabled] .radio .form ul.inline li label, .form ul.inline li fieldset[disabled] .radio label,
+.checkbox.disabled label,
+.form td input.disabled#shipping-toggle label,
+.checkbox.disabled #shipping-same label,
+#shipping-same .checkbox.disabled label,
+.checkbox.disabled td.label,
+.form td input.disabled#shipping-toggle td.label,
+.checkbox.disabled .form ul.inline li label,
+.form ul.inline li .checkbox.disabled label, fieldset[disabled]
+.checkbox label, fieldset[disabled]#switchsolo
+.checkbox label, fieldset[disabled] .form td input#shipping-toggle label, .form td fieldset[disabled] input#shipping-toggle label, fieldset[disabled]
+.checkbox #shipping-same label, #shipping-same fieldset[disabled]
+.checkbox label, fieldset[disabled]
+.checkbox td.label, fieldset[disabled]#switchsolo
+.checkbox td.label, fieldset[disabled] .form td input#shipping-toggle td.label, .form td fieldset[disabled] input#shipping-toggle td.label, fieldset[disabled]
+.checkbox .form ul.inline li label, .form ul.inline li fieldset[disabled]
+.checkbox label {
   cursor: not-allowed; }
 
 .input-sm, .input-group-sm > .form-control, #email .input-group-sm > input, #payment-methods .input-group-sm > input, .field-with-errors .input-group-sm > input, .input-group-sm > input[type=text], .input-group-sm > input[type=password], .input-group-sm > textarea, .input-group-sm > textarea.short, .input-group-sm > input.digit-2, .input-group-sm > textarea.tall, .input-group-sm > input.long,
@@ -4051,7 +4068,9 @@ tbody.collapse.in {
   position: fixed;
   right: 0;
   left: 0;
-  z-index: 1030; }
+  z-index: 1030;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
   @media (min-width: 768px) {
     .navbar-fixed-top,
     .navbar-fixed-bottom,
@@ -4940,8 +4959,12 @@ a.list-group-item-danger {
 .panel-heading + .list-group .list-group-item:first-child {
   border-top-width: 0; }
 
+.list-group + .panel-footer {
+  border-top-width: 0; }
+
 .panel > .table,
-.panel > .table-responsive > .table {
+.panel > .table-responsive > .table,
+.panel > .panel-collapse > .table {
   margin-bottom: 0; }
 .panel > .table:first-child,
 .panel > .table-responsive:first-child > .table:first-child {
@@ -5053,7 +5076,7 @@ a.list-group-item-danger {
       margin-top: 5px; }
   .panel-group .panel-heading {
     border-bottom: 0; }
-    .panel-group .panel-heading + .panel-collapse .panel-body {
+    .panel-group .panel-heading + .panel-collapse > .panel-body {
       border-top: 1px solid #dddddd; }
   .panel-group .panel-footer {
     border-top: 0; }
@@ -5208,19 +5231,15 @@ button.close {
   -webkit-overflow-scrolling: touch;
   outline: 0; }
   .modal.fade .modal-dialog {
-    -webkit-transform: translate(0, -25%);
-    -ms-transform: translate(0, -25%);
-    -o-transform: translate(0, -25%);
-    transform: translate(0, -25%);
+    -webkit-transform: translate3d(0, -25%, 0);
+    transform: translate3d(0, -25%, 0);
     -webkit-transition: -webkit-transform 0.3s ease-out;
     -moz-transition: -moz-transform 0.3s ease-out;
     -o-transition: -o-transform 0.3s ease-out;
     transition: transform 0.3s ease-out; }
   .modal.in .modal-dialog {
-    -webkit-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
-    transform: translate(0, 0); }
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
 
 .modal-dialog {
   position: relative;
@@ -5555,7 +5574,7 @@ button.close {
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
   .carousel-control.left {
-    background-image: -webkit-linear-gradient(left, color-stop(rgba(0, 0, 0, 0.5) 0%), color-stop(rgba(0, 0, 0, 0.0001) 100%));
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
     background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
     background-repeat: repeat-x;
@@ -5563,7 +5582,7 @@ button.close {
   .carousel-control.right {
     left: auto;
     right: 0;
-    background-image: -webkit-linear-gradient(left, color-stop(rgba(0, 0, 0, 0.0001) 0%), color-stop(rgba(0, 0, 0, 0.5) 100%));
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
     background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
     background-repeat: repeat-x;
@@ -5703,7 +5722,9 @@ button.close {
   visibility: hidden !important; }
 
 .affix {
-  position: fixed; }
+  position: fixed;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
 
 @-ms-viewport {
   width: device-width; }
@@ -5989,7 +6010,7 @@ h1#tagline {
 /* Setting variables */
 /* Design and typography styles */
 body {
-  background-color: {% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}white{% endif %};
+  background-color: {% if settings.background-colour != blank %}{{ settings.background-colour }}{% else %}white{% endif %};
   /* {% if settings.site-background-image != blank %} */
   background-image: url({{ "site-background-image-file.jpg" | asset_url }});
   /* {% unless settings.site-background-image-repeat == blank %} */
@@ -6000,7 +6021,7 @@ body {
   /* {% endunless %} */
   /* {% endif %} */ }
   body h1, body #header h1, #header body h1, body #wallet #cost, #wallet body #cost, body h2, body #overview h2, #overview body h2, body h3, body h3.divider, body #pay-with h3, #pay-with body h3, body .group h3, .group body h3, body .pgroup h3, .pgroup body h3, body #thumbs .plisthead, #thumbs body .plisthead, body #email label, #email body label, body #email td.label, #email body td.label, body h4, body .pageform h4, .pageform body h4, body h4.active-customer, body .group h4, .group body h4, body h5, body h6, body .h1, body .h2, body .h3, body .h4, body .h5, body .h6 {
-    color: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}#333333{% endif %};
+    color: {% if settings.heading-colour != blank %}{{ settings.heading-colour }}{% else %}#333333{% endif %};
     font-family: {% if settings.font-heading-custom != blank %}"{{ settings.font-heading-custom }}"{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %}{% elsif settings.font-heading != blank %}{{ settings.font-heading }}{% else %}"Helvetica Neue", Helvetica, Arial, sans-serif{% endif %};
     text-transform: {% if settings.font-heading-case == "lowercase" or settings.font-heading-case == "uppercase" %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == "title-case"%}capitalize{% else %}none{% endif %};
     font-weight: {% if settings.font-heading-weight != blank %}{{ settings.font-heading-weight }}{% else %}normal{% endif %};
@@ -6008,9 +6029,9 @@ body {
     font-style: italic;
     /* {% endif %} */ }
     body h1 a, body #header h1 a, #header body h1 a, body #wallet #cost a, #wallet body #cost a, body h2 a, body #overview h2 a, #overview body h2 a, body h3 a, body h3.divider a, body #pay-with h3 a, #pay-with body h3 a, body .group h3 a, .group body h3 a, body .pgroup h3 a, .pgroup body h3 a, body #thumbs .plisthead a, #thumbs body .plisthead a, body #email label a, #email body label a, body #email td.label a, #email body td.label a, body h4 a, body .pageform h4 a, .pageform body h4 a, body h4.active-customer a, body .group h4 a, .group body h4 a, body h5 a, body h6 a, body .h1 a, body .h2 a, body .h3 a, body .h4 a, body .h5 a, body .h6 a {
-      color: {% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}#333333{% endif %}; }
+      color: {% if settings.heading-colour != blank %}{{ settings.heading-colour }}{% else %}#333333{% endif %}; }
       body h1 a:hover, body #header h1 a:hover, #header body h1 a:hover, body #wallet #cost a:hover, #wallet body #cost a:hover, body h2 a:hover, body #overview h2 a:hover, #overview body h2 a:hover, body h3 a:hover, body #pay-with h3 a:hover, #pay-with body h3 a:hover, body #thumbs .plisthead a:hover, #thumbs body .plisthead a:hover, body #email label a:hover, #email body label a:hover, body #email td.label a:hover, #email body td.label a:hover, body h4 a:hover, body h5 a:hover, body h6 a:hover, body .h1 a:hover, body .h2 a:hover, body .h3 a:hover, body .h4 a:hover, body .h5 a:hover, body .h6 a:hover {
-        color: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %};
+        color: {% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %};
         opacity: 0.4; }
   body h1, body #header h1, #header body h1, body #wallet #cost, #wallet body #cost, body .h1 {
     font-size: {% if settings.font-heading-size != blank %}{{ settings.font-heading-size }}{% else %}36px{% endif %}; }
@@ -6027,7 +6048,7 @@ body {
   body #wallet #cost {
     font-size: 4.5em; }
   body p, body .medium p, .medium body p, body fieldset#switchsolo p, fieldset#switchsolo body p, body .header-description p, .header-description body p, body #footer p, #footer body p, body #container.slim #footer p, #container.slim #footer body p, body #header h1 span.subtitle, body #header #wallet #cost span.subtitle, #wallet body #header #cost span.subtitle, body #wallet, body #wallet #steps, body #overview .hint, body #thumbs, body #thumbs span, body span.sign-in-message, body .address-notification, body label, body label.inline, body #shipping-same label, #shipping-same body label, body .soft label, .soft body label, body .medium label, .medium body label, body td.label, body .form ul.inline li label, .form ul.inline li body label, body .item-inventory-action label, .item-inventory-action body label, body #buttons {
-    color: {% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}#333333{% endif %};
+    color: {% if settings.text-colour != blank %}{{ settings.text-colour }}{% else %}#333333{% endif %};
     font-family: {% if settings.font-body-custom != blank %}"{{ settings.font-body-custom }}"{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %}{% elsif settings.font-body != blank %}{{ settings.font-body }}{% else %}"Helvetica Neue", Helvetica, Arial, sans-serif{% endif %};
     font-size: {% if settings.font-body-size != blank %}{{ settings.font-body-size }}{% else %}14px{% endif %};
     text-transform: {% if settings.font-body-case == "lowercase" or settings.font-body-case == "uppercase" %}{{ settings.font-body-case }}{% elsif settings.font-body-case == "title-case"%}capitalize{% else %}none{% endif %};
@@ -6044,18 +6065,18 @@ body {
     font-style: italic;
     /* {% endif %} */ }
   body a, body span.hint a {
-    color: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}; }
+    color: {% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}; }
     body a:hover, body span.hint a:hover {
-      color: {% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %};
+      color: {% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %};
       opacity: 0.4; }
   body .btn-primary, body #buttons input, #buttons body input, body #buttons input {
     color: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}white{% endif %};
-    background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}{% endif %};
-    border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}{% endif %}; }
+    background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %};
+    border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %}; }
     body .btn-primary:hover, body #buttons input:hover, #buttons body input:hover, body .btn-primary:active, body #buttons input:active, #buttons body input:active, body .btn-primary:focus, body #buttons input:focus, #buttons body input:focus, body #buttons input:hover, body #buttons input:active, body #buttons input:focus {
       color: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}white{% endif %};
-      background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}{% endif %};
-      border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}#428bca{% endif %}{% endif %};
+      background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %};
+      border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %};
       opacity: 0.4; }
   body #footer {
     /* {% if settings.footer-background-colour != blank %} */

@@ -1,4 +1,4 @@
-# Bootstrapify 3.1.0
+# Bootstrapify 3.1.1
 
 Bootstrapify is an open-source base theme for [Shopify](http://www.shopify.com?ref=lucid-design) that makes it super quick and easy for developers to start building amazing, responsive themes without having to do all the fiddly, repetitive setup work when starting from scratch.
 
@@ -13,7 +13,7 @@ Clone Bootstrapify using git or download the [zip file](https://github.com/lucid
 
 ## Simple setup
 
-If you wish to use the theme without touching the SASS or Bootstrap files then just remove everything except the theme folder. Create a zipped file of the theme folder and upload this to Shopify.
+If you wish to use the theme without touching the SASS or Bootstrap files then just upload `Bootstrapify.zip` to Shopify.
 
 ## Advanced setup
 
@@ -21,12 +21,18 @@ If you wish to develop locally and push your changes to Shopify you will need to
 
 ### Workflow
 
-There is one caveat with using SCSS with Shopify: They don't support `@import`... yet.
-So to keep Bootstrap intact and updateable we have created a workflow for working with this theme.
+To use both Shopify and Bootstrap to their full potential we concatenate Bootstraps styles with a few of our own, add some liquid and then send it to Shopify to be compiled.
+The benefit of doing it this way is that we can alter Bootstraps variables directly from the theme settings and we don't have to override a whole lot of stuff with our own styles.
+Our own styles are kept outside the theme directory in `dist/scss/` and are built using Grunt into `assets/_base.scss.liquid`.
 
-Styles.scss is kept outside the theme directory and is compiled using Grunt into `assets/_base.css`.
+To add any new styles you can either add it directly to `dist/scss/bootstrapify_overrides.scss.liquid` or include your own files in the concatenation within [Gruntfile.js](https://github.com/luciddesign/bootstrapify/blob/master/Gruntfile.js#L54-L128).
 
-We use the [Shopify Theme gem](https://github.com/Shopify/shopify_theme) to watch the theme directory and push any changes up to Shopify.
+However there are two caveats with using SCSS with Shopify:
+
+1. They don't support `@import`... yet. So to keep Bootstrap intact and updateable we have created this workflow for working with the theme.
+2. They don't allow SCSS in the checkout styles, so this still has to be compiled with SASS locally.
+
+We then use the [Shopify Theme gem](https://github.com/Shopify/shopify_theme) to watch the theme directory and push any changes up to Shopify.
 
 ### Requirements
 
@@ -93,6 +99,11 @@ Feel free to make pull requests.
 
 
 ## Change log
+
+3.1.1
+
+ * Upgrade to version 3.1.1 of Twitter Bootstrap Sass.
+ * Major overhaul of how we deal with Bootstrap!
 
 3.1.0
 

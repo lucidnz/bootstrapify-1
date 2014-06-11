@@ -10,8 +10,9 @@
  
 (function($) {
 
-  var BootstrapifyInstagram = function($ele){
+  var BootstrapifyInstagram = function($ele, settings){
     this.$ele           = $ele;
+    this.settings       = settings;
     this.clientId       = this.$ele.data('client-id');
     this.feedLink       = this.$ele.data('instagram-link');
     this.hastag         = this.$ele.data('hashtag');
@@ -96,7 +97,7 @@
     .append(innerHtml);
 
     return $('<div>')
-    .addClass('instagram-thumb col-sm-3')
+    .addClass('instagram-thumb '+this.settings.thumbClass)
     .attr('id', photo.id)
     .append(innerHtml);
   };
@@ -119,16 +120,16 @@
     }
   };
 
-  $.fn.bootstrapifyInstagram = function(){
+  $.fn.bootstrapifyInstagram = function(options){
+    var opts = $.extend({}, $.fn.bootstrapifyInstagram.defaults, options);
     return this.each(function(){
       var $ele = $(this);
-      $ele.data('_bootstrapifyInstagram', new BootstrapifyInstagram($ele));
+      $ele.data('_bootstrapifyInstagram', new BootstrapifyInstagram($ele, opts));
     });
+  };
+  
+  $.fn.bootstrapifyInstagram.defaults = {
+    thumbClass: 'col-xs-6 col-sm-3'
   };
 
 }(jQuery));
-
-/* Load instagram widget */
-$(function(){
-  jQuery(document.getElementById('instagram-widget')).bootstrapifyInstagram();
-});
