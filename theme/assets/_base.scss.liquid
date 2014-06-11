@@ -1582,12 +1582,7 @@ $component-offset-horizontal: 180px !default;
        -o-transform: scale($ratio);
           transform: scale($ratio);
 }
-@mixin scale($ratioX, $ratioY...) {
-  -webkit-transform: scale($ratioX, $ratioY);
-      -ms-transform: scale($ratioX, $ratioY); // IE9 only
-       -o-transform: scale($ratioX, $ratioY);
-          transform: scale($ratioX, $ratioY);
-}
+
 @mixin scaleX($ratio) {
   -webkit-transform: scaleX($ratio);
       -ms-transform: scaleX($ratio); // IE9 only
@@ -2010,7 +2005,7 @@ $component-offset-horizontal: 180px !default;
 // Creates two color stops, start and end, by specifying a color and position for each color stop.
 // Color stops are not available in IE9 and below.
 @mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
-  background-image: -webkit-linear-gradient(left, color-stop($start-color $start-percent), color-stop($end-color $end-percent)); // Safari 5.1-6, Chrome 10+
+  background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
   background-image: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Opera 12
   background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
   background-repeat: repeat-x;
@@ -2194,7 +2189,7 @@ $component-offset-horizontal: 180px !default;
 // Generate semantic grid columns with these mixins.
 
 // Centered container element
-@mixin container-fixed() {
+@mixin container-fixed($gutter: $grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
   padding-left:  ($grid-gutter-width / 2);
@@ -3100,7 +3095,7 @@ th {
 // Body reset
 
 html {
-  font-size: 62.5%;
+  font-size: 10px;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -3682,7 +3677,6 @@ pre {
 
 
 table {
-  max-width: 100%;
   background-color: $table-bg;
 }
 th {
@@ -3694,6 +3688,7 @@ th {
 
 .table {
   width: 100%;
+  max-width: 100%;
   margin-bottom: $line-height-computed;
   // Cells
   > thead,
@@ -3851,7 +3846,7 @@ table {
     width: 100%;
     margin-bottom: ($line-height-computed * 0.75);
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     border: 1px solid $table-border-color;
     -webkit-overflow-scrolling: touch;
@@ -4161,17 +4156,33 @@ input[type="month"] {
 }
 
 // Apply same disabled cursor tweak as for inputs
+// Some special care is needed because <label>s don't inherit their parent's `cursor`.
 //
 // Note: Neither radios nor checkboxes can be readonly.
 input[type="radio"],
-input[type="checkbox"],
-.radio,
-.radio-inline,
-.checkbox,
-.checkbox-inline {
+input[type="checkbox"] {
   &[disabled],
+  &.disabled,
   fieldset[disabled] & {
     cursor: not-allowed;
+  }
+}
+// These classes are used directly on <label>s
+.radio-inline,
+.checkbox-inline {
+  &.disabled,
+  fieldset[disabled] & {
+    cursor: not-allowed;
+  }
+}
+// These classes are used on elements with <label> descendants
+.radio,
+.checkbox {
+  &.disabled,
+  fieldset[disabled] & {
+    label {
+      cursor: not-allowed;
+    }
   }
 }
 
@@ -5605,6 +5616,7 @@ tbody.collapse.in { display: table-row-group; }
   right: 0;
   left: 0;
   z-index: $zindex-navbar-fixed;
+  @include translate3d(0, 0, 0);
 
   // Undo the rounded corners
   @media (min-width: $grid-float-breakpoint) {
@@ -6939,7 +6951,9 @@ a.list-group-item {
     border-top-width: 0;
   }
 }
-
+.list-group + .panel-footer {
+  border-top-width: 0;
+}
 
 // Tables in panels
 //
@@ -6948,7 +6962,8 @@ a.list-group-item {
 
 .panel {
   > .table,
-  > .table-responsive > .table {
+  > .table-responsive > .table,
+  > .panel-collapse > .table {
     margin-bottom: 0;
   }
   // Add border top radius for first one
@@ -7059,7 +7074,7 @@ a.list-group-item {
 
   .panel-heading {
     border-bottom: 0;
-    + .panel-collapse .panel-body {
+    + .panel-collapse > .panel-body {
       border-top: 1px solid $panel-inner-border;
     }
   }
@@ -7226,10 +7241,10 @@ button.close {
 
   // When fading in the modal, animate it to slide down
   &.fade .modal-dialog {
-    @include translate(0, -25%);
+    @include translate3d(0, -25%, 0);
     @include transition-transform(0.3s ease-out);
   }
-  &.in .modal-dialog { @include translate(0, 0)}
+  &.in .modal-dialog { @include translate3d(0, 0, 0) }
 }
 
 // Shell div to position the modal with bottom padding
@@ -7870,6 +7885,7 @@ button.close {
 
 .affix {
   position: fixed;
+  @include translate3d(0, 0, 0);
 }
 
 //
@@ -8236,16 +8252,16 @@ header .article-meta{
   }
 }
 
-.navbar-form .form-control {
-	font-size: inherit;
-}
-
 .submenu > .nav > .dropdown-header {
   padding: 0;
   font-size: $font-size-base;
   a {
     font-weight: bold;
   }
+}
+
+.navbar-form .form-control {
+	font-size: inherit;
 }
 
 #currencies-picker {
@@ -8603,7 +8619,7 @@ $i: 1;
   color: white;
   h2 {
     margin-top: 0.35em;
-	color: white;
+    color: white;
   }
 }
 
@@ -8629,7 +8645,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-sm-min){
-  $caption-container-sm: ($container-sm - $grid-gutter-width);
+  $caption-container-sm: {% if settings.slider-width == 'window-width' %} $container-sm - $grid-gutter-width {% else %} 70% {% endif %};
   .carousel-caption{
     left: 50%;
     width: $caption-container-sm;
@@ -8638,7 +8654,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-md-min) {
-  $caption-container-md: ($container-md - $grid-gutter-width);
+  $caption-container-md: {% if settings.slider-width == 'window-width' %} $container-md - $grid-gutter-width {% else %} 70% {% endif %};
   .carousel-caption{
     width: $caption-container-md;
     margin-left: -($caption-container-md / 2);
@@ -8646,7 +8662,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-lg-min) {
-  $caption-container-lg: ($container-lg - $grid-gutter-width);
+  $caption-container-lg: {% if settings.slider-width == 'window-width' %} $container-lg - $grid-gutter-width {% else %} 70% {% endif %};
   .carousel-caption{
     width: $caption-container-lg;
     margin-left: -($caption-container-lg / 2);
