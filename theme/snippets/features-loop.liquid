@@ -1,14 +1,23 @@
-{% assign span = 12 | divided_by: cols %}
+{% assign span = cols | modulo: 12 %}
+{% assign span = 12 | divided_by: span %}
 {% if features-loop == 'linklist' %}
 {% assign object = l.object %}
 {% capture excerpt %}{% include '__excerpt' with object.content %}{% endcapture %}
 {% else %}
 {% assign object = l %}
+{% if object.excerpt == blank %}
+{% capture excerpt %}{% include '__excerpt' with object.content %}{% endcapture %}
+{% else %}
 {% assign excerpt = object.excerpt %}
+{% endif %}
+{% assign sizes = '_pico.,_icon.,_thumb.,_small.,_compact.,_medium.,_large.,_grande.,_1024x1024.,_2048x2048.,_master' | split: ',' %}
 {% assign src = null %}
 {% if excerpt contains "<img" %}
     {% assign src = excerpt | split: 'src="' %}
     {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn'; | replace: 'http:http://';, 'http://'; | remove: 'https:' %}
+	{% for s in sizes %}
+	{% assign src = src | replace: s, '_large.' %}
+	{% endfor %}
 {% endif %}
 {% endif %}
 {% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% elsif settings.round-thumbnail-images-on-homepage and template == 'index' %}{% assign round-class = 'img-circle' %}{% endif %}

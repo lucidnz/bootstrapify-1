@@ -1,6 +1,6 @@
 {% include '__collection-image' %}
-<div class="{% if settings.collections-per-row == blank %}{% include '__thumbnail-span' %}{% else %}col-sm-{{ 12 | divided_by: settings.collections-per-row }}{% endif %}{% if settings.masonry-style-layout %} masonry{% endif %}">
-  <div class="thumbnail text-center">
+<div class="{% if settings.collections-per-row == blank %}{% include '__thumbnail-span' %}{% else %}col-sm-{{ 12 | divided_by: settings.collections-per-row }}{% endif %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
+  <div class="collection-thumbnail text-center">
     <div class="thumbnail-image">
       {{ image }}
     </div>

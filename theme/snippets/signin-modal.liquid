@@ -1,6 +1,8 @@
+{% if shop.customer_accounts_enabled %}
 <!-- Button trigger modal -->
-<a data-toggle="modal" href="#signinModal" class="btn btn-primary btn-lg">Launch sign-in modal</a>
+<a {% if customer %} href="/account" {% else %} data-toggle="modal" href="#signinModal" {% endif %} class="btn btn-primary btn-lg">Launch sign-in modal</a>
 
+{% unless customer %}
 <!-- Modal -->
 <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -32,3 +34,5 @@
     </div>
   </div>
 </div>
+{% endunless %}
+{% endif %}

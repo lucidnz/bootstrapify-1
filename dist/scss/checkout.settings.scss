@@ -1,10 +1,10 @@
 $hover-opacity: 0.4;
 
 /* Setting variables */
-$body-background-colour: #{'{% if settings.body-background-colour != blank %}{{ settings.body-background-colour }}{% else %}'}$body-bg#{'{% endif %}'};
-$body-heading-colour: #{'{% if settings.body-heading-colour != blank %}{{ settings.body-heading-colour }}{% else %}'}$text-color#{'{% endif %}'};
-$body-text-colour: #{'{% if settings.body-text-colour != blank %}{{ settings.body-text-colour }}{% else %}'}$text-color#{'{% endif %}'};
-$body-link-colour: #{'{% if settings.body-link-colour != blank %}{{ settings.body-link-colour }}{% else %}'}$link-color#{'{% endif %}'};
+$body-background-colour: #{'{% if settings.background-colour != blank %}{{ settings.background-colour }}{% else %}'}$body-bg#{'{% endif %}'};
+$body-heading-colour: #{'{% if settings.heading-colour != blank %}{{ settings.heading-colour }}{% else %}'}$text-color#{'{% endif %}'};
+$body-text-colour: #{'{% if settings.text-colour != blank %}{{ settings.text-colour }}{% else %}'}$text-color#{'{% endif %}'};
+$body-link-colour: #{'{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}'}$link-color#{'{% endif %}'};
 $button-colour: #{'{% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}'}$body-link-colour#{'{% endif %}'};
 $button-text-colour: #{'{% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}'}$btn-primary-color#{'{% endif %}'};
 

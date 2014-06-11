@@ -1,0 +1,7 @@
+{% if submenu.links.size > 0 %}
+<ul class="list-unstyled list-indented">
+  {% for sm_link in submenu.links %}
+  {% include 'submenu-link' with sm_link %}
+  {% endfor %}
+</ul>
+{% endif %}
