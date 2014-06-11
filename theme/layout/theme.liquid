@@ -95,7 +95,8 @@
       {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
       {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
       $('.thumbnail-image, .product-main-thumb').uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
-        $('.product-thumbnail .caption, .collection-thumbnail .caption').orderly({ method: 'children' });
+        $('.collection-thumbnail .caption').orderly({ method: 'children' });
+        $('.product-thumbnail .caption').orderly({ method: 'children' });
       });
     {% endif %}
     
