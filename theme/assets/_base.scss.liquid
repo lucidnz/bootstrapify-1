@@ -8666,7 +8666,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-sm-min){
-  $caption-container-sm: {% if settings.slider-width == 'window-width' %} $container-sm - $grid-gutter-width {% else %} 70% {% endif %};
+  $caption-container-sm: 70%;
   .carousel-caption{
     left: 50%;
     width: $caption-container-sm;
@@ -8679,7 +8679,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-md-min) {
-  $caption-container-md: {% if settings.slider-width == 'window-width' %} $container-md - $grid-gutter-width {% else %} 70% {% endif %};
+  $caption-container-md: 70%;
   .carousel-caption{
     width: $caption-container-md;
     margin-left: -($caption-container-md / 2);
