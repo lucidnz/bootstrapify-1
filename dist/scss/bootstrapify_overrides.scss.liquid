@@ -160,6 +160,68 @@ header .article-meta{
 }
 
 /* Navbars */
+@media (min-width: $screen-sm-min){
+  .navbar-nav.navbar-left:first-child{
+    margin-left: ($grid-gutter-width / -2);
+  }
+  .navbar-text.navbar-left:first-child{
+    margin-left: 0;
+  }
+  
+  .navbar-center{
+    float: none;
+    text-align: center;
+    > li{
+      float: none;
+      display: inline-block;
+    }
+    .dropdown-menu{
+      text-align: left;
+    }
+  }
+}
+
+.navbar-nav .open .dropdown-menu .dropdown-header, .submenu .nav .dropdown-header{
+  padding: 0;
+  font-weight: bold;
+}
+
+.navbar-form .form-control, .navbar-nav .dropdown-menu, .dropdown-menu > li > a, .dropdown-header {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.submenu .nav{
+   > li > a {
+    padding: 5px 15px 5px 25px;
+    color: $navbar-default-link-color;
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+      background-color: $navbar-default-link-hover-bg;
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-active-color;
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+  @media (min-width: $screen-sm-min){
+    > li > a{
+      padding: 3px 20px;
+      color: $dropdown-link-color;
+      &:hover,
+      &:focus {
+        color: $dropdown-link-hover-color;
+        background-color: $dropdown-link-hover-bg;
+      }
+    }
+  }
+}
+
 #navbar-top, #navbar-footer, #navbar-main {
   {% if settings.font-navbar-custom != blank %}
     $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
@@ -181,51 +243,8 @@ header .article-meta{
   @include navbar-style($navbar-bg, $navbar-link-color);
 }
 
-.submenu > .nav > li > a{
-  padding: 3px 20px;
-  color: $dropdown-link-color;
-  font-weight: normal;
-  &:hover,
-  &:focus {
-    color: $dropdown-link-hover-color;
-    background-color: $dropdown-link-hover-bg;
-  }
-}
-
-.submenu > .nav > .dropdown-header {
-  padding: 0;
-  a {
-    font-weight: bold;
-  }
-}
-
-.navbar-form .form-control, .navbar-nav .dropdown-menu {
-	font-size: inherit;
-}
-
 #currencies-picker {
   padding: 0;
-}
-
-@media (min-width: $screen-sm-min){
-  .navbar-nav.navbar-left:first-child{
-    margin-left: ($grid-gutter-width / -2);
-  }
-  .navbar-text.navbar-left:first-child{
-    margin-left: 0;
-  }
-  
-  .navbar-center{
-    float: none;
-    text-align: center;
-    > li{
-      float: none;
-      display: inline-block;
-    }
-    .dropdown-menu{
-      text-align: left;
-    }
-  }
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
