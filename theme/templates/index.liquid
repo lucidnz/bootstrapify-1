@@ -1,5 +1,8 @@
 {% include '__has-variables' %}
 
+{% if settings.advanced-homepage-layout != null %}
+	{% include 'advanced-layout' %}
+{% else %}
 {% unless settings.homepage-content == blank %}{% assign homepage = pages[settings.homepage-content] %}
 <section id="homepage-intro" class="section-wrap">
 	<h1 class="page-header">{{ homepage.title }}</h1>
@@ -39,3 +42,4 @@
 {% endfor %}
 
 {% include 'social-feed-instagram' with homepage %}
+{% endif %}

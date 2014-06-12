@@ -1,0 +1,29 @@
+{% for l in linklists[settings.advanced-homepage-layout].links %}
+
+{% assign t_object = l.object %}
+
+{% if l.type == 'page_link' %}
+<section id="homepage-intro{{ forloop.index }}" class="section-wrap">
+	{% unless t_object == blank %}
+	{% include '__formatted-content' with t_object.content %}
+	{% endunless %}
+</section>
+{% endif %}
+
+{% if l.url == '#' %}
+<section id="featured-collections-title" class="section-wrap">
+	<h2 class="page-header">{{ t_object.title }}</h2>
+	{% include 'collections-list' with 't_object' %}
+</section>
+{% endif %}
+
+{% if l.type == 'blog_link' %}
+{% include 'homepage-blog-overview' with 't_object' %}
+{% endif %}
+
+{% if l.type == 'product_link' %}
+{% include 'product-page' with 't_object' %}
+{% endif %}
+
+<hr>
+{% endfor %}
