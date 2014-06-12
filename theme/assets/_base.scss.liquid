@@ -109,6 +109,9 @@
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
       @if $slide-dark {
         text-shadow: none;
+        @media (min-width: $screen-sm-min){
+          color: $gray-dark;
+        }
       }
     }
   }
@@ -8615,10 +8618,8 @@ $i: 1;
 }
 
 .carousel-caption {
-  color: white;
   h2 {
     margin-top: 0.35em;
-    color: white;
   }
 }
 
@@ -8649,6 +8650,10 @@ $i: 1;
     left: 50%;
     width: $caption-container-sm;
     margin-left: -($caption-container-sm / 2);
+    color: white;
+    h2 {
+      color: white;
+    }
   }
 }
 
