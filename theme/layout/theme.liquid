@@ -39,20 +39,18 @@
 
   <div id="wrap">
     {% include 'navbar' with 'top' %}
-    {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
-	{% if has_main_menu %}
-	<div class="container">
-		{% include 'navbar' with 'main' %}
-	</div>
-	{% endif %}
-    {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
-	
     <div id="content">
+      {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
+    	{% if has_main_menu %}
+    	<div class="container">
+    		{% include 'navbar' with 'main' %}
+    	</div>
+    	{% endif %}
+      {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
       <div class="container">
         {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
         {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
       </div>
-   
       {% unless has_window_width_thumbnail_container %}<div class="container">{% endunless %}
         {% unless has_window_width_thumbnail_container %}<div class="row">{% endunless %}
           <div class="main-content {% include '__main-span' %}">
