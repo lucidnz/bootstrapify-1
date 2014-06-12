@@ -299,7 +299,7 @@ $line-height-base:    1.42858;
                    $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 80%) {% else %} lighten($body-bg, 80%) {% endif %} !default;
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
-           $dropdown-link-color:    text-colour({% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %}) !default;
+           $dropdown-link-color:    darken({% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %}, 80%) !default;
      $dropdown-link-hover-color:    hover-colour( $dropdown-link-color ) !default;
   $dropdown-link-disabled-color:    lighten($dropdown-link-color, 5%) !default;
          $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
