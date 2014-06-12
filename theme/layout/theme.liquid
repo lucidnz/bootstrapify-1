@@ -105,7 +105,7 @@
     $(document).ready(function(){
       $('.search-bar').typeahead({
         name: 'Products',
-        local: [{% include 'search-typeahead' %}]
+        local: [{{ typeahead }}]
       }).on('typeahead:selected', function (object, datum) {
         $(this).closest('form').submit();
       });
