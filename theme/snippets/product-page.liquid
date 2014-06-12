@@ -34,7 +34,7 @@
             <div class="thumbnail">
               <div class="thumbnail-image product-main-thumb">
                 <a href="#" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-                  {% if settings.round-product-images %}
+                  {% if settings.round-thumbnail-images %}
                   {{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
                   {% else %}
                   {{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
