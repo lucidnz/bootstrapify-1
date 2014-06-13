@@ -6,7 +6,7 @@
 {% include '__image-placeholder' %}
 {% else %}
 {% capture image %}
-{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% endif %}
+{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}
 <img id="main" class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">
 {% endcapture %}
 {% endif %}
