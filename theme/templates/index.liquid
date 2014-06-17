@@ -1,31 +1,47 @@
 {% include '__has-variables' %}
 
+{% if settings.advanced-homepage-layout != null %}
+	{% include 'advanced-layout' %}
+{% else %}
+
+<!-- Homepage Intro -->
 {% unless settings.homepage-content == blank %}{% assign homepage = pages[settings.homepage-content] %}
 <section id="homepage-intro" class="section-wrap">
-	<h1 class="page-header">{{ homepage.title }}</h1>
-	{% unless homepage.content == blank %}
-	{% include '__formatted-content' with homepage.content %}
-	{% endunless %}
+	{% include '__containers-open' %}
+		<h1 class="page-header">{{ homepage.title }}</h1>
+		{% unless homepage.content == blank %}
+		{% include '__formatted-content' with homepage.content %}
+		{% endunless %}
+	{% include '__containers-close' %}
 </section>
 {% endunless %}
 
+<!-- Features Linklist Overview -->
 {% include 'features-linklist-overview' with 'linklist' %}
 
+<!-- Featured Collections -->
 {% unless settings.homepage-collections-linklist == blank %}
-<section id="featured-collections-title" class="section-wrap">
-	<h2 class="page-header">{{ linklists[settings.homepage-collections-linklist].title }}</h2>
-	{% include 'collections-list' with 'featured' %}
+<section id="featured-collections" class="section-wrap">
+	{% include '__containers-open' %}
+		<h2 class="page-header">{{ linklists[settings.homepage-collections-linklist].title }}</h2>
+		{% include 'collections-list' with 'featured' %}
+	{% include '__containers-close' %}
 </section>
 {% endunless %}
 
-{% if settings.homepage-products-collection %}
+<!-- Featured Products -->
+{% unless settings.homepage-products-collection == blank %}
 {% assign homepage_collection = collections[settings.homepage-products-collection] %}
-<section id="featured-products-title" class="section-wrap">
-	<h2 class="page-header"><a href="{{ homepage_collection.url }}">{{ homepage_collection.title }}</a>{% if homepage_collection.all_products_count > homepage_products_limit %}&emsp;<a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
+{% assign is-product-list = true %}
+<section id="product-list" class="section-wrap">
+	{% include '__containers-open' %}
+		<h2 class="page-header"><a href="{{ homepage_collection.url }}">{{ homepage_collection.title }}</a>{% if homepage_collection.all_products_count > homepage_products_limit %}&emsp;<a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
+		{% include 'products-list' %}
+	{% include '__containers-close' %}
 </section>
-  {% include 'products-list' %}
-{% endif %}
+{% endunless %}
 
+<!-- Homepage Blog Overview -->
 {% include 'homepage-blog-overview' with 'blog' %}
 
 {% include 'index-testimonials' %}
@@ -39,3 +55,4 @@
 {% endfor %}
 
 {% include 'social-feed-instagram' with homepage %}
+{% endif %}

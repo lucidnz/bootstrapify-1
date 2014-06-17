@@ -7,11 +7,12 @@
 {% endif %}
 {% endcapture %}
 <section id="product-portfolio-wrap" class="section-wrap">
-  <div class="row">
-    <div class="col-xs-12">
-      <h1 class="page-header" itemprop="name">{{ page_title }}</h1>
-    </div>
-  </div>
+	{% include '__containers-open' %}
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
+		</div>
+	</div>
 
   <form id="product-form" action="/cart/add" method="post">
     <!-- images col -->
@@ -64,12 +65,13 @@
         {% include '__formatted-content' with product.description %}
       </div>
         
-      <div class="col-sm-6">
-        {{ specs }}
-      </div>
-    </div>
-    {% endif %}
-  </form>
+			<div class="col-sm-6">
+				{{ specs }}
+			</div>
+		</div>
+		{% endif %}
+	</form>
+	{% include '__containers-close' %}
 </section>
 
 {% include 'product-footer' %}

@@ -1,6 +1,7 @@
 {% assign form-type = 'horizontal' %}
 
 <section id="addresses" class="section-wrap">
+	{% include '__containers-open' %}
 	<div id="admin_header" class="clearfix">
 		<h1 class="page-header">Manage Account Address</h1>
 		<div class="action_link action_return note pull-right" id='return_to_store'><a href="/account">Return to Account page</a></div>
@@ -37,6 +38,7 @@
 		<div id="address_pagination">{{ paginate | default_pagination }}</div>  
 		{% endpaginate %}
 	</div>
+	{% include '__containers-close' %}
 </section>
 
 <script type="text/javascript" charset="utf-8">

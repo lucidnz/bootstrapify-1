@@ -414,9 +414,9 @@
         </table>
         <table>
           <tr>
-            <th><label for="site-wide-thumbnail-container">Window width thumbnail container</label></th>
+            <th><label for="window-width-thumbnail-container">Window width thumbnail container</label></th>
             <td>
-              <input type="checkbox" name="site-wide-thumbnail-container" id="site-wide-thumbnail-container" value="1" /> Yes
+              <input type="checkbox" name="window-width-thumbnail-container" id="window-width-thumbnail-container" value="1" /> Yes
             </td>
           </tr>
         </table>
@@ -1377,6 +1377,14 @@
         </table>
         <table>
           <tr>
+            <th><label for="show-product-sorter">Show product sorter</label></th>
+            <td>
+              <input type="checkbox" name="show-product-sorter" id="show-product-sorter" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="tag-button-limit">Tag button limit</label></th>
             <td>
               <input type="text" name="tag-button-limit" id="tag-button-limit" class="text" value="10" />
@@ -2042,6 +2050,15 @@
         </table>
         <table>
           <tr>
+            <th><label for="custom-header-code">Custom header code</label></th>
+            <td>
+              <textarea name="custom-header-code" id="custom-header-code"></textarea>
+              <small><p><span>Anything to be placed within the site's head tag.</span></p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="custom-footer-code">Custom footer code</label></th>
             <td>
               <textarea name="custom-footer-code" id="custom-footer-code"></textarea>
@@ -2051,10 +2068,10 @@
         </table>
         <table>
           <tr>
-            <th><label for="custom-header-code">Custom header code</label></th>
+            <th><label for="advanced-homepage-layout">Advanced Homepage Layout</label></th>
             <td>
-              <textarea name="custom-header-code" id="custom-header-code"></textarea>
-              <small><p><span>Anything to be placed within the site's head tag.</span></p></small>
+              <select class="linklist" name="advanced-homepage-layout" />
+              <small>Define a linklist for which to pull the homepage content from. This is handy if you want to reorder the homepage content or add in extra sections without touching the code.</small>
             </td>
           </tr>
         </table>
