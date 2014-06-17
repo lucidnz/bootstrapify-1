@@ -1,64 +1,109 @@
 /*
- * Shopify - jQuery Ajax add to cart.
+ * Shopify - jQuery Ajax Cart.
  */
  
 (function($) {
   
+  /* Main */
   var AjaxCart = function($ele, settings){
-    this.$form = $ele;
+    this.$ele = $ele;
     this.settings = settings;
-    this.formSubmit = this.$form.find('input[name="add"]');
+    
+    this.connection = new CartConnection(this.settings.connection);
+    this.cartForm = new CartForm(this.$ele.find('form[action="/cart/add"]'), this.settings.form);
+    this.cartDisplay = new CartDisplay(this.settings.cartCountElement);
+    
     this.addEventHandlers();
   };
   
   AjaxCart.prototype.addEventHandlers = function(){
     var self = this;
-    this.$form.on('submit', function(e){
-      e.preventDefault();
-      self.sendToCart();
+    this.$ele.on('cartCollected', function(e, cartData){
+      self.cart = cartData;
+      self.cartCount = cartData.item_count;
+      self.cartDisplay.updateCartCountElement(self.cartCount);
+    });
+    this.$ele.on('sendToCart', function(e, formData){
+      self.connection.postToCart(formData);
+    });
+    this.$ele.on('postToCartSuccess', function(e, product){
+      self.cartCount++;
+      self.cartForm.sendToCartSuccess(product);
+      self.cartDisplay.updateCartCountElement(self.cartCount);
+    });
+    this.$ele.on('postToCartError', function(e, err, status){
+      self.cartForm.sendToCartError(err, status);
     });
   };
   
-  AjaxCart.prototype.sendToCart = function(){
-    this.updateSubmit('Adding...', true);
-    this.postToCart();
+  /* Cart Connection */
+  var CartConnection = function(settings){
+    this.settings = settings;
+    this.getCart();
   };
-  
-  AjaxCart.prototype.postToCart = function(){
-    var self = this;
+
+  CartConnection.prototype.getCart = function(){
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: this.settings.cartGetURL
+    })
+    .done(function(data){
+      $.event.trigger('cartCollected', data);
+    });
+  };
+
+  CartConnection.prototype.postToCart = function(formData){
     $.ajax({
       type: 'POST',
       dataType: 'json',
-      url: this.settings.cartURL,
-      data: this.$form.serialize()
+      url: this.settings.cartPostURL,
+      data: formData
     })
     .done(function(product){
-      self.sendToCartSuccess(product);
+      $.event.trigger('postToCartSuccess', product);
     })
     .fail(function(err, status){
-      self.sendToCartError(err, status);
+      $.event.trigger('postToCartError', [err, status]);
     });
   };
   
-  AjaxCart.prototype.sendToCartSuccess = function(product){
-    console.log(product);
-    var message = product.title+' successfully added. <a href="/cart">View cart</a>';
-    this.displayMessage(message, 'success');
-    this.updateSubmit(this.settings.defaultSubmitValue, false);
+  /* Cart Form */
+  var CartForm = function($form, settings){
+    this.$form = $form;
+    this.settings = settings;
+    this.formSubmit = this.$form.find('input[name="add"]');
+    this.defaultSubmitValue = this.formSubmit.val() || this.settings.defaultSubmitValue;
+    this.addEventHandlers();
   };
   
-  AjaxCart.prototype.sendToCartError = function(err, status){
+  CartForm.prototype.addEventHandlers = function(){
+    var self = this;
+    this.$form.on('submit', function(e){
+      e.preventDefault();
+      self._updateSubmit('Adding...', true);
+      $.event.trigger('sendToCart', $(this).serialize());
+    });
+  };
+  
+  CartForm.prototype.sendToCartSuccess = function(product){
+    var message = product.title+' successfully added. <a href="/cart">View cart</a>';
+    this._displayMessage(message, 'success');
+    this._updateSubmit(this.defaultSubmitValue, false);
+  };
+  
+  CartForm.prototype.sendToCartError = function(err, status){
     console.log(err, status);
     try {
       var response = jQuery.parseJSON(err.responseText);
-      this.displayMessage('ERROR: '+response, 'danger');
+      this._displayMessage('ERROR: '+response, 'danger');
     } catch(e) {
-      this.displayMessage('ERROR: There was an error adding your item to the cart.', 'danger');
+      this._displayMessage('ERROR: There was an error adding your item to the cart.', 'danger');
     }
-    this.updateSubmit(this.settings.defaultSubmitValue, false);
+    this._updateSubmit(this.defaultSubmitValue, false);
   };
   
-  AjaxCart.prototype.updateSubmit = function(message, disable){
+  CartForm.prototype._updateSubmit = function(message, disable){
     this.formSubmit.val(message);
     if(disable){
       this.formSubmit.prop("disabled", true);
@@ -67,21 +112,33 @@
     }
   };
   
-  AjaxCart.prototype.displayMessage = function(message, messageType){
+  CartForm.prototype._displayMessage = function(message, messageType){
     var messageMarkup = this.settings.messageMarkup(message, messageType);
     this.formSubmit.after(messageMarkup);
     var self = this;
-    setTimeout(function(){
-      self.removeMessage();
+    window.setTimeout(function(){
+      self._removeMessage();
     }, 6000);
   };
   
-  AjaxCart.prototype.removeMessage = function(){
+  CartForm.prototype._removeMessage = function(){
     this.$form.find('.ajax-cart-message').hide(186, function(){
       this.remove();
     });
   };
   
+  /* Cart Display */
+  var CartDisplay = function(cartCountElement){
+    this.$cartCountElement = $(cartCountElement);
+  };
+  
+  CartDisplay.prototype.updateCartCountElement = function(count){
+    if(this.$cartCountElement.text() !== count){
+      this.$cartCountElement.text(count);
+    }
+  };
+  
+  /* jQueryify */
   $.fn.ajaxCart = function(opts){
     var settings = $.extend({}, $.fn.ajaxCart.defaults, opts);
     return this.each(function(){
@@ -91,10 +148,17 @@
   };
   
   $.fn.ajaxCart.defaults = {
-    cartURL: '/cart/add.js',
-    defaultSubmitValue: 'Add to cart',
-    messageMarkup: function(message, messageType){
-      return '<span class="ajax-cart-message help-block text-'+messageType+'">'+message+'</span>';
+    cartCountElement: '.cartCount',
+    connection: {
+      cartGetURL: '/cart.js',
+      cartPostURL: '/cart/add.js'
+    },
+    form: {
+      cartURL: '/cart/add.js', // remove
+      defaultSubmitValue: 'Add to cart',
+      messageMarkup: function(message, messageType){
+        return '<span class="ajax-cart-message help-block text-'+messageType+'">'+message+'</span>';
+      }
     }
   };
 
@@ -102,5 +166,5 @@
 
 
 $(function(){
-  $('form[action="/cart/add"]').ajaxCart();
+  $(document).ajaxCart();
 });
