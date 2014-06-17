@@ -109,6 +109,9 @@
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
       @if $slide-dark {
         text-shadow: none;
+        @media (min-width: $screen-sm-min){
+          color: $gray-dark;
+        }
       }
     }
   }
@@ -118,7 +121,7 @@
   background-color: $navbar-bg;
   border-color: darken($navbar-bg, 5%);
 
-  .navbar-nav, .dropdown-menu, .submenu > .nav {
+  .navbar-nav {
     > li > a {
       color: $navbar-link-color;
       &:hover,
@@ -299,7 +302,7 @@ $line-height-base:    1.42858;
                    $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 80%) {% else %} lighten($body-bg, 80%) {% endif %} !default;
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
-           $dropdown-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default;
+           $dropdown-link-color:    darken({% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %}, 80%) !default;
      $dropdown-link-hover-color:    hover-colour( $dropdown-link-color ) !default;
   $dropdown-link-disabled-color:    lighten($dropdown-link-color, 5%) !default;
          $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
@@ -8106,14 +8109,6 @@ body {
     }
   }
 
-	&.has-window-width-thumbnail-container {
-		.section-wrap {
-			@extend .container;
-			&#product-list, &#collection-list {
-				width: auto;
-			}
-		}
-	}
 
   {% if settings.site-background-image  %}
     background-image: url('{{ "site-background-image-file.jpg" | asset_url }}');
@@ -8174,8 +8169,12 @@ img {
     @extend .text-muted;
   }
 }
+
 header .article-meta{
   @extend .list-inline;
+}
+.media-heading {
+	margin-top: 1em;
 }
 
 .label {
@@ -8200,7 +8199,73 @@ header .article-meta{
   white-space: nowrap;
 }
 
+#homepage-blog [class^="col-"]:first-of-type h4{
+  margin-top: 0;
+}
+
 /* Navbars */
+@media (min-width: $screen-sm-min){
+  .navbar-nav.navbar-left:first-child{
+    margin-left: ($grid-gutter-width / -2);
+  }
+  .navbar-text.navbar-left:first-child{
+    margin-left: 0;
+  }
+  
+  .navbar-center{
+    float: none;
+    text-align: center;
+    > li{
+      float: none;
+      display: inline-block;
+    }
+    .dropdown-menu{
+      text-align: left;
+    }
+  }
+}
+
+.navbar-nav .open .dropdown-menu .dropdown-header, .submenu .nav .dropdown-header{
+  padding: 0;
+  font-weight: bold;
+}
+
+.navbar-form .form-control, .navbar-nav .dropdown-menu, .dropdown-menu > li > a, .dropdown-header {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.submenu .nav{
+   > li > a {
+    padding: 5px 15px 5px 25px;
+    color: $navbar-default-link-color;
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+      background-color: $navbar-default-link-hover-bg;
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-active-color;
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+  @media (min-width: $screen-sm-min){
+    > li > a{
+      padding: 3px 20px;
+      color: $dropdown-link-color;
+      &:hover,
+      &:focus {
+        color: $dropdown-link-hover-color;
+        background-color: $dropdown-link-hover-bg;
+      }
+    }
+  }
+}
+
 #navbar-top, #navbar-footer, #navbar-main {
   {% if settings.font-navbar-custom != blank %}
     $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
@@ -8222,48 +8287,8 @@ header .article-meta{
   @include navbar-style($navbar-bg, $navbar-link-color);
 }
 
-.submenu > .nav > li > a{
-  padding: 3px 20px;
-  color: $dropdown-link-color;
-  font-weight: normal;
-  &:hover,
-  &:focus {
-    color: $dropdown-link-hover-color;
-    background-color: $dropdown-link-hover-bg;
-  }
-}
-
-.submenu > .nav > .dropdown-header {
-  padding: 0;
-  font-size: $font-size-base;
-  a {
-    font-weight: bold;
-  }
-}
-
 #currencies-picker {
   padding: 0;
-}
-
-@media (min-width: $screen-sm-min){
-  .navbar-nav.navbar-left:first-child{
-    margin-left: ($grid-gutter-width / -2);
-  }
-  .navbar-text.navbar-left:first-child{
-    margin-left: 0;
-  }
-  
-  .navbar-center{
-    float: none;
-    text-align: center;
-    > li{
-      float: none;
-      display: inline-block;
-    }
-    .dropdown-menu{
-      text-align: left;
-    }
-  }
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
@@ -8330,17 +8355,14 @@ header .article-meta{
 }
 
 .tt-suggestion {
+  color: $dropdown-link-color;
   display: block;
   padding: 3px 20px;
 }
 
 .tt-suggestion.tt-is-under-cursor {
-  color: $text-color;
-  background-color: $brand-primary;
-}
-
-.tt-suggestion.tt-is-under-cursor a {
-  color: $text-color;
+  color: $dropdown-link-hover-color;
+  background-color: $dropdown-link-hover-bg;
 }
 
 .tt-suggestion p {
@@ -8593,7 +8615,6 @@ $i: 1;
 }
 
 .carousel-caption {
-  color: $text-color;
   h2 {
     margin-top: 0.35em;
   }
@@ -8621,16 +8642,20 @@ $i: 1;
 }
 
 @media (min-width: $screen-sm-min){
-  $caption-container-sm: ($container-sm - $grid-gutter-width);
+  $caption-container-sm: 70%;
   .carousel-caption{
     left: 50%;
     width: $caption-container-sm;
     margin-left: -($caption-container-sm / 2);
+    color: white;
+    h2 {
+      color: white;
+    }
   }
 }
 
 @media (min-width: $screen-md-min) {
-  $caption-container-md: ($container-md - $grid-gutter-width);
+  $caption-container-md: 70%;
   .carousel-caption{
     width: $caption-container-md;
     margin-left: -($caption-container-md / 2);
@@ -8638,7 +8663,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-lg-min) {
-  $caption-container-lg: ($container-lg - $grid-gutter-width);
+  $caption-container-lg: {% if settings.slider-width == 'window-width' %} $container-lg - $grid-gutter-width {% else %} 70% {% endif %};
   .carousel-caption{
     width: $caption-container-lg;
     margin-left: -($caption-container-lg / 2);

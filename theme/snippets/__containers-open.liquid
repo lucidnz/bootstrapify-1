@@ -1,0 +1,7 @@
+{% unless has_sidebar and settings[sidebar_template] %}
+{% unless is-product-list == true and has_window_width_thumbnail_container %}
+<div class="container">
+{% endunless %}
+<div class="row">
+	<div class="main-content {% include '__main-span' %}">
+{% endunless %}

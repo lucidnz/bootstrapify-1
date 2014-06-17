@@ -39,25 +39,29 @@
 
   <div id="wrap">
     {% include 'navbar' with 'top' %}
-    {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
-    {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
-	
     <div id="content">
+      {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
+    	{% if has_main_menu %}
+    	<div class="container">
+    		{% include 'navbar' with 'main' %}
+    	</div>
+    	{% endif %}
+      {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
       <div class="container">
-        {% if has_main_menu %}{% include 'navbar' with 'main' %}{% endif %}
         {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
         {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
       </div>
-   
-      {% unless has_window_width_thumbnail_container %}<div class="container">{% endunless %}
-        {% unless has_window_width_thumbnail_container %}<div class="row">{% endunless %}
-          <div class="main-content {% include '__main-span' %}">
-            {% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
-            {{ content_for_layout }}
-          </div>
-          {% include 'sidebar' %}
-        {% unless has_window_width_thumbnail_container %}</div>{% endunless %}
-      {% unless has_window_width_thumbnail_container %}</div>{% endunless %}
+		{% if has_sidebar and settings[sidebar_template] %}
+			{% unless has_window_width_thumbnail_container %}<div class="container"><div class="row">{% endunless %}
+			<div class="main-content {% include '__main-span' %}">
+		{% endif %}
+		{% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
+		{{ content_for_layout }}
+		{% if has_sidebar and settings[sidebar_template] %}
+			</div>
+			{% include 'sidebar' %}
+			{% unless has_window_width_thumbnail_container %}</div></div>{% endunless %}
+		{% endif %}
     </div>
     
     {% include 'footer' %}
@@ -65,6 +69,7 @@
   
   {% include 'currencies' %}
   {{ '_base.js' | asset_url | script_tag }}
+  {{ 'jquery.ajax-cart.min.js' | asset_url | script_tag }}
   {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
   {{ 'jquery.orderly.min.js' | asset_url | script_tag }}
   {{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
@@ -95,14 +100,15 @@
       {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
       {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
       $('.thumbnail-image, .product-main-thumb').uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
-        $('.product-thumbnail .caption, .collection-thumbnail .caption').orderly({ method: 'children' });
+        $('.collection-thumbnail .caption').orderly({ method: 'children' });
+        $('.product-thumbnail .caption').orderly({ method: 'children' });
       });
     {% endif %}
     
     $(document).ready(function(){
       $('.search-bar').typeahead({
         name: 'Products',
-        local: [{% include 'search-typeahead' %}]
+        local: [{{ typeahead }}]
       }).on('typeahead:selected', function (object, datum) {
         $(this).closest('form').submit();
       });

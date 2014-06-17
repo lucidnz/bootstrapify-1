@@ -109,6 +109,9 @@
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
       @if $slide-dark {
         text-shadow: none;
+        @media (min-width: $screen-sm-min){
+          color: $gray-dark;
+        }
       }
     }
   }
@@ -118,7 +121,7 @@
   background-color: $navbar-bg;
   border-color: darken($navbar-bg, 5%);
 
-  .navbar-nav, .dropdown-menu, .submenu > .nav {
+  .navbar-nav {
     > li > a {
       color: $navbar-link-color;
       &:hover,

@@ -1,11 +1,13 @@
 {% if collection %}
 <section class="section-wrap">
+	{% include '__containers-open' %}
 	<hr>
 	<ul class="pager">
 		<li{% unless collection.previous_product %} class="disabled"{% endunless %}>{{ '&laquo; Previous' | link_to: collection.previous_product }}</li>
 		<li>{{ collection.title | link_to: collection.url }}</li>
 		<li{% unless collection.next_product %} class="disabled"{% endunless %}>{{ 'Next &raquo;' | link_to: collection.next_product }}</li>
 	</ul>
+	{% include '__containers-close' %}
 </section>
 {% endif %}
 
@@ -14,9 +16,12 @@
 {% endif %}
 
 {% if settings.show-related-products %}
+{% assign is-product-list = true %}
 {% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
-<section id="related-products-title" class="section-wrap">
-	<h2 class="page-header">{% include '__localize' with 'Related in' %} {{ collection.title }}</h2>
+<section id="product-list" class="section-wrap">
+	{% include '__containers-open' %}
+		<h2 class="page-header">{% include '__localize' with 'Related in' %} {{ collection.title }}</h2>
+		{% include 'products-list' with 'limit' %}
+	{% include '__containers-close' %}
 </section>
-{% include 'products-list' with 'limit' %}
 {% endif %}

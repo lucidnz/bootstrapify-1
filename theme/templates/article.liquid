@@ -1,5 +1,6 @@
 {% include '__has-variables' %}
 <section id="article-wrap" class="section-wrap">
+	{% include '__containers-open' %}
 	<article class="row">
 		<div class="col-xs-12">
 			<header class="page-header">
@@ -14,6 +15,10 @@
 			{% include '__formatted-content' with article.content %}
 		</section>
   
+		<section class="excerpt-meta visible-lg {% unless has_sidebar %} visible-md{% endunless %} col-xs-12{% unless has_sidebar %} col-md-3{% endunless %} col-lg-3{% if settings.sidebar-placement == 'right' %} col-md-pull-9 col-lg-pull-9{% endif %}">
+			{% include 'article-meta' with article %}
+		</section>
+  
 		{% if article.metafields.social-feed.facebook-album != blank %}
 		<section class="col-xs-12">
 			{% include 'social-feed-facebook' with article %}
@@ -23,10 +28,6 @@
 		{% if article.metafields.social-feed.instagram != blank %}
 		{% include 'social-feed-instagram' with article %}
 		{% endif %}
-  
-		<section class="excerpt-meta visible-lg {% unless has_sidebar %} visible-md{% endunless %} col-xs-12{% unless has_sidebar %} col-md-3{% endunless %} col-lg-3{% if settings.sidebar-placement == 'right' %} col-md-pull-9 col-lg-pull-9{% endif %}">
-			{% include 'article-meta' with article %}
-		</section>
   
 		<footer class="col-xs-12{% if settings.sidebar-placement == 'right' %} col-md-9 col-lg-9 col-md-push-3 col-lg-push-3{% endif %}">
 			{% if article.user.bio != blank and settings.show-author-bios == true %}
@@ -55,4 +56,5 @@
 		</section>
 		{% endif %}
 	</article>
+	{% include '__containers-close' %}
 </section>
