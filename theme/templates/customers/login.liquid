@@ -1,5 +1,6 @@
 {% assign form-type = 'horizontal' %}
 <section id="login-form" class="section-wrap">
+	{% include '__containers-open' %}
 	<div class="customer-login-form form-wrapper-horizontal">
 		<h1 class="page-header">Customer Login</h1>
 		{% include '_form-login' %}
@@ -28,4 +29,5 @@
 		{% endform %}
 	</div>
 	{% endif %}
+	{% include '__containers-close' %}
 </section>

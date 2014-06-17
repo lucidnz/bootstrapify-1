@@ -13,6 +13,7 @@
 {% endcapture %}
 
 <section id="product-wrap" class="section-wrap">
+	{% include '__containers-open' %}
 	<div class="visible-xs">
 		<h1 class="page-header" itemprop="name">{{ product.title }}</h1>
 	</div>
@@ -69,4 +70,5 @@
 			</div>
 		</div>
 	</form>
+	{% include '__containers-close' %}
 </section>
