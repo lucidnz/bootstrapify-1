@@ -51,15 +51,17 @@
         {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
         {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
       </div>
-      {% unless has_window_width_thumbnail_container %}<div class="container">{% endunless %}
-        {% unless has_window_width_thumbnail_container %}<div class="row">{% endunless %}
-          <div class="main-content {% include '__main-span' %}">
-            {% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
-            {{ content_for_layout }}
-          </div>
-          {% include 'sidebar' %}
-        {% unless has_window_width_thumbnail_container %}</div>{% endunless %}
-      {% unless has_window_width_thumbnail_container %}</div>{% endunless %}
+		{% if has_sidebar and settings[sidebar_template] %}
+			{% unless has_window_width_thumbnail_container %}<div class="container"><div class="row">{% endunless %}
+			<div class="main-content {% include '__main-span' %}">
+		{% endif %}
+		{% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
+		{{ content_for_layout }}
+		{% if has_sidebar and settings[sidebar_template] %}
+			</div>
+			{% include 'sidebar' %}
+			{% unless has_window_width_thumbnail_container %}</div></div>{% endunless %}
+		{% endif %}
     </div>
     
     {% include 'footer' %}
