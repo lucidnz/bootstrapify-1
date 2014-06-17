@@ -1,9 +1,12 @@
+{% if t_object != blank %}
+{% assign product = t_object %}
+{% endif %}
 {% capture vars %}
 {% if product.featured_image == blank %}
 {% include '__image-placeholder' %}
 {% else %}
 {% capture image %}
-{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% endif %}
+{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}
 <img id="main" class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">
 {% endcapture %}
 {% endif %}
@@ -11,7 +14,7 @@
 
 <section id="product-wrap" class="section-wrap">
 	<div class="visible-xs">
-		<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
+		<h1 class="page-header" itemprop="name">{{ product.title }}</h1>
 	</div>
 
 	<form id="product-form" action="/cart/add" method="post" role="form">
@@ -47,7 +50,7 @@
 	
 			<!-- details col -->
 			<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
-				<h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
+				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
 				{% if has_prices %}
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
 					<span id="price-field">{% include 'product-price' with product.price %}</span>
