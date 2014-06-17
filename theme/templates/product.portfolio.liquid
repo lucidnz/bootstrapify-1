@@ -7,6 +7,7 @@
 {% endif %}
 {% endcapture %}
 <section id="product-portfolio-wrap" class="section-wrap">
+	{% include '__containers-open' %}
 	<div class="row">
 		<div class="col-xs-12">
 			<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
@@ -68,6 +69,7 @@
 		</div>
 		{% endif %}
 	</form>
+	{% include '__containers-close' %}
 </section>
 
 {% include 'product-footer' %}
