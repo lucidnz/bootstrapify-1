@@ -1,6 +1,7 @@
 {% include '__has-variables' %}
 
 <section id="collection-intro" class="section-wrap">
+{% include '__containers-open' %}
 	<h1 class="page-header">{{ page_title }}</h1>
 
 	{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
@@ -16,7 +17,7 @@
   {% if settings.show-product-sorter %}
   <div class="pull-right">
     <label for="sort-by">Sort by</label> 
-    <select id="sort-by">
+    <select id="sort-by" class="form-control">
       <option value="manual">Featured</option>
       <option value="price-ascending">Price: Low to High</option>
       <option value="price-descending">Price: High to Low</option>
@@ -48,14 +49,18 @@
 </div>
 <hr>
 {% endif %}
+{% include '__containers-close' %}
 </section>
 
 {% if collection.all_products_count == 0 %}
 <section class="section-wrap">
+	{% include '__containers-open' %}
 	<p>Sorry, no {% include '__localize' with 'products' %} were found in the {{ collection.title }} collection.</p>
+	{% include '__containers-close' %}
 </section>
 {% elsif collection.products_count == 0 %}
 <section class="section-wrap">
+	{% include '__containers-open' %}
 	<h2>Whoops! You might need to broaden your search.</h2>
 	<p>There {{ collection.all_products_count | pluralize: 'is', 'are' }}<strong> {{ collection.all_products_count | count }} {{ collection.all_products_count | pluralize: 'style', 'styles' }} of {% include '__localize' with 'Products' %}</strong> in the {{ collection.title }} collection&mdash;try removing some filters.</p>
 	<ul>
@@ -64,11 +69,17 @@
 		{% endfor %}
 	</ul>
 	<p><br>Or, view <strong><a href="{{ collection.url }}">all {{ collection.all_products_count }} {% include '__localize' with 'Products' %} in the {{ collection.title }} {% include '__localize' with 'Collection' %}</a></strong>.</p>
+	{% include '__containers-close' %}
 </section>
 {% else %}
+<section id="product-list" class="section-wrap">
+{% assign is-product-list = true %}
+{% include '__containers-open' %}
 {% include '__default-pagination' %}
 {% paginate collection.products by default-pagination %}
 {% include 'products-list' %}
 {% include 'pagination' %}
 {% endpaginate %}
+{% include '__containers-close' %}
+</section>
 {% endif %}
