@@ -12,9 +12,11 @@
 	{% assign is_sublink = true %}
 	{% if linklists[sublink_handle].links.first.type == 'collection_link' %}
 	<!-- list collection snippet -->
-	<section id="featured-collections-title" class="section-wrap">
+	<section id="featured-collections" class="section-wrap">
+		{% include '__containers-open' %}
 		<h2 class="page-header">{{ l.title }}</h2>
 		{% include 'collections-list' with 't_object' %}
+		{% include '__containers-close' %}
 	</section>
 	{% else %}
 		{% include 'advanced-layout' with sublink_handle %}
@@ -28,18 +30,22 @@
 	<!-- page snippet -->
 	{% if l.type == 'page_link' %}
 	<section id="homepage-intro{{ forloop.index }}" class="section-wrap">
+		{% include '__containers-open' %}
 		{% unless t_object == blank %}
 		{% include '__formatted-content' with t_object.content %}
 		{% endunless %}
+		{% include '__containers-close' %}
 	</section>
 	{% endif %}
 
 	<!-- collection snippet -->
 	{% if l.type == 'collection_link' %}
-	<section id="featured-products-title" class="section-wrap">
+	<section id="product-list" class="section-wrap">
+		{% include '__containers-open' %}
 		<h2 class="page-header"><a href="{{ l.url }}">{{ t_object.title }}</a>{% if t_object.all_products_count > homepage_products_limit %}&emsp;<a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
+		{% include 'products-list' with 't_object' %}
+		{% include '__containers-close' %}
 	</section>
-	{% include 'products-list' with 't_object' %}
 	{% endif %}
 
 	<!-- blog snippet -->
