@@ -52,4 +52,4 @@
   {% assign col-lg = 12 | divided_by: settings.thumbnails-per-row-desktop %}
 {% endif %}
   
-{% endcapture %}{% if forloop.index == 1 %}col-xs-offset-0 col-sm-offset-0 col-md-offset-{{ md-offset }} col-lg-offset-{{ lg-offset }} {% endif %}col-xs-{{ col-xs }} col-sm-{{ col-sm }} col-md-{{ col-md }} col-lg-{{ col-lg }}
+{% endcapture %}{% if forloop.index == 1 and thumbnail_layout != 'masonry' %}col-xs-offset-0 col-sm-offset-0 col-md-offset-{{ md-offset }} col-lg-offset-{{ lg-offset }} {% endif %}col-xs-{{ col-xs }} col-sm-{{ col-sm }} col-md-{{ col-md }} col-lg-{{ col-lg }}
