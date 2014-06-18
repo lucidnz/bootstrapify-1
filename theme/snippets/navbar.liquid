@@ -23,6 +23,17 @@
   
     {% unless has_top_navbar and navbar == 'main' %}
     <div class="navbar-header">
+      {% if navbar == 'top' %}
+      <ul class="nav navbar-icons visible-xs">
+        {% if has_cart %}
+        <li{% if template == 'cart' %} class="active"{% endif %}><a href="/cart"><i class="fa fa-fw fa-shopping-cart"></i>{% if cart.item_count > 0 %} <span class="badge cartCount">{{ cart.item_count }}</span>{% endif %}</a></li>
+        {% endif %}
+        {% if shop.customer_accounts_enabled %}
+        <li{% if template contains 'customers' %} class="active"{% endif %}><a href="/account"><i class="fa fa-fw fa-user"></i></a></li>
+        {% endif %}
+      </ul>
+      {% endif %}
+      
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ navbar }}-nav">
         <span class="sr-only">Toggle main navigation</span>
         <span class="icon-bar"></span>
