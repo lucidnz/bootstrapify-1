@@ -21,12 +21,13 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-sass": "git@github.com:twbs/bootstrap-sass.git#master",
+    "bootstrap-sass": "https://github.com/twbs/bootstrap-sass.git#master",
     "typeahead.js": "~0.9.3",
     "jquery": "~2.1.0",
     "respond": "~1.4.2",
-    "jquery-instagram": "git@github.com:potomak/jquery-instagram.git#~0.3.0",
-    "uniformThumbnails": "git@github.com:luciddesign/uniform-thumbnails.git"
+    "jquery-instagram": "https://github.com/potomak/jquery-instagram.git#~0.3.0",
+    "uniformThumbnails": "https://github.com/luciddesign/uniform-thumbnails.git",
+    "orderly": "https://github.com/luciddesign/orderly.git"
   },
   "resolutions": {
     "jquery": "~2.1.0"

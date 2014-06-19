@@ -5,9 +5,8 @@
 {% else %}
   {% assign two_col = 'col-sm-8 col-md-9' %}
 {% endif %}
-{% if has_sidebar and settings.show-sidebar %}
-  {% if has_sidebar and settings.show-sidebar-on-homepage != blank or template != "index" %}{{ two_col }}{% else %}{{ full_width }}{% endif %}
-{% elsif has_sidebar and settings.show-sidebar-on-homepage and template == "index" %}
+
+{% if has_sidebar and settings[sidebar_template] %}
   {{ two_col }}
 {% else %}
   {{ full_width }}

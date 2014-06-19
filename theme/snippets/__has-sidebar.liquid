@@ -1,5 +1,5 @@
 {% assign has_sidebar = false %}
-{% unless settings.site-wide-thumbnail-container %}
+{% unless has_window_width_thumbnail_container %}
 	{% if settings.logo-placement == 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
 	{% if settings.tag-placement == 'sidebar' %}
 	  {% if template == 'collection' or template == 'blog' or template == 'article' %}

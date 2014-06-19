@@ -1,0 +1,9 @@
+{% unless has_sidebar and settings[sidebar_template] %}
+	</div>
+</div>
+{% unless is-product-list == true and has_window_width_thumbnail_container %}
+</div>
+{% endunless %}
+{% endunless %}
+
+{% assign is-product-list = false %}

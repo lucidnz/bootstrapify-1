@@ -1,7 +1,7 @@
-{% if settings.main-navbar-linklist %}
-{% assign main_linklist = linklists[settings.main-navbar-linklist] %}
+{% if settings.main-menu-linklist %}
+{% assign main_linklist = linklists[settings.main-menu-linklist] %}
   {% if main_linklist %}
-  <ul class="nav navbar-nav {% if settings.main-nav-alignment == 'left' %}navbar-left{% elsif settings.main-nav-alignment == 'center' %}navbar-center{% elsif settings.main-nav-alignment == 'right' %}navbar-right{% endif %}">
+  <ul class="nav navbar-nav {% if settings.main-menu-alignment == 'left' %}navbar-left{% elsif settings.main-menu-alignment == 'center' %}navbar-center{% elsif settings.main-menu-alignment == 'right' %}navbar-right{% endif %}">
     {% for l in main_linklist.links %}
     {% include '_navbar-link' %}
     {% endfor %}

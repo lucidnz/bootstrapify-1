@@ -7,61 +7,63 @@
 {% endif %}
 {% endcapture %}
 <section id="product-portfolio-wrap" class="section-wrap">
+	{% include '__containers-open' %}
 	<div class="row">
 		<div class="col-xs-12">
 			<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
 		</div>
 	</div>
 
-	<form id="product-form" action="/cart/add" method="post">
-		<!-- images col -->
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="thumbnail">
-					{{ image }}
-					<div class="loader"></div>
-				</div>
-			</div>
-		</div>
-		{% if product.images.size > 1 %}
-		<div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
-			{% assign image_cols = product.images.size | times: 4 %}
-			{% assign offset = 12 | minus: image_cols | divided_by: 2 %}
-			{% for image in product.images %}
-			<div class="{% if forloop.index == 1 %}col-sm-offset-{{ offset }} {% endif %}col-xs-6 col-sm-4{% if settings.masonry-style-layout %} masonry{% endif %}">
-				<div class="thumbnail">
-					<a href="#" data-main-image="{{ image.src | product_img_url: 'original' }}">
-						{{ image.src | product_img_url: 'large' | img_tag }}
-					</a>
-				</div>
-			</div>
-			{% endfor %}
-			{% endif %}
-		</div>
+  <form id="product-form" action="/cart/add" method="post">
+    <!-- images col -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="thumbnail">
+          {{ image }}
+        </div>
+      </div>
+    </div>
+    {% if product.images.size > 1 %}
+    <div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
+      {% for image in product.images %}
+      <div class="{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
+        <div class="thumbnail">
+          <a href="#" data-main-image="{{ image.src | product_img_url: '1024x1024' }}">
+            {% if settings.round-thumbnail-images %}
+            {{ image.src | product_img_url: 'grande' | img_tag: image.alt, 'img-circle' }}
+            {% else %}
+            {{ image.src | product_img_url: 'grande' | img_tag: image.alt }}
+            {% endif %}
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
 	
-		<!-- details col -->
-		<div class="row">
-			<div class="col-xs-12">
-				{% if product.price > 0 %}<div class="lead product-price">
-					<span id="price-field">{% include 'product-price' with product.price %}</span>
-					<del id="compare-at-price-field" class="text-muted"></del>
-					<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
-				</div>
-				<hr>
-				{% include 'product-add-to-cart-form' %}
+    <!-- details col -->
+    <div class="row">
+      <div class="col-xs-12">
+        {% if product.price > 0 %}<div class="lead product-price">
+          <span id="price-field">{% include 'product-price' with product.price %}</span>
+          <del id="compare-at-price-field" class="text-muted"></del>
+          <span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
+        </div>
+        <hr>
+        {% include 'product-add-to-cart-form' %}
 
-				{% endif %}
-			</div>
-		</div>
+        {% endif %}
+      </div>
+    </div>
   
-		{% capture specs %}{% include 'product-specs' %}{% endcapture %}
-		{% if specs == blank %}
-		{% include '__formatted-content' with product.description %}
-		{% else %}
-		<div class="row">			
-			<div class="col-sm-6 gutter-top">
-				{% include '__formatted-content' with product.description %}
-			</div>
+    {% capture specs %}{% include 'product-specs' %}{% endcapture %}
+    {% if specs == blank %}
+    {% include '__formatted-content' with product.description %}
+    {% else %}
+    <div class="row">			
+      <div class="col-sm-6 gutter-top">
+        {% include '__formatted-content' with product.description %}
+      </div>
         
 			<div class="col-sm-6">
 				{{ specs }}
@@ -69,6 +71,7 @@
 		</div>
 		{% endif %}
 	</form>
+	{% include '__containers-close' %}
 </section>
 
 {% include 'product-footer' %}

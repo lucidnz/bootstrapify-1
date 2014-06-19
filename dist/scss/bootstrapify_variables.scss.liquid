@@ -1,0 +1,283 @@
+/* Set up base Bootstrap and Bootstrapify variables with values from Shopify settings */
+
+/* Colours */
+{% if settings.brand-primary != blank %}
+  $brand-primary:   {{ settings.brand-primary }} !default;
+{% endif %}
+
+
+/* Scaffolding */
+// background colour for body
+       $body-bg:    {% if settings.background-colour != blank %} {{ settings.background-colour }} {% else %} #fff {% endif %} !default;
+  $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
+
+// Global text color on body
+{% if settings.text-colour != blank %}
+    $text-color:    {{ settings.text-colour }} !default;
+{% endif %}
+
+// Global link color on body
+{% if settings.link-colour != blank %}
+        $link-color:    {{ settings.link-colour }} !default;
+  $link-hover-color:    hover-colour( $link-color ) !default;
+{% endif %}
+
+
+/* Typography */
+// Global font family on body
+{% if settings.font-body-custom != blank %}
+  $font-family-base:    '{{ settings.font-body-custom | remove: "'" | remove: '"' }}'{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %} !default;
+{% elsif settings.font-body != blank %}
+  $font-family-base:    {{ settings.font-body }} !default;
+{% endif %}
+
+// Global font size on body
+$font-size-base:    {% if settings.font-body-size != blank %} {{ settings.font-body-size }} {% else %} 14px {% endif %} !default;
+
+// Global heading font size on body
+{% if settings.font-heading-size != blank %}
+  // Work out sensible sizing for inbetween headings
+  // h5 should always be the same as $font-size-base
+  
+       $heading-size:   {{ settings.font-heading-size }};
+  $heading-size-step:   ($heading-size - $font-size-base) / 4;
+  
+       $font-size-h1:   $heading-size !default;
+       $font-size-h2:   floor(($heading-size - $heading-size-step)) !default;
+       $font-size-h3:   floor(($heading-size - ($heading-size-step * 2))) !default;
+       $font-size-h4:   floor(($heading-size - ($heading-size-step * 3))) !default;
+{% endif %}
+
+// Fix rounding issue as sass var can only hold 5 decimal places (orig: 1.428571429)
+$line-height-base:    1.42858;
+
+// Font family for headings
+{% if settings.font-heading-custom != blank %}
+  $headings-font-family:    '{{ settings.font-heading-custom | remove: "'" | remove: '"' }}'{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %} !default;
+{% elsif settings.font-heading != blank %}
+  $headings-font-family:    {{ settings.font-heading }} !default;
+{% endif %}
+
+// Font weight for headings
+{% if settings.font-heading-weight != blank %}
+  $headings-font-weight:    {{ settings.font-heading-weight }} !default;
+{% endif %}
+
+// Font colour for headings
+{% if settings.heading-colour != blank %}
+  $headings-color:    {{ settings.heading-colour }} !default;
+{% endif %}
+
+
+/* Components */
+
+
+/* Tables */
+{% if settings.background-colour != blank %}
+       $table-bg-accent:   lighten($body-bg, 2%) !default;  // Background color used for `.table-striped`.
+        $table-bg-hover:   lighten($body-bg, 4%) !default;  // Background color used for `.table-hover`.
+   
+  // Border color for table and cell borders.
+    $table-border-color:   $border-color !default;
+{% endif %}
+
+
+/* Buttons */
+{% if settings.background-colour != blank %}
+  {% if settings.text-colour != blank %}
+   $btn-default-color:    $text-color !default;
+  {% endif %}
+      $btn-default-bg:    darken($body-bg, 2%) !default;
+  $btn-default-border:    darken($body-bg, 5%) !default;
+{% endif %}
+
+{% if settings.button-colour != blank %}
+       $btn-primary-bg:    {{ settings.button-colour }} !default;
+    $btn-primary-color:    {% if settings.button-text-colour != blank %} {{ settings.button-text-colour }} {% else %} text-colour($btn-primary-bg) {% endif %} !default;
+{% endif %}
+
+
+/* Forms */
+{% if settings.background-colour != blank %}
+                 $input-bg:    lighten($body-bg, 10%) !default;
+  {% if settings.text-colour != blank %}
+              $input-color:    $text-color !default;
+  {% endif %}
+             $input-border:    $border-color !default;
+  {% if settings.brand-primary != blank %}
+       $input-border-focus:    $brand-primary !default;
+  {% endif %}
+  $input-color-placeholder:    darken($input-bg, 15%) !default;
+  
+  {% if settings.text-colour != blank %}
+             $legend-color:    $text-color !default;
+  {% endif %}
+      $legend-border-color:    $border-color !default;
+
+     // Background color for textual input addons
+     $input-group-addon-bg:    $body-bg !default;
+{% endif %}
+
+
+/* Dropdowns */
+{% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
+                   $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 80%) {% else %} lighten($body-bg, 80%) {% endif %} !default;
+           $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
+  {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
+           $dropdown-link-color:    darken({% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %}, 80%) !default;
+     $dropdown-link-hover-color:    hover-colour( $dropdown-link-color ) !default;
+  $dropdown-link-disabled-color:    lighten($dropdown-link-color, 5%) !default;
+         $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
+  {% endif %}
+        $dropdown-link-hover-bg:    darken($dropdown-bg, 10%) !default;
+{% endif %}
+
+
+/* Media queries breakpoints */
+{% if settings.container-width-small-devices != blank %}
+  {% assign small_container = settings.container-width-small-devices | remove: 'px' | times: 1 %}
+  {% if small_container > 768 %} /* 768: bootstrap default $screen-sm-min */
+    $screen-md-min:   {{ small_container | plus: 1 }}px !default;
+  {% endif %}
+{% endif %}
+{% if settings.container-width-medium-devices != blank %}
+  {% assign medium_container = settings.container-width-medium-devices | remove: 'px' | times: 1 %}
+  {% if medium_container > 992 %} /* 992: bootstrap default $screen-md-min */
+    $screen-md-min:   {{ medium_container | plus: 1 }}px !default;
+  {% endif %}
+{% endif %}
+{% if settings.container-width-large-devices != blank %}
+  {% assign large_container = settings.container-width-large-devices | remove: 'px' | times: 1 %}
+  {% if large_container > 1200 %} /* 1200: bootstrap default $screen-lg-min */
+    $screen-lg-min:   {{ large_container | plus: 1 }}px !default;
+  {% endif %}
+{% endif %}
+
+/* Container sizes */
+{% if settings.container-width-small-devices != blank %}
+  $container-sm:    {{ settings.container-width-small-devices }} !default;
+{% endif %}
+{% if settings.container-width-medium-devices != blank %}
+  $container-md:    {{ settings.container-width-medium-devices }} !default;
+{% endif %}
+{% if settings.container-width-large-devices != blank %}
+  $container-lg:    {{ settings.container-width-large-devices }} !default;
+{% endif %}
+
+
+/* Navbar */
+{% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
+                   $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} desaturate(darken($body-bg, 1.5%), 15%) {% endif %} !default;
+                   
+  {% if settings.navbar-background-colour != blank or settings.text-colour != blank %}
+                $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
+               $navbar-default-border:    darken($navbar-default-bg, 5%) !default;
+       $navbar-default-link-active-bg:    darken($navbar-default-bg, 5%) !default;
+            // Navbar toggle
+      $navbar-default-toggle-hover-bg:    darken($navbar-default-bg, 5%) !default;
+   $navbar-default-toggle-icon-bar-bg:    text-muted($navbar-default-color) !default;
+  $navbar-default-toggle-border-color:    darken($navbar-default-bg, 5%) !default;
+  {% endif %}
+
+  {% if settings.brand-primary != blank %}
+              // Navbar brand label
+          $navbar-default-brand-color:    $brand-primary !default;
+    $navbar-default-brand-hover-color:    hover-colour($navbar-default-brand-color, 10%) !default;
+  {% endif %}
+
+  {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
+           $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
+     $navbar-default-link-hover-color:    hover-colour($navbar-default-link-color) !default;
+    $navbar-default-link-active-color:    hover-colour($navbar-default-link-color) !default;
+  $navbar-default-link-disabled-color:    lighten($navbar-default-link-color, 5%) !default;
+  {% endif %}
+  
+{% endif %}
+
+
+/* Navs */
+{% if settings.background-colour != blank %}
+                        $nav-link-hover-bg:   darken($body-bg, 10%) !default;
+  //$nav-open-link-hover-color:   hover-colour( $dropdown-link-color ) !default;
+  
+                      // Tabs
+                    $nav-tabs-border-color:   border-color($body-bg) !default;
+         $nav-tabs-link-hover-border-color:   $nav-link-hover-bg !default;
+  {% if settings.text-colour != blank %}
+         $nav-tabs-active-link-hover-color:   $text-color !default;
+  {% endif %}
+  $nav-tabs-active-link-hover-border-color:   $nav-tabs-border-color !default;
+     $nav-tabs-justified-link-border-color:   $nav-tabs-border-color !default;
+{% endif %}
+
+
+/* Pagination */
+{% if settings.background-colour != blank %}
+               $pagination-bg:    $body-bg !default;
+           $pagination-border:    darken($body-bg, 5%) !default;
+  
+         $pagination-hover-bg:    darken($body-bg, 10%) !default;
+     $pagination-hover-border:    $pagination-border !default;
+  {% if settings.link-colour != blank %}
+     $pagination-active-color:    text-colour($link-color) !default;
+  {% endif %}
+  {% if settings.text-colour != blank %}
+   $pagination-disabled-color:    lighten($text-color, 5%) !default;
+  {% endif %}
+      $pagination-disabled-bg:    $body-bg !default;
+  $pagination-disabled-border:    $pagination-border !default;
+{% endif %}
+
+
+/* Pager - inherits from Pagination */
+
+
+/* Jumbotron */
+{% if settings.background-colour != blank %}
+  $jumbotron-bg:    darken($body-bg, 5%) !default;
+{% endif %}
+
+
+/* Thumbnails */
+           $thumbnail-border:   $border-color !default;
+  {% unless settings.show-borders %}
+           $thumbnail-border:   transparent !default;
+          $thumbnail-padding:   0px !default;
+    $thumbnail-border-radius:   0px !default;
+  {% endunless %}
+
+
+/* Wells */
+{% if settings.background-colour != blank %}
+      $well-bg:   rgba(darken($body-bg, 3%), .5) !default;
+  $well-border:   $border-color !default;
+{% endif %}
+
+
+/* Breadcrumbs */
+{% if settings.background-colour != blank %}
+            $breadcrumb-bg:   rgba(darken($body-bg, 3%), .5) !default;
+  {% if settings.text-colour != blank %}
+         $breadcrumb-color:   lighten($text-color, 15%) !default;
+  $breadcrumb-active-color:   text-muted($text-color) !default;
+  {% endif %}
+{% endif %}
+
+
+/* Type */
+{% if settings.text-colour != blank %}
+                $text-muted:    text-muted($text-color) !default;
+      $headings-small-color:    $text-muted !default;
+    $blockquote-small-color:    $text-muted !default;
+               $close-color:    $text-color !default;
+         $close-text-shadow:    0 1px 0 rgba(if(lightness($body-bg) > 60%, lighten($body-bg, 100%), darken($body-bg, 100%)), .25) !default;
+{% endif %}
+   $blockquote-border-color:    border-color($body-bg) !default;
+         $abbr-border-color:    $border-color !default;
+  $page-header-border-color:    $border-color !default;
+
+
+/* Miscellaneous */
+  $hr-border:   border-color($body-bg) !default;
+
+{% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}

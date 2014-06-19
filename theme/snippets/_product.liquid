@@ -1,16 +1,16 @@
 {% include '__product-image' %}
-<div class="{% for tag in _product.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% include '__thumbnail-span' %}{% if settings.masonry-style-layout %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
-  <div class="thumbnail">
+<div class="{% for tag in _product.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
+  <div class="product-thumbnail">
     <div class="thumbnail-image">
       {{ image }}
     </div>
-    <div class="caption clearfix">
-      <h4>{{ _product.title | link_to: product_url }}</h4>
+    <a href="{{ product_url }}" class="caption clearfix">
+      <h4>{{ _product.title }}</h4>
       <div class="shopify-product-reviews-badge" data-id="{{ _product.id }}"></div>
-      {% if has_prices and _product.price > 0 %}<div class="price text-{% if settings.centered-layout %}center{% else %}right{% endif %}">
+      {% if has_prices and _product.price > 0 %}<div class="price">
         {% if _product.price_varies %}<small class="text-muted">{% include '__localize' with 'from' %}</small>&nbsp;{% include 'product-price' with _product.price_min %}{% else %}{% include 'product-price' with _product.price %}{% endif %}
         {% include 'product-on-sale' with _product %}  
       </div>{% endif %}
-    </div>
+    </a>
   </div>
 </div>
