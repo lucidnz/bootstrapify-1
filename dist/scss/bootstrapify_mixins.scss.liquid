@@ -109,7 +109,70 @@
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
       @if $slide-dark {
         text-shadow: none;
+        @media (min-width: $screen-sm-min){
+          color: $gray-dark;
+        }
       }
+    }
+  }
+}
+
+@mixin navbar-style($navbar-bg, $navbar-link-color){
+  background-color: $navbar-bg;
+  border-color: darken($navbar-bg, 5%);
+
+  .navbar-nav {
+    > li > a {
+      color: $navbar-link-color;
+      &:hover,
+      &:focus {
+        color: hover-colour($navbar-link-color);
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: darken($navbar-bg, 5%);
+      }
+    }
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: darken($navbar-bg, 5%);
+        color: hover-colour($navbar-link-color);
+      }
+    }
+  }
+
+  .dropdown-menu, .submenu > .nav {
+    background-color: lighten($navbar-bg, 80%);
+    > li > a{
+      &:hover,
+      &:focus {
+        background-color: darken(lighten($navbar-bg, 80%), 5%);
+      }
+    }
+  }
+
+  .navbar-collapse,
+  .navbar-form {
+    border-color: darken($navbar-bg, 5%);
+  }
+
+  .navbar-link {
+    color: $navbar-link-color;
+    &:hover {
+      color: hover-colour($navbar-link-color);
+    }
+  }
+
+  .btn-link {
+    color: $navbar-link-color;
+    &:hover,
+    &:focus {
+      color: hover-colour($navbar-link-color);
     }
   }
 }

@@ -1,13 +1,72 @@
-/* Sticky Footer */
-$footer-height: $navbar-height + $navbar-margin-bottom;
-html, body, #wrap { height: 100%; }
-body > #wrap {height: auto; min-height: 100%;}
-#content { padding-bottom: $footer-height; }
-#footer-content { 
-  position: relative;
-  margin-top: -$footer-height;
-  min-height: $footer-height;
-  clear:both;
+/* Sticky Footer: https://gist.github.com/goldsky/7322156 */
+html, body {
+  height: 100%;
+}
+
+body {
+  /* only to force vertical scroll on browsers */
+  overflow-y: scroll;
+  /* remove default paddings and margins on browsers */
+  padding: 0;
+  margin: 0;
+}
+
+#wrap {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+#content {
+  display: table-row;
+  height: 100%;
+}
+
+#footer-content {
+  display: table-row;
+  height: 1px;
+}
+
+.navbar-icons {
+  padding-left: 0;
+  float: left;
+  
+  > li {
+    float: left;
+    > a {
+      padding-top:    $navbar-padding-vertical;
+      padding-bottom: $navbar-padding-vertical;
+    }
+  }
+  
+  > li > a {
+    color: $navbar-default-link-color;
+
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+      background-color: $navbar-default-link-hover-bg;
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-active-color;
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+  > .disabled > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-disabled-color;
+      background-color: $navbar-default-link-disabled-bg;
+    }
+  }
 }
 
 /* Body */
@@ -32,30 +91,11 @@ body {
     }
   }
   &.has-footer-navbar.has-fixed-footer-navbar{
-    #footer-content{
-      padding-bottom: $navbar-height;
-    }
-  }
-  &.has-footer{
-    #content{
-      padding-bottom: $footer-height;
-    }
-    #footer-content{
-      > .container{        
-        margin-top: -$footer-height;
-        min-height: $footer-height;
-      }
+    #footer-content > .container{
+      padding-bottom: $navbar-height + $navbar-margin-bottom;
     }
   }
 
-	&.has-site-wide-thumbnail-container {
-		.section-wrap {
-			@extend .container;
-			&#product-list, &#collection-list {
-				width: auto;
-			}
-		}
-	}
 
   {% if settings.site-background-image  %}
     background-image: url('{{ "site-background-image-file.jpg" | asset_url }}');
@@ -116,8 +156,12 @@ img {
     @extend .text-muted;
   }
 }
+
 header .article-meta{
   @extend .list-inline;
+}
+.media-heading {
+	margin-top: 1em;
 }
 
 .label {
@@ -142,45 +186,11 @@ header .article-meta{
   white-space: nowrap;
 }
 
+#homepage-blog [class^="col-"]:first-of-type h4{
+  margin-top: 0;
+}
+
 /* Navbars */
-#navbar-top, #navbar-footer {
-  {% if settings.font-navbar-custom != blank %}
-    $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
-  {% elsif settings.font-navbar != blank %}
-    $font-family-navbar:   {{ settings.font-navbar }} !default;
-  {% else %}
-    $font-family-navbar:   false;
-  {% endif %}
-  $font-size-navbar:         {% if settings.font-navbar-size != blank %} {{ settings.font-navbar-size }} {% else %} false {% endif %};
-  $font-weight-navbar:       {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} false {% endif %};
-  $font-style-navbar:        {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
-  $text-transform-navbar:    {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
-  @include font-styles($font-family-navbar, $font-size-navbar, $font-weight-navbar, $font-style-navbar, $text-transform-navbar);
-}
-
-.submenu > .nav > li > a{
-  padding: 3px 20px;
-  color: $dropdown-link-color;
-  font-weight: normal;
-  &:hover,
-  &:focus {
-    color: $dropdown-link-hover-color;
-    background-color: $dropdown-link-hover-bg;
-  }
-}
-
-.submenu > .nav > .dropdown-header {
-  padding: 0;
-  font-size: $font-size-base;
-  a {
-    font-weight: bold;
-  }
-}
-
-#currencies-picker {
-  padding: 0;
-}
-
 @media (min-width: $screen-sm-min){
   .navbar-nav.navbar-left:first-child{
     margin-left: ($grid-gutter-width / -2);
@@ -200,6 +210,72 @@ header .article-meta{
       text-align: left;
     }
   }
+}
+
+.navbar-nav .open .dropdown-menu .dropdown-header, .submenu .nav .dropdown-header{
+  padding: 0;
+  font-weight: bold;
+}
+
+.navbar-form .form-control, .navbar-nav .dropdown-menu, .dropdown-menu > li > a, .dropdown-header {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.submenu .nav{
+   > li > a {
+    padding: 5px 15px 5px 25px;
+    color: $navbar-default-link-color;
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+      background-color: $navbar-default-link-hover-bg;
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-active-color;
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+  @media (min-width: $screen-sm-min){
+    > li > a{
+      padding: 3px 20px;
+      color: $dropdown-link-color;
+      &:hover,
+      &:focus {
+        color: $dropdown-link-hover-color;
+        background-color: $dropdown-link-hover-bg;
+      }
+    }
+  }
+}
+
+#navbar-top, #navbar-footer, #navbar-main {
+  {% if settings.font-navbar-custom != blank %}
+    $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
+  {% elsif settings.font-navbar != blank %}
+    $font-family-navbar:   {{ settings.font-navbar }} !default;
+  {% else %}
+    $font-family-navbar:   false;
+  {% endif %}
+  $font-size-navbar:         {% if settings.font-navbar-size != blank %} {{ settings.font-navbar-size }} {% else %} false {% endif %};
+  $font-weight-navbar:       {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} false {% endif %};
+  $font-style-navbar:        {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
+  $text-transform-navbar:    {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  @include font-styles($font-family-navbar, $font-size-navbar, $font-weight-navbar, $font-style-navbar, $text-transform-navbar);
+}
+
+#navbar-main {
+  $navbar-bg:   {% if settings.main-navbar-background-colour != blank %} {{ settings.main-navbar-background-colour }} {% else %} $navbar-default-bg {% endif %};
+  $navbar-link-color: {% if settings.main-navbar-link-colour != blank %} {{ settings.main-navbar-link-colour }} {% else %} $navbar-default-link-color {% endif %};
+  @include navbar-style($navbar-bg, $navbar-link-color);
+}
+
+#currencies-picker {
+  padding: 0;
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
@@ -266,17 +342,14 @@ header .article-meta{
 }
 
 .tt-suggestion {
+  color: $dropdown-link-color;
   display: block;
   padding: 3px 20px;
 }
 
 .tt-suggestion.tt-is-under-cursor {
-  color: $text-color;
-  background-color: $brand-primary;
-}
-
-.tt-suggestion.tt-is-under-cursor a {
-  color: $text-color;
+  color: $dropdown-link-hover-color;
+  background-color: $dropdown-link-hover-bg;
 }
 
 .tt-suggestion p {
@@ -529,7 +602,6 @@ $i: 1;
 }
 
 .carousel-caption {
-  color: $text-color;
   h2 {
     margin-top: 0.35em;
   }
@@ -557,16 +629,20 @@ $i: 1;
 }
 
 @media (min-width: $screen-sm-min){
-  $caption-container-sm: ($container-sm - $grid-gutter-width);
+  $caption-container-sm: 70%;
   .carousel-caption{
     left: 50%;
     width: $caption-container-sm;
     margin-left: -($caption-container-sm / 2);
+    color: white;
+    h2 {
+      color: white;
+    }
   }
 }
 
 @media (min-width: $screen-md-min) {
-  $caption-container-md: ($container-md - $grid-gutter-width);
+  $caption-container-md: 70%;
   .carousel-caption{
     width: $caption-container-md;
     margin-left: -($caption-container-md / 2);
@@ -574,7 +650,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-lg-min) {
-  $caption-container-lg: ($container-lg - $grid-gutter-width);
+  $caption-container-lg: {% if settings.slider-width == 'window-width' %} $container-lg - $grid-gutter-width {% else %} 70% {% endif %};
   .carousel-caption{
     width: $caption-container-lg;
     margin-left: -($caption-container-lg / 2);

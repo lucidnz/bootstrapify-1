@@ -41,6 +41,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
+          'theme/assets/jquery.ajax-cart.min.js': 'dist/js/jquery.ajax-cart.js',
           'theme/assets/bootstrapify-option-selection.min.js': 'dist/js/bootstrapify-option-selection.js',
           'theme/assets/jquery.instagram.min.js': ['bower_components/jquery-instagram/dist/instagram.js', 'dist/js/jquery.instagram.js']
         }
@@ -184,6 +185,18 @@ module.exports = function(grunt) {
         ]
       }
     },
+    compress: {
+      zip: {
+        options: {
+          archive: 'Bootstrapify.zip'
+        },
+        files: [{
+          expand: true,
+          cwd: './theme/',
+          src: ['assets/**', 'config/**', 'layout/**', 'snippets/**', 'templates/**']
+        }]
+      }
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -204,6 +217,10 @@ module.exports = function(grunt) {
       sass: {
         files: 'dist/scss/*.scss',
         tasks: ['sass']
+      },
+      compress: {
+        files: ['theme/**'],
+        tasks: ['compress']
       }
     }
   });
@@ -215,7 +232,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass', 'compress']);
 };

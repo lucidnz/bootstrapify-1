@@ -109,7 +109,70 @@
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
       @if $slide-dark {
         text-shadow: none;
+        @media (min-width: $screen-sm-min){
+          color: $gray-dark;
+        }
       }
+    }
+  }
+}
+
+@mixin navbar-style($navbar-bg, $navbar-link-color){
+  background-color: $navbar-bg;
+  border-color: darken($navbar-bg, 5%);
+
+  .navbar-nav {
+    > li > a {
+      color: $navbar-link-color;
+      &:hover,
+      &:focus {
+        color: hover-colour($navbar-link-color);
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: darken($navbar-bg, 5%);
+      }
+    }
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: darken($navbar-bg, 5%);
+        color: hover-colour($navbar-link-color);
+      }
+    }
+  }
+
+  .dropdown-menu, .submenu > .nav {
+    background-color: lighten($navbar-bg, 80%);
+    > li > a{
+      &:hover,
+      &:focus {
+        background-color: darken(lighten($navbar-bg, 80%), 5%);
+      }
+    }
+  }
+
+  .navbar-collapse,
+  .navbar-form {
+    border-color: darken($navbar-bg, 5%);
+  }
+
+  .navbar-link {
+    color: $navbar-link-color;
+    &:hover {
+      color: hover-colour($navbar-link-color);
+    }
+  }
+
+  .btn-link {
+    color: $navbar-link-color;
+    &:hover,
+    &:focus {
+      color: hover-colour($navbar-link-color);
     }
   }
 }
@@ -236,10 +299,10 @@ $line-height-base:    1.42858;
 
 /* Dropdowns */
 {% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
-                   $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 5%) {% else %} lighten($body-bg, 5%) {% endif %} !default;
+                   $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 80%) {% else %} lighten($body-bg, 80%) {% endif %} !default;
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
-           $dropdown-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default;
+           $dropdown-link-color:    darken({% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %}, 80%) !default;
      $dropdown-link-hover-color:    hover-colour( $dropdown-link-color ) !default;
   $dropdown-link-disabled-color:    lighten($dropdown-link-color, 5%) !default;
          $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
@@ -1522,12 +1585,7 @@ $component-offset-horizontal: 180px !default;
        -o-transform: scale($ratio);
           transform: scale($ratio);
 }
-@mixin scale($ratioX, $ratioY...) {
-  -webkit-transform: scale($ratioX, $ratioY);
-      -ms-transform: scale($ratioX, $ratioY); // IE9 only
-       -o-transform: scale($ratioX, $ratioY);
-          transform: scale($ratioX, $ratioY);
-}
+
 @mixin scaleX($ratio) {
   -webkit-transform: scaleX($ratio);
       -ms-transform: scaleX($ratio); // IE9 only
@@ -1711,6 +1769,10 @@ $component-offset-horizontal: 180px !default;
 
     + .panel-collapse > .panel-body {
       border-top-color: $border;
+    }
+    .badge {
+      color: $heading-bg-color;
+      background-color: $heading-text-color;
     }
   }
   & > .panel-footer {
@@ -1950,7 +2012,7 @@ $component-offset-horizontal: 180px !default;
 // Creates two color stops, start and end, by specifying a color and position for each color stop.
 // Color stops are not available in IE9 and below.
 @mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
-  background-image: -webkit-linear-gradient(left, color-stop($start-color $start-percent), color-stop($end-color $end-percent)); // Safari 5.1-6, Chrome 10+
+  background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
   background-image: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Opera 12
   background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
   background-repeat: repeat-x;
@@ -2047,10 +2109,7 @@ $component-offset-horizontal: 180px !default;
 // any value of `$grid-columns`.
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin make-grid-columns() {
-  $list: '';
-  $i: 1;
-  $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
   }
@@ -2066,10 +2125,7 @@ $component-offset-horizontal: 180px !default;
 
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin float-grid-columns($class) {
-  $list: '';
-  $i: 1;
-  $list: ".col-#{$class}-#{$i}";
+@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-#{$class}-#{$i}";
   }
@@ -2134,11 +2190,11 @@ $component-offset-horizontal: 180px !default;
 // Generate semantic grid columns with these mixins.
 
 // Centered container element
-@mixin container-fixed() {
+@mixin container-fixed($gutter: $grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  ($grid-gutter-width / 2);
-  padding-right: ($grid-gutter-width / 2);
+  padding-left:  ($gutter / 2);
+  padding-right: ($gutter / 2);
   @include clearfix();
 }
 
@@ -2780,10 +2836,10 @@ th {
 
 }
 
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.woff"
 //
 // Glyphicons for Bootstrap
 //
@@ -3040,7 +3096,7 @@ th {
 // Body reset
 
 html {
-  font-size: 62.5%;
+  font-size: 10px;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -3267,6 +3323,12 @@ mark,
 .text-right          { text-align: right; }
 .text-center         { text-align: center; }
 .text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+// Transformation
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }
 
 // Contextual colors
 .text-muted {
@@ -3498,6 +3560,12 @@ kbd {
   background-color: $kbd-bg;
   border-radius: $border-radius-small;
   box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+
+  kbd {
+    padding: 0;
+    font-size: 100%;
+    box-shadow: none;
+  }
 }
 
 // Blocks of code
@@ -3622,7 +3690,6 @@ pre {
 
 
 table {
-  max-width: 100%;
   background-color: $table-bg;
 }
 th {
@@ -3634,6 +3701,7 @@ th {
 
 .table {
   width: 100%;
+  max-width: 100%;
   margin-bottom: $line-height-computed;
   // Cells
   > thead,
@@ -3791,7 +3859,7 @@ table {
     width: 100%;
     margin-bottom: ($line-height-computed * 0.75);
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     border: 1px solid $table-border-color;
     -webkit-overflow-scrolling: touch;
@@ -3863,7 +3931,7 @@ fieldset {
   padding: 0;
   margin: 0;
   border: 0;
-  // Chrome and Firefox set a `min-width: -webkit-min-content;` on fieldsets,
+  // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
   // so we reset that to ensure it behaves more like a standard block element.
   // See https://github.com/twbs/bootstrap/issues/12359.
   min-width: 0;
@@ -4060,6 +4128,7 @@ input[type="month"] {
 
 .radio,
 .checkbox {
+  position: relative;
   display: block;
   min-height: $line-height-computed; // clear the floating input if there is no label text
   margin-top: 10px;
@@ -4076,9 +4145,11 @@ input[type="month"] {
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
-  float: left;
+  position: absolute;
   margin-left: -20px;
+  margin-top: 4px \9;
 }
+
 .radio + .radio,
 .checkbox + .checkbox {
   margin-top: -5px; // Move up sibling radios or checkboxes for tighter spacing
@@ -4101,17 +4172,33 @@ input[type="month"] {
 }
 
 // Apply same disabled cursor tweak as for inputs
+// Some special care is needed because <label>s don't inherit their parent's `cursor`.
 //
 // Note: Neither radios nor checkboxes can be readonly.
 input[type="radio"],
-input[type="checkbox"],
-.radio,
-.radio-inline,
-.checkbox,
-.checkbox-inline {
+input[type="checkbox"] {
   &[disabled],
+  &.disabled,
   fieldset[disabled] & {
     cursor: not-allowed;
+  }
+}
+// These classes are used directly on <label>s
+.radio-inline,
+.checkbox-inline {
+  &.disabled,
+  fieldset[disabled] & {
+    cursor: not-allowed;
+  }
+}
+// These classes are used on elements with <label> descendants
+.radio,
+.checkbox {
+  &.disabled,
+  fieldset[disabled] & {
+    label {
+      cursor: not-allowed;
+    }
   }
 }
 
@@ -5545,6 +5632,7 @@ tbody.collapse.in { display: table-row-group; }
   right: 0;
   left: 0;
   z-index: $zindex-navbar-fixed;
+  @include translate3d(0, 0, 0);
 
   // Undo the rounded corners
   @media (min-width: $grid-float-breakpoint) {
@@ -6635,7 +6723,7 @@ a.thumbnail.active {
 
 // Reset margins on headings for tighter default spacing
 .media-heading {
-  margin: 10px 0 5px;
+  margin: 0 0 5px;
 }
 
 
@@ -6879,7 +6967,9 @@ a.list-group-item {
     border-top-width: 0;
   }
 }
-
+.list-group + .panel-footer {
+  border-top-width: 0;
+}
 
 // Tables in panels
 //
@@ -6888,7 +6978,8 @@ a.list-group-item {
 
 .panel {
   > .table,
-  > .table-responsive > .table {
+  > .table-responsive > .table,
+  > .panel-collapse > .table {
     margin-bottom: 0;
   }
   // Add border top radius for first one
@@ -6999,7 +7090,7 @@ a.list-group-item {
 
   .panel-heading {
     border-bottom: 0;
-    + .panel-collapse .panel-body {
+    + .panel-collapse > .panel-body {
       border-top: 1px solid $panel-inner-border;
     }
   }
@@ -7150,8 +7241,7 @@ button.close {
 // Container that the modal scrolls within
 .modal {
   display: none;
-  overflow: auto;
-  overflow-y: scroll;
+  overflow: hidden;
   position: fixed;
   top: 0;
   right: 0;
@@ -7166,10 +7256,14 @@ button.close {
 
   // When fading in the modal, animate it to slide down
   &.fade .modal-dialog {
-    @include translate(0, -25%);
+    @include translate3d(0, -25%, 0);
     @include transition-transform(0.3s ease-out);
   }
-  &.in .modal-dialog { @include translate(0, 0)}
+  &.in .modal-dialog { @include translate3d(0, 0, 0) }
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 // Shell div to position the modal with bottom padding
@@ -7810,6 +7904,7 @@ button.close {
 
 .affix {
   position: fixed;
+  @include translate3d(0, 0, 0);
 }
 
 //
@@ -7987,16 +8082,75 @@ button.close {
   @include responsive-invisibility('.hidden-print');
 }
 
-/* Sticky Footer */
-$footer-height: $navbar-height + $navbar-margin-bottom;
-html, body, #wrap { height: 100%; }
-body > #wrap {height: auto; min-height: 100%;}
-#content { padding-bottom: $footer-height; }
-#footer-content { 
-  position: relative;
-  margin-top: -$footer-height;
-  min-height: $footer-height;
-  clear:both;
+/* Sticky Footer: https://gist.github.com/goldsky/7322156 */
+html, body {
+  height: 100%;
+}
+
+body {
+  /* only to force vertical scroll on browsers */
+  overflow-y: scroll;
+  /* remove default paddings and margins on browsers */
+  padding: 0;
+  margin: 0;
+}
+
+#wrap {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+#content {
+  display: table-row;
+  height: 100%;
+}
+
+#footer-content {
+  display: table-row;
+  height: 1px;
+}
+
+.navbar-icons {
+  padding-left: 0;
+  float: left;
+  
+  > li {
+    float: left;
+    > a {
+      padding-top:    $navbar-padding-vertical;
+      padding-bottom: $navbar-padding-vertical;
+    }
+  }
+  
+  > li > a {
+    color: $navbar-default-link-color;
+
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+      background-color: $navbar-default-link-hover-bg;
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-active-color;
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+  > .disabled > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-disabled-color;
+      background-color: $navbar-default-link-disabled-bg;
+    }
+  }
 }
 
 /* Body */
@@ -8021,30 +8175,11 @@ body {
     }
   }
   &.has-footer-navbar.has-fixed-footer-navbar{
-    #footer-content{
-      padding-bottom: $navbar-height;
-    }
-  }
-  &.has-footer{
-    #content{
-      padding-bottom: $footer-height;
-    }
-    #footer-content{
-      > .container{        
-        margin-top: -$footer-height;
-        min-height: $footer-height;
-      }
+    #footer-content > .container{
+      padding-bottom: $navbar-height + $navbar-margin-bottom;
     }
   }
 
-	&.has-site-wide-thumbnail-container {
-		.section-wrap {
-			@extend .container;
-			&#product-list, &#collection-list {
-				width: auto;
-			}
-		}
-	}
 
   {% if settings.site-background-image  %}
     background-image: url('{{ "site-background-image-file.jpg" | asset_url }}');
@@ -8105,8 +8240,12 @@ img {
     @extend .text-muted;
   }
 }
+
 header .article-meta{
   @extend .list-inline;
+}
+.media-heading {
+	margin-top: 1em;
 }
 
 .label {
@@ -8131,45 +8270,11 @@ header .article-meta{
   white-space: nowrap;
 }
 
+#homepage-blog [class^="col-"]:first-of-type h4{
+  margin-top: 0;
+}
+
 /* Navbars */
-#navbar-top, #navbar-footer, #navbar-main {
-  {% if settings.font-navbar-custom != blank %}
-    $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
-  {% elsif settings.font-navbar != blank %}
-    $font-family-navbar:   {{ settings.font-navbar }} !default;
-  {% else %}
-    $font-family-navbar:   false;
-  {% endif %}
-  $font-size-navbar:         {% if settings.font-navbar-size != blank %} {{ settings.font-navbar-size }} {% else %} false {% endif %};
-  $font-weight-navbar:       {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} false {% endif %};
-  $font-style-navbar:        {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
-  $text-transform-navbar:    {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
-  @include font-styles($font-family-navbar, $font-size-navbar, $font-weight-navbar, $font-style-navbar, $text-transform-navbar);
-}
-
-.submenu > .nav > li > a{
-  padding: 3px 20px;
-  color: $dropdown-link-color;
-  font-weight: normal;
-  &:hover,
-  &:focus {
-    color: $dropdown-link-hover-color;
-    background-color: $dropdown-link-hover-bg;
-  }
-}
-
-.submenu > .nav > .dropdown-header {
-  padding: 0;
-  font-size: $font-size-base;
-  a {
-    font-weight: bold;
-  }
-}
-
-#currencies-picker {
-  padding: 0;
-}
-
 @media (min-width: $screen-sm-min){
   .navbar-nav.navbar-left:first-child{
     margin-left: ($grid-gutter-width / -2);
@@ -8189,6 +8294,72 @@ header .article-meta{
       text-align: left;
     }
   }
+}
+
+.navbar-nav .open .dropdown-menu .dropdown-header, .submenu .nav .dropdown-header{
+  padding: 0;
+  font-weight: bold;
+}
+
+.navbar-form .form-control, .navbar-nav .dropdown-menu, .dropdown-menu > li > a, .dropdown-header {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.submenu .nav{
+   > li > a {
+    padding: 5px 15px 5px 25px;
+    color: $navbar-default-link-color;
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+      background-color: $navbar-default-link-hover-bg;
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-active-color;
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+  @media (min-width: $screen-sm-min){
+    > li > a{
+      padding: 3px 20px;
+      color: $dropdown-link-color;
+      &:hover,
+      &:focus {
+        color: $dropdown-link-hover-color;
+        background-color: $dropdown-link-hover-bg;
+      }
+    }
+  }
+}
+
+#navbar-top, #navbar-footer, #navbar-main {
+  {% if settings.font-navbar-custom != blank %}
+    $font-family-navbar:   '{{ settings.font-navbar-custom | remove: "'" | remove: '"' }}'{% if settings.font-navbar != blank %},{{ settings.font-navbar }}{% endif %} !default;
+  {% elsif settings.font-navbar != blank %}
+    $font-family-navbar:   {{ settings.font-navbar }} !default;
+  {% else %}
+    $font-family-navbar:   false;
+  {% endif %}
+  $font-size-navbar:         {% if settings.font-navbar-size != blank %} {{ settings.font-navbar-size }} {% else %} false {% endif %};
+  $font-weight-navbar:       {% if settings.font-navbar-weight != blank %} {{ settings.font-navbar-weight }} {% else %} false {% endif %};
+  $font-style-navbar:        {% if settings.font-navbar-style == 'italic' %} italic {% else %} normal {% endif %};
+  $text-transform-navbar:    {% if settings.font-navbar-case == 'lowercase' or settings.font-navbar-case == 'uppercase' %} {{ settings.font-navbar-case }} {% elsif settings.font-navbar-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  @include font-styles($font-family-navbar, $font-size-navbar, $font-weight-navbar, $font-style-navbar, $text-transform-navbar);
+}
+
+#navbar-main {
+  $navbar-bg:   {% if settings.main-navbar-background-colour != blank %} {{ settings.main-navbar-background-colour }} {% else %} $navbar-default-bg {% endif %};
+  $navbar-link-color: {% if settings.main-navbar-link-colour != blank %} {{ settings.main-navbar-link-colour }} {% else %} $navbar-default-link-color {% endif %};
+  @include navbar-style($navbar-bg, $navbar-link-color);
+}
+
+#currencies-picker {
+  padding: 0;
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
@@ -8255,17 +8426,14 @@ header .article-meta{
 }
 
 .tt-suggestion {
+  color: $dropdown-link-color;
   display: block;
   padding: 3px 20px;
 }
 
 .tt-suggestion.tt-is-under-cursor {
-  color: $text-color;
-  background-color: $brand-primary;
-}
-
-.tt-suggestion.tt-is-under-cursor a {
-  color: $text-color;
+  color: $dropdown-link-hover-color;
+  background-color: $dropdown-link-hover-bg;
 }
 
 .tt-suggestion p {
@@ -8518,7 +8686,6 @@ $i: 1;
 }
 
 .carousel-caption {
-  color: $text-color;
   h2 {
     margin-top: 0.35em;
   }
@@ -8546,16 +8713,20 @@ $i: 1;
 }
 
 @media (min-width: $screen-sm-min){
-  $caption-container-sm: ($container-sm - $grid-gutter-width);
+  $caption-container-sm: 70%;
   .carousel-caption{
     left: 50%;
     width: $caption-container-sm;
     margin-left: -($caption-container-sm / 2);
+    color: white;
+    h2 {
+      color: white;
+    }
   }
 }
 
 @media (min-width: $screen-md-min) {
-  $caption-container-md: ($container-md - $grid-gutter-width);
+  $caption-container-md: 70%;
   .carousel-caption{
     width: $caption-container-md;
     margin-left: -($caption-container-md / 2);
@@ -8563,7 +8734,7 @@ $i: 1;
 }
 
 @media (min-width: $screen-lg-min) {
-  $caption-container-lg: ($container-lg - $grid-gutter-width);
+  $caption-container-lg: {% if settings.slider-width == 'window-width' %} $container-lg - $grid-gutter-width {% else %} 70% {% endif %};
   .carousel-caption{
     width: $caption-container-lg;
     margin-left: -($caption-container-lg / 2);
