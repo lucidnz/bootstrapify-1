@@ -123,6 +123,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
+.nav li.dropdown.open {
+  display: block;
+  position: static;
+}
+
+.dropdown-menu {
+  @extend .row;
+  margin-left: auto;
+  margin-right: auto;
+  
+  > li {
+    @extend .col-sm-3;
+  }
+}
+
 small, .small {
   font-weight: inherit !important;
 }

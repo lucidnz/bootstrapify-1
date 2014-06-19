@@ -2836,10 +2836,10 @@ th {
 
 }
 
-//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.eot"
-//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.svg"
-//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.ttf"
-//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on "bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on "bootstrap/glyphicons-halflings-regular.woff"
 //
 // Glyphicons for Bootstrap
 //
@@ -8204,6 +8204,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   td & {
     margin-top: 0;
     margin-bottom: 0;
+  }
+}
+
+.nav li.dropdown.open {
+  display: block;
+  position: static;
+}
+
+.dropdown-menu {
+  @extend .row;
+  margin-left: auto;
+  margin-right: auto;
+  
+  > li {
+    @extend .col-sm-3;
   }
 }
 
