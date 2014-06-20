@@ -8082,6 +8082,45 @@ body {
   height: 1px;
 }
 
+.navbar-icons {
+  padding-left: 0;
+  float: left;
+  
+  > li {
+    float: left;
+    > a {
+      padding-top:    $navbar-padding-vertical;
+      padding-bottom: $navbar-padding-vertical;
+    }
+  }
+  
+  > li > a {
+    color: $navbar-default-link-color;
+
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+      background-color: $navbar-default-link-hover-bg;
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-active-color;
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+  > .disabled > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-disabled-color;
+      background-color: $navbar-default-link-disabled-bg;
+    }
+  }
+}
+
 /* Body */
 .has-js {
   {% if settings.thumbnail-layout == 'ordered' %}
