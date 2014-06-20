@@ -197,6 +197,19 @@ module.exports = function(grunt) {
         }]
       }
     },
+    slim: {                              // Task
+      dist: {                            // Target
+
+        files: [{
+          expand: true,
+          pretty: true,
+          cwd: 'dist/html',
+          src: ['{,*/}*.slim'],
+          dest: 'theme',
+          ext: '.html'
+        }]
+      }
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -205,6 +218,10 @@ module.exports = function(grunt) {
       jshint: {
         files: '<%= jshint.assets.src %>',
         tasks: ['jshint:assets']
+      },
+      slim: {
+        files: 'dist/html/**/*.slim',
+        tasks: ['slim']
       },
       uglify: {
         files: 'dist/js/*.js',
@@ -230,10 +247,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-slim');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-compress');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass', 'compress']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'slim', 'copy', 'concat', 'sass', 'compress']);
 };
