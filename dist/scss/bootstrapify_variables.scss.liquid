@@ -239,12 +239,15 @@ $line-height-base:    1.42858;
 
 
 /* Thumbnails */
-           $thumbnail-border:   $border-color !default;
-  {% unless settings.show-borders %}
+  {% if settings.show-borders %}
+               $thumbnail-bg:   #fff !default;
+           $thumbnail-border:   $border-color !default;  
+  {% else %}
+               $thumbnail-bg:   transparent !default;
            $thumbnail-border:   transparent !default;
           $thumbnail-padding:   0px !default;
     $thumbnail-border-radius:   0px !default;
-  {% endunless %}
+  {% endif %}
 
 
 /* Wells */
