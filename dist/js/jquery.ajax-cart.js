@@ -163,8 +163,3 @@
   };
 
 }(jQuery));
-
-
-$(function(){
-  $(document).ajaxCart();
-});
