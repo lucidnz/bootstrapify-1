@@ -18,7 +18,7 @@
 		<h1 class="page-header" itemprop="name">{{ product.title }}</h1>
 	</div>
 
-	<form id="product-form" action="/cart/add" method="post" role="form">
+	<form id="product-form" action="/cart/add" method="post" role="form" enctype="multipart/form-data">
 		<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
 	
 			<!-- images col -->
@@ -32,18 +32,18 @@
 					{% if product.images.size > 1 %}
 					{% for image in product.images %}
 					<div class="col-xs-6 col-sm-4">
-            <div class="thumbnail">
-              <div class="thumbnail-image product-main-thumb">
-                <a href="#" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-                  {% if settings.round-thumbnail-images %}
-                  {{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
-                  {% else %}
-                  {{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
-                  {% endif %}
-                </a>
-              </div>
-            </div>
-          </div>
+						<div class="thumbnail">
+							<div class="thumbnail-image product-main-thumb">
+								<a href="#" data-main-image="{{ image.src | product_img_url: 'grande' }}">
+									{% if settings.round-thumbnail-images %}
+									{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
+									{% else %}
+									{{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
+									{% endif %}
+								</a>
+							</div>
+						</div>
+					</div>
 					{% endfor %}
 					{% endif %}
 				</div>

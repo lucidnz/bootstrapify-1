@@ -1585,7 +1585,12 @@ $component-offset-horizontal: 180px !default;
        -o-transform: scale($ratio);
           transform: scale($ratio);
 }
-
+@mixin scale($ratioX, $ratioY...) {
+  -webkit-transform: scale($ratioX, $ratioY);
+      -ms-transform: scale($ratioX, $ratioY); // IE9 only
+       -o-transform: scale($ratioX, $ratioY);
+          transform: scale($ratioX, $ratioY);
+}
 @mixin scaleX($ratio) {
   -webkit-transform: scaleX($ratio);
       -ms-transform: scaleX($ratio); // IE9 only
@@ -1769,10 +1774,6 @@ $component-offset-horizontal: 180px !default;
 
     + .panel-collapse > .panel-body {
       border-top-color: $border;
-    }
-    .badge {
-      color: $heading-bg-color;
-      background-color: $heading-text-color;
     }
   }
   & > .panel-footer {
@@ -2012,7 +2013,7 @@ $component-offset-horizontal: 180px !default;
 // Creates two color stops, start and end, by specifying a color and position for each color stop.
 // Color stops are not available in IE9 and below.
 @mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
-  background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
+  background-image: -webkit-linear-gradient(left, color-stop($start-color $start-percent), color-stop($end-color $end-percent)); // Safari 5.1-6, Chrome 10+
   background-image: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Opera 12
   background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
   background-repeat: repeat-x;
@@ -2109,7 +2110,10 @@ $component-offset-horizontal: 180px !default;
 // any value of `$grid-columns`.
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+@mixin make-grid-columns() {
+  $list: '';
+  $i: 1;
+  $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
   }
@@ -2125,7 +2129,10 @@ $component-offset-horizontal: 180px !default;
 
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
+@mixin float-grid-columns($class) {
+  $list: '';
+  $i: 1;
+  $list: ".col-#{$class}-#{$i}";
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-#{$class}-#{$i}";
   }
@@ -2190,11 +2197,11 @@ $component-offset-horizontal: 180px !default;
 // Generate semantic grid columns with these mixins.
 
 // Centered container element
-@mixin container-fixed($gutter: $grid-gutter-width) {
+@mixin container-fixed() {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  ($gutter / 2);
-  padding-right: ($gutter / 2);
+  padding-left:  ($grid-gutter-width / 2);
+  padding-right: ($grid-gutter-width / 2);
   @include clearfix();
 }
 
@@ -2836,10 +2843,10 @@ th {
 
 }
 
-//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.eot"
-//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.svg"
-//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.ttf"
-//= depend_on_asset "./../../fonts/bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
 //
 // Glyphicons for Bootstrap
 //
@@ -3096,7 +3103,7 @@ th {
 // Body reset
 
 html {
-  font-size: 10px;
+  font-size: 62.5%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -3323,12 +3330,6 @@ mark,
 .text-right          { text-align: right; }
 .text-center         { text-align: center; }
 .text-justify        { text-align: justify; }
-.text-nowrap         { white-space: nowrap; }
-
-// Transformation
-.text-lowercase      { text-transform: lowercase; }
-.text-uppercase      { text-transform: uppercase; }
-.text-capitalize     { text-transform: capitalize; }
 
 // Contextual colors
 .text-muted {
@@ -3560,12 +3561,6 @@ kbd {
   background-color: $kbd-bg;
   border-radius: $border-radius-small;
   box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
-
-  kbd {
-    padding: 0;
-    font-size: 100%;
-    box-shadow: none;
-  }
 }
 
 // Blocks of code
@@ -3690,6 +3685,7 @@ pre {
 
 
 table {
+  max-width: 100%;
   background-color: $table-bg;
 }
 th {
@@ -3701,7 +3697,6 @@ th {
 
 .table {
   width: 100%;
-  max-width: 100%;
   margin-bottom: $line-height-computed;
   // Cells
   > thead,
@@ -3859,7 +3854,7 @@ table {
     width: 100%;
     margin-bottom: ($line-height-computed * 0.75);
     overflow-y: hidden;
-    overflow-x: auto;
+    overflow-x: scroll;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     border: 1px solid $table-border-color;
     -webkit-overflow-scrolling: touch;
@@ -3931,7 +3926,7 @@ fieldset {
   padding: 0;
   margin: 0;
   border: 0;
-  // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
+  // Chrome and Firefox set a `min-width: -webkit-min-content;` on fieldsets,
   // so we reset that to ensure it behaves more like a standard block element.
   // See https://github.com/twbs/bootstrap/issues/12359.
   min-width: 0;
@@ -4128,7 +4123,6 @@ input[type="month"] {
 
 .radio,
 .checkbox {
-  position: relative;
   display: block;
   min-height: $line-height-computed; // clear the floating input if there is no label text
   margin-top: 10px;
@@ -4145,11 +4139,9 @@ input[type="month"] {
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
-  position: absolute;
+  float: left;
   margin-left: -20px;
-  margin-top: 4px \9;
 }
-
 .radio + .radio,
 .checkbox + .checkbox {
   margin-top: -5px; // Move up sibling radios or checkboxes for tighter spacing
@@ -4172,33 +4164,17 @@ input[type="month"] {
 }
 
 // Apply same disabled cursor tweak as for inputs
-// Some special care is needed because <label>s don't inherit their parent's `cursor`.
 //
 // Note: Neither radios nor checkboxes can be readonly.
 input[type="radio"],
-input[type="checkbox"] {
-  &[disabled],
-  &.disabled,
-  fieldset[disabled] & {
-    cursor: not-allowed;
-  }
-}
-// These classes are used directly on <label>s
-.radio-inline,
-.checkbox-inline {
-  &.disabled,
-  fieldset[disabled] & {
-    cursor: not-allowed;
-  }
-}
-// These classes are used on elements with <label> descendants
+input[type="checkbox"],
 .radio,
-.checkbox {
-  &.disabled,
+.radio-inline,
+.checkbox,
+.checkbox-inline {
+  &[disabled],
   fieldset[disabled] & {
-    label {
-      cursor: not-allowed;
-    }
+    cursor: not-allowed;
   }
 }
 
@@ -5632,7 +5608,6 @@ tbody.collapse.in { display: table-row-group; }
   right: 0;
   left: 0;
   z-index: $zindex-navbar-fixed;
-  @include translate3d(0, 0, 0);
 
   // Undo the rounded corners
   @media (min-width: $grid-float-breakpoint) {
@@ -6967,9 +6942,7 @@ a.list-group-item {
     border-top-width: 0;
   }
 }
-.list-group + .panel-footer {
-  border-top-width: 0;
-}
+
 
 // Tables in panels
 //
@@ -6978,8 +6951,7 @@ a.list-group-item {
 
 .panel {
   > .table,
-  > .table-responsive > .table,
-  > .panel-collapse > .table {
+  > .table-responsive > .table {
     margin-bottom: 0;
   }
   // Add border top radius for first one
@@ -7090,7 +7062,7 @@ a.list-group-item {
 
   .panel-heading {
     border-bottom: 0;
-    + .panel-collapse > .panel-body {
+    + .panel-collapse .panel-body {
       border-top: 1px solid $panel-inner-border;
     }
   }
@@ -7241,7 +7213,8 @@ button.close {
 // Container that the modal scrolls within
 .modal {
   display: none;
-  overflow: hidden;
+  overflow: auto;
+  overflow-y: scroll;
   position: fixed;
   top: 0;
   right: 0;
@@ -7256,14 +7229,10 @@ button.close {
 
   // When fading in the modal, animate it to slide down
   &.fade .modal-dialog {
-    @include translate3d(0, -25%, 0);
+    @include translate(0, -25%);
     @include transition-transform(0.3s ease-out);
   }
-  &.in .modal-dialog { @include translate3d(0, 0, 0) }
-}
-.modal-open .modal {
-  overflow-x: hidden;
-  overflow-y: auto;
+  &.in .modal-dialog { @include translate(0, 0)}
 }
 
 // Shell div to position the modal with bottom padding
@@ -7904,7 +7873,6 @@ button.close {
 
 .affix {
   position: fixed;
-  @include translate3d(0, 0, 0);
 }
 
 //
@@ -8211,6 +8179,15 @@ small, .small {
   font-weight: inherit !important;
 }
 
+input[type="file"] {
+	line-height: 100%;
+}
+
+dt {
+	float: left;
+	margin-right: 0.5em;
+}
+
 img {
   @extend .img-responsive;
 }
@@ -8270,8 +8247,10 @@ header .article-meta{
   white-space: nowrap;
 }
 
-#homepage-blog [class^="col-"]:first-of-type h4{
-  margin-top: 0;
+@media (max-width: $screen-xs-max){
+	#homepage-blog [class^="col-"]:first-of-type h4{
+	  margin-top: 0;
+	}
 }
 
 /* Navbars */

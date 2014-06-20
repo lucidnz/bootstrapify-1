@@ -23,12 +23,37 @@
                 <td>
                   <h4>
                     {{ i.product.title | link_to: i.product.url }}
-                    <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
+                    <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small><br>
                   </h4>
+				  <p>
+					<small class="text-muted">
+						<dl>
+						{% for p in i.properties %}
+						{% unless p.last == blank %}
+						<dt>{{ p.first }}:</dt>
+						<dd>
+							{% if p.last contains '/uploads/' %}
+							<a href="#{{ i.product.handle}}" data-toggle="modal">{{ p.last | split: '/' | last }}</a>
+							<div class="modal fade" id="{{ i.product.handle }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<img src="{{ p.last }}" alt="{{ p.first }}">
+									</div>
+								</div>
+							</div>
+							{% else %}
+							{{ p.last }}
+							{% endif %}
+						</dd>
+						{% endunless %}
+						{% endfor %}
+						</dl>
+					</small>
+				</p>
                 </td>
                 <td><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
                 <td class="text-center col-xs-2">
-                  <input type="text" class="form-control" name="updates[{{ i.variant.id }}]" id="updates_{{ i.variant.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
+                  <input type="text" class="form-control" name="updates[]" id="updates_{{ i.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
                 </td>
                 <td><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>
               </tr>
