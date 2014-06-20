@@ -1,9 +1,38 @@
-<div id="product-variants">
-  <select id="product-select" name="id" class="form-control input-lg">
-    {% for v in product.variants %}
-    <option value="{{ v.id }}">{{ v.title }}</option>
-    {% endfor %}
-  </select>
+<div id="product-variants" class="row">
+	<div class="col-xs-12 col-lg-6">
+		<select id="product-select" name="id" class="form-control input-lg">
+			{% for v in product.variants %}
+			<option value="{{ v.id }}">{{ v.title }}</option>
+			{% endfor %}
+		</select>
+	</div>
+	{% if product.metafields.properties.size > 0 %}
+	<div class="col-xs-12 col-lg-6">
+	{% for l_item in product.metafields.properties %}
+	{% assign key = l_item.first | split: ':' %}
+	{% assign key_type = key.last %}
+	{% assign key_title = key.first %}
+	{% assign value = l_item.last %}
+	<div class="form-group">
+		<label>{{ key_title }}</label>
+		{% if key_type == 'select' %}
+		{% assign value_array = value | split: ',' %}
+		<select class="form-control" name="properties[{{ key_title }}]">
+			{% for v in value_array %}
+			<option value="{{ v }}">{{ v }}</option>
+			{% endfor %}
+		</select>
+		{% elsif key_type == 'text' %}
+		<input type="text" class="form-control" name="properties[{{ key_title }}]" placeholder="{{ value }}" />
+		{% elsif key_type == 'checkbox' %}
+		<p><input type="checkbox" name="properties[{{ key_title }}]" value="{{ value }}" />&nbsp;{{ value }}</p>
+		{% elsif key_type == 'file' %}
+		<p><input type="file" id="{{ key_title }}" name="properties[{{ key_title }}]">&nbsp;<small><em>{{ value }}</em></small></p>
+		{% endif %}
+	</div>
+	{% endfor %}
+	</div>
+	{% endif %}
 </div>
 
 <div class="row">
