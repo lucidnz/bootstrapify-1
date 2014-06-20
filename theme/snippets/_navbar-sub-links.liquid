@@ -6,7 +6,7 @@
   {% if linklists[submenu].links.size > 0 and _navbar-sub-links < 1 and show %}
     <li class="submenu">
       <ul class="nav">
-        <li class="dropdown-header"><a tabindex="-1" href="{{ l.url }}" title="{{ l.title }}">{{ l.title }}</a></li>
+        <li role="presentation" class="dropdown-header">{{ l.title }}</li>
         {% for l in linklists[submenu].links %}
           {% assign show = true %}
           {% if l.type == 'collection_link' and l.object.all_products.size <= min_products %}{% assign show = false %}{% endif %}
