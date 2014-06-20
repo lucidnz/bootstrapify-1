@@ -88,6 +88,15 @@ small, .small {
   font-weight: inherit !important;
 }
 
+input[type="file"] {
+	line-height: 100%;
+}
+
+dt {
+	float: left;
+	margin-right: 0.5em;
+}
+
 img {
   @extend .img-responsive;
 }
@@ -147,8 +156,10 @@ header .article-meta{
   white-space: nowrap;
 }
 
-#homepage-blog [class^="col-"]:first-of-type h4{
-  margin-top: 0;
+@media (max-width: $screen-xs-max){
+	#homepage-blog [class^="col-"]:first-of-type h4{
+	  margin-top: 0;
+	}
 }
 
 /* Navbars */
