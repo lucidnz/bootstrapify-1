@@ -6,8 +6,9 @@
 {% include '__image-placeholder' %}
 {% else %}
 {% capture image %}
-{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}
-<img id="main" class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">
+{% unless settings.container-width-large-devices contains 'px' %}{% assign product_img_size = '1024x1024' %}{% else %}{% assign product_img_size = 'grande' %}{% endunless %}
+{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}	
+<img id="main" class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: product_img_size }}" alt="{{ product.featured_image.alt }}" itemprop="image">
 {% endcapture %}
 {% endif %}
 {% endcapture %}
@@ -34,7 +35,7 @@
 					<div class="col-xs-6 col-sm-4">
 						<div class="thumbnail">
 							<div class="thumbnail-image product-main-thumb">
-								<a href="#" data-main-image="{{ image.src | product_img_url: 'grande' }}">
+								<a href="#" data-main-image="{{ image.src | product_img_url: product_img_size }}">
 									{% if settings.round-thumbnail-images %}
 									{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
 									{% else %}
