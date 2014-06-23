@@ -10,6 +10,7 @@
 {% include '__has-footer' %}
 {% include '__has-footer-navbar' %}
 {% include '__has-fixed-footer-navbar' %}
+{% include '__has-featured-image-position' %}
 {% assign typeahead = collections[settings.typeahead-collection].all_products | map: 'title' | join: '","' | prepend:'"' | append:'"' %}
 {% assign truncate_words = settings.truncate-words | plus: 0 %}
 {% assign testimonials_blog_post_limit = settings.testimonials-blog-post-limit | plus: 0 %}

@@ -3,8 +3,17 @@
 <section id="collection-intro" class="section-wrap">
 {% include '__containers-open' %}
 	<h1 class="page-header">{{ page_title }}</h1>
-
-	{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
+	<div class="row">
+		{% unless col_image_position == 'do-not-show' %}
+		<div class="{{ img_col_span }}">
+			{% if col_image_position == 'full-width-above' %}{% assign col_thumb_size = '2048x2048' %}{% else %}{% assign col_thumb_size = 'grande' %}{% endif %}
+			{{ collection.image.src | collection_img_url: col_thumb_size | img_tag: collection.image.alt }}
+		</div>
+		{% endunless %}
+		<div class="{{ text_col_span }}">
+			{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
+		</div>
+	</div>
 
 {% if settings.tag-placement == 'main-content' or settings.show-product-sorter %}
 <div class="clearfix">
