@@ -22,7 +22,15 @@
     {% endif %}
   
     {% unless has_top_navbar and navbar == 'main' %}
-    <div class="navbar-header">
+    <div class="navbar-header">      
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ navbar }}-nav">
+        <span class="sr-only">Toggle main navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {% if settings.logo-placement == "top-navbar" and navbar == 'top' %}<a class="navbar-brand" href="/">{% include 'logo' %}</a>{% endif %}
+      
       {% if navbar == 'top' %}
       <ul class="nav navbar-icons visible-xs">
         {% if has_cart %}
@@ -33,14 +41,6 @@
         {% endif %}
       </ul>
       {% endif %}
-      
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ navbar }}-nav">
-        <span class="sr-only">Toggle main navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      {% if settings.logo-placement == "top-navbar" and navbar == 'top' %}<a class="navbar-brand" href="/">{% include 'logo' %}</a>{% endif %}
     </div>
     {% endunless %}
     
