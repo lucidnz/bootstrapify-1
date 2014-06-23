@@ -62,7 +62,46 @@
 				</div>
 				{% endif %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
+				
+				{% if settings.product-tab-linklist == null %}
 				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+				{% else %}
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab-desc" data-toggle="tab">{% include '__localize' with 'Description' %}</a></li>
+					{% for l in linklists[settings.product-tab-linklist].links %}
+					{% assign t_string = t_string | append: ',' | append: l.title %}
+					<li><a href="#{{ l.handle | prepend: 'tab-' }}" data-toggle="tab">{{ l.title }}</a></li>
+					{% endfor %}
+					{% for t in product.metafields.tabs %}
+					{% unless t_string contains t.first %}
+						<li><a href="#{{ t.first| handleize | prepend: 'tab-' }}" data-toggle="tab">{{ t.first }}</a></li>
+					{% endunless %}
+					{% endfor %}
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="tab-desc">
+						<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+					</div>
+					{% for l in linklists[settings.product-tab-linklist].links %}
+					<div class="tab-pane fade" id="{{ l.handle | prepend: 'tab-' }}">
+						{% for t in product.metafields.tabs %}{% if t.first == l.title %}{% assign t_found = true %}{% assign t_content = t.last %}{% endif %}{% endfor %}
+						{% if t_found == true %}
+						{{ t_content }}
+						{% else %}
+						{% include '__formatted-content' with l.object.content %}
+						{% endif %}
+						{% assign t_found = false %}
+					</div>
+					{% endfor %}
+					{% for t in product.metafields.tabs %}
+					{% unless t_string contains t.first %}
+					<div class="tab-pane fade" id="{{ t.first| handleize | prepend: 'tab-' }}">
+						{% include '__formatted-content' with t.last %}
+					</div>
+					{% endunless %}
+					{% endfor %}
+				</div>
+				{% endif %}
     
 				{% include 'product-specs' %}
       

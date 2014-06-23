@@ -1244,6 +1244,14 @@
         </table>
         <table>
           <tr>
+            <th><label for="product-tab-linklist">Product Tab Linklist</label></th>
+            <td>
+              <select class="linklist" name="product-tab-linklist" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="show-product-collections">Show product collections</label></th>
             <td>
               <input type="checkbox" name="show-product-collections" id="show-product-collections" value="1" /> Yes
@@ -1348,6 +1356,19 @@
             <td>
               <input type="checkbox" name="thumbnails-cropped" id="thumbnails-cropped" value="1" /> Yes
               <small>If checked, thumbnails will be cropped to fit their container. If unchecked, thumbnails will fit <em>inside</em> the container.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="featured-image-position">Featured Image Position</label></th>
+            <td>
+              <select name="featured-image-position" id="featured-image-position">
+          <option value="do-not-show" selected="selected">Do Not Show</option>
+          <option value="half-width-left">Half Width Left</option>
+          <option value="half-width-right">Half Width Right</option>
+          <option value="full-width-above">Full Width Above</option>
+        </select>
             </td>
           </tr>
         </table>
