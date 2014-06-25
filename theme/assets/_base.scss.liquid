@@ -1773,10 +1773,6 @@ $component-offset-horizontal: 180px !default;
     + .panel-collapse > .panel-body {
       border-top-color: $border;
     }
-    .badge {
-      color: $heading-bg-color;
-      background-color: $heading-text-color;
-    }
   }
   & > .panel-footer {
     + .panel-collapse > .panel-body {
@@ -2112,7 +2108,10 @@ $component-offset-horizontal: 180px !default;
 // any value of `$grid-columns`.
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+@mixin make-grid-columns() {
+  $list: '';
+  $i: 1;
+  $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
   }
@@ -2128,7 +2127,10 @@ $component-offset-horizontal: 180px !default;
 
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
+@mixin float-grid-columns($class) {
+  $list: '';
+  $i: 1;
+  $list: ".col-#{$class}-#{$i}";
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-#{$class}-#{$i}";
   }
@@ -2196,8 +2198,8 @@ $component-offset-horizontal: 180px !default;
 @mixin container-fixed($gutter: $grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  ($gutter / 2);
-  padding-right: ($gutter / 2);
+  padding-left:  ($grid-gutter-width / 2);
+  padding-right: ($grid-gutter-width / 2);
   @include clearfix();
 }
 
@@ -2839,10 +2841,10 @@ th {
 
 }
 
-//= depend_on "bootstrap/glyphicons-halflings-regular.eot"
-//= depend_on "bootstrap/glyphicons-halflings-regular.svg"
-//= depend_on "bootstrap/glyphicons-halflings-regular.ttf"
-//= depend_on "bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
 //
 // Glyphicons for Bootstrap
 //
@@ -3326,12 +3328,6 @@ mark,
 .text-right          { text-align: right; }
 .text-center         { text-align: center; }
 .text-justify        { text-align: justify; }
-.text-nowrap         { white-space: nowrap; }
-
-// Transformation
-.text-lowercase      { text-transform: lowercase; }
-.text-uppercase      { text-transform: uppercase; }
-.text-capitalize     { text-transform: capitalize; }
 
 // Contextual colors
 .text-muted {
@@ -3563,12 +3559,6 @@ kbd {
   background-color: $kbd-bg;
   border-radius: $border-radius-small;
   box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
-
-  kbd {
-    padding: 0;
-    font-size: 100%;
-    box-shadow: none;
-  }
 }
 
 // Blocks of code
@@ -3934,7 +3924,7 @@ fieldset {
   padding: 0;
   margin: 0;
   border: 0;
-  // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
+  // Chrome and Firefox set a `min-width: -webkit-min-content;` on fieldsets,
   // so we reset that to ensure it behaves more like a standard block element.
   // See https://github.com/twbs/bootstrap/issues/12359.
   min-width: 0;
@@ -4131,7 +4121,6 @@ input[type="month"] {
 
 .radio,
 .checkbox {
-  position: relative;
   display: block;
   min-height: $line-height-computed; // clear the floating input if there is no label text
   margin-top: 10px;
@@ -4148,11 +4137,9 @@ input[type="month"] {
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
-  position: absolute;
+  float: left;
   margin-left: -20px;
-  margin-top: 4px \9;
 }
-
 .radio + .radio,
 .checkbox + .checkbox {
   margin-top: -5px; // Move up sibling radios or checkboxes for tighter spacing
@@ -7244,7 +7231,8 @@ button.close {
 // Container that the modal scrolls within
 .modal {
   display: none;
-  overflow: hidden;
+  overflow: auto;
+  overflow-y: scroll;
   position: fixed;
   top: 0;
   right: 0;
@@ -7263,10 +7251,6 @@ button.close {
     @include transition-transform(0.3s ease-out);
   }
   &.in .modal-dialog { @include translate3d(0, 0, 0) }
-}
-.modal-open .modal {
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 // Shell div to position the modal with bottom padding
