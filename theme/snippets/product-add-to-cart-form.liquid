@@ -2,7 +2,7 @@
 	<div class="col-xs-12 col-lg-6">
 		<select id="product-select" name="id" class="form-control input-lg">
 			{% for v in product.variants %}
-			<option value="{{ v.id }}">{{ v.title }}</option>
+			<option value="{{ v.id }}"{% if v == product.selected_or_first_available_variant %} selected="selected"{% endif %}>{{ v.title }}</option>
 			{% endfor %}
 		</select>
 	</div>
