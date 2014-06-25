@@ -85,11 +85,18 @@ if(variant){
     // sold out
     purchaseButton.val(soldOutStr);
   }
+  
+  if(variant.featured_image){
+    // variant image switcher
+    Shopify.Image.switchImage(variant.featured_image, $('#main')[0], function(new_image_src, original_image, element){
+      switchImage(element, new_image_src);
+    });
+  }
 }
 };
 
 jQuery(function() {
 // option selectors with boostrap markup and link options
-new Shopify.BootstrapifyOptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, linkOptions: true });
+new Shopify.BootstrapifyOptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true, linkOptions: true });
 });
 </script>

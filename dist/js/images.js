@@ -8,6 +8,13 @@ var preloadProductImages = function(){
   }
 };
 
+var switchImage = function(ele, newImageSrc){
+  var $mainImage = $(ele);
+  if($mainImage.attr('src') !== newImageSrc){
+    $mainImage.hide().attr('src', newImageSrc).fadeIn();
+  }
+};
+
 /* Carousel control heights */
 var carouselControlHeight = function(){
   var imgHeight = $('.carousel').find('.item.active img').height();
@@ -16,11 +23,7 @@ var carouselControlHeight = function(){
 
 /* Product Image Switcher */
 $('[data-main-image]').click(function(event) {
-  var targetImage = $(this).attr('data-main-image');
-  var $mainImage = $('#main');
-  if($mainImage.attr('src') !== targetImage){
-    $mainImage.hide().attr('src', targetImage).fadeIn();
-  }
+  switchImage('#main', $(this).attr('data-main-image'));
   event.preventDefault();
 });
 
