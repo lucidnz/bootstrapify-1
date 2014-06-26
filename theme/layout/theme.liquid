@@ -95,9 +95,11 @@
     {% endunless %}
   
     {% if thumbnail_layout == 'masonry' %}
-      $('.masonry-collection').isotope({
-        itemSelector: '.masonry',
-        layoutMode: 'masonry'
+      var $container = $('.masonry-collection').imagesLoaded(function(){
+        $container.isotope({
+          itemSelector: '.masonry',
+          layoutMode: 'masonry'
+        });
       });
     {% else %}
     	if(uniformThumbnailElements === undefined){
