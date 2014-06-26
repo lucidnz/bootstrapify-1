@@ -95,14 +95,18 @@
     {% endunless %}
   
     {% if thumbnail_layout == 'masonry' %}
-      $('.masonry-collection').isotope({
-        itemSelector: '.masonry',
-        layoutMode: 'masonry'
+      var $container = $('.masonry-collection').imagesLoaded(function(){
+        $container.isotope({
+          itemSelector: '.masonry',
+          layoutMode: 'masonry'
+        });
+        
+        $('.product-main-thumb').orderly();
       });
     {% else %}
-	if(uniformThumbnailElements === undefined){
-		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
-	}
+    	if(uniformThumbnailElements === undefined){
+    		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
+    	}
 	  
       var uniformThumbnailsOpts = {};
       {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
