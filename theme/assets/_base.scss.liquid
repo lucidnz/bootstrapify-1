@@ -8714,6 +8714,28 @@ header .article-meta{
   margin: auto;
 }
 
+.carousel-fade {
+	.carousel-inner {
+		.item {
+			opacity: 0;
+			transition-property: opacity;
+		}
+		.active {
+			opacity: 1;
+		}
+		.active.left,
+		.active.right {
+			left: 0;
+			opacity: 0;
+			z-index: 1;
+		}
+		.next.left,
+		.prev.right {
+			opacity: 1;
+		}
+	}
+}
+
 // Slider caption postitions
 {% for i in (i..5) %}
   {% assign c = i | plus: 1 %}
