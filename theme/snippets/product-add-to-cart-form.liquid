@@ -36,18 +36,17 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-4">
-    <input class="form-control input-lg" min="1" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" />
-  </div>
-  <div class="col-xs-8">
-    <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="btn btn-primary btn-lg btn-block" />
-  </div>
+	<div class="col-xs-4">
+		<input class="form-control input-lg" min="1" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" />
+	</div>
+	<div class="col-xs-8">
+		<input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="btn btn-primary btn-lg btn-block" />
+	</div>
 </div>
 
 {% if settings.secondary-call-to-action-url != null %}
 <p><br><em>{% include '__localize' with 'Not quite what you are after?' %}</em><br><a href="{{ settings.secondary-call-to-action-url }}?title={{ product.title | replace: ' ', '%20' }}&handle={{ product.handle }}"><strong>{% include '__localize' with 'Contact us for variations' %}</strong></a></p>
 {% endif %}
-
 <hr>
 
 <script>
