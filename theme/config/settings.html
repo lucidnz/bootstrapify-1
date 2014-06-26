@@ -1244,6 +1244,14 @@
         </table>
         <table>
           <tr>
+            <th><label for="product-tab-linklist">Product Tab Linklist</label></th>
+            <td>
+              <select class="linklist" name="product-tab-linklist" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="show-product-collections">Show product collections</label></th>
             <td>
               <input type="checkbox" name="show-product-collections" id="show-product-collections" value="1" /> Yes
@@ -1348,6 +1356,19 @@
             <td>
               <input type="checkbox" name="thumbnails-cropped" id="thumbnails-cropped" value="1" /> Yes
               <small>If checked, thumbnails will be cropped to fit their container. If unchecked, thumbnails will fit <em>inside</em> the container.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="featured-image-position">Featured Image Position</label></th>
+            <td>
+              <select name="featured-image-position" id="featured-image-position">
+          <option value="do-not-show" selected="selected">Do Not Show</option>
+          <option value="half-width-left">Half Width Left</option>
+          <option value="half-width-right">Half Width Right</option>
+          <option value="full-width-above">Full Width Above</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -1541,6 +1562,15 @@
             </td>
           </tr>
         </table>
+        <table>
+          <tr>
+            <th><label for="use-mega-dropdown-menu">Use “Mega” dropdown menu</label></th>
+            <td>
+              <input type="checkbox" name="use-mega-dropdown-menu" id="use-mega-dropdown-menu" value="1" /> Yes
+              <small>If you have a large number of dropdowns or more than two levels of nested dropdowns, it is advisable to enable this setting.</small>
+            </td>
+          </tr>
+        </table>
       </fieldset>
       <fieldset>
       	
@@ -1687,6 +1717,15 @@
       	
       <legend>Cart</legend>
       
+        <table>
+          <tr>
+            <th><label for="ajax-cart">Ajax Cart</label></th>
+            <td>
+              <input type="checkbox" name="ajax-cart" id="ajax-cart" value="1" /> Yes
+              <small><p>Important! - If you are using a file upload field in your product property line items it will not work while Ajax Cart is enabled.</p></small>
+            </td>
+          </tr>
+        </table>
         <table>
           <tr>
             <th><label for="collection-to-link-to-if-cart-empty">Collection to link to if cart empty</label></th>

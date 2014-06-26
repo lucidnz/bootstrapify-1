@@ -6,8 +6,9 @@
 {% include '__image-placeholder' %}
 {% else %}
 {% capture image %}
-{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}
-<img id="main" class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt }}" itemprop="image">
+{% unless settings.container-width-large-devices contains 'px' %}{% assign product_img_size = '1024x1024' %}{% else %}{% assign product_img_size = 'grande' %}{% endunless %}
+{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}	
+<img id="main" class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: product_img_size }}" alt="{{ product.featured_image.alt }}" itemprop="image">
 {% endcapture %}
 {% endif %}
 {% endcapture %}
@@ -18,7 +19,7 @@
 		<h1 class="page-header" itemprop="name">{{ product.title }}</h1>
 	</div>
 
-	<form id="product-form" action="/cart/add" method="post" role="form">
+	<form id="product-form" action="/cart/add" method="post" role="form" enctype="multipart/form-data">
 		<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
 	
 			<!-- images col -->
@@ -32,18 +33,18 @@
 					{% if product.images.size > 1 %}
 					{% for image in product.images %}
 					<div class="col-xs-6 col-sm-4">
-            <div class="thumbnail">
-              <div class="thumbnail-image product-main-thumb">
-                <a href="#" data-main-image="{{ image.src | product_img_url: 'grande' }}">
-                  {% if settings.round-thumbnail-images %}
-                  {{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
-                  {% else %}
-                  {{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
-                  {% endif %}
-                </a>
-              </div>
-            </div>
-          </div>
+						<div class="thumbnail">
+							<div class="thumbnail-image product-main-thumb">
+								<a href="#" data-main-image="{{ image.src | product_img_url: product_img_size }}">
+									{% if settings.round-thumbnail-images %}
+									{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
+									{% else %}
+									{{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
+									{% endif %}
+								</a>
+							</div>
+						</div>
+					</div>
 					{% endfor %}
 					{% endif %}
 				</div>
@@ -62,7 +63,46 @@
 				</div>
 				{% endif %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
+				
+				{% if settings.product-tab-linklist == null %}
 				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+				{% else %}
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab-desc" data-toggle="tab">{% include '__localize' with 'Description' %}</a></li>
+					{% for l in linklists[settings.product-tab-linklist].links %}
+					{% assign t_string = t_string | append: ',' | append: l.title %}
+					<li><a href="#{{ l.handle | prepend: 'tab-' }}" data-toggle="tab">{{ l.title }}</a></li>
+					{% endfor %}
+					{% for t in product.metafields.tabs %}
+					{% unless t_string contains t.first %}
+						<li><a href="#{{ t.first| handleize | prepend: 'tab-' }}" data-toggle="tab">{{ t.first }}</a></li>
+					{% endunless %}
+					{% endfor %}
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="tab-desc">
+						<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+					</div>
+					{% for l in linklists[settings.product-tab-linklist].links %}
+					<div class="tab-pane fade" id="{{ l.handle | prepend: 'tab-' }}">
+						{% for t in product.metafields.tabs %}{% if t.first == l.title %}{% assign t_found = true %}{% assign t_content = t.last %}{% endif %}{% endfor %}
+						{% if t_found == true %}
+						{{ t_content }}
+						{% else %}
+						{% include '__formatted-content' with l.object.content %}
+						{% endif %}
+						{% assign t_found = false %}
+					</div>
+					{% endfor %}
+					{% for t in product.metafields.tabs %}
+					{% unless t_string contains t.first %}
+					<div class="tab-pane fade" id="{{ t.first| handleize | prepend: 'tab-' }}">
+						{% include '__formatted-content' with t.last %}
+					</div>
+					{% endunless %}
+					{% endfor %}
+				</div>
+				{% endif %}
     
 				{% include 'product-specs' %}
       

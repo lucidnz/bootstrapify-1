@@ -79,11 +79,16 @@
   {{ 'collapse.js' | asset_url | script_tag }}
   {{ 'dropdown.js' | asset_url | script_tag }}
   {{ 'modal.js' | asset_url | script_tag }}
+  {{ 'tab.js' | asset_url | script_tag }}
   {{ 'tooltip.js' | asset_url | script_tag }}
   {{ 'popover.js' | asset_url | script_tag }}
   {{ 'typeahead.js' | asset_url | script_tag }}
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
 
+  {% if settings.custom-footer-code != '' %}
+    {{ settings.custom-footer-code }}
+  {% endif %}
+  
   <script type="text/javascript">
     {% unless current_handle == blank %}
       $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
@@ -95,11 +100,15 @@
         layoutMode: 'masonry'
       });
     {% else %}
+	if(uniformThumbnailElements === undefined){
+		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
+	}
+	  
       var uniformThumbnailsOpts = {};
       {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
       {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
       {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
-      $('.thumbnail-image, .product-main-thumb').uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
+      $(uniformThumbnailElements).uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
         $('.collection-thumbnail .caption').orderly({ method: 'children' });
         $('.product-thumbnail .caption').orderly({ method: 'children' });
       });
@@ -113,10 +122,10 @@
         $(this).closest('form').submit();
       });
     });
+	
+	{% if settings.ajax-cart %}
+		$(document).ajaxCart();
+	{% endif %}
   </script>
-
-  {% if settings.custom-footer-code != '' %}
-    {{ settings.custom-footer-code }}
-  {% endif %}
 </body>
 </html>

@@ -7,7 +7,7 @@
 {% for l in linklists[advanced_list].links %}
 
 {% assign sublink_handle = l.handle %}
-{% if linklists[sublink_handle].links.size > 0 %}{% assign sublink = true %}{% else %}{% assign sublink = false %}{% endif %}
+{% if linklists[sublink_handle].links.size > 0 %}{% assign sublink = true %}{% assign sublink_size = linklists[sublink_handle].links.size %}{% else %}{% assign sublink = false %}{% endif %}
 {% if sublink == true and is_sublink != true %}
 	{% assign is_sublink = true %}
 	{% if linklists[sublink_handle].links.first.type == 'collection_link' %}
@@ -22,33 +22,49 @@
 	{% assign is_sublink = false %}
 	<hr>
 {% else %}
-
 	{% assign t_object = l.object %}
-
-	<!-- page snippet -->
+	
 	{% if l.type == 'page_link' %}
-	<section id="homepage-intro{{ forloop.index }}" class="section-wrap">
+	<!-- page snippet -->
+	<section id="homepage-intro{{ forloop.index }}" class="section-wrap{% if is_sublink == true %} {% include '__thumbnail-span' %}{% endif %}">
+		{% include '__containers-open' %}
+		{% if is_sublink %}<h3>{{ l.title }}</h3>{% else %}<h1 class="page-header">{{ l.title }}</h1>{% endif %}
 		{% unless t_object == blank %}
 		{% include '__formatted-content' with t_object.content %}
 		{% endunless %}
+		{% include '__containers-close' %}
 	</section>
 	{% endif %}
-
-	<!-- collection snippet -->
+	
 	{% if l.type == 'collection_link' %}
-	<section id="featured-products-title" class="section-wrap">
-		<h2 class="page-header"><a href="{{ l.url }}">{{ t_object.title }}</a>{% if t_object.all_products_count > homepage_products_limit %}&emsp;<a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
+	<!-- collection snippet -->
+	<section id="product-list" class="section-wrap">
+		{% include '__containers-open' %}
+		<h2 class="page-header"><a href="{{ l.url }}">{{ l.title }}</a>{% if t_object.all_products_count > homepage_products_limit %}&emsp;<a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
+		{% include 'products-list' with 't_object' %}
+		{% include '__containers-open' %}
 	</section>
-	{% include 'products-list' with 't_object' %}
 	{% endif %}
-
-	<!-- blog snippet -->
+	
 	{% if l.type == 'blog_link' %}
+	<!-- blog snippet -->
+	{% if is_sublink %}
+	<section id="homepage-blog-feed{{ forloop.index }}" class="section-wrap{% if is_sublink == true %} {% include '__thumbnail-span' %}{% endif %}">
+		<h3>{{ l.title  | link_to: l.url }}</h3>
+		{% for a in t_object.articles limit: 3 %}
+		<article>
+			<h4>{{ a.title | link_to: a.url }}</h4>
+			<p>{{ a.content | strip_html | truncatewords: 20 }}</p>
+		</article>
+		{% endfor %}
+	</section>
+	{% else %}
 	{% include 'homepage-blog-overview' with 't_object' %}
 	{% endif %}
-
-	<!-- product snippet -->
+	{% endif %}
+	
 	{% if l.type == 'product_link' %}
+	<!-- product snippet -->
 	{% include 'product-page' with 't_object' %}
 	{% endif %}
 

@@ -1,0 +1,11 @@
+	{% assign col_image_position = settings.featured-image-position %}
+	{% if col_image_position == 'half-width-left' %}
+	{% assign img_col_span = 'col-xs-12 col-md-6' %}
+	{% assign text_col_span = 'col-xs-12 col-md-6' %}
+	{% elsif col_image_position == 'half-width-right' %}
+	{% assign img_col_span = 'col-xs-12 col-md-6 col-md-push-6' %}
+	{% assign text_col_span = 'col-xs-12 col-md-6 col-md-pull-6' %}
+	{% elsif col_image_position == 'full-width-above' or col_image_position == 'do-not-show' %}
+	{% assign img_col_span = 'col-xs-12' %}
+	{% assign text_col_span = 'col-xs-12' %}
+	{% endif %}
