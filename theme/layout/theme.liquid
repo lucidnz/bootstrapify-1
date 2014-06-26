@@ -100,9 +100,9 @@
         layoutMode: 'masonry'
       });
     {% else %}
-	if(uniformThumbnailElements === undefined){
-		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
-	}
+    	if(uniformThumbnailElements === undefined){
+    		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
+    	}
 	  
       var uniformThumbnailsOpts = {};
       {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
