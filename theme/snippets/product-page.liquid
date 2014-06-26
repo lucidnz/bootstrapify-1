@@ -32,7 +32,7 @@
 					</div>
 					{% if product.images.size > 1 %}
 					{% for image in product.images %}
-					<div class="col-xs-6 col-sm-4">
+					<div class="col-xs-4">
 						<div class="thumbnail">
 							<div class="thumbnail-image product-main-thumb">
 								<a href="#" data-main-image="{{ image.src | product_img_url: product_img_size }}">
