@@ -487,6 +487,10 @@ header .article-meta{
   font-weight: $headings-font-weight;
 }
 
+#product-variants {
+	margin-bottom: 1em;
+}
+
 .image-placeholder {
   display: block;
   width: 100%;
@@ -659,6 +663,28 @@ header .article-meta{
 
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
   margin: auto;
+}
+
+.carousel-fade {
+	.carousel-inner {
+		.item {
+			opacity: 0;
+			transition-property: opacity;
+		}
+		.active {
+			opacity: 1;
+		}
+		.active.left,
+		.active.right {
+			left: 0;
+			opacity: 0;
+			z-index: 1;
+		}
+		.next.left,
+		.prev.right {
+			opacity: 1;
+		}
+	}
 }
 
 // Slider caption postitions

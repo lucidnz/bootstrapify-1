@@ -147,6 +147,12 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
+            cwd: 'bower_components/isotope/dist/',
+            src: 'isotope.pkgd.min.js',
+            dest: 'theme/assets/'
+          },
+          {
+            expand: true,
             cwd: 'bower_components/typeahead.js/dist/',
             src: 'typeahead.js',
             dest: 'theme/assets/'
