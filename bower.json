@@ -27,7 +27,8 @@
     "respond": "~1.4.2",
     "jquery-instagram": "https://github.com/potomak/jquery-instagram.git#~0.3.0",
     "uniformThumbnails": "https://github.com/luciddesign/uniform-thumbnails.git",
-    "orderly": "https://github.com/luciddesign/orderly.git"
+    "orderly": "https://github.com/luciddesign/orderly.git",
+    "isotope": "~2.0.0"
   },
   "resolutions": {
     "jquery": "~2.1.0"
