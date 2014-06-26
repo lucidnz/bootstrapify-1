@@ -6,7 +6,7 @@
 		{% else %}
 			{% assign product_collection = collections[settings.homepage-products-collection] %}
 		{% endif %}
-	{% else %}
+	{% elsif collection %}
 		{% assign product_collection = collection %}
 	{% endif %}
 	{% for p in product_collection.products | limit: limit %}

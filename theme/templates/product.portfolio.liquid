@@ -26,15 +26,17 @@
     {% if product.images.size > 1 %}
     <div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
       {% for image in product.images %}
-      <div class="{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
-        <div class="thumbnail">
-          <a href="#" data-main-image="{{ image.src | product_img_url: '1024x1024' }}">
-            {% if settings.round-thumbnail-images %}
-            {{ image.src | product_img_url: 'grande' | img_tag: image.alt, 'img-circle' }}
-            {% else %}
-            {{ image.src | product_img_url: 'grande' | img_tag: image.alt }}
-            {% endif %}
-          </a>
+			<div class="col-xs-4 col-sm-3 col-md-2{% if forloop.index == 1 %}{% if forloop.length == 2 %} col-xs-offset-2 col-sm-offset-3 col-md-offset-4{% elsif forloop.length == 3 %} col-xs-offset-0 col-sm-offset-1 col-md-offset-3{% elsif forloop.length == 4 %} col-xs-offset-0 col-sm-offset-0 col-md-offset-4{% elsif forloop.length == 5 %} col-xs-offset-0 col-sm-offset-0 col-md-offset-1{% endif %}{% endif %}">
+				<div class="thumbnail">
+					<div class="thumbnail-image product-main-thumb">
+            <a href="#" data-main-image="{{ image.src | product_img_url: '1024x1024' }}">
+              {% if settings.round-thumbnail-images %}
+              {{ image.src | product_img_url: 'grande' | img_tag: image.alt, 'img-circle' }}
+              {% else %}
+              {{ image.src | product_img_url: 'grande' | img_tag: image.alt }}
+              {% endif %}
+            </a>
+          </div>
         </div>
       </div>
       {% endfor %}
@@ -59,6 +61,8 @@
     {% capture specs %}{% include 'product-specs' %}{% endcapture %}
     {% if specs == blank %}
     {% include '__formatted-content' with product.description %}
+    {% elsif product.description == blank %}
+      {{ specs }}
     {% else %}
     <div class="row">			
       <div class="col-sm-6 gutter-top">
