@@ -64,6 +64,10 @@
 				{% endif %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 				
+				{% if settings.secondary-call-to-action-url != null %}
+					<p><em>{% include '__localize' with 'Not quite what you are after?' %}</em><br><a href="{{ settings.secondary-call-to-action-url }}?title={{ product.title | replace: ' ', '%20' }}&handle={{ product.handle }}"><strong>{% include '__localize' with 'Contact us for variations' %}</strong></a></p>
+				{% endif %}
+				
 				{% if settings.product-tab-linklist == null %}
 				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
 				{% else %}
@@ -85,6 +89,10 @@
 					</div>
 					{% for l in linklists[settings.product-tab-linklist].links %}
 					<div class="tab-pane fade" id="{{ l.handle | prepend: 'tab-' }}">
+						{% if l.handle contains 'review' and l.url == '#' %}
+						<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+						{% assign t_reviews = true %}
+						{% else %}
 						{% for t in product.metafields.tabs %}{% if t.first == l.title %}{% assign t_found = true %}{% assign t_content = t.last %}{% endif %}{% endfor %}
 						{% if t_found == true %}
 						{{ t_content }}
@@ -92,6 +100,7 @@
 						{% include '__formatted-content' with l.object.content %}
 						{% endif %}
 						{% assign t_found = false %}
+						{% endif %}
 					</div>
 					{% endfor %}
 					{% for t in product.metafields.tabs %}
@@ -105,8 +114,10 @@
 				{% endif %}
     
 				{% include 'product-specs' %}
-      
+      		  
+			  	{% unless t_reviews == true %}
 				<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+				{% endunless %}
 			</div>
 		</div>
 	</form>
