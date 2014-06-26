@@ -4,5 +4,5 @@
 {% elsif collection-loop.products.first.featured_image %}
   {% capture image %}{{ collection-loop.products.first.featured_image.src | product_img_url: 'large' | img_tag: collection-loop.products.first.featured_image.alt, round-class | link_to: collection-loop.url }}{% endcapture %}
 {% else %}
-  {% include '__image-placeholder' %}
+  {% include 'image-placeholder' %}
 {% endif %}
