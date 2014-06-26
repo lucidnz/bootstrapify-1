@@ -11,7 +11,7 @@
     {% include '__default-pagination' %}
     {% paginate search.results by default-pagination %}
     {% for i in search.results %}
-    {% include '_search-item' %}
+    {% include 'search-loop' %}
     {% endfor %}
     {% include 'pagination' %}
     {% endpaginate %}
