@@ -1,4 +1,4 @@
-{% include '__has-variables' %}
+{% include 'theme-variables' %}
 
 {% assign respond_js_secret_key = (shop.domain | md5) %}
 {% unless search.terms == respond_js_secret_key %}
