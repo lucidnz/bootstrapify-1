@@ -30,6 +30,36 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
 
 Shopify.extend(Shopify.BootstrapifyOptionSelectors, Shopify.OptionSelectors);
 
+// OVERRIDE SHOPIFY DEFAULT create and return new selector element for given option
+Shopify.OptionSelectors.prototype.buildSelectors = function() {
+  // build selectors
+  for (var i = 0; i < this.product.optionNames().length; i++) {
+    var sel = new Shopify.SingleOptionSelector(this, i, this.product.optionNames()[i], this.product.optionValues(i));
+    sel.element.disabled = false;
+    this.selectors.push(sel);
+  }
+
+  // replace existing selector with new selectors, new hidden input field, new hidden messageElement
+  var divClass = this.selectorDivClass;
+  var optionNames = this.product.optionNames();
+  var elements = Shopify.map(this.selectors, function(selector) {
+    var div = document.createElement('div');
+    div.setAttribute('class', divClass);
+    // create label if more than 1 option (ie: more than one drop down)
+    if (optionNames.length > 1 || selector.name !== 'Title') {
+      // create and appened a label into div
+      var label = document.createElement('label');
+      label.htmlFor = selector.element.id;
+      label.innerHTML = selector.name;
+      div.appendChild(label);
+    }
+    div.appendChild(selector.element);
+    return div;
+  });
+
+  return elements;
+};
+
 Shopify.BootstrapifyOptionSelectors.prototype.displayVariantTitle = function(oldSelector){
   var options = this.product.variants[0].options;
   var showTitle = true;
