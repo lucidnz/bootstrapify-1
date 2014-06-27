@@ -1,4 +1,4 @@
-{% include '__has-variables' %}
+{% include 'theme-variables' %}
 
 <section id="collection-intro" class="section-wrap">
 {% include '__containers-open' %}
@@ -10,7 +10,7 @@
 			{{ collection.image.src | collection_img_url: col_thumb_size | img_tag: collection.image.alt }}
 		</div>
 		{% endunless %}
-		<div class="{{ text_col_span }}">
+		<div class="{{ text_col_span }} collection-description">
 			{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
 		</div>
 	</div>

@@ -3,7 +3,7 @@
 {% endif %}
 {% capture vars %}
 {% if product.featured_image == blank %}
-{% include '__image-placeholder' %}
+{% include 'image-placeholder' %}
 {% else %}
 {% capture image %}
 {% unless settings.container-width-large-devices contains 'px' %}{% assign product_img_size = '1024x1024' %}{% else %}{% assign product_img_size = 'grande' %}{% endunless %}
@@ -32,7 +32,7 @@
 					</div>
 					{% if product.images.size > 1 %}
 					{% for image in product.images %}
-					<div class="col-xs-6 col-sm-4">
+					<div class="col-xs-4">
 						<div class="thumbnail">
 							<div class="thumbnail-image product-main-thumb">
 								<a href="#" data-main-image="{{ image.src | product_img_url: product_img_size }}">
@@ -63,10 +63,6 @@
 				</div>
 				{% endif %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
-				
-				{% if settings.secondary-call-to-action-url != null %}
-					<p><em>{% include '__localize' with 'Not quite what you are after?' %}</em><br><a href="{{ settings.secondary-call-to-action-url }}?title={{ product.title | replace: ' ', '%20' }}&handle={{ product.handle }}"><strong>{% include '__localize' with 'Contact us for variations' %}</strong></a></p>
-				{% endif %}
 				
 				{% if settings.product-tab-linklist == null %}
 				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
