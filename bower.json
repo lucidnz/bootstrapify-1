@@ -28,7 +28,8 @@
     "jquery-instagram": "https://github.com/potomak/jquery-instagram.git#~0.3.0",
     "uniformThumbnails": "https://github.com/luciddesign/uniform-thumbnails.git",
     "orderly": "https://github.com/luciddesign/orderly.git",
-    "isotope": "~2.0.0"
+    "isotope": "~2.0.0",
+    "jquery-zoom": "https://github.com/jackmoore/zoom.git#~1.7.13"
   },
   "resolutions": {
     "jquery": "~2.1.0"
