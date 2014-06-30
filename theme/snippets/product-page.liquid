@@ -3,7 +3,7 @@
 {% endif %}
 {% capture vars %}
 {% if product.featured_image == blank %}
-{% include '__image-placeholder' %}
+{% include 'image-placeholder' %}
 {% else %}
 {% capture image %}
 {% unless settings.container-width-large-devices contains 'px' %}{% assign product_img_size = '1024x1024' %}{% else %}{% assign product_img_size = 'grande' %}{% endunless %}
