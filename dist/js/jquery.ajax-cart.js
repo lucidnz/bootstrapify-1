@@ -10,8 +10,15 @@
     this.settings = settings;
     
     this.connection = new CartConnection(this.settings.connection);
-    this.cartForm = new CartForm(this.$ele.find('form[action="/cart/add"]'), this.settings.form);
     this.cartDisplay = new CartDisplay(this.settings.cartCountElement);
+    
+    this.cartFormQueue = [];
+    this.cartForms = [];
+    var self = this;
+    this.$ele.find('form[action="/cart/add"]').each(function(i){
+      var cartForm = new CartForm(this, self.settings.form, i);
+      self.cartForms.push(cartForm);
+    });
     
     this.addEventHandlers();
   };
@@ -23,16 +30,19 @@
       self.cartCount = cartData.item_count;
       self.cartDisplay.updateCartCountElement(self.cartCount);
     });
-    this.$ele.on('sendToCart', function(e, formData){
+    this.$ele.on('sendToCart', function(e, formData, formID){
+      self.cartFormQueue.push(self.cartForms[formID]);
       self.connection.postToCart(formData);
     });
     this.$ele.on('postToCartSuccess', function(e, product){
       self.cartCount++;
-      self.cartForm.sendToCartSuccess(product);
       self.cartDisplay.updateCartCountElement(self.cartCount);
+      var cartForm = self.cartFormQueue.shift();
+      cartForm.sendToCartSuccess(product);
     });
     this.$ele.on('postToCartError', function(e, err, status){
-      self.cartForm.sendToCartError(err, status);
+      var cartForm = self.cartFormQueue.shift();
+      cartForm.sendToCartError(err, status);
     });
   };
   
@@ -69,9 +79,10 @@
   };
   
   /* Cart Form */
-  var CartForm = function($form, settings){
-    this.$form = $form;
+  var CartForm = function(form, settings, id){
+    this.$form = $(form);
     this.settings = settings;
+    this.id = id;
     this.formSubmit = this.$form.find('input[name="add"]');
     this.defaultSubmitValue = this.formSubmit.val() || this.settings.defaultSubmitValue;
     this.addEventHandlers();
@@ -82,7 +93,7 @@
     this.$form.on('submit', function(e){
       e.preventDefault();
       self._updateSubmit('Adding...', true);
-      $.event.trigger('sendToCart', $(this).serialize());
+      $.event.trigger('sendToCart', $(this).serialize(), self.id);
     });
   };
   
