@@ -51,7 +51,7 @@
 			</div>
 	
 			<!-- details col -->
-			<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
+			<div id="product-details" class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
 				{% if has_prices %}
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
