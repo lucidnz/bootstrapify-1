@@ -93,7 +93,7 @@
     this.$form.on('submit', function(e){
       e.preventDefault();
       self._updateSubmit('Adding...', true);
-      $.event.trigger('sendToCart', $(this).serialize(), self.id);
+      $.event.trigger('sendToCart', [$(this).serialize(), self.id]);
     });
   };
   
@@ -103,8 +103,7 @@
     this._updateSubmit(this.defaultSubmitValue, false);
   };
   
-  CartForm.prototype.sendToCartError = function(err, status){
-    console.log(err, status);
+  CartForm.prototype.sendToCartError = function(err, status){    console.log(err, status);
     try {
       var response = jQuery.parseJSON(err.responseText);
       this._displayMessage('ERROR: '+response, 'danger');
