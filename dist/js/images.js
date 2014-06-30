@@ -17,9 +17,11 @@ var carouselControlHeight = function(){
 /* Product Image Zoom */
 var productImageZoom = function(){
   var $productImage = $('.product-main-image');
-  var imgSrc = $productImage.find('img')[0].src;
-  var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc, 'master');
-  $productImage.zoom({url: SizedImgSrc});
+  if($productImage.length > 0){
+    var imgSrc = $productImage.find('img')[0].src;
+    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc, 'master');
+    $productImage.zoom({url: SizedImgSrc});
+  }
 };
 
 /* Product Image Switcher */
