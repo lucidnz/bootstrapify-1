@@ -52,7 +52,7 @@ var productImageZoom = function(){
   var $productImage = $('.product-main-image');
   if($productImage.length > 0){
     var imgSrc = $productImage.find('img')[0].src;
-    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc, 'master');
+    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc, '1024x1024');
     $productImage.zoom({url: SizedImgSrc});
   }
 };
