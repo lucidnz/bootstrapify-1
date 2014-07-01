@@ -41,7 +41,7 @@ Shopify.BootstrapifyOptionSelectors.prototype.displayVariantTitle = function(old
   if(showTitle){
     var title = document.createElement('p');
     title.className = 'lead';
-    title.innerHTML = this.product.variants[0].title;
+    title.innerHTML = this.product.variants[0].title; // needs option.name as well
     oldSelector.parentNode.appendChild(title);
   }
 };

@@ -1,6 +1,6 @@
 <div id="product-variants" class="row">
 	<div class="col-xs-12 col-lg-6">
-		<select id="product-select" name="id" class="form-control input-lg">
+		<select id="{% include '__advanced-layout-id' with 'product-select' %}" name="id" class="form-control input-lg">
 			{% for v in product.variants %}
 			<option value="{{ v.id }}">{{ v.title }}</option>
 			{% endfor %}
@@ -93,6 +93,6 @@ if(variant){
 
 jQuery(function() {
 // option selectors with boostrap markup and link options
-new Shopify.BootstrapifyOptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, linkOptions: true });
+new Shopify.BootstrapifyOptionSelectors("{% include '__advanced-layout-id' with 'product-select' %}", { product: {{ product | json }}, onVariantSelected: selectCallback, linkOptions: true });
 });
 </script>
