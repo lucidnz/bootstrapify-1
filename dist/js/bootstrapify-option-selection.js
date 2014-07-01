@@ -31,7 +31,7 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
 Shopify.extend(Shopify.BootstrapifyOptionSelectors, Shopify.OptionSelectors);
 
 Shopify.BootstrapifyOptionSelectors.prototype.displayVariantTitle = function(oldSelector){
-  var options = this.product.variants[0].options;
+  var options = this.product.variants[0].options;	
   var showTitle = true;
   for(var i = 0; i < options.length; i++){
     if(options[i] === "Default Title"){
@@ -53,7 +53,18 @@ Shopify.BootstrapifyOptionSelectors.prototype.bootstrapifyMarkup = function(){
     var parentElement = element.parentNode;
     element.className = self.b_selectorClass;
     parentElement.className = self.b_selectorDivClass;
+    
+    if(self.selectors.length === 1 && selector.name !== 'Title'){
+      parentElement.insertBefore(self.displaySingleOptionLable(selector), element);
+    }
   });
+};
+
+Shopify.BootstrapifyOptionSelectors.prototype.displaySingleOptionLable = function(selector){
+  var label = document.createElement('label');
+  label.htmlFor = selector.element.id;
+  label.innerHTML = selector.name;
+  return label;
 };
 
 

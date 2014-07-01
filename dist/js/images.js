@@ -14,12 +14,23 @@ var carouselControlHeight = function(){
   $('.carousel-control').css({maxHeight: imgHeight});
 };
 
+/* Product Image Zoom */
+var productImageZoom = function(){
+  var $productImage = $('.product-main-image');
+  if($productImage.length > 0){
+    var imgSrc = $productImage.find('img')[0].src;
+    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc, '1024x1024');
+    $productImage.zoom({url: SizedImgSrc});
+  }
+};
+
 /* Product Image Switcher */
 $('[data-main-image]').click(function(event) {
   var targetImage = $(this).attr('data-main-image');
   var $mainImage = $('#main');
   if($mainImage.attr('src') !== targetImage){
     $mainImage.hide().attr('src', targetImage).fadeIn();
+    productImageZoom();
   }
   event.preventDefault();
 });
@@ -32,6 +43,8 @@ $(window).load(function(){
   $('.carousel').on('slid.bs.carousel', function(){
     carouselControlHeight();
   });
+  
+  productImageZoom();
 });
 
 $(window).on('resize', function(){

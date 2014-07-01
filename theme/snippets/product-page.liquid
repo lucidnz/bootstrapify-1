@@ -3,7 +3,7 @@
 {% endif %}
 {% capture vars %}
 {% if product.featured_image == blank %}
-{% include '__image-placeholder' %}
+{% include 'image-placeholder' %}
 {% else %}
 {% capture image %}
 {% unless settings.container-width-large-devices contains 'px' %}{% assign product_img_size = '1024x1024' %}{% else %}{% assign product_img_size = 'grande' %}{% endunless %}
@@ -51,7 +51,7 @@
 			</div>
 	
 			<!-- details col -->
-			<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
+			<div id="product-details" class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
 				{% if has_prices %}
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
@@ -65,7 +65,7 @@
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 				
 				{% if settings.product-tab-linklist == null %}
-				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+				<div itemprop="description">{% include '__formatted-content' with product.description %}</div>
 				{% else %}
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#tab-desc" data-toggle="tab">{% include '__localize' with 'Description' %}</a></li>
@@ -81,7 +81,7 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="tab-desc">
-						<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+						<div itemprop="description">{% include '__formatted-content' with product.description %}</div>
 					</div>
 					{% for l in linklists[settings.product-tab-linklist].links %}
 					<div class="tab-pane fade" id="{{ l.handle | prepend: 'tab-' }}">
