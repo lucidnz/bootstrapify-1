@@ -8625,6 +8625,10 @@ header .article-meta{
   {% if settings.sidebar-heading-colour != blank %} @include heading-color({{ settings.sidebar-heading-colour }}); {% endif %}
   {% if settings.sidebar-link-colour != blank %} @include link-color({{ settings.sidebar-link-colour }}); {% endif %}
   {% if settings.sidebar-text-colour != blank %} @include text-color({{ settings.sidebar-text-colour }}); {% endif %}
+  .h4 {
+  	  margin: 0;
+	  padding: 0.5em 0;
+  }
   @media (min-width: $screen-sm-min) {
     // Move background color onto .sidebar-content
     padding-top: $grid-gutter-width;
