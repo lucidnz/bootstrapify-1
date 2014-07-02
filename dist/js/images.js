@@ -15,8 +15,8 @@ var carouselControlHeight = function(){
 };
 
 /* Product Image Zoom */
-var productImageZoom = function(){
-  var $productImage = $('.product-main-image');
+var productImageZoom = function(imageWrapper){
+  var $productImage = imageWrapper || $('.product-main-image');
   if($productImage.length > 0){
     var imgSrc = $productImage.find('img')[0].src;
     var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc, 'master');
@@ -25,12 +25,13 @@ var productImageZoom = function(){
 };
 
 /* Product Image Switcher */
-$('[data-main-image]').click(function(event) {
-  var $mainImage = $(this).closest('.product-images').find('.product-main-image img');
+$(document).on('click', '[data-main-image]', function(event) {
+  var $mainImageWrapper = $(this).closest('.product-images').find('.product-main-image');
+  var $mainImage = $mainImageWrapper.find('img');
   var targetImage = $(this).attr('data-main-image');
   if($mainImage.attr('src') !== targetImage){
     $mainImage.hide().attr('src', targetImage).fadeIn();
-    productImageZoom();
+    productImageZoom($mainImageWrapper);
   }
   event.preventDefault();
 });
