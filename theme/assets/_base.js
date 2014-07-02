@@ -59,8 +59,8 @@ var productImageZoom = function(){
 
 /* Product Image Switcher */
 $('[data-main-image]').click(function(event) {
+  var $mainImage = $(this).closest('.product-images').find('.product-main-image img');
   var targetImage = $(this).attr('data-main-image');
-  var $mainImage = $('#main');
   if($mainImage.attr('src') !== targetImage){
     $mainImage.hide().attr('src', targetImage).fadeIn();
     productImageZoom();

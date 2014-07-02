@@ -1010,6 +1010,7 @@ img {
 
 .img-responsive {
   display: block;
+  width: 100% \9;
   max-width: 100%;
   height: auto; }
 
@@ -1026,6 +1027,7 @@ img {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   display: inline-block;
+  width: 100% \9;
   max-width: 100%;
   height: auto; }
 
@@ -1170,7 +1172,7 @@ h1, #header h1, #wallet #cost, h2, #overview h2, h3, h3.divider, #pay-with h3, .
   #wallet #cost .h6 span.subtitle {
     font-weight: normal;
     line-height: 1;
-    color: #999999; }
+    color: #777777; }
 
 h1, #header h1, #wallet #cost, .h1,
 h2,
@@ -1369,8 +1371,20 @@ mark,
 .text-justify {
   text-align: justify; }
 
+.text-nowrap {
+  white-space: nowrap; }
+
+.text-lowercase {
+  text-transform: lowercase; }
+
+.text-uppercase {
+  text-transform: uppercase; }
+
+.text-capitalize {
+  text-transform: capitalize; }
+
 .text-muted {
-  color: #999999; }
+  color: #777777; }
 
 .text-primary {
   color: #428bca; }
@@ -1495,7 +1509,7 @@ dd {
 abbr[title],
 abbr[data-original-title] {
   cursor: help;
-  border-bottom: 1px dotted #999999; }
+  border-bottom: 1px dotted #777777; }
 
 .initialism {
   font-size: 90%;
@@ -1522,7 +1536,7 @@ blockquote {
     display: block;
     font-size: 80%;
     line-height: 1.42857;
-    color: #999999; }
+    color: #777777; }
     blockquote footer:before,
     blockquote small:before,
     blockquote .small:before,
@@ -1624,6 +1638,10 @@ kbd {
   background-color: #333333;
   border-radius: 3px;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25); }
+  kbd kbd {
+    padding: 0;
+    font-size: 100%;
+    box-shadow: none; }
 
 pre {
   display: block;
@@ -2599,14 +2617,14 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
   .form-control::-moz-placeholder, #email input::-moz-placeholder, #payment-methods input::-moz-placeholder, .field-with-errors input::-moz-placeholder, input[type=text]::-moz-placeholder, input[type=password]::-moz-placeholder, textarea::-moz-placeholder, textarea.short::-moz-placeholder, input.digit-2::-moz-placeholder, textarea.tall::-moz-placeholder, input.long::-moz-placeholder,
   input.short::-moz-placeholder, .form td input::-moz-placeholder, .form td input.short::-moz-placeholder, .form td textarea::-moz-placeholder, .form.full td input::-moz-placeholder, select::-moz-placeholder {
-    color: #999999;
+    color: #777777;
     opacity: 1; }
   .form-control:-ms-input-placeholder, #email input:-ms-input-placeholder, #payment-methods input:-ms-input-placeholder, .field-with-errors input:-ms-input-placeholder, input[type=text]:-ms-input-placeholder, input[type=password]:-ms-input-placeholder, textarea:-ms-input-placeholder, input.digit-2:-ms-input-placeholder, input.long:-ms-input-placeholder,
   input.short:-ms-input-placeholder, .form td input:-ms-input-placeholder, .form td textarea:-ms-input-placeholder, select:-ms-input-placeholder {
-    color: #999999; }
+    color: #777777; }
   .form-control::-webkit-input-placeholder, #email input::-webkit-input-placeholder, #payment-methods input::-webkit-input-placeholder, .field-with-errors input::-webkit-input-placeholder, input[type=text]::-webkit-input-placeholder, input[type=password]::-webkit-input-placeholder, textarea::-webkit-input-placeholder, textarea.short::-webkit-input-placeholder, input.digit-2::-webkit-input-placeholder, textarea.tall::-webkit-input-placeholder, input.long::-webkit-input-placeholder,
   input.short::-webkit-input-placeholder, .form td input::-webkit-input-placeholder, .form td input.short::-webkit-input-placeholder, .form td textarea::-webkit-input-placeholder, .form.full td input::-webkit-input-placeholder, select::-webkit-input-placeholder {
-    color: #999999; }
+    color: #777777; }
   .form-control[disabled], #email input[disabled], #payment-methods input[disabled], .field-with-errors input[disabled], input[disabled][type=text], input[disabled][type=password], textarea[disabled], input[disabled].digit-2, input[disabled].long,
   input[disabled].short, .form td input[disabled], .form td textarea[disabled], select[disabled], .form-control[readonly], #email input[readonly], #payment-methods input[readonly], .field-with-errors input[readonly], input[readonly][type=text], input[readonly][type=password], textarea[readonly], input[readonly].digit-2, input[readonly].long,
   input[readonly].short, .form td input[readonly], .form td textarea[readonly], select[readonly], fieldset[disabled] .form-control, fieldset[disabled]#switchsolo .form-control, fieldset[disabled] #email input, #email fieldset[disabled] input, fieldset[disabled] #payment-methods input, #payment-methods fieldset[disabled] input, fieldset[disabled] .field-with-errors input, .field-with-errors fieldset[disabled] input, fieldset[disabled]#switchsolo .field-with-errors input, .field-with-errors fieldset[disabled]#switchsolo input, fieldset[disabled] input[type=text], fieldset[disabled]#switchsolo input[type=text], fieldset[disabled] input[type=password], fieldset[disabled]#switchsolo input[type=password], fieldset[disabled] textarea, fieldset[disabled]#switchsolo textarea, fieldset[disabled] input.digit-2, fieldset[disabled]#switchsolo input.digit-2, fieldset[disabled] input.long, fieldset[disabled]#switchsolo input.long,
@@ -2628,7 +2646,8 @@ input[type="datetime-local"],
 input[type="month"] {
   line-height: 34px;
   line-height: 1.42857 \0; }
-  input[type="date"].input-sm, .input-group-sm > input[type="date"].form-control, #email .input-group-sm > input[type="date"], #payment-methods .input-group-sm > input[type="date"], .field-with-errors .input-group-sm > input[type="date"], .input-group-sm > input[type="date"][type=text], .input-group-sm > input[type="date"][type=password], .input-group-sm > input[type="date"].digit-2, .input-group-sm > input[type="date"].long,
+  input[type="date"].input-sm, .form-horizontal .form-group-sm input[type="date"].form-control, .form-horizontal .form-group-sm #email input[type="date"], #email .form-horizontal .form-group-sm input[type="date"], .form-horizontal .form-group-sm #payment-methods input[type="date"], #payment-methods .form-horizontal .form-group-sm input[type="date"], .form-horizontal .form-group-sm .field-with-errors input[type="date"], .field-with-errors .form-horizontal .form-group-sm input[type="date"], .form-horizontal .form-group-sm input[type="date"][type=text], .form-horizontal .form-group-sm input[type="date"][type=password], .form-horizontal .form-group-sm input[type="date"].digit-2, .form-horizontal .form-group-sm input[type="date"].long,
+  .form-horizontal .form-group-sm input[type="date"].short, .form-horizontal .form-group-sm .form td input[type="date"], .form td .form-horizontal .form-group-sm input[type="date"], .input-group-sm > input[type="date"].form-control, #email .input-group-sm > input[type="date"], #payment-methods .input-group-sm > input[type="date"], .field-with-errors .input-group-sm > input[type="date"], .input-group-sm > input[type="date"][type=text], .input-group-sm > input[type="date"][type=password], .input-group-sm > input[type="date"].digit-2, .input-group-sm > input[type="date"].long,
   .input-group-sm > input[type="date"].short, .form td .input-group-sm > input[type="date"],
   .input-group-sm > input[type="date"].input-group-addon,
   .input-group-sm > .input-group-btn > input[type="date"][type=submit],
@@ -2636,6 +2655,20 @@ input[type="month"] {
   #buttons .input-group-sm > .input-group-btn > input[type="date"],
   .input-group-sm > .input-group-btn > input[type="date"]#create-account-btn,
   input[type="time"].input-sm,
+  .form-horizontal .form-group-sm input[type="time"].form-control,
+  .form-horizontal .form-group-sm #email input[type="time"],
+  #email .form-horizontal .form-group-sm input[type="time"],
+  .form-horizontal .form-group-sm #payment-methods input[type="time"],
+  #payment-methods .form-horizontal .form-group-sm input[type="time"],
+  .form-horizontal .form-group-sm .field-with-errors input[type="time"],
+  .field-with-errors .form-horizontal .form-group-sm input[type="time"],
+  .form-horizontal .form-group-sm input[type="time"][type=text],
+  .form-horizontal .form-group-sm input[type="time"][type=password],
+  .form-horizontal .form-group-sm input[type="time"].digit-2,
+  .form-horizontal .form-group-sm input[type="time"].long,
+  .form-horizontal .form-group-sm input[type="time"].short,
+  .form-horizontal .form-group-sm .form td input[type="time"],
+  .form td .form-horizontal .form-group-sm input[type="time"],
   .input-group-sm > input[type="time"].form-control,
   #email .input-group-sm > input[type="time"],
   #payment-methods .input-group-sm > input[type="time"],
@@ -2652,6 +2685,20 @@ input[type="month"] {
   #buttons .input-group-sm > .input-group-btn > input[type="time"],
   .input-group-sm > .input-group-btn > input[type="time"]#create-account-btn,
   input[type="datetime-local"].input-sm,
+  .form-horizontal .form-group-sm input[type="datetime-local"].form-control,
+  .form-horizontal .form-group-sm #email input[type="datetime-local"],
+  #email .form-horizontal .form-group-sm input[type="datetime-local"],
+  .form-horizontal .form-group-sm #payment-methods input[type="datetime-local"],
+  #payment-methods .form-horizontal .form-group-sm input[type="datetime-local"],
+  .form-horizontal .form-group-sm .field-with-errors input[type="datetime-local"],
+  .field-with-errors .form-horizontal .form-group-sm input[type="datetime-local"],
+  .form-horizontal .form-group-sm input[type="datetime-local"][type=text],
+  .form-horizontal .form-group-sm input[type="datetime-local"][type=password],
+  .form-horizontal .form-group-sm input[type="datetime-local"].digit-2,
+  .form-horizontal .form-group-sm input[type="datetime-local"].long,
+  .form-horizontal .form-group-sm input[type="datetime-local"].short,
+  .form-horizontal .form-group-sm .form td input[type="datetime-local"],
+  .form td .form-horizontal .form-group-sm input[type="datetime-local"],
   .input-group-sm > input[type="datetime-local"].form-control,
   #email .input-group-sm > input[type="datetime-local"],
   #payment-methods .input-group-sm > input[type="datetime-local"],
@@ -2668,6 +2715,20 @@ input[type="month"] {
   #buttons .input-group-sm > .input-group-btn > input[type="datetime-local"],
   .input-group-sm > .input-group-btn > input[type="datetime-local"]#create-account-btn,
   input[type="month"].input-sm,
+  .form-horizontal .form-group-sm input[type="month"].form-control,
+  .form-horizontal .form-group-sm #email input[type="month"],
+  #email .form-horizontal .form-group-sm input[type="month"],
+  .form-horizontal .form-group-sm #payment-methods input[type="month"],
+  #payment-methods .form-horizontal .form-group-sm input[type="month"],
+  .form-horizontal .form-group-sm .field-with-errors input[type="month"],
+  .field-with-errors .form-horizontal .form-group-sm input[type="month"],
+  .form-horizontal .form-group-sm input[type="month"][type=text],
+  .form-horizontal .form-group-sm input[type="month"][type=password],
+  .form-horizontal .form-group-sm input[type="month"].digit-2,
+  .form-horizontal .form-group-sm input[type="month"].long,
+  .form-horizontal .form-group-sm input[type="month"].short,
+  .form-horizontal .form-group-sm .form td input[type="month"],
+  .form td .form-horizontal .form-group-sm input[type="month"],
   .input-group-sm > input[type="month"].form-control,
   #email .input-group-sm > input[type="month"],
   #payment-methods .input-group-sm > input[type="month"],
@@ -2684,7 +2745,8 @@ input[type="month"] {
   #buttons .input-group-sm > .input-group-btn > input[type="month"],
   .input-group-sm > .input-group-btn > input[type="month"]#create-account-btn {
     line-height: 30px; }
-  input[type="date"].input-lg, .input-group-lg > input[type="date"].form-control, #email .input-group-lg > input[type="date"], #payment-methods .input-group-lg > input[type="date"], .field-with-errors .input-group-lg > input[type="date"], .input-group-lg > input[type="date"][type=text], .input-group-lg > input[type="date"][type=password], .input-group-lg > input[type="date"].digit-2, .input-group-lg > input[type="date"].long,
+  input[type="date"].input-lg, .form-horizontal .form-group-lg input[type="date"].form-control, .form-horizontal .form-group-lg #email input[type="date"], #email .form-horizontal .form-group-lg input[type="date"], .form-horizontal .form-group-lg #payment-methods input[type="date"], #payment-methods .form-horizontal .form-group-lg input[type="date"], .form-horizontal .form-group-lg .field-with-errors input[type="date"], .field-with-errors .form-horizontal .form-group-lg input[type="date"], .form-horizontal .form-group-lg input[type="date"][type=text], .form-horizontal .form-group-lg input[type="date"][type=password], .form-horizontal .form-group-lg input[type="date"].digit-2, .form-horizontal .form-group-lg input[type="date"].long,
+  .form-horizontal .form-group-lg input[type="date"].short, .form-horizontal .form-group-lg .form td input[type="date"], .form td .form-horizontal .form-group-lg input[type="date"], .input-group-lg > input[type="date"].form-control, #email .input-group-lg > input[type="date"], #payment-methods .input-group-lg > input[type="date"], .field-with-errors .input-group-lg > input[type="date"], .input-group-lg > input[type="date"][type=text], .input-group-lg > input[type="date"][type=password], .input-group-lg > input[type="date"].digit-2, .input-group-lg > input[type="date"].long,
   .input-group-lg > input[type="date"].short, .form td .input-group-lg > input[type="date"],
   .input-group-lg > input[type="date"].input-group-addon,
   .input-group-lg > .input-group-btn > input[type="date"][type=submit],
@@ -2692,6 +2754,20 @@ input[type="month"] {
   #buttons .input-group-lg > .input-group-btn > input[type="date"],
   .input-group-lg > .input-group-btn > input[type="date"]#create-account-btn,
   input[type="time"].input-lg,
+  .form-horizontal .form-group-lg input[type="time"].form-control,
+  .form-horizontal .form-group-lg #email input[type="time"],
+  #email .form-horizontal .form-group-lg input[type="time"],
+  .form-horizontal .form-group-lg #payment-methods input[type="time"],
+  #payment-methods .form-horizontal .form-group-lg input[type="time"],
+  .form-horizontal .form-group-lg .field-with-errors input[type="time"],
+  .field-with-errors .form-horizontal .form-group-lg input[type="time"],
+  .form-horizontal .form-group-lg input[type="time"][type=text],
+  .form-horizontal .form-group-lg input[type="time"][type=password],
+  .form-horizontal .form-group-lg input[type="time"].digit-2,
+  .form-horizontal .form-group-lg input[type="time"].long,
+  .form-horizontal .form-group-lg input[type="time"].short,
+  .form-horizontal .form-group-lg .form td input[type="time"],
+  .form td .form-horizontal .form-group-lg input[type="time"],
   .input-group-lg > input[type="time"].form-control,
   #email .input-group-lg > input[type="time"],
   #payment-methods .input-group-lg > input[type="time"],
@@ -2708,6 +2784,20 @@ input[type="month"] {
   #buttons .input-group-lg > .input-group-btn > input[type="time"],
   .input-group-lg > .input-group-btn > input[type="time"]#create-account-btn,
   input[type="datetime-local"].input-lg,
+  .form-horizontal .form-group-lg input[type="datetime-local"].form-control,
+  .form-horizontal .form-group-lg #email input[type="datetime-local"],
+  #email .form-horizontal .form-group-lg input[type="datetime-local"],
+  .form-horizontal .form-group-lg #payment-methods input[type="datetime-local"],
+  #payment-methods .form-horizontal .form-group-lg input[type="datetime-local"],
+  .form-horizontal .form-group-lg .field-with-errors input[type="datetime-local"],
+  .field-with-errors .form-horizontal .form-group-lg input[type="datetime-local"],
+  .form-horizontal .form-group-lg input[type="datetime-local"][type=text],
+  .form-horizontal .form-group-lg input[type="datetime-local"][type=password],
+  .form-horizontal .form-group-lg input[type="datetime-local"].digit-2,
+  .form-horizontal .form-group-lg input[type="datetime-local"].long,
+  .form-horizontal .form-group-lg input[type="datetime-local"].short,
+  .form-horizontal .form-group-lg .form td input[type="datetime-local"],
+  .form td .form-horizontal .form-group-lg input[type="datetime-local"],
   .input-group-lg > input[type="datetime-local"].form-control,
   #email .input-group-lg > input[type="datetime-local"],
   #payment-methods .input-group-lg > input[type="datetime-local"],
@@ -2724,6 +2814,20 @@ input[type="month"] {
   #buttons .input-group-lg > .input-group-btn > input[type="datetime-local"],
   .input-group-lg > .input-group-btn > input[type="datetime-local"]#create-account-btn,
   input[type="month"].input-lg,
+  .form-horizontal .form-group-lg input[type="month"].form-control,
+  .form-horizontal .form-group-lg #email input[type="month"],
+  #email .form-horizontal .form-group-lg input[type="month"],
+  .form-horizontal .form-group-lg #payment-methods input[type="month"],
+  #payment-methods .form-horizontal .form-group-lg input[type="month"],
+  .form-horizontal .form-group-lg .field-with-errors input[type="month"],
+  .field-with-errors .form-horizontal .form-group-lg input[type="month"],
+  .form-horizontal .form-group-lg input[type="month"][type=text],
+  .form-horizontal .form-group-lg input[type="month"][type=password],
+  .form-horizontal .form-group-lg input[type="month"].digit-2,
+  .form-horizontal .form-group-lg input[type="month"].long,
+  .form-horizontal .form-group-lg input[type="month"].short,
+  .form-horizontal .form-group-lg .form td input[type="month"],
+  .form td .form-horizontal .form-group-lg input[type="month"],
   .input-group-lg > input[type="month"].form-control,
   #email .input-group-lg > input[type="month"],
   #payment-methods .input-group-lg > input[type="month"],
@@ -2747,6 +2851,7 @@ input[type="month"] {
 .radio,
 .checkbox,
 .form td input#shipping-toggle {
+  position: relative;
   display: block;
   min-height: 20px;
   margin-top: 10px;
@@ -2770,8 +2875,9 @@ input[type="month"] {
 .checkbox input[type="checkbox"],
 .form td input#shipping-toggle input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
-  float: left;
-  margin-left: -20px; }
+  position: absolute;
+  margin-left: -20px;
+  margin-top: 4px \9; }
 
 .radio + .radio,
 .checkbox + .checkbox,
@@ -2826,7 +2932,30 @@ input[type="checkbox"] {
 .checkbox label {
   cursor: not-allowed; }
 
-.input-sm, .input-group-sm > .form-control, #email .input-group-sm > input, #payment-methods .input-group-sm > input, .field-with-errors .input-group-sm > input, .input-group-sm > input[type=text], .input-group-sm > input[type=password], .input-group-sm > textarea, .input-group-sm > textarea.short, .input-group-sm > input.digit-2, .input-group-sm > textarea.tall, .input-group-sm > input.long,
+.form-control-static {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-bottom: 0; }
+  .form-control-static.input-lg, .form-horizontal .form-group-lg .form-control-static.form-control, .form-horizontal .form-group-lg #email input.form-control-static, #email .form-horizontal .form-group-lg input.form-control-static, .form-horizontal .form-group-lg #payment-methods input.form-control-static, #payment-methods .form-horizontal .form-group-lg input.form-control-static, .form-horizontal .form-group-lg .field-with-errors input.form-control-static, .field-with-errors .form-horizontal .form-group-lg input.form-control-static, .form-horizontal .form-group-lg input.form-control-static[type=text], .form-horizontal .form-group-lg input.form-control-static[type=password], .form-horizontal .form-group-lg textarea.form-control-static, .form-horizontal .form-group-lg input.form-control-static.digit-2, .form-horizontal .form-group-lg input.form-control-static.long,
+  .form-horizontal .form-group-lg input.form-control-static.short, .form-horizontal .form-group-lg .form td input.form-control-static, .form td .form-horizontal .form-group-lg input.form-control-static, .form-horizontal .form-group-lg select.form-control-static, .input-group-lg > .form-control-static.form-control, #email .input-group-lg > input.form-control-static, #payment-methods .input-group-lg > input.form-control-static, .field-with-errors .input-group-lg > input.form-control-static, .input-group-lg > input.form-control-static[type=text], .input-group-lg > input.form-control-static[type=password], .input-group-lg > textarea.form-control-static, .input-group-lg > input.form-control-static.digit-2, .input-group-lg > input.form-control-static.long,
+  .input-group-lg > input.form-control-static.short, .form td .input-group-lg > input.form-control-static, .input-group-lg > select.form-control-static,
+  .input-group-lg > .form-control-static.input-group-addon,
+  .input-group-lg > .input-group-btn > .form-control-static.btn,
+  .input-group-lg > .input-group-btn > input.form-control-static[type=submit],
+  #buttons .input-group-lg > .input-group-btn > input.form-control-static,
+  .input-group-lg > .input-group-btn > .form-control-static#create-account-btn, .form-control-static.input-sm, .form-horizontal .form-group-sm .form-control-static.form-control, .form-horizontal .form-group-sm #email input.form-control-static, #email .form-horizontal .form-group-sm input.form-control-static, .form-horizontal .form-group-sm #payment-methods input.form-control-static, #payment-methods .form-horizontal .form-group-sm input.form-control-static, .form-horizontal .form-group-sm .field-with-errors input.form-control-static, .field-with-errors .form-horizontal .form-group-sm input.form-control-static, .form-horizontal .form-group-sm input.form-control-static[type=text], .form-horizontal .form-group-sm input.form-control-static[type=password], .form-horizontal .form-group-sm textarea.form-control-static, .form-horizontal .form-group-sm input.form-control-static.digit-2, .form-horizontal .form-group-sm input.form-control-static.long,
+  .form-horizontal .form-group-sm input.form-control-static.short, .form-horizontal .form-group-sm .form td input.form-control-static, .form td .form-horizontal .form-group-sm input.form-control-static, .form-horizontal .form-group-sm select.form-control-static, .input-group-sm > .form-control-static.form-control, #email .input-group-sm > input.form-control-static, #payment-methods .input-group-sm > input.form-control-static, .field-with-errors .input-group-sm > input.form-control-static, .input-group-sm > input.form-control-static[type=text], .input-group-sm > input.form-control-static[type=password], .input-group-sm > textarea.form-control-static, .input-group-sm > input.form-control-static.digit-2, .input-group-sm > input.form-control-static.long,
+  .input-group-sm > input.form-control-static.short, .form td .input-group-sm > input.form-control-static, .input-group-sm > select.form-control-static,
+  .input-group-sm > .form-control-static.input-group-addon,
+  .input-group-sm > .input-group-btn > .form-control-static.btn,
+  .input-group-sm > .input-group-btn > input.form-control-static[type=submit],
+  #buttons .input-group-sm > .input-group-btn > input.form-control-static,
+  .input-group-sm > .input-group-btn > .form-control-static#create-account-btn {
+    padding-left: 0;
+    padding-right: 0; }
+
+.input-sm, .form-horizontal .form-group-sm .form-control, .form-horizontal .form-group-sm #email input, #email .form-horizontal .form-group-sm input, .form-horizontal .form-group-sm #payment-methods input, #payment-methods .form-horizontal .form-group-sm input, .form-horizontal .form-group-sm .field-with-errors input, .field-with-errors .form-horizontal .form-group-sm input, .form-horizontal .form-group-sm input[type=text], .form-horizontal .form-group-sm input[type=password], .form-horizontal .form-group-sm textarea, .form-horizontal .form-group-sm textarea.short, .form-horizontal .form-group-sm input.digit-2, .form-horizontal .form-group-sm textarea.tall, .form-horizontal .form-group-sm input.long,
+.form-horizontal .form-group-sm input.short, .form-horizontal .form-group-sm .form td input, .form td .form-horizontal .form-group-sm input, .form-horizontal .form-group-sm .form td textarea, .form td .form-horizontal .form-group-sm textarea, .form-horizontal .form-group-sm select, .input-group-sm > .form-control, #email .input-group-sm > input, #payment-methods .input-group-sm > input, .field-with-errors .input-group-sm > input, .input-group-sm > input[type=text], .input-group-sm > input[type=password], .input-group-sm > textarea, .input-group-sm > textarea.short, .input-group-sm > input.digit-2, .input-group-sm > textarea.tall, .input-group-sm > input.long,
 .input-group-sm > input.short, .form td .input-group-sm > input, .form td .input-group-sm > textarea, .input-group-sm > select,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn,
@@ -2839,24 +2968,26 @@ input[type="checkbox"] {
   line-height: 1.5;
   border-radius: 3px; }
 
-select.input-sm, .input-group-sm > select,
+select.input-sm, .form-horizontal .form-group-sm select, .input-group-sm > select,
 .input-group-sm > select.input-group-addon,
 .input-group-sm > .input-group-btn > select.btn,
 .input-group-sm > .input-group-btn > select#create-account-btn {
   height: 30px;
   line-height: 30px; }
 
-textarea.input-sm, .input-group-sm > textarea, .input-group-sm > textarea.short, .input-group-sm > textarea.tall, .form td .input-group-sm > textarea,
+textarea.input-sm, .form-horizontal .form-group-sm textarea, .form-horizontal .form-group-sm textarea.short, .form-horizontal .form-group-sm textarea.tall, .form-horizontal .form-group-sm .form td textarea, .form td .form-horizontal .form-group-sm textarea, .input-group-sm > textarea, .input-group-sm > textarea.short, .input-group-sm > textarea.tall, .form td .input-group-sm > textarea,
 .input-group-sm > textarea.input-group-addon,
 .input-group-sm > .input-group-btn > textarea.btn,
 .input-group-sm > .input-group-btn > textarea#create-account-btn,
 select[multiple].input-sm,
+.form-horizontal .form-group-sm select[multiple],
 .input-group-sm > select[multiple],
 .input-group-sm > .input-group-btn > select[multiple].btn,
 .input-group-sm > .input-group-btn > select[multiple]#create-account-btn {
   height: auto; }
 
-.input-lg, .input-group-lg > .form-control, #email .input-group-lg > input, #payment-methods .input-group-lg > input, .field-with-errors .input-group-lg > input, .input-group-lg > input[type=text], .input-group-lg > input[type=password], .input-group-lg > textarea, .input-group-lg > textarea.short, .input-group-lg > input.digit-2, .input-group-lg > textarea.tall, .input-group-lg > input.long,
+.input-lg, .form-horizontal .form-group-lg .form-control, .form-horizontal .form-group-lg #email input, #email .form-horizontal .form-group-lg input, .form-horizontal .form-group-lg #payment-methods input, #payment-methods .form-horizontal .form-group-lg input, .form-horizontal .form-group-lg .field-with-errors input, .field-with-errors .form-horizontal .form-group-lg input, .form-horizontal .form-group-lg input[type=text], .form-horizontal .form-group-lg input[type=password], .form-horizontal .form-group-lg textarea, .form-horizontal .form-group-lg textarea.short, .form-horizontal .form-group-lg input.digit-2, .form-horizontal .form-group-lg textarea.tall, .form-horizontal .form-group-lg input.long,
+.form-horizontal .form-group-lg input.short, .form-horizontal .form-group-lg .form td input, .form td .form-horizontal .form-group-lg input, .form-horizontal .form-group-lg .form td textarea, .form td .form-horizontal .form-group-lg textarea, .form-horizontal .form-group-lg select, .input-group-lg > .form-control, #email .input-group-lg > input, #payment-methods .input-group-lg > input, .field-with-errors .input-group-lg > input, .input-group-lg > input[type=text], .input-group-lg > input[type=password], .input-group-lg > textarea, .input-group-lg > textarea.short, .input-group-lg > input.digit-2, .input-group-lg > textarea.tall, .input-group-lg > input.long,
 .input-group-lg > input.short, .form td .input-group-lg > input, .form td .input-group-lg > textarea, .input-group-lg > select,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn,
@@ -2869,18 +3000,19 @@ select[multiple].input-sm,
   line-height: 1.33;
   border-radius: 6px; }
 
-select.input-lg, .input-group-lg > select,
+select.input-lg, .form-horizontal .form-group-lg select, .input-group-lg > select,
 .input-group-lg > select.input-group-addon,
 .input-group-lg > .input-group-btn > select.btn,
 .input-group-lg > .input-group-btn > select#create-account-btn {
   height: 46px;
   line-height: 46px; }
 
-textarea.input-lg, .input-group-lg > textarea, .input-group-lg > textarea.short, .input-group-lg > textarea.tall, .form td .input-group-lg > textarea,
+textarea.input-lg, .form-horizontal .form-group-lg textarea, .form-horizontal .form-group-lg textarea.short, .form-horizontal .form-group-lg textarea.tall, .form-horizontal .form-group-lg .form td textarea, .form td .form-horizontal .form-group-lg textarea, .input-group-lg > textarea, .input-group-lg > textarea.short, .input-group-lg > textarea.tall, .form td .input-group-lg > textarea,
 .input-group-lg > textarea.input-group-addon,
 .input-group-lg > .input-group-btn > textarea.btn,
 .input-group-lg > .input-group-btn > textarea#create-account-btn,
 select[multiple].input-lg,
+.form-horizontal .form-group-lg select[multiple],
 .input-group-lg > select[multiple],
 .input-group-lg > .input-group-btn > select[multiple].btn,
 .input-group-lg > .input-group-btn > select[multiple]#create-account-btn {
@@ -2903,7 +3035,8 @@ select[multiple].input-lg,
   line-height: 34px;
   text-align: center; }
 
-.input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, #email .input-group-lg > input + .form-control-feedback, #payment-methods .input-group-lg > input + .form-control-feedback, .field-with-errors .input-group-lg > input + .form-control-feedback, .input-group-lg > input[type=text] + .form-control-feedback, .input-group-lg > input[type=password] + .form-control-feedback, .input-group-lg > textarea + .form-control-feedback, .input-group-lg > input.digit-2 + .form-control-feedback, .input-group-lg > input.long + .form-control-feedback,
+.input-lg + .form-control-feedback, .form-horizontal .form-group-lg .form-control + .form-control-feedback, .form-horizontal .form-group-lg #email input + .form-control-feedback, #email .form-horizontal .form-group-lg input + .form-control-feedback, .form-horizontal .form-group-lg #payment-methods input + .form-control-feedback, #payment-methods .form-horizontal .form-group-lg input + .form-control-feedback, .form-horizontal .form-group-lg .field-with-errors input + .form-control-feedback, .field-with-errors .form-horizontal .form-group-lg input + .form-control-feedback, .form-horizontal .form-group-lg input[type=text] + .form-control-feedback, .form-horizontal .form-group-lg input[type=password] + .form-control-feedback, .form-horizontal .form-group-lg textarea + .form-control-feedback, .form-horizontal .form-group-lg input.digit-2 + .form-control-feedback, .form-horizontal .form-group-lg input.long + .form-control-feedback,
+.form-horizontal .form-group-lg input.short + .form-control-feedback, .form-horizontal .form-group-lg .form td input + .form-control-feedback, .form td .form-horizontal .form-group-lg input + .form-control-feedback, .form-horizontal .form-group-lg select + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, #email .input-group-lg > input + .form-control-feedback, #payment-methods .input-group-lg > input + .form-control-feedback, .field-with-errors .input-group-lg > input + .form-control-feedback, .input-group-lg > input[type=text] + .form-control-feedback, .input-group-lg > input[type=password] + .form-control-feedback, .input-group-lg > textarea + .form-control-feedback, .input-group-lg > input.digit-2 + .form-control-feedback, .input-group-lg > input.long + .form-control-feedback,
 .input-group-lg > input.short + .form-control-feedback, .form td .input-group-lg > input + .form-control-feedback, .input-group-lg > select + .form-control-feedback,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
@@ -2914,7 +3047,8 @@ select[multiple].input-lg,
   height: 46px;
   line-height: 46px; }
 
-.input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, #email .input-group-sm > input + .form-control-feedback, #payment-methods .input-group-sm > input + .form-control-feedback, .field-with-errors .input-group-sm > input + .form-control-feedback, .input-group-sm > input[type=text] + .form-control-feedback, .input-group-sm > input[type=password] + .form-control-feedback, .input-group-sm > textarea + .form-control-feedback, .input-group-sm > input.digit-2 + .form-control-feedback, .input-group-sm > input.long + .form-control-feedback,
+.input-sm + .form-control-feedback, .form-horizontal .form-group-sm .form-control + .form-control-feedback, .form-horizontal .form-group-sm #email input + .form-control-feedback, #email .form-horizontal .form-group-sm input + .form-control-feedback, .form-horizontal .form-group-sm #payment-methods input + .form-control-feedback, #payment-methods .form-horizontal .form-group-sm input + .form-control-feedback, .form-horizontal .form-group-sm .field-with-errors input + .form-control-feedback, .field-with-errors .form-horizontal .form-group-sm input + .form-control-feedback, .form-horizontal .form-group-sm input[type=text] + .form-control-feedback, .form-horizontal .form-group-sm input[type=password] + .form-control-feedback, .form-horizontal .form-group-sm textarea + .form-control-feedback, .form-horizontal .form-group-sm input.digit-2 + .form-control-feedback, .form-horizontal .form-group-sm input.long + .form-control-feedback,
+.form-horizontal .form-group-sm input.short + .form-control-feedback, .form-horizontal .form-group-sm .form td input + .form-control-feedback, .form td .form-horizontal .form-group-sm input + .form-control-feedback, .form-horizontal .form-group-sm select + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, #email .input-group-sm > input + .form-control-feedback, #payment-methods .input-group-sm > input + .form-control-feedback, .field-with-errors .input-group-sm > input + .form-control-feedback, .input-group-sm > input[type=text] + .form-control-feedback, .input-group-sm > input[type=password] + .form-control-feedback, .input-group-sm > textarea + .form-control-feedback, .input-group-sm > input.digit-2 + .form-control-feedback, .input-group-sm > input.long + .form-control-feedback,
 .input-group-sm > input.short + .form-control-feedback, .form td .input-group-sm > input + .form-control-feedback, .input-group-sm > select + .form-control-feedback,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
@@ -3012,9 +3146,6 @@ select[multiple].input-lg,
 
 .has-feedback label.sr-only ~ .form-control-feedback, .has-feedback #shipping-same label.sr-only ~ .form-control-feedback, #shipping-same .has-feedback label.sr-only ~ .form-control-feedback, .has-feedback td.sr-only.label ~ .form-control-feedback {
   top: 0; }
-
-.form-control-static {
-  margin-bottom: 0; }
 
 .help-block {
   display: block;
@@ -3119,7 +3250,7 @@ select[multiple].input-lg,
   .form td .form-inline input#shipping-toggle input[type="checkbox"],
   .navbar-form .form td input#shipping-toggle input[type="checkbox"],
   .form td .navbar-form input#shipping-toggle input[type="checkbox"] {
-    float: none;
+    position: relative;
     margin-left: 0; }
   .form-inline .has-feedback .form-control-feedback, .navbar-form .has-feedback .form-control-feedback {
     top: 0; } }
@@ -3146,9 +3277,6 @@ select[multiple].input-lg,
     display: table; }
   .form-horizontal .form-group:after {
     clear: both; }
-.form-horizontal .form-control-static {
-  padding-top: 7px;
-  padding-bottom: 7px; }
 @media (min-width: 768px) {
   .form-horizontal .control-label {
     text-align: right;
@@ -3157,6 +3285,12 @@ select[multiple].input-lg,
 .form-horizontal .has-feedback .form-control-feedback {
   top: 0;
   right: 15px; }
+@media (min-width: 768px) {
+  .form-horizontal .form-group-lg .control-label {
+    padding-top: 14.3px; } }
+@media (min-width: 768px) {
+  .form-horizontal .form-group-sm .control-label {
+    padding-top: 6px; } }
 
 .btn, input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit], #create-account-btn {
   display: inline-block;
@@ -3314,7 +3448,7 @@ select[multiple].input-lg,
     text-decoration: underline;
     background-color: transparent; }
   .btn-link[disabled]:hover, .btn-link[disabled]:focus, fieldset[disabled] .btn-link:hover, fieldset[disabled]#switchsolo .btn-link:hover, fieldset[disabled] .btn-link:focus, fieldset[disabled]#switchsolo .btn-link:focus {
-    color: #999999;
+    color: #777777;
     text-decoration: none; }
 
 .btn-lg, .btn-group-lg > .btn, .btn-group-lg > input[type=submit], #buttons .btn-group-lg > input, .btn-group-lg > #create-account-btn {
@@ -3337,9 +3471,7 @@ select[multiple].input-lg,
 
 .btn-block {
   display: block;
-  width: 100%;
-  padding-left: 0;
-  padding-right: 0; }
+  width: 100%; }
 
 .btn-block + .btn-block {
   margin-top: 5px; }
@@ -3441,7 +3573,7 @@ tbody.collapse.in {
   background-color: #428bca; }
 
 .dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
-  color: #999999; }
+  color: #777777; }
 
 .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
   text-decoration: none;
@@ -3468,7 +3600,8 @@ tbody.collapse.in {
   padding: 3px 20px;
   font-size: 12px;
   line-height: 1.42857;
-  color: #999999; }
+  color: #777777;
+  white-space: nowrap; }
 
 .dropdown-backdrop {
   position: fixed;
@@ -3779,7 +3912,8 @@ tbody.collapse.in {
   background-color: #eeeeee;
   border: 1px solid #cccccc;
   border-radius: 4px; }
-  .input-group-addon.input-sm, #email .input-group-sm > input.input-group-addon, #payment-methods .input-group-sm > input.input-group-addon,
+  .input-group-addon.input-sm, .form-horizontal .form-group-sm .input-group-addon.form-control, .form-horizontal .form-group-sm #email input.input-group-addon, #email .form-horizontal .form-group-sm input.input-group-addon, .form-horizontal .form-group-sm #payment-methods input.input-group-addon, #payment-methods .form-horizontal .form-group-sm input.input-group-addon, .form-horizontal .form-group-sm .field-with-errors input.input-group-addon, .field-with-errors .form-horizontal .form-group-sm input.input-group-addon, .form-horizontal .form-group-sm input.input-group-addon[type=text], .form-horizontal .form-group-sm input.input-group-addon[type=password], .form-horizontal .form-group-sm textarea.input-group-addon, .form-horizontal .form-group-sm input.input-group-addon.digit-2, .form-horizontal .form-group-sm input.input-group-addon.long,
+  .form-horizontal .form-group-sm input.input-group-addon.short, .form-horizontal .form-group-sm .form td input.input-group-addon, .form td .form-horizontal .form-group-sm input.input-group-addon, .form-horizontal .form-group-sm select.input-group-addon, #email .input-group-sm > input.input-group-addon, #payment-methods .input-group-sm > input.input-group-addon,
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-group-btn > .input-group-addon.btn,
   .input-group-sm > .input-group-btn > input.input-group-addon[type=submit],
@@ -3788,7 +3922,8 @@ tbody.collapse.in {
     padding: 5px 10px;
     font-size: 12px;
     border-radius: 3px; }
-  .input-group-addon.input-lg, #email .input-group-lg > input.input-group-addon, #payment-methods .input-group-lg > input.input-group-addon,
+  .input-group-addon.input-lg, .form-horizontal .form-group-lg .input-group-addon.form-control, .form-horizontal .form-group-lg #email input.input-group-addon, #email .form-horizontal .form-group-lg input.input-group-addon, .form-horizontal .form-group-lg #payment-methods input.input-group-addon, #payment-methods .form-horizontal .form-group-lg input.input-group-addon, .form-horizontal .form-group-lg .field-with-errors input.input-group-addon, .field-with-errors .form-horizontal .form-group-lg input.input-group-addon, .form-horizontal .form-group-lg input.input-group-addon[type=text], .form-horizontal .form-group-lg input.input-group-addon[type=password], .form-horizontal .form-group-lg textarea.input-group-addon, .form-horizontal .form-group-lg input.input-group-addon.digit-2, .form-horizontal .form-group-lg input.input-group-addon.long,
+  .form-horizontal .form-group-lg input.input-group-addon.short, .form-horizontal .form-group-lg .form td input.input-group-addon, .form td .form-horizontal .form-group-lg input.input-group-addon, .form-horizontal .form-group-lg select.input-group-addon, #email .input-group-lg > input.input-group-addon, #payment-methods .input-group-lg > input.input-group-addon,
   .input-group-lg > .input-group-addon,
   .input-group-lg > .input-group-btn > .input-group-addon.btn,
   .input-group-lg > .input-group-btn > input.input-group-addon[type=submit],
@@ -3890,9 +4025,9 @@ tbody.collapse.in {
         text-decoration: none;
         background-color: #eeeeee; }
     .nav > li.disabled > a {
-      color: #999999; }
+      color: #777777; }
       .nav > li.disabled > a:hover, .nav > li.disabled > a:focus {
-        color: #999999;
+        color: #777777;
         text-decoration: none;
         background-color: transparent;
         cursor: not-allowed; }
@@ -4301,14 +4436,14 @@ tbody.collapse.in {
   background-color: #222222;
   border-color: #090909; }
   .navbar-inverse .navbar-brand {
-    color: #999999; }
+    color: #777777; }
     .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
       color: white;
       background-color: transparent; }
   .navbar-inverse .navbar-text {
-    color: #999999; }
+    color: #777777; }
   .navbar-inverse .navbar-nav > li > a {
-    color: #999999; }
+    color: #777777; }
     .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
       color: white;
       background-color: transparent; }
@@ -4336,7 +4471,7 @@ tbody.collapse.in {
     .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
       background-color: #090909; }
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-      color: #999999; }
+      color: #777777; }
       .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
         color: white;
         background-color: transparent; }
@@ -4347,11 +4482,11 @@ tbody.collapse.in {
       color: #444444;
       background-color: transparent; } }
   .navbar-inverse .navbar-link {
-    color: #999999; }
+    color: #777777; }
     .navbar-inverse .navbar-link:hover {
       color: white; }
   .navbar-inverse .btn-link {
-    color: #999999; }
+    color: #777777; }
     .navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus {
       color: white; }
     .navbar-inverse .btn-link[disabled]:hover, .navbar-inverse .btn-link[disabled]:focus, fieldset[disabled] .navbar-inverse .btn-link:hover, fieldset[disabled]#switchsolo .navbar-inverse .btn-link:hover, fieldset[disabled] .navbar-inverse .btn-link:focus, fieldset[disabled]#switchsolo .navbar-inverse .btn-link:focus {
@@ -4370,7 +4505,7 @@ tbody.collapse.in {
       padding: 0 5px;
       color: #cccccc; }
   .breadcrumb > .active {
-    color: #999999; }
+    color: #777777; }
 
 .pagination {
   display: inline-block;
@@ -4420,7 +4555,7 @@ tbody.collapse.in {
   .pagination > .disabled > a,
   .pagination > .disabled > a:hover,
   .pagination > .disabled > a:focus {
-    color: #999999;
+    color: #777777;
     background-color: white;
     border-color: #dddddd;
     cursor: not-allowed; }
@@ -4484,7 +4619,7 @@ tbody.collapse.in {
   .pager .disabled > a:hover,
   .pager .disabled > a:focus,
   .pager .disabled > span {
-    color: #999999;
+    color: #777777;
     background-color: white;
     cursor: not-allowed; }
 
@@ -4511,9 +4646,9 @@ a.label:hover, a.label:focus {
   cursor: pointer; }
 
 .label-default {
-  background-color: #999999; }
+  background-color: #777777; }
   .label-default[href]:hover, .label-default[href]:focus {
-    background-color: gray; }
+    background-color: #5e5e5e; }
 
 .label-primary {
   background-color: #428bca; }
@@ -4551,7 +4686,7 @@ a.label:hover, a.label:focus {
   vertical-align: baseline;
   white-space: nowrap;
   text-align: center;
-  background-color: #999999;
+  background-color: #777777;
   border-radius: 10px; }
   .badge:empty {
     display: none; }
@@ -4618,6 +4753,7 @@ a.badge:hover, a.badge:focus {
   .slim #thumbs td > div a > img,
   .slim #thumbs td .images a > img {
     display: block;
+    width: 100% \9;
     max-width: 100%;
     height: auto;
     margin-left: auto;
@@ -4653,9 +4789,11 @@ a.thumbnail.active,
   .alert > p + p, .flash > p + p, .flash.notice > p + p, .flash.error > p + p, #info-bar > p + p, .medium .alert > p + p, .medium .flash > p + p, .medium .flash.notice > p + p, .medium .flash.error > p + p, .medium #info-bar > p + p, fieldset .alert > p + p, fieldset .flash > p + p, fieldset .flash.notice > p + p, fieldset .flash.error > p + p, fieldset #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, .header-description .alert > p + p, .header-description .flash > p + p, .header-description .flash.notice > p + p, .header-description .flash.error > p + p, .header-description #info-bar > p + p, #footer .alert > p + p, #footer .flash > p + p, #footer .flash.notice > p + p, #footer .flash.error > p + p, #footer #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p, .medium .alert > p + p, .medium .flash > p + p, .medium .flash.notice > p + p, .medium .flash.error > p + p, .medium #info-bar > p + p, .medium .alert > p + p, .medium .flash > p + p, .medium .flash.notice > p + p, .medium .flash.error > p + p, .medium #info-bar > p + p, fieldset .medium .alert > p + p, .medium fieldset .alert > p + p, fieldset .medium .flash > p + p, .medium fieldset .flash > p + p, fieldset .medium .flash.notice > p + p, .medium fieldset .flash.notice > p + p, fieldset .medium .flash.error > p + p, .medium fieldset .flash.error > p + p, fieldset .medium #info-bar > p + p, .medium fieldset #info-bar > p + p, fieldset#switchsolo .medium .alert > p + p, .medium fieldset#switchsolo .alert > p + p, fieldset#switchsolo .medium .flash > p + p, .medium fieldset#switchsolo .flash > p + p, fieldset#switchsolo .medium .flash.notice > p + p, .medium fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .medium .flash.error > p + p, .medium fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo .medium #info-bar > p + p, .medium fieldset#switchsolo #info-bar > p + p, .header-description .medium .alert > p + p, .medium .header-description .alert > p + p, .header-description .medium .flash > p + p, .medium .header-description .flash > p + p, .header-description .medium .flash.notice > p + p, .medium .header-description .flash.notice > p + p, .header-description .medium .flash.error > p + p, .medium .header-description .flash.error > p + p, .header-description .medium #info-bar > p + p, .medium .header-description #info-bar > p + p, #footer .medium .alert > p + p, .medium #footer .alert > p + p, #footer .medium .flash > p + p, .medium #footer .flash > p + p, #footer .medium .flash.notice > p + p, .medium #footer .flash.notice > p + p, #footer .medium .flash.error > p + p, .medium #footer .flash.error > p + p, #footer .medium #info-bar > p + p, .medium #footer #info-bar > p + p, #container.slim #footer .medium .alert > p + p, .medium #container.slim #footer .alert > p + p, #container.slim #footer .medium .flash > p + p, .medium #container.slim #footer .flash > p + p, #container.slim #footer .medium .flash.notice > p + p, .medium #container.slim #footer .flash.notice > p + p, #container.slim #footer .medium .flash.error > p + p, .medium #container.slim #footer .flash.error > p + p, #container.slim #footer .medium #info-bar > p + p, .medium #container.slim #footer #info-bar > p + p, fieldset .alert > p + p, fieldset .flash > p + p, fieldset .flash.notice > p + p, fieldset .flash.error > p + p, fieldset #info-bar > p + p, .medium fieldset .alert > p + p, fieldset .medium .alert > p + p, .medium fieldset .flash > p + p, fieldset .medium .flash > p + p, .medium fieldset .flash.notice > p + p, fieldset .medium .flash.notice > p + p, .medium fieldset .flash.error > p + p, fieldset .medium .flash.error > p + p, .medium fieldset #info-bar > p + p, fieldset .medium #info-bar > p + p, fieldset .alert > p + p, fieldset .flash > p + p, fieldset .flash.notice > p + p, fieldset .flash.error > p + p, fieldset #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, .header-description fieldset .alert > p + p, fieldset .header-description .alert > p + p, .header-description fieldset .flash > p + p, fieldset .header-description .flash > p + p, .header-description fieldset .flash.notice > p + p, fieldset .header-description .flash.notice > p + p, .header-description fieldset .flash.error > p + p, fieldset .header-description .flash.error > p + p, .header-description fieldset #info-bar > p + p, fieldset .header-description #info-bar > p + p, #footer fieldset .alert > p + p, fieldset #footer .alert > p + p, #footer fieldset .flash > p + p, fieldset #footer .flash > p + p, #footer fieldset .flash.notice > p + p, fieldset #footer .flash.notice > p + p, #footer fieldset .flash.error > p + p, fieldset #footer .flash.error > p + p, #footer fieldset #info-bar > p + p, fieldset #footer #info-bar > p + p, #container.slim #footer fieldset .alert > p + p, fieldset #container.slim #footer .alert > p + p, #container.slim #footer fieldset .flash > p + p, fieldset #container.slim #footer .flash > p + p, #container.slim #footer fieldset .flash.notice > p + p, fieldset #container.slim #footer .flash.notice > p + p, #container.slim #footer fieldset .flash.error > p + p, fieldset #container.slim #footer .flash.error > p + p, #container.slim #footer fieldset #info-bar > p + p, fieldset #container.slim #footer #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, .medium fieldset#switchsolo .alert > p + p, fieldset#switchsolo .medium .alert > p + p, .medium fieldset#switchsolo .flash > p + p, fieldset#switchsolo .medium .flash > p + p, .medium fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .medium .flash.notice > p + p, .medium fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo .medium .flash.error > p + p, .medium fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo .medium #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo .alert > p + p, fieldset#switchsolo .flash > p + p, fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #info-bar > p + p, .header-description fieldset#switchsolo .alert > p + p, fieldset#switchsolo .header-description .alert > p + p, .header-description fieldset#switchsolo .flash > p + p, fieldset#switchsolo .header-description .flash > p + p, .header-description fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .header-description .flash.notice > p + p, .header-description fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo .header-description .flash.error > p + p, .header-description fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo .header-description #info-bar > p + p, #footer fieldset#switchsolo .alert > p + p, fieldset#switchsolo #footer .alert > p + p, #footer fieldset#switchsolo .flash > p + p, fieldset#switchsolo #footer .flash > p + p, #footer fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo #footer .flash.notice > p + p, #footer fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #footer .flash.error > p + p, #footer fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo #footer #info-bar > p + p, #container.slim #footer fieldset#switchsolo .alert > p + p, fieldset#switchsolo #container.slim #footer .alert > p + p, #container.slim #footer fieldset#switchsolo .flash > p + p, fieldset#switchsolo #container.slim #footer .flash > p + p, #container.slim #footer fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo #container.slim #footer .flash.notice > p + p, #container.slim #footer fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #container.slim #footer .flash.error > p + p, #container.slim #footer fieldset#switchsolo #info-bar > p + p, fieldset#switchsolo #container.slim #footer #info-bar > p + p, .header-description .alert > p + p, .header-description .flash > p + p, .header-description .flash.notice > p + p, .header-description .flash.error > p + p, .header-description #info-bar > p + p, .medium .header-description .alert > p + p, .header-description .medium .alert > p + p, .medium .header-description .flash > p + p, .header-description .medium .flash > p + p, .medium .header-description .flash.notice > p + p, .header-description .medium .flash.notice > p + p, .medium .header-description .flash.error > p + p, .header-description .medium .flash.error > p + p, .medium .header-description #info-bar > p + p, .header-description .medium #info-bar > p + p, fieldset .header-description .alert > p + p, .header-description fieldset .alert > p + p, fieldset .header-description .flash > p + p, .header-description fieldset .flash > p + p, fieldset .header-description .flash.notice > p + p, .header-description fieldset .flash.notice > p + p, fieldset .header-description .flash.error > p + p, .header-description fieldset .flash.error > p + p, fieldset .header-description #info-bar > p + p, .header-description fieldset #info-bar > p + p, fieldset#switchsolo .header-description .alert > p + p, .header-description fieldset#switchsolo .alert > p + p, fieldset#switchsolo .header-description .flash > p + p, .header-description fieldset#switchsolo .flash > p + p, fieldset#switchsolo .header-description .flash.notice > p + p, .header-description fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo .header-description .flash.error > p + p, .header-description fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo .header-description #info-bar > p + p, .header-description fieldset#switchsolo #info-bar > p + p, .header-description .alert > p + p, .header-description .flash > p + p, .header-description .flash.notice > p + p, .header-description .flash.error > p + p, .header-description #info-bar > p + p, #footer .header-description .alert > p + p, .header-description #footer .alert > p + p, #footer .header-description .flash > p + p, .header-description #footer .flash > p + p, #footer .header-description .flash.notice > p + p, .header-description #footer .flash.notice > p + p, #footer .header-description .flash.error > p + p, .header-description #footer .flash.error > p + p, #footer .header-description #info-bar > p + p, .header-description #footer #info-bar > p + p, #container.slim #footer .header-description .alert > p + p, .header-description #container.slim #footer .alert > p + p, #container.slim #footer .header-description .flash > p + p, .header-description #container.slim #footer .flash > p + p, #container.slim #footer .header-description .flash.notice > p + p, .header-description #container.slim #footer .flash.notice > p + p, #container.slim #footer .header-description .flash.error > p + p, .header-description #container.slim #footer .flash.error > p + p, #container.slim #footer .header-description #info-bar > p + p, .header-description #container.slim #footer #info-bar > p + p, #footer .alert > p + p, #footer .flash > p + p, #footer .flash.notice > p + p, #footer .flash.error > p + p, #footer #info-bar > p + p, .medium #footer .alert > p + p, #footer .medium .alert > p + p, .medium #footer .flash > p + p, #footer .medium .flash > p + p, .medium #footer .flash.notice > p + p, #footer .medium .flash.notice > p + p, .medium #footer .flash.error > p + p, #footer .medium .flash.error > p + p, .medium #footer #info-bar > p + p, #footer .medium #info-bar > p + p, fieldset #footer .alert > p + p, #footer fieldset .alert > p + p, fieldset #footer .flash > p + p, #footer fieldset .flash > p + p, fieldset #footer .flash.notice > p + p, #footer fieldset .flash.notice > p + p, fieldset #footer .flash.error > p + p, #footer fieldset .flash.error > p + p, fieldset #footer #info-bar > p + p, #footer fieldset #info-bar > p + p, fieldset#switchsolo #footer .alert > p + p, #footer fieldset#switchsolo .alert > p + p, fieldset#switchsolo #footer .flash > p + p, #footer fieldset#switchsolo .flash > p + p, fieldset#switchsolo #footer .flash.notice > p + p, #footer fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo #footer .flash.error > p + p, #footer fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #footer #info-bar > p + p, #footer fieldset#switchsolo #info-bar > p + p, .header-description #footer .alert > p + p, #footer .header-description .alert > p + p, .header-description #footer .flash > p + p, #footer .header-description .flash > p + p, .header-description #footer .flash.notice > p + p, #footer .header-description .flash.notice > p + p, .header-description #footer .flash.error > p + p, #footer .header-description .flash.error > p + p, .header-description #footer #info-bar > p + p, #footer .header-description #info-bar > p + p, #footer .alert > p + p, #footer .flash > p + p, #footer .flash.notice > p + p, #footer .flash.error > p + p, #footer #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p, .medium #container.slim #footer .alert > p + p, #container.slim #footer .medium .alert > p + p, .medium #container.slim #footer .flash > p + p, #container.slim #footer .medium .flash > p + p, .medium #container.slim #footer .flash.notice > p + p, #container.slim #footer .medium .flash.notice > p + p, .medium #container.slim #footer .flash.error > p + p, #container.slim #footer .medium .flash.error > p + p, .medium #container.slim #footer #info-bar > p + p, #container.slim #footer .medium #info-bar > p + p, fieldset #container.slim #footer .alert > p + p, #container.slim #footer fieldset .alert > p + p, fieldset #container.slim #footer .flash > p + p, #container.slim #footer fieldset .flash > p + p, fieldset #container.slim #footer .flash.notice > p + p, #container.slim #footer fieldset .flash.notice > p + p, fieldset #container.slim #footer .flash.error > p + p, #container.slim #footer fieldset .flash.error > p + p, fieldset #container.slim #footer #info-bar > p + p, #container.slim #footer fieldset #info-bar > p + p, fieldset#switchsolo #container.slim #footer .alert > p + p, #container.slim #footer fieldset#switchsolo .alert > p + p, fieldset#switchsolo #container.slim #footer .flash > p + p, #container.slim #footer fieldset#switchsolo .flash > p + p, fieldset#switchsolo #container.slim #footer .flash.notice > p + p, #container.slim #footer fieldset#switchsolo .flash.notice > p + p, fieldset#switchsolo #container.slim #footer .flash.error > p + p, #container.slim #footer fieldset#switchsolo .flash.error > p + p, fieldset#switchsolo #container.slim #footer #info-bar > p + p, #container.slim #footer fieldset#switchsolo #info-bar > p + p, .header-description #container.slim #footer .alert > p + p, #container.slim #footer .header-description .alert > p + p, .header-description #container.slim #footer .flash > p + p, #container.slim #footer .header-description .flash > p + p, .header-description #container.slim #footer .flash.notice > p + p, #container.slim #footer .header-description .flash.notice > p + p, .header-description #container.slim #footer .flash.error > p + p, #container.slim #footer .header-description .flash.error > p + p, .header-description #container.slim #footer #info-bar > p + p, #container.slim #footer .header-description #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p, #container.slim #footer .alert > p + p, #container.slim #footer .flash > p + p, #container.slim #footer .flash.notice > p + p, #container.slim #footer .flash.error > p + p, #container.slim #footer #info-bar > p + p {
     margin-top: 5px; }
 
-.alert-dismissable {
+.alert-dismissable,
+.alert-dismissible {
   padding-right: 35px; }
-  .alert-dismissable .close {
+  .alert-dismissable .close,
+  .alert-dismissible .close {
     position: relative;
     top: -2px;
     right: -21px;
@@ -4697,6 +4835,12 @@ a.thumbnail.active,
   .alert-danger .alert-link, .flash.error .alert-link {
     color: #843534; }
 
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0; }
+
+  to {
+    background-position: 0 0; } }
 @keyframes progress-bar-stripes {
   from {
     background-position: 40px 0; }
@@ -4727,13 +4871,15 @@ a.thumbnail.active,
   -o-transition: width 0.6s ease;
   transition: width 0.6s ease; }
 
-.progress-striped .progress-bar {
+.progress-striped .progress-bar,
+.progress-bar-striped {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 40px 40px; }
 
-.progress.active .progress-bar {
+.progress.active .progress-bar,
+.progress-bar.active {
   -webkit-animation: progress-bar-stripes 2s linear infinite;
   -o-animation: progress-bar-stripes 2s linear infinite;
   animation: progress-bar-stripes 2s linear infinite; }
@@ -4741,7 +4887,7 @@ a.thumbnail.active,
 .progress-bar[aria-valuenow="1"], .progress-bar[aria-valuenow="2"] {
   min-width: 30px; }
 .progress-bar[aria-valuenow="0"] {
-  color: #999999;
+  color: #777777;
   min-width: 30px;
   background-color: transparent;
   background-image: none;
@@ -4836,17 +4982,42 @@ a.list-group-item {
 
 .list-group-item.disabled, .list-group-item.disabled:hover, .list-group-item.disabled:focus {
   background-color: #eeeeee;
-  color: #999999; }
+  color: #777777;
+  cursor: not-allowed; }
   .list-group-item.disabled .list-group-item-heading, .list-group-item.disabled:hover .list-group-item-heading, .list-group-item.disabled:focus .list-group-item-heading {
     color: inherit; }
   .list-group-item.disabled .list-group-item-text, .list-group-item.disabled:hover .list-group-item-text, .list-group-item.disabled:focus .list-group-item-text {
-    color: #999999; }
+    color: #777777; }
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
   z-index: 2;
   color: white;
   background-color: #428bca;
   border-color: #428bca; }
-  .list-group-item.active .list-group-item-heading, .list-group-item.active:hover .list-group-item-heading, .list-group-item.active:focus .list-group-item-heading {
+  .list-group-item.active .list-group-item-heading,
+  .list-group-item.active .list-group-item-heading > small,
+  .list-group-item.active .list-group-item-heading > .small,
+  .list-group-item.active h1 .list-group-item-heading > span.subtitle,
+  h1 .list-group-item.active .list-group-item-heading > span.subtitle,
+  .list-group-item.active #header h1 .list-group-item-heading > span.subtitle,
+  #header h1 .list-group-item.active .list-group-item-heading > span.subtitle,
+  .list-group-item.active #wallet #cost .list-group-item-heading > span.subtitle,
+  #wallet #cost .list-group-item.active .list-group-item-heading > span.subtitle, .list-group-item.active:hover .list-group-item-heading,
+  .list-group-item.active:hover .list-group-item-heading > small,
+  .list-group-item.active:hover .list-group-item-heading > .small,
+  .list-group-item.active:hover h1 .list-group-item-heading > span.subtitle,
+  h1 .list-group-item.active:hover .list-group-item-heading > span.subtitle,
+  .list-group-item.active:hover #header h1 .list-group-item-heading > span.subtitle,
+  #header h1 .list-group-item.active:hover .list-group-item-heading > span.subtitle,
+  .list-group-item.active:hover #wallet #cost .list-group-item-heading > span.subtitle,
+  #wallet #cost .list-group-item.active:hover .list-group-item-heading > span.subtitle, .list-group-item.active:focus .list-group-item-heading,
+  .list-group-item.active:focus .list-group-item-heading > small,
+  .list-group-item.active:focus .list-group-item-heading > .small,
+  .list-group-item.active:focus h1 .list-group-item-heading > span.subtitle,
+  h1 .list-group-item.active:focus .list-group-item-heading > span.subtitle,
+  .list-group-item.active:focus #header h1 .list-group-item-heading > span.subtitle,
+  #header h1 .list-group-item.active:focus .list-group-item-heading > span.subtitle,
+  .list-group-item.active:focus #wallet #cost .list-group-item-heading > span.subtitle,
+  #wallet #cost .list-group-item.active:focus .list-group-item-heading > span.subtitle {
     color: inherit; }
   .list-group-item.active .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text {
     color: #e1edf7; }
@@ -5111,6 +5282,9 @@ a.list-group-item-danger {
     border-color: #dddddd; }
     .panel-default > .panel-heading + .panel-collapse > .panel-body {
       border-top-color: #dddddd; }
+    .panel-default > .panel-heading .badge {
+      color: whitesmoke;
+      background-color: #333333; }
   .panel-default > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #dddddd; }
 
@@ -5122,6 +5296,9 @@ a.list-group-item-danger {
     border-color: #428bca; }
     .panel-primary > .panel-heading + .panel-collapse > .panel-body {
       border-top-color: #428bca; }
+    .panel-primary > .panel-heading .badge {
+      color: #428bca;
+      background-color: white; }
   .panel-primary > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #428bca; }
 
@@ -5133,6 +5310,9 @@ a.list-group-item-danger {
     border-color: #d6e9c6; }
     .panel-success > .panel-heading + .panel-collapse > .panel-body {
       border-top-color: #d6e9c6; }
+    .panel-success > .panel-heading .badge {
+      color: #dff0d8;
+      background-color: #3c763d; }
   .panel-success > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #d6e9c6; }
 
@@ -5144,6 +5324,9 @@ a.list-group-item-danger {
     border-color: #bce8f1; }
     .panel-info > .panel-heading + .panel-collapse > .panel-body {
       border-top-color: #bce8f1; }
+    .panel-info > .panel-heading .badge {
+      color: #d9edf7;
+      background-color: #31708f; }
   .panel-info > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #bce8f1; }
 
@@ -5155,6 +5338,9 @@ a.list-group-item-danger {
     border-color: #faebcc; }
     .panel-warning > .panel-heading + .panel-collapse > .panel-body {
       border-top-color: #faebcc; }
+    .panel-warning > .panel-heading .badge {
+      color: #fcf8e3;
+      background-color: #8a6d3b; }
   .panel-warning > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #faebcc; }
 
@@ -5166,6 +5352,9 @@ a.list-group-item-danger {
     border-color: #ebccd1; }
     .panel-danger > .panel-heading + .panel-collapse > .panel-body {
       border-top-color: #ebccd1; }
+    .panel-danger > .panel-heading .badge {
+      color: #f2dede;
+      background-color: #a94442; }
   .panel-danger > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #ebccd1; }
 
@@ -5240,8 +5429,7 @@ button.close {
 
 .modal {
   display: none;
-  overflow: auto;
-  overflow-y: scroll;
+  overflow: hidden;
   position: fixed;
   top: 0;
   right: 0;
@@ -5260,6 +5448,10 @@ button.close {
   .modal.in .modal-dialog {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto; }
 
 .modal-dialog {
   position: relative;
@@ -5555,6 +5747,7 @@ button.close {
     .carousel-inner > .item > img,
     .carousel-inner > .item > a > img {
       display: block;
+      width: 100% \9;
       max-width: 100%;
       height: auto;
       line-height: 1; }

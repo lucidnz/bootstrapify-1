@@ -8,7 +8,7 @@
 {% capture image %}
 {% unless settings.container-width-large-devices contains 'px' %}{% assign product_img_size = '1024x1024' %}{% else %}{% assign product_img_size = 'grande' %}{% endunless %}
 {% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}	
-<img id="main" class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: product_img_size }}" alt="{{ product.featured_image.alt }}" itemprop="image">
+<img class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: product_img_size }}" alt="{{ product.featured_image.alt }}" itemprop="image">
 {% endcapture %}
 {% endif %}
 {% endcapture %}
@@ -24,7 +24,7 @@
 	
 			<!-- images col -->
 			<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
-				<div class="row">
+				<div class="row product-images">
 					<div class="col-xs-12 col-sm-12">
 						<div class="thumbnail product-main-image">
 							{{ image }}
