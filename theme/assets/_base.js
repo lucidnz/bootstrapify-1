@@ -50,11 +50,13 @@ var carouselControlHeight = function(){
 /* Product Image Zoom */
 var productImageZoom = function(imageWrapper){
   var $productImage = imageWrapper || $('.product-main-image');
-  if($productImage.length > 0){
-    var imgSrc = $productImage.find('img')[0].src;
-    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc, 'master');
-    $productImage.zoom({url: SizedImgSrc});
-  }
+  $productImage.each(function(){
+    var $this = $(this);
+    var imgSrc = $this.find('img')[0].src;
+    var imgSize = Shopify.Image.imageSize(imgSrc);
+    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc.replace('_'+imgSize, ''), '2048x2048');
+    $this.zoom({url: SizedImgSrc});
+  });
 };
 
 /* Product Image Switcher */
