@@ -67,6 +67,7 @@
     {% include 'footer' %}
   </div>
   
+  {% include 'option-select-callback' %}
   {% include 'currencies' %}
   {{ '_base.js' | asset_url | script_tag }}
   {{ 'jquery.ajax-cart.min.js' | asset_url | script_tag }}
