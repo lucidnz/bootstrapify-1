@@ -1,6 +1,6 @@
-<div id="product-variants" class="row">
+<div class="product-variants">
 	<div class="col-xs-12 col-lg-6">
-		<select id="product-select" name="id" class="form-control input-lg">
+		<select id="{% include '__advanced-layout-id' with 'product-select' %}" name="id" class="form-control input-lg">
 			{% for v in product.variants %}
 			<option value="{{ v.id }}"{% if v == product.selected_or_first_available_variant %} selected="selected"{% endif %}>{{ v.title }}</option>
 			{% endfor %}
@@ -36,67 +36,22 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-4">
-    <input class="form-control input-lg" min="1" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" />
-  </div>
-  <div class="col-xs-8">
-    <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="btn btn-primary btn-lg btn-block" />
-  </div>
+	<div class="col-xs-4">
+		<input class="form-control input-lg" min="1" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" />
+	</div>
+	<div class="col-xs-8">
+		<input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="purchase-btn" />
+	</div>
 </div>
 
+{% if settings.secondary-call-to-action-url != blank %}
+<p><br><em>{% include '__localize' with 'Not quite what you are after?' %}</em><br><a href="{{ settings.secondary-call-to-action-url }}?title={{ product.title | replace: ' ', '%20' }}&handle={{ product.handle }}"><strong>{% include '__localize' with 'Contact us for variations' %}</strong></a></p>
+{% endif %}
 <hr>
 
 <script>
-var selectCallback = function(variant, selector){
-// set vars so we dont need to call the elements repeatedly
-var purchaseButton = jQuery(document.getElementById('purchase'));
-var priceField = jQuery(document.getElementById('price-field'));
-var saleField = jQuery(document.getElementById('sale-field'));
-var compareAtPriceField = jQuery(document.getElementById('compare-at-price-field'));
-    
-var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
-var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
-var soldOutStr = '{% include '__localize' with 'Sold out' %}';
-    
-// disable purchase button
-purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);
-priceField.addClass('text-muted');
-saleField.hide();
-compareAtPriceField.html('').hide();
-    
-if(variant){
-  // we have a variant so update the price
-  var moneyFormat = "{% if settings.show-currency-with-prices %}{{ shop.money_with_currency_format }}{% else %}{{ shop.money_format }}{% endif %}"; // we still need the correct money format if the currency converter is off
-  var formattedMoney = Shopify.formatMoney(variant.price, moneyFormat); 
-  priceField.html('<span class="money">'+formattedMoney+'</span>'); // we need to refresh the the money span to invoke the currency converter if it is on
-      
-  if(variant.compare_at_price > 0){
-    // variant is on sale
-    var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
-    compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
-    saleField.show();
-  }
-      
-  if(variant.available){
-    // the variant is available for purchase so enable the button
-    purchaseButton.removeAttr('disabled').removeClass('disabled').addClass('btn-primary').val(addToCartStr);
-    priceField.removeClass('text-muted');
-  } else {
-    // sold out
-    purchaseButton.val(soldOutStr);
-  }
-  
-  if(variant.featured_image){
-    // variant image switcher
-    Shopify.Image.switchImage(variant.featured_image, $('#main')[0], function(new_image_src, original_image, element){
-      switchImage(element, new_image_src);
-    });
-  }
-}
-};
-
-jQuery(function() {
-// option selectors with boostrap markup and link options
-new Shopify.BootstrapifyOptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true, linkOptions: true });
-});
+  jQuery(function() {
+    // option selectors extended with boostrap markup and link options
+    new Shopify.BootstrapifyOptionSelectors("{% include '__advanced-layout-id' with 'product-select' %}", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true, linkOptions: true });
+  });
 </script>

@@ -25,6 +25,11 @@ body {
   height: 100%;
 }
 
+.collection-description {
+  padding-top: $grid-gutter-width;
+  padding-bottom: $grid-gutter-width;
+}
+
 #footer-content {
   display: table-row;
   height: 1px;
@@ -161,6 +166,7 @@ img {
 .article-meta{
   @extend .list-unstyled;
   @extend .text-muted;
+  @extend .small;
   a{
     @extend .text-muted;
   }
@@ -196,9 +202,9 @@ header .article-meta{
 }
 
 @media (max-width: $screen-xs-max){
-	#homepage-blog [class^="col-"]:first-of-type h4{
-	  margin-top: 0;
-	}
+  #homepage-blog [class^="col-"]:first-of-type h4{
+    margin-top: 0;
+  }
 }
 
 /* Navbars */
@@ -481,6 +487,23 @@ header .article-meta{
   font-weight: $headings-font-weight;
 }
 
+.purchase-btn {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+  @extend .btn-block;
+}
+
+.sale-label{
+  @extend .label;
+  @extend .label-success;
+}
+
+.product-variants {
+  @extend .row;
+	margin-bottom: 1em;
+}
+
 .image-placeholder {
   display: block;
   width: 100%;
@@ -615,42 +638,6 @@ header .article-meta{
   margin-bottom: 3em;
 }
 
-.carousel-control {
-  &.left, &.right {
-    background: none;
-  }
-  .fa{
-    position: absolute;
-    top: 50%;
-    z-index: 5;
-    font-size: 30px;
-    width: 30px;
-    height: 30px;
-    margin-top: -15px;
-  }
-  .fa-chevron-left {
-    left: 50%;
-    margin-left:  ($grid-gutter-width / -2);
-  }
-  .fa-chevron-right {
-    right: 50%;
-    margin-right: ($grid-gutter-width / -2);
-  }
-}
-
-.carousel-indicators {
-  li{
-    margin: 3px;
-    border-color: $text-color;
-  }
-  .active{
-    margin: 3px;
-    width: 10px;
-    height: 10px;
-    background-color: $text-color;
-  }
-}
-
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
   margin: auto;
 }
@@ -689,15 +676,47 @@ header .article-meta{
 $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($slide-3-dark $slide-3-position) ($slide-4-dark $slide-4-position) ($slide-5-dark $slide-5-position);
 $i: 1;
 @each $slide in $slides{
-  #slide-#{$i}{
-    @include slide(nth($slide, 1), nth($slide, 2));
-  }
+  @include slide($i, nth($slide, 1), nth($slide, 2));
   $i: $i + 1;
 }
 
 .carousel-caption {
   h2 {
     margin-top: 0.35em;
+  }
+}
+
+.carousel-control {
+  &.left, &.right {
+    background: none;
+  }
+  .fa{
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+  }
+  .fa-chevron-left {
+    left: 50%;
+    margin-left:  ($grid-gutter-width / -2);
+  }
+  .fa-chevron-right {
+    right: 50%;
+    margin-right: ($grid-gutter-width / -2);
+  }
+}
+
+.carousel-indicators {
+  li{
+    margin: 3px;
+  }
+  .active{
+    margin: 3px;
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -743,13 +762,15 @@ $i: 1;
   }
 }
 
-@media (min-width: $screen-lg-min) {
-  $caption-container-lg: {% if settings.slider-width == 'window-width' %} $container-lg - $grid-gutter-width {% else %} 70% {% endif %};
-  .carousel-caption{
-    width: $caption-container-lg;
-    margin-left: -($caption-container-lg / 2);
+{% if settings.slider-width == 'window-width' %}
+  $caption-container-lg:  $container-lg - $grid-gutter-width;
+  @media (min-width: ($caption-container-lg / 0.7)) {
+    .carousel-caption{
+      width: $caption-container-lg;
+      margin-left: -($caption-container-lg / 2);
+    }
   }
-}
+{% endif %};
 
 /* Brand */
 .navbar-brand, .brand {

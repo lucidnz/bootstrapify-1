@@ -17,10 +17,10 @@
 
 {% if settings.show-related-products %}
 {% assign is-product-list = true %}
-{% unless collection %}{% assign collection = product.collections.first %}{% endunless %}
+{% if collection %}{% assign product_collection = collection %}{% else %}{% assign product_collection = product.collections.first %}{% endif %}
 <section id="product-list" class="section-wrap">
 	{% include '__containers-open' %}
-		<h2 class="page-header">{% include '__localize' with 'Related in' %} {{ collection.title }}</h2>
+		<h2 class="page-header">{% include '__localize' with 'Related in' %} {{ product_collection.title }}</h2>
 		{% include 'products-list' with 'limit' %}
 	{% include '__containers-close' %}
 </section>

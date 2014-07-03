@@ -34,7 +34,7 @@
   {{ content_for_header }}
 </head>
 
-{% include '__has-variables' %}
+{% include 'theme-variables' %}
 <body class="{% include '__body-classes' %}">
 
   <div id="wrap">
@@ -67,6 +67,7 @@
     {% include 'footer' %}
   </div>
   
+  {% include 'option-select-callback' %}
   {% include 'currencies' %}
   {{ '_base.js' | asset_url | script_tag }}
   {{ 'jquery.ajax-cart.min.js' | asset_url | script_tag }}
@@ -84,6 +85,7 @@
   {{ 'popover.js' | asset_url | script_tag }}
   {{ 'typeahead.js' | asset_url | script_tag }}
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
+  {{ 'jquery.zoom.min.js' | asset_url | script_tag }}
 
   {% if settings.custom-footer-code != '' %}
     {{ settings.custom-footer-code }}
@@ -95,14 +97,18 @@
     {% endunless %}
   
     {% if thumbnail_layout == 'masonry' %}
-      $('.masonry-collection').isotope({
-        itemSelector: '.masonry',
-        layoutMode: 'masonry'
+      var $container = $('.masonry-collection').imagesLoaded(function(){
+        $container.isotope({
+          itemSelector: '.masonry',
+          layoutMode: 'masonry'
+        });
+        
+        $('.product-main-thumb').orderly();
       });
     {% else %}
-	if(uniformThumbnailElements === undefined){
-		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
-	}
+    	if(uniformThumbnailElements === undefined){
+    		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
+    	}
 	  
       var uniformThumbnailsOpts = {};
       {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
