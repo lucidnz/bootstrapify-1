@@ -75,7 +75,6 @@ $(document).on('click', '[data-main-image]', function(event) {
   event.preventDefault();
 });
 
-
 /* window events */
 $(window).load(function(){
   preloadProductImages();
