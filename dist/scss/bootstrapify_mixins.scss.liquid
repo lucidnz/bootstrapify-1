@@ -117,15 +117,17 @@
       }
     }
   }
-  @if $slide-dark {
-    .carousel-control{
-      color: $gray-dark;
-    }
-    @media (min-width: $screen-sm-min){
-      .carousel-indicators li{
-        border-color: $gray-dark;
-        &.active {
-          background-color: $gray-dark;
+  .carousel[data-current-slide="slide-#{$slide}"]{
+    @if $slide-dark {
+      .carousel-control{
+        color: $gray-dark;
+      }
+      @media (min-width: $screen-sm-min){
+        .carousel-indicators li{
+          border-color: $gray-dark;
+          &.active {
+            background-color: $gray-dark;
+          }
         }
       }
     }

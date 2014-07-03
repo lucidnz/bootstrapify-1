@@ -676,9 +676,7 @@ header .article-meta{
 $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($slide-3-dark $slide-3-position) ($slide-4-dark $slide-4-position) ($slide-5-dark $slide-5-position);
 $i: 1;
 @each $slide in $slides{
-  .carousel[data-current-slide="slide-#{$i}"]{
-    @include slide($i, nth($slide, 1), nth($slide, 2));
-  }
+  @include slide($i, nth($slide, 1), nth($slide, 2));
   $i: $i + 1;
 }
 

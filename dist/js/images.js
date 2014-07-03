@@ -43,7 +43,7 @@ $(window).load(function(){
   preloadProductImages();
   
   carouselControlHeight();
-  $('.carousel').on('slid.bs.carousel', function(e){
+  $('.carousel').on('slid.bs.carousel', function(){
     carouselControlHeight();
   });
   $('.carousel').on('slide.bs.carousel', function(e){
