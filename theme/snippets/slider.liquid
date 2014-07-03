@@ -34,7 +34,7 @@
 {% endfor %}
 
 {% unless items == '' %}
-  <div id="myCarousel" class="carousel slide{% if settings.carousel-transition == 'fade' %} carousel-fade{% endif %}"{% if settings.auto-play-slider %} data-ride="carousel"{% endif %}>
+  <div id="myCarousel" class="carousel slide{% if settings.carousel-transition == 'fade' %} carousel-fade{% endif %}" data-current-slide="slide-1"{% if settings.auto-play-slider %} data-ride="carousel"{% endif %}>
     <!-- Indicators -->
     {% if s > 1 %}
     <ol class="carousel-indicators">
