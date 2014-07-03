@@ -82,35 +82,50 @@
   }
 }
 
-@mixin slide($slide-dark, $slide-position){
-  .carousel-caption{
-    @if nth($slide-position, 1) == 'top' {
-      top: 0;
-      bottom: auto;
-    } @else if nth($slide-position, 1) == 'middle' {
-      top: 35%;
-      bottom: auto;
-    }
-    @if nth($slide-position, 2) == 'left' {
-      text-align: left;
-      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+@mixin slide($slide, $slide-dark, $slide-position){
+  #slide-#{$slide}{
+    .carousel-caption{
+      @if nth($slide-position, 1) == 'top' {
+        top: 0;
+        bottom: auto;
+      } @else if nth($slide-position, 1) == 'middle' {
+        top: 35%;
+        bottom: auto;
+      }
+      @if nth($slide-position, 2) == 'left' {
         text-align: left;
-      }
-    } @else if nth($slide-position, 2) == 'right' {
-      text-align: right;
-      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: left;
+        }
+      } @else if nth($slide-position, 2) == 'right' {
         text-align: right;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: right;
+        }
+      }
+      @if $slide-dark {
+        color: $gray-dark;
+        text-shadow: none;
+      }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        @if $slide-dark {
+          text-shadow: none;
+          @media (min-width: $screen-sm-min){
+            color: $gray-dark;
+          }
+        }
       }
     }
-    @if $slide-dark {
+  }
+  @if $slide-dark {
+    .carousel-control{
       color: $gray-dark;
-      text-shadow: none;
     }
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-      @if $slide-dark {
-        text-shadow: none;
-        @media (min-width: $screen-sm-min){
-          color: $gray-dark;
+    @media (min-width: $screen-sm-min){
+      .carousel-indicators li{
+        border-color: $gray-dark;
+        &.active {
+          background-color: $gray-dark;
         }
       }
     }
@@ -8773,42 +8788,6 @@ header .article-meta{
   margin-bottom: 3em;
 }
 
-.carousel-control {
-  &.left, &.right {
-    background: none;
-  }
-  .fa{
-    position: absolute;
-    top: 50%;
-    z-index: 5;
-    font-size: 30px;
-    width: 30px;
-    height: 30px;
-    margin-top: -15px;
-  }
-  .fa-chevron-left {
-    left: 50%;
-    margin-left:  ($grid-gutter-width / -2);
-  }
-  .fa-chevron-right {
-    right: 50%;
-    margin-right: ($grid-gutter-width / -2);
-  }
-}
-
-.carousel-indicators {
-  li{
-    margin: 3px;
-    border-color: $text-color;
-  }
-  .active{
-    margin: 3px;
-    width: 10px;
-    height: 10px;
-    background-color: $text-color;
-  }
-}
-
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
   margin: auto;
 }
@@ -8847,8 +8826,8 @@ header .article-meta{
 $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($slide-3-dark $slide-3-position) ($slide-4-dark $slide-4-position) ($slide-5-dark $slide-5-position);
 $i: 1;
 @each $slide in $slides{
-  #slide-#{$i}{
-    @include slide(nth($slide, 1), nth($slide, 2));
+  .carousel[data-current-slide="slide-#{$i}"]{
+    @include slide($i, nth($slide, 1), nth($slide, 2));
   }
   $i: $i + 1;
 }
@@ -8856,6 +8835,40 @@ $i: 1;
 .carousel-caption {
   h2 {
     margin-top: 0.35em;
+  }
+}
+
+.carousel-control {
+  &.left, &.right {
+    background: none;
+  }
+  .fa{
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+  }
+  .fa-chevron-left {
+    left: 50%;
+    margin-left:  ($grid-gutter-width / -2);
+  }
+  .fa-chevron-right {
+    right: 50%;
+    margin-right: ($grid-gutter-width / -2);
+  }
+}
+
+.carousel-indicators {
+  li{
+    margin: 3px;
+  }
+  .active{
+    margin: 3px;
+    width: 10px;
+    height: 10px;
   }
 }
 

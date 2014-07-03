@@ -43,8 +43,12 @@ $(window).load(function(){
   preloadProductImages();
   
   carouselControlHeight();
-  $('.carousel').on('slid.bs.carousel', function(){
+  $('.carousel').on('slid.bs.carousel', function(e){
     carouselControlHeight();
+  });
+  $('.carousel').on('slide.bs.carousel', function(e){
+    var currentSlideID = e.relatedTarget.id;
+    $(this).attr('data-current-slide', currentSlideID);
   });
   
   productImageZoom();
