@@ -1,4 +1,4 @@
-<div id="product-variants" class="row">
+<div class="product-variants">
 	<div class="col-xs-12 col-lg-6">
 		<select id="{% include '__advanced-layout-id' with 'product-select' %}" name="id" class="form-control input-lg">
 			{% for v in product.variants %}
@@ -40,7 +40,7 @@
 		<input class="form-control input-lg" min="1" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" />
 	</div>
 	<div class="col-xs-8">
-		<input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="btn btn-primary btn-lg btn-block" />
+		<input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="purchase-btn" />
 	</div>
 </div>
 

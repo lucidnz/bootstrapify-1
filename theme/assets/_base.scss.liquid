@@ -8622,7 +8622,20 @@ header .article-meta{
   font-weight: $headings-font-weight;
 }
 
-#product-variants {
+.purchase-btn {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+  @extend .btn-block;
+}
+
+.sale-label{
+  @extend .label;
+  @extend .label-success;
+}
+
+.product-variants {
+  @extend .row;
 	margin-bottom: 1em;
 }
 

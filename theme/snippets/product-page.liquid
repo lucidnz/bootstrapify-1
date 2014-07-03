@@ -56,8 +56,8 @@
 				{% if has_prices %}
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
 					<span class="price-field">{% include 'product-price' with product.price %}</span>
-					<del id="compare-at-price-field" class="text-muted"></del>
-					<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
+					<del class="compare-at-price-field text-muted"></del>
+					<span class="sale-label" style="display: none;">{% include '__localize' with 'On sale' %}</span>
 					<meta itemprop="currency" content="{{ shop.currency }}" />
 					<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
 				</div>
