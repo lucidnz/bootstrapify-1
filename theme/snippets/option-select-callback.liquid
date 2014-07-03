@@ -1,0 +1,47 @@
+<script>
+var selectCallback = function(variant, selector){
+  if(selector){
+    // get the current product
+    var $productForm = $('#'+selector.domIdPrefix).closest('form');
+    
+    // set vars so we dont need to call the elements repeatedly
+    var purchaseButton = $productForm.find('.purchase-btn');
+    var priceField = $productForm.find('.price-field');
+    var saleField = $productForm.find('.sale-label');
+    var compareAtPriceField = $productForm.find('.compare-at-price-field');
+        
+    var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
+    var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
+    var soldOutStr = '{% include '__localize' with 'Sold out' %}';
+        
+    // disable purchase button
+    purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);
+    priceField.addClass('text-muted');
+    saleField.hide();
+    compareAtPriceField.html('').hide();
+        
+    if(variant){
+      // we have a variant so update the price
+      var moneyFormat = "{% if settings.show-currency-with-prices %}{{ shop.money_with_currency_format }}{% else %}{{ shop.money_format }}{% endif %}"; // we still need the correct money format if the currency converter is off
+      var formattedMoney = Shopify.formatMoney(variant.price, moneyFormat); 
+      priceField.html('<span class="money">'+formattedMoney+'</span>'); // we need to refresh the the money span to invoke the currency converter if it is on
+          
+      if(variant.compare_at_price > 0){
+        // variant is on sale
+        var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
+        compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
+        saleField.show();
+      }
+          
+      if(variant.available){
+        // the variant is available for purchase so enable the button
+        purchaseButton.removeAttr('disabled').removeClass('disabled').addClass('btn-primary').val(addToCartStr);
+        priceField.removeClass('text-muted');
+      } else {
+        // sold out
+        purchaseButton.val(soldOutStr);
+      }
+    }
+  }
+};
+</script>

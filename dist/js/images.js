@@ -15,22 +15,25 @@ var carouselControlHeight = function(){
 };
 
 /* Product Image Zoom */
-var productImageZoom = function(){
-  var $productImage = $('.product-main-image');
-  if($productImage.length > 0){
-    var imgSrc = $productImage.find('img')[0].src;
-    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc, '1024x1024');
-    $productImage.zoom({url: SizedImgSrc});
-  }
+var productImageZoom = function(imageWrapper){
+  var $productImage = imageWrapper || $('.product-main-image');
+  $productImage.each(function(){
+    var $this = $(this);
+    var imgSrc = $this.find('img')[0].src;
+    var imgSize = Shopify.Image.imageSize(imgSrc);
+    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc.replace('_'+imgSize, ''), '2048x2048');
+    $this.zoom({url: SizedImgSrc});
+  });
 };
 
 /* Product Image Switcher */
-$('[data-main-image]').click(function(event) {
+$(document).on('click', '[data-main-image]', function(event) {
+  var $mainImageWrapper = $(this).closest('.product-images').find('.product-main-image');
+  var $mainImage = $mainImageWrapper.find('img');
   var targetImage = $(this).attr('data-main-image');
-  var $mainImage = $('#main');
   if($mainImage.attr('src') !== targetImage){
     $mainImage.hide().attr('src', targetImage).fadeIn();
-    productImageZoom();
+    productImageZoom($mainImageWrapper);
   }
   event.preventDefault();
 });
@@ -42,6 +45,10 @@ $(window).load(function(){
   carouselControlHeight();
   $('.carousel').on('slid.bs.carousel', function(){
     carouselControlHeight();
+  });
+  $('.carousel').on('slide.bs.carousel', function(e){
+    var currentSlideID = e.relatedTarget.id;
+    $(this).attr('data-current-slide', currentSlideID);
   });
   
   productImageZoom();

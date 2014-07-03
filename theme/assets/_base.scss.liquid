@@ -82,35 +82,52 @@
   }
 }
 
-@mixin slide($slide-dark, $slide-position){
-  .carousel-caption{
-    @if nth($slide-position, 1) == 'top' {
-      top: 0;
-      bottom: auto;
-    } @else if nth($slide-position, 1) == 'middle' {
-      top: 35%;
-      bottom: auto;
-    }
-    @if nth($slide-position, 2) == 'left' {
-      text-align: left;
-      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+@mixin slide($slide, $slide-dark, $slide-position){
+  #slide-#{$slide}{
+    .carousel-caption{
+      @if nth($slide-position, 1) == 'top' {
+        top: 0;
+        bottom: auto;
+      } @else if nth($slide-position, 1) == 'middle' {
+        top: 35%;
+        bottom: auto;
+      }
+      @if nth($slide-position, 2) == 'left' {
         text-align: left;
-      }
-    } @else if nth($slide-position, 2) == 'right' {
-      text-align: right;
-      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: left;
+        }
+      } @else if nth($slide-position, 2) == 'right' {
         text-align: right;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: right;
+        }
+      }
+      @if $slide-dark {
+        color: $gray-dark;
+        text-shadow: none;
+      }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        @if $slide-dark {
+          text-shadow: none;
+          @media (min-width: $screen-sm-min){
+            color: $gray-dark;
+          }
+        }
       }
     }
+  }
+  .carousel[data-current-slide="slide-#{$slide}"]{
     @if $slide-dark {
-      color: $gray-dark;
-      text-shadow: none;
-    }
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-      @if $slide-dark {
-        text-shadow: none;
-        @media (min-width: $screen-sm-min){
-          color: $gray-dark;
+      .carousel-control{
+        color: $gray-dark;
+      }
+      @media (min-width: $screen-sm-min){
+        .carousel-indicators li{
+          border-color: $gray-dark;
+          &.active {
+            background-color: $gray-dark;
+          }
         }
       }
     }
@@ -478,7 +495,7 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 $gray-darker:            lighten(#000, 13.5%) !default; // #222
 $gray-dark:              lighten(#000, 20%) !default;   // #333
 $gray:                   lighten(#000, 33.5%) !default; // #555
-$gray-light:             lighten(#000, 60%) !default;   // #999
+$gray-light:             lighten(#000, 46.7%) !default; // #777
 $gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 
 $brand-primary:         #428bca !default;
@@ -1290,6 +1307,8 @@ $pre-scrollable-max-height:   340px !default;
 //
 //##
 
+//** Horizontal offset for forms and lists.
+$component-offset-horizontal: 180px !default;
 //** Text muted color
 $text-muted:                  $gray-light !default;
 //** Abbreviations and acronyms border color
@@ -1304,17 +1323,12 @@ $blockquote-font-size:        ($font-size-base * 1.25) !default;
 $blockquote-border-color:     $gray-lighter !default;
 //** Page header border color
 $page-header-border-color:    $gray-lighter !default;
-
-
-//== Miscellaneous
-//
-//##
-
+//** Width of horizontal description list titles
+$dl-horizontal-offset:        $component-offset-horizontal !default;
 //** Horizontal line color.
 $hr-border:                   $gray-lighter !default;
 
-//** Horizontal offset for forms and lists.
-$component-offset-horizontal: 180px !default;
+
 
 // CSS image replacement
 //
@@ -1357,6 +1371,7 @@ $component-offset-horizontal: 180px !default;
 // Keep images from scaling beyond the width of their parents.
 @mixin img-responsive($display: block) {
   display: $display;
+  width: 100% \9; // Force IE10 and below to size SVG images correctly
   max-width: 100%; // Part 1: Set a maximum relative to the parent
   height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
 }
@@ -1476,7 +1491,7 @@ $component-offset-horizontal: 180px !default;
 
 // Vendor Prefixes
 //
-// All vendor mixins are deprecated as of v3.2 due to the introduction of
+// All vendor mixins are deprecated as of v3.2.0 due to the introduction of
 // Autoprefixer in our Gruntfile. They will be removed in v4.
 
 // - Animations
@@ -1602,10 +1617,10 @@ $component-offset-horizontal: 180px !default;
           transform: scaleY($ratio);
 }
 @mixin skew($x, $y) {
-  -webkit-transform: skew($x, $y);
+  -webkit-transform: skewX($x) skewY($y);
       -ms-transform: skewX($x) skewY($y); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
-       -o-transform: skew($x, $y);
-          transform: skew($x, $y);
+       -o-transform: skewX($x) skewY($y);
+          transform: skewX($x) skewY($y);
 }
 @mixin translate($x, $y) {
   -webkit-transform: translate($x, $y);
@@ -1773,6 +1788,10 @@ $component-offset-horizontal: 180px !default;
     + .panel-collapse > .panel-body {
       border-top-color: $border;
     }
+    .badge {
+      color: $heading-bg-color;
+      background-color: $heading-text-color;
+    }
   }
   & > .panel-footer {
     + .panel-collapse > .panel-body {
@@ -1937,6 +1956,8 @@ $component-offset-horizontal: 180px !default;
 
 @mixin progress-bar-variant($color) {
   background-color: $color;
+
+  // Deprecated parent class requirement as of v3.2.0
   .progress-striped & {
     @include gradient-striped();
   }
@@ -2108,10 +2129,7 @@ $component-offset-horizontal: 180px !default;
 // any value of `$grid-columns`.
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin make-grid-columns() {
-  $list: '';
-  $i: 1;
-  $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
   }
@@ -2127,10 +2145,7 @@ $component-offset-horizontal: 180px !default;
 
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin float-grid-columns($class) {
-  $list: '';
-  $i: 1;
-  $list: ".col-#{$class}-#{$i}";
+@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-#{$class}-#{$i}";
   }
@@ -2198,8 +2213,8 @@ $component-offset-horizontal: 180px !default;
 @mixin container-fixed($gutter: $grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  ($grid-gutter-width / 2);
-  padding-right: ($grid-gutter-width / 2);
+  padding-left:  ($gutter / 2);
+  padding-right: ($gutter / 2);
   @include clearfix();
 }
 
@@ -2841,10 +2856,10 @@ th {
 
 }
 
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on "bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on "bootstrap/glyphicons-halflings-regular.woff"
 //
 // Glyphicons for Bootstrap
 //
@@ -3306,10 +3321,10 @@ p {
 // Emphasis & misc
 // -------------------------
 
-// Ex: 14px base font * 85% = about 12px
+// Ex: (12px small font / 14px base font) * 100% = about 85%
 small,
 .small {
-  font-size: 85%;
+  font-size: floor((100% * $font-size-small / $font-size-base));
 }
 
 // Undo browser default styling
@@ -3328,6 +3343,12 @@ mark,
 .text-right          { text-align: right; }
 .text-center         { text-align: center; }
 .text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+// Transformation
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }
 
 // Contextual colors
 .text-muted {
@@ -3436,13 +3457,13 @@ dd {
   @media (min-width: $grid-float-breakpoint) {
     dt {
       float: left;
-      width: ($component-offset-horizontal - 20);
+      width: ($dl-horizontal-offset - 20);
       clear: left;
       text-align: right;
       @include text-overflow();
     }
     dd {
-      margin-left: $component-offset-horizontal;
+      margin-left: $dl-horizontal-offset;
     }
   }
 }
@@ -3559,6 +3580,12 @@ kbd {
   background-color: $kbd-bg;
   border-radius: $border-radius-small;
   box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+
+  kbd {
+    padding: 0;
+    font-size: 100%;
+    box-shadow: none;
+  }
 }
 
 // Blocks of code
@@ -3924,7 +3951,7 @@ fieldset {
   padding: 0;
   margin: 0;
   border: 0;
-  // Chrome and Firefox set a `min-width: -webkit-min-content;` on fieldsets,
+  // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
   // so we reset that to ensure it behaves more like a standard block element.
   // See https://github.com/twbs/bootstrap/issues/12359.
   min-width: 0;
@@ -4121,6 +4148,7 @@ input[type="month"] {
 
 .radio,
 .checkbox {
+  position: relative;
   display: block;
   min-height: $line-height-computed; // clear the floating input if there is no label text
   margin-top: 10px;
@@ -4137,9 +4165,11 @@ input[type="month"] {
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
-  float: left;
+  position: absolute;
   margin-left: -20px;
+  margin-top: 4px \9;
 }
+
 .radio + .radio,
 .checkbox + .checkbox {
   margin-top: -5px; // Move up sibling radios or checkboxes for tighter spacing
@@ -4189,6 +4219,26 @@ input[type="checkbox"] {
     label {
       cursor: not-allowed;
     }
+  }
+}
+
+
+// Static form control text
+//
+// Apply class to a `p` element to make any string of text align with labels in
+// a horizontal form layout.
+
+.form-control-static {
+  // Size it appropriately next to real form controls
+  padding-top: ($padding-base-vertical + 1);
+  padding-bottom: ($padding-base-vertical + 1);
+  // Remove default margin from `p`
+  margin-bottom: 0;
+
+  &.input-lg,
+  &.input-sm {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -4254,16 +4304,6 @@ input[type="checkbox"] {
 // Reposition feedback icon if label is hidden with "screenreader only" state
 .has-feedback label.sr-only ~ .form-control-feedback {
   top: 0;
-}
-
-
-// Static form control text
-//
-// Apply class to a `p` element to make any string of text align with labels in
-// a horizontal form layout.
-
-.form-control-static {
-  margin-bottom: 0; // Remove default margin from `p`
 }
 
 
@@ -4347,7 +4387,7 @@ input[type="checkbox"] {
     }
     .radio input[type="radio"],
     .checkbox input[type="checkbox"] {
-      float: none;
+      position: relative;
       margin-left: 0;
     }
 
@@ -4392,11 +4432,6 @@ input[type="checkbox"] {
     @include make-row();
   }
 
-  .form-control-static {
-    padding-top: ($padding-base-vertical + 1);
-    padding-bottom: ($padding-base-vertical + 1);
-  }
-
   // Reset spacing and right align labels, but scope to media queries so that
   // labels on narrow viewports stack the same as a default form example.
   @media (min-width: $screen-sm-min) {
@@ -4414,6 +4449,31 @@ input[type="checkbox"] {
   .has-feedback .form-control-feedback {
     top: 0;
     right: ($grid-gutter-width / 2);
+  }
+
+  // Form group sizes
+  //
+  // Quick utility class for applying `.input-lg` and `.input-sm` styles to the
+  // inputs and labels within a `.form-group`.
+  .form-group-lg {
+    @media (min-width: $screen-sm-min) {
+      .control-label {
+        padding-top: (($padding-large-vertical * $line-height-large) + 1);
+      }
+    }
+    .form-control {
+      @extend .input-lg;
+    }
+  }
+  .form-group-sm {
+    @media (min-width: $screen-sm-min) {
+      .control-label {
+        padding-top: ($padding-small-vertical + 1);
+      }
+    }
+    .form-control {
+      @extend .input-sm;
+    }
   }
 }
 
@@ -4559,8 +4619,6 @@ input[type="checkbox"] {
 .btn-block {
   display: block;
   width: 100%;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 // Vertically space out multiple block buttons
@@ -4770,6 +4828,7 @@ tbody.collapse.in { display: table-row-group; }
   font-size: $font-size-small;
   line-height: $line-height-base;
   color: $dropdown-header-color;
+  white-space: nowrap; // as with > li > a
 }
 
 // Backdrop to catch body clicks on mobile, etc.
@@ -6559,11 +6618,12 @@ a.thumbnail.active {
   }
 }
 
-// Dismissable alerts
+// Dismissible alerts
 //
 // Expand the right padding and account for the close button's positioning.
 
-.alert-dismissable {
+.alert-dismissable, // The misspelled .alert-dismissable was deprecated in 3.2.0.
+.alert-dismissible {
   padding-right: ($alert-padding + 20);
 
   // Adjust close link position
@@ -6600,6 +6660,13 @@ a.thumbnail.active {
 // Bar animations
 // -------------------------
 
+// WebKit
+@-webkit-keyframes progress-bar-stripes {
+  from  { background-position: 40px 0; }
+  to    { background-position: 0 0; }
+}
+
+// Spec and IE10+
 @keyframes progress-bar-stripes {
   from  { background-position: 40px 0; }
   to    { background-position: 0 0; }
@@ -6635,13 +6702,22 @@ a.thumbnail.active {
 }
 
 // Striped bars
-.progress-striped .progress-bar {
+//
+// `.progress-striped .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar-striped` class, which you just add to an existing
+// `.progress-bar`.
+.progress-striped .progress-bar,
+.progress-bar-striped {
   @include gradient-striped();
   background-size: 40px 40px;
 }
 
 // Call animation for the active one
-.progress.active .progress-bar {
+//
+// `.progress.active .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar.active` approach.
+.progress.active .progress-bar,
+.progress-bar.active {
   @include animation(progress-bar-stripes 2s linear infinite);
 }
 
@@ -6835,7 +6911,9 @@ a.list-group-item {
     border-color: $list-group-active-border;
 
     // Force color to inherit for custom content
-    .list-group-item-heading {
+    .list-group-item-heading,
+    .list-group-item-heading > small,
+    .list-group-item-heading > .small {
       color: inherit;
     }
     .list-group-item-text {
@@ -7231,8 +7309,7 @@ button.close {
 // Container that the modal scrolls within
 .modal {
   display: none;
-  overflow: auto;
-  overflow-y: scroll;
+  overflow: hidden;
   position: fixed;
   top: 0;
   right: 0;
@@ -7251,6 +7328,10 @@ button.close {
     @include transition-transform(0.3s ease-out);
   }
   &.in .modal-dialog { @include translate3d(0, 0, 0) }
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 // Shell div to position the modal with bottom padding
@@ -8558,7 +8639,20 @@ header .article-meta{
   font-weight: $headings-font-weight;
 }
 
-#product-variants {
+.purchase-btn {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+  @extend .btn-block;
+}
+
+.sale-label{
+  @extend .label;
+  @extend .label-success;
+}
+
+.product-variants {
+  @extend .row;
 	margin-bottom: 1em;
 }
 
@@ -8696,42 +8790,6 @@ header .article-meta{
   margin-bottom: 3em;
 }
 
-.carousel-control {
-  &.left, &.right {
-    background: none;
-  }
-  .fa{
-    position: absolute;
-    top: 50%;
-    z-index: 5;
-    font-size: 30px;
-    width: 30px;
-    height: 30px;
-    margin-top: -15px;
-  }
-  .fa-chevron-left {
-    left: 50%;
-    margin-left:  ($grid-gutter-width / -2);
-  }
-  .fa-chevron-right {
-    right: 50%;
-    margin-right: ($grid-gutter-width / -2);
-  }
-}
-
-.carousel-indicators {
-  li{
-    margin: 3px;
-    border-color: $text-color;
-  }
-  .active{
-    margin: 3px;
-    width: 10px;
-    height: 10px;
-    background-color: $text-color;
-  }
-}
-
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
   margin: auto;
 }
@@ -8770,15 +8828,47 @@ header .article-meta{
 $slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($slide-3-dark $slide-3-position) ($slide-4-dark $slide-4-position) ($slide-5-dark $slide-5-position);
 $i: 1;
 @each $slide in $slides{
-  #slide-#{$i}{
-    @include slide(nth($slide, 1), nth($slide, 2));
-  }
+  @include slide($i, nth($slide, 1), nth($slide, 2));
   $i: $i + 1;
 }
 
 .carousel-caption {
   h2 {
     margin-top: 0.35em;
+  }
+}
+
+.carousel-control {
+  &.left, &.right {
+    background: none;
+  }
+  .fa{
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+  }
+  .fa-chevron-left {
+    left: 50%;
+    margin-left:  ($grid-gutter-width / -2);
+  }
+  .fa-chevron-right {
+    right: 50%;
+    margin-right: ($grid-gutter-width / -2);
+  }
+}
+
+.carousel-indicators {
+  li{
+    margin: 3px;
+  }
+  .active{
+    margin: 3px;
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -8824,13 +8914,15 @@ $i: 1;
   }
 }
 
-@media (min-width: $screen-lg-min) {
-  $caption-container-lg: {% if settings.slider-width == 'window-width' %} $container-lg - $grid-gutter-width {% else %} 70% {% endif %};
-  .carousel-caption{
-    width: $caption-container-lg;
-    margin-left: -($caption-container-lg / 2);
+{% if settings.slider-width == 'window-width' %}
+  $caption-container-lg:  $container-lg - $grid-gutter-width;
+  @media (min-width: ($caption-container-lg / 0.7)) {
+    .carousel-caption{
+      width: $caption-container-lg;
+      margin-left: -($caption-container-lg / 2);
+    }
   }
-}
+{% endif %};
 
 /* Brand */
 .navbar-brand, .brand {
