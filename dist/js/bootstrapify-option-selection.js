@@ -31,7 +31,7 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
 Shopify.extend(Shopify.BootstrapifyOptionSelectors, Shopify.OptionSelectors);
 
 Shopify.BootstrapifyOptionSelectors.prototype.displayVariantTitle = function(oldSelector){
-  var options = this.product.variants[0].options;
+  var options = this.product.variants[0].options;	
   var showTitle = true;
   for(var i = 0; i < options.length; i++){
     if(options[i] === "Default Title"){

@@ -10,9 +10,11 @@
 			{{ collection.image.src | collection_img_url: col_thumb_size | img_tag: collection.image.alt }}
 		</div>
 		{% endunless %}
+		{% unless collection.description == blank %}
 		<div class="{{ text_col_span }} collection-description">
-			{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
+			{{ collection.description }}
 		</div>
+		{% endunless %}
 	</div>
 {% include '__containers-close' %}
 </section>
