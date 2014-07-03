@@ -23,7 +23,7 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
     this.bootstrapifyMarkup();
     // linked options
     if(this.b_linkOptions && this.product.available && this.product.options.length > 1){
-      Shopify.linkOptionSelectors(this.product);
+      Shopify.linkOptionSelectors(this.product, existingSelectorId);
     }
   }
 };
@@ -76,21 +76,21 @@ var Shopify = Shopify || {};
  
 Shopify.optionsMap = {};
  
-Shopify.updateOptionsInSelector = function(selectorIndex) {
+Shopify.updateOptionsInSelector = function($productForm, selectorIndex) {
   var key, selector;
   switch (selectorIndex) {
     case 0:
       key = 'root';
-      selector = jQuery('.single-option-selector:eq(0)');
+      selector = $productForm.find('.single-option-selector:eq(0)');
       break;
     case 1:
-      key = jQuery('.single-option-selector:eq(0)').val();
-      selector = jQuery('.single-option-selector:eq(1)');
+      key = $productForm.find('.single-option-selector:eq(0)').val();
+      selector = $productForm.find('.single-option-selector:eq(1)');
       break;
     case 2:
-      key = jQuery('.single-option-selector:eq(0)').val();  
-      key += ' / ' + jQuery('.single-option-selector:eq(1)').val();
-      selector = jQuery('.single-option-selector:eq(2)');
+      key = $productForm.find('.single-option-selector:eq(0)').val();  
+      key += ' / ' + $productForm.find('.single-option-selector:eq(1)').val();
+      selector = $productForm.find('.single-option-selector:eq(2)');
   }
   
   var initialValue = selector.val();
@@ -108,7 +108,7 @@ Shopify.updateOptionsInSelector = function(selectorIndex) {
   
 };
  
-Shopify.linkOptionSelectors = function(product) {
+Shopify.linkOptionSelectors = function(product, existingSelectorId) {
   // Building our mapping object.
   for (var i=0; i<product.variants.length; i++) {
     var variant = product.variants[i];
@@ -135,19 +135,20 @@ Shopify.linkOptionSelectors = function(product) {
     }
   }
   
+  var $productForm = $('#'+existingSelectorId).closest('form');
   // Update options right away.
-  Shopify.updateOptionsInSelector(0);
-  if (product.options.length > 1){ Shopify.updateOptionsInSelector(1); }
-  if (product.options.length === 3){ Shopify.updateOptionsInSelector(2); }
+  Shopify.updateOptionsInSelector($productForm, 0);
+  if (product.options.length > 1){ Shopify.updateOptionsInSelector($productForm, 1); }
+  if (product.options.length === 3){ Shopify.updateOptionsInSelector($productForm, 2); }
   // When there is an update in the first dropdown.
-  jQuery(".single-option-selector:eq(0)").change(function() {
-    Shopify.updateOptionsInSelector(1);
-    if (product.options.length === 3){ Shopify.updateOptionsInSelector(2); }
+  $productForm.find(".single-option-selector:eq(0)").change(function() {
+    Shopify.updateOptionsInSelector($productForm, 1);
+    if (product.options.length === 3){ Shopify.updateOptionsInSelector($productForm, 2); }
     return true;
   });
   // When there is an update in the second dropdown.
-  jQuery(".single-option-selector:eq(1)").change(function() {
-    if (product.options.length === 3){ Shopify.updateOptionsInSelector(2); }
+  $productForm.find(".single-option-selector:eq(1)").change(function() {
+    if (product.options.length === 3){ Shopify.updateOptionsInSelector($productForm, 2); }
     return true;
   });
   

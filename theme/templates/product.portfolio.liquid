@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col-xs-12">
         {% if product.price > 0 %}<div class="lead product-price">
-          <span id="price-field">{% include 'product-price' with product.price %}</span>
+          <span class="price-field">{% include 'product-price' with product.price %}</span>
           <del id="compare-at-price-field" class="text-muted"></del>
           <span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
         </div>

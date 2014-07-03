@@ -52,6 +52,6 @@
 <script>
   jQuery(function() {
     // option selectors extended with boostrap markup and link options
-    new Shopify.BootstrapifyOptionSelectors("{% include '__advanced-layout-id' with 'product-select' %}", { product: {{ product | json }}, onVariantSelected: selectCallback, linkOptions: false });
+    new Shopify.BootstrapifyOptionSelectors("{% include '__advanced-layout-id' with 'product-select' %}", { product: {{ product | json }}, onVariantSelected: selectCallback, linkOptions: true });
   });
 </script>
