@@ -763,6 +763,9 @@ $i: 1;
 }
 
 {% if settings.slider-width == 'window-width' %}
+  // the carousel-caption will be 70% width
+  // until the containers max width is less than 70% of the window
+  // then it stays at the containers max width
   $caption-container-lg:  $container-lg - $grid-gutter-width;
   @media (min-width: ($caption-container-lg / 0.7)) {
     .carousel-caption{
