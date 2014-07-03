@@ -42,6 +42,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'theme/assets/jquery.ajax-cart.min.js': 'dist/js/jquery.ajax-cart.js',
+          'theme/assets/jquery.quick-view.min.js': 'dist/js/jquery.quick-view.js',
           'theme/assets/bootstrapify-option-selection.min.js': 'dist/js/bootstrapify-option-selection.js',
           'theme/assets/jquery.instagram.min.js': ['bower_components/jquery-instagram/dist/instagram.js', 'dist/js/jquery.instagram.js']
         }
