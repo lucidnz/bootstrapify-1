@@ -15,8 +15,8 @@ var carouselControlHeight = function(){
 };
 
 /* Product Image Zoom */
-var productImageZoom = function(imageWrapper){
-  var $productImage = imageWrapper || $('.product-main-image');
+var productImageZoom = function($imageWrapper){
+  var $productImage = $imageWrapper || $('.product-main-image');
   $productImage.each(function(){
     var $this = $(this);
     var imgSrc = $this.find('img')[0].src;
@@ -27,14 +27,18 @@ var productImageZoom = function(imageWrapper){
 };
 
 /* Product Image Switcher */
+var switchImage = function($imageWrapper, newImageSrc){
+  var $mainImage = $imageWrapper.find('img');
+  if($mainImage.attr('src') !== newImageSrc){
+    $mainImage.hide().attr('src', newImageSrc).fadeIn();
+    productImageZoom($imageWrapper);
+  }
+};
+
 $(document).on('click', '[data-main-image]', function(event) {
   var $mainImageWrapper = $(this).closest('.product-images').find('.product-main-image');
-  var $mainImage = $mainImageWrapper.find('img');
-  var targetImage = $(this).attr('data-main-image');
-  if($mainImage.attr('src') !== targetImage){
-    $mainImage.hide().attr('src', targetImage).fadeIn();
-    productImageZoom($mainImageWrapper);
-  }
+  var targetImageSrc = $(this).attr('data-main-image');
+  switchImage($mainImageWrapper, targetImageSrc);
   event.preventDefault();
 });
 
