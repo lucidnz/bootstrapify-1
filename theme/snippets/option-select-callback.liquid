@@ -41,15 +41,6 @@ var selectCallback = function(variant, selector){
         // sold out
         purchaseButton.val(soldOutStr);
       }
-
-      if(variant.featured_image){
-        // variant image switcher
-        var $mainImageWrapper = $productForm.find('.product-main-image');
-        var mainImageElement = $mainImageWrapper.find('img')[0];
-        Shopify.Image.switchImage(variant.featured_image, mainImageElement, function(new_image_src, original_image, element){
-          switchImage($mainImageWrapper, new_image_src);
-        });
-      }
     }
   }
 };
