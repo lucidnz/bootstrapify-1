@@ -21,12 +21,10 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
     Shopify.BootstrapifyOptionSelectors.baseConstructor.call(this, existingSelectorId, options);
     // apply markup
     this.bootstrapifyMarkup();
-/*
     // linked options
     if(this.b_linkOptions && this.product.available && this.product.options.length > 1){
       Shopify.linkOptionSelectors(this.product, existingSelectorId);
     }
-*/
   }
 };
 
@@ -104,7 +102,6 @@ Shopify.BootstrapifyOptionSelectors.prototype.displaySingleOptionLable = functio
 
 
 
-/*
 // (c) Copyright 2011 Caroline Schnapp. All Rights Reserved. Contact: mllegeorgesand@gmail.com
 // See http://wiki.shopify.com/Linked_Options
  
@@ -189,4 +186,3 @@ Shopify.linkOptionSelectors = function(product, existingSelectorId) {
   });
   
 };
-*/
