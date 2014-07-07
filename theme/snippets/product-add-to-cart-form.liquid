@@ -55,15 +55,14 @@
     {% form 'contact' %}
       <div class="notify-me-form well">
         <h3>{{ product.title }} is unavailable</h3>
-        <p>Leave your email address if you would like to be notified when {{ product.title }} becomes&nbsp;available.</p>
+        <p>{% include '__localize' with 'Leave your email address if you would like to be notified when it becomes&nbsp;available.' %}</p>
         <div class="alert" style="display: none"></div>
         <div class="form-group">
           <input type="hidden" name="contact[body]" value="Please notify me when {{ product.title | escape }} becomes available." />
-          <label for="{% include '__advanced-layout-id' with 'notify-input' %}">Email</label>
           <div class="input-group">
             <input class="form-control input-lg{% if form.errors contains 'email' %} error{% endif %}" id="{% include '__advanced-layout-id' with 'notify-input' %}" required="required" type="email" name="contact[email]" placeholder="your@email.com" value="{{ contact.fields.email }}" />
             <span class="input-group-btn">
-              <input class="btn btn-primary btn-lg" type="submit" value="Notify me" >
+              <input class="btn btn-primary btn-lg" type="submit" value="{% include '__localize' with 'Notify me' %}" >
             </span>
           </div>
         </div>
