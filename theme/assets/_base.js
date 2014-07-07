@@ -40,10 +40,9 @@ $(document).on('submit', '.notify-me-wrapper form', function(e){
     $.ajax({
       url: '/contact',
       type: 'POST',
-      dataType: 'json',
       data: $self.serialize()
     })
-    .done(function(product,e){
+    .done(function(page,e){
       $self.find('.alert').addClass('alert-success').text('Thanks! We will notify you when this product becomes available.').show();
       $self.find('.form-group').removeClass('has-error').hide();
     })
