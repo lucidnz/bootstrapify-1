@@ -5,7 +5,7 @@
 Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
   // override markup vars
   this.b_selectorDivClass       = 'selector-wrapper form-group';
-  this.b_selectorClass          = 'single-option-selector form-control';
+  this.b_selectorClass          = 'single-option-selector form-control input-lg';
   this.b_linkOptions            = options.linkOptions || false;
   this.onVariantSelected        = Shopify.isDefined(options.onVariantSelected) ? options.onVariantSelected : function(){};
   this.product                  = new Shopify.Product(options.product);

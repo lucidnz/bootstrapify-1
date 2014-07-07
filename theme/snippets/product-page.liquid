@@ -21,7 +21,6 @@
 		<h1 class="page-header" itemprop="name">{{ product.title }}</h1>
 	</div>
 
-	<form id="{% include '__advanced-layout-id' with 'product-form' %}" action="/cart/add" method="post" role="form" enctype="multipart/form-data">
 		<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
 	
 			<!-- images col -->
@@ -118,6 +117,5 @@
 				{% endunless %}
 			</div>
 		</div>
-	</form>
 	{% include '__containers-close' %}
 </section>
