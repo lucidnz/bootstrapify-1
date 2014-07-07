@@ -18,9 +18,9 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
     this.onVariantSelected(this.product.variants[0], null);
   } else {
     // call base constructor
-/*     Shopify.BootstrapifyOptionSelectors.baseConstructor.call(this, existingSelectorId, options); */
+    Shopify.BootstrapifyOptionSelectors.baseConstructor.call(this, existingSelectorId, options);
     // apply markup
-/*     this.bootstrapifyMarkup(); */
+    this.bootstrapifyMarkup();
 /*
     // linked options
     if(this.b_linkOptions && this.product.available && this.product.options.length > 1){
@@ -31,6 +31,42 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
 };
 
 Shopify.extend(Shopify.BootstrapifyOptionSelectors, Shopify.OptionSelectors);
+
+/* ==== */
+
+/* BUG: effects unrelated selectors when there are multiple product forms on a page */
+/* FIX: use objects selectors instead of quering the DOM */
+Shopify.OptionSelectors.prototype.selectVariant = function (variantId, options) {
+  //var elements = document.querySelectorAll("."+this.selectorClass);
+  var variant  = this.product.getVariantById(variantId);
+
+  if (variant == null) {
+    return false;
+  }
+
+  for (var i = 0; i < this.selectors.length; i++) { // elements.length
+    var element = this.selectors[i].element; // elements[i];
+    var optionName = element.getAttribute("data-option");
+    var value = variant[optionName];
+    if (value == null || !this.optionExistInSelect(element, value)) {
+      continue;
+    }
+
+    element.value = value;
+  }
+
+  if (this.selectors.length > 0) { // elements.length
+    if (typeof jQuery !== 'undefined') {
+      jQuery(this.selectors[0].element).trigger('change', options); // jQuery(elements[0]).trigger('change', options);
+    } else {
+      this.selectors[0].element.onchange(options); // elements[0].onchange(options);
+    }
+  }
+
+  return true;
+};
+
+/* ==== */
 
 Shopify.BootstrapifyOptionSelectors.prototype.displaySingleVariantTitle = function(oldSelector){
   var options = this.product.variants[0].options;
