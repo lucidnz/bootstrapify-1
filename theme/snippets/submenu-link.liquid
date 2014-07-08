@@ -1,33 +1,17 @@
-{% assign child_linklist = linklists[submenu-link.handle] %}
-{% assign child_all_links = child_linklist.links | map: 'url' %}
-
-{% if child_linklist.links.size == 0 %}
-  {% assign show_link = true %}
-{% else %}
-  {% assign show_link = false %}
-  {% for t in child_linklist.links %}
-    {% if t.object.all_products_count > 0 or t.url != "#" or linklists[t.handle].links.size > 0 %}
-      {% assign show_link = true %}
-    {% endif %}
-  {% endfor %}
-{% endif %}
-
-{% if submenu-link.type == 'collection_link' and submenu-link.object.all_products_count == 0 %}
-  {% assign show_link = false %}
-{% endif %}
+{% include '__show-link' with submenu-link %}
 
 {% if show_link == true %}
 <li class="handle_{{ submenu-link.object.handle }}">
   {% if child_linklist.links.size == 0 %}
-  {% capture link %}<a href="{{ submenu-link.url }}" title="View {{ submenu-link.title }}">{{ submenu-link.title }}</a>{% endcapture %}
   {% unless submenu-link.url == "#" %}
+  {% capture link %}<a href="{{ submenu-link.url }}" title="View {{ submenu-link.title }}">{{ submenu-link.title }}</a>{% endcapture %}
   <div class="h4{% if submenu-link.active %} active{% endif %}">
+    {{ link }}
+    {% comment %}
     {% if submenu-link.type == 'collection_link' %}
-      {{ link }}
-    {% comment %}<small class="text-muted">{{ submenu-link.object.all_products_count }} products</small>{% endcomment %}
-    {% else %}
-      {{ link }}
+      <small class="text-muted">{{ submenu-link.object.all_products_count }} products</small>
     {% endif %}
+    {% endcomment %}
   </div>
   {% endunless %}
   {% else %}
