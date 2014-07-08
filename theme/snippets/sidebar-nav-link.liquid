@@ -19,7 +19,7 @@
     <a data-toggle="collapse" href="#child_{{ submenu-link.handle }}" title="View {{ submenu-link.title }}">{{ submenu-link.title }}</a>{% unless submenu-link.url == "#" %}&nbsp;<small class="text-muted"><a href="{{ submenu-link.url }}">{% include '__localize' with 'View&nbsp;all' %}</a></small>{% endunless %}
   </div>
   <div class="collapse" id="child_{{ submenu-link.handle }}">
-    {% include 'submenu' with child_linklist %}
+    {% include 'sidebar-nav' with child_linklist %}
   </div>
   {% endif %}
 </li>
