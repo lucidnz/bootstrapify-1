@@ -11,7 +11,7 @@
       <div class="shopify-product-reviews-badge" data-id="{{ _product.id }}"></div>
       {% if has_prices and _product.price > 0 %}<div class="price">
         {% if _product.price_varies %}<small class="text-muted">{% include '__localize' with 'from' %}</small>&nbsp;{% include 'product-price' with _product.price_min %}{% else %}{% include 'product-price' with _product.price %}{% endif %}
-        {% include 'product-on-sale' with _product %}  
+        {% include 'product-badges' with _product %}  
       </div>{% endif %}
     </a>
   </div>
