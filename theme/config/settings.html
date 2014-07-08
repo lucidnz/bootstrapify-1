@@ -1389,6 +1389,18 @@
         </table>
         <table>
           <tr>
+            <th><label for="collection-feature-image">Collection feature image</label></th>
+            <td>
+              <select name="collection-feature-image" id="collection-feature-image">
+          <option value="collection-image" selected="selected">Collection image</option>
+          <option value="first-product-image">First product image</option>
+          <option value="last-product-image">Last product image</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="featured-image-position">Featured Image Position</label></th>
             <td>
               <select name="featured-image-position" id="featured-image-position">
@@ -1441,6 +1453,15 @@
           <option value="above-product-title">Above Product Title</option>
           <option value="below-product-title">Below Product Title</option>
         </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-out-of-stock-badge">Show “out of stock” badge</label></th>
+            <td>
+              <input type="checkbox" name="show-out-of-stock-badge" id="show-out-of-stock-badge" value="1" /> Yes
+              <small>If checked and unavailable products are visible, a badge will indicate that the products are out of stock.</small>
             </td>
           </tr>
         </table>
