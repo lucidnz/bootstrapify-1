@@ -5,7 +5,7 @@
 {% if linklist_setting or has_cart %}
 <ul class="nav navbar-nav {% unless settings.logo-placement == 'top-navbar' and linklist_parts[0] == 'top' %}navbar-{{ linklist_parts[1] }}{% endunless %}">
   {% for l in linklists[linklist_setting].links %}
-  {% include '_navbar-link' %}
+  {% include 'navbar-link' %}
   {% endfor %}
   
   {% if navbar-nav == 'top-right' %}
