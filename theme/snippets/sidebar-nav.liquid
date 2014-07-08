@@ -1,6 +1,6 @@
-{% if submenu.links.size > 0 %}
+{% if sidebar-nav.links.size > 0 %}
 <ul class="list-unstyled list-indented">
-  {% for sm_link in submenu.links %}
+  {% for sm_link in sidebar-nav.links %}
   {% include 'submenu-link' with sm_link %}
   {% endfor %}
 </ul>
