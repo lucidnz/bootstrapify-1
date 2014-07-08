@@ -42,7 +42,7 @@ $(document).on('submit', '.notify-me-wrapper form', function(e){
       type: 'POST',
       data: $self.serialize()
     })
-    .done(function(page,e){
+    .done(function(){
       $self.find('.alert').addClass('alert-success').text('Thanks! We will notify you when this product becomes available.').show();
       $self.find('.form-group').removeClass('has-error').hide();
     })
