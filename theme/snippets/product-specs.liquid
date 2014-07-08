@@ -13,8 +13,8 @@
     <dd>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</dd>
   {% endif %}
   {% if collection %}{% assign _collection = collection %}{% else %}{% assign _collection = collections.all %}{% endif %}
-  {% if settings.show-product-tags and _collection != blank %}
-    <dt>{% include '__localize' with 'Tags' %}</dt>{% assign tag_count = 0 %}
+  {% if settings.show-product-tags and _collection != blank and product.tags.size > 0 %}
+    <dt>{% include '__localize' with 'Tags' %}</dt>{% assign tag_count = 1 %}
     <dd>
       {% for tag in product.tags %}
       {% assign tag_url = tag | handleize | prepend: '/' | prepend: _collection.url %}{% unless tag contains ':' %}{% if tag_count > 1 %}, {% endif %}{% assign tag_count = tag_count | plus: 1 %}{{ tag | link_to: tag_url }}{% endunless %}
