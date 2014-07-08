@@ -8387,7 +8387,7 @@ header .article-meta{
   
       .dropdown-menu {
         padding: 0;
-        padding-bottom: $grid-gutter-width / 2;
+        padding-top: $grid-gutter-width;
         left: -25%;
         right: -25%;
     
@@ -8424,8 +8424,12 @@ header .article-meta{
   }
 }
 
+.submenu {
+  margin-bottom: $grid-gutter-width;
+}
+
 .navbar-nav .open .dropdown-menu .dropdown-header, .submenu .nav .dropdown-header{
-  margin-top: $grid-gutter-width / 2;
+  margin-top: 0;
   font-weight: bold;
   
   @media (max-width: $screen-xs-max) {
