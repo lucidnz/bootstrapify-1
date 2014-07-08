@@ -1,4 +1,4 @@
-{% if settings.show-product-vendor and settings.show-product-type and settings.show-product-collections and settings.show-product-tags %}
+{% if settings.show-product-vendor or settings.show-product-type or settings.show-product-collections or settings.show-product-tags %}
 <dl>
   {% if settings.show-product-vendor %}
     <dt>{% include '__localize' with 'Vendor' %}</dt>
@@ -12,9 +12,14 @@
     <dt>{% include '__localize' with 'Collections' %}</dt>
     <dd>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</dd>
   {% endif %}
-  {% if settings.show-product-tags %}
-    <dt>{% include '__localize' with 'Tags' %}</dt>
-    <dd>{% for tag in product.tags %}{% assign tag_url = tag | handleize | prepend: '/collections/all/' %}{% if forloop.index > 1 %}, {% endif %}{% unless tag contains ':' %}{{ tag | link_to: tag_url }}{% endunless %}{% endfor %}</dd>
+  {% if collection %}{% assign _collection = collection %}{% else %}{% assign _collection = collections.all %}{% endif %}
+  {% if settings.show-product-tags and _collection != blank %}
+    <dt>{% include '__localize' with 'Tags' %}</dt>{% assign tag_count = 0 %}
+    <dd>
+      {% for tag in product.tags %}
+      {% assign tag_url = tag | handleize | prepend: '/' | prepend: _collection.url %}{% unless tag contains ':' %}{% if tag_count > 1 %}, {% endif %}{% assign tag_count = tag_count | plus: 1 %}{{ tag | link_to: tag_url }}{% endunless %}
+      {% endfor %}
+    </dd>
   {% endif %}
 </dl>
 {% endif %}
