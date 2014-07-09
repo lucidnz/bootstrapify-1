@@ -4,16 +4,18 @@
 {% include '__show-link' with submenu %}
 
 {% if show_link %}
+{% if linklists[submenu].links.size > 0 %}
 <li class="submenu">
-  {% if linklists[submenu].links.size > 0 %}
   <ul class="nav">
     <li role="presentation" class="dropdown-header">{{ l.title }}</li>
     {% for l in linklists[submenu].links %}
     {% include 'navbar-sub-links' %}
     {% endfor %}
   </ul>
-  {% else %}
-  <a tabindex="-1" href="{{ l.url }}" title="{{ l.title }}">{{ l.title }}</a>
-  {% endif %}
 </li>
+{% else %}
+<li>
+  <a tabindex="-1" href="{{ l.url }}" title="{{ l.title }}">{{ l.title }}</a>
+</li>
+{% endif %}
 {% endif %}
