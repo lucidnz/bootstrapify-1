@@ -616,23 +616,31 @@ header .article-meta{
 
 /* Footer */
 #footer-content {
-  {% if settings.footer-background-colour != blank %} background-color:{{ settings.footer-background-colour }}; {% endif %}
+  @if $footer-bg {
+    background-color: $footer-bg;
+  }
   > .container {
     padding-top: $grid-gutter-width;
     padding-bottom: $grid-gutter-width;
-    {% if settings.footer-background-colour != blank %} @include background-color({{ settings.footer-background-colour }}); {% endif %}
-    {% if settings.footer-heading-colour != blank %} @include heading-color({{ settings.footer-heading-colour }}); {% endif %}
-    {% if settings.footer-link-colour != blank %} @include link-color({{ settings.footer-link-colour }}); {% endif %}
-    {% if settings.footer-text-colour != blank %}
-      @include text-color({{ settings.footer-text-colour }});
+    @if $footer-bg {
+      @include background-color($footer-bg);
+    }
+    @if $footer-headings-color {
+      @include heading-color($footer-headings-color);
+    }
+    @if $footer-link-color {
+      @include link-color($footer-link-color);
+    }
+    @if $footer-text-color {
+      @include text-color($footer-text-color);
       .footer-credits {
-        color: text-muted({{ settings.footer-text-colour }});
+        color: text-muted($footer-text-color);
       }
-    {% else %}
+    } @else {
       .footer-credits {
         color: text-muted($text-color);
       }
-    {% endif %}
+    }
   }
 }
 

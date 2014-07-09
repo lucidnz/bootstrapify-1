@@ -282,5 +282,11 @@ $line-height-base:    1.42858;
 
 /* Miscellaneous */
   $hr-border:   border-color($body-bg) !default;
+  
+/* Footer */
+$footer-bg:             {% if settings.footer-background-colour != blank %} {{ settings.footer-background-colour }} {% else %} false {% endif %} !default;
+$footer-headings-color: {% if settings.footer-heading-colour != blank %} {{ settings.footer-heading-colour }} {% else %} false {% endif %} !default;
+$footer-link-color:     {% if settings.footer-link-colour != blank %} {{ settings.footer-link-colour }} {% else %} false {% endif %} !default;
+$footer-text-color:     {% if settings.footer-text-colour != blank %} {{ settings.footer-text-colour }} {% else %} false {% endif %} !default;
 
 {% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
