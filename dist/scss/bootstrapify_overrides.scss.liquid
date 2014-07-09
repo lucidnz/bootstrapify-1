@@ -236,6 +236,7 @@ header .article-meta{
       .dropdown-menu {
         padding: 0;
         padding-top: $grid-gutter-width;
+        padding-bottom: $grid-gutter-width;
         left: -25%;
         right: -25%;
     
@@ -487,8 +488,7 @@ header .article-meta{
 
 .product-price{
   margin: $grid-gutter-width 0;
-  font-size: 2em;
-  font-weight: $headings-font-weight;
+  @extend .h3;
 }
 
 .purchase-btn {
