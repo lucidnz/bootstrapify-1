@@ -237,8 +237,8 @@ $text-transform: {% if settings.font-body-case == 'lowercase' or settings.font-b
   // Work out sensible sizing for inbetween headings
   // h5 should always be the same as $font-size-base
   
-       $heading-size:   {{ settings.font-heading-size }};
-  $heading-size-step:   ($heading-size - $font-size-base) / 4;
+       $heading-size:   {{ settings.font-heading-size }} !default;
+  $heading-size-step:   ($heading-size - $font-size-base) / 4 !default;
   
        $font-size-h1:   $heading-size !default;
        $font-size-h2:   floor(($heading-size - $heading-size-step)) !default;
