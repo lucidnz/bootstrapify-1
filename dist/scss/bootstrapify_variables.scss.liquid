@@ -33,6 +33,9 @@
 
 // Global font size on body
 $font-size-base:    {% if settings.font-body-size != blank %} {{ settings.font-body-size }} {% else %} 14px {% endif %} !default;
+$font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %} !default;
+$font-style:  {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %} !default;
+$text-transform: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %} {{ settings.font-body-case }} {% elsif settings.font-body-case == 'title-case'%} capitalize {% else %} none {% endif %} !default;
 
 // Global heading font size on body
 {% if settings.font-heading-size != blank %}

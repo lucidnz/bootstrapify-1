@@ -109,9 +109,9 @@ body {
   {% endif %}
   {% if settings.background-colour != blank %} @include background-color({{ settings.background-colour }}); {% endif %}
   
-  font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %};
-  font-style: {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %};
-  text-transform: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %} {{ settings.font-body-case }} {% elsif settings.font-body-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  font-weight: $font-weight;
+  font-style: $font-style;
+  text-transform: $text-transform;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
