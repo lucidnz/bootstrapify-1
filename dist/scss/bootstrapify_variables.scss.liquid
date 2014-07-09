@@ -38,18 +38,22 @@ $font-style:  {% if settings.font-body-style == 'italic' %} italic {% else %} no
 $text-transform: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %} {{ settings.font-body-case }} {% elsif settings.font-body-case == 'title-case'%} capitalize {% else %} none {% endif %} !default;
 
 // Global heading font size on body
-{% if settings.font-heading-size != blank %}
-  // Work out sensible sizing for inbetween headings
-  // h5 should always be the same as $font-size-base
-  
-       $heading-size:   {{ settings.font-heading-size }} !default;
-  $heading-size-step:   ($heading-size - $font-size-base) / 4 !default;
-  
+// Work out sensible sizing for inbetween headings
+// h5 should always be the same as $font-size-base
+       $heading-size:   {% if settings.font-heading-size != blank %} {{ settings.font-heading-size }} {% else %} false {% endif %} !default;
+       // define variable scope
+       $font-size-h1:   null !default;
+       $font-size-h2:   null !default;
+       $font-size-h3:   null !default;
+       $font-size-h4:   null !default;
+       
+@if $heading-size {
+  $heading-size-step:   (($heading-size - $font-size-base) / 4) !default;
        $font-size-h1:   $heading-size !default;
        $font-size-h2:   floor(($heading-size - $heading-size-step)) !default;
        $font-size-h3:   floor(($heading-size - ($heading-size-step * 2))) !default;
        $font-size-h4:   floor(($heading-size - ($heading-size-step * 3))) !default;
-{% endif %}
+}
 
 // Fix rounding issue as sass var can only hold 5 decimal places (orig: 1.428571429)
 $line-height-base:    1.42858;
