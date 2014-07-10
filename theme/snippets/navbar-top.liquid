@@ -1,4 +1,4 @@
-{% include 'navbar-nav' with 'top-left' %}
+{% include 'navbar-menu' with 'top-left' %}
 
 {% if settings.show-search-in-navbar %}
 <form class="navbar-form col-sm-2 navbar-right" action="/search">
@@ -9,4 +9,4 @@
 
 {% if settings.currency-switcher-position == 'top-navbar' %}{% include 'currency-switcher' %}{% endif %}
 
-{% include 'navbar-nav' with 'top-right' %}
+{% include 'navbar-menu' with 'top-right' %}

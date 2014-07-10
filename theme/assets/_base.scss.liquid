@@ -236,6 +236,12 @@ $text-transform: {% if settings.font-body-case == 'lowercase' or settings.font-b
 // Work out sensible sizing for inbetween headings
 // h5 should always be the same as $font-size-base
        $heading-size:   {% if settings.font-heading-size != blank %} {{ settings.font-heading-size }} {% else %} false {% endif %} !default;
+       // define variable scope
+       $font-size-h1:   null !default;
+       $font-size-h2:   null !default;
+       $font-size-h3:   null !default;
+       $font-size-h4:   null !default;
+       
 @if $heading-size {
   $heading-size-step:   (($heading-size - $font-size-base) / 4) !default;
        $font-size-h1:   $heading-size !default;
@@ -8395,6 +8401,7 @@ header .article-meta{
       .dropdown-menu {
         padding: 0;
         padding-top: $grid-gutter-width;
+        padding-bottom: $grid-gutter-width;
         left: -25%;
         right: -25%;
     
@@ -8646,8 +8653,7 @@ header .article-meta{
 
 .product-price{
   margin: $grid-gutter-width 0;
-  font-size: 2em;
-  font-weight: $headings-font-weight;
+  @extend .h3;
 }
 
 .purchase-btn {
