@@ -384,7 +384,7 @@ $line-height-base:    1.42858;
 
 
 /* Navbar */
-{% settings.navbar-background-colour != blank %}
+{% if settings.navbar-background-colour != blank %}
                    $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} if($body-bg, desaturate(darken($body-bg, 1.5%), 15%), null) {% endif %} !default;
                    
   {% if settings.navbar-background-colour != blank or settings.text-colour != blank %}
