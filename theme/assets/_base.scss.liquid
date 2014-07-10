@@ -322,9 +322,9 @@ $line-height-base:    1.42858;
               $input-color:    $text-color !default;
   {% endif %}
              $input-border:    $border-color !default;
-  {% if settings.brand-primary != blank %}
+  @if $brand-primary {
        $input-border-focus:    $brand-primary !default;
-  {% endif %}
+  }
   $input-color-placeholder:    darken($input-bg, 15%) !default;
   
   {% if settings.text-colour != blank %}
@@ -338,7 +338,6 @@ $line-height-base:    1.42858;
 
 
 /* Dropdowns */
-{% if settings.navbar-background-colour != blank %}
                    $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 80%) {% else %} if($body-bg, lighten($body-bg, 80%), null) {% endif %} !default;
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
@@ -348,7 +347,6 @@ $line-height-base:    1.42858;
          $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
   {% endif %}
         $dropdown-link-hover-bg:    darken($dropdown-bg, 10%) !default;
-{% endif %}
 
 
 /* Media queries breakpoints */
@@ -384,7 +382,6 @@ $line-height-base:    1.42858;
 
 
 /* Navbar */
-{% if settings.navbar-background-colour != blank %}
                    $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} if($body-bg, desaturate(darken($body-bg, 1.5%), 15%), null) {% endif %} !default;
                    
   {% if settings.navbar-background-colour != blank or settings.text-colour != blank %}
@@ -397,11 +394,13 @@ $line-height-base:    1.42858;
   $navbar-default-toggle-border-color:    darken($navbar-default-bg, 5%) !default;
   {% endif %}
 
-  {% if settings.brand-primary != blank %}
               // Navbar brand label
+          $navbar-default-brand-color:    null !default;
+    $navbar-default-brand-hover-color:    null !default;
+  @if $brand-primary {
           $navbar-default-brand-color:    $brand-primary !default;
     $navbar-default-brand-hover-color:    hover-colour($navbar-default-brand-color, 10%) !default;
-  {% endif %}
+  }
 
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
            $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
@@ -409,8 +408,6 @@ $line-height-base:    1.42858;
     $navbar-default-link-active-color:    hover-colour($navbar-default-link-color) !default;
   $navbar-default-link-disabled-color:    lighten($navbar-default-link-color, 5%) !default;
   {% endif %}
-  
-{% endif %}
 
 
 /* Navs */
