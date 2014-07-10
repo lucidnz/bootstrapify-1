@@ -203,8 +203,11 @@
 
 /* Scaffolding */
 // background colour for body
-       $body-bg:    {% if settings.background-colour != blank %} {{ settings.background-colour }} {% else %} #fff {% endif %} !default;
+       $body-bg:    {% if settings.background-colour != blank %} {{ settings.background-colour }} {% else %} null {% endif %} !default;
+  $border-color:    null !default;
+  @if $body-bg {
   $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
+  }
 
 // Global text color on body
 {% if settings.text-colour != blank %}
@@ -275,23 +278,27 @@ $line-height-base:    1.42858;
 
 
 /* Tables */
-{% if settings.background-colour != blank %}
+       $table-bg-accent:   null !default;
+        $table-bg-hover:   null !default;
+    $table-border-color:   null !default;
+@if $body-bg {
        $table-bg-accent:   lighten($body-bg, 2%) !default;  // Background color used for `.table-striped`.
         $table-bg-hover:   lighten($body-bg, 4%) !default;  // Background color used for `.table-hover`.
-   
-  // Border color for table and cell borders.
-    $table-border-color:   $border-color !default;
-{% endif %}
+    $table-border-color:   $border-color !default; // Border color for table and cell borders.
+}
 
 
 /* Buttons */
-{% if settings.background-colour != blank %}
+   $btn-default-color:    null !default;
+      $btn-default-bg:    null !default;
+  $btn-default-border:    null !default;
+@if $body-bg {
   {% if settings.text-colour != blank %}
    $btn-default-color:    $text-color !default;
   {% endif %}
       $btn-default-bg:    darken($body-bg, 2%) !default;
   $btn-default-border:    darken($body-bg, 5%) !default;
-{% endif %}
+}
 
 {% if settings.button-colour != blank %}
        $btn-primary-bg:    {{ settings.button-colour }} !default;
@@ -300,7 +307,16 @@ $line-height-base:    1.42858;
 
 
 /* Forms */
-{% if settings.background-colour != blank %}
+                 $input-bg:    null !default;
+              $input-color:    null !default;
+             $input-border:    null !default;
+       $input-border-focus:    null !default;
+  $input-color-placeholder:    null !default;
+             $legend-color:    null !default;
+      $legend-border-color:    null !default;
+     $input-group-addon-bg:    null !default;
+     
+@if $body-bg {
                  $input-bg:    lighten($body-bg, 10%) !default;
   {% if settings.text-colour != blank %}
               $input-color:    $text-color !default;
@@ -318,12 +334,12 @@ $line-height-base:    1.42858;
 
      // Background color for textual input addons
      $input-group-addon-bg:    $body-bg !default;
-{% endif %}
+}
 
 
 /* Dropdowns */
-{% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
-                   $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 80%) {% else %} lighten($body-bg, 80%) {% endif %} !default;
+{% if settings.navbar-background-colour != blank %}
+                   $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 80%) {% else %} if($body-bg, lighten($body-bg, 80%), null) {% endif %} !default;
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
            $dropdown-link-color:    darken({% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %}, 80%) !default;
@@ -368,8 +384,8 @@ $line-height-base:    1.42858;
 
 
 /* Navbar */
-{% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
-                   $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} desaturate(darken($body-bg, 1.5%), 15%) {% endif %} !default;
+{% settings.navbar-background-colour != blank %}
+                   $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} if($body-bg, desaturate(darken($body-bg, 1.5%), 15%), null) {% endif %} !default;
                    
   {% if settings.navbar-background-colour != blank or settings.text-colour != blank %}
                 $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
@@ -398,9 +414,14 @@ $line-height-base:    1.42858;
 
 
 /* Navs */
-{% if settings.background-colour != blank %}
+                        $nav-link-hover-bg:   null !default;
+                    $nav-tabs-border-color:   null !default;
+         $nav-tabs-link-hover-border-color:   null !default;
+         $nav-tabs-active-link-hover-color:   null !default;
+  $nav-tabs-active-link-hover-border-color:   null !default;
+     $nav-tabs-justified-link-border-color:   null !default;
+@if $body-bg {
                         $nav-link-hover-bg:   darken($body-bg, 10%) !default;
-  //$nav-open-link-hover-color:   hover-colour( $dropdown-link-color ) !default;
   
                       // Tabs
                     $nav-tabs-border-color:   border-color($body-bg) !default;
@@ -410,11 +431,20 @@ $line-height-base:    1.42858;
   {% endif %}
   $nav-tabs-active-link-hover-border-color:   $nav-tabs-border-color !default;
      $nav-tabs-justified-link-border-color:   $nav-tabs-border-color !default;
-{% endif %}
+}
 
 
 /* Pagination */
-{% if settings.background-colour != blank %}
+               $pagination-bg:    null !default;
+           $pagination-border:    null !default;
+         $pagination-hover-bg:    null !default;
+     $pagination-hover-border:    null !default;
+     $pagination-active-color:    null !default;
+   $pagination-disabled-color:    null !default;
+      $pagination-disabled-bg:    null !default;
+  $pagination-disabled-border:    null !default;
+  
+@if $body-bg {
                $pagination-bg:    $body-bg !default;
            $pagination-border:    darken($body-bg, 5%) !default;
   
@@ -428,16 +458,17 @@ $line-height-base:    1.42858;
   {% endif %}
       $pagination-disabled-bg:    $body-bg !default;
   $pagination-disabled-border:    $pagination-border !default;
-{% endif %}
+}
 
 
 /* Pager - inherits from Pagination */
 
 
 /* Jumbotron */
-{% if settings.background-colour != blank %}
+  $jumbotron-bg:    null !default;
+@if $body-bg {
   $jumbotron-bg:    darken($body-bg, 5%) !default;
-{% endif %}
+}
 
 
 /* Thumbnails */
@@ -460,16 +491,31 @@ $line-height-base:    1.42858;
 
 
 /* Breadcrumbs */
-{% if settings.background-colour != blank %}
+            $breadcrumb-bg:   null !default;
+         $breadcrumb-color:   null !default;
+  $breadcrumb-active-color:   null !default;
+  
+@if $body-bg {
             $breadcrumb-bg:   rgba(darken($body-bg, 3%), .5) !default;
   {% if settings.text-colour != blank %}
          $breadcrumb-color:   lighten($text-color, 15%) !default;
   $breadcrumb-active-color:   text-muted($text-color) !default;
   {% endif %}
-{% endif %}
+}
 
 
 /* Type */
+
+                $text-muted:    null !default;
+      $headings-small-color:    null !default;
+    $blockquote-small-color:    null !default;
+               $close-color:    null !default;
+         $close-text-shadow:    null !default;
+   $blockquote-border-color:    null !default;
+         $abbr-border-color:    null !default;
+  $page-header-border-color:    null !default;
+  
+@if $body-bg {
 {% if settings.text-colour != blank %}
                 $text-muted:    text-muted($text-color) !default;
       $headings-small-color:    $text-muted !default;
@@ -480,10 +526,14 @@ $line-height-base:    1.42858;
    $blockquote-border-color:    border-color($body-bg) !default;
          $abbr-border-color:    $border-color !default;
   $page-header-border-color:    $border-color !default;
-
+}
 
 /* Miscellaneous */
+  $hr-border:    null !default;
+@if $body-bg {
   $hr-border:   border-color($body-bg) !default;
+}
+  
   
 /* Footer */
 $footer-bg:             {% if settings.footer-background-colour != blank %} {{ settings.footer-background-colour }} {% else %} false {% endif %} !default;
@@ -8272,7 +8322,9 @@ body {
     {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
     {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
   {% endif %}
-  {% if settings.background-colour != blank %} @include background-color({{ settings.background-colour }}); {% endif %}
+  @if $body-bg {
+    @include background-color($body-bg);
+  }
   
   font-weight: $font-weight;
   font-style: $font-style;

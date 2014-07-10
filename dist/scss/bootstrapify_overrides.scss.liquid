@@ -107,7 +107,9 @@ body {
     {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
     {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
   {% endif %}
-  {% if settings.background-colour != blank %} @include background-color({{ settings.background-colour }}); {% endif %}
+  @if $body-bg {
+    @include background-color($body-bg);
+  }
   
   font-weight: $font-weight;
   font-style: $font-style;
