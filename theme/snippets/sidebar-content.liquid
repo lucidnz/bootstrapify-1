@@ -2,10 +2,19 @@
   <div class="sidebar-content">
     {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
     
+    {% if settings.search-placement == 'sidebar' %}
+      {% include 'search-form' %}
+    {% endif %}
+      
     {% if settings.tag-placement == 'sidebar' and template contains 'collection' %}
     <h3>{% include '__localize' with 'Filter' %}</h3>
     {% include 'tag-buttons' %}
     {% endif %}
+    
+    {% unless linklists[settings.sidebar-linklist] == empty %}
+      <h3>{{ linklists[settings.sidebar-linklist].title }}</h3>
+      {% include 'sidebar-nav' with linklists[settings.sidebar-linklist] %}
+    {% endunless %}
     
     {% if template == 'blog' or template == 'article' %}
       <h3>{% include '__localize' with 'Recent articles' %}</h3>
@@ -13,11 +22,6 @@
         {% include 'article-excerpt' %}
       {% endfor %}
     {% endif %}
-    
-    {% unless linklists[settings.sidebar-linklist] == empty %}
-      <h3>{{ linklists[settings.sidebar-linklist].title }}</h3>
-      {% include 'sidebar-nav' with linklists[settings.sidebar-linklist] %}
-    {% endunless %}
   
     {% unless blogs[settings.sidebar-blog] == empty %}
       <h3>{{ blogs[settings.sidebar-blog].title }}</h3>

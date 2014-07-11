@@ -1608,9 +1608,13 @@
         </table>
         <table>
           <tr>
-            <th><label for="search-placement">Search in top navbar</label></th>
+            <th><label for="search-placement">Search placement</label></th>
             <td>
-              <input type="checkbox" name="search-placement-default-title" id="search-placement-default-title" value="1" /> Default Title<br /><input type="checkbox" name="search-placement-top-navbar" id="search-placement-top-navbar" value="1" /> Top navbar<br /><input type="checkbox" name="search-placement-sidebar" id="search-placement-sidebar" value="1" /> Sidebar<br />
+              <select name="search-placement" id="search-placement">
+          <option value="default-title" selected="selected">Default Title</option>
+          <option value="top-navbar">Top navbar</option>
+          <option value="sidebar">Sidebar</option>
+        </select>
             </td>
           </tr>
         </table>
