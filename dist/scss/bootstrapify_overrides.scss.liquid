@@ -355,7 +355,6 @@ header .article-meta{
   position: relative;
 }
 
-
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
   margin-bottom: 0;
@@ -379,16 +378,11 @@ header .article-meta{
   border-radius: 4px !important;
 }
 
-.input-group-addon + .twitter-typeahead > .tt-query {
-  border-top-left-radius: 0!important;
-  border-bottom-left-radius: 0!important;
-}
-
-.input-group-appended > .twitter-typeahead {
+.input-group > .twitter-typeahead {
   margin-top: 5px;
-  & > .tt-query {
-    border-top-right-radius: 0!important;
-    border-bottom-right-radius: 0!important;
+  & > .tt-query, & > .tt-hint {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
 } 
 
