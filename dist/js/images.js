@@ -22,6 +22,7 @@ var productImageZoom = function($imageWrapper){
     var imgSrc = $this.find('img')[0].src;
     var imgSize = Shopify.Image.imageSize(imgSrc);
     var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc.replace('_'+imgSize, ''), '2048x2048');
+    $this.trigger('zoom.destroy');
     $this.zoom({url: SizedImgSrc});
   });
 };
