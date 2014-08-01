@@ -16,8 +16,8 @@
     {% endunless %}
     {% if navbar == 'footer' %}
     <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
-      {% include 'navbar-nav' with 'footer-left' %}
-      {% include 'navbar-nav' with 'footer-right' %}
+      {% include 'navbar-menu' with 'footer-left' %}
+      {% include 'navbar-menu' with 'footer-right' %}
     </div>
     {% endif %}
   
@@ -48,11 +48,11 @@
     <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
       {% if navbar == 'top' %}
       <div class="visible-xs">
-        {% include '_navbar-main' %}
+        {% include 'navbar-main' %}
       </div>
-      {% include '_navbar-top' %}
+      {% include 'navbar-top' %}
       {% else %}
-      {% include '_navbar-main' %}
+      {% include 'navbar-main' %}
       {% endif %}
     </div>
     {% endunless %}

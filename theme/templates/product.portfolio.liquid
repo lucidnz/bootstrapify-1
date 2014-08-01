@@ -1,14 +1,16 @@
 {% include 'theme-variables' %}
 {% capture vars %}
+{% assign selected_or_first_variant = product.selected_or_first_available_variant %}
 {% if product.featured_image == blank %}
 {% include 'image-placeholder' %}
 {% else %}
 {% capture image %}
+{% assign featured_image = selected_or_first_variant.featured_image | default: product.featured_image %}
 {% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}	
-<img class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: 'original' }}" alt="{{ product.featured_image.alt }}">{% endcapture %}
+<img class="{{ round-class }}" src="{{ featured_image | product_img_url: 'original' }}" alt="{{ featured_image.alt }}">{% endcapture %}
 {% endif %}
 {% endcapture %}
-<section id="product-portfolio-wrap" class="section-wrap">
+<section id="product-portfolio-wrap" class="product-wrap section-wrap">
 	{% include '__containers-open' %}
 	<div class="row">
 		<div class="col-xs-12">
@@ -16,7 +18,6 @@
 		</div>
 	</div>
 
-  <form id="product-form" action="/cart/add" method="post">
     <!-- images col -->
     <div class="product-images">
       <div class="row">
@@ -50,15 +51,16 @@
     <!-- details col -->
     <div class="row">
       <div class="col-xs-12">
-        {% if product.price > 0 %}<div class="lead product-price">
-          <span class="price-field">{% include 'product-price' with product.price %}</span>
+      {% if product.price > 0 %}
+        <div class="lead product-price">
+          <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>
           <del class="compare-at-price-field text-muted"></del>
           <span class="sale-label" style="display: none;">{% include '__localize' with 'On sale' %}</span>
         </div>
         <hr>
         {% include 'product-add-to-cart-form' %}
 
-        {% endif %}
+      {% endif %}
       </div>
     </div>
   
@@ -78,7 +80,6 @@
 			</div>
 		</div>
 		{% endif %}
-	</form>
 	{% include '__containers-close' %}
 </section>
 

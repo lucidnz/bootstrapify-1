@@ -5,7 +5,7 @@
 Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
   // override markup vars
   this.b_selectorDivClass       = 'selector-wrapper form-group';
-  this.b_selectorClass          = 'single-option-selector form-control';
+  this.b_selectorClass          = 'single-option-selector form-control input-lg';
   this.b_linkOptions            = options.linkOptions || false;
   this.onVariantSelected        = Shopify.isDefined(options.onVariantSelected) ? options.onVariantSelected : function(){};
   this.product                  = new Shopify.Product(options.product);
@@ -13,7 +13,7 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
   if(this.product.variants.length === 1){
     var oldSelector = document.getElementById(existingSelectorId);
     oldSelector.style.display = 'none';
-    this.displayVariantTitle(oldSelector);
+    this.displaySingleVariantTitle(oldSelector);
     // trigger select callback
     this.onVariantSelected(this.product.variants[0], null);
   } else {
@@ -30,20 +30,17 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
 
 Shopify.extend(Shopify.BootstrapifyOptionSelectors, Shopify.OptionSelectors);
 
-Shopify.BootstrapifyOptionSelectors.prototype.displayVariantTitle = function(oldSelector){
-  var options = this.product.variants[0].options;	
-  var showTitle = true;
-  for(var i = 0; i < options.length; i++){
-    if(options[i] === "Default Title"){
-      showTitle = false;
+Shopify.BootstrapifyOptionSelectors.prototype.displaySingleVariantTitle = function(oldSelector){
+  var options = this.product.variants[0].options;
+  for(var i = options.length; i--;) {
+    if(options[i] === "Default Title" || options[i] === "Default"){
+      options.splice(i, 1);
     }
   }
-  if(showTitle){
-    var title = document.createElement('p');
-    title.className = 'lead';
-    title.innerHTML = this.product.variants[0].title; // needs option.name as well
-    oldSelector.parentNode.appendChild(title);
-  }
+  var ele = document.createElement('p');
+  ele.className = 'lead';
+  ele.innerHTML = options.join(' / ');
+  oldSelector.parentNode.appendChild(ele);
 };
 
 Shopify.BootstrapifyOptionSelectors.prototype.bootstrapifyMarkup = function(){

@@ -3,7 +3,7 @@
   {% if main_linklist %}
   <ul class="nav navbar-nav {% if settings.main-menu-alignment == 'left' %}navbar-left{% elsif settings.main-menu-alignment == 'center' %}navbar-center{% elsif settings.main-menu-alignment == 'right' %}navbar-right{% endif %}">
     {% for l in main_linklist.links %}
-    {% include '_navbar-link' %}
+    {% include 'navbar-link' %}
     {% endfor %}
   </ul>
   {% endif %}

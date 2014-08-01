@@ -2,24 +2,25 @@
 {% assign product = t_object %}
 {% endif %}
 {% capture vars %}
+{% assign selected_or_first_variant = product.selected_or_first_available_variant %}
 {% if product.featured_image == blank %}
 {% include 'image-placeholder' %}
 {% else %}
 {% capture image %}
+{% assign featured_image = selected_or_first_variant.featured_image | default: product.featured_image %}
 {% unless settings.container-width-large-devices contains 'px' %}{% assign product_img_size = '1024x1024' %}{% else %}{% assign product_img_size = 'grande' %}{% endunless %}
 {% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}	
-<img class="{{ round-class }}" src="{{ product.featured_image.src | product_img_url: product_img_size }}" alt="{{ product.featured_image.alt }}" itemprop="image">
+<img class="{{ round-class }}" src="{{ featured_image.src | product_img_url: product_img_size }}" alt="{{ featured_image.alt }}" itemprop="image">
 {% endcapture %}
 {% endif %}
 {% endcapture %}
 
-<section id="{% include '__advanced-layout-id' with 'product-wrap' %}" class="section-wrap">
+<section id="{% include '__advanced-layout-id' with 'product-wrap' %}" class="product-wrap section-wrap">
 	{% include '__containers-open' %}
 	<div class="visible-xs">
 		<h1 class="page-header" itemprop="name">{{ product.title }}</h1>
 	</div>
 
-	<form id="{% include '__advanced-layout-id' with 'product-form' %}" action="/cart/add" method="post" role="form" enctype="multipart/form-data">
 		<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
 	
 			<!-- images col -->
@@ -55,7 +56,7 @@
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
 				{% if has_prices %}
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
-					<span class="price-field">{% include 'product-price' with product.price %}</span>
+				  <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>
 					<del class="compare-at-price-field text-muted"></del>
 					<span class="sale-label" style="display: none;">{% include '__localize' with 'On sale' %}</span>
 					<meta itemprop="currency" content="{{ shop.currency }}" />
@@ -116,6 +117,5 @@
 				{% endunless %}
 			</div>
 		</div>
-	</form>
 	{% include '__containers-close' %}
 </section>

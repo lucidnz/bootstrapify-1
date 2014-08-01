@@ -1,8 +1,10 @@
 {% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% elsif settings.round-thumbnail-images-on-homepage and template == 'index' %}{% assign round-class = 'img-circle' %}{% endif %}
-{% if collection-loop.image %}
+{% if collection-loop.image and settings.collection-feature-image == 'collection-image' %}
   {% capture image %}{{ collection-loop.image.src | collection_img_url: 'large' | img_tag: collection-loop.image.alt, round-class | link_to: collection-loop.url }}{% endcapture %}
-{% elsif collection-loop.products.first.featured_image %}
+{% elsif collection-loop.products.first.featured_image and settings.collection-feature-image == 'first-product-image' %}
   {% capture image %}{{ collection-loop.products.first.featured_image.src | product_img_url: 'large' | img_tag: collection-loop.products.first.featured_image.alt, round-class | link_to: collection-loop.url }}{% endcapture %}
+{% elsif collection-loop.products.last.featured_image and settings.collection-feature-image == 'last-product-image' %}
+  {% capture image %}{{ collection-loop.products.last.featured_image.src | product_img_url: 'large' | img_tag: collection-loop.products.last.featured_image.alt, round-class | link_to: collection-loop.url }}{% endcapture %}
 {% else %}
   {% include 'image-placeholder' %}
 {% endif %}

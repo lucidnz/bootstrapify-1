@@ -1,7 +1,7 @@
 {% include 'theme-variables' %}
 
 {% if settings.advanced-homepage-layout != blank %}
-	{% include 'advanced-layout' %}
+	{% include 'index-advanced-layout' %}
 {% else %}
 
 <!-- Homepage Intro -->
@@ -42,7 +42,7 @@
 {% endunless %}
 
 <!-- Homepage Blog Overview -->
-{% include 'homepage-blog-overview' with 'blog' %}
+{% include 'index-blog' with 'blog' %}
 
 {% include 'index-testimonials' %}
 
