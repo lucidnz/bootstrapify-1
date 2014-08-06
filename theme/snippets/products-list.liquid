@@ -1,14 +1,16 @@
-<section id="product-list" class="section-wrap">
-	<div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
-		{% if template contains 'index' %}
+<div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
+	{% if template contains 'index' %}
 		{% if settings.homepage-products-limit contains 'limited' %}{% assign limit = nil %}{% else %}{% assign limit = settings.homepage-products-limit %}{% endif %}
-		{% assign product_collection = collections[settings.homepage-products-collection] %}
+		{% if t_object != blank %}
+			{% assign product_collection = t_object %}
 		{% else %}
-		{% assign product_collection = collection %}
+			{% assign product_collection = collections[settings.homepage-products-collection] %}
 		{% endif %}
-		{% for p in product_collection.products | limit: limit %}
+	{% elsif collection %}
+		{% assign product_collection = collection %}
+	{% endif %}
+	{% for p in product_collection.products | limit: limit %}
 		{% assign product_count = forloop.length %}
-		{% include '_product' with p %}
-		{% endfor %}
-	</div>
-</section>
+		{% include 'product-loop' with p %}
+	{% endfor %}
+</div>

@@ -1,0 +1,9 @@
+{% unless has_sidebar and settings[sidebar_template] %}
+{% if is-product-list == true and has_window_width_thumbnail_container %}
+<div class="container-fluid">
+{% else %}
+<div class="container">
+{% endif %}
+<div class="row">
+	<div class="main-content {% include '__main-span' %}">
+{% endunless %}

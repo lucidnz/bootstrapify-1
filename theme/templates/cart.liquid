@@ -1,5 +1,6 @@
-{% include '__has-variables' %}
+{% include 'theme-variables' %}
 <section id="cart-wrap" class="section-wrap">
+  {% include '__containers-open' %}
   <h1 class="page-header">{{ page_title }}</h1>
   {% if has_cart and cart.item_count > 0 %}
   <script type="text/javascript">
@@ -18,16 +19,41 @@
             <tbody>
               {% for i in cart.items %}
               <tr>
-                <td class="col-sm-2 hidden-xs"><img src="{{ i.product.featured_image | product_img_url: 'medium' }}"></td>
+                <td class="col-sm-2 hidden-xs"><img src="{{ i | img_url: 'medium' }}"></td>
                 <td>
                   <h4>
-                    {{ i.product.title | link_to: i.product.url }}
-                    <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
+                    {{ i.product.title | link_to: i.url }}
+                    <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small><br>
                   </h4>
+        				  <p>
+        					<small class="text-muted">
+        						<dl>
+        						{% for p in i.properties %}
+        						{% unless p.last == blank %}
+        						<dt>{{ p.first }}:</dt>
+        						<dd>
+        							{% if p.last contains '/uploads/' %}
+        							<a href="#{{ i.product.handle}}" data-toggle="modal">{{ p.last | split: '/' | last }}</a>
+        							<div class="modal fade" id="{{ i.product.handle }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        								<div class="modal-dialog">
+        									<div class="modal-content">
+        										<img src="{{ p.last }}" alt="{{ p.first }}">
+        									</div>
+        								</div>
+        							</div>
+        							{% else %}
+        							{{ p.last }}
+        							{% endif %}
+        						</dd>
+        						{% endunless %}
+        						{% endfor %}
+        						</dl>
+        					</small>
+        				</p>
                 </td>
                 <td><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
                 <td class="text-center col-xs-2">
-                  <input type="text" class="form-control" name="updates[{{ i.variant.id }}]" id="updates_{{ i.variant.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
+                  <input type="text" class="form-control" name="updates[]" id="updates_{{ i.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
                 </td>
                 <td><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>
               </tr>
@@ -73,4 +99,5 @@
     {% include '__localize' with cart_message %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all' %} {{ collections.[settings.collection-to-link-to-if-cart-empty].title }}</a>.{% endunless %}
   </p>
   {% endif %}
+  {% include '__containers-close' %}
 </section>

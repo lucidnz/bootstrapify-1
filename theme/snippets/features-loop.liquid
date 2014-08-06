@@ -20,13 +20,14 @@
 	{% endfor %}
 {% endif %}
 {% endif %}
+{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% elsif settings.round-thumbnail-images-on-homepage and template == 'index' %}{% assign round-class = 'img-circle' %}{% endif %}
 
 {% capture blurb %}
 {% if src != null %}
-<a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}"><img src="{{ src }}" alt="{{ object.title }}"></a>
+<a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}"><img src="{{ src }}" class="{{ round-class }}" alt="{{ object.title }}"></a>
 {% endif %}
 <h4 class="media-heading"><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h4>
-{% if features-loop == 'blog' %}<small>{% include 'article-meta' with object %}</small>{% endif %}
+{% if features-loop == 'blog' %}{% include 'article-meta' with object %}{% endif %}
 <p>{% if excerpt == blank and shop.url contains 'myshopify' and settings.development-mode %}This will show an excerpt of the content (if one exists). To hide this placeholder text, disable development mode in Settings > Advanced.{% elsif src == null %}{{ excerpt | strip_html }}{% endif %}</p>
 {% endcapture %}
 <div class="col-md-{{ span }}">

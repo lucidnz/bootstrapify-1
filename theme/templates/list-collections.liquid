@@ -1,26 +1,28 @@
-{% include '__has-variables' %}
+{% include 'theme-variables' %}
 
 
 {% if settings.all-collections-linklist == blank %}
 <section class="section-wrap">
+	{% include '__containers-open' %}
 	<h1 class="page-header">{% include '__localize' with "All Collections" %}</h1>
-</section>
   {% include '__default-pagination' %}
   {% paginate collections by default-pagination %}
   {% if collections.size > 0 %}
     {% include 'collections-list' %}
     {% include 'pagination' %}
   {% else %}
-  <section class="section-wrap">
     <div class="alert alert-info text-center">
       <h3><i class="fa fa-info-circle"></i> No {% include '__localize' with 'collections' %} found.</h3>
     </div>
-  </section>
   {% endif %}
   {% endpaginate %}
+  {% include '__containers-close' %}
+</section>
 {% else %}
 <section class="section-wrap">
-	<h1 class="page-header">{{ linklists[settings.all-collections-linklist].title }}</h1>
+	{% include '__containers-open' %}
+		<h1 class="page-header">{{ linklists[settings.all-collections-linklist].title }}</h1>
+		{% include 'collections-list' with 'all-collections' %}
+	{% include '__containers-close' %}
 </section>
-  {% include 'collections-list' with 'all-collections' %}
 {% endif %}

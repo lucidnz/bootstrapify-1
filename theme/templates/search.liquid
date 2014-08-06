@@ -1,16 +1,17 @@
-{% include '__has-variables' %}
+{% include 'theme-variables' %}
 
 {% assign respond_js_secret_key = (shop.domain | md5) %}
 {% unless search.terms == respond_js_secret_key %}
 
 <section id="search-wrap" class="section-wrap">
+  {% include '__containers-open' %}
   <h1 class="page-header">{% include 'smart-title' %}</h1>
 
   {% if search.performed and search.results.size > 0 %}
     {% include '__default-pagination' %}
     {% paginate search.results by default-pagination %}
     {% for i in search.results %}
-    {% include '_search-item' %}
+    {% include 'search-loop' %}
     {% endfor %}
     {% include 'pagination' %}
     {% endpaginate %}
@@ -30,6 +31,7 @@
       </div>
     </form>
   {% endif %}
+  {% include '__containers-close' %}
 </section>
 
 {% else %}

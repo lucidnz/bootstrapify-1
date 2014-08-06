@@ -31,6 +31,31 @@ $('#cart-note').on('shown.bs.collapse', function(){
   $(this).find('#note').focus();
 });
 
+/* Notify me form */
+$(document).on('submit', '.notify-me-wrapper form', function(e){
+  var $self = $(this);
+  $self.find('.alert').removeClass('alert-danger alert-success').text('').hide();
+  
+  if($self.find('[type="email"]').val() !== ''){
+    $.ajax({
+      url: '/contact',
+      type: 'POST',
+      data: $self.serialize()
+    })
+    .done(function(){
+      $self.find('.alert').addClass('alert-success').text('Thanks! We will notify you when this product becomes available.').show();
+      $self.find('.form-group').removeClass('has-error').hide();
+    })
+    .fail(function(a,b,c){
+      console.log(a,b,c);
+      $self.find('.alert').addClass('alert-danger').text('There was an error submitting your email. Please try again later.').show();
+    });
+  } else {
+    $self.find('.alert').addClass('alert-danger').text('Please enter an email adddress.').show();
+    $self.find('.form-group').addClass('has-error');
+  }
+  e.preventDefault();
+});
 var preloadProductImages = function(){
   var $thumbs = $('[data-main-image]');
   if($thumbs.length > 0){
@@ -47,13 +72,32 @@ var carouselControlHeight = function(){
   $('.carousel-control').css({maxHeight: imgHeight});
 };
 
+/* Product Image Zoom */
+var productImageZoom = function($imageWrapper){
+  var $productImage = $imageWrapper || $('.product-main-image');
+  $productImage.each(function(){
+    var $this = $(this);
+    var imgSrc = $this.find('img')[0].src;
+    var imgSize = Shopify.Image.imageSize(imgSrc);
+    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc.replace('_'+imgSize, ''), '2048x2048');
+    $this.trigger('zoom.destroy');
+    $this.zoom({url: SizedImgSrc});
+  });
+};
+
 /* Product Image Switcher */
-$('[data-main-image]').click(function(event) {
-  var targetImage = $(this).attr('data-main-image');
-  var $mainImage = $('#main');
-  if($mainImage.attr('src') !== targetImage){
-    $mainImage.hide().attr('src', targetImage).fadeIn();
+var switchImage = function($imageWrapper, newImageSrc){
+  var $mainImage = $imageWrapper.find('img');
+  if($mainImage.attr('src') !== newImageSrc){
+    $mainImage.hide().attr('src', newImageSrc).fadeIn();
+    productImageZoom($imageWrapper);
   }
+};
+
+$(document).on('click', '[data-main-image]', function(event) {
+  var $mainImageWrapper = $(this).closest('.product-images').find('.product-main-image');
+  var targetImageSrc = $(this).attr('data-main-image');
+  switchImage($mainImageWrapper, targetImageSrc);
   event.preventDefault();
 });
 
@@ -65,6 +109,12 @@ $(window).load(function(){
   $('.carousel').on('slid.bs.carousel', function(){
     carouselControlHeight();
   });
+  $('.carousel').on('slide.bs.carousel', function(e){
+    var currentSlideID = e.relatedTarget.id;
+    $(this).attr('data-current-slide', currentSlideID);
+  });
+  
+  productImageZoom();
 });
 
 $(window).on('resize', function(){

@@ -1,0 +1,17 @@
+{% assign child_linklist = linklists[__show-link.handle] %}
+{% assign child_all_links = child_linklist.links | map: 'url' %}
+
+{% if child_linklist.links.size == 0 %}
+  {% assign show_link = true %}
+{% else %}
+  {% assign show_link = false %}
+  {% for t in child_linklist.links %}
+    {% if t.object.all_products_count > 0 or t.url != "#" or linklists[t.handle].links.size > 0 %}
+      {% assign show_link = true %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if sidebar-nav-link.type == 'collection_link' and sidebar-nav-link.object.all_products_count == 0 %}
+  {% assign show_link = false %}
+{% endif %}

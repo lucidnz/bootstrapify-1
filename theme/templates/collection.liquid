@@ -1,61 +1,66 @@
-{% include '__has-variables' %}
+{% include 'theme-variables' %}
 
 <section id="collection-intro" class="section-wrap">
+{% include '__containers-open' %}
 	<h1 class="page-header">{{ page_title }}</h1>
-
-	{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
+	<div class="row">
+		{% unless col_image_position == 'do-not-show' or collection.image == null %}
+		<div class="{{ img_col_span }}">
+			{% if col_image_position == 'full-width-above' %}{% assign col_thumb_size = '2048x2048' %}{% else %}{% assign col_thumb_size = 'grande' %}{% endif %}
+			{{ collection.image.src | collection_img_url: col_thumb_size | img_tag: collection.image.alt }}
+		</div>
+		{% endunless %}
+		{% unless collection.description == blank %}
+		<div class="{{ text_col_span }} collection-description">
+			{{ collection.description }}
+		</div>
+		{% endunless %}
+	</div>
+{% include '__containers-close' %}
+</section>
 
 {% if settings.tag-placement == 'main-content' or settings.show-product-sorter %}
-<div class="clearfix">
-  {% if settings.tag-placement == 'main-content' %}
-  <div class="pull-left">
-    {% include 'tag-buttons' %}
-  </div>
-  {% endif %}
+<section id="collection-sort" class="section-wrap">
+	{% include '__containers-open' %}
+	<div class="clearfix">
+		{% if settings.tag-placement == 'main-content' %}
+		<div class="pull-left">
+			{% include 'tag-buttons' %}
+		</div>
+		{% endif %}
 
-  {% if settings.show-product-sorter %}
-  <div class="pull-right">
-    <label for="sort-by">Sort by</label> 
-    <select id="sort-by">
-      <option value="manual">Featured</option>
-      <option value="price-ascending">Price: Low to High</option>
-      <option value="price-descending">Price: High to Low</option>
-      <option value="title-ascending">A-Z</option>
-      <option value="title-descending">Z-A</option>
-      <option value="created-ascending">Oldest to Newest</option>
-      <option value="created-descending">Newest to Oldest</option>
-      <option value="best-selling">Best Selling</option>
-    </select>
-  </div>
-  <script>
-  Shopify.queryParams = {};
-  if (location.search.length) {
-    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
-      aKeyValue = aCouples[i].split('=');
-      if (aKeyValue.length > 1) {
-        Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
-      }
-    }
-  }
-  jQuery('#sort-by')
-  .val('{{ collection.sort_by | default: collection.default_sort_by  }}')
-  .bind('change', function() {
-    Shopify.queryParams.sort_by = jQuery(this).val();
-    location.search = jQuery.param(Shopify.queryParams);
-  });
-  </script>
-  {% endif %}
-</div>
+		{% if settings.show-product-sorter %}
+		{% assign sort_orders = 'Featured,Price Ascending,Price Descending,Title Ascending,Title Descending,Created Ascending,Created Descending,Best Selling' | split: ',' %}
+		<ul class="nav nav-pills {% if settings.tag-placement == 'sidebar' %}nav-stacked{% else %}pull-right{% endif %}">
+			<li class="dropdown">
+				<a role="button" data-toggle="dropdown" href="#" id="sort_menu">{% include '__localize' with 'Sort by' %} <span class="caret"></span></a>
+				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="sort_menu">
+					{% for so in sort_orders %}{% if forloop.index == 1 and collection.sort_by == blank %}{% assign default_sort = true %}{% else %}{% assign default_sort = false %}{% endif %}
+					{% if so contains 'Price' or so contains 'Selling' %}{% assign price_sort = true %}{% else %}{% assign price_sort = false %}{% endif %}
+					{% unless has_prices == false and price_sort %}
+					{% assign so_param = so | replace: ' ','-' | downcase %}
+					<li{% if collection.sort_by == so_param or default_sort %} class="active"{% endif %}><a href="?sort_by={{ so_param }}">{% include '__localize' with so %}</a></li>
+					{% endunless %}
+					{% endfor %}
+				</ul>
+			</li>
+		</ul>
+		{% endif %}
+	</div>
+	{% include '__containers-close' %}
+</section>
 <hr>
 {% endif %}
-</section>
 
 {% if collection.all_products_count == 0 %}
 <section class="section-wrap">
+	{% include '__containers-open' %}
 	<p>Sorry, no {% include '__localize' with 'products' %} were found in the {{ collection.title }} collection.</p>
+	{% include '__containers-close' %}
 </section>
 {% elsif collection.products_count == 0 %}
 <section class="section-wrap">
+	{% include '__containers-open' %}
 	<h2>Whoops! You might need to broaden your search.</h2>
 	<p>There {{ collection.all_products_count | pluralize: 'is', 'are' }}<strong> {{ collection.all_products_count | count }} {{ collection.all_products_count | pluralize: 'style', 'styles' }} of {% include '__localize' with 'Products' %}</strong> in the {{ collection.title }} collection&mdash;try removing some filters.</p>
 	<ul>
@@ -64,11 +69,17 @@
 		{% endfor %}
 	</ul>
 	<p><br>Or, view <strong><a href="{{ collection.url }}">all {{ collection.all_products_count }} {% include '__localize' with 'Products' %} in the {{ collection.title }} {% include '__localize' with 'Collection' %}</a></strong>.</p>
+	{% include '__containers-close' %}
 </section>
 {% else %}
+<section id="product-list" class="section-wrap">
+{% assign is-product-list = true %}
+{% include '__containers-open' %}
 {% include '__default-pagination' %}
 {% paginate collection.products by default-pagination %}
 {% include 'products-list' %}
 {% include 'pagination' %}
 {% endpaginate %}
+{% include '__containers-close' %}
+</section>
 {% endif %}
