@@ -18,7 +18,7 @@
 	{% assign is_sublink = true %}
 	{% if linklists[sublink_handle].links.first.type == 'collection_link' %}
 	<!-- list collection snippet -->
-	<section id="featured-collections-title-{{ advanced_layout_index }}" class="section-wrap">
+	<section id="featured-collections-{{ advanced_layout_index }}" class="section-wrap">
 		<h2 class="page-header">{{ l.title }}</h2>
 		{% include 'collections-list' with 't_object' %}
 	</section>
