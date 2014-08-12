@@ -1,5 +1,5 @@
 {% capture translation %}
-  {% assign setting_key = __localize | remove: '&' | remove: ',' | remove: '.' | remove: '?' | remove: '!' | replace: ' ','-' | downcase %}
+  {% assign setting_key = __localize | replace: '&nbsp;','-' | strip_html | handleize | downcase %}
   
   {% unless settings.localizations == blank %}
   {% assign localizations = settings.localizations | split: ',' %}
