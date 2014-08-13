@@ -32,7 +32,7 @@
           {% if current_tags_downcase contains t_downcase %}
             <li class="active">{{ '<i class="fa fa-times-circle fa-fw"></i>&nbsp;' | append: tag_title | link_to_remove_tag: t }}</li>
           {% else %}
-            <li>{{ tag_title | link_to_add_tag: t }}</li>
+            <li>{% if settings.tag-filtering-action == 'build-tag-filter' %}{{ tag_title | link_to_add_tag: t }}{% else %}{{ tag_title | link_to_tag: t }}{% endif %}</li>
           {% endif %}
         {% endif %}	
       {% endfor %}
