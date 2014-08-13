@@ -11,6 +11,7 @@
       <div class="shopify-product-reviews-badge" data-id="{{ product-loop.id }}"></div>
       {% if has_prices and product-loop.price > 0 %}<div class="price">
         {% if product-loop.price_varies %}<small class="text-muted">{% include '__localize' with 'from' %}</small>&nbsp;{% include 'product-price' with product-loop.price_min %}{% else %}{% include 'product-price' with product-loop.price %}{% endif %}
+        {% if product-loop.compare_at_price_min > product-loop.price_min %} <small class="text-muted">{% include '__localize' with 'Was' %}&nbsp;<del>{{ product-loop.compare_at_price_min | money }}</del></small>{% endif %}
         {% include 'product-badges' with product-loop %}  
       </div>{% endif %}
     </a>
