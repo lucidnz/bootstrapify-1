@@ -562,11 +562,10 @@ $footer-link-color:     {% if settings.footer-link-colour != blank %} {{ setting
 $footer-text-color:     {% if settings.footer-text-colour != blank %} {{ settings.footer-text-colour }} {% else %} false {% endif %} !default;
 
 {% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
-// When true, asset path helpers are used, otherwise regular url() is used
-// When there no function is defined, `fn('')` is parsed as string that equals the right hand side
-// NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
+// a flag to toggle asset pipeline / compass integration
+// defaults to true if twbs-font-path function is present (no function => twbs-font-path('') parsed as string == right side)
+// in Sass 3.3 this can be improved with: function-exists(twbs-font-path)
 $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
-
 //
 // Variables
 // --------------------------------------------------
@@ -642,10 +641,7 @@ $headings-color:          inherit !default;
 //## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
-
-// [converter] Asset helpers such as Sprockets and Node.js Mincer do not resolve relative paths
-$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default;
-
+$icon-font-path: "bootstrap/" !default;
 //** File name for all font files.
 $icon-font-name:          "glyphicons-halflings-regular" !default;
 //** Element ID within SVG icon file.
@@ -6978,8 +6974,7 @@ a.list-group-item {
   &.disabled:focus {
     background-color: $list-group-disabled-bg;
     color: $list-group-disabled-color;
-    cursor: not-allowed;
-    
+
     // Force color to inherit for custom content
     .list-group-item-heading {
       color: inherit;
@@ -8423,6 +8418,8 @@ header .article-meta{
 
 .label {
   font-weight: normal;
+  margin-left: 1em;
+  margin-top: 5px;
 }
 
 .help-block {
@@ -8490,6 +8487,18 @@ header .article-meta{
 }
 
 .has-mega-menu .navbar {
+  .dropdown-menu li {
+    margin-bottom: 5px;
+  }
+  
+  .submenu ul li {
+    margin-bottom: 5px;
+    a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+    
   .nav li.dropdown.open .dropdown-menu {  
     @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
       width: $container-sm;    
