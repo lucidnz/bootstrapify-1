@@ -1,1 +1,2 @@
 <span class="money" itemprop="price">{% if settings.show-currency-with-prices %}{{ product-price | money_with_currency }}{% else %}{{ product-price | money }}{% endif %}</span>
+{% if settings.append-plus-taxes-to-price %} {% include '__localize' with 'plus taxes' %}{% endif %}
