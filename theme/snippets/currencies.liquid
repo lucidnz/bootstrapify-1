@@ -8,7 +8,7 @@
     };
   
     /* Set currency format */
-    Currency.format = {% if settings.show-currency-with-prices %}'money_with_currency_format'{% else %}'money_format'{% endif %};
+    Currency.format = {% if settings.show-currency-with-prices == "with-currency" %}'money_with_currency_format'{% else %}'money_format'{% endif %};
     // Sometimes merchants change their shop currency, let's tell our JavaScript file
     Currency.money_with_currency_format[shopCurrency] = {{ shop.money_with_currency_format | strip_html | json }};
     Currency.money_format[shopCurrency] = {{ shop.money_format | strip_html | json }};
