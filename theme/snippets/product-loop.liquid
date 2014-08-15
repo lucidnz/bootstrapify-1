@@ -12,14 +12,14 @@
 			{% if has_prices and product-loop.price > 0 %}
 			<div class="price">
 				{% if settings.show-compare-at-price and product-loop.compare_at_price > 0 %}	
-				<small class="text-muted"><del>
+				<small class="text-muted"><del>{% capture was %}
 					{% include '__localize' with 'was' %} 
-					{% if settings.show-currency-with-prices %}
+					{% if settings.show-currency-with-prices == "with-currency" %}
 					{{ product-loop.compare_at_price_max | money_with_currency }}
 					{% else %}
 					{{ product-loop.compare_at_price_max | money }}
 					{% endif %}
-				</del></small>&nbsp;
+          {% endcapture %}{{ was | strip }}</del></small>&nbsp;
 				{% elsif product-loop.price_varies %}
 				<small class="text-muted">
 					{% include '__localize' with 'from' %}
