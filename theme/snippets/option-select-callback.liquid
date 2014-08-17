@@ -8,8 +8,6 @@ var selectCallback = function(variant, selector, options){
   var priceField = $productWrap.find('.price-field');
   var saleField = $productWrap.find('.sale-label');
   var compareAtPriceField = $productWrap.find('.compare-at-price-field');
-  
-  console.log(purchaseButton, priceField, saleField, compareAtPriceField);
       
   var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
   var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
