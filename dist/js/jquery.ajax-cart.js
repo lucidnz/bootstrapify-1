@@ -1,5 +1,9 @@
 /*
  * Shopify - jQuery Ajax Cart.
+ *
+ * TODO: remove duplication around :
+ * - AjaxCart.prototype._buildForms
+ * - CartForm & ProductForm.prototype._removeMessage
  */
  
 (function($) {
@@ -11,6 +15,7 @@
     
     this.connection = new CartConnection();
     this.cartDisplay = new CartDisplay(this.settings.cartCountElement);
+    this.cartPrice = new CartPrice(this.settings.cartPriceElement);
     
     this.cartFormQueue = [];
     this.cartForms = [];
@@ -47,6 +52,7 @@
       console.log('RESULT: ', result);
       if(result.item_count){
         self.cartCount = result.item_count;
+        self.cartPrice.updatePriceElement(result);
       } else {
         self.cartCount++;
       }
@@ -141,7 +147,7 @@
   };
   
   CartForm.prototype._isNumberKeyCode = function(keyCode){
-    var keyMatch = false, keyCodes = [48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105];
+    var keyMatch = false, keyCodes = [8,9,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105];
     for (var i in keyCodes) {
       if(keyCode === keyCodes[i]){ keyMatch = true; break; }
     }
@@ -230,6 +236,21 @@
     }
   };
   
+  /* Cart Price */
+  var CartPrice = function(ele){
+    this.$ele = $(ele);
+    console.log(this.$ele);
+  };
+  
+  CartPrice.prototype.updatePriceElement = function(result){
+    console.log('!!!! need to update price');
+/*
+    if(this.$ele){
+      this.$ele.text(Shopify.formatMoney(result.total_price));
+    }
+*/
+  };
+  
   /* jQueryify */
   $.fn.ajaxCart = function(opts){
     var settings = $.extend({}, $.fn.ajaxCart.defaults, opts);
@@ -241,6 +262,7 @@
   
   $.fn.ajaxCart.defaults = {
     cartCountElement: '.cartCount',
+    cartPriceElement: 'form[action="/cart"] .product-price .money',
     form: {
       defaultSubmitValue: 'Add to cart',
       productMessageMarkup: function(message, messageType){

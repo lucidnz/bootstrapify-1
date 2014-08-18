@@ -36,11 +36,6 @@
       jQuery(this).attr('data-currency-{{ shop.currency }}', jQuery(this).html());
     });
     
-    var changeCurrency = function(oldCurrency, newCurrency){
-      Currency.convertAll(oldCurrency, newCurrency);
-      jQuery('.selected-currency').text(Currency.currentCurrency);
-    };
-    
     changeCurrency(shopCurrency, currentCurrency);
   
     /* Currency converter */
