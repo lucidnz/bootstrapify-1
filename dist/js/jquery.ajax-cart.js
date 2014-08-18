@@ -15,7 +15,7 @@
     this.cartFormQueue = [];
     this.cartForms = [];
     var self = this;
-    this.$ele.find('form[action="/cart/add"]').each(function(i){
+    this.$ele.find('form[action^="/cart"]').each(function(i){
       var cartForm = new CartForm(this, self.settings.form, i);
       self.cartForms.push(cartForm);
     });
@@ -83,48 +83,53 @@
     this.$form = $(form);
     this.settings = settings;
     this.id = id;
-    this.formSubmit = this.$form.find('input[name="add"]');
-    this.defaultSubmitValue = this.formSubmit.val() || this.settings.defaultSubmitValue;
+    this.formButton = this.getFormButton();
     this.addEventHandlers();
+  };
+  
+  CartForm.prototype.getFormButton = function(){
+    var $button = this.$form.find('input[name="add"]');
+    if($button.length > 0){
+      return new CartFormButton($button, this.settings);
+    } else {
+      return false;
+    }
   };
   
   CartForm.prototype.addEventHandlers = function(){
     var self = this;
     this.$form.on('submit', function(e){
       e.preventDefault();
-      self._updateSubmit('Adding...', true);
+      if(self.formButton){ self.formButton.updateButton('Adding...', true); }
       $.event.trigger('sendToCart', [$(this).serialize(), self.id]);
     });
+    if(!this.formButton) {
+      this.$form.on('change', '[name^="updates"]', function(e){
+        e.preventDefault();
+        console.log('CHANGE:', [$(this).serialize(), self.id]);
+      });
+    }
   };
   
   CartForm.prototype.sendToCartSuccess = function(product){
     var message = product.title+' successfully added. <a href="/cart">View cart</a>';
     this._displayMessage(message, 'success');
-    this._updateSubmit(this.defaultSubmitValue, false);
   };
   
-  CartForm.prototype.sendToCartError = function(err, status){    console.log(err, status);
+  CartForm.prototype.sendToCartError = function(err, status){
+    console.log(err, status);
     try {
       var response = jQuery.parseJSON(err.responseText);
-      this._displayMessage('ERROR: '+response, 'danger');
+      this._displayMessage(response.message+': '+response.description, 'danger');
     } catch(e) {
       this._displayMessage('ERROR: There was an error adding your item to the cart.', 'danger');
-    }
-    this._updateSubmit(this.defaultSubmitValue, false);
-  };
-  
-  CartForm.prototype._updateSubmit = function(message, disable){
-    this.formSubmit.val(message);
-    if(disable){
-      this.formSubmit.prop("disabled", true);
-    } else {
-      this.formSubmit.prop("disabled", false);
     }
   };
   
   CartForm.prototype._displayMessage = function(message, messageType){
+    if(this.formButton){ this.formButton.updateButton(false, false); }
     var messageMarkup = this.settings.messageMarkup(message, messageType);
-    this.formSubmit.after(messageMarkup);
+    this.$form.append(messageMarkup);
     var self = this;
     window.setTimeout(function(){
       self._removeMessage();
@@ -135,6 +140,18 @@
     this.$form.find('.ajax-cart-message').hide(186, function(){
       this.remove();
     });
+  };
+  
+  /* Cart Form Button */
+  var CartFormButton = function($ele, settings){
+    this.$ele = $ele;
+    this.settings = settings;
+    this.defaultSubmitValue = this.$ele.val() || this.settings.defaultSubmitValue;
+  };
+  
+  CartFormButton.prototype.updateButton = function(message, disable){
+    if(!message){ message = this.defaultSubmitValue; }
+    this.$ele.val(message).prop("disabled", disable);
   };
   
   /* Cart Display */
