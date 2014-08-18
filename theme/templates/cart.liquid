@@ -53,7 +53,7 @@
                 </td>
                 <td><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
                 <td class="text-center col-xs-2">
-                  <input type="text" class="form-control" name="updates[]" id="updates_{{ i.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
+                  <input type="text" class="form-control" name="updates[{{ i.id }}]" id="updates_{{ i.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
                 </td>
                 <td><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>
               </tr>
