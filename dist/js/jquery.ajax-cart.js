@@ -49,7 +49,6 @@
       self.connection.postToCart(formData, form);
     });
     this.$ele.on('postToCartSuccess', function(e, result){
-      console.log('RESULT: ', result);
       if(result.item_count){
         self.cartCount = result.item_count;
         self.cartPrice.updatePriceElement(result);
@@ -239,17 +238,22 @@
   /* Cart Price */
   var CartPrice = function(ele){
     this.$ele = $(ele);
-    console.log(this.$ele);
   };
   
   CartPrice.prototype.updatePriceElement = function(result){
-    console.log('!!!! need to update price');
-/*
-    if(this.$ele){
-      this.$ele.text(Shopify.formatMoney(result.total_price));
+    if(this.$ele.length > 0){
+      var formattedMoney = Shopify.formatMoney(result.total_price);
+      this.$ele.find('.money').replaceWith('<span class="money">'+formattedMoney+'</span>');
+      if(Currency.shopCurrency !== Currency.currentCurrency){
+        Currency.convertAll(Currency.shopCurrency, Currency.currentCurrency);
+      }
     }
-*/
   };
+  
+  
+  if (typeof Currency === 'undefined') {
+    var Currency = {};
+  }
   
   /* jQueryify */
   $.fn.ajaxCart = function(opts){
@@ -262,7 +266,7 @@
   
   $.fn.ajaxCart.defaults = {
     cartCountElement: '.cartCount',
-    cartPriceElement: 'form[action="/cart"] .product-price .money',
+    cartPriceElement: 'form[action="/cart"] .product-price',
     form: {
       defaultSubmitValue: 'Add to cart',
       productMessageMarkup: function(message, messageType){

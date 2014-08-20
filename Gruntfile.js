@@ -25,7 +25,8 @@ module.exports = function(grunt) {
           Image: true,
           $: true,
           jQuery: true,
-          Shopify: true
+          Shopify: true,
+          Currency: true
         }
       },
       gruntfile: {
