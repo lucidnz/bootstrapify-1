@@ -31,6 +31,9 @@
     {% if settings.currency-switcher-position == 'top-navbar' %}
       {% include 'currency-switcher' %}
     {% endif %}
+    {% if settings.search-placement == 'top-navbar' %}
+      <li>{% include 'search-form' %}</li>
+    {% endif %}
   {% elsif navbar-menu == 'footer-right' %}
     {% if settings.currency-switcher-position == 'footer-navbar' %}
       {% include 'currency-switcher' %}
