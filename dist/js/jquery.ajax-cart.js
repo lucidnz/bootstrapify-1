@@ -236,6 +236,10 @@
   };
   
   /* Cart Price */
+  if (typeof Currency === 'undefined') {
+    var Currency = {};
+  }
+  
   var CartPrice = function(ele){
     this.$ele = $(ele);
   };
@@ -249,11 +253,6 @@
       }
     }
   };
-  
-  
-  if (typeof Currency === 'undefined') {
-    var Currency = {};
-  }
   
   /* jQueryify */
   $.fn.ajaxCart = function(opts){

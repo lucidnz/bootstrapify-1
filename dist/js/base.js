@@ -5,20 +5,18 @@
 $(function() {
   /* Multiple currencies */
   if ($('body').hasClass('currencies')) {
-    $('#currency-picker-toggle a').click(function() {
-      $('#currency-picker-toggle').hide();
-      $('#currencies-picker').fadeIn();
+    var $currencyPicker = $('.currency-picker');
+    $currencyPicker.on('click', 'a', function(e) {
+      $currencyPicker.find('#current-currency').hide();
+      $currencyPicker.find('#currencies-picker').fadeIn();
+      e.preventDefault();
       return false;
-    });
-
-    $('#currencies-picker select').change(function() {
-      $('#currencies-picker').hide();
-      $('#currency-picker-toggle').fadeIn();
-      return true;
-    }).blur(function() {
-      $('#currencies-picker').hide();
-      $('#currency-picker-toggle').fadeIn();
-      return true;
+    }).on('change', 'select', function() {
+      $currencyPicker.find('#current-currency').fadeIn();
+      $currencyPicker.find('#currencies-picker').hide();
+    }).on('blur', 'select', function(){
+      $currencyPicker.find('#current-currency').fadeIn();
+      $currencyPicker.find('#currencies-picker').hide();
     });
   }
 });
