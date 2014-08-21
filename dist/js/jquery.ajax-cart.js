@@ -236,10 +236,6 @@
   };
   
   /* Cart Price */
-  if (typeof Currency === 'undefined') {
-    var Currency = {};
-  }
-  
   var CartPrice = function(ele){
     this.$ele = $(ele);
   };
@@ -248,8 +244,10 @@
     if(this.$ele.length > 0){
       var formattedMoney = Shopify.formatMoney(result.total_price);
       this.$ele.find('.money').replaceWith('<span class="money">'+formattedMoney+'</span>');
-      if(Currency.shopCurrency !== Currency.currentCurrency){
-        Currency.convertAll(Currency.shopCurrency, Currency.currentCurrency);
+      if (typeof Currency !== 'undefined') {
+        if(Currency.shopCurrency !== Currency.currentCurrency){
+          Currency.convertAll(Currency.shopCurrency, Currency.currentCurrency);
+        }
       }
     }
   };
