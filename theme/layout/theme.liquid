@@ -15,6 +15,8 @@
     <script src="{{ shop.url }}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
   <![endif]-->
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
+
   {{ 'jquery.min.js' | asset_url | script_tag }}
   <script type="text/javascript">
     $('html').addClass('has-js');

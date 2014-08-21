@@ -1840,6 +1840,14 @@
         </table>
         <table>
           <tr>
+            <th><label for="free-shipping-threshold">Free shipping threshold</label></th>
+            <td>
+              <input type="text" name="free-shipping-threshold" id="free-shipping-threshold" class="text" value="$100" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="hide-prices-if-cart-disabled">Hide prices if cart is disabled</label></th>
             <td>
               <input type="checkbox" name="hide-prices-if-cart-disabled" id="hide-prices-if-cart-disabled" value="1" /> Yes
@@ -1937,6 +1945,15 @@
           <option value="without-currency">Without currency</option>
         </select>
               <small><p>E.g., <strong>$123.45 NZD</strong></p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="append-plus-taxes-to-price">Append “plus taxes” to prices</label></th>
+            <td>
+              <input type="checkbox" name="append-plus-taxes-to-price" id="append-plus-taxes-to-price" value="1" /> Yes
+              <small>You can localize the wording in the Localization settings using “plus-taxes: + GST”</small>
             </td>
           </tr>
         </table>

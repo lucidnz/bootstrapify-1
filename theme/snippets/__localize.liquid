@@ -8,7 +8,7 @@
   {% assign key = l | split: ':' | first | strip %}
   {% assign value = l | split: ':' | last | strip %}
   {% if key == setting_key %}
-    {% assign localized = value %}
+    {% assign localized = value | remove: '"' %}
   {% endif %}
   {% endfor %}
   {% endunless %}

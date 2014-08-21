@@ -50,7 +50,8 @@
       <div class="visible-xs">
         {% include 'navbar-main' %}
       </div>
-      {% include 'navbar-top' %}
+      {% include 'navbar-menu' with 'top-left' %}
+      {% include 'navbar-menu' with 'top-right' %}
       {% else %}
       {% include 'navbar-main' %}
       {% endif %}

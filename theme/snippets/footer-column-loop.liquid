@@ -30,8 +30,9 @@
   
   {% assign social_links_column = 'footer-' | append: footer_column %}
   {% if settings.social-links-placement == social_links_column %}
-  <div class="clearfix social-icons">
+  <h4>{% include '__localize' with 'Connect with us' %}</h4>
+  <p class="clearfix social-icons">
     {% include 'social-links' with 'lg' %}
-  </div>
+  </p>
   {% endif %}
 </div>

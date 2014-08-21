@@ -213,7 +213,6 @@ input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit],
 #footer, #container.slim #footer{
   @extend .navbar;
   @extend .navbar-default;
-  @extend .navbar-fixed-bottom;
   text-align: center;
   p{
     @extend p;
