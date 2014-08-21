@@ -22,7 +22,7 @@ var selectCallback = function(variant, selector, options){
   if(variant){
     // we have a variant so update the price
     var moneyFormat = "{% if settings.show-currency-with-prices == 'with-currency' %}{{ shop.money_with_currency_format }}{% else %}{{ shop.money_format }}{% endif %}"; // we still need the correct money format if the currency converter is off
-    var formattedMoney = Currency.formatMoney(variant.price, moneyFormat);
+    var formattedMoney = Shopify.formatMoney(variant.price, moneyFormat);
     priceField.html('<span class="money">'+formattedMoney+'</span>'); // we need to refresh the the money span to invoke the currency converter if it is on
         
     if(variant.compare_at_price > 0){
