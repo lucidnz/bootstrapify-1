@@ -82,35 +82,52 @@
   }
 }
 
-@mixin slide($slide-dark, $slide-position){
-  .carousel-caption{
-    @if nth($slide-position, 1) == 'top' {
-      top: 0;
-      bottom: auto;
-    } @else if nth($slide-position, 1) == 'middle' {
-      top: 35%;
-      bottom: auto;
-    }
-    @if nth($slide-position, 2) == 'left' {
-      text-align: left;
-      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+@mixin slide($slide, $slide-dark, $slide-position){
+  #slide-#{$slide}{
+    .carousel-caption{
+      @if nth($slide-position, 1) == 'top' {
+        top: 0;
+        bottom: auto;
+      } @else if nth($slide-position, 1) == 'middle' {
+        top: 35%;
+        bottom: auto;
+      }
+      @if nth($slide-position, 2) == 'left' {
         text-align: left;
-      }
-    } @else if nth($slide-position, 2) == 'right' {
-      text-align: right;
-      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: left;
+        }
+      } @else if nth($slide-position, 2) == 'right' {
         text-align: right;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: right;
+        }
+      }
+      @if $slide-dark {
+        color: $gray-dark;
+        text-shadow: none;
+      }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        @if $slide-dark {
+          text-shadow: none;
+          @media (min-width: $screen-sm-min){
+            color: $gray-dark;
+          }
+        }
       }
     }
+  }
+  .carousel[data-current-slide="slide-#{$slide}"]{
     @if $slide-dark {
-      color: $gray-dark;
-      text-shadow: none;
-    }
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-      @if $slide-dark {
-        text-shadow: none;
-        @media (min-width: $screen-sm-min){
-          color: $gray-dark;
+      .carousel-control{
+        color: $gray-dark;
+      }
+      @media (min-width: $screen-sm-min){
+        .carousel-indicators li{
+          border-color: $gray-dark;
+          &.active {
+            background-color: $gray-dark;
+          }
         }
       }
     }

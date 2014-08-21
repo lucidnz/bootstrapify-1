@@ -15,6 +15,8 @@
     <script src="{{ shop.url }}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
   <![endif]-->
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
+
   {{ 'jquery.min.js' | asset_url | script_tag }}
   <script type="text/javascript">
     $('html').addClass('has-js');
@@ -34,7 +36,7 @@
   {{ content_for_header }}
 </head>
 
-{% include '__has-variables' %}
+{% include 'theme-variables' %}
 <body class="{% include '__body-classes' %}">
 
   <div id="wrap">
@@ -47,10 +49,14 @@
     	</div>
     	{% endif %}
       {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
+      
+      {% if settings.slider-width != "window-width" or settings.show-breadcrumbs %}
       <div class="container">
         {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
         {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
       </div>
+      {% endif %}
+      
 		{% if has_sidebar and settings[sidebar_template] %}
 			{% unless has_window_width_thumbnail_container %}<div class="container"><div class="row">{% endunless %}
 			<div class="main-content {% include '__main-span' %}">
@@ -67,6 +73,7 @@
     {% include 'footer' %}
   </div>
   
+  {% include 'option-select-callback' %}
   {% include 'currencies' %}
   {{ '_base.js' | asset_url | script_tag }}
   {{ 'jquery.ajax-cart.min.js' | asset_url | script_tag }}
@@ -84,6 +91,7 @@
   {{ 'popover.js' | asset_url | script_tag }}
   {{ 'typeahead.js' | asset_url | script_tag }}
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
+  {{ 'jquery.zoom.min.js' | asset_url | script_tag }}
 
   {% if settings.custom-footer-code != '' %}
     {{ settings.custom-footer-code }}
@@ -93,16 +101,31 @@
     {% unless current_handle == blank %}
       $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
     {% endunless %}
+	
+  	{% if settings.instagram-feed and settings.instagram-client-id != blank %}
+  	  if(instagramThumbnailClass === undefined){
+    		var instagramThumbnailClass = "{% include '__thumbnail-span' %}";
+    	}
+    	$(function(){
+  			$('#instagram-widget').bootstrapifyInstagram({
+  				thumbClass: instagramThumbnailClass
+  			});
+  		});
+  	{% endif %}
   
     {% if thumbnail_layout == 'masonry' %}
-      $('.masonry-collection').isotope({
-        itemSelector: '.masonry',
-        layoutMode: 'masonry'
+      var $container = $('.masonry-collection').imagesLoaded(function(){
+        $container.isotope({
+          itemSelector: '.masonry',
+          layoutMode: 'masonry'
+        });
+        
+        $('.product-main-thumb').orderly();
       });
     {% else %}
-	if(uniformThumbnailElements === undefined){
-		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
-	}
+    	if(uniformThumbnailElements === undefined){
+    		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
+    	}
 	  
       var uniformThumbnailsOpts = {};
       {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
@@ -127,5 +150,7 @@
 		$(document).ajaxCart();
 	{% endif %}
   </script>
+  
+
 </body>
 </html>

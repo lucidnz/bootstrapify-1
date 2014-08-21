@@ -1,0 +1,34 @@
+{% include '__product-image' %}
+<div class="{% for tag in product-loop.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
+	<div class="product-thumbnail">
+		<div class="thumbnail-image">
+			{{ image }}
+		</div>
+		<a href="{{ product_url }}" class="caption clearfix">
+			{% if settings.show-vendor-with-thumbnail == 'above-product-title' %}<div class="product-vendor">{{ product-loop.vendor }}</div>{% endif %}
+			<h4 class="product-title">{{ product-loop.title }}</h4>
+			{% if settings.show-vendor-with-thumbnail == 'below-product-title' %}<div class="product-vendor">{{ product-loop.vendor }}</div>{% endif %}
+			<div class="shopify-product-reviews-badge" data-id="{{ product-loop.id }}"></div>
+			{% if has_prices and product-loop.price > 0 %}
+			<div class="price">
+				{% if settings.show-compare-at-price and product-loop.compare_at_price > 0 %}	
+				<small class="text-muted"><del>{% capture was %}
+					{% include '__localize' with 'was' %} 
+					{% if settings.show-currency-with-prices == "with-currency" %}
+					{{ product-loop.compare_at_price_max | money_with_currency }}
+					{% else %}
+					{{ product-loop.compare_at_price_max | money }}
+					{% endif %}
+          {% endcapture %}{{ was | strip }}</del></small>&nbsp;
+				{% elsif product-loop.price_varies %}
+				<small class="text-muted">
+					{% include '__localize' with 'from' %}
+				</small>
+				{% endif %}
+				{% include 'product-price' with product-loop.price %}
+				{% include 'product-badges' with product-loop %}  
+			</div>
+			{% endif %}
+		</a>
+	</div>
+</div>

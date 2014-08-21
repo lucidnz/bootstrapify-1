@@ -2,7 +2,7 @@
  * Shopify checkout bootstrap - extends Shopify's checkout styles with bootstrap
  */
  
-@import "bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
+@import "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
 
 /* Layout */
 #info-bar, #container, #container.slim{
@@ -213,7 +213,6 @@ input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit],
 #footer, #container.slim #footer{
   @extend .navbar;
   @extend .navbar-default;
-  @extend .navbar-fixed-bottom;
   text-align: center;
   p{
     @extend p;

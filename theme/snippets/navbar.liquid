@@ -16,8 +16,8 @@
     {% endunless %}
     {% if navbar == 'footer' %}
     <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
-      {% include 'navbar-nav' with 'footer-left' %}
-      {% include 'navbar-nav' with 'footer-right' %}
+      {% include 'navbar-menu' with 'footer-left' %}
+      {% include 'navbar-menu' with 'footer-right' %}
     </div>
     {% endif %}
   
@@ -29,7 +29,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {% if settings.logo-placement == "top-navbar" and navbar == 'top' %}<a class="navbar-brand" href="/">{% include 'logo' %}</a>{% endif %}
+      {% if settings.logo-placement == "top-navbar" and navbar == 'top' %}<a class="navbar-brand{% if settings.logo-image %} navbar-brand-img{% endif %}" href="/">{% include 'logo' %}</a>{% endif %}
       
       {% if navbar == 'top' %}
       <ul class="nav navbar-icons visible-xs">
@@ -48,11 +48,12 @@
     <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
       {% if navbar == 'top' %}
       <div class="visible-xs">
-        {% include '_navbar-main' %}
+        {% include 'navbar-main' %}
       </div>
-      {% include '_navbar-top' %}
+      {% include 'navbar-menu' with 'top-left' %}
+      {% include 'navbar-menu' with 'top-right' %}
       {% else %}
-      {% include '_navbar-main' %}
+      {% include 'navbar-main' %}
       {% endif %}
     </div>
     {% endunless %}
