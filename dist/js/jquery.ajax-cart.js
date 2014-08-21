@@ -249,6 +249,15 @@
           Currency.convertAll(Currency.shopCurrency, Currency.currentCurrency);
         }
       }
+      this._recalcShipping();
+    }
+  };
+  
+  CartPrice.prototype._recalcShipping = function(){
+    var $shippingCalc = $('.shipping-calculator-wrapper');
+    var $responseWrapper = $shippingCalc.find('#wrapper-response');
+    if($shippingCalc.length > 0 && $responseWrapper.html() !== ''){
+      $shippingCalc.find('.get-rates').trigger('click');
     }
   };
   
