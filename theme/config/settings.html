@@ -1430,6 +1430,25 @@
         </table>
         <table>
           <tr>
+            <th><label for="show-on-sale-badge">Show "On Sale" badge</label></th>
+            <td>
+              <select name="show-on-sale-badge" id="show-on-sale-badge">
+          <option value="as-text" selected="selected">as text</option>
+          <option value="as-percentage-off">as percentage off</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-compare-at-price">Show 'Compare At' Price</label></th>
+            <td>
+              <input type="checkbox" name="show-compare-at-price" id="show-compare-at-price" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="show-product-count-for-collections">Show product count for collections</label></th>
             <td>
               <input type="checkbox" name="show-product-count-for-collections" id="show-product-count-for-collections" value="1" /> Yes
@@ -1471,6 +1490,17 @@
             <td>
               <input type="text" name="tag-button-limit" id="tag-button-limit" class="text" value="10" />
               <small><p>Tags will be shown as buttons until the amount of tags is equal or grater than this limit. If left blank tags will always be shown as buttons.</p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="tag-filtering-action">Tag Filtering Action</label></th>
+            <td>
+              <select name="tag-filtering-action" id="tag-filtering-action">
+          <option value="build-tag-filter" selected="selected">Build tag filter</option>
+          <option value="filter-one-tag-at-a-time">Filter one tag at a time</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -1810,6 +1840,14 @@
         </table>
         <table>
           <tr>
+            <th><label for="free-shipping-threshold">Free shipping threshold</label></th>
+            <td>
+              <input type="text" name="free-shipping-threshold" id="free-shipping-threshold" class="text" value="$100" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="hide-prices-if-cart-disabled">Hide prices if cart is disabled</label></th>
             <td>
               <input type="checkbox" name="hide-prices-if-cart-disabled" id="hide-prices-if-cart-disabled" value="1" /> Yes
@@ -1907,6 +1945,15 @@
           <option value="without-currency">Without currency</option>
         </select>
               <small><p>E.g., <strong>$123.45 NZD</strong></p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="append-plus-taxes-to-price">Append “plus taxes” to prices</label></th>
+            <td>
+              <input type="checkbox" name="append-plus-taxes-to-price" id="append-plus-taxes-to-price" value="1" /> Yes
+              <small>You can localize the wording in the Localization settings using “plus-taxes: + GST”</small>
             </td>
           </tr>
         </table>

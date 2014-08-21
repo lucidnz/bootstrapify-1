@@ -3616,16 +3616,12 @@ tbody.collapse.in {
   left: auto; }
 
 .dropup .caret,
-.navbar-fixed-bottom .dropdown .caret,
-#footer .dropdown .caret,
-#container.slim #footer .dropdown .caret {
+.navbar-fixed-bottom .dropdown .caret {
   border-top: 0;
   border-bottom: 4px solid;
   content: ""; }
 .dropup .dropdown-menu,
-.navbar-fixed-bottom .dropdown .dropdown-menu,
-#footer .dropdown .dropdown-menu,
-#container.slim #footer .dropdown .dropdown-menu {
+.navbar-fixed-bottom .dropdown .dropdown-menu {
   top: auto;
   bottom: 100%;
   margin-bottom: 1px; }
@@ -4175,20 +4171,16 @@ tbody.collapse.in {
         overflow: visible !important; }
       .navbar-collapse.in {
         overflow-y: visible; }
-      .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse, #footer .navbar-collapse, #container.slim #footer .navbar-collapse {
+      .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
         padding-left: 0;
         padding-right: 0; } }
 
 .navbar-fixed-top .navbar-collapse,
-.navbar-fixed-bottom .navbar-collapse,
-#footer .navbar-collapse,
-#container.slim #footer .navbar-collapse {
+.navbar-fixed-bottom .navbar-collapse {
   max-height: 340px; }
   @media (max-width: 480px) and (orientation: landscape) {
     .navbar-fixed-top .navbar-collapse,
-    .navbar-fixed-bottom .navbar-collapse,
-    #footer .navbar-collapse,
-    #container.slim #footer .navbar-collapse {
+    .navbar-fixed-bottom .navbar-collapse {
       max-height: 200px; } }
 
 .container > .navbar-header, #info-bar > .navbar-header, #container > .navbar-header,
@@ -4217,9 +4209,7 @@ tbody.collapse.in {
       border-radius: 0; } }
 
 .navbar-fixed-top,
-.navbar-fixed-bottom,
-#footer,
-#container.slim #footer {
+.navbar-fixed-bottom {
   position: fixed;
   right: 0;
   left: 0;
@@ -4228,16 +4218,14 @@ tbody.collapse.in {
   transform: translate3d(0, 0, 0); }
   @media (min-width: 768px) {
     .navbar-fixed-top,
-    .navbar-fixed-bottom,
-    #footer,
-    #container.slim #footer {
+    .navbar-fixed-bottom {
       border-radius: 0; } }
 
 .navbar-fixed-top {
   top: 0;
   border-width: 0 0 1px; }
 
-.navbar-fixed-bottom, #footer, #container.slim #footer {
+.navbar-fixed-bottom {
   bottom: 0;
   margin-bottom: 0;
   border-width: 1px 0 0; }
@@ -4349,7 +4337,7 @@ tbody.collapse.in {
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
 
-.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu, #footer .navbar-nav > li > .dropdown-menu, #container.slim #footer .navbar-nav > li > .dropdown-menu {
+.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 

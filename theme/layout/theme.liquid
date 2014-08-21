@@ -15,6 +15,8 @@
     <script src="{{ shop.url }}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
   <![endif]-->
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
+
   {{ 'jquery.min.js' | asset_url | script_tag }}
   <script type="text/javascript">
     $('html').addClass('has-js');
@@ -99,6 +101,16 @@
     {% unless current_handle == blank %}
       $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
     {% endunless %}
+	
+	{% if settings.instagram-feed and settings.instagram-client-id != blank %}
+	if(instagramWidgetSet !== true){
+		$(function(){
+			$('#instagram-widget').bootstrapifyInstagram({
+				thumbClass: "{% include '__thumbnail-span' %}"
+			});
+		});
+	};
+	{% endif %}
   
     {% if thumbnail_layout == 'masonry' %}
       var $container = $('.masonry-collection').imagesLoaded(function(){
@@ -137,5 +149,7 @@
 		$(document).ajaxCart();
 	{% endif %}
   </script>
+  
+
 </body>
 </html>

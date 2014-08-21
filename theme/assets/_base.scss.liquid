@@ -8422,6 +8422,7 @@ header .article-meta{
 
 .label {
   font-weight: normal;
+  margin-left: 1em;
 }
 
 .help-block {
@@ -8489,6 +8490,18 @@ header .article-meta{
 }
 
 .has-mega-menu .navbar {
+  .dropdown-menu li {
+    margin-bottom: 5px;
+  }
+  
+  .submenu ul li {
+    margin-bottom: 5px;
+    a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+    
   .nav li.dropdown.open .dropdown-menu {  
     @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
       width: $container-sm;    
@@ -8506,7 +8519,7 @@ header .article-meta{
   .nav li.dropdown.open {
     .dropdown-menu {
       > li {
-        @include make-sm-column(4);
+        @include make-sm-column(3);
         @include make-md-column(3);
         @include make-lg-column(2);
       }
@@ -8584,10 +8597,6 @@ header .article-meta{
   @include navbar-style($navbar-bg, $navbar-link-color);
 }
 
-#currencies-picker {
-  padding: 0;
-}
-
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;
@@ -8618,7 +8627,8 @@ header .article-meta{
 }
 
 .input-group > .twitter-typeahead {
-  margin-top: 5px;
+  display: block !important;
+  height: $input-height-base;
   & > .tt-query, & > .tt-hint {
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
@@ -8922,7 +8932,7 @@ header .article-meta{
 	}
 }
 
-// Slider caption postitions
+// Slider caption positions
 {% for i in (i..5) %}
   {% assign c = i | plus: 1 %}
   {% assign slide = 'slide-' | append: c %}
