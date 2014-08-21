@@ -18,13 +18,13 @@
   		<label>{{ key_title }}</label>
   		{% if key_type == 'select' %}
   		{% assign value_array = value | split: ',' %}
-  		<select class="form-control" name="properties[{{ key_title }}]">
+  		<select class="form-control input-lg" name="properties[{{ key_title }}]">
   			{% for v in value_array %}
   			<option value="{{ v }}">{{ v }}</option>
   			{% endfor %}
   		</select>
   		{% elsif key_type == 'text' %}
-  		<input type="text" class="form-control" name="properties[{{ key_title }}]" placeholder="{{ value }}" />
+  		<input type="text" class="form-control input-lg" name="properties[{{ key_title }}]" placeholder="{{ value }}" />
   		{% elsif key_type == 'checkbox' %}
   		<p><input type="checkbox" name="properties[{{ key_title }}]" value="{{ value }}" />&nbsp;{{ value }}</p>
   		{% elsif key_type == 'file' %}
