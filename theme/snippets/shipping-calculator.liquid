@@ -21,41 +21,47 @@
         </div>
       </div>
     </div>
-      
-    <div class="text-right">
-    </div>
   </div>
   
   <div id="wrapper-response" class="text-right"></div>
 </div>
 
-<script id="shipping-calculator-response-template" type="text/x-jquery-tmpl">
-  {% raw %}
-  <h4 id="shipping-rates-feedback" class="{{if success}}success{{else}}error{{/if}}">
-    {{if success}}
-    {{if rates.length > 1}}
-    <small>Shipping from</small> {{html Shopify.Cart.ShippingCalculator.formatRate(rates[0].price)}}
-    {{else}}
+<script id="shipping-calculator-response-template" type="text/template">
+  <p id="shipping-rates-feedback" <% if (success) { %> class="success" <% } else { %> class="error" <% } %>>
+  <% if (success) { %>
+    <% if (rates.length > 1) { %> 
+    There are <%= rates.length %> shipping rates available for <%= address %>, starting at <%= rates[0].price %>.
+    <% } else if (rates.length == 1) { %>
+    There is one shipping rate available for <%= address %>.
+    <% } else { %>
     We do not ship to this destination.
-    {{/if}}
-    {{else}}
-    ${errorFeedback}
-    {{/if}}
-  </h4>
-  {% endraw %} 
+    <% } %>
+  <% } else { %>
+    <%= errorFeedback %>
+  <% } %>
+  </p>
+  <ul id="shipping-rates" class="list-unstyled">
+    <% for (var i=0; i<rates.length; i++) { %>
+    <li><%= rates[i].name %> at <%= rates[i].price %></li>
+    <% } %>
+  </ul> 
 </script>
 
-{{ "http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" | script_tag }}
-{{ "/services/javascripts/countries.js" | script_tag }}
-{{ "shopify_common.js" | shopify_asset_url | script_tag }}
-{{ "jquery.cart.min.js" | asset_url | script_tag }} 
+<!--[if lte IE 8]> 
+<style> #shipping-calculator { display: none; } </style> 
+<![endif]--> 
+
+{{ '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js' | script_tag }}
+{{ '/services/javascripts/countries.js' | script_tag }}
+{{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+{{ 'jquery.cart.min.js' | asset_url | script_tag }}
 
 <script>
-Shopify.Cart.ShippingCalculator.show( {
-  submitButton: 'Calculate', 
-  submitButtonDisabled: 'Calculating…'{% if shop.customer_accounts_enabled and customer %},
-  customerIsLoggedIn: true{% endif %},
-  moneyFormat: {{ shop.money_with_currency_format | json }}
-} );
+  Shopify.Cart.ShippingCalculator.show({
+    submitButton: 'Calculate', 
+    submitButtonDisabled: 'Calculating…'{% if shop.customer_accounts_enabled and customer %},
+    customerIsLoggedIn: true{% endif %},
+    moneyFormat: {{ shop.money_with_currency_format | json }}
+  });
 </script>
 {% endif %}

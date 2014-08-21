@@ -182,6 +182,12 @@ module.exports = function(grunt) {
             src: 'jquery.*',
             dest: 'theme/assets/'
           },
+          {
+            expand: true,
+            cwd: 'bower_components/shipping-calculator/',
+            src: 'jquery.cart.min.js',
+            dest: 'theme/assets/'
+          },
           // grab required respond js and cross-domain files from bower
           {
             expand: true,

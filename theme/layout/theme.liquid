@@ -102,15 +102,16 @@
       $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
     {% endunless %}
 	
-	{% if settings.instagram-feed and settings.instagram-client-id != blank %}
-	if(instagramWidgetSet !== true){
-		$(function(){
-			$('#instagram-widget').bootstrapifyInstagram({
-				thumbClass: "{% include '__thumbnail-span' %}"
-			});
-		});
-	};
-	{% endif %}
+  	{% if settings.instagram-feed and settings.instagram-client-id != blank %}
+  	  if(instagramThumbnailClass === undefined){
+    		var instagramThumbnailClass = "{% include '__thumbnail-span' %}";
+    	}
+    	$(function(){
+  			$('#instagram-widget').bootstrapifyInstagram({
+  				thumbClass: instagramThumbnailClass
+  			});
+  		});
+  	{% endif %}
   
     {% if thumbnail_layout == 'masonry' %}
       var $container = $('.masonry-collection').imagesLoaded(function(){
