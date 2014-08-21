@@ -30,7 +30,7 @@
 {% if features-loop == 'blog' %}{% include 'article-meta' with object %}{% endif %}
 <p>{% if excerpt == blank and shop.url contains 'myshopify' and settings.development-mode %}This will show an excerpt of the content (if one exists). To hide this placeholder text, disable development mode in Settings > Advanced.{% elsif src == null %}{{ excerpt | strip_html }}{% endif %}</p>
 {% endcapture %}
-<div class="col-md-{{ span }}">
+<div class="col-sm-{{ span }}">
   {% if object.metafields.icon.name == blank %}
   {{ blurb }}
   {% else %}
