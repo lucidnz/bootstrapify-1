@@ -25,7 +25,8 @@ module.exports = function(grunt) {
           Image: true,
           $: true,
           jQuery: true,
-          Shopify: true
+          Shopify: true,
+          Currency: true
         }
       },
       gruntfile: {
@@ -178,7 +179,13 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'bower_components/jquery/dist/',
-            src: 'jquery.min.*',
+            src: 'jquery.*',
+            dest: 'theme/assets/'
+          },
+          {
+            expand: true,
+            cwd: 'bower_components/shipping-calculator/',
+            src: 'jquery.cart.min.js',
             dest: 'theme/assets/'
           },
           // grab required respond js and cross-domain files from bower

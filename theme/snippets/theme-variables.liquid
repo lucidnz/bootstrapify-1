@@ -28,7 +28,7 @@
 {% if settings.logo-placement == 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}
 {% if settings.disable-cart == blank %}{% assign has_top_navbar = true %}{% endif %}
 {% if shop.customer_accounts_enabled %}{% assign has_top_navbar = true %}{% endif %}
-{% if settings.show-search-in-navbar != blank %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.search-placement == 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}
 {% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}
 {% if settings.top-navbar-linklist-left != blank %}{% assign has_top_navbar = true %}{% endif %}
 {% if settings.top-navbar-linklist-right != blank %}{% assign has_top_navbar = true %}{% endif %}
@@ -138,5 +138,7 @@
 {% endcase %}
 
 {% if settings.use-mega-dropdown-menu %}{% assign has_mega_menu = true %}{% endif %}
+
+{% unless settings.free-shipping-threshold == blank %}{% assign free_shipping_threshold = settings.free-shipping-threshold | remove: '$' | times: 100.0 %}{% endunless %}
 
 {% endcapture %}

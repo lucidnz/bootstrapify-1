@@ -5,20 +5,18 @@
 $(function() {
   /* Multiple currencies */
   if ($('body').hasClass('currencies')) {
-    $('#currency-picker-toggle a').click(function() {
-      $('#currency-picker-toggle').hide();
-      $('#currencies-picker').fadeIn();
+    var $currencyPicker = $('.currency-picker');
+    $currencyPicker.on('click', 'a', function(e) {
+      $currencyPicker.find('#current-currency').hide();
+      $currencyPicker.find('#currencies-picker').fadeIn();
+      e.preventDefault();
       return false;
-    });
-
-    $('#currencies-picker select').change(function() {
-      $('#currencies-picker').hide();
-      $('#currency-picker-toggle').fadeIn();
-      return true;
-    }).blur(function() {
-      $('#currencies-picker').hide();
-      $('#currency-picker-toggle').fadeIn();
-      return true;
+    }).on('change', 'select', function() {
+      $currencyPicker.find('#current-currency').fadeIn();
+      $currencyPicker.find('#currencies-picker').hide();
+    }).on('blur', 'select', function(){
+      $currencyPicker.find('#current-currency').fadeIn();
+      $currencyPicker.find('#currencies-picker').hide();
     });
   }
 });
@@ -31,6 +29,31 @@ $('#cart-note').on('shown.bs.collapse', function(){
   $(this).find('#note').focus();
 });
 
+/* Notify me form */
+$(document).on('submit', '.notify-me-wrapper form', function(e){
+  var $self = $(this);
+  $self.find('.alert').removeClass('alert-danger alert-success').text('').hide();
+  
+  if($self.find('[type="email"]').val() !== ''){
+    $.ajax({
+      url: '/contact',
+      type: 'POST',
+      data: $self.serialize()
+    })
+    .done(function(){
+      $self.find('.alert').addClass('alert-success').text('Thanks! We will notify you when this product becomes available.').show();
+      $self.find('.form-group').removeClass('has-error').hide();
+    })
+    .fail(function(a,b,c){
+      console.log(a,b,c);
+      $self.find('.alert').addClass('alert-danger').text('There was an error submitting your email. Please try again later.').show();
+    });
+  } else {
+    $self.find('.alert').addClass('alert-danger').text('Please enter an email adddress.').show();
+    $self.find('.form-group').addClass('has-error');
+  }
+  e.preventDefault();
+});
 var preloadProductImages = function(){
   var $thumbs = $('[data-main-image]');
   if($thumbs.length > 0){
@@ -55,6 +78,7 @@ var productImageZoom = function($imageWrapper){
     var imgSrc = $this.find('img')[0].src;
     var imgSize = Shopify.Image.imageSize(imgSrc);
     var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc.replace('_'+imgSize, ''), '2048x2048');
+    $this.trigger('zoom.destroy');
     $this.zoom({url: SizedImgSrc});
   });
 };

@@ -17,7 +17,7 @@
       {% assign footer_columns = cols | split: '|' %}
       
       {% for footer_column in footer_columns %}
-        {% include '_footer-columns' %}
+        {% include 'footer-column-loop' %}
       {% endfor %}
     </div>
     {% endif %}
