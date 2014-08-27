@@ -4,6 +4,7 @@
 
 Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
   // override markup vars
+  this.existingSelectorId       = existingSelectorId;
   this.b_selectorDivClass       = 'selector-wrapper form-group';
   this.b_selectorClass          = 'single-option-selector form-control input-lg';
   this.b_linkOptions            = options.linkOptions || false;
@@ -15,7 +16,7 @@ Shopify.BootstrapifyOptionSelectors = function(existingSelectorId, options){
     oldSelector.style.display = 'none';
     this.displaySingleVariantTitle(oldSelector);
     // trigger select callback
-    this.onVariantSelected(this.product.variants[0], null);
+    this.onVariantSelected(this.product.variants[0], this);
   } else {
     // call base constructor
     Shopify.BootstrapifyOptionSelectors.baseConstructor.call(this, existingSelectorId, options);

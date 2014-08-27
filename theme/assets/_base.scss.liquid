@@ -8312,7 +8312,7 @@ body {
 /* Body */
 .has-js {
   {% if settings.thumbnail-layout == 'ordered' %}
-  .thumbnail-image, .product-main-thumb {
+  .thumbnail-image a, .product-main-thumb a {
     opacity: 0;
   }
   {% endif %}
@@ -8692,6 +8692,12 @@ header .article-meta{
     h4 {
       margin-top: 0.5em;
     }
+  }
+}
+
+.thumbnail-image, .product-main-thumb {
+  > a {
+    display: block;
   }
 }
 
