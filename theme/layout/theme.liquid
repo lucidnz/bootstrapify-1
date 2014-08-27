@@ -62,14 +62,15 @@
 			<div class="main-content {% include '__main-span' %}">
 		{% endif %}
 		{% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
+		
 		{{ content_for_layout }}
+		
 		{% if has_sidebar and settings[sidebar_template] %}
 			</div>
 			{% include 'sidebar' %}
 			{% unless has_window_width_thumbnail_container %}</div></div>{% endunless %}
 		{% endif %}
     </div>
-    
     {% include 'footer' %}
   </div>
   
@@ -124,7 +125,7 @@
       });
     {% else %}
     	if(uniformThumbnailElements === undefined){
-    		var uniformThumbnailElements = '.thumbnail-image, .product-main-thumb';
+    		var uniformThumbnailElements = '.thumbnail-image a, .product-main-thumb a';
     	}
 	  
       var uniformThumbnailsOpts = {};
@@ -150,7 +151,5 @@
 		$(document).ajaxCart();
 	{% endif %}
   </script>
-  
-
 </body>
 </html>

@@ -8,43 +8,31 @@
   {% assign col-sm = 12 %}
   {% assign col-md = 12 %}
   {% assign col-lg = 12 %}
-  {% assign md-offset = 0 %}
-  {% assign lg-offset = 0 %}
 {% elsif image_count == 2 %}
   {% assign col-xs = 12 %}
   {% assign col-sm = 12 %}
   {% assign col-md = 6 %}
   {% assign col-lg = 6 %}
-  {% assign md-offset = 0 %}
-  {% assign lg-offset = 0 %}
 {% elsif image_count == 3 %}
   {% assign col-xs = 12 %}
   {% assign col-sm = 12 %}
   {% assign col-md = 4 %}
   {% assign col-lg = 4 %}
-  {% assign md-offset = 0 %}
-  {% assign lg-offset = 0 %}
 {% elsif image_count == 4 %}
   {% assign col-xs = 12 %}
   {% assign col-sm = 12 %}
   {% assign col-md = 3 %}
   {% assign col-lg = 3 %}
-  {% assign md-offset = 0 %}
-  {% assign lg-offset = 0 %}
 {% elsif image_count == 5 or image_count == 10 %}
   {% assign col-xs = 12 %}
   {% assign col-sm = 12 %}
   {% assign col-md = 2 %}
   {% assign col-lg = 2 %}
-  {% assign md-offset = 1 %}
-  {% assign lg-offset = 1 %}
 {% elsif image_count == 6 or image_count == 12 %}
   {% assign col-xs = 12 %}
   {% assign col-sm = 12 %}
   {% assign col-md = 2 %}
   {% assign col-lg = 2 %}
-  {% assign md-offset = 0 %}
-  {% assign lg-offset = 0 %}
 {% else %}
   {% assign col-xs = 12 | divided_by: settings.thumbnails-per-row-mobile %}
   {% assign col-sm = 12 | divided_by: settings.thumbnails-per-row-tablet %}
@@ -52,4 +40,4 @@
   {% assign col-lg = 12 | divided_by: settings.thumbnails-per-row-desktop %}
 {% endif %}
   
-{% endcapture %}{% if forloop.index == 1 and thumbnail_layout != 'masonry' %}col-xs-offset-0 col-sm-offset-0 col-md-offset-{{ md-offset }} col-lg-offset-{{ lg-offset }} {% endif %}col-xs-{{ col-xs }} col-sm-{{ col-sm }} col-md-{{ col-md }} col-lg-{{ col-lg }}
+{% endcapture %}col-xs-{{ col-xs }} col-sm-{{ col-sm }} col-md-{{ col-md }} col-lg-{{ col-lg }}

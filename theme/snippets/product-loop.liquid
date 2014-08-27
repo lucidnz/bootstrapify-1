@@ -1,5 +1,5 @@
 {% include '__product-image' %}
-<div class="{% for tag in product-loop.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
+<div class="{% include '__thumbnail-span' %} {% for tag in product-loop.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
 	<div class="product-thumbnail">
 		<div class="thumbnail-image">
 			{{ image }}
