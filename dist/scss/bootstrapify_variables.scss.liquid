@@ -11,6 +11,7 @@
   @if $body-bg {
   $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
   }
+  $max-height-break: 800px;
 
 // Global text color on body
 {% if settings.text-colour != blank %}
