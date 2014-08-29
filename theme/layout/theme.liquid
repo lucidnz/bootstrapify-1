@@ -39,6 +39,16 @@
 
   <div id="wrap">
     {% include 'navbar' with 'top' %}
+    {% if has_mega_menu %}
+    {% for mm in linklists[settings.top-navbar-linklist-left].links %}
+    <div class="mega-menu collapse" id="menu-{{ mm.handle }}">
+      <div class="container">
+        {% include 'sidebar-nav' with linklists[mm.handle] %}
+      </div>
+    </div>
+    {% endfor %}
+      
+    {% endif %}
     <div id="content">
       {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
     	{% if has_main_menu %}
