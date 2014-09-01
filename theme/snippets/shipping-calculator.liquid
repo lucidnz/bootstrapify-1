@@ -27,19 +27,17 @@
 </div>
 
 <script id="shipping-calculator-response-template" type="text/template">
-  <p id="shipping-rates-feedback" <% if (success) { %> class="success" <% } else { %> class="error" <% } %>>
+  <h4 id="shipping-rates-feedback" <% if (success) { %> class="success" <% } else { %> class="error" <% } %>>
   <% if (success) { %>
-    <% if (rates.length > 1) { %> 
-    There are <%= rates.length %> shipping rates available for <%= address %>, starting at <%= rates[0].price %>.
-    <% } else if (rates.length == 1) { %>
-    There is one shipping rate available for <%= address %>.
+    <% if (rates.length > 0) { %> 
+    <%= rates.length %> shipping rate<% if (rates.length > 1) { %>s<% } %> available:
     <% } else { %>
-    We do not ship to this destination.
+    No shipping rates available.
     <% } %>
   <% } else { %>
     <%= errorFeedback %>
   <% } %>
-  </p>
+  </h4>
   <ul id="shipping-rates" class="list-unstyled">
     <% for (var i=0; i<rates.length; i++) { %>
     <li><%= rates[i].name %> at <%= rates[i].price %></li>
