@@ -40,10 +40,11 @@
   <div id="wrap">
     {% include 'navbar' with 'top' %}
     {% if has_mega_menu %}
-    {% for mm in linklists[settings.top-navbar-linklist-left].links %}
-    <div class="mega-menu collapse" id="menu-{{ mm.handle }}">
+    {% for l in linklists[settings.top-navbar-linklist-left].links %}
+    <div class="mega-menu collapse" id="menu-{{ l.handle }}">
       <div class="container">
-        {% include 'sidebar-nav' with linklists[mm.handle] %}
+        {% assign collapse_in = true %}
+        {% include 'sidebar-nav' with linklists[l.handle] %}
       </div>
     </div>
     {% endfor %}

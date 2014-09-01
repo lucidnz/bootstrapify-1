@@ -246,15 +246,23 @@ header .article-meta{
 }
 
 .mega-menu {
-  margin-top: 0 - $navbar-margin-bottom;
-  margin-bottom: $navbar-margin-bottom;
+  background-color: lighten($navbar-default-bg, 2%);
   padding-top: $navbar-margin-bottom;
   padding-bottom: $navbar-margin-bottom;
-  background-color: lighten($navbar-default-bg, 10%);
   
-  li.submenu-item > a {
-    &,
-    &:visted {
+  .submenu-list {
+    @include make_row();
+  
+    .submenu-column {
+      @include make-sm-column(2);
+      @include make-md-column(2);
+      @include make-lg-column(2);
+    }
+  }
+  
+  & .submenu-list a {
+    &,   
+    &:visited {
       color: $navbar-default-link-color;
     }
     
@@ -265,10 +273,6 @@ header .article-meta{
     &:active {
       color: $navbar-default-link-active-color;
     }
-  }
-  
-  .submenu-link-title {
-    @extend strong;
   }
 }
 
@@ -286,8 +290,10 @@ header .article-meta{
   }
 }
 
-.submenu {
-  margin-bottom: $grid-gutter-width;
+.submenu-list {
+  padding-bottom: 1em;
+  padding-top: 1em;
+  margin: 0;
 }
 
 .navbar-nav .open .dropdown-menu .dropdown-header, .submenu .nav .dropdown-header{
