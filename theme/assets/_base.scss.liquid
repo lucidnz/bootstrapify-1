@@ -206,6 +206,7 @@
   @if $body-bg {
   $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
   }
+  $max-height-break: 800px;
 
 // Global text color on body
 {% if settings.text-colour != blank %}
@@ -562,10 +563,11 @@ $footer-link-color:     {% if settings.footer-link-colour != blank %} {{ setting
 $footer-text-color:     {% if settings.footer-text-colour != blank %} {{ settings.footer-text-colour }} {% else %} false {% endif %} !default;
 
 {% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
-// a flag to toggle asset pipeline / compass integration
-// defaults to true if twbs-font-path function is present (no function => twbs-font-path('') parsed as string == right side)
-// in Sass 3.3 this can be improved with: function-exists(twbs-font-path)
+// When true, asset path helpers are used, otherwise regular url() is used
+// When there no function is defined, `fn('')` is parsed as string that equals the right hand side
+// NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
 $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
+
 //
 // Variables
 // --------------------------------------------------
@@ -641,7 +643,10 @@ $headings-color:          inherit !default;
 //## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
-$icon-font-path: "bootstrap/" !default;
+
+// [converter] Asset helpers such as Sprockets and Node.js Mincer do not resolve relative paths
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default;
+
 //** File name for all font files.
 $icon-font-name:          "glyphicons-halflings-regular" !default;
 //** Element ID within SVG icon file.
@@ -6974,7 +6979,8 @@ a.list-group-item {
   &.disabled:focus {
     background-color: $list-group-disabled-bg;
     color: $list-group-disabled-color;
-
+    cursor: not-allowed;
+    
     // Force color to inherit for custom content
     .list-group-item-heading {
       color: inherit;
@@ -8251,6 +8257,7 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: table;
+  table-layout: fixed;
   width: 100%;
   height: 100%;
 }
@@ -8310,7 +8317,7 @@ body {
 }
 
 /* Body */
-.has-js {
+.js {
   {% if settings.thumbnail-layout == 'ordered' %}
   .thumbnail-image a, .product-main-thumb a {
     opacity: 0;
@@ -8333,6 +8340,19 @@ body {
   &.has-footer-navbar.has-fixed-footer-navbar{
     #footer-content > .container{
       padding-bottom: $navbar-height + $navbar-margin-bottom;
+    }
+  }
+  @media (max-height: $max-height-break){
+    &.has-top-navbar.has-fixed-top-navbar {
+      padding-top: 0;
+      &.banner-window-width.has-banner, &.banner-window-width.has-slider {
+        padding-top: 0;
+      }
+    }
+    &.has-footer-navbar.has-fixed-footer-navbar{
+      #footer-content > .container{
+        padding-bottom: 0;
+      }
     }
   }
 
@@ -8591,6 +8611,12 @@ header .article-meta{
   $navbar-bg:   {% if settings.main-navbar-background-colour != blank %} {{ settings.main-navbar-background-colour }} {% else %} $navbar-default-bg {% endif %};
   $navbar-link-color: {% if settings.main-navbar-link-colour != blank %} {{ settings.main-navbar-link-colour }} {% else %} $navbar-default-link-color {% endif %};
   @include navbar-style($navbar-bg, $navbar-link-color);
+}
+
+@media (max-height: $max-height-break){
+  .navbar-fixed-top, .navbar-fixed-bottom {
+    position: relative;
+  }
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
