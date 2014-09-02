@@ -206,6 +206,7 @@
   @if $body-bg {
   $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
   }
+  $max-height-break: 800px;
 
 // Global text color on body
 {% if settings.text-colour != blank %}
@@ -8256,6 +8257,7 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: table;
+  table-layout: fixed;
   width: 100%;
   height: 100%;
 }
@@ -8315,9 +8317,9 @@ body {
 }
 
 /* Body */
-.has-js {
+.js {
   {% if settings.thumbnail-layout == 'ordered' %}
-  .thumbnail-image, .product-main-thumb {
+  .thumbnail-image a, .product-main-thumb a {
     opacity: 0;
   }
   {% endif %}
@@ -8338,6 +8340,19 @@ body {
   &.has-footer-navbar.has-fixed-footer-navbar{
     #footer-content > .container{
       padding-bottom: $navbar-height + $navbar-margin-bottom;
+    }
+  }
+  @media (max-height: $max-height-break){
+    &.has-top-navbar.has-fixed-top-navbar {
+      padding-top: 0;
+      &.banner-window-width.has-banner, &.banner-window-width.has-slider {
+        padding-top: 0;
+      }
+    }
+    &.has-footer-navbar.has-fixed-footer-navbar{
+      #footer-content > .container{
+        padding-bottom: 0;
+      }
     }
   }
 
@@ -8598,6 +8613,12 @@ header .article-meta{
   @include navbar-style($navbar-bg, $navbar-link-color);
 }
 
+@media (max-height: $max-height-break){
+  .navbar-fixed-top, .navbar-fixed-bottom {
+    position: relative;
+  }
+}
+
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
 .twitter-typeahead {
   width: 100%;
@@ -8697,6 +8718,12 @@ header .article-meta{
     h4 {
       margin-top: 0.5em;
     }
+  }
+}
+
+.thumbnail-image, .product-main-thumb {
+  > a {
+    display: block;
   }
 }
 
