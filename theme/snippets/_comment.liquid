@@ -1,0 +1,11 @@
+<div id="comment-{{ _comment.id }}" class="media">
+  {% if settings.use-gravatars != blank %}
+  <div class="pull-left{% unless settings.round-avatars %} thumbnail{% endunless %}">
+    <img src="http://www.gravatar.com/avatar/{{ _comment.email | remove: ' ' | strip_newlines | downcase | md5 }}" class="media-object{% if settings.round-avatars %} img-circle{% endif %}" alt="Gravatar for {{ _comment.author }}" />
+  </div>
+  {% endif %}
+  <div class="media-body">
+    <p class="text-muted">Posted {{ _comment.created_at | date: settings.long-date-format }} by {{ _comment.author }}</p>
+    {{ _comment.content }}
+  </div>
+</div>

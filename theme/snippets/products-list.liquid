@@ -1,0 +1,16 @@
+<div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
+	{% if template contains 'index' %}
+		{% if settings.homepage-products-limit contains 'limited' %}{% assign limit = nil %}{% else %}{% assign limit = settings.homepage-products-limit %}{% endif %}
+		{% if t_object != blank %}
+			{% assign product_collection = t_object %}
+		{% else %}
+			{% assign product_collection = collections[settings.homepage-products-collection] %}
+		{% endif %}
+	{% elsif collection %}
+		{% assign product_collection = collection %}
+	{% endif %}
+	{% for p in product_collection.products | limit: limit %}
+		{% assign product_count = forloop.length %}
+		{% include 'product-loop' with p %}
+	{% endfor %}
+</div>

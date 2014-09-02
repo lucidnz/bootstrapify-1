@@ -1,0 +1,5 @@
+{% if has_sidebar %}
+  {% if settings[sidebar_template] %}
+    {% include 'sidebar-content' %}
+  {% endif %}
+{% endif %}

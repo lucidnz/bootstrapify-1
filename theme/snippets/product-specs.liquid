@@ -1,0 +1,25 @@
+{% if settings.show-product-vendor or settings.show-product-type or settings.show-product-collections or settings.show-product-tags %}
+<dl>
+  {% if settings.show-product-vendor %}
+    <dt>{% include '__localize' with 'Vendor' %}</dt>
+    <dd>{{ product.vendor | link_to_vendor }}</dd>
+  {% endif %}
+  {% if settings.show-product-type %}
+    <dt>{% include '__localize' with 'Type' %}</dt>
+    <dd>{{ product.type | link_to_type }}</dd>
+  {% endif %}
+  {% if settings.show-product-collections %}
+    <dt>{% include '__localize' with 'Collections' %}</dt>
+    <dd>{% for c in product.collections %}{% if forloop.index > 1 %}, {% endif %}{{ c.title | link_to: c.url }}{% endfor %}</dd>
+  {% endif %}
+  {% if collection %}{% assign _collection = collection %}{% else %}{% assign _collection = collections.all %}{% endif %}
+  {% if settings.show-product-tags and _collection != blank and product.tags.size > 0 %}
+    <dt>{% include '__localize' with 'Tags' %}</dt>{% assign tag_count = 1 %}
+    <dd>
+      {% for tag in product.tags %}
+      {% assign tag_url = tag | handleize | prepend: '/' | prepend: _collection.url %}{% unless tag contains ':' %}{% if tag_count > 1 %}, {% endif %}{% assign tag_count = tag_count | plus: 1 %}{{ tag | link_to: tag_url }}{% endunless %}
+      {% endfor %}
+    </dd>
+  {% endif %}
+</dl>
+{% endif %}

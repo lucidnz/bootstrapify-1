@@ -1,0 +1,44 @@
+{% assign tag_button_limit = settings.tag-button-limit | times: 1 %}
+{% if settings.tag-button-limit != blank and all_tags.size > tag_button_limit %}
+  {% assign tag_style = 'menu' %}
+{% else %}
+  {% assign tag_style = 'buttons' %}
+{% endif %}
+
+{% unless tags == blank %}
+<ul class="nav nav-pills {% if settings.tag-placement == 'sidebar' %}nav-stacked{% else %}pull-left{% endif %}">
+  {% if tag_style == 'menu' %}
+  <li class="dropdown{% if current_tags contains g_find %} active{% endif %}">
+    <a role="button" data-toggle="dropdown" href="#" id="group_{{ tags }}">{% include '__localize' with 'Filter by' %} {{ tags }} <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="group_{{ tags }}">
+    {% endif %}
+      {% if tag_style == 'buttons' %}<li class="disabled"><a href="#">{% include '__localize' with 'Filter by' %} {{ tags }}</a></li>{% endif %}
+      {% for t in all_tags %}
+        {% assign current_tags_downcase = current_tags | downcase %}
+        {% assign t_downcase = t | downcase %}
+        {% assign t_parts = t_downcase | split: ':' %}
+        {% assign group_downcase = tags | downcase %}
+        {% assign tag_title = t_downcase | remove: tags | remove: group_downcase | remove: ':' %}
+
+        {% if tags == 'tag' and t_parts.size == 1 %}
+          {% assign show_tag = true %}
+        {% elsif t_parts.first == group_downcase %}
+          {% assign show_tag = true %}
+        {% else %}
+          {% assign show_tag = false %}
+        {% endif %}
+        
+        {% if show_tag %}
+          {% if current_tags_downcase contains t_downcase %}
+            <li class="active">{{ '<i class="fa fa-times-circle fa-fw"></i>&nbsp;' | append: tag_title | link_to_remove_tag: t }}</li>
+          {% else %}
+            <li>{% if settings.tag-filtering-action == 'build-tag-filter' %}{{ tag_title | link_to_add_tag: t }}{% else %}{{ tag_title | link_to_tag: t }}{% endif %}</li>
+          {% endif %}
+        {% endif %}	
+      {% endfor %}
+      {% if tag_style == 'menu' %}
+    </ul>
+  </li>
+  {% endif %}
+</ul>
+{% endunless %}

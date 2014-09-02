@@ -1,0 +1,12 @@
+{% for t in all_tags %}
+{% if t contains tags or tags == 'tag' %}
+{% unless tags == 'tag' and t contains ':' %}
+{% assign current_tags = current_tags | downcase %}
+{% if current_tags contains t %}
+<li class="active">{{ t | remove: tags | remove: ':' | append: '&ensp;<i class="fa fa-times-circle"></i>' | link_to_remove_tag: t }}</li>
+{% else %}
+<li>{% if settings.tag-filtering-action == 'build-tag-filter' %}{{ t | remove: tags | remove: ':' | link_to_add_tag: t }}{% else %}{{ t | remove: tags | remove: ':' | link_to_tag: t }}{% endif %}</li>
+{% endif %}
+{% endunless %}
+{% endif %}	
+{% endfor %}

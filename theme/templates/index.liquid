@@ -1,0 +1,58 @@
+{% include 'theme-variables' %}
+
+{% if settings.advanced-homepage-layout != blank %}
+	{% include 'index-advanced-layout' %}
+{% else %}
+
+<!-- Homepage Intro -->
+{% unless settings.homepage-content == blank %}{% assign homepage = pages[settings.homepage-content] %}
+<section id="homepage-intro" class="section-wrap">
+	{% include '__containers-open' %}
+		<h1 class="page-header" id="homepage-title">{{ homepage.title }}</h1>
+		{% unless homepage.content == blank %}
+		{% include '__formatted-content' with homepage.content %}
+		{% endunless %}
+	{% include '__containers-close' %}
+</section>
+{% endunless %}
+
+<!-- Features Linklist Overview -->
+{% include 'features-linklist-overview' with 'linklist' %}
+
+<!-- Featured Collections -->
+{% unless settings.homepage-collections-linklist == blank %}
+<section id="featured-collections" class="section-wrap">
+	{% include '__containers-open' %}
+		<h2 class="page-header" id="collectons-title">{{ linklists[settings.homepage-collections-linklist].title }}</h2>
+		{% include 'collections-list' with 'featured' %}
+	{% include '__containers-close' %}
+</section>
+{% endunless %}
+
+<!-- Featured Products -->
+{% unless settings.homepage-products-collection == blank %}
+{% assign homepage_collection = collections[settings.homepage-products-collection] %}
+{% assign is-product-list = true %}
+<section id="product-list" class="section-wrap">
+	{% include '__containers-open' %}
+		<h2 class="page-header" id="products-title">{% if homepage_collection.all_products_count > homepage_products_limit %}<a href="{{ homepage_collection.url }}">{{ homepage_collection.title }}</a>&emsp;<a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% else %}{{ homepage_collection.title }}{% endif %}</h2>
+		{% include 'products-list' %}
+	{% include '__containers-close' %}
+</section>
+{% endunless %}
+
+<!-- Homepage Blog Overview -->
+{% include 'index-blog' with 'blog' %}
+
+{% include 'index-testimonials' %}
+
+{% assign album_set = false %}
+{% for fb in blogs[settings.facebook-album-blog].articles %}
+  {% if fb.metafields.social-feed.facebook-album != blank and album_set != true %}
+    {% include 'social-feed-facebook' with fb %}
+    {% assign album_set = true %}
+  {% endif %}
+{% endfor %}
+
+{% include 'social-feed-instagram' with homepage %}
+{% endif %}

@@ -1,0 +1,43 @@
+{% capture strip_space %}
+{% if settings.use-adaptive-thumbnails-per-row %}
+  {% assign image_count = forloop.length %}
+{% endif %}
+    
+{% if image_count == 1 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 12 %}
+  {% assign col-lg = 12 %}
+{% elsif image_count == 2 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 6 %}
+  {% assign col-lg = 6 %}
+{% elsif image_count == 3 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 4 %}
+  {% assign col-lg = 4 %}
+{% elsif image_count == 4 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 3 %}
+  {% assign col-lg = 3 %}
+{% elsif image_count == 5 or image_count == 10 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 2 %}
+  {% assign col-lg = 2 %}
+{% elsif image_count == 6 or image_count == 12 %}
+  {% assign col-xs = 12 %}
+  {% assign col-sm = 12 %}
+  {% assign col-md = 2 %}
+  {% assign col-lg = 2 %}
+{% else %}
+  {% assign col-xs = 12 | divided_by: settings.thumbnails-per-row-mobile %}
+  {% assign col-sm = 12 | divided_by: settings.thumbnails-per-row-tablet %}
+  {% assign col-md = 12 | divided_by: settings.thumbnails-per-row-laptop %}
+  {% assign col-lg = 12 | divided_by: settings.thumbnails-per-row-desktop %}
+{% endif %}
+  
+{% endcapture %}col-xs-{{ col-xs }} col-sm-{{ col-sm }} col-md-{{ col-md }} col-lg-{{ col-lg }}

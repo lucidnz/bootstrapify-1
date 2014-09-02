@@ -1,0 +1,13 @@
+{% if __excerpt %}
+  {% assign content_words = __excerpt | split: ' ' %}
+  {% assign is_truncated = false %}
+  {% if __excerpt contains '===' %}
+    {{ __excerpt | strip_html | split: '===' | first }}
+    {% assign is_truncated = true %}
+  {% else %}
+    {{ __excerpt | strip_html | truncatewords: settings.truncate-words }}
+    {% if content_words.size > truncate_words %}
+    {% assign is_truncated = true %}
+    {% endif %}
+  {% endif %}
+{% endif %}

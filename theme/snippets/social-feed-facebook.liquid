@@ -1,0 +1,7 @@
+<section id="social-feed-facebook" class="section-wrap">
+	{% include '__containers-open' %}
+		{% unless template == 'article' %}<h2 id="facebook-title"></h2>{% endunless %}
+		<div class="row" id="facebook-thumbs" data-album="{{ social-feed-facebook.metafields.social-feed.facebook-album }}"></div>
+		<p id="facebook-link"></p>
+	{% include '__containers-close' %}
+</section>

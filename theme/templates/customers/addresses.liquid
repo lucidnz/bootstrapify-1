@@ -1,0 +1,50 @@
+{% assign form-type = 'horizontal' %}
+
+<section id="addresses" class="section-wrap">
+	{% include '__containers-open' %}
+	<div id="admin_header" class="clearfix">
+		<h1 class="page-header">Manage Account Address</h1>
+		<div class="action_link action_return note pull-right" id='return_to_store'><a href="/account">Return to Account page</a></div>
+		<div id="action" class="action_link action_add note pull-left"><a href="#" class="btn btn-default" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a></div>
+	</div>
+  
+	<div id="add_address" class="customer_address edit_address" style="display:none;">
+		{% include '_form-address' %}
+	</div>
+  
+	<div class="customer_addresses">
+		{% paginate customer.addresses by 10 %}
+		{% for address in customer.addresses %}
+		<div class="well">
+			<div id="view_address_{{address.id}}">
+				<ul class="list-inline pull-right">
+					<li><span class="action_link action_edit">{{ "Edit" | edit_customer_address_link: address.id }}</span></li>
+					<li><span class="action_link action_delete">{{ "Delete" | delete_customer_address_link: address.id }}</span></li>
+				</ul>
+				<h4>{{ address.first_name }} {{address.last_name }} {% if address == customer.default_address %}<span class="default_address note">(Default Address)</span>{% endif %}</h4>
+				<address>
+					{% unless address.company == '' %}{{ address.company }}<br>{% endunless %}
+					{{ address.street }}<br>
+					{{ address.city }} {% if address.province_code %}, {{ address.province_code }}{% endif %}<br>
+					{{ address.country }} {{ address.zip }}<br>
+					{{ address.phone }}
+				</address>
+			</div>
+			<div id="edit_address_{{address.id}}" class="customer_address edit_address" style="display:none;">
+				{% include '_form-address' %}
+			</div>
+		</div>
+		{% endfor %}
+		<div id="address_pagination">{{ paginate | default_pagination }}</div>  
+		{% endpaginate %}
+	</div>
+	{% include '__containers-close' %}
+</section>
+
+<script type="text/javascript" charset="utf-8">
+// initialize observers on address selectors
+new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {hideElement: 'address_province_container_new'});  
+{% for address in customer.addresses %}
+new Shopify.CountryProvinceSelector('address_country_{{address.id}}', 'address_province_{{address.id}}', {hideElement: 'address_province_container_{{address.id}}'});
+{% endfor %}
+</script>

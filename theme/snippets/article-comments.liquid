@@ -1,0 +1,11 @@
+<h3 id="article-comments">Comments</h3>
+{% paginate article.comments by 10 %}
+  {% if article.comments.size > 0 %}
+    {% for c in article.comments %}
+      {% include '_comment' with c %}
+    {% endfor %}
+    {% include 'pagination' %}
+  {% else %}
+    <p>{% include '__localize' with 'No comments. Please feel free to be the first.' %}</p>
+  {% endif %}
+{% endpaginate %}

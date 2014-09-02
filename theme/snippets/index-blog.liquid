@@ -1,0 +1,15 @@
+{% assign _blog = blogs[settings.homepage-blog] %}
+{% if _blog != empty and _blog.articles.size > 0 %}
+<section id="homepage-blog" class="section-wrap">
+	{% include '__containers-open' %}
+		<h2 class="page-header">{{ _blog.title }}{% if _blog.articles.size > 4 %}&ensp;<a class="small" href="{{ _blog.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
+
+		<div class="row">
+			{% for l in _blog.articles | limit: 4 %}
+			{% assign cols = forloop.length %}
+			{% include 'features-loop' with 'blog' %}
+			{% endfor %}
+		</div>
+	{% include '__containers-close' %}
+</section>
+{% endif %}

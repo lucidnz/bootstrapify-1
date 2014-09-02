@@ -1,0 +1,38 @@
+<div class="col-sm-{{ 12 | divided_by: footer_columns.size }}">
+  {% assign footer_text = footer_column | append: '-text' %}{% assign footer_text = settings[footer_text] %}
+  {% unless footer_text == blank %}
+  {{ footer_text }}
+  {% endunless %}
+
+  {% assign footer_blog = footer_column | append: '-blog' %}{% assign footer_blog = settings[footer_blog] %}
+  {% unless blogs[footer_blog] == empty %}
+  <h4>{{ blogs[footer_blog].title | link_to: blogs[footer_blog].url }}</h4>
+    {% for a in blogs[footer_blog].articles limit:settings.blog-list-limit %}
+      {% include 'article-excerpt' %}
+    {% endfor %}
+  {% endunless %}
+        
+  {% assign footer_menu = footer_column | append: '-menu' %}{% assign footer_menu = settings[footer_menu] %}
+  {% unless linklists[footer_menu] == empty %}
+  <h4>{{ linklists[footer_menu].title }}</h4>
+
+  <ul class="list-nav">
+    {% for l in linklists[footer_menu].links %}
+    <li{% if l.active %} class="active"{% endif %}>{{ l.title | link_to: l.url, l.title }}</li>
+    {% endfor %}
+  </ul>
+  {% endunless %}
+        
+  {% assign newsletter_column = 'footer-' | append: footer_column %}
+  {% if settings.newsletter-signup-placement == newsletter_column %}
+  {% include 'newsletter-signup-form' with 'footer' %}
+  {% endif %}
+  
+  {% assign social_links_column = 'footer-' | append: footer_column %}
+  {% if settings.social-links-placement == social_links_column %}
+  <h4>{% include '__localize' with 'Connect with us' %}</h4>
+  <p class="clearfix social-icons">
+    {% include 'social-links' with 'lg' %}
+  </p>
+  {% endif %}
+</div>

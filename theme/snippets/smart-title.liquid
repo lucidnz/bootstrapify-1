@@ -1,0 +1,12 @@
+{% capture vars %}
+  {% if search.performed %}
+    {% capture title %}{% include '__localize' with 'Search results for' %} {{ settings.left-quote }}{{ page_title }}{{ settings.right-quote }}{% endcapture %}
+  {% else %}
+    {% assign title = page_title %}
+    {% if collection.title != blank and collection.title != page_title and template != 'index' %}
+       {% assign title = title | append: ' | ' | append: collection.title %}
+    {% elsif blog.title != blank and blog.title != page_title %}
+      {% assign title = title | append: ' | ' | append: blog.title %}
+    {% endif %}
+  {% endif %}
+{% endcapture %}{% if smart-title == 'strip_html' %}{{ title | strip_html }}{% else %}{{ title }}{% endif %}

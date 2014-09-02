@@ -1,0 +1,37 @@
+<div id="customer-login-form">
+  {% form 'customer_login' %}
+    {% include '_form-error' %}
+  
+    <div id="login_email" class="form-group {% if form.errors contains 'form' %}has-error has-feedback{% endif %}">
+      <label for="customer_email" class="{% include '__form-horizontal-label' %} control-label">Email</label>
+      <div class="{% include '__form-horizontal-input' %}">
+        <input type="email" value="" name="customer[email]" id="customer_email" class="form-control" placeholder="Email" />
+        {% if form.errors contains 'form' %}<span class="fa fa-times form-control-feedback"></span>{% endif %}
+      </div>
+    </div>
+  
+    {% if form.password_needed %}
+      <div id="login_password" class="form-group {% if form.errors contains 'form' %}has-error has-feedback{% endif %}">
+        <label for="customer_password" class="{% include '__form-horizontal-label' %} control-label">Password</label>
+        <div class="{% include '__form-horizontal-input' %}">
+          <input type="password" value="" name="customer[password]" id="customer_password" class="form-control" placeholder="Passsword" />
+          {% if form.errors contains 'form' %}<span class="fa fa-times form-control-feedback"></span>{% endif %}
+        </div>
+      </div>
+      
+      <div id="forgotten-password-link" class="form-group">
+        <div class="{% include '__form-horizontal-offset' %}">
+          <a href="{{ shop.url }}" class="show-recover-password-form">Forgot your password?</a>
+        </div>
+      </div>
+    {% endif %}
+  
+    <div class="form-group">
+      <div class="{% include '__form-horizontal-offset' %}">
+        {% if current_url %}<input type="hidden" name="checkout_url" value="{{ current_url }}" />{% endif %}
+        <input class="btn btn-primary" type="submit" value="Sign In" />
+        <span class="note">or <a href="{{ shop.url }}">Return to Store</a></span>
+      </div>
+    </div>
+  {% endform %}
+</div>

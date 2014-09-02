@@ -1,0 +1,54 @@
+{% if settings.show-multiple-currencies and settings.supported-currencies != blank %}
+  {{ "/services/javascripts/currencies.js" | script_tag }}
+  {{ "jquery.currencies.js" | asset_url | script_tag }}
+  <script>
+    var changeCurrency = function(oldCurrency, newCurrency){
+      Currency.convertAll(oldCurrency, newCurrency);
+      jQuery('.selected-currency').text(Currency.currentCurrency);
+    };
+    
+    /* Set current currency */
+    Currency.shopCurrency = '{{ shop.currency }}';
+    var shopCurrency = Currency.shopCurrency;
+    var defaultCurrency = '{{ settings.currency-switcher-default }}' || Currency.shopCurrency; // Default currency
+    var cookieCurrency = Currency.cookie.read(); // Cookie currency
+    
+    /* Set currency format */
+    Currency.format = {% if settings.show-currency-with-prices == "with-currency" %}'money_with_currency_format'{% else %}'money_format'{% endif %};
+    // Sometimes merchants change their shop currency, let's tell our JavaScript file
+    Currency.money_with_currency_format[shopCurrency] = {{ shop.money_with_currency_format | strip_html | json }};
+    Currency.money_format[shopCurrency] = {{ shop.money_format | strip_html | json }};
+    
+    // If the cookie value does not correspond to any value in the currency dropdown.
+    if(jQuery('[name=currencies] option[value=' + cookieCurrency + ']').length === 0){
+      cookieCurrency = defaultCurrency;
+    }
+    
+    var currentCurrency = cookieCurrency || defaultCurrency; // Current currency
+    
+    /* Convert currency */
+    // Fix for customer account pages
+    jQuery('span.money span.money').each(function() {
+      jQuery(this).parents('span.money').removeClass('money');
+    });
+    
+    // Saving the base shop price
+    jQuery('span.money').each(function() {
+      jQuery(this).attr('data-currency-{{ shop.currency }}', jQuery(this).html());
+    });
+    
+    changeCurrency(shopCurrency, currentCurrency);
+  
+    /* Currency converter */
+    jQuery('[name=currencies]').val(Currency.currentCurrency).change(function() {
+      var newCurrency = jQuery(this).val();
+      changeCurrency(currentCurrency, newCurrency);
+    });
+    
+    var original_selectCallback = window.selectCallback;
+    var selectCallback = function(variant, selector) {
+      original_selectCallback(variant, selector);
+      changeCurrency(shopCurrency, Currency.currentCurrency);
+    };
+  </script>
+{% endif %}

@@ -1,0 +1,34 @@
+{% if template contains 'collection' %}
+  {% assign all_tags = collection.all_tags %}
+{% elsif template contains 'blog' or template contains 'article' %}
+  {% assign all_tags = blog.all_tags %}
+{% endif %}
+  
+{% if all_tags.size > 0 %}
+
+{% capture vars %}
+{% assign tag_groups_string = "" %}
+
+{% assign hidden_tags = settings.hidden-tag-prefixes | split: ',' %}
+
+{% for t in all_tags %}
+  {% if t contains ':' %}
+    {% assign t_parts = t | split: ':' %}
+    {% assign key = t_parts.first | replace: ' ', '-' | downcase %}
+    {% assign value = t_parts.last %}
+    
+    {% unless hidden_tags contains key or tag_groups_array contains key %}
+      {% assign tag_groups_string = tag_groups_string | append: ' ' | append: key %}
+      {% assign tag_groups_array = tag_groups_string | strip | split: ' ' %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+{% endcapture %}
+
+{% for g in tag_groups_array %}
+{% include 'tags' with g %}
+{% endfor %}
+
+{% include 'tags' with 'tag' %}
+  
+{% endif %}

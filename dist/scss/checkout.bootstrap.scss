@@ -1,0 +1,273 @@
+/*
+ * Shopify checkout bootstrap - extends Shopify's checkout styles with bootstrap
+ */
+ 
+@import "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+
+/* Layout */
+#info-bar, #container, #container.slim{
+  @extend .container;
+}
+
+#main, #container.slim #main{
+  margin-bottom: 80px;
+}
+
+#overview, #content{
+  @extend .row;
+  padding-left: $grid-gutter-width / 2;
+  padding-right: $grid-gutter-width / 2;
+}
+
+#products{
+  @extend .col-xs-12;
+  @extend .col-sm-8;
+}
+
+#wallet{
+  @extend .col-xs-12;
+  @extend .col-sm-4;
+}
+
+#new_order, #email, .slim .group{
+  @extend .col-xs-12;
+}
+
+.gleft, .gright, #create-account{
+  @extend .col-xs-12;
+  @extend .col-sm-6;
+}
+
+#create-account + p{
+  clear: both;
+}
+
+/* Type */
+h1, #header h1{
+  @extend h1;
+  span.subtitle{
+    @extend .small;
+  }
+}
+
+#overview h2{
+  @extend h2;
+}
+
+h3.divider, #pay-with h3, .group h3, .pgroup h3, #thumbs .plisthead, #email label{
+  @extend h3;
+}
+
+.pageform h4, h4.active-customer, .group h4{
+  @extend h4;
+}
+
+p, .medium p, fieldset p, .header-description p{
+  @extend p;
+}
+
+/* Forms */
+fieldset, fieldset#switchsolo{
+  @extend fieldset;
+}
+
+legend{
+  @extend legend;
+}
+
+label, label.inline, #shipping-same label, .soft label, .medium label, td.label, .form ul.inline li label, .item-inventory-action label{
+  @extend label;
+}
+
+.form ul.inline li {
+  width: 100% !important;
+  overflow: auto;
+}
+
+.form ul.inline li label {
+  width: 30%;
+  float: left;
+}
+
+.form ul.inline li select {
+  width: 70% !important;
+  margin-bottom: 1em;
+}
+
+.form ul.inline li input {
+  display: block;
+  width: 70% !important;
+  float: right;
+}
+
+#email input, #payment-methods input, .field-with-errors input, input[type=text], input[type=password], textarea, textarea.short, input.digit-2, textarea.tall, input.long,
+input.short, .form td input, .form td input.short, .form td textarea, .form.full td input, select{
+  @extend .form-control;
+}
+
+.form td input#shipping-toggle{
+  @extend .checkbox;
+  display: inline;
+  height: auto;
+}
+
+form table{
+  width: 100%;
+}
+
+.form td.lbl{
+  width: 30%;
+}
+
+.form td, .form td.lbl{
+  vertical-align: top;
+  padding-bottom: 0.75em;
+}
+
+.field-with-errors{
+  @extend .has-error;
+  .error-message{
+    @extend .text-danger;
+  }
+}
+
+#shipping-rates{
+  max-width: 50%;
+}
+
+#credit_card_month{
+  max-width: 49%;
+  @extend .pull-left;
+}
+
+#credit_card_year{
+  max-width: 49%;
+  @extend .pull-right;
+}
+
+#credit_card_verification_value{
+  width: 10em;
+}
+
+/* Buttons */
+input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit], #create-account-btn{
+  @extend .btn;
+  @extend .btn-default;
+}
+
+/* Alerts */
+
+.flash{
+  @extend .alert;
+  @extend .alert-info;
+}
+.flash.notice{
+  @extend .alert;
+  @extend .alert-success;
+}
+.flash.error{
+  @extend .alert;
+  @extend .alert-danger;
+}
+
+/* Media */
+#thumbs{
+  width: 100%;
+  margin-top: 1.5em;
+}
+#thumbs td, .slim #thumbs td{
+  display: block;
+  overflow: auto;
+  & > div{
+    @extend .thumbnail;
+    @extend .pull-left;
+    margin-right: 1em;
+  }
+  .images{
+    @extend .media-object;
+  }
+  .plisthead{
+    @extend .media-heading;
+  }
+}
+.slim #thumbs td{
+  .images{
+    @extend .thumbnail;
+    @extend .pull-left;
+    margin-right: 1em;
+  }
+}
+
+#info-bar{
+  @extend .alert;
+  @extend .alert-success;
+  text-align: center;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+}
+
+#header, #container.slim #header{
+  @extend .page-header;
+}
+
+#footer, #container.slim #footer{
+  @extend .navbar;
+  @extend .navbar-default;
+  text-align: center;
+  p{
+    @extend p;
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+h1#tagline{
+  text-align: center;
+}
+
+#wallet{
+  text-align: center;
+  padding: 2.5em 0;
+  #cost{
+    @extend h1;
+    text-align: center;
+  }
+  #steps{
+    @extend .lead;
+  }
+}
+
+#email, #payment, .slim .group{
+  padding-top: 1em;
+  border-top: $page-header-border-color solid 1px;
+}
+
+#email{
+  margin-bottom: 1.5em;
+  #order_email{
+    width: 50%;
+    min-width: 300px;
+    margin-right: 1em;
+    float: left;
+  }
+  .sign-in-message{
+    float: left;
+    margin-top: 0.5em;
+  }
+}
+
+#payment-methods, #create-account{
+  @extend .well;
+}
+
+#buttons{
+  margin-top: 1.5em;
+}
+
+#buttons input{
+  @extend .btn-primary;
+}
+
+#create-account, #create-account-btn{
+  margin-bottom: 1.5em;
+}

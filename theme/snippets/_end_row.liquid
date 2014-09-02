@@ -1,0 +1,14 @@
+{% assign thumbs_per_row = settings.thumbnails-per-row | times:1 %}
+{% assign thumbs_per_row_minus_two = thumbs_per_row | minus:2 %}
+
+{% if thumbs_per_row == 4 %}
+  {% if forloop.length > thumbs_per_row_minus_two %}
+    {% assign little_mod = forloop.index | modulo:thumbs_per_row_minus_two %}
+    {% if little_mod == 0 %}<div class="clearfix visible-sm"></div>{% endif %}
+  {% endif %}
+{% endif %}
+
+{% if forloop.length > thumbs_per_row %}
+  {% assign big_mod = forloop.index | modulo:thumbs_per_row %}
+  {% if big_mod == 0 %}<div class="clearfix visible-md visible-lg"></div>{% endif %}
+{% endif %}

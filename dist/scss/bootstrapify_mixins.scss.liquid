@@ -1,0 +1,195 @@
+/* Bootstrapify functions */
+
+@function hover-colour ( $colour, $strength: 15% ) {
+  @return if( lightness( $colour ) > 25%, darken( $colour, $strength ), lighten( $colour, $strength * 2 ) );
+}
+
+@function text-colour( $colour, $strength: 100% ) {
+  @return if( lightness( $colour ) > 80%, darken( $colour, $strength ), lighten( $colour, $strength ) );
+}
+
+@function text-muted( $colour ) {
+  @return rgba($colour, .5);
+}
+
+@function border-color( $colour ) {
+  @return if( $colour != transparent, darken( $colour, 5% ), transparent );
+}
+
+/* Bootstrapify mixins */
+
+@mixin background-color ( $colour ) {
+  background-color: $colour;
+  hr, .page-header, .thumbnail, .well {
+    border-color: {% if settings.show-borders %} border-color($colour) {% else %} transparent {% endif %};
+  }
+}
+
+@mixin text-color ( $colour ) {
+  color: $colour;
+  .text-muted, .help-block {
+    color: text-muted($colour);
+  }
+}
+
+@mixin heading-color ( $colour ) {
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: $colour;
+  }
+}
+
+@mixin link-color ( $colour ) {
+  a {
+    color: $colour;
+    &:hover {
+      color: hover-colour( $colour );
+    }
+  }
+}
+
+@mixin font-styles ($font-family, $font-size, $font-weight, $font-style, $text-transform) {
+  @if $font-family {
+    font-family: $font-family;
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      font-family: $font-family;
+    }
+  }
+  @if $font-size {
+    font-size: $font-size;
+  }
+  @if $font-weight {
+    font-weight: $font-weight;
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      font-weight: $font-weight;
+    }
+  }
+  @if $font-style {
+    font-style: $font-style;
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      font-style: $font-style;
+    }
+  }
+  @if $text-transform {
+    text-transform: $text-transform;
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      text-transform: $text-transform;
+    }
+  }
+}
+
+@mixin slide($slide, $slide-dark, $slide-position){
+  #slide-#{$slide}{
+    .carousel-caption{
+      @if nth($slide-position, 1) == 'top' {
+        top: 0;
+        bottom: auto;
+      } @else if nth($slide-position, 1) == 'middle' {
+        top: 35%;
+        bottom: auto;
+      }
+      @if nth($slide-position, 2) == 'left' {
+        text-align: left;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: left;
+        }
+      } @else if nth($slide-position, 2) == 'right' {
+        text-align: right;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: right;
+        }
+      }
+      @if $slide-dark {
+        color: $gray-dark;
+        text-shadow: none;
+      }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        @if $slide-dark {
+          text-shadow: none;
+          @media (min-width: $screen-sm-min){
+            color: $gray-dark;
+          }
+        }
+      }
+    }
+  }
+  .carousel[data-current-slide="slide-#{$slide}"]{
+    @if $slide-dark {
+      .carousel-control{
+        color: $gray-dark;
+      }
+      @media (min-width: $screen-sm-min){
+        .carousel-indicators li{
+          border-color: $gray-dark;
+          &.active {
+            background-color: $gray-dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin navbar-style($navbar-bg, $navbar-link-color){
+  background-color: $navbar-bg;
+  border-color: darken($navbar-bg, 5%);
+
+  .navbar-nav {
+    > li > a {
+      color: $navbar-link-color;
+      &:hover,
+      &:focus {
+        color: hover-colour($navbar-link-color);
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: darken($navbar-bg, 5%);
+      }
+    }
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: darken($navbar-bg, 5%);
+        color: hover-colour($navbar-link-color);
+      }
+    }
+  }
+
+  .dropdown-menu, .submenu > .nav {
+    background-color: lighten($navbar-bg, 80%);
+    > li > a{
+      &:hover,
+      &:focus {
+        background-color: darken(lighten($navbar-bg, 80%), 5%);
+      }
+    }
+  }
+
+  .navbar-collapse,
+  .navbar-form {
+    border-color: darken($navbar-bg, 5%);
+  }
+
+  .navbar-link {
+    color: $navbar-link-color;
+    &:hover {
+      color: hover-colour($navbar-link-color);
+    }
+  }
+
+  .btn-link {
+    color: $navbar-link-color;
+    &:hover,
+    &:focus {
+      color: hover-colour($navbar-link-color);
+    }
+  }
+}

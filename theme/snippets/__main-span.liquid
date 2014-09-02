@@ -1,0 +1,14 @@
+{% capture main_span %}
+{% assign full_width = 'col-xs-12' %}
+{% if settings.sidebar-placement == 'left' %}
+  {% assign two_col = 'col-sm-8 col-sm-push-4 col-md-9 col-md-push-3' %}
+{% else %}
+  {% assign two_col = 'col-sm-8 col-md-9' %}
+{% endif %}
+
+{% if has_sidebar and settings[sidebar_template] %}
+  {{ two_col }}
+{% else %}
+  {{ full_width }}
+{% endif %}
+{% endcapture %}{{ main_span | strip_newlines | strip }}

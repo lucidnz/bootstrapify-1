@@ -1,0 +1,13 @@
+<ul class="breadcrumb">
+  <li><a href="/"><i class="fa fa-home"></i></a></li>
+  {% unless collection.title == blank or collection.title == page_title or template == 'index' or template contains 'collection' %}<li><a href="{{ collection.url }}">{{ collection.title }}</a></li>{% endunless %}
+  {% if blog.title != blank and blog.title != page_title %}<li><a href="{{ blog.url }}">{{ blog.title }}</a></li>{% endif %}
+  {% if article.title != blank and article.title != page_title %}<li><a href="{{ article.url }}">{{ article.title }}</a></li>{% endif %}
+  {% if product.title != blank and product.title != page_title %}<li><a href="{{ product.url | within: collection }}">{{ product.title }}</a></li>{% endif %}
+  {% if current_tags == blank %}
+    <li class="active">{{ page_title }}</li>
+  {% else %}
+    <li>{{ page_title | link_to: './' }}</li>
+    <li class="active">{% include '__localize' with 'Filtered by' %} {{ current_tags | join: ' + ' }}</li>
+  {% endif %}
+</ul>
