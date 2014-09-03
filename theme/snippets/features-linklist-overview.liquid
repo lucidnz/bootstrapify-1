@@ -1,8 +1,8 @@
 {% assign linklist = linklists[settings.features-linklist] %}
 {% if linklist != empty and linklist.size > 0 %}
 
-{% assign is_3 = linklist.size | modulo: 3 %}
-{% assign is_4 = linklist.size | modulo: 4 %}
+{% assign is_3 = linklist.links.size | modulo: 3 %}
+{% assign is_4 = linklist.links.size | modulo: 4 %}
 
 {% if is_4 == 0 %}
   {% assign cols = 4 %}
@@ -12,7 +12,7 @@
 
 <section id="features-linklist-overview" class="section-wrap">
 	{% include '__containers-open' %}
-		<h2 class="page-header">{{ linklist.title }}</h2>
+		<h2 class="page-header" id="features-heading">{{ linklist.title }}</h2>
 
 		<div class="row">
 		  {% for l in linklist.links %}

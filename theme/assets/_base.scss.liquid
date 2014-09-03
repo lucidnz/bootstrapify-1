@@ -82,35 +82,52 @@
   }
 }
 
-@mixin slide($slide-dark, $slide-position){
-  .carousel-caption{
-    @if nth($slide-position, 1) == 'top' {
-      top: 0;
-      bottom: auto;
-    } @else if nth($slide-position, 1) == 'middle' {
-      top: 35%;
-      bottom: auto;
-    }
-    @if nth($slide-position, 2) == 'left' {
-      text-align: left;
-      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+@mixin slide($slide, $slide-dark, $slide-position){
+  #slide-#{$slide}{
+    .carousel-caption{
+      @if nth($slide-position, 1) == 'top' {
+        top: 0;
+        bottom: auto;
+      } @else if nth($slide-position, 1) == 'middle' {
+        top: 35%;
+        bottom: auto;
+      }
+      @if nth($slide-position, 2) == 'left' {
         text-align: left;
-      }
-    } @else if nth($slide-position, 2) == 'right' {
-      text-align: right;
-      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: left;
+        }
+      } @else if nth($slide-position, 2) == 'right' {
         text-align: right;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+          text-align: right;
+        }
+      }
+      @if $slide-dark {
+        color: $gray-dark;
+        text-shadow: none;
+      }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+        @if $slide-dark {
+          text-shadow: none;
+          @media (min-width: $screen-sm-min){
+            color: $gray-dark;
+          }
+        }
       }
     }
+  }
+  .carousel[data-current-slide="slide-#{$slide}"]{
     @if $slide-dark {
-      color: $gray-dark;
-      text-shadow: none;
-    }
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-      @if $slide-dark {
-        text-shadow: none;
-        @media (min-width: $screen-sm-min){
-          color: $gray-dark;
+      .carousel-control{
+        color: $gray-dark;
+      }
+      @media (min-width: $screen-sm-min){
+        .carousel-indicators li{
+          border-color: $gray-dark;
+          &.active {
+            background-color: $gray-dark;
+          }
         }
       }
     }
@@ -179,15 +196,17 @@
 /* Set up base Bootstrap and Bootstrapify variables with values from Shopify settings */
 
 /* Colours */
-{% if settings.brand-primary != blank %}
-  $brand-primary:   {{ settings.brand-primary }} !default;
-{% endif %}
 
+  $brand-primary:   {% if settings.brand-primary != blank %} {{ settings.brand-primary }} {% else %} null {% endif %} !default;
 
 /* Scaffolding */
 // background colour for body
-       $body-bg:    {% if settings.background-colour != blank %} {{ settings.background-colour }} {% else %} #fff {% endif %} !default;
+       $body-bg:    {% if settings.background-colour != blank %} {{ settings.background-colour }} {% else %} null {% endif %} !default;
+  $border-color:    null !default;
+  @if $body-bg {
   $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
+  }
+  $max-height-break: 800px;
 
 // Global text color on body
 {% if settings.text-colour != blank %}
@@ -211,20 +230,27 @@
 
 // Global font size on body
 $font-size-base:    {% if settings.font-body-size != blank %} {{ settings.font-body-size }} {% else %} 14px {% endif %} !default;
+$font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %} !default;
+$font-style:  {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %} !default;
+$text-transform: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %} {{ settings.font-body-case }} {% elsif settings.font-body-case == 'title-case'%} capitalize {% else %} none {% endif %} !default;
 
 // Global heading font size on body
-{% if settings.font-heading-size != blank %}
-  // Work out sensible sizing for inbetween headings
-  // h5 should always be the same as $font-size-base
-  
-       $heading-size:   {{ settings.font-heading-size }};
-  $heading-size-step:   ($heading-size - $font-size-base) / 4;
-  
+// Work out sensible sizing for inbetween headings
+// h5 should always be the same as $font-size-base
+       $heading-size:   {% if settings.font-heading-size != blank %} {{ settings.font-heading-size }} {% else %} false {% endif %} !default;
+       // define variable scope
+       $font-size-h1:   null !default;
+       $font-size-h2:   null !default;
+       $font-size-h3:   null !default;
+       $font-size-h4:   null !default;
+       
+@if $heading-size {
+  $heading-size-step:   (($heading-size - $font-size-base) / 4) !default;
        $font-size-h1:   $heading-size !default;
        $font-size-h2:   floor(($heading-size - $heading-size-step)) !default;
        $font-size-h3:   floor(($heading-size - ($heading-size-step * 2))) !default;
        $font-size-h4:   floor(($heading-size - ($heading-size-step * 3))) !default;
-{% endif %}
+}
 
 // Fix rounding issue as sass var can only hold 5 decimal places (orig: 1.428571429)
 $line-height-base:    1.42858;
@@ -251,23 +277,27 @@ $line-height-base:    1.42858;
 
 
 /* Tables */
-{% if settings.background-colour != blank %}
+       $table-bg-accent:   null !default;
+        $table-bg-hover:   null !default;
+    $table-border-color:   null !default;
+@if $body-bg {
        $table-bg-accent:   lighten($body-bg, 2%) !default;  // Background color used for `.table-striped`.
         $table-bg-hover:   lighten($body-bg, 4%) !default;  // Background color used for `.table-hover`.
-   
-  // Border color for table and cell borders.
-    $table-border-color:   $border-color !default;
-{% endif %}
+    $table-border-color:   $border-color !default; // Border color for table and cell borders.
+}
 
 
 /* Buttons */
-{% if settings.background-colour != blank %}
+   $btn-default-color:    null !default;
+      $btn-default-bg:    null !default;
+  $btn-default-border:    null !default;
+@if $body-bg {
   {% if settings.text-colour != blank %}
    $btn-default-color:    $text-color !default;
   {% endif %}
       $btn-default-bg:    darken($body-bg, 2%) !default;
   $btn-default-border:    darken($body-bg, 5%) !default;
-{% endif %}
+}
 
 {% if settings.button-colour != blank %}
        $btn-primary-bg:    {{ settings.button-colour }} !default;
@@ -276,15 +306,24 @@ $line-height-base:    1.42858;
 
 
 /* Forms */
-{% if settings.background-colour != blank %}
+                 $input-bg:    null !default;
+              $input-color:    null !default;
+             $input-border:    null !default;
+       $input-border-focus:    null !default;
+  $input-color-placeholder:    null !default;
+             $legend-color:    null !default;
+      $legend-border-color:    null !default;
+     $input-group-addon-bg:    null !default;
+     
+@if $body-bg {
                  $input-bg:    lighten($body-bg, 10%) !default;
   {% if settings.text-colour != blank %}
               $input-color:    $text-color !default;
   {% endif %}
              $input-border:    $border-color !default;
-  {% if settings.brand-primary != blank %}
+  @if $brand-primary {
        $input-border-focus:    $brand-primary !default;
-  {% endif %}
+  }
   $input-color-placeholder:    darken($input-bg, 15%) !default;
   
   {% if settings.text-colour != blank %}
@@ -294,12 +333,24 @@ $line-height-base:    1.42858;
 
      // Background color for textual input addons
      $input-group-addon-bg:    $body-bg !default;
-{% endif %}
+}
 
 
 /* Dropdowns */
-{% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
-                   $dropdown-bg:    {% if settings.navbar-background-colour != blank %} lighten({{ settings.navbar-background-colour }}, 80%) {% else %} lighten($body-bg, 80%) {% endif %} !default;
+{% if settings.navbar-background-colour != blank %}
+  $dropdown-bg:    lighten({{ settings.navbar-background-colour }}, 80%) !default;
+{% else %}
+  $dropdown-bg:    null !default;
+  @if $body-bg { $dropdown-bg: lighten($body-bg, 80%) !default; }
+{% endif %}
+                   
+           $dropdown-divider-bg:    null !default;
+           $dropdown-link-color:    null !default;
+     $dropdown-link-hover-color:    null !default;
+  $dropdown-link-disabled-color:    null !default;
+         $dropdown-header-color:    null !default;
+        $dropdown-link-hover-bg:    null !default;
+@if $dropdown-bg {
            $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
            $dropdown-link-color:    darken({% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %}, 80%) !default;
@@ -308,8 +359,7 @@ $line-height-base:    1.42858;
          $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
   {% endif %}
         $dropdown-link-hover-bg:    darken($dropdown-bg, 10%) !default;
-{% endif %}
-
+}
 
 /* Media queries breakpoints */
 {% if settings.container-width-small-devices != blank %}
@@ -344,9 +394,21 @@ $line-height-base:    1.42858;
 
 
 /* Navbar */
-{% if settings.background-colour != blank or settings.navbar-background-colour != blank %}
-                   $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} desaturate(darken($body-bg, 1.5%), 15%) {% endif %} !default;
-                   
+/*                    $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} if($body-bg, desaturate(darken($body-bg, 1.5%), 15%), null) {% endif %} !default; */
+{% if settings.navbar-background-colour != blank %}
+  $navbar-default-bg:   {{ settings.navbar-background-colour }} !default;
+{% else %}
+  $navbar-default-bg:   null !default;
+  @if $body-bg { $navbar-default-bg: desaturate(darken($body-bg, 1.5%), 15%) !default; }
+{% endif %}
+
+                $navbar-default-color:    null !default;
+               $navbar-default-border:    null !default;
+       $navbar-default-link-active-bg:    null !default;
+      $navbar-default-toggle-hover-bg:    null !default;
+   $navbar-default-toggle-icon-bar-bg:    null !default;
+  $navbar-default-toggle-border-color:    null !default;
+@if $navbar-default-bg {
   {% if settings.navbar-background-colour != blank or settings.text-colour != blank %}
                 $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
                $navbar-default-border:    darken($navbar-default-bg, 5%) !default;
@@ -356,12 +418,14 @@ $line-height-base:    1.42858;
    $navbar-default-toggle-icon-bar-bg:    text-muted($navbar-default-color) !default;
   $navbar-default-toggle-border-color:    darken($navbar-default-bg, 5%) !default;
   {% endif %}
-
-  {% if settings.brand-primary != blank %}
+}
               // Navbar brand label
+          $navbar-default-brand-color:    null !default;
+    $navbar-default-brand-hover-color:    null !default;
+  @if $brand-primary {
           $navbar-default-brand-color:    $brand-primary !default;
     $navbar-default-brand-hover-color:    hover-colour($navbar-default-brand-color, 10%) !default;
-  {% endif %}
+  }
 
   {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
            $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
@@ -369,14 +433,16 @@ $line-height-base:    1.42858;
     $navbar-default-link-active-color:    hover-colour($navbar-default-link-color) !default;
   $navbar-default-link-disabled-color:    lighten($navbar-default-link-color, 5%) !default;
   {% endif %}
-  
-{% endif %}
-
 
 /* Navs */
-{% if settings.background-colour != blank %}
+                        $nav-link-hover-bg:   null !default;
+                    $nav-tabs-border-color:   null !default;
+         $nav-tabs-link-hover-border-color:   null !default;
+         $nav-tabs-active-link-hover-color:   null !default;
+  $nav-tabs-active-link-hover-border-color:   null !default;
+     $nav-tabs-justified-link-border-color:   null !default;
+@if $body-bg {
                         $nav-link-hover-bg:   darken($body-bg, 10%) !default;
-  //$nav-open-link-hover-color:   hover-colour( $dropdown-link-color ) !default;
   
                       // Tabs
                     $nav-tabs-border-color:   border-color($body-bg) !default;
@@ -386,11 +452,20 @@ $line-height-base:    1.42858;
   {% endif %}
   $nav-tabs-active-link-hover-border-color:   $nav-tabs-border-color !default;
      $nav-tabs-justified-link-border-color:   $nav-tabs-border-color !default;
-{% endif %}
+}
 
 
 /* Pagination */
-{% if settings.background-colour != blank %}
+               $pagination-bg:    null !default;
+           $pagination-border:    null !default;
+         $pagination-hover-bg:    null !default;
+     $pagination-hover-border:    null !default;
+     $pagination-active-color:    null !default;
+   $pagination-disabled-color:    null !default;
+      $pagination-disabled-bg:    null !default;
+  $pagination-disabled-border:    null !default;
+  
+@if $body-bg {
                $pagination-bg:    $body-bg !default;
            $pagination-border:    darken($body-bg, 5%) !default;
   
@@ -404,25 +479,29 @@ $line-height-base:    1.42858;
   {% endif %}
       $pagination-disabled-bg:    $body-bg !default;
   $pagination-disabled-border:    $pagination-border !default;
-{% endif %}
+}
 
 
 /* Pager - inherits from Pagination */
 
 
 /* Jumbotron */
-{% if settings.background-colour != blank %}
+  $jumbotron-bg:    null !default;
+@if $body-bg {
   $jumbotron-bg:    darken($body-bg, 5%) !default;
-{% endif %}
+}
 
 
 /* Thumbnails */
-           $thumbnail-border:   $border-color !default;
-  {% unless settings.show-borders %}
+  {% if settings.show-borders %}
+               $thumbnail-bg:   #fff !default;
+           $thumbnail-border:   $border-color !default;  
+  {% else %}
+               $thumbnail-bg:   transparent !default;
            $thumbnail-border:   transparent !default;
           $thumbnail-padding:   0px !default;
     $thumbnail-border-radius:   0px !default;
-  {% endunless %}
+  {% endif %}
 
 
 /* Wells */
@@ -433,16 +512,31 @@ $line-height-base:    1.42858;
 
 
 /* Breadcrumbs */
-{% if settings.background-colour != blank %}
+            $breadcrumb-bg:   null !default;
+         $breadcrumb-color:   null !default;
+  $breadcrumb-active-color:   null !default;
+  
+@if $body-bg {
             $breadcrumb-bg:   rgba(darken($body-bg, 3%), .5) !default;
   {% if settings.text-colour != blank %}
          $breadcrumb-color:   lighten($text-color, 15%) !default;
   $breadcrumb-active-color:   text-muted($text-color) !default;
   {% endif %}
-{% endif %}
+}
 
 
 /* Type */
+
+                $text-muted:    null !default;
+      $headings-small-color:    null !default;
+    $blockquote-small-color:    null !default;
+               $close-color:    null !default;
+         $close-text-shadow:    null !default;
+   $blockquote-border-color:    null !default;
+         $abbr-border-color:    null !default;
+  $page-header-border-color:    null !default;
+  
+@if $body-bg {
 {% if settings.text-colour != blank %}
                 $text-muted:    text-muted($text-color) !default;
       $headings-small-color:    $text-muted !default;
@@ -453,16 +547,27 @@ $line-height-base:    1.42858;
    $blockquote-border-color:    border-color($body-bg) !default;
          $abbr-border-color:    $border-color !default;
   $page-header-border-color:    $border-color !default;
-
+}
 
 /* Miscellaneous */
+  $hr-border:    null !default;
+@if $body-bg {
   $hr-border:   border-color($body-bg) !default;
+}
+  
+  
+/* Footer */
+$footer-bg:             {% if settings.footer-background-colour != blank %} {{ settings.footer-background-colour }} {% else %} false {% endif %} !default;
+$footer-headings-color: {% if settings.footer-heading-colour != blank %} {{ settings.footer-heading-colour }} {% else %} false {% endif %} !default;
+$footer-link-color:     {% if settings.footer-link-colour != blank %} {{ settings.footer-link-colour }} {% else %} false {% endif %} !default;
+$footer-text-color:     {% if settings.footer-text-colour != blank %} {{ settings.footer-text-colour }} {% else %} false {% endif %} !default;
 
 {% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
-// a flag to toggle asset pipeline / compass integration
-// defaults to true if twbs-font-path function is present (no function => twbs-font-path('') parsed as string == right side)
-// in Sass 3.3 this can be improved with: function-exists(twbs-font-path)
+// When true, asset path helpers are used, otherwise regular url() is used
+// When there no function is defined, `fn('')` is parsed as string that equals the right hand side
+// NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
 $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
+
 //
 // Variables
 // --------------------------------------------------
@@ -475,7 +580,7 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 $gray-darker:            lighten(#000, 13.5%) !default; // #222
 $gray-dark:              lighten(#000, 20%) !default;   // #333
 $gray:                   lighten(#000, 33.5%) !default; // #555
-$gray-light:             lighten(#000, 60%) !default;   // #999
+$gray-light:             lighten(#000, 46.7%) !default; // #777
 $gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 
 $brand-primary:         #428bca !default;
@@ -538,7 +643,10 @@ $headings-color:          inherit !default;
 //## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
-$icon-font-path: "bootstrap/" !default;
+
+// [converter] Asset helpers such as Sprockets and Node.js Mincer do not resolve relative paths
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default;
+
 //** File name for all font files.
 $icon-font-name:          "glyphicons-halflings-regular" !default;
 //** Element ID within SVG icon file.
@@ -1287,6 +1395,8 @@ $pre-scrollable-max-height:   340px !default;
 //
 //##
 
+//** Horizontal offset for forms and lists.
+$component-offset-horizontal: 180px !default;
 //** Text muted color
 $text-muted:                  $gray-light !default;
 //** Abbreviations and acronyms border color
@@ -1301,17 +1411,12 @@ $blockquote-font-size:        ($font-size-base * 1.25) !default;
 $blockquote-border-color:     $gray-lighter !default;
 //** Page header border color
 $page-header-border-color:    $gray-lighter !default;
-
-
-//== Miscellaneous
-//
-//##
-
+//** Width of horizontal description list titles
+$dl-horizontal-offset:        $component-offset-horizontal !default;
 //** Horizontal line color.
 $hr-border:                   $gray-lighter !default;
 
-//** Horizontal offset for forms and lists.
-$component-offset-horizontal: 180px !default;
+
 
 // CSS image replacement
 //
@@ -1354,6 +1459,7 @@ $component-offset-horizontal: 180px !default;
 // Keep images from scaling beyond the width of their parents.
 @mixin img-responsive($display: block) {
   display: $display;
+  width: 100% \9; // Force IE10 and below to size SVG images correctly
   max-width: 100%; // Part 1: Set a maximum relative to the parent
   height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
 }
@@ -1473,7 +1579,7 @@ $component-offset-horizontal: 180px !default;
 
 // Vendor Prefixes
 //
-// All vendor mixins are deprecated as of v3.2 due to the introduction of
+// All vendor mixins are deprecated as of v3.2.0 due to the introduction of
 // Autoprefixer in our Gruntfile. They will be removed in v4.
 
 // - Animations
@@ -1604,10 +1710,10 @@ $component-offset-horizontal: 180px !default;
           transform: scaleY($ratio);
 }
 @mixin skew($x, $y) {
-  -webkit-transform: skew($x, $y);
+  -webkit-transform: skewX($x) skewY($y);
       -ms-transform: skewX($x) skewY($y); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
-       -o-transform: skew($x, $y);
-          transform: skew($x, $y);
+       -o-transform: skewX($x) skewY($y);
+          transform: skewX($x) skewY($y);
 }
 @mixin translate($x, $y) {
   -webkit-transform: translate($x, $y);
@@ -1775,6 +1881,10 @@ $component-offset-horizontal: 180px !default;
     + .panel-collapse > .panel-body {
       border-top-color: $border;
     }
+    .badge {
+      color: $heading-bg-color;
+      background-color: $heading-text-color;
+    }
   }
   & > .panel-footer {
     + .panel-collapse > .panel-body {
@@ -1939,6 +2049,8 @@ $component-offset-horizontal: 180px !default;
 
 @mixin progress-bar-variant($color) {
   background-color: $color;
+
+  // Deprecated parent class requirement as of v3.2.0
   .progress-striped & {
     @include gradient-striped();
   }
@@ -2110,10 +2222,7 @@ $component-offset-horizontal: 180px !default;
 // any value of `$grid-columns`.
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin make-grid-columns() {
-  $list: '';
-  $i: 1;
-  $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
   }
@@ -2129,10 +2238,7 @@ $component-offset-horizontal: 180px !default;
 
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin float-grid-columns($class) {
-  $list: '';
-  $i: 1;
-  $list: ".col-#{$class}-#{$i}";
+@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-#{$class}-#{$i}";
   }
@@ -2200,8 +2306,8 @@ $component-offset-horizontal: 180px !default;
 @mixin container-fixed() {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  ($grid-gutter-width / 2);
-  padding-right: ($grid-gutter-width / 2);
+  padding-left:  ($gutter / 2);
+  padding-right: ($gutter / 2);
   @include clearfix();
 }
 
@@ -2843,10 +2949,10 @@ th {
 
 }
 
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
-//= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
+//= depend_on "bootstrap/glyphicons-halflings-regular.eot"
+//= depend_on "bootstrap/glyphicons-halflings-regular.svg"
+//= depend_on "bootstrap/glyphicons-halflings-regular.ttf"
+//= depend_on "bootstrap/glyphicons-halflings-regular.woff"
 //
 // Glyphicons for Bootstrap
 //
@@ -3308,10 +3414,10 @@ p {
 // Emphasis & misc
 // -------------------------
 
-// Ex: 14px base font * 85% = about 12px
+// Ex: (12px small font / 14px base font) * 100% = about 85%
 small,
 .small {
-  font-size: 85%;
+  font-size: floor((100% * $font-size-small / $font-size-base));
 }
 
 // Undo browser default styling
@@ -3330,6 +3436,12 @@ mark,
 .text-right          { text-align: right; }
 .text-center         { text-align: center; }
 .text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+// Transformation
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }
 
 // Contextual colors
 .text-muted {
@@ -3438,13 +3550,13 @@ dd {
   @media (min-width: $grid-float-breakpoint) {
     dt {
       float: left;
-      width: ($component-offset-horizontal - 20);
+      width: ($dl-horizontal-offset - 20);
       clear: left;
       text-align: right;
       @include text-overflow();
     }
     dd {
-      margin-left: $component-offset-horizontal;
+      margin-left: $dl-horizontal-offset;
     }
   }
 }
@@ -3561,6 +3673,12 @@ kbd {
   background-color: $kbd-bg;
   border-radius: $border-radius-small;
   box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+
+  kbd {
+    padding: 0;
+    font-size: 100%;
+    box-shadow: none;
+  }
 }
 
 // Blocks of code
@@ -3926,7 +4044,7 @@ fieldset {
   padding: 0;
   margin: 0;
   border: 0;
-  // Chrome and Firefox set a `min-width: -webkit-min-content;` on fieldsets,
+  // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
   // so we reset that to ensure it behaves more like a standard block element.
   // See https://github.com/twbs/bootstrap/issues/12359.
   min-width: 0;
@@ -4123,6 +4241,7 @@ input[type="month"] {
 
 .radio,
 .checkbox {
+  position: relative;
   display: block;
   min-height: $line-height-computed; // clear the floating input if there is no label text
   margin-top: 10px;
@@ -4139,9 +4258,11 @@ input[type="month"] {
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
-  float: left;
+  position: absolute;
   margin-left: -20px;
+  margin-top: 4px \9;
 }
+
 .radio + .radio,
 .checkbox + .checkbox {
   margin-top: -5px; // Move up sibling radios or checkboxes for tighter spacing
@@ -4175,6 +4296,26 @@ input[type="checkbox"],
   &[disabled],
   fieldset[disabled] & {
     cursor: not-allowed;
+  }
+}
+
+
+// Static form control text
+//
+// Apply class to a `p` element to make any string of text align with labels in
+// a horizontal form layout.
+
+.form-control-static {
+  // Size it appropriately next to real form controls
+  padding-top: ($padding-base-vertical + 1);
+  padding-bottom: ($padding-base-vertical + 1);
+  // Remove default margin from `p`
+  margin-bottom: 0;
+
+  &.input-lg,
+  &.input-sm {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -4240,16 +4381,6 @@ input[type="checkbox"],
 // Reposition feedback icon if label is hidden with "screenreader only" state
 .has-feedback label.sr-only ~ .form-control-feedback {
   top: 0;
-}
-
-
-// Static form control text
-//
-// Apply class to a `p` element to make any string of text align with labels in
-// a horizontal form layout.
-
-.form-control-static {
-  margin-bottom: 0; // Remove default margin from `p`
 }
 
 
@@ -4333,7 +4464,7 @@ input[type="checkbox"],
     }
     .radio input[type="radio"],
     .checkbox input[type="checkbox"] {
-      float: none;
+      position: relative;
       margin-left: 0;
     }
 
@@ -4378,11 +4509,6 @@ input[type="checkbox"],
     @include make-row();
   }
 
-  .form-control-static {
-    padding-top: ($padding-base-vertical + 1);
-    padding-bottom: ($padding-base-vertical + 1);
-  }
-
   // Reset spacing and right align labels, but scope to media queries so that
   // labels on narrow viewports stack the same as a default form example.
   @media (min-width: $screen-sm-min) {
@@ -4400,6 +4526,31 @@ input[type="checkbox"],
   .has-feedback .form-control-feedback {
     top: 0;
     right: ($grid-gutter-width / 2);
+  }
+
+  // Form group sizes
+  //
+  // Quick utility class for applying `.input-lg` and `.input-sm` styles to the
+  // inputs and labels within a `.form-group`.
+  .form-group-lg {
+    @media (min-width: $screen-sm-min) {
+      .control-label {
+        padding-top: (($padding-large-vertical * $line-height-large) + 1);
+      }
+    }
+    .form-control {
+      @extend .input-lg;
+    }
+  }
+  .form-group-sm {
+    @media (min-width: $screen-sm-min) {
+      .control-label {
+        padding-top: ($padding-small-vertical + 1);
+      }
+    }
+    .form-control {
+      @extend .input-sm;
+    }
   }
 }
 
@@ -4545,8 +4696,6 @@ input[type="checkbox"],
 .btn-block {
   display: block;
   width: 100%;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 // Vertically space out multiple block buttons
@@ -4756,6 +4905,7 @@ tbody.collapse.in { display: table-row-group; }
   font-size: $font-size-small;
   line-height: $line-height-base;
   color: $dropdown-header-color;
+  white-space: nowrap; // as with > li > a
 }
 
 // Backdrop to catch body clicks on mobile, etc.
@@ -6544,11 +6694,12 @@ a.thumbnail.active {
   }
 }
 
-// Dismissable alerts
+// Dismissible alerts
 //
 // Expand the right padding and account for the close button's positioning.
 
-.alert-dismissable {
+.alert-dismissable, // The misspelled .alert-dismissable was deprecated in 3.2.0.
+.alert-dismissible {
   padding-right: ($alert-padding + 20);
 
   // Adjust close link position
@@ -6585,6 +6736,13 @@ a.thumbnail.active {
 // Bar animations
 // -------------------------
 
+// WebKit
+@-webkit-keyframes progress-bar-stripes {
+  from  { background-position: 40px 0; }
+  to    { background-position: 0 0; }
+}
+
+// Spec and IE10+
 @keyframes progress-bar-stripes {
   from  { background-position: 40px 0; }
   to    { background-position: 0 0; }
@@ -6620,13 +6778,22 @@ a.thumbnail.active {
 }
 
 // Striped bars
-.progress-striped .progress-bar {
+//
+// `.progress-striped .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar-striped` class, which you just add to an existing
+// `.progress-bar`.
+.progress-striped .progress-bar,
+.progress-bar-striped {
   @include gradient-striped();
   background-size: 40px 40px;
 }
 
 // Call animation for the active one
-.progress.active .progress-bar {
+//
+// `.progress.active .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar.active` approach.
+.progress.active .progress-bar,
+.progress-bar.active {
   @include animation(progress-bar-stripes 2s linear infinite);
 }
 
@@ -6800,7 +6967,8 @@ a.list-group-item {
   &.disabled:focus {
     background-color: $list-group-disabled-bg;
     color: $list-group-disabled-color;
-
+    cursor: not-allowed;
+    
     // Force color to inherit for custom content
     .list-group-item-heading {
       color: inherit;
@@ -6820,7 +6988,9 @@ a.list-group-item {
     border-color: $list-group-active-border;
 
     // Force color to inherit for custom content
-    .list-group-item-heading {
+    .list-group-item-heading,
+    .list-group-item-heading > small,
+    .list-group-item-heading > .small {
       color: inherit;
     }
     .list-group-item-text {
@@ -7213,8 +7383,7 @@ button.close {
 // Container that the modal scrolls within
 .modal {
   display: none;
-  overflow: auto;
-  overflow-y: scroll;
+  overflow: hidden;
   position: fixed;
   top: 0;
   right: 0;
@@ -7233,6 +7402,10 @@ button.close {
     @include transition-transform(0.3s ease-out);
   }
   &.in .modal-dialog { @include translate(0, 0)}
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 // Shell div to position the modal with bottom padding
@@ -8068,6 +8241,7 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: table;
+  table-layout: fixed;
   width: 100%;
   height: 100%;
 }
@@ -8077,15 +8251,59 @@ body {
   height: 100%;
 }
 
+.collection-description {
+  padding-top: $grid-gutter-width;
+  padding-bottom: $grid-gutter-width;
+}
+
 #footer-content {
   display: table-row;
   height: 1px;
 }
 
+.navbar-icons {
+  padding-left: 0;
+  float: left;
+  
+  > li {
+    float: left;
+    > a {
+      padding-top:    $navbar-padding-vertical;
+      padding-bottom: $navbar-padding-vertical;
+    }
+  }
+  
+  > li > a {
+    color: $navbar-default-link-color;
+
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+      background-color: $navbar-default-link-hover-bg;
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-active-color;
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+  > .disabled > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-disabled-color;
+      background-color: $navbar-default-link-disabled-bg;
+    }
+  }
+}
+
 /* Body */
-.has-js {
+.js {
   {% if settings.thumbnail-layout == 'ordered' %}
-  .thumbnail-image, .product-main-thumb {
+  .thumbnail-image a, .product-main-thumb a {
     opacity: 0;
   }
   {% endif %}
@@ -8108,6 +8326,19 @@ body {
       padding-bottom: $navbar-height + $navbar-margin-bottom;
     }
   }
+  @media (max-height: $max-height-break){
+    &.has-top-navbar.has-fixed-top-navbar {
+      padding-top: 0;
+      &.banner-window-width.has-banner, &.banner-window-width.has-slider {
+        padding-top: 0;
+      }
+    }
+    &.has-footer-navbar.has-fixed-footer-navbar{
+      #footer-content > .container{
+        padding-bottom: 0;
+      }
+    }
+  }
 
 
   {% if settings.site-background-image  %}
@@ -8115,11 +8346,13 @@ body {
     {% unless settings.site-background-image-repeat == blank %}background-repeat: {{ settings.site-background-image-repeat }};{% endunless %}
     {% unless settings.site-background-image-position == blank %}background-position: {{ settings.site-background-image-position }};{% endunless %}
   {% endif %}
-  {% if settings.background-colour != blank %} @include background-color({{ settings.background-colour }}); {% endif %}
+  @if $body-bg {
+    @include background-color($body-bg);
+  }
   
-  font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %};
-  font-style: {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %};
-  text-transform: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %} {{ settings.font-body-case }} {% elsif settings.font-body-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  font-weight: $font-weight;
+  font-style: $font-style;
+  text-transform: $text-transform;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -8138,6 +8371,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 small, .small {
   font-weight: inherit !important;
+}
+
+input[type="file"] {
+	line-height: 100%;
+}
+
+dt {
+	float: left;
+	margin-right: 0.5em;
 }
 
 img {
@@ -8165,6 +8407,7 @@ img {
 .article-meta{
   @extend .list-unstyled;
   @extend .text-muted;
+  @extend .small;
   a{
     @extend .text-muted;
   }
@@ -8179,6 +8422,7 @@ header .article-meta{
 
 .label {
   font-weight: normal;
+  margin-left: 1em;
 }
 
 .help-block {
@@ -8199,8 +8443,10 @@ header .article-meta{
   white-space: nowrap;
 }
 
-#homepage-blog [class^="col-"]:first-of-type h4{
-  margin-top: 0;
+@media (max-width: $screen-xs-max){
+  #homepage-blog [class^="col-"]:first-of-type h4{
+    margin-top: 0;
+  }
 }
 
 /* Navbars */
@@ -8223,14 +8469,78 @@ header .article-meta{
       text-align: left;
     }
   }
+
+  .has-mega-menu .navbar {
+    .nav li.dropdown.open {
+      display: block;
+      position: static;
+  
+      .dropdown-menu {
+        padding: 0;
+        padding-top: $grid-gutter-width;
+        padding-bottom: $grid-gutter-width;
+        left: -25%;
+        right: -25%;
+    
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+.has-mega-menu .navbar {
+  .dropdown-menu li {
+    margin-bottom: 5px;
+  }
+  
+  .submenu ul li {
+    margin-bottom: 5px;
+    a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+    
+  .nav li.dropdown.open .dropdown-menu {  
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      width: $container-sm;    
+    }
+  
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+      width: $container-md;
+    }
+  
+    @media (min-width: $screen-lg-min) {
+      width: $container-lg;
+    }
+  }
+
+  .nav li.dropdown.open {
+    .dropdown-menu {
+      > li {
+        @include make-sm-column(3);
+        @include make-md-column(3);
+        @include make-lg-column(2);
+      }
+    }
+  }
+}
+
+.submenu {
+  margin-bottom: $grid-gutter-width;
 }
 
 .navbar-nav .open .dropdown-menu .dropdown-header, .submenu .nav .dropdown-header{
-  padding: 0;
+  margin-top: 0;
   font-weight: bold;
+  
+  @media (max-width: $screen-xs-max) {
+    color: $navbar-default-link-hover-color;
+  }
 }
 
-.navbar-form .form-control, .navbar-nav .dropdown-menu, .dropdown-menu > li > a, .dropdown-header {
+.navbar-form .form-control, .navbar-nav .dropdown-menu, .dropdown-menu > li > a, .dropdown-menu > li, .dropdown-header {
 	font-size: inherit;
 	font-weight: inherit;
 }
@@ -8287,8 +8597,10 @@ header .article-meta{
   @include navbar-style($navbar-bg, $navbar-link-color);
 }
 
-#currencies-picker {
-  padding: 0;
+@media (max-height: $max-height-break){
+  .navbar-fixed-top, .navbar-fixed-bottom {
+    position: relative;
+  }
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */
@@ -8296,7 +8608,6 @@ header .article-meta{
   width: 100%;
   position: relative;
 }
-
 
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
@@ -8313,24 +8624,20 @@ header .article-meta{
   z-index: 1;
   padding: 6px 12px;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: $border-radius-base;
 }
 
 .twitter-typeahead .tt-query {
   z-index: 2;
-  border-radius: 4px !important;
+  border-radius: $border-radius-base !important;
 }
 
-.input-group-addon + .twitter-typeahead > .tt-query {
-  border-top-left-radius: 0!important;
-  border-bottom-left-radius: 0!important;
-}
-
-.input-group-appended > .twitter-typeahead {
-  margin-top: 5px;
-  & > .tt-query {
-    border-top-right-radius: 0!important;
-    border-bottom-right-radius: 0!important;
+.input-group > .twitter-typeahead {
+  display: block !important;
+  height: $input-height-base;
+  & > .tt-query, & > .tt-hint {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
 } 
 
@@ -8345,7 +8652,7 @@ header .article-meta{
   *border-bottom-width: 2px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
-  border-radius: 6px;
+  border-radius: $border-radius-base;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
@@ -8369,6 +8676,16 @@ header .article-meta{
   margin: 0;
 }
 
+/* Collection */
+
+#collection-intro {
+	.row {
+		img {
+			margin-bottom: 2em;
+		}
+	}
+}
+
 /* Products */
 .product-thumbnail, .collection-thumbnail {
   @extend .thumbnail;
@@ -8385,6 +8702,12 @@ header .article-meta{
     h4 {
       margin-top: 0.5em;
     }
+  }
+}
+
+.thumbnail-image, .product-main-thumb {
+  > a {
+    display: block;
   }
 }
 
@@ -8422,8 +8745,24 @@ header .article-meta{
 
 .product-price{
   margin: $grid-gutter-width 0;
-  font-size: 2em;
-  font-weight: $headings-font-weight;
+  @extend .h3;
+}
+
+.purchase-btn {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+  @extend .btn-block;
+}
+
+.sale-label{
+  @extend .label;
+  @extend .label-success;
+}
+
+.product-variants {
+  @extend .row;
+	margin-bottom: 1em;
 }
 
 .image-placeholder {
@@ -8446,6 +8785,17 @@ header .article-meta{
     position: absolute;
     right: 0;
     top: 0;
+  }
+}
+
+.tab-content {
+	padding: 1em 0;
+}
+
+.notify-me-wrapper {
+  display: none;
+  h3 {
+    margin-top: 0;
   }
 }
 
@@ -8523,23 +8873,31 @@ header .article-meta{
 
 /* Footer */
 #footer-content {
-  {% if settings.footer-background-colour != blank %} background-color:{{ settings.footer-background-colour }}; {% endif %}
+  @if $footer-bg {
+    background-color: $footer-bg;
+  }
   > .container {
     padding-top: $grid-gutter-width;
     padding-bottom: $grid-gutter-width;
-    {% if settings.footer-background-colour != blank %} @include background-color({{ settings.footer-background-colour }}); {% endif %}
-    {% if settings.footer-heading-colour != blank %} @include heading-color({{ settings.footer-heading-colour }}); {% endif %}
-    {% if settings.footer-link-colour != blank %} @include link-color({{ settings.footer-link-colour }}); {% endif %}
-    {% if settings.footer-text-colour != blank %}
-      @include text-color({{ settings.footer-text-colour }});
+    @if $footer-bg {
+      @include background-color($footer-bg);
+    }
+    @if $footer-headings-color {
+      @include heading-color($footer-headings-color);
+    }
+    @if $footer-link-color {
+      @include link-color($footer-link-color);
+    }
+    @if $footer-text-color {
+      @include text-color($footer-text-color);
       .footer-credits {
-        color: text-muted({{ settings.footer-text-colour }});
+        color: text-muted($footer-text-color);
       }
-    {% else %}
+    } @else {
       .footer-credits {
         color: text-muted($text-color);
       }
-    {% endif %}
+    }
   }
 }
 
@@ -8554,6 +8912,54 @@ header .article-meta{
 /* Homepage slider & Banner */
 .carousel {
   margin-bottom: 3em;
+}
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+  margin: auto;
+}
+
+.carousel-fade {
+	.carousel-inner {
+		.item {
+			opacity: 0;
+			transition-property: opacity;
+		}
+		.active {
+			opacity: 1;
+		}
+		.active.left,
+		.active.right {
+			left: 0;
+			opacity: 0;
+			z-index: 1;
+		}
+		.next.left,
+		.prev.right {
+			opacity: 1;
+		}
+	}
+}
+
+// Slider caption positions
+{% for i in (i..5) %}
+  {% assign c = i | plus: 1 %}
+  {% assign slide = 'slide-' | append: c %}
+  {% assign slide_dark = slide | append: '-dark' %}
+  {% assign slide_position = slide | append: '-position' %}
+  ${{ slide_dark }}: {% if settings[slide_dark] != blank %}true{% else %}false{% endif %};
+  ${{ slide_position }}: {% if settings[slide_position] != blank %}{{ settings[slide_position] }}{% else %}bottom center{% endif %};
+{% endfor %}
+$slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($slide-3-dark $slide-3-position) ($slide-4-dark $slide-4-position) ($slide-5-dark $slide-5-position);
+$i: 1;
+@each $slide in $slides{
+  @include slide($i, nth($slide, 1), nth($slide, 2));
+  $i: $i + 1;
+}
+
+.carousel-caption {
+  h2 {
+    margin-top: 0.35em;
+  }
 }
 
 .carousel-control {
@@ -8582,41 +8988,11 @@ header .article-meta{
 .carousel-indicators {
   li{
     margin: 3px;
-    border-color: $text-color;
   }
   .active{
     margin: 3px;
     width: 10px;
     height: 10px;
-    background-color: $text-color;
-  }
-}
-
-.carousel-inner > .item > img, .carousel-inner > .item > a > img {
-  margin: auto;
-}
-
-// Slider caption postitions
-{% for i in (i..5) %}
-  {% assign c = i | plus: 1 %}
-  {% assign slide = 'slide-' | append: c %}
-  {% assign slide_dark = slide | append: '-dark' %}
-  {% assign slide_position = slide | append: '-position' %}
-  ${{ slide_dark }}: {% if settings[slide_dark] != blank %}true{% else %}false{% endif %};
-  ${{ slide_position }}: {% if settings[slide_position] != blank %}{{ settings[slide_position] }}{% else %}bottom center{% endif %};
-{% endfor %}
-$slides: ($slide-1-dark $slide-1-position) ($slide-2-dark $slide-2-position) ($slide-3-dark $slide-3-position) ($slide-4-dark $slide-4-position) ($slide-5-dark $slide-5-position);
-$i: 1;
-@each $slide in $slides{
-  #slide-#{$i}{
-    @include slide(nth($slide, 1), nth($slide, 2));
-  }
-  $i: $i + 1;
-}
-
-.carousel-caption {
-  h2 {
-    margin-top: 0.35em;
   }
 }
 
@@ -8662,13 +9038,15 @@ $i: 1;
   }
 }
 
-@media (min-width: $screen-lg-min) {
-  $caption-container-lg: {% if settings.slider-width == 'window-width' %} $container-lg - $grid-gutter-width {% else %} 70% {% endif %};
-  .carousel-caption{
-    width: $caption-container-lg;
-    margin-left: -($caption-container-lg / 2);
+{% if settings.slider-width == 'window-width' %}
+  $caption-container-lg:  $container-lg - $grid-gutter-width;
+  @media (min-width: ($caption-container-lg / 0.7)) {
+    .carousel-caption{
+      width: $caption-container-lg;
+      margin-left: -($caption-container-lg / 2);
+    }
   }
-}
+{% endif %};
 
 /* Brand */
 .navbar-brand, .brand {
@@ -8689,6 +9067,10 @@ $i: 1;
       font-size: $font-size-brand;
     }
   }
+}
+
+.navbar-brand-img {
+  padding-top: ($grid-gutter-width / 2);
 }
 
 .navbar-brand img {

@@ -1,41 +1,55 @@
-{% include '__has-variables' %}
-
+{% include 'theme-variables' %}
 <section id="collection-intro" class="section-wrap">
 {% include '__containers-open' %}
 	<h1 class="page-header">{{ page_title }}</h1>
-
-	{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
-
-{% if settings.tag-placement == 'main-content' or settings.show-product-sorter %}
-<div class="clearfix">
-  {% if settings.tag-placement == 'main-content' %}
-  <div class="pull-left">
-    {% include 'tag-buttons' %}
-  </div>
-  {% endif %}
-
-  {% if settings.show-product-sorter %}
-  {% assign sort_orders = 'Featured,Price Ascending,Price Descending,Title Ascending,Title Descending,Created Ascending,Created Descending,Best Selling' | split: ',' %}
-  <ul class="nav nav-pills {% if settings.tag-placement == 'sidebar' %}nav-stacked{% else %}pull-right{% endif %}">
-    <li class="dropdown">
-      <a role="button" data-toggle="dropdown" href="#" id="sort_menu">{% include '__localize' with 'Sort by' %} <span class="caret"></span></a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="sort_menu">
-        {% for so in sort_orders %}{% if forloop.index == 1 and collection.sort_by == blank %}{% assign default_sort = true %}{% else %}{% assign default_sort = false %}{% endif %}
-        {% if so contains 'Price' or so contains 'Selling' %}{% assign price_sort = true %}{% else %}{% assign price_sort = false %}{% endif %}
-        {% unless has_prices == false and price_sort %}
-        {% assign so_param = so | replace: ' ','-' | downcase %}
-        <li{% if collection.sort_by == so_param or default_sort %} class="active"{% endif %}><a href="?sort_by={{ so_param }}">{% include '__localize' with so %}</a></li>
-        {% endunless %}
-        {% endfor %}
-      </ul>
-    </li>
-  </ul>
-  {% endif %}
-</div>
-<hr>
-{% endif %}
+	<div class="row">
+		{% unless col_image_position == 'do-not-show' or collection.image == null %}
+		<div class="{{ img_col_span }}">
+			{% if col_image_position == 'full-width-above' %}{% assign col_thumb_size = '2048x2048' %}{% else %}{% assign col_thumb_size = 'grande' %}{% endif %}
+			{{ collection.image.src | collection_img_url: col_thumb_size | img_tag: collection.image.alt }}
+		</div>
+		{% endunless %}
+		{% unless collection.description == blank %}
+		<div class="{{ text_col_span }} collection-description">
+			{{ collection.description }}
+		</div>
+		{% endunless %}
+	</div>
 {% include '__containers-close' %}
 </section>
+
+{% if settings.tag-placement == 'main-content' or settings.show-product-sorter %}
+<section id="collection-sort" class="section-wrap">
+	{% include '__containers-open' %}
+	<div class="clearfix">
+		{% if settings.tag-placement == 'main-content' %}
+		<div class="pull-left">
+			{% include 'tag-buttons' %}
+		</div>
+		{% endif %}
+
+		{% if settings.show-product-sorter %}
+		{% assign sort_orders = 'Featured,Price Ascending,Price Descending,Title Ascending,Title Descending,Created Ascending,Created Descending,Best Selling' | split: ',' %}
+		<ul class="nav nav-pills {% if settings.tag-placement == 'sidebar' %}nav-stacked{% else %}pull-right{% endif %}">
+			<li class="dropdown">
+				<a role="button" data-toggle="dropdown" href="#" id="sort_menu">{% include '__localize' with 'Sort by' %} <span class="caret"></span></a>
+				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="sort_menu">
+					{% for so in sort_orders %}{% if forloop.index == 1 and collection.sort_by == blank %}{% assign default_sort = true %}{% else %}{% assign default_sort = false %}{% endif %}
+					{% if so contains 'Price' or so contains 'Selling' %}{% assign price_sort = true %}{% else %}{% assign price_sort = false %}{% endif %}
+					{% unless has_prices == false and price_sort %}
+					{% assign so_param = so | replace: ' ','-' | downcase %}
+					<li{% if collection.sort_by == so_param or default_sort %} class="active"{% endif %}><a href="?sort_by={{ so_param }}">{% include '__localize' with so %}</a></li>
+					{% endunless %}
+					{% endfor %}
+				</ul>
+			</li>
+		</ul>
+		{% endif %}
+	</div>
+	{% include '__containers-close' %}
+</section>
+<hr>
+{% endif %}
 
 {% if collection.all_products_count == 0 %}
 <section class="section-wrap">

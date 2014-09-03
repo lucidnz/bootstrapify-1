@@ -571,6 +571,17 @@
         </table>
         <table>
           <tr>
+            <th><label for="carousel-transition">Carousel Transition</label></th>
+            <td>
+              <select name="carousel-transition" id="carousel-transition">
+          <option value="slide" selected="selected">Slide</option>
+          <option value="fade">Fade</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="slide-1">Slide 1</label></th>
             <td>
               <table class="standard-table">
@@ -1244,6 +1255,23 @@
         </table>
         <table>
           <tr>
+            <th><label for="product-tab-linklist">Product Tab Linklist</label></th>
+            <td>
+              <select class="linklist" name="product-tab-linklist" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="secondary-call-to-action-url">Secondary Call to Action URL</label></th>
+            <td>
+              <input type="text" name="secondary-call-to-action-url" id="secondary-call-to-action-url" class="text" value="" />
+              <small>E.g. link to your contact page for customers who want a customised version of your product.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="show-product-collections">Show product collections</label></th>
             <td>
               <input type="checkbox" name="show-product-collections" id="show-product-collections" value="1" /> Yes
@@ -1271,6 +1299,14 @@
             <th><label for="show-product-vendor">Show product vendor</label></th>
             <td>
               <input type="checkbox" name="show-product-vendor" id="show-product-vendor" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-unavailable-products">Show unavailable products</label></th>
+            <td>
+              <input type="checkbox" name="show-unavailable-products" id="show-unavailable-products" value="1" /> Yes
             </td>
           </tr>
         </table>
@@ -1353,6 +1389,31 @@
         </table>
         <table>
           <tr>
+            <th><label for="collection-feature-image">Collection feature image</label></th>
+            <td>
+              <select name="collection-feature-image" id="collection-feature-image">
+          <option value="collection-image" selected="selected">Collection image</option>
+          <option value="first-product-image">First product image</option>
+          <option value="last-product-image">Last product image</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="featured-image-position">Featured Image Position</label></th>
+            <td>
+              <select name="featured-image-position" id="featured-image-position">
+          <option value="do-not-show" selected="selected">Do Not Show</option>
+          <option value="half-width-left">Half Width Left</option>
+          <option value="half-width-right">Half Width Right</option>
+          <option value="full-width-above">Full Width Above</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="overlay-title-on-hover">Overlay title on hover</label></th>
             <td>
               <input type="checkbox" name="overlay-title-on-hover" id="overlay-title-on-hover" value="1" /> Yes
@@ -1364,6 +1425,25 @@
             <th><label for="overlay-title-on-hover-background-color">Overlay title on hover background color</label></th>
             <td>
               <input type="text" name="overlay-title-on-hover-background-color" id="overlay-title-on-hover-background-color" class="color" value="" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-on-sale-badge">Show "On Sale" badge</label></th>
+            <td>
+              <select name="show-on-sale-badge" id="show-on-sale-badge">
+          <option value="as-text" selected="selected">as text</option>
+          <option value="as-percentage-off">as percentage off</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-compare-at-price">Show 'Compare At' Price</label></th>
+            <td>
+              <input type="checkbox" name="show-compare-at-price" id="show-compare-at-price" value="1" /> Yes
             </td>
           </tr>
         </table>
@@ -1385,10 +1465,42 @@
         </table>
         <table>
           <tr>
+            <th><label for="show-vendor-with-thumbnail">Show Vendor with Thumbnail</label></th>
+            <td>
+              <select name="show-vendor-with-thumbnail" id="show-vendor-with-thumbnail">
+          <option value="do-not-show" selected="selected">Do Not Show</option>
+          <option value="above-product-title">Above Product Title</option>
+          <option value="below-product-title">Below Product Title</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-out-of-stock-badge">Show “out of stock” badge</label></th>
+            <td>
+              <input type="checkbox" name="show-out-of-stock-badge" id="show-out-of-stock-badge" value="1" /> Yes
+              <small>If checked and unavailable products are visible, a badge will indicate that the products are out of stock.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="tag-button-limit">Tag button limit</label></th>
             <td>
               <input type="text" name="tag-button-limit" id="tag-button-limit" class="text" value="10" />
               <small><p>Tags will be shown as buttons until the amount of tags is equal or grater than this limit. If left blank tags will always be shown as buttons.</p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="tag-filtering-action">Tag Filtering Action</label></th>
+            <td>
+              <select name="tag-filtering-action" id="tag-filtering-action">
+          <option value="build-tag-filter" selected="selected">Build tag filter</option>
+          <option value="filter-one-tag-at-a-time">Filter one tag at a time</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -1526,9 +1638,13 @@
         </table>
         <table>
           <tr>
-            <th><label for="show-search-in-navbar">Search in top navbar</label></th>
+            <th><label for="search-placement">Search placement</label></th>
             <td>
-              <input type="checkbox" name="show-search-in-navbar" id="show-search-in-navbar" value="1" /> Yes
+              <select name="search-placement" id="search-placement">
+          <option value="dont-show" selected="selected">Don't show</option>
+          <option value="top-navbar">Top navbar</option>
+          <option value="sidebar">Sidebar</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -1538,6 +1654,15 @@
             <td>
               <select class="collection" name="typeahead-collection" />
               <small><p>We recommend you create a collection of <em>all </em>products (i.e., an automatic collection where price (and/or inventory) is greater than 0.</p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="use-mega-dropdown-menu">Use “Mega” dropdown menu</label></th>
+            <td>
+              <input type="checkbox" name="use-mega-dropdown-menu" id="use-mega-dropdown-menu" value="1" /> Yes
+              <small>If you have a large number of dropdowns or more than two levels of nested dropdowns, it is advisable to enable this setting.</small>
             </td>
           </tr>
         </table>
@@ -1689,6 +1814,15 @@
       
         <table>
           <tr>
+            <th><label for="ajax-cart">Ajax Cart</label></th>
+            <td>
+              <input type="checkbox" name="ajax-cart" id="ajax-cart" value="1" /> Yes
+              <small><p>Important! - If you are using a file upload field in your product property line items it will not work while Ajax Cart is enabled.</p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="collection-to-link-to-if-cart-empty">Collection to link to if cart empty</label></th>
             <td>
               <select class="collection" name="collection-to-link-to-if-cart-empty" />
@@ -1701,6 +1835,14 @@
             <td>
               <input type="checkbox" name="disable-cart" id="disable-cart" value="1" /> Yes
               <small>If you're using Shopify as a brochure site until you are ready to sell online, you can disable the cart.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="free-shipping-threshold">Free shipping threshold</label></th>
+            <td>
+              <input type="text" name="free-shipping-threshold" id="free-shipping-threshold" class="text" value="$100" />
             </td>
           </tr>
         </table>
@@ -1803,6 +1945,15 @@
           <option value="without-currency">Without currency</option>
         </select>
               <small><p>E.g., <strong>$123.45 NZD</strong></p></small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="append-plus-taxes-to-price">Append “plus taxes” to prices</label></th>
+            <td>
+              <input type="checkbox" name="append-plus-taxes-to-price" id="append-plus-taxes-to-price" value="1" /> Yes
+              <small>You can localize the wording in the Localization settings using “plus-taxes: + GST”</small>
             </td>
           </tr>
         </table>

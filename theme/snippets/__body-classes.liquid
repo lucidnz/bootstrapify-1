@@ -19,4 +19,5 @@ template-{{ template | replace: '.', '-' }}
 {% unless settings.thumbnail-ratio == blank %}{% if settings.thumbnails-cropped %} thumbnails-cropped{% else %} thumbnails-fit{% endif %}{% endunless %}
 {% if settings.show-multiple-currencies %} currencies{% endif %}
  {{ thumbnail_layout | prepend: 'thumbnail-layout-' }}
+{% if has_mega_menu %} has-mega-menu{% endif %} 
 {% endcapture %}{{ body_classes | strip_newlines | strip }}

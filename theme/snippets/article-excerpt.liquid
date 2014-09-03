@@ -1,5 +1,5 @@
-<h5>
-  {{ a.title | link_to: a.url, a.title }}
-  <small class="text-muted help-block">{{ a.published_at | date: settings.short-date-format }}</small>
-</h5>
+<p>
+  <small class="text-muted">{{ a.published_at | date: settings.short-date-format }}</small><br>
+  <strong>{{ a.title | link_to: a.url, a.title }}</strong>
+</p>
 {% comment %}<p>{% include '__excerpt' with a.excerpt_or_content %} <a href="{{ a.url }}">{% include '__localize' with 'Read&nbsp;more' %}&nbsp;&rarr;</a></p>{% endcomment %}
