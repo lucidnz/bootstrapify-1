@@ -8700,6 +8700,15 @@ header .article-meta{
   {% endif %}
 }
 
+/* Thumbnails */
+
+.thumbnail__frame {
+  {% if settings.thumbnails-per-row-mobile != blank %}@include make-xs-column({{ 12 | divided_by: settings.thumbnails-per-row-mobile }});{% endif %}
+  {% if settings.thumbnails-per-row-tablet != blank %}@include make-sm-column({{ 12 | divided_by: settings.thumbnails-per-row-tablet }});{% endif %}
+  {% if settings.thumbnails-per-row-laptop != blank %}@include make-md-column({{ 12 | divided_by: settings.thumbnails-per-row-laptop }});{% endif %}
+  {% if settings.thumbnails-per-row-desktop != blank %}@include make-lg-column({{ 12 | divided_by: settings.thumbnails-per-row-desktop }});{% endif %}
+}
+
 /* Collection */
 
 .collection--header {
