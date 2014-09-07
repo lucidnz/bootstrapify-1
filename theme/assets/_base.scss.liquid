@@ -36,6 +36,12 @@
   h1, h2, h3, h4, h5, h6,
   .h1, .h2, .h3, .h4, .h5, .h6 {
     color: $colour;
+    a {
+      color: $colour;
+      &:hover {
+        color: hover-colour( $colour );
+      }
+    }
   }
 }
 
@@ -8725,6 +8731,10 @@ header .article-meta{
   > a {
     display: block;
   }
+}
+
+.product-main-image {
+  margin-top: 2.5em;
 }
 
 .has-overlay-title-on-hover {
