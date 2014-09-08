@@ -65,6 +65,21 @@
 				{% endif %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 				
+				{% if product.metafields.custom_links.size > 0 %}
+				<ul class="custom-links">
+					{% for l in product.metafields.custom_links %}
+						<li><a href="{{ l.last }}" class="btn btn-default" title="{{ l.first }}" target="_blank">{{ l.first }}</a></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+				{% if product.metafields.custom_images.size > 0 %}
+				<ul class="custom-images">
+				{% for l in product.metafields.custom_images %}
+					<li><img src="{{ l.last }}" class="custom-image" alt="{{ l.first }}"></li>
+				{% endfor %}
+				</ul>
+				{% endif %}
+				
 				{% if settings.product-tab-linklist == null %}
 				<div itemprop="description">{% include '__formatted-content' with product.description %}</div>
 				{% else %}
