@@ -34,7 +34,6 @@
 {% endif %}
 
 <script type="text/javascript">
-
   var removeNewsletterAlert = function($form){
     window.setTimeout(function(){
       $form.find('.alert').hide(186, function(){
@@ -56,7 +55,7 @@
     if($form.find('#contact_email').val() !== ''){
       $.ajax({
         type: 'POST',
-        //dataType: 'json',
+        {% if settings.mailchimp != blank %} dataType: 'json', {% endif %}
         url: $form.prop('action'),
         data: $form.serialize()
       })
