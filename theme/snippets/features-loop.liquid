@@ -1,5 +1,4 @@
-{% assign span = cols | modulo: 12 %}
-{% assign span = 12 | divided_by: span %}
+{% assign span = 12 | divided_by: cols %}
 {% if features-loop == 'linklist' %}
 {% assign object = l.object %}
 {% capture excerpt %}{% include '__excerpt' with object.content %}{% endcapture %}

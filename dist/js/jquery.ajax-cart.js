@@ -227,11 +227,19 @@
   /* Cart Display */
   var CartDisplay = function(cartCountElement){
     this.$cartCountElement = $(cartCountElement);
+    this.$cartCountBadge = this.$cartCountElement.find('.badge');
   };
   
   CartDisplay.prototype.updateCartCountElement = function(count){
-    if(this.$cartCountElement.text() !== count){
-      this.$cartCountElement.text(count);
+    if(count > 0){
+      if(this.$cartCountBadge.length === 0){
+        this.$cartCountElement.append(' <span class="badge"></span>');
+        this.$cartCountBadge = this.$cartCountElement.find('.badge');
+      }
+    
+      if(this.$cartCountBadge.text() !== count){
+        this.$cartCountBadge.text(count);
+      }
     }
   };
   
