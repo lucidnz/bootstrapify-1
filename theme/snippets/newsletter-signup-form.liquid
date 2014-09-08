@@ -1,6 +1,10 @@
 {% capture fields %}<input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
 <div class="input-group">
+  {% if settings.mailchimp == blank %}
   <input type="text" id="contact_email" name="contact[email]" class="form-control" placeholder="{% include '__localize' with 'Your email' %}">
+  {% else %}
+  <input type="email" id="contact_email" name="EMAIL" class="form-control" placeholder="{% include '__localize' with 'Your email' %}">
+  {% endif %}
   <span class="input-group-btn"><button type="submit" class="btn btn-primary">{% include '__localize' with 'Subscribe' %}</button></span>
 </div>{% endcapture %}
 
