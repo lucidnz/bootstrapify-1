@@ -8702,15 +8702,85 @@ header .article-meta{
   margin: 0;
 }
 
+.site--page {
+  {% if has_window_width_thumbnail_container %}
+  @extend .fluid-container;
+  {% else %}
+  @extend .container;
+  {% endif %}
+}
+
+/* Thumbnails */
+
+.thumbnail__frame {
+  {% if settings.thumbnails-per-row-mobile != blank %}@include make-xs-column({{ 12 | divided_by: settings.thumbnails-per-row-mobile }});{% endif %}
+  {% if settings.thumbnails-per-row-tablet != blank %}@include make-sm-column({{ 12 | divided_by: settings.thumbnails-per-row-tablet }});{% endif %}
+  {% if settings.thumbnails-per-row-laptop != blank %}@include make-md-column({{ 12 | divided_by: settings.thumbnails-per-row-laptop }});{% endif %}
+  {% if settings.thumbnails-per-row-desktop != blank %}@include make-lg-column({{ 12 | divided_by: settings.thumbnails-per-row-desktop }});{% endif %}
+}
+
 /* Collection */
 
-#collection-intro {
-	.row {
-		img {
-			margin-bottom: 2em;
-		}
-	}
+.collection--header {
+  margin-bottom: $grid-gutter-width;
+  margin-top: $grid-gutter-width;
+  
+  .collection--intro {
+    @include make_row();
+    
+    & > h1 {
+      @extend .page-header;
+      @include make-xs-column(12);
+    }
+    
+    .collection__feature-image,
+    .collection__description {
+      @include make-xs-column(12);
+      
+      {% if settings.featured-image-position contains 'half-width' %}
+      @include make-sm-column(6);
+      {% endif %}
+    }
+    
+    .collection__feature-image {
+      {% if settings.featured-image-position contains 'right' %}
+      @include make-sm-column-push(6);
+      {% endif %}
+    }
+  
+    .collection__description {
+      {% if settings.featured-image-position contains 'right' %}
+      @include make-sm-column-pull(6);
+      {% endif %}
+      
+      & > h1:first-child,
+      & > h2:first-child {
+        margin-top: 0;
+      }
+    }
+  }
 }
+
+{% if settings.round-thumbnail-images and template != 'index' %}
+.template-collection {
+  .thumbnail-image {
+    img {
+      @extend .img-circle;
+    }
+  }
+}
+{% endif %}
+
+{% if settings.round-thumbnail-images-on-homepage %}
+.template-index {
+  .thumbnail-image {
+    img {
+      @extend .img-circle;
+    }
+  }
+}
+{% endif %}
+
 
 /* Products */
 .product-thumbnail, .collection-thumbnail {

@@ -1,0 +1,18 @@
+<section class="collection--header">
+  <div class="site--page">
+    <div class="collection--intro">
+    	{% if collection.collection-header-placement == 'above-products' %}<h1>{{ page_title }}</h1>{% endif %}
+    	{% unless col_image_position == 'do-not-show' or collection.image == null %}
+    	<div class="collection__feature-image">
+    		{% if col_image_position == 'full-width-above' %}{% assign col_thumb_size = '2048x2048' %}{% else %}{% assign col_thumb_size = 'grande' %}{% endif %}
+    		{{ collection.image.src | collection_img_url: col_thumb_size | img_tag: collection.image.alt }}
+    	</div>
+    	{% endunless %}
+    	{% unless collection.description == blank %}
+    	<div class="collection__description">
+    		{{ collection.description }}
+    	</div>
+    	{% endunless %}
+    </div>
+  </div>
+</section>
