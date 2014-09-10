@@ -6,8 +6,7 @@
 {% else %}
 {% capture image %}
 {% assign featured_image = selected_or_first_variant.featured_image | default: product.featured_image %}
-{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}	
-<img class="{{ round-class }}" src="{{ featured_image | product_img_url: 'original' }}" alt="{{ featured_image.alt }}">{% endcapture %}
+<img src="{{ featured_image | product_img_url: 'original' }}" alt="{{ featured_image.alt }}">{% endcapture %}
 {% endif %}
 {% endcapture %}
 <section id="product-portfolio-wrap" class="product-wrap section-wrap">
@@ -18,13 +17,12 @@
 		</div>
 	</div>
 
-    <!-- images col -->
-    <div class="product-images">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="thumbnail product-main-image">
-            {{ image }}
-          </div>
+  <!-- images col -->
+  <div class="product-images">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="thumbnail product-main-image">
+          {{ image }}
         </div>
       </div>
       {% if product.images.size > 1 %}
@@ -34,13 +32,9 @@
   				<div class="thumbnail">
   					<div class="thumbnail-image product-main-thumb">
               <a href="#" data-main-image="{{ image.src | product_img_url: '1024x1024' }}">
-                {% if settings.round-thumbnail-images %}
-                {{ image.src | product_img_url: 'grande' | img_tag: image.alt, 'img-circle' }}
-                {% else %}
-                {{ image.src | product_img_url: 'grande' | img_tag: image.alt }}
-                {% endif %}
               </a>
             </div>
+              {{ image.src | product_img_url: 'grande' | img_tag: image.alt }}
           </div>
         </div>
         {% endfor %}
