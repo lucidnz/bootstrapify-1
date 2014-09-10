@@ -10,12 +10,12 @@
 {% endif %}
 {% endcapture %}
 <section id="product-portfolio-wrap" class="product-wrap section-wrap">
-	{% include '__containers-open' %}
-	<div class="row">
-		<div class="col-xs-12">
-			<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
-		</div>
-	</div>
+  {% include '__containers-open' %}
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="page-header" itemprop="name">{{ page_title }}</h1>
+    </div>
+  </div>
 
   <!-- images col -->
   <div class="product-images">
@@ -25,56 +25,49 @@
           {{ image }}
         </div>
       </div>
-      {% if product.images.size > 1 %}
-      <div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
-        {% for image in product.images %}
-  			<div class="col-xs-4 col-sm-3 col-md-2{% if forloop.index == 1 %}{% if forloop.length == 2 %} col-xs-offset-2 col-sm-offset-3 col-md-offset-4{% elsif forloop.length == 3 %} col-xs-offset-0 col-sm-offset-1 col-md-offset-3{% elsif forloop.length == 4 %} col-xs-offset-0 col-sm-offset-0 col-md-offset-2{% elsif forloop.length == 5 %} col-xs-offset-0 col-sm-offset-0 col-md-offset-1{% endif %}{% endif %}">
-  				<div class="thumbnail">
-  					<div class="thumbnail-image product-main-thumb">
-              <a href="#" data-main-image="{{ image.src | product_img_url: '1024x1024' }}">
-              </a>
-            </div>
+    </div>
+    {% if product.images.size > 1 %}
+    <div class="row{% if settings.masonry-style-layout %} masonry-collection{% endif %}">
+      {% for image in product.images %}
+      <div class="col-xs-4 col-sm-3 col-md-2{% if forloop.index == 1 %}{% if forloop.length == 2 %} col-xs-offset-2 col-sm-offset-3 col-md-offset-4{% elsif forloop.length == 3 %} col-xs-offset-0 col-sm-offset-1 col-md-offset-3{% elsif forloop.length == 4 %} col-xs-offset-0 col-sm-offset-0 col-md-offset-2{% elsif forloop.length == 5 %} col-xs-offset-0 col-sm-offset-0 col-md-offset-1{% endif %}{% endif %}">
+        <div class="thumbnail">
+          <div class="thumbnail-image product-main-thumb">
+            <a href="#" data-main-image="{{ image.src | product_img_url: '1024x1024' }}">
               {{ image.src | product_img_url: 'grande' | img_tag: image.alt }}
+            </a>
           </div>
         </div>
-        {% endfor %}
-        {% endif %}
       </div>
-    </div>
-	
-    <!-- details col -->
-    <div class="row">
-      <div class="col-xs-12">
-      {% if product.price > 0 %}
-        <div class="lead product-price">
-          <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>
-          <del class="compare-at-price-field text-muted"></del>
-          <span class="sale-label" style="display: none;">{% include '__localize' with 'On sale' %}</span>
-        </div>
-        <hr>
-        {% include 'product-add-to-cart-form' %}
-
+      {% endfor %}
       {% endif %}
-      </div>
     </div>
+  </div>
   
-    {% capture specs %}{% include 'product-specs' %}{% endcapture %}
-    {% if specs == blank %}
-    {% include '__formatted-content' with product.description %}
-    {% elsif product.description == blank %}
-      {{ specs }}
-    {% else %}
-    <div class="row">			
-      <div class="col-sm-6 gutter-top">
-        {% include '__formatted-content' with product.description %}
+  <div class="row">			
+    <div class="col-sm-{% if product.price > 0 %}9{% else %}12{% endif %}">
+      <h3>{{ page_title }}</h3>
+      {% if product.price > 0 %}
+      <div class="lead product-price">
+        <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>
+        <del class="compare-at-price-field text-muted"></del>
+        <span class="sale-label" style="display: none;">{% include '__localize' with 'On sale' %}</span>
       </div>
+      {% endif %}
         
-			<div class="col-sm-6">
-				{{ specs }}
-			</div>
-		</div>
-		{% endif %}
-	{% include '__containers-close' %}
+      {% include '__formatted-content' with product.description %}
+
+      {{ specs }}
+    </div>
+      
+    {% if product.price > 0 %}  
+    <div class="col-sm-3">
+      {% include 'product-add-to-cart-form' %}
+    </div>
+    {% endif %}
+    
+    {% include 'product-vendor-description' %}
+  </div>
+  {% include '__containers-close' %}
 </section>
 
 {% include 'product-footer' %}
