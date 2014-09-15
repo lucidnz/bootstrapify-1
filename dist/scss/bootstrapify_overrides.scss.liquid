@@ -514,26 +514,6 @@ header .article-meta{
   }
 }
 
-{% if settings.round-thumbnail-images and template != 'index' %}
-.template-collection {
-  .thumbnail-image {
-    img {
-      @extend .img-circle;
-    }
-  }
-}
-{% endif %}
-
-{% if settings.round-thumbnail-images-on-homepage %}
-.template-index {
-  .thumbnail-image {
-    img {
-      @extend .img-circle;
-    }
-  }
-}
-{% endif %}
-
 
 /* Products */
 .product-thumbnail, .collection-thumbnail {

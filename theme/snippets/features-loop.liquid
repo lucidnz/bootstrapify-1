@@ -12,18 +12,17 @@
 {% assign sizes = '_pico.,_icon.,_thumb.,_small.,_compact.,_medium.,_large.,_grande.,_1024x1024.,_2048x2048.,_master' | split: ',' %}
 {% assign src = null %}
 {% if excerpt contains "<img" %}
-    {% assign src = excerpt | split: 'src="' %}
-    {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn'; | replace: 'http:http://';, 'http://'; | remove: 'https:' %}
+  {% assign src = excerpt | split: 'src="' %}
+  {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
 	{% for s in sizes %}
 	{% assign src = src | replace: s, '_large.' %}
 	{% endfor %}
 {% endif %}
 {% endif %}
-{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% elsif settings.round-thumbnail-images-on-homepage and template == 'index' %}{% assign round-class = 'img-circle' %}{% endif %}
 
 {% capture blurb %}
 {% if src != null %}
-<a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}"><img src="{{ src }}" class="{{ round-class }}" alt="{{ object.title }}"></a>
+<a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}"><img src="{{ src }}" alt="{{ object.title }}"></a>
 {% endif %}
 <h4 class="media-heading"><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h4>
 {% if features-loop == 'blog' %}{% include 'article-meta' with object %}{% endif %}

@@ -5,12 +5,12 @@
     	{% unless col_image_position == 'do-not-show' or collection.image == null %}
     	<div class="collection__feature-image">
     		{% if col_image_position == 'full-width-above' %}{% assign col_thumb_size = '2048x2048' %}{% else %}{% assign col_thumb_size = 'grande' %}{% endif %}
-    		{{ collection.image.src | collection_img_url: col_thumb_size | img_tag: collection.image.alt }}
+    		{{ collection-header.image.src | collection_img_url: col_thumb_size | img_tag: collection-header.image.alt }}
     	</div>
     	{% endunless %}
-    	{% unless collection.description == blank %}
+    	{% unless collection-header.description == blank %}
     	<div class="collection__description">
-    		{{ collection.description }}
+    		{{ collection-header.description }}
     	</div>
     	{% endunless %}
     </div>

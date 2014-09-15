@@ -1,7 +1,7 @@
 {% include 'theme-variables' %}
 
 {% if settings.collection-header-placement == 'above-products' %}
-{% include 'collection-header' %}
+{% include 'collection-header' with collection %}
 {% else %}
 <div class="container">
   <h1 class="page-header">{{ page_title }}</h1>
@@ -104,5 +104,5 @@
 {% endunless %}
 
 {% if settings.collection-header-placement == 'below-products' %}
-{% include 'collection-header' %}
+{% include 'collection-header' with collection %}
 {% endif %}
