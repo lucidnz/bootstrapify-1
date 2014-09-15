@@ -369,15 +369,6 @@
         </table>
         <table>
           <tr>
-            <th><label for="use-adaptive-thumbnails-per-row">Use “adaptive” thumbnails per row</label></th>
-            <td>
-              <input type="checkbox" name="use-adaptive-thumbnails-per-row" id="use-adaptive-thumbnails-per-row" value="1" /> Yes
-              <small>The number of thumbnails per row will adapt for best fit. This is particularly useful if you have a small number of products.</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
             <th><label for="default-pagination">Default pagination</label></th>
             <td>
               <input type="text" name="default-pagination" id="default-pagination" class="text" value="24" />
@@ -1389,6 +1380,23 @@
         </table>
         <table>
           <tr>
+            <th><label for="recommended-products-collection">“Recommended” products collection</label></th>
+            <td>
+              <select class="collection" name="recommended-products-collection" />
+              <small>You can choose to display “recommended” products on the homepage, collection pages and product pages.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-recommended-collections">Show “recommended” collections</label></th>
+            <td>
+              <input type="checkbox" name="show-recommended-collections-on-homepage" id="show-recommended-collections-on-homepage" value="1" /> on Homepage<br /><input type="checkbox" name="show-recommended-collections-on-collection" id="show-recommended-collections-on-collection" value="1" /> on Collection<br /><input type="checkbox" name="show-recommended-collections-on-product" id="show-recommended-collections-on-product" value="1" /> on Product<br /><input type="checkbox" name="show-recommended-collections-on-cart" id="show-recommended-collections-on-cart" value="1" /> on Cart<br /><input type="checkbox" name="show-recommended-collections-on-page" id="show-recommended-collections-on-page" value="1" /> on Page<br /><input type="checkbox" name="show-recommended-collections-on-blog" id="show-recommended-collections-on-blog" value="1" /> on Blog<br /><input type="checkbox" name="show-recommended-collections-on-article" id="show-recommended-collections-on-article" value="1" /> on Article<br /><input type="checkbox" name="show-recommended-collections-on-search" id="show-recommended-collections-on-search" value="1" /> on Search<br /><input type="checkbox" name="show-recommended-collections-on-404" id="show-recommended-collections-on-404" value="1" /> on 404<br />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="collection-feature-image">Collection feature image</label></th>
             <td>
               <select name="collection-feature-image" id="collection-feature-image">
@@ -1396,6 +1404,18 @@
           <option value="first-product-image">First product image</option>
           <option value="last-product-image">Last product image</option>
         </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="collection-header-placement">Collection header placement</label></th>
+            <td>
+              <select name="collection-header-placement" id="collection-header-placement">
+          <option value="above-products" selected="selected">Above products</option>
+          <option value="below-products">Below products</option>
+        </select>
+              <small>The collection header contains the collection description and (if present) the collection’s feature image.</small>
             </td>
           </tr>
         </table>
