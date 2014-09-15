@@ -8,12 +8,8 @@
   {% include '__default-pagination' %}
   {% paginate collections by default-pagination %}
   {% if collections.size > 0 %}
-    {% if settings.show-products-on-all-collections-page %}
-    
-    {% else %}
-      {% include 'collections-list' %}
-      {% include 'pagination' %}
-    {% endif %}
+    {% include 'collections-list' %}
+    {% include 'pagination' %}
   {% else %}
     <div class="alert alert-info text-center">
       <h3><i class="fa fa-info-circle"></i> No {% include '__localize' with 'collections' %} found.</h3>
