@@ -216,24 +216,6 @@
         </table>
         <table>
           <tr>
-            <th><label for="round-thumbnail-images">Round thumbnail images</label></th>
-            <td>
-              <input type="checkbox" name="round-thumbnail-images" id="round-thumbnail-images" value="1" /> Yes
-              <small>Only use this if your images are cropped to square dimensions</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="round-thumbnail-images-on-homepage">Round thumbnail images on homepage</label></th>
-            <td>
-              <input type="checkbox" name="round-thumbnail-images-on-homepage" id="round-thumbnail-images-on-homepage" value="1" /> Yes
-              <small>Only use this if your images are cropped to square dimensions</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
             <th><label for="show-borders">Show borders</label></th>
             <td>
               <input type="checkbox" name="show-borders" id="show-borders" value="1" /> Yes
@@ -1237,6 +1219,15 @@
       
         <table>
           <tr>
+            <th><label for="display-vendor-description">Display vendor description</label></th>
+            <td>
+              <input type="checkbox" name="display-vendor-description" id="display-vendor-description" value="1" /> Yes
+              <small>If checked and a collection exists with the same handle as the vendor handle, the collection description (and image) will be displayed at the bottom of the product page.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="hidden-tag-prefixes">Hidden tag prefixes</label></th>
             <td>
               <input type="text" name="hidden-tag-prefixes" id="hidden-tag-prefixes" class="text" value="hd,hidden" />
@@ -1312,6 +1303,14 @@
             <td>
               <select class="linklist" name="all-collections-linklist" />
               <small>If you would like to specify which collections show on the /collections page, create a linklist of collections.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-products-on-all-collections-page">Show products on "All collections" page</label></th>
+            <td>
+              <input type="checkbox" name="show-products-on-all-collections-page" id="show-products-on-all-collections-page" value="1" /> Yes
             </td>
           </tr>
         </table>
