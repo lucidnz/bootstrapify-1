@@ -1,5 +1,5 @@
 {% assign span = 12 | divided_by: cols %}
-{% if features-loop == 'linklist' %}
+{% if index-features-loop == 'linklist' %}
 {% assign object = l.object %}
 {% capture excerpt %}{% include '__excerpt' with object.content %}{% endcapture %}
 {% else %}
@@ -25,7 +25,7 @@
 <a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}"><img src="{{ src }}" alt="{{ object.title }}"></a>
 {% endif %}
 <h4 class="media-heading"><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h4>
-{% if features-loop == 'blog' %}{% include 'article-meta' with object %}{% endif %}
+{% if index-features-loop == 'blog' %}{% include 'article-meta' with object %}{% endif %}
 <p>{% if excerpt == blank and shop.url contains 'myshopify' and settings.development-mode %}This will show an excerpt of the content (if one exists). To hide this placeholder text, disable development mode in Settings > Advanced.{% elsif src == null %}{{ excerpt | strip_html }}{% endif %}</p>
 {% endcapture %}
 <div class="col-sm-{{ span }}">
