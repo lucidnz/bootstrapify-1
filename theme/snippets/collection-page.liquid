@@ -28,6 +28,7 @@
       {% assign child_handle = v | handleize | downcase %}
       {% if collections[child_handle].products.size > 0 %}
         {% if settings.show-products-on-nested-collections-page %}
+          {% assign is_nested = true %}
           {% include 'collection-header' with collections[child_handle] %}
           {% for collection_product in collections[child_handle].products %}
             {% include 'product-loop' with collection_product %}

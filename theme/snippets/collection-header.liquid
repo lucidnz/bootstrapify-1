@@ -9,9 +9,11 @@
     	</div>
     	{% endunless %}
     	{% unless collection-header.description == blank %}
-    	<div class="collection__description">
-    		{{ collection-header.description }}
-    	</div>
+      	{% unless is_nested and settings.show-descriptions-on-nested-collections-page == false %}
+      	<div class="collection__description">
+      		{{ collection-header.description }}
+      	</div>
+      	{% endunless %}
     	{% endunless %}
     </div>
   </div>
