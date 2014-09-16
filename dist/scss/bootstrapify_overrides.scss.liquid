@@ -542,6 +542,7 @@ header .article-meta{
 
 .product-main-image {
   margin-top: 2.5em;
+  {% if settings.enable-image-lightbox %} cursor: pointer; {% endif %}
 }
 
 .has-overlay-title-on-hover {
