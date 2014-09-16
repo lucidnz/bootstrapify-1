@@ -77,23 +77,22 @@ var productImageZoomOrLightbox = function ($imageWrapper) {
     var $this = $(this);
     var imgSrc = $this.find('img')[0].src;
     var imgSize = Shopify.Image.imageSize(imgSrc);
-    var SizedImgSrc = Shopify.Image.getSizedImageUrl(imgSrc.replace('_'+imgSize, ''), '2048x2048');
+    var SizedImgSrcLrg = Shopify.Image.getSizedImageUrl(imgSrc.replace('_'+imgSize, ''), '2048x2048');
     
     if(Shopify.settings.enable_image_zoom){
       $this.trigger('zoom.destroy');
       $this.zoom({
-        url: SizedImgSrc,
+        url: SizedImgSrcLrg,
         callback: function () {
           if(Shopify.settings.enable_image_lightbox){
-            $(this).colorbox({ href: this.src });
+            $this.colorbox({ href: SizedImgSrcLrg, maxHeight: "80%" });
           }
         }
       });
-    
     } else if (Shopify.settings.enable_image_lightbox) {
-      $this.colorbox({ href: SizedImgSrc });
-      
+      $this.colorbox({ href: SizedImgSrcLrg, maxHeight: "80%" });
     }
+    
   });
 };
 
