@@ -32,9 +32,9 @@
   {% endif %}
 
   {{ content_for_header }}
+  
+  {% include 'theme-variables' %}
 </head>
-
-{% include 'theme-variables' %}
 <body class="{% include '__body-classes' %}">
 
   <div id="wrap">

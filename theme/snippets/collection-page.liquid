@@ -27,7 +27,14 @@
       {% for v in o %}
       {% assign child_handle = v | handleize | downcase %}
       {% if collections[child_handle].products.size > 0 %}
-      {% include 'collection-loop' with collections[child_handle] %}
+        {% if settings.show-products-on-nested-collections-page %}
+          {% include 'collection-header' with collections[child_handle] %}
+          {% for collection_product in collections[child_handle].products %}
+            {% include 'product-loop' with collection_product %}
+          {% endfor %}
+        {% else %}
+          {% include 'collection-loop' with collections[child_handle] %}
+        {% endif %}
       {% endif %}
       {% endfor %}
     </div>
@@ -75,7 +82,7 @@
 				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="sort_menu">
 					{% for so in sort_orders %}{% if forloop.index == 1 and collection.sort_by == blank %}{% assign default_sort = true %}{% else %}{% assign default_sort = false %}{% endif %}
 					{% if so contains 'Price' or so contains 'Selling' %}{% assign price_sort = true %}{% else %}{% assign price_sort = false %}{% endif %}
-					{% unless has_prices == false and price_sort %}
+					{% unless collection_has_prices == false and price_sort %}
 					{% assign so_param = so | replace: ' ','-' | downcase %}
 					<li{% if collection.sort_by == so_param or default_sort %} class="active"{% endif %}><a href="?sort_by={{ so_param }}">{% include '__localize' with so %}</a></li>
 					{% endunless %}
