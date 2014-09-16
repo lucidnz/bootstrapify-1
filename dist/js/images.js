@@ -32,7 +32,9 @@ var switchImage = function($imageWrapper, newImageSrc){
   var $mainImage = $imageWrapper.find('img');
   if($mainImage.attr('src') !== newImageSrc){
     $mainImage.hide().attr('src', newImageSrc).fadeIn();
-    productImageZoom($imageWrapper);
+    if(Shopify.settings.enable_image_zoom){
+      productImageZoom($imageWrapper);
+    }
   }
 };
 
@@ -56,7 +58,9 @@ $(window).load(function(){
     $(this).attr('data-current-slide', currentSlideID);
   });
   
-  productImageZoom();
+  if(Shopify.settings.enable_image_zoom){
+    productImageZoom();
+  }
 });
 
 $(window).on('resize', function(){
