@@ -14,7 +14,7 @@
     <div class="carousel-inner">
       {% for p in collection.products %}
       <div class="item{% if forloop.index0 == 0 %} active{% endif %}">
-        {{ p.featured_image.src | product_img_url: '2048x2048' | img_tag: p.featured_image.alt }}
+        <a href="{{ p.url }}" title="View {{ p.title }}">{{ p.featured_image.src | product_img_url: '2048x2048' | img_tag: p.featured_image.alt }}</a>
 {% comment %}
         <div class="carousel-caption">
           <h2>{{ p.title }}</h2>
