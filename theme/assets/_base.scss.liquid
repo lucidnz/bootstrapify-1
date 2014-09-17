@@ -8474,6 +8474,15 @@ header .article-meta{
   }
 }
 
+/* Grids */
+
+.collection-grid {
+	@extend .col-xs-12;
+	@extend .col-sm-6;
+	@extend .col-md-4;
+	@extend .col-lg-{{ 12 | divided_by: settings.collections-per-row }};
+}
+
 /* Navbars */
 @media (min-width: $screen-sm-min){
   .navbar-nav.navbar-left:first-child{
