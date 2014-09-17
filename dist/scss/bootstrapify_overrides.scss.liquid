@@ -916,12 +916,14 @@ $i: 1;
   &:focus {
     outline: none;
   }
-}
-
-#cboxClose {
-  @extend .btn;
-  @extend .btn-default;
-  margin-top: 0.25em;
+  button {
+    @extend .btn;
+    @extend .btn-default;
+  }
+  #cboxCurrent, button {
+    margin-top: 0.5em;
+    margin-right: 1em;
+  }
 }
 
 // embeded videos
