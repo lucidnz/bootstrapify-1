@@ -75,7 +75,7 @@
 				</ul>
 				{% endif %}
 				
-				{% if settings.product-tab-linklist == null %}
+				{% if settings.product-tab-linklist == blank %}
 				<div itemprop="description">{% include '__formatted-content' with product.description %}</div>
 				{% else %}
 				<ul class="nav nav-tabs">
