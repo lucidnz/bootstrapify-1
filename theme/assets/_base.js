@@ -71,8 +71,10 @@ var carouselControlHeight = function () {
 };
 
 /* Product image zoom and lightbox */
-var enableColorbox = function($ele){
-  $ele.colorbox({ href: $ele.prop('src'), maxHeight: "80%" });
+var enableColorbox = function($ele, SizedImgSrcLrg){
+  if(Shopify.settings.enable_image_lightbox){
+    $ele.colorbox({ href: SizedImgSrcLrg, maxHeight: "80%" });
+  }
 };
 
 var productImageZoomOrLightbox = function ($imageWrapper) {
@@ -88,15 +90,12 @@ var productImageZoomOrLightbox = function ($imageWrapper) {
       $this.zoom({
         url: SizedImgSrcLrg,
         callback: function () {
-          if(Shopify.settings.enable_image_lightbox){
-            enableColorbox($this);
-          }
+          enableColorbox($this, SizedImgSrcLrg);
         }
       });
-    } else if (Shopify.settings.enable_image_lightbox) {
-      enableColorbox($this);
+    } else {
+      enableColorbox($this, SizedImgSrcLrg);
     }
-    
   });
 };
 
