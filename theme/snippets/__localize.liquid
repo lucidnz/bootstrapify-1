@@ -1,5 +1,5 @@
 {% capture translation %}
-  {% assign setting_name = __localize | remove: '&' | remove: ',' | remove: '.' | remove: '?' | remove: '!' | replace: ' ','-' | downcase %}
+  {% assign setting_key = __localize | replace: '&nbsp;','-' | strip_html | handleize | downcase %}
   
   {% unless settings.localizations == blank %}
   {% assign localizations = settings.localizations | split: ',' %}
@@ -7,8 +7,8 @@
   {% for l in localizations %}
   {% assign key = l | split: ':' | first | strip %}
   {% assign value = l | split: ':' | last | strip %}
-  {% if key == setting_name %}
-    {% assign localized = value %}
+  {% if key == setting_key %}
+    {% assign localized = value | remove: '"' %}
   {% endif %}
   {% endfor %}
   {% endunless %}

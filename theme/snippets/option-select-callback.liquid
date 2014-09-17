@@ -1,0 +1,69 @@
+<script>
+var selectCallback = function(variant, selector){
+  
+  // get the current product
+  var $productWrap = $('#'+selector.existingSelectorId).closest('.product-wrap');
+  
+  // set vars so we dont need to call the elements repeatedly
+  var purchaseButton = $productWrap.find('.purchase-btn');
+  var priceField = $productWrap.find('.price-field');
+  var quantityWrap = $productWrap.find('.quantity-wrap');
+  var addToCartButtonWrap = $productWrap.find('.add-to-cart-button-wrap');
+  var saleField = $productWrap.find('.sale-label');
+  var compareAtPriceField = $productWrap.find('.compare-at-price-field');
+  var $notifyForm = $productWrap.find('.notify-me-wrapper'); // Show/hide notify form
+  
+  var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
+  var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
+  var soldOutStr = '{% include '__localize' with 'Sold out' %}';
+      
+  // disable purchase button
+  purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);
+  priceField.addClass('text-muted');
+  saleField.hide();
+  compareAtPriceField.html('').hide();
+      
+  if(variant){
+    // we have a variant so update the price
+    var moneyFormat = "{% if settings.show-currency-with-prices == 'with-currency' %}{{ shop.money_with_currency_format }}{% else %}{{ shop.money_format }}{% endif %}"; // we still need the correct money format if the currency converter is off
+    var formattedMoney = Shopify.formatMoney(variant.price, moneyFormat);
+    priceField.html('<span class="money">'+formattedMoney+'</span>'); // we need to refresh the the money span to invoke the currency converter if it is on
+        
+    if(variant.compare_at_price > 0){
+      // variant is on sale
+      var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
+      compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
+      saleField.show();
+    }
+        
+    if(variant.available){
+      // the variant is available for purchase so enable the button
+      purchaseButton.removeAttr('disabled').removeClass('disabled').addClass('btn-primary').val(addToCartStr);
+      priceField.removeClass('text-muted');
+      $notifyForm.hide();
+    } else {
+      // sold out
+      purchaseButton.val(soldOutStr);
+      $notifyForm.fadeIn();
+    }
+    
+    if(variant.inventory_quantity <= 1 && variant.inventory_management == 'shopify' && variant.inventory_policy == 'deny'){
+      quantityWrap.hide();
+      addToCartButtonWrap.removeClass('col-sm-8').addClass('col-sm-12');
+    }
+    else {
+      quantityWrap.show();
+      addToCartButtonWrap.addClass('col-sm-8').removeClass('col-sm-12');
+    }
+    
+    if(variant.featured_image){
+      // variant image switcher
+      var $mainImageWrapper = $productWrap.find('.product-main-image');
+      var mainImageElement = $mainImageWrapper.find('img')[0];
+      Shopify.Image.switchImage(variant.featured_image, mainImageElement, function(new_image_src, original_image, element){
+        switchImage($mainImageWrapper, new_image_src);
+      });
+    }
+  }
+};
+</script>

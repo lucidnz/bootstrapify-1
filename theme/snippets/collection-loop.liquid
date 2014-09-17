@@ -1,0 +1,14 @@
+<div class="{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
+  <div class="collection-thumbnail text-center">
+    <div class="thumbnail-image">
+      {% include 'collection-image' %}
+    </div>
+    <div class="caption clearfix">
+      {% if collections-list == 'featured' %}{% assign _title = l.title %}{% else %}{% assign _title = collection-loop.title %}{% endif %}
+      <h4>{{ _title | link_to: collection-loop.url, collection-loop.title }}</h4>
+      {% capture product_title %}{% include '__localize' with 'Product' %}{% endcapture %}
+      {% capture products_title %}{% include '__localize' with 'Products' %}{% endcapture %}
+      {% if settings.show-product-count-for-collections %}<div class="text-muted">{{ collection-loop.all_products_count }}&nbsp;{{ collection-loop.all_products_count | pluralize: product_title, products_title }}</div>{% endif %}
+    </div>
+  </div>
+</div>

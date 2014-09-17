@@ -1,0 +1,80 @@
+{% if sublink == true %}
+{% assign advanced_list = sublink_handle %}
+{% else %}
+{% assign advanced_list = settings.advanced-homepage-layout %}
+{% endif %}
+
+{% for l in linklists[advanced_list].links %}
+
+{% if sublink == true %}
+  {% assign advanced_layout_index = forloop.index | prepend: 'sublink-' %}
+{% else %}
+  {% assign advanced_layout_index = forloop.index %}
+{% endif %}
+
+{% assign sublink_handle = l.handle %}
+{% if linklists[sublink_handle].links.size > 0 %}{% assign sublink = true %}{% assign sublink_size = linklists[sublink_handle].links.size %}{% else %}{% assign sublink = false %}{% endif %}
+{% if sublink == true and is_sublink != true %}
+	{% assign is_sublink = true %}
+	{% if linklists[sublink_handle].links.first.type == 'collection_link' %}
+	<!-- list collection snippet -->
+	<section id="featured-collections-title-{{ advanced_layout_index }}" class="section-wrap">
+		<h2 class="page-header">{{ l.title }}</h2>
+		{% include 'collections-list' with 't_object' %}
+	</section>
+	{% else %}
+		{% include 'index-advanced-layout' with sublink_handle %}
+	{% endif %}
+	{% assign is_sublink = false %}
+	<hr>
+{% else %}
+	{% assign t_object = l.object %}
+	
+	{% if l.type == 'page_link' %}
+	<!-- page snippet -->
+	<section id="homepage-intro-{{ advanced_layout_index }}" class="section-wrap{% if is_sublink == true %} {% include '__thumbnail-span' %}{% endif %}">
+		{% include '__containers-open' %}
+		{% if is_sublink %}<h3>{{ l.title }}</h3>{% else %}<h1 class="page-header">{{ l.title }}</h1>{% endif %}
+		{% unless t_object == blank %}
+		{% include '__formatted-content' with t_object.content %}
+		{% endunless %}
+		{% include '__containers-close' %}
+	</section>
+	{% endif %}
+	
+	{% if l.type == 'collection_link' %}
+	<!-- collection snippet -->
+	<section id="product-list-{{ advanced_layout_index }}" class="section-wrap">
+		{% include '__containers-open' %}
+		<h2 class="page-header"><a href="{{ l.url }}">{{ l.title }}</a>{% if t_object.all_products_count > homepage_products_limit %} <a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
+		{% include 'products-list' with 't_object' %}
+		{% include '__containers-open' %}
+	</section>
+	{% endif %}
+	
+	{% if l.type == 'blog_link' %}
+	<!-- blog snippet -->
+	{% if is_sublink %}
+	<section id="homepage-blog-feed-{{ advanced_layout_index }}" class="section-wrap{% if is_sublink == true %} {% include '__thumbnail-span' %}{% endif %}">
+		<h3>{{ l.title  | link_to: l.url }}</h3>
+		{% for a in t_object.articles limit: 3 %}
+		<article>
+			<h4>{{ a.title | link_to: a.url }}</h4>
+			<p>{{ a.content | strip_html | truncatewords: 20 }}</p>
+		</article>
+		{% endfor %}
+	</section>
+	{% else %}
+	{% include 'index-blog' with 't_object' %}
+	{% endif %}
+	{% endif %}
+	
+	{% if l.type == 'product_link' %}
+	<!-- product snippet -->
+	{% include 'product-page' with 't_object' %}
+	{% endif %}
+
+	{% if is_sublink != true %}<hr>{% endif %}
+	
+{% endif %}
+{% endfor %}

@@ -1,0 +1,147 @@
+{% capture strip_whitespace %}
+
+{% assign has_cart = true %}
+{% if settings.disable-cart %}{% assign has_cart = false %}{% endif %}
+
+{% assign has_prices = true %}
+{% if has_cart == false and settings.hide-prices-if-cart-disabled %}{% assign has_prices = false %}{% endif %}
+
+{% assign c_sum = 0.0 %}
+{% if template contains 'collection' %}
+{% for p in collection.all_products %}
+  {% if p.price > 0 %}
+    {% assign c_sum = c_sum | plus: p.price %}
+  {% endif %}
+{% endfor %}
+{% if c_sum == 0 %}
+  {% assign collection_has_prices = false %}
+{% else %}
+  {% assign collection_has_prices = true %}
+{% endif %}
+{% endif %}
+
+{% assign has_social = false %}
+{% assign social_links = 'dribbble email facebook flickr foursquare github google-plus instagram linkedin pinterest rss skype stack-exchange stack-overflow tumblr twitter vimeo youtube' | split: ' ' %}
+{% for link in social_links %}
+  {% assign social_link = link | prepend: 'social-links-' %}
+  {% if settings[social_link] != blank %}{% assign has_social = true %}{% endif %}
+{% endfor %}
+
+{% assign has_top_navbar = false %}
+{% if settings.logo-placement == 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.disable-cart == blank %}{% assign has_top_navbar = true %}{% endif %}
+{% if shop.customer_accounts_enabled %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.search-placement == 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.top-navbar-linklist-left != blank %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.top-navbar-linklist-right != blank %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.newsletter-signup-placement contains 'top-navbar' %}{% assign has_top_navbar = true %}{% endif %}
+{% if settings.social-links-placement contains 'top-navbar' and has_social %}{% assign has_top_navbar = true %}{% endif %}
+
+{% if settings.top-navbar-placement == 'fixed-to-top' %}
+  {% assign has_fixed_top_navbar = true %}
+{% else %}
+  {% assign has_fixed_top_navbar = false %}
+{% endif %}
+
+{% assign has_main_menu = false %}
+{% if settings.main-menu-linklist != blank %}{% assign has_main_menu = true %}{% endif %}
+
+{% assign has_sidebar = false %}
+{% unless has_window_width_thumbnail_container %}
+	{% if settings.logo-placement == 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
+	{% if settings.tag-placement == 'sidebar' %}
+	  {% if template == 'collection' or template == 'blog' or template == 'article' %}
+	    {% assign has_sidebar = true %}
+	  {% endif %}
+	{% endif %}
+	{% if settings.sidebar-linklist != blank %}{% assign has_sidebar = true %}{% endif %}
+	{% if settings.sidebar-blog != blank %}{% assign has_sidebar = true %}{% endif %}
+	{% if settings.newsletter-signup-placement contains 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
+	{% if settings.social-links-placement contains 'sidebar' and has_social %}{% assign has_sidebar = true %}{% endif %}
+{% endunless %}
+
+{% assign has_footer = false %}
+{% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign has_footer = true %}{% endif %}
+{% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign has_footer = true %}{% endif %}
+{% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign has_footer = true %}{% endif %}
+{% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign has_footer = true %}{% endif %}
+{% if settings.newsletter-signup-placement contains 'footer-column' %}{% assign has_footer = true %}{% endif %}
+{% if settings.social-links-placement contains 'footer-column' and has_social %}{% assign has_footer = true %}{% endif %}
+
+{% assign has_footer_navbar = false %}
+{% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'footer-navbar' %}{% assign has_footer_navbar = true %}{% endif %}
+{% if settings.footer-navbar-linklist-left != blank %}{% assign has_footer_navbar = true %}{% endif %}
+{% if settings.footer-navbar-linklist-right != blank %}{% assign has_footer_navbar = true %}{% endif %}
+{% if settings.newsletter-signup-placement contains 'footer-navbar' %}{% assign has_footer_navbar = true %}{% endif %}
+{% if settings.social-links-placement contains 'footer-navbar' and has_social %}{% assign has_footer_navbar = true %}{% endif %}
+
+{% if has_footer_navbar and settings.footer-navbar-placement == 'fixed-to-bottom' %}
+  {% assign has_fixed_footer_navbar = true %}
+{% else %}
+  {% assign has_fixed_footer_navbar = false %}
+{% endif %}
+
+{% assign col_image_position = settings.featured-image-position %}
+{% if col_image_position == 'half-width-left' %}
+{% assign img_col_span = 'col-xs-12 col-md-6' %}
+{% assign text_col_span = 'col-xs-12 col-md-6' %}
+{% elsif col_image_position == 'half-width-right' %}
+{% assign img_col_span = 'col-xs-12 col-md-6 col-md-push-6' %}
+{% assign text_col_span = 'col-xs-12 col-md-6 col-md-pull-6' %}
+{% elsif col_image_position == 'full-width-above' or col_image_position == 'do-not-show' %}
+{% assign img_col_span = 'col-xs-12' %}
+{% assign text_col_span = 'col-xs-12' %}
+{% endif %}
+  
+{% assign typeahead = collections[settings.typeahead-collection].all_products | map: 'title' | join: '","' | prepend:'"' | append:'"' %}
+{% assign truncate_words = settings.truncate-words | plus: 0 %}
+{% assign testimonials_blog_post_limit = settings.testimonials-blog-post-limit | plus: 0 %}
+{% if settings.homepage-products-limit contains 'limit' %}{% assign homepage_products_limit = nil %}{% else %}{% assign homepage_products_limit = settings.homepage-products-limit | times: 1 %}{% endif %}
+{% assign collection_minimum_products = settings.hidden-collection-limit | plus: 0 %}
+{% if settings.thumbnail-layout == 'masonry' %}{% assign thumbnail_layout = 'masonry' %}{% else %}{% assign thumbnail_layout = 'ordered' %}{% endif %}
+
+{% assign has_window_width_thumbnail_container = false %}
+{% if template == 'index' or template == 'collection' or template == 'product' %}
+  {% if settings.window-width-thumbnail-container %}
+    {% assign has_window_width_thumbnail_container = true %}
+  {% endif %}
+{% endif %}
+
+{% if template == 'index' %}{% assign sidebar_template = 'homepage' %}{% else %}{% assign sidebar_template = template %}{% endif %}
+{% assign sidebar_template = sidebar_template | prepend: 'show-sidebar-on-' %}
+
+{% assign banner_template = template | split: '.' | first %}
+{% assign banner_img = [banner_template]metafields.banner.image %}
+
+{% assign current_url = false %}
+{% assign current_handle = false %}
+{% case template %}
+	{% when 'page' %}
+		{% assign current_url = page.url %}
+		{% assign current_handle = page.handle %}
+	{% when 'blog' %}
+		{% assign current_url = blog.url %}
+		{% assign current_handle = blog.handle %}
+	{% when 'article' %}
+		{% assign current_url = article.url %}
+		{% assign current_handle = article.url | split: '/' | last | split: '#' | first %}
+	{% when 'collection' %}
+	  {% if collection.url %}
+  		{% assign current_url = collection.url %}
+    {% else %}
+      {% assign current_url = '/collections/all' %}
+    {% endif %}
+	  {% assign current_handle = collection.handle %}
+	{% when 'product' %}
+		{% assign current_url = product.url %}
+		{% assign current_handle = product.handle %}
+  {% when 'index' %}
+    {% assign current_url = '/' %}
+{% endcase %}
+
+{% if settings.use-mega-dropdown-menu %}{% assign has_mega_menu = true %}{% endif %}
+
+{% unless settings.free-shipping-threshold == blank %}{% assign free_shipping_threshold = settings.free-shipping-threshold | remove: '$' | times: 100.0 %}{% endunless %}
+
+{% endcapture %}<!-- {{ strip_whitespace | strip_newlines | strip }} -->

@@ -1,0 +1,56 @@
+{% assign linklist_parts = navbar-menu | split: '-' %}
+{% assign linklist_name = linklist_parts[0] | append: '-navbar-linklist-' | append: linklist_parts[1] %}
+{% assign linklist_setting = settings[linklist_name] %}
+
+{% if linklist_setting or has_cart %}
+<ul class="nav navbar-nav navbar-{{ linklist_parts[1] }}">
+  {% for l in linklists[linklist_setting].links %}
+    {% include 'navbar-link' %}
+  {% endfor %}
+  
+  {% if navbar-menu == 'top-right' %}
+    {% if shop.customer_accounts_enabled %}
+    <li class="dropdown hidden-xs{% if template contains 'customers' %} active{% endif %}">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+      <ul class="dropdown-menu">
+        {% if customer %}
+        <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
+        <li>{% capture logout %}{% include '__localize' with 'Log out' %}{% endcapture %}{{ logout | customer_logout_link }}</li>
+        {% else %}
+        <li>{% capture register %}{% include '__localize' with 'Register' %}{% endcapture %}{{ register | customer_register_link }}</li>
+        <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
+        {% endif %}
+      </ul>
+    </li>
+    {% endif %}
+    {% if has_cart %}
+    <li class="hidden-xs{% if template == 'cart' %} active{% endif %}">
+      <a class="cartCount" href="/cart"><i class="fa fa-shopping-cart"></i>{% if cart.item_count > 0 %} <span class="badge">{{ cart.item_count }}</span>{% endif %}</a>
+    </li>
+    {% endif %}
+    {% if settings.currency-switcher-position == 'top-navbar' %}
+      {% include 'currency-switcher' %}
+    {% endif %}
+    {% if settings.search-placement == 'top-navbar' %}
+      <li>{% include 'search-form' %}</li>
+    {% endif %}
+  {% elsif navbar-menu == 'footer-right' %}
+    {% if settings.currency-switcher-position == 'footer-navbar' %}
+      {% include 'currency-switcher' %}
+    {% endif %}
+  {% endif %}
+</ul>
+{% endif %}
+
+{% assign placement = linklist_parts[0] | append: '-navbar-' | append: linklist_parts[1] %}
+
+{% if settings.newsletter-signup-placement == placement %}
+{% assign form-placement = 'navbar-' | append: linklist_parts[1] %}
+  {% include 'newsletter-signup-form' with form-placement %}
+{% endif %}
+
+{% if has_social and settings.social-links-placement == placement %}
+<div class="nav navbar-text navbar-{{ linklist_parts[1] }} social-icons">
+  {% include 'social-links' %}
+</div>
+{% endif %}
