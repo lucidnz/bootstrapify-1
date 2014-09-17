@@ -99,7 +99,13 @@ var initColorbox = function () {
         $productWrap.append($eleGroup);
         $eleGroup.hide();
         
-        var $gallery = $eleGroup.find('.cb-group-item').colorbox({ maxHeight: "80%", rel: 'gallery_'+(i+1) });
+        var $gallery = $eleGroup.find('.cb-group-item').colorbox({
+          maxHeight: "80%",
+          rel: 'gallery_'+(i+1),
+          previous: '<i class="fa fa-chevron-left fa-3x"></i>',
+          next: '<i class="fa fa-chevron-right fa-3x"></i>',
+          close: '<span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-stack-1x fa-inverse"></i></span>',
+        });
         $productWrap.on('click', '.product-main-image', function(e){
           e.preventDefault();
           $gallery.eq(0).click();
