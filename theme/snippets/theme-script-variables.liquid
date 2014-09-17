@@ -1,0 +1,7 @@
+<script>
+  var Shopify = Shopify || {};
+  Shopify.settings = {
+    enable_image_zoom : {% if settings.enable-image-zoom %}true{% else %}false{% endif %},
+    enable_image_lightbox : {% if settings.enable-image-lightbox %}true{% else %}false{% endif %}
+  };
+</script>

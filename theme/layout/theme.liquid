@@ -32,9 +32,10 @@
   {% endif %}
 
   {{ content_for_header }}
+  
+  {% include 'theme-script-variables' %}
+  {% include 'theme-variables' %}
 </head>
-
-{% include 'theme-variables' %}
 <body class="{% include '__body-classes' %}">
 
   <div id="wrap">
@@ -90,7 +91,8 @@
   {{ 'popover.js' | asset_url | script_tag }}
   {{ 'typeahead.js' | asset_url | script_tag }}
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
-  {{ 'jquery.zoom.min.js' | asset_url | script_tag }}
+  {% if settings.enable-image-zoom %}{{ 'jquery.zoom.min.js' | asset_url | script_tag }}{% endif %}
+  {% if settings.enable-image-lightbox %}{{ 'jquery.colorbox-min.js' | asset_url | script_tag }}{% endif %}
 
   {% if settings.custom-footer-code != '' %}
     {{ settings.custom-footer-code }}

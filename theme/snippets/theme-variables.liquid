@@ -5,6 +5,7 @@
 
 {% assign has_prices = true %}
 {% if has_cart == false and settings.hide-prices-if-cart-disabled %}{% assign has_prices = false %}{% endif %}
+
 {% assign c_sum = 0.0 %}
 {% if template contains 'collection' %}
 {% for p in collection.all_products %}
@@ -13,7 +14,9 @@
   {% endif %}
 {% endfor %}
 {% if c_sum == 0 %}
-  {% assign has_prices = false %}
+  {% assign collection_has_prices = false %}
+{% else %}
+  {% assign collection_has_prices = true %}
 {% endif %}
 {% endif %}
 
@@ -141,4 +144,4 @@
 
 {% unless settings.free-shipping-threshold == blank %}{% assign free_shipping_threshold = settings.free-shipping-threshold | remove: '$' | times: 100.0 %}{% endunless %}
 
-{% endcapture %}
+{% endcapture %}<!-- {{ strip_whitespace | strip_newlines | strip }} -->
