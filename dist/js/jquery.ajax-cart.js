@@ -246,6 +246,7 @@
   /* Cart Price */
   var CartPrice = function(ele){
     this.$ele = $(ele);
+    this.freeShipping = $(document).data('_freeShipping');
   };
   
   CartPrice.prototype.updatePriceElement = function(result){
@@ -256,6 +257,9 @@
         if(Currency.shopCurrency !== Currency.currentCurrency){
           Currency.convertAll(Currency.shopCurrency, Currency.currentCurrency);
         }
+      }
+      if (this.freeShipping) {
+        this.freeShipping.update({ cart_total: result.total_price });
       }
       this._recalcShipping();
     }

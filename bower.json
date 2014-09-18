@@ -26,12 +26,12 @@
     "respond": "~1.4.2",
     "jquery-instagram": "https://github.com/potomak/jquery-instagram.git#~0.3.0",
     "uniformThumbnails": "https://github.com/luciddesign/uniform-thumbnails.git",
-    "orderly": "https://github.com/luciddesign/orderly.git",
     "isotope": "~2.0.0",
     "jquery-zoom": "https://github.com/stewartknapman/zoom.git#~1.7.14",
     "jquery-colorbox": "https://github.com/jackmoore/colorbox.git#~1.5.14",
     "bootstrap-sass-official": "~3.2.0",
-    "shipping-calculator": "https://github.com/carolineschnapp/shipping-calculator.git"
+    "shipping-calculator": "https://github.com/carolineschnapp/shipping-calculator.git",
+    "orderly": "https://github.com/luciddesign/orderly.git"
   },
   "resolutions": {
     "jquery": "~2.1.0"

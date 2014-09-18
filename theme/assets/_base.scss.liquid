@@ -8278,7 +8278,7 @@ body {
   padding-bottom: $grid-gutter-width;
 }
 
-.main-content {
+.section-wrap:last-of-type .main-content {
   padding-bottom: 3em;
 }
 
@@ -8912,6 +8912,9 @@ header .article-meta{
   vertical-align: top;
   margin-right: 0.5em;
 }
+#free-shipping-wrapper {
+  @extend .text-center;
+}
 
 /* Customer */
 .form-wrapper-horizontal{
@@ -9149,7 +9152,7 @@ $i: 1;
 
 // colorbox/lightbox
 #cboxOverlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -9163,12 +9166,42 @@ $i: 1;
   &:focus {
     outline: none;
   }
+  button {
+    @extend .btn;
+    color: #999;
+    background-color: transparent;
+    &:hover, &:focus, &:active {
+      color: #333;
+    }
+  }
+  #cboxCurrent {
+    margin-top: 0.5em;
+  }
+}
+
+#cboxCurrent {
+  float: none !important;
+  text-align: center;
 }
 
 #cboxClose {
-  @extend .btn;
-  @extend .btn-default;
-  margin-top: 0.25em;
+  position: absolute;
+  top: -1.5em;
+  right: -2em;
+}
+
+#cboxPrevious, #cboxNext {
+  position: absolute;
+  top: 50%;
+  margin-top: -1em;
+}
+
+#cboxPrevious {
+  left: 0;
+}
+
+#cboxNext {
+  right: 0;
 }
 
 // embeded videos

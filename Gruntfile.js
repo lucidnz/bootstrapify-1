@@ -24,6 +24,7 @@ module.exports = function(grunt) {
           alert: true,
           Image: true,
           $: true,
+          _: true,
           jQuery: true,
           Shopify: true,
           Currency: true
@@ -43,6 +44,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'theme/assets/jquery.ajax-cart.min.js': 'dist/js/jquery.ajax-cart.js',
+          'theme/assets/jquery.free-shipping.min.js': 'dist/js/jquery.free-shipping.js',
           'theme/assets/bootstrapify-option-selection.min.js': 'dist/js/bootstrapify-option-selection.js',
           'theme/assets/jquery.instagram.min.js': ['bower_components/jquery-instagram/dist/instagram.js', 'dist/js/jquery.instagram.js']
         }
