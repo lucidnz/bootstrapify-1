@@ -77,41 +77,41 @@ var getSizedImage = function (imgSrc) {
 
 /* Product image zoom and lightbox */
 var initColorbox = function () {
-    // create a hidden dom object that contains the images we want in the gallery
-    // initiate color box on it so as to not disturb the actual thumbs
-    if(Shopify.settings.enable_image_lightbox){
-      $('.product-wrap').each(function(i){ // because we might have more than 1 product
-        var $productWrap = $(this);
-        var $thumbs = $productWrap.find('[data-main-image]');
-        if($thumbs.length === 0){
-          $thumbs = $productWrap.find('.product-main-image img');
-        }
-        
-        var $eleGroup = $('<div class="cb-group"></div>');
-        
-        $thumbs.each(function(){
-          var $thumb = $(this);
-          var imgSrc = $thumb.attr('data-main-image') || $thumb.prop('src');
-          var SizedImgSrcLrg = getSizedImage(imgSrc);
-          $eleGroup.append('<a class="cb-group-item" href="'+SizedImgSrcLrg+'"></a>');
-        });
-        
-        $productWrap.append($eleGroup);
-        $eleGroup.hide();
-        
-        var $gallery = $eleGroup.find('.cb-group-item').colorbox({
-          maxHeight: "80%",
-          rel: 'gallery_'+(i+1),
-          previous: '<i class="fa fa-chevron-left fa-3x"></i>',
-          next: '<i class="fa fa-chevron-right fa-3x"></i>',
-          close: '<span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-stack-1x fa-inverse"></i></span>',
-        });
-        $productWrap.on('click', '.product-main-image', function(e){
-          e.preventDefault();
-          $gallery.eq(0).click();
-        });
+  // create a hidden dom object that contains the images we want in the gallery
+  // initiate color box on it so as to not disturb the actual thumbs
+  if(Shopify.settings.enable_image_lightbox){
+    $('.product-wrap').each(function(i){ // because we might have more than 1 product
+      var $productWrap = $(this);
+      var $thumbs = $productWrap.find('[data-main-image]');
+      if($thumbs.length === 0){
+        $thumbs = $productWrap.find('.product-main-image img');
+      }
+      
+      var $eleGroup = $('<div class="cb-group"></div>');
+      
+      $thumbs.each(function(){
+        var $thumb = $(this);
+        var imgSrc = $thumb.attr('data-main-image') || $thumb.prop('src');
+        var SizedImgSrcLrg = getSizedImage(imgSrc);
+        $eleGroup.append('<a class="cb-group-item" href="'+SizedImgSrcLrg+'"></a>');
       });
-    }
+      
+      $productWrap.append($eleGroup);
+      $eleGroup.hide();
+      
+      var $gallery = $eleGroup.find('.cb-group-item').colorbox({
+        maxHeight: "80%",
+        rel: 'gallery_'+(i+1),
+        previous: '<i class="fa fa-chevron-left fa-3x"></i>',
+        next: '<i class="fa fa-chevron-right fa-3x"></i>',
+        close: '<span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-stack-1x fa-inverse"></i></span>',
+      });
+      $productWrap.on('click', '.product-main-image', function(e){
+        e.preventDefault();
+        $gallery.eq(0).click();
+      });
+    });
+  }
 };
 
 var productImageZoom = function ($imageWrapper) {

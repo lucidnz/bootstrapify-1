@@ -86,18 +86,7 @@
         <div class="form-actions text-right col-sm-4 col-md-3">
           <div class="product-price"><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></div>
           
-          {% unless free_shipping_threshold == blank %}
-          {% if cart.total_price < free_shipping_threshold %}{% assign diff = free_shipping_threshold | minus: cart.total_price %}
-          <div class="alert alert-warning">
-            <p>{% include '__localize' with 'You&rsquo;re' %} {{ diff | money }} {% include '__localize' with 'away from FREE shipping!' %}</strong></p>
-            <p><a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse' %} {{ collections.[settings.collection-to-link-to-if-cart-empty].title }}&nbsp;&raquo;</a></p>
-          </div>
-          {% else %}
-          <div class = "alert alert-success">
-            <p>{% include '__localize' with 'This order qualifies for FREE shipping' %}</p>
-          </div>
-          {% endif %}
-          {% endunless %}
+          {% include 'free-shipping-message' %}
           
           <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary btn-block" />
           {% if additional_checkout_buttons %}
