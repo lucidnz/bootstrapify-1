@@ -53,10 +53,10 @@
   };
   
   $.fn.freeShipping.defaults = {
-    cart_total : 0,
-    free_shipping : 0,
-    template : '#free-shipping-template',
-    wrapper : '#free-shipping-wrapper'
+    cart_total: 0,
+    free_shipping: 0,
+    template: '#free-shipping-template',
+    wrapper: '#free-shipping-wrapper'
   };
 
 }(jQuery, _));
