@@ -88,7 +88,14 @@
           
           {% include 'free-shipping-message' %}
           
+          {% if settings.ajax-cart %}
           <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary btn-block" />
+          {% else %}
+          <div class="btn-group">
+            <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'Update' %}" class="btn btn-default" />
+            <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary" />
+          </div>
+          {% endif %}
           {% if additional_checkout_buttons %}
           <div class="additional-checkout-buttons">
             <span class="text-muted">or</span>
