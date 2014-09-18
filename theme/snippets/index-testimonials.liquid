@@ -1,5 +1,5 @@
-{% unless settings.testimonials-blog == blank %}
 {% assign testimonials_blog = blogs[settings.testimonials-blog] %}
+{% if testimonials_blog != empty and testimonials_blog.articles.size > 0 %}
 <section id="index-testimonials" class="section-wrap">
 	{% include '__containers-open' %}
 		<h2 class="page-header">{{ testimonials_blog.title }}{% if testimonials_blog.articles.size > testimonials_blog_post_limit %}&ensp;<a class="small" href="{{ testimonials_blog.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
@@ -31,4 +31,4 @@
 		</div>
 	{% include '__containers-close' %}
 </section>
-{% endunless %}
+{% endif %}
