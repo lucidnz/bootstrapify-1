@@ -212,6 +212,14 @@ module.exports = function(grunt) {
         ]
       }
     },
+    shopify_theme_settings: {
+      settings: {
+        options: {},
+        files: {
+          'theme/config/settings.html': 'settings/*.yml'
+        }
+      }
+    },
     compress: {
       zip: {
         options: {
@@ -260,7 +268,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-shopify-theme-settings');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass', 'compress']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass', 'shopify_theme_settings', 'compress']);
 };
