@@ -130,10 +130,18 @@ Collections:
         above-products: Above products
         below-products: Below products
 
-    Show “recommended” collections:
-      name: show-recommended-collections-on-404
+  “Recommended” Collections Display Locations:
+    notitle: true
+    repeat: [Homepage, Collection, Product, Cart, Page, Blog, Article, Search, 404]
+
+    Show “recommended” on {i}:
+      name: show-recommended-collections-on-{i}
       type: checkbox
-      inline_label: Yes
+      inline_label: on {i}
+      hide_label: true
+
+  General (Continued):
+    notitle: true
 
     Tag button limit:
       name: tag-button-limit

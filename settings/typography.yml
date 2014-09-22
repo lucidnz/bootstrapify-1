@@ -10,6 +10,8 @@ Typography:
     Fallback/default:
       name: font-{i}
       type: font
+      options:
+        "": " "
 
     Weight:
       name: font-{i}-weight

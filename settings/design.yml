@@ -25,6 +25,7 @@ Design:
     Site background image position:
       name: site-background-image-position
       type: text-single
+      default: center top
 
     Site background image repeat:
       name: site-background-image-repeat
