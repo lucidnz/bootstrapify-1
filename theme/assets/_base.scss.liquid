@@ -569,7 +569,7 @@ $footer-link-color:     {% if settings.footer-link-colour != blank %} {{ setting
 $footer-text-color:     {% if settings.footer-text-colour != blank %} {{ settings.footer-text-colour }} {% else %} false {% endif %} !default;
 
 {% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
-// When true, asset path helpers are used, otherwise regular url() is used
+// When true, asset path helpers are used, otherwise the regular CSS `url()` is used.
 // When there no function is defined, `fn('')` is parsed as string that equals the right hand side
 // NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
 $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
@@ -6985,8 +6985,7 @@ a.list-group-item {
   &.disabled:focus {
     background-color: $list-group-disabled-bg;
     color: $list-group-disabled-color;
-    cursor: not-allowed;
-    
+
     // Force color to inherit for custom content
     .list-group-item-heading {
       color: inherit;
@@ -9200,31 +9199,32 @@ $i: 1;
   #cboxCurrent {
     margin-top: 0.5em;
   }
-}
 
-#cboxCurrent {
-  float: none !important;
-  text-align: center;
-}
-
-#cboxClose {
-  position: absolute;
-  top: -1.5em;
-  right: -2em;
-}
-
-#cboxPrevious, #cboxNext {
-  position: absolute;
-  top: 50%;
-  margin-top: -1em;
-}
-
-#cboxPrevious {
-  left: 0;
-}
-
-#cboxNext {
-  right: 0;
+  #cboxCurrent {
+    float: none !important;
+    text-align: center;
+  }
+  
+  #cboxClose {
+    display: none;
+    position: absolute;
+    top: -1.5em;
+    right: -2em;
+  }
+  
+  #cboxPrevious, #cboxNext {
+    position: absolute;
+    top: 50%;
+    margin-top: -1em;
+  }
+  
+  #cboxPrevious {
+    left: 0;
+  }
+  
+  #cboxNext {
+    right: 0;
+  }
 }
 
 // embeded videos
