@@ -1,6 +1,8 @@
 {% capture fields %}<input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
 <div class="input-group">
-  {% if settings.mailchimp == blank %}
+  {% if settings.newsletter-platform == "campaign-monitor" %}
+  <input id="fieldEmail" name="cm-{{ settings.newsletter-form-action-url | split: '/' | last }}-{{ settings.newsletter-form-action-url | split: '/' | last }}" class="form-control" type="email" placeholder="{% include '__localize' with 'Your email' %}" />
+  {% elsif settings.newsletter-platform == "mailchimp" %}
   <input type="email" id="contact_email" name="contact[email]" class="form-control" placeholder="{% include '__localize' with 'Your email' %}">
   {% else %}
   <input type="email" id="contact_email" name="EMAIL" class="form-control" placeholder="{% include '__localize' with 'Your email' %}">
@@ -10,12 +12,12 @@
 
 {% capture form %}
   <div class="newsletter-form">
-  {% if settings.mailchimp == blank %}
+  {% if settings.newsletter-platform == "shopify" %}
     {% form 'customer' %}
       {{ fields }}
     {% endform %}
   {% else %}
-    <form action="{{ settings.mailchimp }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate contact-form" target="_blank">
+    <form action="{{ settings.newsletter-form-action-url }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate contact-form">
       {{ fields }}
     </form>
   {% endif %}
@@ -55,7 +57,7 @@
     if($form.find('#contact_email').val() !== ''){
       $.ajax({
         type: 'POST',
-        {% if settings.mailchimp != blank %} dataType: 'json', {% endif %}
+        {% unless settings.newsletter-platform == "shopify" %} dataType: 'json', {% endunless %}
         url: $form.prop('action'),
         data: $form.serialize()
       })
