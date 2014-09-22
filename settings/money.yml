@@ -1,0 +1,42 @@
+Money:
+
+  General:
+    notitle: true
+
+    Show multiple currencies:
+      name: show-multiple-currencies
+      type: checkbox
+      inline_label: Yes
+      help: "Although you will be able to display prices on your store front in different currencies, Shopify will still process orders in your shop&apos;s currency."
+
+    Currency switcher default:
+      name: currency-switcher-default
+      type: text-single
+      help: "&#xA0;If left blank the currency switcher will be set to your shops&#xA0;default&#xA0;currency."
+
+    Supported currencies:
+      name: supported-currencies
+      type: text-single
+      help: "Separate your currency codes with a space. Use the ISO 4217 3-letter currency code. Click <a href=\"http://www.xe.com/iso4217.php\" target=\"_blank\">here</a> for a complete list of currency codes. <strong>E.g., NZD USD CAD</strong>"
+
+    Currency switcher position:
+      name: currency-switcher-position
+      type: select
+      help: "&#xA0;"
+      options:
+        top-navbar: Top navbar
+        footer-navbar: Footer navbar
+
+    Show currency with prices:
+      name: show-currency-with-prices
+      type: select
+      help: "E.g., <strong>$123.45 NZD</strong>"
+      options:
+        with-currency: With currency
+        without-currency: Without currency
+
+    Append “plus taxes” to prices:
+      name: append-plus-taxes-to-price
+      type: checkbox
+      inline_label: Yes
+      help: "You can localize the wording in the Localization settings using &#x201C;plus-taxes: + GST&#x201D;"

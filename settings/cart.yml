@@ -1,0 +1,34 @@
+Cart:
+
+  General:
+    notitle: true
+
+    Ajax Cart:
+      name: ajax-cart
+      type: checkbox
+      inline_label: Yes
+      help: "Important! - If you are using a file upload field in your product property line items it will not work while Ajax Cart is enabled."
+
+    Collection to link to if cart empty:
+      name: collection-to-link-to-if-cart-empty
+      type: collection
+
+    Disable cart:
+      name: disable-cart
+      type: checkbox
+      help: "If you&apos;re using Shopify as a brochure site until you are ready to sell online, you can disable the cart."
+
+    Free shipping threshold:
+      name: free-shipping-threshold
+      type: text-single
+      default: $100
+
+    Hide prices if cart is disabled:
+      name: hide-prices-if-cart-disabled
+      type: checkbox
+      inline_label: Yes
+
+    Show shipping estimator:
+      name: show-shipping-estimator
+      type: checkbox
+      inline_label: Yes

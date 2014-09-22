@@ -1,0 +1,25 @@
+Branding:
+
+  General:
+    notitle: true
+
+    Logo image:
+      name: logo-image
+      type: checkbox
+      inline_label: Yes
+
+    Logo image file:
+      name: logo-image-file.png
+      type: file
+
+    Logo placement:
+      name: logo-placement
+      type: select
+      options:
+        top-navbar: Top navbar
+        sidebar: Sidebar
+        above-main-content: Above main content
+
+    Favicon:
+      name: favicon.png
+      type: file

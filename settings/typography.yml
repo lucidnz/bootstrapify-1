@@ -1,0 +1,44 @@
+Typography:
+
+  Font {i}:
+    repeat: [body, brand, heading, navbar]
+
+    Custom font name:
+      name: font-{i}-custom
+      type: text-single
+
+    Fallback/default:
+      name: font-{i}
+      type: font
+
+    Weight:
+      name: font-{i}-weight
+      type: text-single
+
+    Size (eg 14px):
+      name: font-{i}-size
+      type: text-single
+
+    Style:
+      name: font-{i}-style
+      type: select
+      options:
+        normal: Normal
+        italic: Italic
+
+    Case:
+      name: font-{i}-case
+      type: select
+      options:
+        normal: Normal (as typed)
+        lowercase: lowercase
+        uppercase: UPPERCASE
+        title-case: Title Case
+
+  General:
+    notitle: true
+
+    Heading "letterpress":
+      name: heading-letterpress
+      type: checkbox
+      inline_label: Yes

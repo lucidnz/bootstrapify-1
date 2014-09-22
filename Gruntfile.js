@@ -216,7 +216,26 @@ module.exports = function(grunt) {
       settings: {
         options: {},
         files: {
-          'theme/config/settings.html': 'settings/*.yml'
+          'theme/config/settings.html': [
+            'settings/branding.yml',
+            'settings/colour.yml',
+            'settings/design.yml',
+            'settings/layout.yml',
+            'settings/homepage.yml',
+            'settings/homepage-slider.yml',
+            'settings/typography.yml',
+            'settings/blog.yml',
+            'settings/products.yml',
+            'settings/collections.yml',
+            'settings/sidebar.yml',
+            'settings/navigation.yml',
+            'settings/footer.yml',
+            'settings/cart.yml',
+            'settings/localization.yml',
+            'settings/money.yml',
+            'settings/social.yml',
+            'settings/advanced.yml'
+          ]
         }
       }
     },
