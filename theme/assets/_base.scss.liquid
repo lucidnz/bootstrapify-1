@@ -8726,7 +8726,7 @@ header .article-meta{
   margin-top: $grid-gutter-width;
   
   .collection--intro {
-    @include make_row();
+    @include make-row();
     
     & > h1 {
       @extend .page-header;
@@ -8763,6 +8763,12 @@ header .article-meta{
 
 
 /* Products */
+.share-icons {
+  @extend .h4;
+  @extend .text-muted;
+  text-align: center;
+}
+
 .product-thumbnail, .collection-thumbnail {
   @extend .thumbnail;
   margin-bottom: 3em;
@@ -9002,6 +9008,23 @@ header .article-meta{
 
 #navbar-footer {
   margin-bottom: 0;
+}
+
+/* Index */
+
+.feature-description {
+  @include make_sm-column(12);
+}
+
+.feature-has-icon {
+  .feature-icon {
+    @include make-xs-column(3);
+    @extend .h3;
+  }
+  
+  .feature-description {
+    @include make-xs-column(9);
+  }
 }
 
 /* Homepage slider & Banner */
