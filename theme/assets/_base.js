@@ -102,9 +102,16 @@ var initColorbox = function () {
       var $gallery = $eleGroup.find('.cb-group-item').colorbox({
         maxHeight: "80%",
         rel: 'gallery_'+(i+1),
+        transition: 'fade',
         previous: '<i class="fa fa-chevron-left fa-3x"></i>',
         next: '<i class="fa fa-chevron-right fa-3x"></i>',
         close: '<span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-stack-1x fa-inverse"></i></span>',
+        onComplete: function(){
+          $('#cboxClose').show(); // fix weird close button jump on open
+        },
+        onClosed: function(){
+          $('#cboxClose').hide(); // fix weird close button jump on open
+        }
       });
       $productWrap.on('click', '.product-main-image', function(e){
         e.preventDefault();
