@@ -31,7 +31,7 @@ body {
   padding-bottom: $grid-gutter-width;
 }
 
-.main-content {
+.section-wrap:last-of-type .main-content {
   padding-bottom: 3em;
 }
 
@@ -481,7 +481,7 @@ header .article-meta{
   .collection--intro {
     @include make-row();
     
-    & > h1 {
+    & > h1, & > h2 {
       @extend .page-header;
       @include make-xs-column(12);
     }
@@ -548,6 +548,7 @@ header .article-meta{
 
 .product-main-image {
   margin-top: 2.5em;
+  {% if settings.enable-image-lightbox %} cursor: pointer; {% endif %}
 }
 
 .has-overlay-title-on-hover {
@@ -657,7 +658,10 @@ header .article-meta{
 #cart table {
   td {
     vertical-align: middle;
-  } 
+  }
+  img {
+    margin: auto;
+  }
 }
 .additional-checkout-buttons, .shipping-calculator-wrapper{
   margin-top: $grid-gutter-width;
@@ -666,6 +670,9 @@ header .article-meta{
   display: inline-block;
   vertical-align: top;
   margin-right: 0.5em;
+}
+#free-shipping-wrapper {
+  @extend .text-center;
 }
 
 /* Customer */
@@ -918,6 +925,77 @@ $i: 1;
     }
   }
 {% endif %};
+
+// colorbox/lightbox
+#cboxOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  z-index: 1080;
+}
+
+#colorbox {
+  z-index: 1090;
+  &:focus {
+    outline: none;
+  }
+  button {
+    @extend .btn;
+    color: #999;
+    background-color: transparent;
+    &:hover, &:focus, &:active {
+      color: #333;
+    }
+  }
+  #cboxCurrent {
+    margin-top: 0.5em;
+  }
+}
+
+#cboxCurrent {
+  float: none !important;
+  text-align: center;
+}
+
+#cboxClose {
+  position: absolute;
+  top: -1.5em;
+  right: -2em;
+}
+
+#cboxPrevious, #cboxNext {
+  position: absolute;
+  top: 50%;
+  margin-top: -1em;
+}
+
+#cboxPrevious {
+  left: 0;
+}
+
+#cboxNext {
+  right: 0;
+}
+
+// embeded videos
+.videoWrapper {
+  display: block;
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 35px;
+	height: 0;
+	
+	iframe, object, embed {
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+	}
+}
 
 /* Brand */
 .navbar-brand, .brand {
