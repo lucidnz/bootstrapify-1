@@ -10,15 +10,17 @@
   {% assign cols = 3 %}
 {% endif %}
 
-<section id="features-linklist-overview" class="section-wrap">
-	{% include '__containers-open' %}
-		<h2 class="page-header" id="features-heading">{{ linklist.title }}</h2>
+{% assign span = 12 | divided_by: cols %}
 
-		<div class="row">
-		  {% for l in linklist.links %}
-		    {% include 'features-loop' with 'linklist' %}
-		  {% endfor %}
-		</div>
-	{% include '__containers-close' %}
+<sectio class="features-section">
+  {% include '__containers-open' %}
+  <h2 class="features-heading">{{ linklist.title }}</h2>
+
+  <div class="row">
+    {% for l in linklist.links %}
+    {% include 'index-features-loop' %}
+    {% endfor %}
+  </div>
+  {% include '__containers-close' %}
 </section>
 {% endif %}
