@@ -1,25 +1,30 @@
+{% if settings.newsletter-platform == "campaign-monitor" %}
+  {% capture email_name %}cm-{{ settings.newsletter-form-action-url | split: '/' | last }}-{{ settings.newsletter-form-action-url | split: '/' | last }}{% endcapture %}
+{% elsif settings.newsletter-platform == "mailchimp" %}
+  {% assign email_name = 'EMAIL' %}
+{% else %}
+  {% assign email_name = 'contact[email]' %}
+{% endif %}
 {% capture fields %}<input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
 <div class="input-group">
-  {% if settings.newsletter-platform == "campaign-monitor" %}
-  <input id="fieldEmail" name="cm-{{ settings.newsletter-form-action-url | split: '/' | last }}-{{ settings.newsletter-form-action-url | split: '/' | last }}" class="form-control" type="email" placeholder="{% include '__localize' with 'Your email' %}" />
-  {% elsif settings.newsletter-platform == "mailchimp" %}
-  <input type="email" id="contact_email" name="contact[email]" class="form-control" placeholder="{% include '__localize' with 'Your email' %}">
-  {% else %}
-  <input type="email" id="contact_email" name="EMAIL" class="form-control" placeholder="{% include '__localize' with 'Your email' %}">
-  {% endif %}
+  <input id="fieldEmail" name="{{ email_name }}" class="form-control" type="email" placeholder="{% include '__localize' with 'Your email' %}" />
   <span class="input-group-btn"><button type="submit" class="btn btn-primary">{% include '__localize' with 'Subscribe' %}</button></span>
 </div>{% endcapture %}
 
 {% capture form %}
   <div class="newsletter-form">
-  {% if settings.newsletter-platform == "shopify" %}
+  {% if settings.newsletter-platform == "campaign-monitor" %}
+    <form action="{{ settings.newsletter-form-action-url }}?callback=?" method="post">
+      {{ fields }}
+    </form>
+  {% elsif settings.newsletter-platform == "mailchimp" %}
+    <form action="{{ settings.newsletter-form-action-url | replace: '/post?','/post-json?' | append: '&amp;c=?' }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate contact-form">
+      {{ fields }}
+    </form>
+  {% else %}
     {% form 'customer' %}
       {{ fields }}
     {% endform %}
-  {% else %}
-    <form action="{{ settings.newsletter-form-action-url }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate contact-form">
-      {{ fields }}
-    </form>
   {% endif %}
   </div>
 {% endcapture %}
@@ -46,7 +51,7 @@
   
   var resetNewsletterForm = function($form){
     $form.find('[type="submit"]').prop('disabled', false);
-    $form.find('#contact_email').val('');
+    $form.find('#fieldEmail').val('');
     removeNewsletterAlert($form);
   };
 
@@ -54,7 +59,7 @@
     var $form = $(this);
     e.preventDefault();
     $form.find('[type="submit"]').prop('disabled', true);
-    if($form.find('#contact_email').val() !== ''){
+    if($form.find('#fieldEmail').val() !== ''){
       $.ajax({
         type: 'POST',
         {% unless settings.newsletter-platform == "shopify" %} dataType: 'json', {% endunless %}
