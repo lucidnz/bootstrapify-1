@@ -1,0 +1,170 @@
+Collections:
+
+  General:
+    notitle: true
+
+    Featured Image Position:
+      name: featured-image-position
+      type: select
+      options:
+        do-not-show: Do Not Show
+        half-width-left: Half Width Left
+        half-width-right: Half Width Right
+        full-width-above: Full Width Above
+
+    Overlay title on hover:
+      name: overlay-title-on-hover
+      type: checkbox
+      inline_label: Yes
+
+    Overlay title on hover background color:
+      name: overlay-title-on-hover-background-color
+      type: color
+
+    Show “On Sale” badge:
+      name: show-on-sale-badge
+      type: select
+      options:
+        as-text: as text
+        as-percentage-off: as percentage off
+
+    Show “Compare At” Price:
+      name: show-compare-at-price
+      type: checkbox
+      inline_label: Yes
+
+    Show product sorter:
+      name: show-product-sorter
+      type: checkbox
+      inline_label: Yes
+
+    Show product count for collections:
+      name: show-product-count-for-collections
+      type: checkbox
+      inline_label: Yes
+
+    Show descriptions on nested collections page:
+      name: show-descriptions-on-nested-collections-page
+      type: checkbox
+      inline_label: Yes
+
+    Show products on nested collections page:
+      name: show-products-on-nested-collections-page
+      type: checkbox
+      inline_label: Yes
+
+    Show Vendor with Thumbnail:
+      name: show-vendor-with-thumbnail
+      type: select
+      options:
+        do-not-show: Do Not Show
+        above-product-title: Above Product Title
+        below-product-title: Below Product Title
+
+    “All collections” collection linklist":
+      name: all-collections-linklist
+      type: linklist
+      help: "If you would like to specify which collections show on the /collections page, create a linklist of collections."
+
+    Show “out of stock” badge:
+      name: show-out-of-stock-badge
+      type: checkbox
+      inline_label: Yes
+      help: "If checked and unavailable products are visible, a badge will indicate that the products are out of stock."
+
+    Collections per row:
+      name: collections-per-row
+      type: select
+      options:
+        2: 2
+        3: 3
+        4: 4
+
+    Hidden collection limit:
+      name: hidden-collection-limit
+      type: text-single
+      help: Hides collections that have less than this number of products.
+      default: "0"
+
+    Thumbnail layout:
+      name: thumbnail-layout
+      type: select
+      help: "Thumbnail ratio, alignment and crop settings will only be applied if thumbnail layout is set to &apos;ordered&apos;."
+      options:
+        ordered: Ordered
+        masonry: Masonry
+
+    Thumbnail ratio:
+      name: thumbnail-ratio
+      type: text-single
+      help: "<strong>Important:</strong> must be in the format w:h (i.e., 1:1 would be square)"
+      default: "1:1"
+
+    Thumbnail alignment:
+      name: thumbnail-alignment
+      type: select
+      options:
+        top: Top
+        middle: Middle
+        bottom: Bottom
+
+    Thumbnails cropped:
+      name: thumbnails-cropped
+      type: checkbox
+      inline_label: Yes
+      help: "If checked, thumbnails will be cropped to fit their container. If unchecked, thumbnails will fit <em>inside</em> the container."
+
+    Collection feature image:
+      name: collection-feature-image
+      type: select
+      options:
+        collection-image: Collection image
+        first-product-image: First product image
+        last-product-image: Last product image
+
+    Collection header placement:
+      name: collection-header-placement
+      type: select
+      help: "The collection header contains the collection description and (if present) the collection&#x2019;s feature image."
+      options:
+        above-products: Above products
+        below-products: Below products
+
+  “Recommended” Collections Display Locations:
+    notitle: true
+    repeat: [Homepage, Collection, Product, Cart, Page, Blog, Article, Search, 404]
+
+    Show “recommended” on {i}:
+      name: show-recommended-collections-on-{i}
+      type: checkbox
+      inline_label: on {i}
+      hide_label: true
+
+  General (Continued):
+    notitle: true
+
+    Tag button limit:
+      name: tag-button-limit
+      type: text-single
+      help: Tags will be shown as buttons until the amount of tags is equal or grater than this limit. If left blank tags will always be shown as buttons.
+      default: "10"
+
+    Tag Filtering Action:
+      name: tag-filtering-action
+      type: select
+      options:
+        build-tag-filter: Build tag filter
+        filter-one-tag-at-a-time: Filter one tag at a time
+
+    Tag placement:
+      name: tag-placement
+      type: select
+      options:
+        do-not-show: Do not show
+        sidebar: Sidebar
+        main-content: Main content
+
+    “Recommended” products collection:
+      name: recommended-products-collection
+      type: collection
+      help: "You can choose to display &#x201C;recommended&#x201D; products on the homepage, collection pages and product pages."

@@ -1,0 +1,19 @@
+Localization:
+
+  General:
+    notitle: true
+
+    Localizations:
+      name: localizations
+      type: text-multi
+      help: "Comma-separated list of translations in the format key: Value. Each on a newline is fine."
+
+    Long date format:
+      name: long-date-format
+      type: text-single
+      default: "%d %B %Y at %H:%M"
+
+    Short date format:
+      name: short-date-format
+      type: text-single
+      default: "%d %B %Y"

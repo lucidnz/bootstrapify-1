@@ -1,0 +1,91 @@
+Homepage slider:
+
+  General:
+    notitle: true
+
+    Show slider:
+      name: show-slider
+      type: checkbox
+
+    Slider width:
+      name: slider-width
+      type: select
+      help: "<strong>Important.&#xA0;</strong>If you choose window-width, the slider will span the entire browser window (which could be huge!). This means your images need to be large enough to allow for this which could slow down the overall speed of the site."
+      options:
+        window-width: Window width
+        site-width: Site width
+        main-content-width: Main content width
+
+    Auto-play slider:
+      name: auto-play-slider
+      type: checkbox
+      help: Have the slider start sliding automatically when the page is loaded.
+
+    Carousel Speed:
+      name: carousel-speed
+      type: select
+      help: Interval between slides in milliseconds.
+      options:
+        2000: 2000
+        3000: 3000
+        4000: 4000
+        5000: 5000
+        6000: 6000
+        7000: 7000
+        8000: 8000
+        9000: 9000
+        10000: 10000
+
+    Carousel Transition:
+      name: carousel-transition
+      type: select
+      options:
+        slide: Slide
+        fade: Fade
+
+  Slide {i}:
+    repeat: [1, 2, 3, 4, 5]
+
+    Activate Slide:
+      name: slide-{i}-active
+      type: checkbox
+      inline_label: Yes
+
+    Use dark text:
+      name: slide-{i}-dark
+      type: checkbox
+      inline_label: Yes
+
+    Slide image:
+      name: slide-{i}-image.jpg
+      type: file
+
+    Caption position:
+      name: slide-{i}-position
+      type: select
+      options:
+        top left: top left
+        top center: top center
+        top right: top right
+        middle left: middle left
+        middle center: middle center
+        middle right: middle right
+        bottom left: bottom left
+        bottom center: bottom center
+        bottom right: bottom right
+
+    Heading:
+      name: slide-{i}-heading
+      type: text-single
+
+    Caption:
+      name: slide-{i}-caption
+      type: text-multi
+
+    Button text:
+      name: slide-{i}-button-text
+      type: text-single
+
+    Button link:
+      name: slide-{i}-button-link
+      type: text-single

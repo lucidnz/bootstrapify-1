@@ -1,0 +1,28 @@
+Sidebar:
+
+  Display Locations:
+    notitle: true
+    repeat: [Homepage, Collection, Product, Cart, Page, Blog, Article, Search, 404]
+
+    Show sidebar on {i}:
+      name: show-sidebar-on-{i}
+      type: checkbox
+      inline_label: on {i}
+      hide_label: true
+
+  General:
+
+    Sidebar blog:
+      name: sidebar-blog
+      type: blog
+
+    Sidebar linklist:
+      name: sidebar-linklist
+      type: linklist
+
+    Sidebar placement:
+      name: sidebar-placement
+      type: select
+      options:
+        left: Left
+        right: Right
