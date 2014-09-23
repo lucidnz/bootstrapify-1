@@ -21,6 +21,21 @@ Homepage slider:
       type: checkbox
       help: Have the slider start sliding automatically when the page is loaded.
 
+    Carousel Speed:
+      name: carousel-speed
+      type: select
+      help: Interval between slides in milliseconds.
+      options:
+        2000: 2000
+        3000: 3000
+        4000: 4000
+        5000: 5000
+        6000: 6000
+        7000: 7000
+        8000: 8000
+        9000: 9000
+        10000: 10000
+
     Carousel Transition:
       name: carousel-transition
       type: select

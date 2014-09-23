@@ -105,10 +105,13 @@ Social:
       type: text-multi
       help: "A comma separated list of image ids that you don&apos;t wish to show in your instagram feeds."
 
-    Mailchimp form action URL:
-      name: mailchimp
-      type: text-single
-      help: "Use Mailchimp&apos;s form action URL for the newsletter signup form. If left blank Shopify&apos;s default action will be used."
+    Newsletter platform:
+      name: newsletter-platform
+      type: select
+      options:
+        shopify: Shopify
+        campaign-monitor: Campaign Monitor
+        mailchimp: MailChimp
 
     Newsletter signup placement:
       name: newsletter-signup-placement
@@ -124,3 +127,8 @@ Social:
         footer-column-4: Footer column 4
         footer-navbar-left: Footer navbar left
         footer-navbar-right: Footer navbar right
+
+    Newsletter submit URL:
+      name: newsletter-form-action-url
+      type: text-single
+      help: "Paste in Campaign Monitor or MailChimp’s form action URL. Don’t paste the entire form code; just the “action” parameter."
