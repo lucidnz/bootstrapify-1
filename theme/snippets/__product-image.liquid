@@ -1,9 +1,11 @@
-{% capture vars %}
-  {% assign product_url = product-loop.url | within: collection %}
-  {% if product-loop.featured_image == blank %}
-    {% include 'image-placeholder' %}
-    {% assign image = image | link_to: product_url %}
-  {% else %}
-		{% assign image = product-loop.featured_image.src | product_img_url: 'grande' | img_tag: product-loop.featured_image.alt | link_to: product_url %}
-  {% endif %}
-{% endcapture %}
+{% assign product_url = product-loop.url | within: collection %}
+{% if product-loop.featured_image == blank %}
+  {% include 'image-placeholder' %}
+  {% assign image = image | link_to: product_url %}
+{% else %}
+	{% assign image = product-loop.featured_image.src | product_img_url: 'grande' | img_tag: product-loop.featured_image.alt | link_to: product_url %}
+{% endif %}{{ image }}
+
+{% if product_collection.metafields.secondary-image.show == 'true' and product-loop.metafields.secondary-image.src != blank %}
+  {% capture image_secondary %}{{ product-loop.metafields.secondary-image.src | img_tag | link_to: product-loop.url }}{% endcapture %}{{ image_secondary | strip }}
+{% endif %}
