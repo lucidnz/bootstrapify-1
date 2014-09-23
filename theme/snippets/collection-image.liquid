@@ -8,3 +8,7 @@
 {% else %}
   {% include 'image-placeholder' %}
 {% endif %}
+
+{% if collection-loop.metafields.secondary-image %}
+  {% capture image_secondary %}{{ collection-loop.metafields.secondary-image.src | img_tag | link_to: collection-loop.url }}{% endcapture %}
+{% endif %}
