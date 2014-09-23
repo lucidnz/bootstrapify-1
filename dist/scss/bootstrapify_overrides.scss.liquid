@@ -514,16 +514,27 @@ header .article-meta{
   }
 }
 
-.collection-thumbnail {
-  position: relative;
+.collection-thumbnail, .product-thumbnail {
+  .thumbnail-image.has-secondary-image{
+    position: relative;
   
-  .thumbnail-image a:nth-child(2) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    &:hover {
+    a:first-of-type {
       opacity: 0 !important;
+    }
+    a:last-of-type {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+    }
+    &:hover {
+      a:first-of-type {
+        opacity: 1 !important;
+      }
+      a:last-of-type {
+        opacity: 0 !important;
+      }
     }
   }
 }
