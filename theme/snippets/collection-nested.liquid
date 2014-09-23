@@ -27,7 +27,8 @@
         {% if settings.show-products-on-nested-collections-page %}
           {% assign is_nested = true %}
           {% include 'collection-header' with collections[child_handle] %}
-          {% for collection_product in collections[child_handle].products %}
+          {% assign product_collection = collections[child_handle] %}
+          {% for collection_product in product_collection.products %}
             {% include 'product-loop' with collection_product %}
           {% endfor %}
         {% else %}
