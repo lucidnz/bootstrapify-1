@@ -1,0 +1,8 @@
+<script>
+  var Shopify = Shopify || {};
+  Shopify.settings = {
+    enable_image_zoom         : {% if settings.enable-image-zoom %}true{% else %}false{% endif %},
+    enable_image_lightbox     : {% if settings.enable-image-lightbox %}true{% else %}false{% endif %},
+    free_shipping_threshold   : {% if settings.free-shipping-threshold %}{{ settings.free-shipping-threshold | remove: '$' | times: 100.0 }}{% else %}false{% endif %}
+  };
+</script>

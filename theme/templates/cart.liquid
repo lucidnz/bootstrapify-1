@@ -53,7 +53,12 @@
                 </td>
                 <td><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
                 <td class="text-center col-xs-2">
+                  {% if i.variant.inventory_quantity <= 1 and i.variant.inventory_management == 'shopify' and i.variant.inventory_policy == 'deny' %}
+                  <input type="hidden" name="updates[{{ i.id }}]" id="updates_{{ i.id }}" value="{{ i.quantity }}"/>
+                  {{ i.quantity }}
+                  {% else %}
                   <input type="text" class="form-control" name="updates[{{ i.id }}]" id="updates_{{ i.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
+                  {% endif %}
                 </td>
                 <td><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>
               </tr>
@@ -81,20 +86,16 @@
         <div class="form-actions text-right col-sm-4 col-md-3">
           <div class="product-price"><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></div>
           
-          {% unless free_shipping_threshold == blank %}
-          {% if cart.total_price < free_shipping_threshold %}{% assign diff = free_shipping_threshold | minus: cart.total_price %}
-          <div class="alert alert-warning">
-            <p>{% include '__localize' with 'You&rsquo;re' %} {{ diff | money }} {% include '__localize' with 'away from FREE shipping!' %}</strong></p>
-            <p><a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse' %} {{ collections.[settings.collection-to-link-to-if-cart-empty].title }}&nbsp;&raquo;</a></p>
-          </div>
+          {% include 'free-shipping-message' %}
+          
+          {% if settings.ajax-cart %}
+          <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary btn-block" />
           {% else %}
-          <div class = "alert alert-success">
-            <p>{% include '__localize' with 'This order qualifies for FREE shipping' %}</p>
+          <div class="btn-group">
+            <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'Update' %}" class="btn btn-default" />
+            <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary" />
           </div>
           {% endif %}
-          {% endunless %}
-          
-          <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary btn-block" />
           {% if additional_checkout_buttons %}
           <div class="additional-checkout-buttons">
             <span class="text-muted">or</span>

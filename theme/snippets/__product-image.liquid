@@ -4,7 +4,6 @@
     {% include 'image-placeholder' %}
     {% assign image = image | link_to: product_url %}
   {% else %}
-  	{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% elsif settings.round-thumbnail-images-on-homepage and template == 'index' %}{% assign round-class = 'img-circle' %}{% endif %}
-		{% assign image = product-loop.featured_image.src | product_img_url: 'grande' | img_tag: product-loop.featured_image.alt, round-class | link_to: product_url %}
+		{% assign image = product-loop.featured_image.src | product_img_url: 'grande' | img_tag: product-loop.featured_image.alt | link_to: product_url %}
   {% endif %}
 {% endcapture %}

@@ -1,14 +1,15 @@
-{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% elsif settings.round-thumbnail-images-on-homepage and template == 'index' %}{% assign round-class = 'img-circle' %}{% endif %}
+{% capture collection_image %}
 {% if collection-loop.image and settings.collection-feature-image == 'collection-image' %}
-  {% capture image %}{{ collection-loop.image.src | collection_img_url: 'large' | img_tag: collection-loop.image.alt, round-class | link_to: collection-loop.url }}{% endcapture %}
-{% elsif collection-loop.products.first.featured_image and settings.collection-feature-image == 'first-product-image' %}
-  {% capture image %}{{ collection-loop.products.first.featured_image.src | product_img_url: 'large' | img_tag: collection-loop.products.first.featured_image.alt, round-class | link_to: collection-loop.url }}{% endcapture %}
-{% elsif collection-loop.products.last.featured_image and settings.collection-feature-image == 'last-product-image' %}
-  {% capture image %}{{ collection-loop.products.last.featured_image.src | product_img_url: 'large' | img_tag: collection-loop.products.last.featured_image.alt, round-class | link_to: collection-loop.url }}{% endcapture %}
-{% else %}
+  {{ collection-loop.image.src | collection_img_url: 'large' | img_tag: collection-loop.image.alt | link_to: collection-loop.url }}
+{% elsif collection-loop.products.first.featured_image.src == blank and collection-loop.products.last.featured_image.src == blank %}
   {% include 'image-placeholder' %}
+{% elsif collection-loop.products.last.featured_image and settings.collection-feature-image == 'last-product-image' %}
+  {{ collection-loop.products.last.featured_image.src | product_img_url: 'large' | img_tag: collection-loop.products.last.featured_image.alt | link_to: collection-loop.url }}
+{% else %}
+  {{ collection-loop.products.first.featured_image.src | product_img_url: 'large' | img_tag: collection-loop.products.first.featured_image.alt | link_to: collection-loop.url }}
 {% endif %}
+{% endcapture %}{{ collection_image | strip }}
 
-{% if collection-loop.metafields.secondary-image %}
-  {% capture image_secondary %}{{ collection-loop.metafields.secondary-image.src | img_tag | link_to: collection-loop.url }}{% endcapture %}
+{% if collection-loop.metafields.secondary-image.src != blank %}
+  {% capture image_secondary %}{{ collection-loop.metafields.secondary-image.src | img_tag | link_to: collection-loop.url }}{% endcapture %}{{ image_secondary | strip }}
 {% endif %}

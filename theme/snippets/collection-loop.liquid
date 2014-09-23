@@ -1,8 +1,7 @@
-{% include 'collection-image' %}
-<div class="{% if settings.collections-per-row == blank %}{% include '__thumbnail-span' %}{% else %}col-sm-{{ 12 | divided_by: settings.collections-per-row }}{% endif %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
+<div class="{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
   <div class="collection-thumbnail text-center">
     <div class="thumbnail-image">
-      {{ image }}
+      {% include 'collection-image' %}
     </div>
     <div class="caption clearfix">
       {% if collections-list == 'featured' %}{% assign _title = l.title %}{% else %}{% assign _title = collection-loop.title %}{% endif %}

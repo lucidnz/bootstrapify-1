@@ -7,6 +7,8 @@ var selectCallback = function(variant, selector){
   // set vars so we dont need to call the elements repeatedly
   var purchaseButton = $productWrap.find('.purchase-btn');
   var priceField = $productWrap.find('.price-field');
+  var quantityWrap = $productWrap.find('.quantity-wrap');
+  var addToCartButtonWrap = $productWrap.find('.add-to-cart-button-wrap');
   var saleField = $productWrap.find('.sale-label');
   var compareAtPriceField = $productWrap.find('.compare-at-price-field');
   var $notifyForm = $productWrap.find('.notify-me-wrapper'); // Show/hide notify form
@@ -43,6 +45,15 @@ var selectCallback = function(variant, selector){
       // sold out
       purchaseButton.val(soldOutStr);
       $notifyForm.fadeIn();
+    }
+    
+    if(variant.inventory_quantity <= 1 && variant.inventory_management == 'shopify' && variant.inventory_policy == 'deny'){
+      quantityWrap.hide();
+      addToCartButtonWrap.removeClass('col-sm-8').addClass('col-sm-12');
+    }
+    else {
+      quantityWrap.show();
+      addToCartButtonWrap.addClass('col-sm-8').removeClass('col-sm-12');
     }
     
     if(variant.featured_image){

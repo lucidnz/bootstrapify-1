@@ -44,6 +44,15 @@
             </td>
           </tr>
         </table>
+        <table>
+          <tr>
+            <th><label for="logo-icon-class">Logo icon class</label></th>
+            <td>
+              <input type="text" name="logo-icon-class" id="logo-icon-class" class="text" value="" />
+              <small>This is the icon class (such as "icon icon-your-logo") which enables you to use icons from the likes of Font Awesome, IcoMoon etc. If this is set, it overrides image and text.</small>
+            </td>
+          </tr>
+        </table>
       </fieldset>
       <fieldset>
       	
@@ -216,24 +225,6 @@
         </table>
         <table>
           <tr>
-            <th><label for="round-thumbnail-images">Round thumbnail images</label></th>
-            <td>
-              <input type="checkbox" name="round-thumbnail-images" id="round-thumbnail-images" value="1" /> Yes
-              <small>Only use this if your images are cropped to square dimensions</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="round-thumbnail-images-on-homepage">Round thumbnail images on homepage</label></th>
-            <td>
-              <input type="checkbox" name="round-thumbnail-images-on-homepage" id="round-thumbnail-images-on-homepage" value="1" /> Yes
-              <small>Only use this if your images are cropped to square dimensions</small>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
             <th><label for="show-borders">Show borders</label></th>
             <td>
               <input type="checkbox" name="show-borders" id="show-borders" value="1" /> Yes
@@ -364,15 +355,6 @@
           <option value="6">6</option>
           <option value="12">12</option>
         </select>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="use-adaptive-thumbnails-per-row">Use “adaptive” thumbnails per row</label></th>
-            <td>
-              <input type="checkbox" name="use-adaptive-thumbnails-per-row" id="use-adaptive-thumbnails-per-row" value="1" /> Yes
-              <small>The number of thumbnails per row will adapt for best fit. This is particularly useful if you have a small number of products.</small>
             </td>
           </tr>
         </table>
@@ -566,6 +548,25 @@
             <td>
               <input type="checkbox" name="auto-play-slider" id="auto-play-slider" value="1" /> Yes
               <small>Have the slider start sliding automatically when the page is loaded.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="carousel-speed">Carousel Speed</label></th>
+            <td>
+              <select name="carousel-speed" id="carousel-speed">
+          <option value="2000" selected="selected">2000</option>
+          <option value="3000">3000</option>
+          <option value="4000">4000</option>
+          <option value="5000">5000</option>
+          <option value="6000">6000</option>
+          <option value="7000">7000</option>
+          <option value="8000">8000</option>
+          <option value="9000">9000</option>
+          <option value="10000">10000</option>
+        </select>
+              <small><p>Interval between slides in milliseconds.</p></small>
             </td>
           </tr>
         </table>
@@ -1246,6 +1247,31 @@
       
         <table>
           <tr>
+            <th><label for="display-vendor-description">Display vendor description</label></th>
+            <td>
+              <input type="checkbox" name="display-vendor-description" id="display-vendor-description" value="1" /> Yes
+              <small>If checked and a collection exists with the same handle as the vendor handle, the collection description (and image) will be displayed at the bottom of the product page.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="enable-image-lightbox">Enable image lightbox</label></th>
+            <td>
+              <input type="checkbox" name="enable-image-lightbox" id="enable-image-lightbox" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="enable-image-zoom">Enable image zoom</label></th>
+            <td>
+              <input type="checkbox" name="enable-image-zoom" id="enable-image-zoom" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="hidden-tag-prefixes">Hidden tag prefixes</label></th>
             <td>
               <input type="text" name="hidden-tag-prefixes" id="hidden-tag-prefixes" class="text" value="hd,hidden" />
@@ -1317,10 +1343,111 @@
       
         <table>
           <tr>
+            <th><label for="featured-image-position">Featured Image Position</label></th>
+            <td>
+              <select name="featured-image-position" id="featured-image-position">
+          <option value="do-not-show" selected="selected">Do Not Show</option>
+          <option value="half-width-left">Half Width Left</option>
+          <option value="half-width-right">Half Width Right</option>
+          <option value="full-width-above">Full Width Above</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="overlay-title-on-hover">Overlay title on hover</label></th>
+            <td>
+              <input type="checkbox" name="overlay-title-on-hover" id="overlay-title-on-hover" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="overlay-title-on-hover-background-color">Overlay title on hover background color</label></th>
+            <td>
+              <input type="text" name="overlay-title-on-hover-background-color" id="overlay-title-on-hover-background-color" class="color" value="" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-on-sale-badge">Show "On Sale" badge</label></th>
+            <td>
+              <select name="show-on-sale-badge" id="show-on-sale-badge">
+          <option value="as-text" selected="selected">as text</option>
+          <option value="as-percentage-off">as percentage off</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-compare-at-price">Show 'Compare At' Price</label></th>
+            <td>
+              <input type="checkbox" name="show-compare-at-price" id="show-compare-at-price" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-product-sorter">Show product sorter</label></th>
+            <td>
+              <input type="checkbox" name="show-product-sorter" id="show-product-sorter" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-product-count-for-collections">Show product count for collections</label></th>
+            <td>
+              <input type="checkbox" name="show-product-count-for-collections" id="show-product-count-for-collections" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-descriptions-on-nested-collections-page">Show descriptions on nested collections page</label></th>
+            <td>
+              <input type="checkbox" name="show-descriptions-on-nested-collections-page" id="show-descriptions-on-nested-collections-page" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-products-on-nested-collections-page">Show products on nested collections page</label></th>
+            <td>
+              <input type="checkbox" name="show-products-on-nested-collections-page" id="show-products-on-nested-collections-page" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-vendor-with-thumbnail">Show Vendor with Thumbnail</label></th>
+            <td>
+              <select name="show-vendor-with-thumbnail" id="show-vendor-with-thumbnail">
+          <option value="do-not-show" selected="selected">Do Not Show</option>
+          <option value="above-product-title">Above Product Title</option>
+          <option value="below-product-title">Below Product Title</option>
+        </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="all-collections-linklist">"All collections" collection linklist</label></th>
             <td>
               <select class="linklist" name="all-collections-linklist" />
               <small>If you would like to specify which collections show on the /collections page, create a linklist of collections.</small>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="show-out-of-stock-badge">Show “out of stock” badge</label></th>
+            <td>
+              <input type="checkbox" name="show-out-of-stock-badge" id="show-out-of-stock-badge" value="1" /> Yes
+              <small>If checked and unavailable products are visible, a badge will indicate that the products are out of stock.</small>
             </td>
           </tr>
         </table>
@@ -1401,86 +1528,21 @@
         </table>
         <table>
           <tr>
-            <th><label for="featured-image-position">Featured Image Position</label></th>
+            <th><label for="collection-header-placement">Collection header placement</label></th>
             <td>
-              <select name="featured-image-position" id="featured-image-position">
-          <option value="do-not-show" selected="selected">Do Not Show</option>
-          <option value="half-width-left">Half Width Left</option>
-          <option value="half-width-right">Half Width Right</option>
-          <option value="full-width-above">Full Width Above</option>
+              <select name="collection-header-placement" id="collection-header-placement">
+          <option value="above-products" selected="selected">Above products</option>
+          <option value="below-products">Below products</option>
         </select>
+              <small>The collection header contains the collection description and (if present) the collection’s feature image.</small>
             </td>
           </tr>
         </table>
         <table>
           <tr>
-            <th><label for="overlay-title-on-hover">Overlay title on hover</label></th>
+            <th><label for="show-recommended-collections">Show “recommended” collections</label></th>
             <td>
-              <input type="checkbox" name="overlay-title-on-hover" id="overlay-title-on-hover" value="1" /> Yes
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="overlay-title-on-hover-background-color">Overlay title on hover background color</label></th>
-            <td>
-              <input type="text" name="overlay-title-on-hover-background-color" id="overlay-title-on-hover-background-color" class="color" value="" />
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="show-on-sale-badge">Show "On Sale" badge</label></th>
-            <td>
-              <select name="show-on-sale-badge" id="show-on-sale-badge">
-          <option value="as-text" selected="selected">as text</option>
-          <option value="as-percentage-off">as percentage off</option>
-        </select>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="show-compare-at-price">Show 'Compare At' Price</label></th>
-            <td>
-              <input type="checkbox" name="show-compare-at-price" id="show-compare-at-price" value="1" /> Yes
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="show-product-count-for-collections">Show product count for collections</label></th>
-            <td>
-              <input type="checkbox" name="show-product-count-for-collections" id="show-product-count-for-collections" value="1" /> Yes
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="show-product-sorter">Show product sorter</label></th>
-            <td>
-              <input type="checkbox" name="show-product-sorter" id="show-product-sorter" value="1" /> Yes
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="show-vendor-with-thumbnail">Show Vendor with Thumbnail</label></th>
-            <td>
-              <select name="show-vendor-with-thumbnail" id="show-vendor-with-thumbnail">
-          <option value="do-not-show" selected="selected">Do Not Show</option>
-          <option value="above-product-title">Above Product Title</option>
-          <option value="below-product-title">Below Product Title</option>
-        </select>
-            </td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th><label for="show-out-of-stock-badge">Show “out of stock” badge</label></th>
-            <td>
-              <input type="checkbox" name="show-out-of-stock-badge" id="show-out-of-stock-badge" value="1" /> Yes
-              <small>If checked and unavailable products are visible, a badge will indicate that the products are out of stock.</small>
+              <input type="checkbox" name="show-recommended-collections-on-homepage" id="show-recommended-collections-on-homepage" value="1" /> on Homepage<br /><input type="checkbox" name="show-recommended-collections-on-collection" id="show-recommended-collections-on-collection" value="1" /> on Collection<br /><input type="checkbox" name="show-recommended-collections-on-product" id="show-recommended-collections-on-product" value="1" /> on Product<br /><input type="checkbox" name="show-recommended-collections-on-cart" id="show-recommended-collections-on-cart" value="1" /> on Cart<br /><input type="checkbox" name="show-recommended-collections-on-page" id="show-recommended-collections-on-page" value="1" /> on Page<br /><input type="checkbox" name="show-recommended-collections-on-blog" id="show-recommended-collections-on-blog" value="1" /> on Blog<br /><input type="checkbox" name="show-recommended-collections-on-article" id="show-recommended-collections-on-article" value="1" /> on Article<br /><input type="checkbox" name="show-recommended-collections-on-search" id="show-recommended-collections-on-search" value="1" /> on Search<br /><input type="checkbox" name="show-recommended-collections-on-404" id="show-recommended-collections-on-404" value="1" /> on 404<br />
             </td>
           </tr>
         </table>
@@ -1513,6 +1575,15 @@
           <option value="sidebar">Sidebar</option>
           <option value="main-content">Main content</option>
         </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="recommended-products-collection">“Recommended” products collection</label></th>
+            <td>
+              <select class="collection" name="recommended-products-collection" />
+              <small>You can choose to display “recommended” products on the homepage, collection pages and product pages.</small>
             </td>
           </tr>
         </table>
@@ -2141,10 +2212,13 @@
         </table>
         <table>
           <tr>
-            <th><label for="mailchimp">Mailchimp form action URL</label></th>
+            <th><label for="newsletter-platform">Newsletter platform</label></th>
             <td>
-              <input type="text" name="mailchimp" id="mailchimp" class="text" value="" />
-              <small>Use Mailchimp's form action URL for the newsletter signup form. If left blank Shopify's default action will be used.</small>
+              <select name="newsletter-platform" id="newsletter-platform">
+          <option value="shopify" selected="selected">Shopify</option>
+          <option value="campaign-monitor">Campaign Monitor</option>
+          <option value="mailchimp">MailChimp</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -2164,6 +2238,15 @@
           <option value="footer-navbar-left">Footer navbar left</option>
           <option value="footer-navbar-right">Footer navbar right</option>
         </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="newsletter-form-action-url">Newsletter submit URL</label></th>
+            <td>
+              <input type="text" name="newsletter-form-action-url" id="newsletter-form-action-url" class="text" value="" />
+              <small>Paste in Campaign Monitor or MailChimp’s form action URL. Don’t paste the entire form code; just the “action” parameter.</small>
             </td>
           </tr>
         </table>
