@@ -59,7 +59,7 @@ $(document).on('submit', '.notify-me-wrapper form', function(e){
 $(document).on('show.bs.collapse', '#top-nav', function(){
   $('body').removeClass('navbar-collapse-hide').addClass('navbar-collapse-show');
 });
-$(document).on('hide.bs.collapse', '#top-nav', function(){
+$(document).on('hidden.bs.collapse', '#top-nav', function(){
   $('body').removeClass('navbar-collapse-show').addClass('navbar-collapse-hide');
 });
 var preloadProductImages = function(){
