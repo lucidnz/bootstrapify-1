@@ -15,7 +15,7 @@
       {{ fields }}
     {% endform %}
   {% else %}
-    <form action="{{ settings.mailchimp }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate contact-form" target="_blank">
+    <form action="{{ settings.newsletter-form-action-url }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate contact-form" target="_blank">
       {{ fields }}
     </form>
   {% endif %}
