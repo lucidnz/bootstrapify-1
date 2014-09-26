@@ -44,6 +44,15 @@
             </td>
           </tr>
         </table>
+        <table>
+          <tr>
+            <th><label for="logo-icon-class">Logo icon class</label></th>
+            <td>
+              <input type="text" name="logo-icon-class" id="logo-icon-class" class="text" value="" />
+              <small>This is the icon class (such as "icon icon-your-logo") which enables you to use icons from the likes of Font Awesome, IcoMoon etc. If this is set, it overrides image and text.</small>
+            </td>
+          </tr>
+        </table>
       </fieldset>
       <fieldset>
       	
@@ -1885,6 +1894,14 @@
         </table>
         <table>
           <tr>
+            <th><label for="cart-page-content">Cart Page Content</label></th>
+            <td>
+              <select class="page" name="cart-page-content" selected="" />
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="collection-to-link-to-if-cart-empty">Collection to link to if cart empty</label></th>
             <td>
               <select class="collection" name="collection-to-link-to-if-cart-empty" />
@@ -1918,9 +1935,38 @@
         </table>
         <table>
           <tr>
+            <th><label for="show-agree-with-terms-and-conditions-checkbox">Show 'Agree with Terms and Conditions' Checkbox</label></th>
+            <td>
+              <input type="checkbox" name="show-agree-with-terms-and-conditions-checkbox" id="show-agree-with-terms-and-conditions-checkbox" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
             <th><label for="show-shipping-estimator">Show shipping estimator</label></th>
             <td>
               <input type="checkbox" name="show-shipping-estimator" id="show-shipping-estimator" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+      <fieldset>
+      	
+      <legend>Age Verification</legend>
+      
+        <table>
+          <tr>
+            <th><label for="enable-age-verification">Enable Age Verification</label></th>
+            <td>
+              <input type="checkbox" name="enable-age-verification" id="enable-age-verification" value="1" /> Yes
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="verification-age">Verification Age</label></th>
+            <td>
+              <input type="text" name="verification-age" id="verification-age" class="text" value="" />
             </td>
           </tr>
         </table>
@@ -2203,10 +2249,13 @@
         </table>
         <table>
           <tr>
-            <th><label for="mailchimp">Mailchimp form action URL</label></th>
+            <th><label for="newsletter-platform">Newsletter platform</label></th>
             <td>
-              <input type="text" name="mailchimp" id="mailchimp" class="text" value="" />
-              <small>Use Mailchimp's form action URL for the newsletter signup form. If left blank Shopify's default action will be used.</small>
+              <select name="newsletter-platform" id="newsletter-platform">
+          <option value="shopify" selected="selected">Shopify</option>
+          <option value="campaign-monitor">Campaign Monitor</option>
+          <option value="mailchimp">MailChimp</option>
+        </select>
             </td>
           </tr>
         </table>
@@ -2226,6 +2275,15 @@
           <option value="footer-navbar-left">Footer navbar left</option>
           <option value="footer-navbar-right">Footer navbar right</option>
         </select>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th><label for="newsletter-form-action-url">Newsletter submit URL</label></th>
+            <td>
+              <input type="text" name="newsletter-form-action-url" id="newsletter-form-action-url" class="text" value="" />
+              <small>Paste in Campaign Monitor or MailChimp’s form action URL. Don’t paste the entire form code; just the “action” parameter.</small>
             </td>
           </tr>
         </table>
