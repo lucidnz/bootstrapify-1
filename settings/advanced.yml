@@ -1,0 +1,39 @@
+Advanced:
+
+  General:
+    notitle: true
+
+    SASS variables:
+      name: sass-variables
+      type: text-multi
+      help: Feel free to override any of Bootstraps SASS variables here.
+
+    Custom CSS:
+      name: custom-css
+      type: text-multi
+      help: "Feel free to override any of the CSS here. This is included&#xA0;<strong>inside&#xA0;</strong>the stylesheet at the end. SCSS allowed."
+
+    Custom checkout CSS:
+      name: custom-checkout-css
+      type: text-multi
+      help: "Feel free to override any of the checkout CSS here. This is included&#xA0;<strong>inside&#xA0;</strong>the stylesheet at the end. SCSS is <strong>not</strong> allowed."
+
+    Custom header code:
+      name: custom-header-code
+      type: text-multi
+      help: "<span>Anything to be placed within the site&apos;s head tag.</span>"
+
+    Custom footer code:
+      name: custom-footer-code
+      type: text-multi
+      help: "Anything to be placed before the site&#x2019;s closing body tag."
+
+    Advanced Homepage Layout:
+      name: advanced-homepage-layout
+      type: linklist
+      help: Define a linklist for which to pull the homepage content from. This is handy if you want to reorder the homepage content or add in extra sections without touching the code.
+
+    Development mode:
+      name: development-mode
+      type: checkbox
+      inline_label: Yes

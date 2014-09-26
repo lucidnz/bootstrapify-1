@@ -37,15 +37,25 @@
   </div>
   
   <div class="row">
-  	<div class="col-sm-4">
+  	<div class="col-sm-4 quantity-wrap">
   	  <div class="form-group">
     		<input class="form-control input-lg" min="1" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" />
   	  </div>
   	</div>
-  	<div class="col-sm-8">
+  	<div class="col-sm-8 add-to-cart-button-wrap">
   	  <div class="form-group">
     		<input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="purchase-btn" />
   	  </div>
+      <div class="share-icons">
+        {% capture tweet %}https://twitter.com/intent/tweet?text={% include '__localize' with 'Check out' %} {{ page_title }}—{{ canonical_url }}{% unless settings.social-links-twitter == blank %} (via @{{ settings.social-links-twitter | split: '/' | last }}){% endunless %}{% endcapture %}
+        {% capture email_subject %}{% include '__localize' with 'Check out' %} {{ page_title }}{% endcapture %}
+        {% capture email_body %}{% include '__localize' with 'Hey' %}, {% include '__localize' with 'I was just looking at' %} {{ page_title }} {% include '__localize' with 'on' %} {{ shop.name }} {% include '__localize' with 'and wanted to share it with you' %}. {% include '__localize' with 'Check out' %} {{ canonical_url }}{% endcapture %}
+        Share: 
+        <a href="{{ tweet | replace: ' ','%20' }}" target="_blank"><i class="fa fa-twitter fa-fw"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ canonical_url }}" target="_blank"><i class="fa fa-facebook fa-fw"></i></a>
+        <a href="http://pinterest.com/pin/create/button/?url={{ canonical_url }}&media={{ product.featured_image.src | product_img_url: '2048x2048' }}&description={{ page_title | replace: ' ','%20' }}" target="_blank"><i class="fa fa-pinterest fa-fw"></i></a>
+        <a href="mailto:?subject={{ email_subject | replace: ' ','%20' }}&body={{ email_body }}" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </div>
   	</div>
   </div>
 </form>
