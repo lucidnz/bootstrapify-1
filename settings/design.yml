@@ -1,0 +1,38 @@
+Design:
+
+  General:
+    notitle: true
+
+    Round avatars:
+      name: round-avatars
+      type: checkbox
+      inline_label: Yes
+
+    Show borders:
+      name: show-borders
+      type: checkbox
+      inline_label: Yes
+
+    Site background image:
+      name: site-background-image
+      type: checkbox
+      inline_label: Yes
+
+    Site background image file:
+      name: site-background-image-file.jpg
+      type: file
+
+    Site background image position:
+      name: site-background-image-position
+      type: text-single
+      default: center top
+
+    Site background image repeat:
+      name: site-background-image-repeat
+      type: select
+      options:
+        repeat: repeat
+        repeat-x: repeat-x
+        repeat-y: repeat-y
+        no-repeat: no-repeat
+        inherit: inherit

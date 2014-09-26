@@ -1,0 +1,85 @@
+Colour:
+
+  General:
+
+    Brand primary colour:
+      name: brand-primary
+      type: color
+
+    Background colour:
+      name: background-colour
+      type: color
+
+    Heading colour:
+      name: heading-colour
+      type: color
+
+    Text colour:
+      name: text-colour
+      type: color
+
+    Link colour:
+      name: link-colour
+      type: color
+
+    Button colour:
+      name: button-colour
+      type: color
+
+    Button text colour:
+      name: button-text-colour
+      type: color
+
+  Footer:
+
+    Footer background colour:
+      name: footer-background-colour
+      type: color
+
+    Footer heading colour:
+      name: footer-heading-colour
+      type: color
+
+    Footer link colour:
+      name: footer-link-colour
+      type: color
+
+    Footer text colour:
+      name: footer-text-colour
+      type: color
+
+  Navbar:
+
+    Navbar main background colour:
+      name: main-navbar-background-colour
+      type: color
+
+    Navbar main link colour:
+      name: main-navbar-link-colour
+      type: color
+
+    Navbar top and footer background colour:
+      name: navbar-background-colour
+      type: color
+
+    Navbar top and footer link colour:
+      name: navbar-link-colour
+      type: color
+
+  Sidebar:
+
+    Sidebar background colour:
+      name: sidebar-background-colour
+      type: color
+
+    Sidebar heading colour:
+      name: sidebar-heading-colour
+      type: color
+
+    Sidebar link colour:
+      name: sidebar-link-colour
+      type: color
+
+    Sidebar text colour:
+      name: sidebar-text-colour
+      type: color

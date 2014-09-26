@@ -212,6 +212,33 @@ module.exports = function(grunt) {
         ]
       }
     },
+    shopify_theme_settings: {
+      settings: {
+        options: {},
+        files: {
+          'theme/config/settings.html': [
+            'settings/branding.yml',
+            'settings/colour.yml',
+            'settings/design.yml',
+            'settings/layout.yml',
+            'settings/homepage.yml',
+            'settings/homepage-slider.yml',
+            'settings/typography.yml',
+            'settings/blog.yml',
+            'settings/products.yml',
+            'settings/collections.yml',
+            'settings/sidebar.yml',
+            'settings/navigation.yml',
+            'settings/footer.yml',
+            'settings/cart.yml',
+            'settings/localization.yml',
+            'settings/money.yml',
+            'settings/social.yml',
+            'settings/advanced.yml'
+          ]
+        }
+      }
+    },
     compress: {
       zip: {
         options: {
@@ -260,7 +287,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-shopify-theme-settings');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass', 'compress']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass', 'shopify_theme_settings', 'compress']);
 };

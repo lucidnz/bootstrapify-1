@@ -9,3 +9,7 @@
   {{ collection-loop.products.first.featured_image.src | product_img_url: 'large' | img_tag: collection-loop.products.first.featured_image.alt | link_to: collection-loop.url }}
 {% endif %}
 {% endcapture %}{{ collection_image | strip }}
+
+{% if collection-loop.metafields.secondary-image.src != blank %}
+  {% capture image_secondary %}{{ collection-loop.metafields.secondary-image.src | img_tag | link_to: collection-loop.url }}{% endcapture %}{{ image_secondary | strip }}
+{% endif %}
