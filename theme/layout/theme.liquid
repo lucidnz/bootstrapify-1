@@ -94,6 +94,7 @@
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
   {% if settings.enable-image-zoom %}{{ 'jquery.zoom.min.js' | asset_url | script_tag }}{% endif %}
   {% if settings.enable-image-lightbox %}{{ 'jquery.colorbox-min.js' | asset_url | script_tag }}{% endif %}
+  {% if settings.enable-age-verification %}{% include 'age-check' %}{% endif %}
 
   {% if settings.custom-footer-code != '' %}
     {{ settings.custom-footer-code }}

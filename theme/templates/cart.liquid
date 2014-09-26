@@ -11,6 +11,9 @@
   </script>
 
   <div class="text-left">
+	{% if settings.cart-page-content %}
+	{{ pages[settings.cart-page-content].content }}
+	{% endif %}
     <form action="/cart" method="post" id="cart">
       <div class="row">
         <div class="{% if settings.show-shipping-estimator %}col-md-9{% else %}col-md-12{% endif %}">
@@ -87,6 +90,14 @@
           <div class="product-price"><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></div>
           
           {% include 'free-shipping-message' %}
+		  
+		  {% if settings.show-agree-with-terms-and-conditions-checkbox %}
+		  {% comment %}Need to tidy this up{% endcomment %}
+		  <p style="float:none; text-align:right; clear: both; margin: 10px 0;">
+			  <input type="checkbox" id="agree" />
+			  <label for="agree">{% include '__localize' with 'I agree with the terms and conditions.' %}</label>
+		  </p>
+		  {% endif %}
           
           {% if settings.ajax-cart %}
           <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary btn-block" />
@@ -116,3 +127,17 @@
   {% endif %}
   {% include '__containers-close' %}
 </section>
+
+{% if settings.show-agree-with-terms-and-conditions-checkbox %}
+<script>
+$('[name="checkout"], input[name="goto_pp"], input[name="goto_gc"]').click(function() {
+  if($('#agree').is(':checked')){
+    $(this).submit();
+  }
+  else{
+    alert("{% include '__localize' with 'You must agree with the terms and conditions of sales to check out.' %}");
+    return false;
+  }
+});
+</script>
+{% endif %}
