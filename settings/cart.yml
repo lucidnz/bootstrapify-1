@@ -9,6 +9,10 @@ Cart:
       inline_label: Yes
       help: "Important! - If you are using a file upload field in your product property line items it will not work while Ajax Cart is enabled."
 
+    Cart Page Content:
+      name: cart-page-content
+      type: page
+
     Collection to link to if cart empty:
       name: collection-to-link-to-if-cart-empty
       type: collection
@@ -25,6 +29,11 @@ Cart:
 
     Hide prices if cart is disabled:
       name: hide-prices-if-cart-disabled
+      type: checkbox
+      inline_label: Yes
+
+    Show Agree with Terms and Conditions Checkbox:
+      name: show-agree-with-terms-and-conditions-checkbox
       type: checkbox
       inline_label: Yes
 
