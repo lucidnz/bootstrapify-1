@@ -231,6 +231,7 @@ module.exports = function(grunt) {
             'settings/navigation.yml',
             'settings/footer.yml',
             'settings/cart.yml',
+            'settings/age-verification.yml',
             'settings/localization.yml',
             'settings/money.yml',
             'settings/social.yml',

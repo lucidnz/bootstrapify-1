@@ -2614,6 +2614,15 @@
         </tr>
         <tr>
             <th>
+                <label for="cart-page-content">Cart Page Content</label>
+            </th>
+            <td>
+                <select id="cart-page-content" name="cart-page-content" class="page">
+                    </select>
+            </td>
+        </tr>
+        <tr>
+            <th>
                 <label for="collection-to-link-to-if-cart-empty">Collection to link to if cart empty</label>
             </th>
             <td>
@@ -2653,10 +2662,39 @@
         </tr>
         <tr>
             <th>
+                <label for="show-agree-with-terms-and-conditions-checkbox">Show Agree with Terms and Conditions Checkbox</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="show-agree-with-terms-and-conditions-checkbox" name="show-agree-with-terms-and-conditions-checkbox" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
                 <label for="show-shipping-estimator">Show shipping estimator</label>
             </th>
             <td>
                 <label><input type="checkbox" id="show-shipping-estimator" name="show-shipping-estimator" value="1" /> Yes</label>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+<fieldset>
+    <legend>Age Verification</legend>
+    <table>
+        <tr>
+            <th>
+                <label for="enable-age-verification">Enable Age Verification</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="enable-age-verification" name="enable-age-verification" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="verification-age">Verification Age</label>
+            </th>
+            <td>
+                <input type="text" id="verification-age" name="verification-age" class="text" value="18" />
             </td>
         </tr>
     </table>
