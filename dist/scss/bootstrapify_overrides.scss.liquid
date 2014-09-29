@@ -809,7 +809,7 @@ header .article-meta{
 {% assign footer_columns = cols | split: '|' %}
 
 .footer__grid {
-  @include make-xs-column({{ 12 | divided_by: footer_columns.size }});
+  @include make-sm-column({{ 12 | divided_by: footer_columns.size }});
 }
 
 .footer-credits {
