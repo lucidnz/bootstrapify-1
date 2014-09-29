@@ -12,8 +12,12 @@
     {% endif %}
     
     {% unless linklists[settings.sidebar-linklist] == empty %}
-      <h3>{{ linklists[settings.sidebar-linklist].title }}</h3>
-      {% include 'sidebar-nav' with linklists[settings.sidebar-linklist] %}
+	{% assign s_linklist = settings.sidebar-linklist %}
+	{% if collection.metafields.sidebar.linklist != blank %}
+	{% assign s_linklist = collection.metafields.sidebar.linklist %}
+	{% endif %}
+      <h3>{{ linklists[s_linklist].title }}</h3>
+      {% include 'sidebar-nav' with linklists[s_linklist] %}
     {% endunless %}
     
     {% if template == 'blog' or template == 'article' %}

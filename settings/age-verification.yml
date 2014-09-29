@@ -1,0 +1,14 @@
+Age Verification:
+
+  General:
+    notitle: true
+
+    Enable Age Verification:
+      name: enable-age-verification
+      type: checkbox
+      inline_label: Yes
+
+    Verification Age:
+      name: verification-age
+      type: text-single
+      default: 18
