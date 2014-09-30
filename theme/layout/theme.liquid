@@ -38,8 +38,8 @@
   {% include 'theme-variables' %}
 </head>
 
-<!--[if lte IE 9 ]><body class="{% include '__body-classes' %} lte-ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <body class="{% include '__body-classes' %}"> <!--<![endif]-->
+<!--[if IE]><body class="{% include '__body-classes' %} ie"> <![endif]-->
+<!--[if !(IE)]><!--> <body class="{% include '__body-classes' %}"> <!--<![endif]-->
 
   <div id="wrap">
     {% include 'navbar' with 'top' %}
