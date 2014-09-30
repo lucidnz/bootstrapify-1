@@ -231,10 +231,20 @@ header .article-meta{
 /* Grids */
 
 .collection-grid {
-	@extend .col-xs-12;
-	@extend .col-sm-6;
-	@extend .col-md-4;
-	@extend .col-lg-{{ 12 | divided_by: settings.collections-per-row }};
+  @include make-xs-column(12);
+  @include make-sm-column(6);
+  @include make-md-column(4);
+  @include make-lg-column({{ 12 | divided_by: settings.collections-per-row }});
+}
+
+.contact-page-content {
+  @include make-md-column(6);
+  @include make-md-column-push(6);
+}
+
+.contact-page-form {
+  @include make-md-column(6);
+  @include make-md-column-pull(6);
 }
 
 /* Navbars */
