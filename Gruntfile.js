@@ -276,6 +276,10 @@ module.exports = function(grunt) {
       compress: {
         files: ['theme/**'],
         tasks: ['compress']
+      },
+      shopify_theme_settings: {
+        files: 'settings/*.yml',
+        tasks: ['shopify_theme_settings']
       }
     }
   });
