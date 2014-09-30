@@ -8477,10 +8477,20 @@ header .article-meta{
 /* Grids */
 
 .collection-grid {
-	@extend .col-xs-12;
-	@extend .col-sm-6;
-	@extend .col-md-4;
-	@extend .col-lg-{{ 12 | divided_by: settings.collections-per-row }};
+  @include make-xs-column(12);
+  @include make-sm-column(6);
+  @include make-md-column(4);
+  @include make-lg-column({{ 12 | divided_by: settings.collections-per-row }});
+}
+
+.contact-page-content {
+  @include make-md-column(6);
+  @include make-md-column-push(6);
+}
+
+.contact-page-form {
+  @include make-md-column(6);
+  @include make-md-column-pull(6);
 }
 
 /* Navbars */
@@ -9041,6 +9051,23 @@ header .article-meta{
   }
 }
 
+{% assign cols = '' %}
+{% for i in (i..3) %}
+  {% assign c = i | plus: 1 %}
+  {% assign col = 'column-' | append: c %}
+  {% assign col_blog = col | append: '-blog' %}
+  {% assign col_menu = col | append: '-menu' %}
+  {% assign col_text = col | append: '-text' %}
+  {% if settings[col_blog] != blank or settings[col_menu] != blank or settings[col_text] != blank or settings.newsletter-signup-placement contains col or settings.social-links-placement contains col %}
+    {% assign cols = cols | append: col | append: '|' %}
+  {% endif %}
+{% endfor %}
+{% assign footer_columns = cols | split: '|' %}
+
+.footer__grid {
+  @include make-sm-column({{ 12 | divided_by: footer_columns.size }});
+}
+
 .footer-credits {
   margin-top: $grid-gutter-width;
 }
@@ -9162,11 +9189,7 @@ $i: 1;
     left: auto;
     padding: 0 $grid-gutter-width/2 $grid-gutter-width/2;
     color: $text-color !important;
-    text-align: left !important;
     text-shadow: none;
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-      text-align: left !important;
-    }
   }
   .carousel-indicators{
     bottom: 0;
