@@ -1,5 +1,13 @@
 Typography:
 
+  General:
+    notitle: true
+
+    Heading "letterpress":
+      name: heading-letterpress
+      type: checkbox
+      inline_label: Yes
+
   Font {i}:
     repeat: [body, brand, heading, navbar]
 
@@ -36,11 +44,3 @@ Typography:
         lowercase: lowercase
         uppercase: UPPERCASE
         title-case: Title Case
-
-  General:
-    notitle: true
-
-    Heading "letterpress":
-      name: heading-letterpress
-      type: checkbox
-      inline_label: Yes

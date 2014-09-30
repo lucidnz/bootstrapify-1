@@ -17,7 +17,9 @@
 
 {% if settings.show-related-products %}
 {% assign is-product-list = true %}
-{% if collection %}{% assign product_collection = collection %}{% else %}{% assign product_collection = product.collections.first %}{% endif %}
+{% assign product_vendor = product.vendor | handleize %}
+
+{% if collection %}{% assign product_collection = collection %}{% elsif collections[product_vendor] %}{% assign product_collection = collections[product_vendor] %}{% else %}{% assign product_collection = product.collections.first %}{% endif %}
 <section id="product-list" class="section-wrap">
 	{% include '__containers-open' %}
 		<h2 class="page-header">{% include '__localize' with 'Related in' %} {{ product_collection.title }}</h2>
