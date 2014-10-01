@@ -8,6 +8,19 @@
   <h1 class="page-header">{% include 'smart-title' %}</h1>
 
   {% if search.performed and search.results.size > 0 %}
+    
+    {% for result in search.results %}
+      <p>{{ result.title }}</p>
+      <p>
+        {% if result.price %}
+        
+        {% endif %}
+      </p>
+      <hr>
+    {% endfor %}
+  
+  
+    {% comment %}
     {% include '__default-pagination' %}
     {% paginate search.results by default-pagination %}
     {% for i in search.results %}
@@ -15,6 +28,7 @@
     {% endfor %}
     {% include 'pagination' %}
     {% endpaginate %}
+    {% endcomment %}
   {% else %}
     {% if search.performed %}
     <h3>{% include '__localize' with 'No search results found' %}.</h3>
