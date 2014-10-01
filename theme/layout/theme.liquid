@@ -37,7 +37,9 @@
   {% include 'theme-script-variables' %}
   {% include 'theme-variables' %}
 </head>
-<body class="{% include '__body-classes' %}">
+
+<!--[if IE]><body class="{% include '__body-classes' %} ie"> <![endif]-->
+<!--[if !(IE)]><!--> <body class="{% include '__body-classes' %}"> <!--<![endif]-->
 
   <div id="wrap">
     {% include 'navbar' with 'top' %}

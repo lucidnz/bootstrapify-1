@@ -54,6 +54,14 @@ $(document).on('submit', '.notify-me-wrapper form', function(e){
   }
   e.preventDefault();
 });
+
+/* add body classes on bootstrap js actions */
+$(document).on('show.bs.collapse', '#top-nav', function(){
+  $('body').removeClass('navbar-collapse-hide').addClass('navbar-collapse-show');
+});
+$(document).on('hidden.bs.collapse', '#top-nav', function(){
+  $('body').removeClass('navbar-collapse-show').addClass('navbar-collapse-hide');
+});
 var preloadProductImages = function(){
   var $thumbs = $('[data-main-image]');
   if($thumbs.length > 0){
