@@ -57,3 +57,12 @@ Products:
       name: show-unavailable-products
       type: checkbox
       inline_label: Yes
+
+    Show related products:
+      name: show-related-products
+      type: checkbox
+      inline_label: Yes
+      
+    Secondary collection on products page:
+      name: secondary-related-collection
+      type: collection

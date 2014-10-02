@@ -9064,9 +9064,11 @@ header .article-meta{
 {% endfor %}
 {% assign footer_columns = cols | split: '|' %}
 
+{% if footer_columns.size > 0 %}
 .footer__grid {
   @include make-sm-column({{ 12 | divided_by: footer_columns.size }});
 }
+{% endif %}
 
 .footer-credits {
   margin-top: $grid-gutter-width;

@@ -477,14 +477,6 @@
         </tr>
         <tr>
             <th>
-                <label for="show-related-products">Show related products on products page</label>
-            </th>
-            <td>
-                <label><input type="checkbox" id="show-related-products" name="show-related-products" value="1" /> Yes</label>
-            </td>
-        </tr>
-        <tr>
-            <th>
                 <label for="window-width-thumbnail-container">Window width thumbnail container</label>
             </th>
             <td>
@@ -1264,6 +1256,16 @@
 </fieldset>
 <fieldset>
     <legend>Typography</legend>
+    <table>
+        <tr>
+            <th>
+                <label for="heading-letterpress">Heading "letterpress"</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="heading-letterpress" name="heading-letterpress" value="1" /> Yes</label>
+            </td>
+        </tr>
+    </table>
     <h3>
         Font body
     </h3>
@@ -1568,16 +1570,6 @@
             </td>
         </tr>
     </table>
-    <table>
-        <tr>
-            <th>
-                <label for="heading-letterpress">Heading "letterpress"</label>
-            </th>
-            <td>
-                <label><input type="checkbox" id="heading-letterpress" name="heading-letterpress" value="1" /> Yes</label>
-            </td>
-        </tr>
-    </table>
 </fieldset>
 <fieldset>
     <legend>Blog</legend>
@@ -1754,6 +1746,23 @@
             </th>
             <td>
                 <label><input type="checkbox" id="show-unavailable-products" name="show-unavailable-products" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="show-related-products">Show related products</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="show-related-products" name="show-related-products" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="secondary-related-collection">Secondary collection on products page</label>
+            </th>
+            <td>
+                <select id="secondary-related-collection" name="secondary-related-collection" class="collection">
+                    </select>
             </td>
         </tr>
     </table>
