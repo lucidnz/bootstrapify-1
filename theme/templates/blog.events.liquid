@@ -8,92 +8,91 @@
 	{% include '__default-pagination' %}
 	{% paginate blog.articles by default-pagination %}
 	
-	{% assign today = 'today' | date: '%s' %}
+  {% comment %}	
+	now: {{ 'now' | date }}<br>
+	today: {{ 'now' | date: '%s' | date }}
+	{% endcomment %}
+	
+	{% assign today = 'now' | date: '%s' %}
 	<!-- Current Events -->
 	{% assign first_current = true %}
 	{% for article in blog.articles %}
-	  {% for tag in article.tags %}
-	    {% if tag contains 'date:' %}
-	    
-	      {% assign dates = tag | remove: 'date:' | split: '-' %}
-  	    {% assign date_start = dates.first | split: '/' %}
-  	    {% assign date_start = date_start[2] | append: '/' | append: date_start[1] | append: '/' | append: date_start[0] | date: '%s' %}
-  	    {% assign date_end = dates.last | split: '/' %}
-  	    {% assign date_end = date_end[2] | append: '/' | append: date_end[1] | append: '/' | append: date_end[0] | date: '%s' %}
-	      
-	      {% if date_start <= today and date_end >= today %}
-	        {% if first_current %}
-	          <h2>{% include '__localize' with 'Current event' %}</h2>
-	          {% assign first_current = false %}
-          {% endif %}
-          
-          <article>
-          	<header>
-          	  <h3>{{ article.title }}</h3>
-          	</header>
-          </article>
-	        
-	      {% endif %}
-	    {% endif %}
-	  {% endfor %}
+	  {% include '__dates-from-tags' with article %}
+	  
+	  {% if start_date %}	  
+      {% if first_current %}
+        <h2>{% include '__localize' with 'Current event' %}</h2>
+        {% assign first_current = false %}
+      {% endif %}
+      
+	    {% capture current_article %}
+        <article>
+        	<header>
+        	  <h3>{{ article.title }}</h3>
+        	</header>
+        </article>
+	    {% endcapture %}
+	  {% endif %}
+	  
+	  {% assign start_date_text = start_date | date: '%D' %}
+	  {% assign today_text = today | date: '%D' %}
+	  {% if start_date_text == today_text %}
+	    {{ current_article }}
+	  {% elsif start_date <= today and end_date >= today %}
+      {{ current_article }}
+    {% endif %}
 	{% endfor %}
 	
 	<!-- Upcoming Events -->
   {% assign first_upcoming = true %}
 	{% for article in blog.articles %}
-	  {% for tag in article.tags %}
-	    {% if tag contains 'date:' %}
-	    
-	      {% assign dates = tag | remove: 'date:' | split: '-' %}
-  	    {% assign date_start = dates.first | split: '/' %}
-  	    {% assign date_start = date_start[2] | append: '/' | append: date_start[1] | append: '/' | append: date_start[0] | date: '%s' %}
-  	    {% assign date_end = dates.last | split: '/' %}
-  	    {% assign date_end = date_end[2] | append: '/' | append: date_end[1] | append: '/' | append: date_end[0] | date: '%s' %}
-	      
-	      {% if date_start > today %}
-	        {% if first_upcoming %}
-	          <h3>{% include '__localize' with 'Next event' %}</h3>
-	          {% assign first_upcoming = false %}
-          {% endif %}
-          
-          <article>
-          	<header>
-          	  <h3>{{ article.title }}</h3>
-          	</header>
-          </article>
-	        
-	      {% endif %}
-	    {% endif %}
-	  {% endfor %}
+    {% include '__dates-from-tags' with article %}
+	  
+	  {% if start_date %}	  
+      {% if first_upcoming %}
+        <h3>{% include '__localize' with 'Next event' %}</h3>
+        {% assign first_upcoming = false %}
+      {% endif %}
+      
+	    {% capture current_article %}
+        <article>
+        	<header>
+        	  <h3>{{ article.title }}</h3>
+        	</header>
+        </article>
+	    {% endcapture %}
+	  {% endif %}
+	  
+    {% if start_date > today %}
+      {{ current_article }}
+    {% endif %}
 	{% endfor %}
 	
 	<!-- Previous Events -->
   {% assign first_previous = true %}
 	{% for article in blog.articles %}
-	  {% for tag in article.tags %}
-	    {% if tag contains 'date:' %}
-	    
-	      {% assign dates = tag | remove: 'date:' | split: '-' %}
-  	    {% assign date_start = dates.first | split: '/' %}
-  	    {% assign date_start = date_start[2] | append: '/' | append: date_start[1] | append: '/' | append: date_start[0] | date: '%s' %}
-  	    {% assign date_end = dates.last | split: '/' %}
-  	    {% assign date_end = date_end[2] | append: '/' | append: date_end[1] | append: '/' | append: date_end[0] | date: '%s' %}
-	      
-	      {% if date_end < today %}
-	        {% if first_previous %}
-	          <h3>{% include '__localize' with 'Previous events' %}</h3>
-	          {% assign first_previous = false %}
-          {% endif %}
-          
-          <article>
-          	<header>
-          	  <h3>{{ article.title }}</h3>
-          	</header>
-          </article>
-	        
-	      {% endif %}
-	    {% endif %}
-	  {% endfor %}
+    {% include '__dates-from-tags' with article %}
+    
+    {% if start_date %}
+      {% if first_previous %}
+        <h3>{% include '__localize' with 'Previous events' %}</h3>
+        {% assign first_previous = false %}
+      {% endif %}
+      
+	    {% capture current_article %}
+        <article>
+        	<header>
+        	  <h3>{{ article.title }}</h3>
+        	</header>
+        </article>
+	    {% endcapture %}
+	  {% endif %}
+    
+    {% if start_date < today and end_date == false %}
+      {{ current_article }}
+    {% elsif end_date < today %}
+      {{ current_article }}
+    {% endif %}
 	{% endfor %}
 	
 		{% include 'pagination' %}
