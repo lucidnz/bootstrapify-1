@@ -15,85 +15,78 @@
 	
 	{% assign today = 'now' | date: '%s' %}
 	<!-- Current Events -->
+	<section class="events events--current">
 	{% assign first_current = true %}
 	{% for article in blog.articles %}
 	  {% include '__dates-from-tags' with article %}
-	  
-	  {% if start_date %}	  
-      {% if first_current %}
-        <h2>{% include '__localize' with 'Current event' %}</h2>
-        {% assign first_current = false %}
-      {% endif %}
-      
-	    {% capture current_article %}
-        <article>
-        	<header>
-        	  <h3>{{ article.title }}</h3>
-        	</header>
-        </article>
-	    {% endcapture %}
-	  {% endif %}
-	  
 	  {% assign start_date_text = start_date | date: '%D' %}
 	  {% assign today_text = today | date: '%D' %}
+	  
 	  {% if start_date_text == today_text %}
-	    {{ current_article }}
+      {% if first_current %}
+        <header>
+          <h2>{% include '__localize' with 'Current event' %}</h2>
+        </header>
+        {% assign first_current = false %}
+      {% endif %}
+	    {% include 'events-article' with 'current' %}
+	    
 	  {% elsif start_date <= today and end_date >= today %}
-      {{ current_article }}
+      {% if first_current %}
+        <header>
+          <h2>{% include '__localize' with 'Current event' %}</h2>
+        </header>
+        {% assign first_current = false %}
+      {% endif %}
+      {% include 'events-article' with 'current' %}
     {% endif %}
 	{% endfor %}
+  </section>
 	
 	<!-- Upcoming Events -->
+	<section class="events events--upcoming">
   {% assign first_upcoming = true %}
 	{% for article in blog.articles %}
     {% include '__dates-from-tags' with article %}
 	  
-	  {% if start_date %}	  
+    {% if start_date > today %}
       {% if first_upcoming %}
-        <h3>{% include '__localize' with 'Next event' %}</h3>
+        <header>
+          <h3>{% include '__localize' with 'Next event' %}</h3>
+        </header>
         {% assign first_upcoming = false %}
       {% endif %}
-      
-	    {% capture current_article %}
-        <article>
-        	<header>
-        	  <h3>{{ article.title }}</h3>
-        	</header>
-        </article>
-	    {% endcapture %}
-	  {% endif %}
-	  
-    {% if start_date > today %}
-      {{ current_article }}
+      {% include 'events-article' with 'upcoming' %}
     {% endif %}
 	{% endfor %}
+	</section>
 	
 	<!-- Previous Events -->
+	<section class="events events--previous">
   {% assign first_previous = true %}
 	{% for article in blog.articles %}
     {% include '__dates-from-tags' with article %}
     
-    {% if start_date %}
+    {% if start_date < today and end_date == false %}
       {% if first_previous %}
-        <h3>{% include '__localize' with 'Previous events' %}</h3>
+        <header>
+          <h3>{% include '__localize' with 'Previous events' %}</h3>
+        </header>
         {% assign first_previous = false %}
       {% endif %}
+      {% include 'events-article' with 'previous' %}
       
-	    {% capture current_article %}
-        <article>
-        	<header>
-        	  <h3>{{ article.title }}</h3>
-        	</header>
-        </article>
-	    {% endcapture %}
-	  {% endif %}
-    
-    {% if start_date < today and end_date == false %}
-      {{ current_article }}
     {% elsif end_date < today %}
-      {{ current_article }}
+      {% if first_previous %}
+        <header>
+          <h3>{% include '__localize' with 'Previous events' %}</h3>
+        </header>
+        {% assign first_previous = false %}
+      {% endif %}
+      {% include 'events-article' with 'previous' %}
     {% endif %}
 	{% endfor %}
+	</section>
 	
 		{% include 'pagination' %}
 	{% endpaginate %}

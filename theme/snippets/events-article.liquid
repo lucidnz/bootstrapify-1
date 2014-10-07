@@ -1,0 +1,47 @@
+{% assign state = events-article %}
+
+{% for tag in article.tags %}
+  {% if tag contains 'collection:' %}
+    {% assign collection_tag = tag | remove: 'collection:' %}
+    {% if collections[collection_tag].products.size > 0 %}
+      {% assign collection_tag_collection = collections[collection_tag] %}
+    {% else %}
+      {% assign collection_tag_collection = false %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% assign sizes = '_pico.,_icon.,_thumb.,_small.,_compact.,_medium.,_large.,_grande.,_1024x1024.,_2048x2048.,_master' | split: ',' %}
+{% if article.excerpt contains '<img' %}
+  {% assign excerpt_thumb = article.excerpt | split: 'src="' %}
+  {% assign excerpt_thumb = excerpt_thumb.last | split: '"' %}
+  {% assign excerpt_thumb = excerpt_thumb.first %}
+  {% for size in sizes %}
+    {% assign excerpt_thumb = excerpt_thumb | replace: size, '_large.' %}
+  {% endfor %}
+{% endif %}
+
+<div class="event">
+  <article>
+    {% if state == 'previous' or state == 'upcoming' %}
+    {% if excerpt_thumb %}
+  	<aside>
+  	  <div class="thumbnail">{% if collection_tag_collection %}{{ excerpt_thumb | img_tag | link_to: collection_tag_collection.url }}{% else %}{{ excerpt_thumb | img_tag }}{% endif %}</div>
+  	</aside>
+  	{% endif %}
+  	{% endif %}
+  	<header>
+  	  {% if collection_tag_collection %}<h1>{{ article.title | link_to: collection_tag_collection.url }}</h1>{% else %}<h1>{{ article.title }}</h1>{% endif %}
+	    {% if collection_tag_collection %}<h2>{{ collection_tag_collection.title }}</h2>{% endif %}
+  	  <div class="event-meta">
+    	  {% if end_date %}
+    	    {{ start_date | date: '%-d %B %Y' }} &mdash; {{ end_date | date: '%-d %B %Y' }}
+    	  {% elsif state == 'previous' %}
+    	    {{ start_date | date: '%B %Y' }}
+        {% else %}
+          {{ start_date | date: '%-d %B %Y' }}
+    	  {% endif %}
+  	  </div>
+  	</header>
+  </article>
+</div>
