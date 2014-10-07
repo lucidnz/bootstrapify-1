@@ -8999,6 +8999,33 @@ header .article-meta{
   @include make-row();
   & > header {
     @include make-xs-column(12);
+    margin-bottom: $grid-gutter-width / 2;
+  }
+  .event {
+    h1 {
+      @extend .h3;
+      margin-top: 0;
+    }
+    h2 {
+      @extend .h4;
+    }
+  }
+  &.events--current .event {
+    @include make-xs-column(12);
+    margin-bottom: $grid-gutter-width;
+  }
+  &.events--upcoming .event {
+    @include make-xs-column(12);
+    margin-bottom: $grid-gutter-width;
+    article {
+      @include make-row();
+      aside {
+        @include make-xs-column(3);
+      }
+      .event-details {
+        @include make-xs-column(9);
+      }
+    }
   }
   &.events--previous .event {
     @include make-xs-column(12);
@@ -9009,16 +9036,9 @@ header .article-meta{
     }
     article {
       @include make-row();
-      aside, header {
+      aside, .event-details {
         @include make-xs-column(6);
       }
-    }
-    h1 {
-      @extend .h3;
-      margin-top: 0;
-    }
-    h2 {
-      @extend .h4;
     }
   }
 }

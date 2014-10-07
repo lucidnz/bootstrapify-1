@@ -29,7 +29,7 @@
         </header>
         {% assign first_current = false %}
       {% endif %}
-	    {% include 'events-article' with 'current' %}
+	    {% include 'events-article-current' with 'current' %}
 	    
 	  {% elsif start_date <= today and end_date >= today %}
       {% if first_current %}
@@ -38,7 +38,7 @@
         </header>
         {% assign first_current = false %}
       {% endif %}
-      {% include 'events-article' with 'current' %}
+      {% include 'events-article-current' with 'current' %}
     {% endif %}
 	{% endfor %}
   </section>
