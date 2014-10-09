@@ -9,6 +9,8 @@
 <img src="{{ featured_image | product_img_url: '1024x1024' }}" alt="{{ featured_image.alt }}">{% endcapture %}
 {% endif %}
 {% endcapture %}
+{% include '__poa-tag' with product %}
+
 <section id="product-portfolio-wrap" class="product-wrap section-wrap">
   {% include '__containers-open' %}
   <!-- images col -->
@@ -34,12 +36,18 @@
   <div class="row">			
     <div class="col-sm-{% if product.price > 0 %}9{% else %}12{% endif %}">
       <h1 itemprop="name">{{ page_title }}</h1>
-      {% if product.price > 0 %}
-      <div class="lead product-price">
-        <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>
-        <del class="compare-at-price-field text-muted"></del>
-        <span class="sale-label" style="display: none;">{% include '__localize' with 'On sale' %}</span>
-      </div>
+      {% if has_prices %}
+				{% if price_is_poa %}
+				<div class="lead product-price-poa">
+				  <span>{% include '__localize' with 'POA' %}</span>
+				</div>
+				{% else %}
+        <div class="lead product-price">
+          <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>
+          <del class="compare-at-price-field text-muted"></del>
+          <span class="sale-label" style="display: none;">{% include '__localize' with 'On sale' %}</span>
+        </div>
+        {% endif %}
       {% endif %}
         
       {% include '__formatted-content' with product.description %}

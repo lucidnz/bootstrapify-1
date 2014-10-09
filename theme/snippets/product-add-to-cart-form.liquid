@@ -38,15 +38,18 @@
   
   <div class="row">
   	<div class="col-sm-4 quantity-wrap">
+      {% unless price_is_poa %}
   	  <div class="form-group">
     		<input class="form-control input-lg" min="1" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" />
   	  </div>
+    	{% endunless %}
   	</div>
   	<div class="col-sm-8 add-to-cart-button-wrap">
+    	{% unless price_is_poa %}
   	  <div class="form-group">
     		<input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="purchase-btn" />
   	  </div>
-
+      {% endunless %}
       {% if settings.secondary-call-to-action-url != blank %}
       <p class="secondary-call-to-action"><br><em>{% include '__localize' with 'Not quite what you are after?' %}</em><br><a href="{{ settings.secondary-call-to-action-url }}?title={{ product.title | replace: ' ', '%20' }}&handle={{ product.handle }}"><strong>{% include '__localize' with 'Contact us for variations' %}</strong></a></p>
       {% endif %}
