@@ -48,7 +48,7 @@
   	  </div>
 
       {% if settings.secondary-call-to-action-url != blank %}
-      <p><br><em>{% include '__localize' with 'Not quite what you are after?' %}</em><br><a href="{{ settings.secondary-call-to-action-url }}?title={{ product.title | replace: ' ', '%20' }}&handle={{ product.handle }}"><strong>{% include '__localize' with 'Contact us for variations' %}</strong></a></p>
+      <p class="secondary-call-to-action"><br><em>{% include '__localize' with 'Not quite what you are after?' %}</em><br><a href="{{ settings.secondary-call-to-action-url }}?title={{ product.title | replace: ' ', '%20' }}&handle={{ product.handle }}"><strong>{% include '__localize' with 'Contact us for variations' %}</strong></a></p>
       {% endif %}
 
       <div class="share-icons">
