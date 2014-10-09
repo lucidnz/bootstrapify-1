@@ -24,7 +24,13 @@
 					{% include '__localize' with 'from' %}
 				</small>
 				{% endif %}
+				
+				{% include '__poa-tag' with product-loop %}
+				{% if price_is_poa %}
+				<span>{% include '__localize' with 'POA' %}</span>
+				{% else %}
 				{% include 'product-price' with product-loop.price %}
+				{% endif %}
 				{% include 'product-badges' with product-loop %}  
 			</div>
 			{% endif %}

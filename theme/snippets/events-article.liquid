@@ -1,0 +1,30 @@
+{% include 'events-article-data' %}
+<div class="event">
+  <article>
+    {% if excerpt_thumb %}
+  	<aside>
+  	  <div class="thumbnail">{% if link %}{{ excerpt_thumb | img_tag | link_to: link }}{% else %}{{ excerpt_thumb | img_tag }}{% endif %}</div>
+  	</aside>
+  	{% endif %}
+  	<div class="event-details">
+    	<header>
+    	  {% if link %}<h1>{{ article.title | link_to: link }}</h1>{% else %}<h1>{{ article.title }}</h1>{% endif %}
+  	    {% if collection_tag_collection and collection_tag_collection.title != article.title %}<h2>{{ collection_tag_collection.title }}</h2>{% endif %}
+    	  <p class="event-meta">
+      	  {% if end_date %}
+      	    {{ start_date | date: '%-d %B %Y' }} &mdash; {{ end_date | date: '%-d %B %Y' }}
+      	  {% elsif state == 'previous' %}
+      	    {{ start_date | date: '%B %Y' }}
+          {% else %}
+            {{ start_date | date: '%-d %B %Y' }}
+      	  {% endif %}
+    	  </p>
+    	</header>
+    	{% if state == 'upcoming' %}
+    	<section>
+    	  {% include '__formatted-content' with article.content %}
+    	</section>
+    	{% endif %}
+  	</div>
+  </article>
+</div>

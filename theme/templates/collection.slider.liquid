@@ -1,40 +1,4 @@
 {% capture collection_slider %}{% if settings.show-featured-products-slider and collection.products.size > 0 %}
-<div class="container">
-  <div id="collection--featured-products-slider" class="carousel slide" data-ride="carousel">
-{% comment %}
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      {% for p in collection.products %}
-        <li data-target="#collection--featured-products-slider" data-slide-to="{{ forloop.index0 }}"{% if forloop.index0 == 0 %} class="active"{% endif %}></li>
-      {% endfor %}
-    </ol>
-{% endcomment %}
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      {% for p in collection.products %}
-      <div class="item{% if forloop.index0 == 0 %} active{% endif %}">
-        <a href="{{ p.url }}" title="View {{ p.title }}">{{ p.featured_image.src | product_img_url: '2048x2048' | img_tag: p.featured_image.alt }}</a>
-{% comment %}
-        <div class="carousel-caption">
-          <h2>{{ p.title }}</h2>
-          {% assign vendor_handle = p.vendor | handleize %}
-          {% unless collection.handle == vendor_handle %}<p class="lead">By {{ p.vendor }}</p>{% endunless %}
-          <p><a href="{{ p.url }}" class="btn btn-primary btn-lg">{% include '__localize' with 'View Product' %}</a></p>
-        </div>
-{% endcomment %}
-      </div>
-      {% endfor %}
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#collection--featured-products-slider" role="button" data-slide="prev">
-      <span class="fa fa-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#collection--featured-products-slider" role="button" data-slide="next">
-      <span class="fa fa-chevron-right"></span>
-    </a>
-  </div>
-</div>
+{% include 'collection-slider' with collection %}
 {% endif %}{% endcapture %}
 {% include 'collection-page' %}
