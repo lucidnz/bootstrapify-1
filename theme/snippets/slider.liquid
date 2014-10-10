@@ -52,8 +52,9 @@
       {% endif %}
     {% endfor %}
   {% endif %}
+{% endif %}
 
-{% unless items == '' %}
+{% if slide_count > 0 %}
   <div id="myCarousel" class="carousel slide{% if settings.carousel-transition == 'fade' %} carousel-fade{% endif %}" data-current-slide="slide-1"{% if settings.auto-play-slider %} data-ride="carousel"{% endif %} data-interval="{{ settings.carousel-speed }}">
     <!-- Indicators -->
     {% if slide_count > 1 %}
