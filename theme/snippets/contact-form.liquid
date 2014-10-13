@@ -10,7 +10,7 @@
 
 <!-- CONTACT FORM ERROR -->
 {% if form.errors %}
-<p class="alert alert-error">
+<p class="alert alert-danger">
 	<!-- {{ form.errors.size }} or {{ form.errors | size }} -->
 	Oops, sorry. We were unable to submit your inquiry because it contained {{ form.errors | size | pluralize: 'an error', 'a few errors' }}. Please correct the following and submit again:<br>
 	{% for field in form.errors %}
