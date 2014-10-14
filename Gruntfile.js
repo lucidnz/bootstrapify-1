@@ -214,7 +214,9 @@ module.exports = function(grunt) {
     },
     shopify_theme_settings: {
       settings: {
-        options: {},
+        options: {
+          templates: ['settings/templates']
+        },
         files: {
           'theme/config/settings.html': [
             'settings/branding.yml',

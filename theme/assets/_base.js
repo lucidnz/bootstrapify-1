@@ -163,13 +163,16 @@ $(window).load(function(){
   preloadProductImages();
   
   carouselControlHeight();
-  $('.carousel').on('slid.bs.carousel', function(){
-    carouselControlHeight();
-  });
-  $('.carousel').on('slide.bs.carousel', function(e){
-    var currentSlideID = e.relatedTarget.id;
-    $(this).attr('data-current-slide', currentSlideID);
-  });
+  var $carousel = $('.carousel');
+  if($carousel.find('.item').length > 0){
+    $carousel.on('slid.bs.carousel', function(){
+      carouselControlHeight();
+    });
+    $carousel.on('slide.bs.carousel', function(e){
+      var currentSlideID = e.relatedTarget.id;
+      $(this).attr('data-current-slide', currentSlideID);
+    });
+  }
   
   initColorbox();
   productImageZoom();

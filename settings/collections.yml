@@ -130,19 +130,6 @@ Collections:
         above-products: Above products
         below-products: Below products
 
-  “Recommended” Collections Display Locations:
-    notitle: true
-    repeat: [Homepage, Collection, Product, Cart, Page, Blog, Article, Search, 404]
-
-    Show “recommended” on {i}:
-      name: show-recommended-collections-on-{i}
-      type: checkbox
-      inline_label: on {i}
-      hide_label: true
-
-  General (Continued):
-    notitle: true
-
     Tag button limit:
       name: tag-button-limit
       type: text-single
@@ -168,3 +155,12 @@ Collections:
       name: recommended-products-collection
       type: collection
       help: "You can choose to display &#x201C;recommended&#x201D; products on the homepage, collection pages and product pages."
+
+  “Recommended” Collections Display Locations:
+
+    Show “recommended” on {f}:
+      template: display-location-field
+      repeat: [Homepage, Collection, Product, Cart, Page, Blog, Article, Search, 404]
+      name: show-recommended-collections-on-{f}
+      type: checkbox
+      inline_label: on {f}

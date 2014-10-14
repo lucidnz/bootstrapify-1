@@ -1,0 +1,98 @@
+{% include 'theme-variables' %}
+
+<section id="blog-wrap" class="section-wrap">
+	{% include '__containers-open' %}
+	<h1 class="page-header">{{ page_title }}</h1>
+	{% if settings.tag-placement == 'main-content' %}{% include 'tag-buttons' %}{% endif %}
+
+	{% include '__default-pagination' %}
+	{% paginate blog.articles by default-pagination %}
+	
+  {% comment %}	
+	now: {{ 'now' | date }}<br>
+	today: {{ 'now' | date: '%s' | date }}
+	{% endcomment %}
+	
+	{% assign today = 'now' | date: '%s' %}
+	<!-- Current Events -->
+	<section class="events events--current">
+	{% assign first_current = true %}
+	{% for article in blog.articles %}
+	  {% include '__dates-from-tags' with article %}
+	  {% assign start_date_text = start_date | date: '%D' %}
+	  {% assign today_text = today | date: '%D' %}
+	  
+	  {% if start_date_text == today_text %}
+      {% if first_current %}
+        <header>
+          <h2>{% include '__localize' with 'Current event' %}</h2>
+        </header>
+        {% assign first_current = false %}
+      {% endif %}
+	    {% include 'events-article-current' with 'current' %}
+	    
+	  {% elsif start_date <= today and end_date >= today %}
+      {% if first_current %}
+        <header>
+          <h2>{% include '__localize' with 'Current event' %}</h2>
+        </header>
+        {% assign first_current = false %}
+      {% endif %}
+      {% include 'events-article-current' with 'current' %}
+    {% endif %}
+	{% endfor %}
+  </section>
+	
+	<!-- Upcoming Events -->
+	<section class="events events--upcoming">
+  {% assign first_upcoming = true %}
+	{% for article in blog.articles %}
+    {% include '__dates-from-tags' with article %}
+	  
+    {% if start_date > today %}
+      {% if first_upcoming %}
+        <header>
+          <h3>{% include '__localize' with 'Next event' %}</h3>
+        </header>
+        {% assign first_upcoming = false %}
+      {% endif %}
+      {% include 'events-article' with 'upcoming' %}
+    {% endif %}
+	{% endfor %}
+	</section>
+	
+	<!-- Previous Events -->
+	<section class="events events--previous">
+  {% assign first_previous = true %}
+	{% for article in blog.articles %}
+    {% include '__dates-from-tags' with article %}
+    
+    {% if start_date < today and end_date == false %}
+      {% if first_previous %}
+        <header>
+          <h3>{% include '__localize' with 'Previous events' %}</h3>
+        </header>
+        {% assign first_previous = false %}
+      {% endif %}
+      {% include 'events-article' with 'previous' %}
+      
+    {% elsif end_date < today %}
+      {% if first_previous %}
+        <header>
+          <h3>{% include '__localize' with 'Previous events' %}</h3>
+        </header>
+        {% assign first_previous = false %}
+      {% endif %}
+      {% include 'events-article' with 'previous' %}
+    {% endif %}
+	{% endfor %}
+	</section>
+	
+		{% include 'pagination' %}
+	{% endpaginate %}
+
+	<p class="text-right rss-subscribe">
+		<i class="fa fa-rss-square text-muted"></i> <a class="text-muted" href="{{ blog.url | append: '.atom' }}">{% include '__localize' with 'Subscribe to RSS feed for ' %} {{ blog.title }}</a>
+	</p>
+	{% include '__containers-close' %}
+</section>

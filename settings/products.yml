@@ -57,3 +57,22 @@ Products:
       name: show-unavailable-products
       type: checkbox
       inline_label: Yes
+
+    Show notify me form when sold out:
+      name: show-notify-me
+      type: checkbox
+      inline_label: Yes
+
+    Show related products:
+      name: show-related-products
+      type: checkbox
+      inline_label: Yes
+
+    Show social share links:
+      name: show-social-share-links
+      type: checkbox
+      inline_label: Yes
+      
+    Secondary collection on products page:
+      name: secondary-related-collection
+      type: collection

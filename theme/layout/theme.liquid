@@ -103,10 +103,6 @@
   {% endif %}
   
   <script type="text/javascript">
-	$('.carousel').carousel({
-	interval: {{ settings.carousel-speed }}
-	})
-  
     {% unless current_handle == blank %}
       $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
     {% endunless %}

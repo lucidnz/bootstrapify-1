@@ -32,3 +32,10 @@ Blog:
       name: use-gravatars
       type: checkbox
       inline_label: Yes
+
+    Events date tag format:
+      name: event-date-format
+      type: select
+      options:
+        dd/mm/yyyy: dd/mm/yyy
+        mm/dd/yyyy: mm/dd/yyyy
