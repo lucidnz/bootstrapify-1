@@ -2,7 +2,7 @@
 {% capture badges %}{% endcapture %}
 {% for tag in product.tags %}
   {% if tag contains badge_tag %}
-    {% capture badges %}{{ badges }}<li>{{ tag | remove: badge_tag | handleize | append: '.png' | file_url | img_tag }}</li>{% endcapture %}
+    {% capture badges %}{{ badges }}<li>{{ tag | remove: badge_tag | handleize | append: '_medium.png' | file_url | img_tag }}</li>{% endcapture %}
   {% endif %}
 {% endfor %}
 {% unless badges == '' %}
