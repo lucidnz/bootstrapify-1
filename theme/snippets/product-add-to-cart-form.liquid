@@ -54,6 +54,7 @@
       <p class="secondary-call-to-action"><br><em>{% include '__localize' with 'Not quite what you are after?' %}</em><br><a href="{{ settings.secondary-call-to-action-url }}?title={{ product.title | replace: ' ', '%20' }}&handle={{ product.handle }}"><strong>{% include '__localize' with 'Contact us for variations' %}</strong></a></p>
       {% endif %}
 
+      {% if settings.show-social-share-links %}
       <div class="share-icons">
         {% capture tweet %}https://twitter.com/intent/tweet?text={% include '__localize' with 'Check out' %} {{ page_title }}—{{ canonical_url }}{% unless settings.social-links-twitter == blank %} (via @{{ settings.social-links-twitter | split: '/' | last }}){% endunless %}{% endcapture %}
         {% capture email_subject %}{% include '__localize' with 'Check out' %} {{ page_title }}{% endcapture %}
@@ -64,10 +65,12 @@
         <a href="http://pinterest.com/pin/create/button/?url={{ canonical_url }}&media={{ product.featured_image.src | product_img_url: '2048x2048' }}&description={{ page_title | replace: ' ','%20' }}" target="_blank"><i class="fa fa-pinterest fa-fw"></i></a>
         <a href="mailto:?subject={{ email_subject | replace: ' ','%20' }}&body={{ email_body }}" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
       </div>
+      {% endif %}
   	</div>
   </div>
 </form>
 
+{% if settings.show-notify-me %}
 <div class="row notify-me-wrapper">
   <div class="col-xs-12">
     {% form 'contact' %}
@@ -89,6 +92,7 @@
   </div>
 </div>
 <hr>
+{% endif %}
 
 <script>
   jQuery(function() {
