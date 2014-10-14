@@ -1,0 +1,12 @@
+{% capture badge_tag %}{% include '__localize' with 'badge' %}:{% endcapture %}
+{% capture badges %}{% endcapture %}
+{% for tag in product.tags %}
+  {% if tag contains badge_tag %}
+    {% capture badges %}{{ badges }}<li>{{ tag | remove: badge_tag | handleize | append: '.png' | file_url | img_tag }}</li>{% endcapture %}
+  {% endif %}
+{% endfor %}
+{% unless badges == '' %}
+<ul class="list-inline product-badges">
+  {{ badges }}
+</ul>
+{% endunless %}
