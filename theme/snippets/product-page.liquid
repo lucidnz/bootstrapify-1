@@ -50,6 +50,7 @@
 			<!-- details col -->
 			<div id="product-details" class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
+				{% include 'product-badges' %}
 				{% if has_prices %}
 				{% if price_is_poa %}
 				<div class="product-price-poa">
