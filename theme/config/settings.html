@@ -477,14 +477,6 @@
         </tr>
         <tr>
             <th>
-                <label for="show-related-products">Show related products on products page</label>
-            </th>
-            <td>
-                <label><input type="checkbox" id="show-related-products" name="show-related-products" value="1" /> Yes</label>
-            </td>
-        </tr>
-        <tr>
-            <th>
                 <label for="window-width-thumbnail-container">Window width thumbnail container</label>
             </th>
             <td>
@@ -1644,6 +1636,21 @@
                 <label><input type="checkbox" id="use-gravatars" name="use-gravatars" value="1" /> Yes</label>
             </td>
         </tr>
+        <tr>
+            <th>
+                <label for="event-date-format">Events date tag format</label>
+            </th>
+            <td>
+                <select id="event-date-format" name="event-date-format">
+                    <option value="dd/mm/yyyy">
+                        dd/mm/yyy
+                    </option>
+                    <option value="mm/dd/yyyy">
+                        mm/dd/yyyy
+                    </option>
+                </select>
+            </td>
+        </tr>
     </table>
 </fieldset>
 <fieldset>
@@ -1754,6 +1761,39 @@
             </th>
             <td>
                 <label><input type="checkbox" id="show-unavailable-products" name="show-unavailable-products" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="show-notify-me">Show notify me form when sold out</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="show-notify-me" name="show-notify-me" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="show-related-products">Show related products</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="show-related-products" name="show-related-products" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="show-social-share-links">Show social share links</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="show-social-share-links" name="show-social-share-links" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="secondary-related-collection">Secondary collection on products page</label>
+            </th>
+            <td>
+                <select id="secondary-related-collection" name="secondary-related-collection" class="collection">
+                    </select>
             </td>
         </tr>
     </table>
@@ -2038,80 +2078,6 @@
                 <small>The collection header contains the collection description and (if present) the collection’s feature image.</small>
             </td>
         </tr>
-    </table>
-    <table>
-        <tr>
-            <th></th>
-            <td>
-                <label><input type="checkbox" id="show-recommended-collections-on-homepage" name="show-recommended-collections-on-homepage" value="1" /> on Homepage</label>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th></th>
-            <td>
-                <label><input type="checkbox" id="show-recommended-collections-on-collection" name="show-recommended-collections-on-collection" value="1" /> on Collection</label>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th></th>
-            <td>
-                <label><input type="checkbox" id="show-recommended-collections-on-product" name="show-recommended-collections-on-product" value="1" /> on Product</label>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th></th>
-            <td>
-                <label><input type="checkbox" id="show-recommended-collections-on-cart" name="show-recommended-collections-on-cart" value="1" /> on Cart</label>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th></th>
-            <td>
-                <label><input type="checkbox" id="show-recommended-collections-on-page" name="show-recommended-collections-on-page" value="1" /> on Page</label>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th></th>
-            <td>
-                <label><input type="checkbox" id="show-recommended-collections-on-blog" name="show-recommended-collections-on-blog" value="1" /> on Blog</label>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th></th>
-            <td>
-                <label><input type="checkbox" id="show-recommended-collections-on-article" name="show-recommended-collections-on-article" value="1" /> on Article</label>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th></th>
-            <td>
-                <label><input type="checkbox" id="show-recommended-collections-on-search" name="show-recommended-collections-on-search" value="1" /> on Search</label>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th></th>
-            <td>
-                <label><input type="checkbox" id="show-recommended-collections-on-404" name="show-recommended-collections-on-404" value="1" /> on 404</label>
-            </td>
-        </tr>
-    </table>
-    <table>
         <tr>
             <th>
                 <label for="tag-button-limit">Tag button limit</label>
@@ -2175,77 +2141,105 @@
             </td>
         </tr>
     </table>
+    <h3>
+        “Recommended” Collections Display Locations
+    </h3>
+    <table>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" id="show-recommended-collections-on-homepage" name="show-recommended-collections-on-homepage" value="1" /> on Homepage</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" id="show-recommended-collections-on-collection" name="show-recommended-collections-on-collection" value="1" /> on Collection</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" id="show-recommended-collections-on-product" name="show-recommended-collections-on-product" value="1" /> on Product</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" id="show-recommended-collections-on-cart" name="show-recommended-collections-on-cart" value="1" /> on Cart</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" id="show-recommended-collections-on-page" name="show-recommended-collections-on-page" value="1" /> on Page</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" id="show-recommended-collections-on-blog" name="show-recommended-collections-on-blog" value="1" /> on Blog</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" id="show-recommended-collections-on-article" name="show-recommended-collections-on-article" value="1" /> on Article</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" id="show-recommended-collections-on-search" name="show-recommended-collections-on-search" value="1" /> on Search</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" id="show-recommended-collections-on-404" name="show-recommended-collections-on-404" value="1" /> on 404</label>
+            </td>
+        </tr>
+    </table>
 </fieldset>
 <fieldset>
     <legend>Sidebar</legend>
+    <h3>
+        Display Locations
+    </h3>
     <table>
         <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
                 <label><input type="checkbox" id="show-sidebar-on-homepage" name="show-sidebar-on-homepage" value="1" /> on Homepage</label>
             </td>
         </tr>
-    </table>
-    <table>
         <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
                 <label><input type="checkbox" id="show-sidebar-on-collection" name="show-sidebar-on-collection" value="1" /> on Collection</label>
             </td>
         </tr>
-    </table>
-    <table>
         <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
                 <label><input type="checkbox" id="show-sidebar-on-product" name="show-sidebar-on-product" value="1" /> on Product</label>
             </td>
         </tr>
-    </table>
-    <table>
         <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
                 <label><input type="checkbox" id="show-sidebar-on-cart" name="show-sidebar-on-cart" value="1" /> on Cart</label>
             </td>
         </tr>
-    </table>
-    <table>
         <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
                 <label><input type="checkbox" id="show-sidebar-on-page" name="show-sidebar-on-page" value="1" /> on Page</label>
             </td>
         </tr>
-    </table>
-    <table>
         <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
                 <label><input type="checkbox" id="show-sidebar-on-blog" name="show-sidebar-on-blog" value="1" /> on Blog</label>
             </td>
         </tr>
-    </table>
-    <table>
         <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
                 <label><input type="checkbox" id="show-sidebar-on-article" name="show-sidebar-on-article" value="1" /> on Article</label>
             </td>
         </tr>
-    </table>
-    <table>
         <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
                 <label><input type="checkbox" id="show-sidebar-on-search" name="show-sidebar-on-search" value="1" /> on Search</label>
             </td>
         </tr>
-    </table>
-    <table>
         <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
                 <label><input type="checkbox" id="show-sidebar-on-404" name="show-sidebar-on-404" value="1" /> on 404</label>
             </td>
         </tr>

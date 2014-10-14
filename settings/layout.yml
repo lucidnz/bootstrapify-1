@@ -80,11 +80,6 @@ Layout:
       type: checkbox
       inline_label: Yes
 
-    Show related products on products page:
-      name: show-related-products
-      type: checkbox
-      inline_label: Yes
-
     Window width thumbnail container:
       name: window-width-thumbnail-container
       type: checkbox
