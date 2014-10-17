@@ -10,39 +10,7 @@
 
 {{ collection_slider }}
 
-{% assign child_types = 'Vendors,Types' | split: ',' %}
-{% for t in child_types %}
-{% capture child_translation %}{% include '__localize' with t %}{% endcapture %}
-{% assign collection_handle = 'all-' | append: child_translation | downcase %}
-{% if collection.handle == collection_handle %}
-{% assign hide_products = true %}
-<section class="collection--nested-collections">
-  <div class="site--page">
-    <div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
-      {% if t == 'Vendors' %}
-        {% assign o = shop.vendors %}
-      {% elsif t == 'Types' %}
-        {% assign o = shop.types %}
-      {% endif %}
-      {% for v in o %}
-      {% assign child_handle = v | handleize | downcase %}
-      {% if collections[child_handle].products.size > 0 %}
-        {% if settings.show-products-on-nested-collections-page %}
-          {% assign is_nested = true %}
-          {% include 'collection-header' with collections[child_handle] %}
-          {% for collection_product in collections[child_handle].products %}
-            {% include 'product-loop' with collection_product %}
-          {% endfor %}
-        {% else %}
-          {% include 'collection-loop' with collections[child_handle] %}
-        {% endif %}
-      {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-{% endif %}
-{% endfor %}
+{% include 'collection-nested' %}
 
 {% unless hide_products %}
 {% if collection.all_products_count == 0 %}

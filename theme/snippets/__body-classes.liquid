@@ -20,4 +20,5 @@ template-{{ template | replace: '.', '-' }}
 {% if settings.show-multiple-currencies %} currencies{% endif %}
  {{ thumbnail_layout | prepend: 'thumbnail-layout-' }}
 {% if has_mega_menu %} has-mega-menu{% endif %} 
+{% unless product.available %} is-sold-out{% endunless %}
 {% endcapture %}{{ body_classes | strip_newlines | strip }}

@@ -7,8 +7,9 @@
   {{ '_base.scss.css' | asset_url | stylesheet_tag }}
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
+  {{ '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js' | script_tag }}
   {{ 'jquery.min.js' | asset_url | script_tag }}
+  {{ '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js' | script_tag }}
 
   <!--[if lt IE 9]>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -36,7 +37,9 @@
   {% include 'theme-script-variables' %}
   {% include 'theme-variables' %}
 </head>
-<body class="{% include '__body-classes' %}">
+
+<!--[if IE]><body class="{% include '__body-classes' %} ie"> <![endif]-->
+<!--[if !(IE)]><!--> <body class="{% include '__body-classes' %}"> <!--<![endif]-->
 
   <div id="wrap">
     {% include 'navbar' with 'top' %}
@@ -93,6 +96,7 @@
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
   {% if settings.enable-image-zoom %}{{ 'jquery.zoom.min.js' | asset_url | script_tag }}{% endif %}
   {% if settings.enable-image-lightbox %}{{ 'jquery.colorbox-min.js' | asset_url | script_tag }}{% endif %}
+  {% if settings.enable-age-verification %}{% include 'age-check' %}{% endif %}
 
   {% if settings.custom-footer-code != '' %}
     {{ settings.custom-footer-code }}

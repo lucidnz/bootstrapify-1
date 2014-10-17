@@ -1,6 +1,6 @@
-<div class="{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
+<div class="collection-grid{% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
   <div class="collection-thumbnail text-center">
-    <div class="thumbnail-image">
+    <div class="thumbnail-image{% if collection-loop.metafields.secondary-image.src != blank %} has-secondary-image{% endif %}">
       {% include 'collection-image' %}
     </div>
     <div class="caption clearfix">

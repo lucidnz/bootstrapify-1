@@ -1,0 +1,86 @@
+Layout:
+
+  General:
+    notitle: true
+
+    "Container width, small devices":
+      name: container-width-small-devices
+      type: text-single
+      default: 720px
+
+    "Container width, medium devices":
+      name: container-width-medium-devices
+      type: text-single
+      default: 970px
+
+    "Container width, large devices":
+      name: container-width-large-devices
+      type: text-single
+      default: 1170px
+
+    "Thumbnails per row, mobile":
+      name: thumbnails-per-row-mobile
+      type: select
+      options:
+        "1": "1"
+        "2": "2"
+        "3": "3"
+        "4": "4"
+        "6": "6"
+        "12": "12"
+
+    "Thumbnails per row, tablet":
+      name: thumbnails-per-row-tablet
+      type: select
+      options:
+        "1": "1"
+        "2": "2"
+        "3": "3"
+        "4": "4"
+        "6": "6"
+        "12": "12"
+
+    "Thumbnails per row, laptop":
+      name: thumbnails-per-row-laptop
+      type: select
+      options:
+        "1": "1"
+        "2": "2"
+        "3": "3"
+        "4": "4"
+        "6": "6"
+        "12": "12"
+
+    "Thumbnails per row, desktop":
+      name: thumbnails-per-row-desktop
+      type: select
+      options:
+        "1": "1"
+        "2": "2"
+        "3": "3"
+        "4": "4"
+        "6": "6"
+        "12": "12"
+
+    Default pagination:
+      name: default-pagination
+      type: text-single
+      help: If left blank pagination will be set to 50.
+      default: 24
+
+    Product page image placement:
+      name: product-page-image-placement
+      type: select
+      options:
+        left: Left
+        right: Right
+
+    Show breadcrumbs:
+      name: show-breadcrumbs
+      type: checkbox
+      inline_label: Yes
+
+    Window width thumbnail container:
+      name: window-width-thumbnail-container
+      type: checkbox
+      inline_label: Yes

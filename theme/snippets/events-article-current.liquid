@@ -1,0 +1,21 @@
+{% include 'events-article-data' %}
+<div class="event">
+  <article>
+  	<div class="event-details">
+    	<header>
+    	  <h1>
+      	  {% if link %}<a href="{{ link }}">{% endif %}
+      	  {% if collection_tag_collection and collection_tag_collection.title != article.title %}{{ collection_tag_collection.title }} <em>{% include '__localize' with 'by' %}</em> {% endif %}
+      	  {{ article.title }}
+      	  {% if link %}</a>{% endif %}
+    	  </h1>
+    	</header>
+    	<section>
+      	{% if collection_tag_collection %}
+      	  {% include 'slider' with collection_tag_collection %}
+      	{% endif %}
+      	{% include '__formatted-content' with article.content %}
+    	</section>
+  	</div>
+  </article>
+</div>

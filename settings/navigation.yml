@@ -1,0 +1,66 @@
+Navigation:
+
+  General:
+    notitle: true
+
+    "Top navbar linklist, left":
+      name: top-navbar-linklist-left
+      type: linklist
+
+    "Top navbar linklist, right":
+      name: top-navbar-linklist-right
+      type: linklist
+
+    Top navbar placement:
+      name: top-navbar-placement
+      type: select
+      options:
+        fixed-to-top: Fixed to top
+        static-top: Static top
+
+    Main menu linklist:
+      name: main-menu-linklist
+      type: linklist
+      help: If no link list is selected the main menu will not be shown.
+
+    Main menu alignment:
+      name: main-menu-alignment
+      type: select
+      options:
+        left: Left
+        center: Center
+        right: Right
+
+    "Footer navbar linklist, left":
+      name: footer-navbar-linklist-left
+      type: linklist
+
+    "Footer navbar linklist, right":
+      name: footer-navbar-linklist-right
+      type: linklist
+
+    Footer navbar placement:
+      name: footer-navbar-placement
+      type: select
+      options:
+        fixed-to-bottom: Fixed to bottom
+        static-bottom: Static bottom
+
+    Search placement:
+      name: search-placement
+      type: select
+      options:
+        dont-show: "Don't show"
+        top-navbar: Top navbar
+        sidebar: Sidebar
+
+    Search typeahead collection:
+      name: typeahead-collection
+      type: collection
+      help: "We recommend you create a collection of&#xA0;<em>all&#xA0;</em>products (i.e., an automatic collection where price (and/or inventory) is greater than 0."
+
+    Use “Mega” dropdown menu:
+      name: use-mega-dropdown-menu
+      type: checkbox
+      inline_label: Yes
+      help: "If you have a large number of dropdowns or more than two levels of nested dropdowns, it is advisable to enable this setting."

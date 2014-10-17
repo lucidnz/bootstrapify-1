@@ -13,6 +13,7 @@
 {% endcapture %}
 {% endif %}
 {% endcapture %}
+{% include '__poa-tag' with product %}
 
 <section id="{% include '__advanced-layout-id' with 'product-wrap' %}" class="product-wrap section-wrap">
 	{% include '__containers-open' %}
@@ -49,7 +50,13 @@
 			<!-- details col -->
 			<div id="product-details" class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
+				{% include 'product-badges' %}
 				{% if has_prices %}
+				{% if price_is_poa %}
+				<div class="product-price-poa">
+				  <span>{% include '__localize' with 'POA' %}</span>
+				</div>
+				{% else %}
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
 				  <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>{% if settings.append-plus-taxes-to-price %}<small class="text-muted"> {% include '__localize' with 'plus taxes' %}</small>{% endif %}
 					<del class="compare-at-price-field text-muted"></del>
@@ -57,6 +64,7 @@
 					<meta itemprop="currency" content="{{ shop.currency }}" />
 					<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
 				</div>
+				{% endif %}
 				{% endif %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 				
