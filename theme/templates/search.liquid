@@ -7,7 +7,8 @@
   {% include '__containers-open' %}
   <h1 class="page-header">{% include 'smart-title' %}</h1>
 
-  {% if search.performed and search.results.size > 0 %}
+  {% comment %}{% if search.performed and search.results.size > 0 %}{% endcomment %}
+  {% if search.performed %}
     {% include '__default-pagination' %}
     {% paginate search.results by default-pagination %}
     {% for i in search.results %}
