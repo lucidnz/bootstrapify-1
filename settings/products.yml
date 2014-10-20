@@ -24,11 +24,18 @@ Products:
       help: Comma-separated list of tag prefixes to never display on the site. These can be used for creating more complex collection.
       default: "hd,hidden"
 
-    Product Tab Linklist:
+    Show product description as tabs:
+      name: product-description-as-tabs
+      type: checkbox
+      inline_label: Yes
+      help: h2's in your products description will be used to determine the starting of each tab.
+
+    Product tab linklist:
       name: product-tab-linklist
       type: linklist
+      help: A linklist of static pages that are generic across all products.
 
-    Secondary Call to Action URL:
+    Secondary call to action URL:
       name: secondary-call-to-action-url
       type: text-single
       help: E.g. link to your contact page for customers who want a customised version of your product.
