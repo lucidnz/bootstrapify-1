@@ -206,6 +206,7 @@
   @if $body-bg {
   $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
   }
+  $max-height-break: 800px;
 
 // Global text color on body
 {% if settings.text-colour != blank %}
@@ -8310,7 +8311,7 @@ body {
 }
 
 /* Body */
-.has-js {
+.js {
   {% if settings.thumbnail-layout == 'ordered' %}
   .thumbnail-image a, .product-main-thumb a {
     opacity: 0;
@@ -8333,6 +8334,19 @@ body {
   &.has-footer-navbar.has-fixed-footer-navbar{
     #footer-content > .container{
       padding-bottom: $navbar-height + $navbar-margin-bottom;
+    }
+  }
+  @media (max-height: $max-height-break){
+    &.has-top-navbar.has-fixed-top-navbar {
+      padding-top: 0;
+      &.banner-window-width.has-banner, &.banner-window-width.has-slider {
+        padding-top: 0;
+      }
+    }
+    &.has-footer-navbar.has-fixed-footer-navbar{
+      #footer-content > .container{
+        padding-bottom: 0;
+      }
     }
   }
 
@@ -8591,6 +8605,12 @@ header .article-meta{
   $navbar-bg:   {% if settings.main-navbar-background-colour != blank %} {{ settings.main-navbar-background-colour }} {% else %} $navbar-default-bg {% endif %};
   $navbar-link-color: {% if settings.main-navbar-link-colour != blank %} {{ settings.main-navbar-link-colour }} {% else %} $navbar-default-link-color {% endif %};
   @include navbar-style($navbar-bg, $navbar-link-color);
+}
+
+@media (max-height: $max-height-break){
+  .navbar-fixed-top, .navbar-fixed-bottom {
+    position: relative;
+  }
 }
 
 /* Fix Typeahead styles: https://github.com/twitter/typeahead.js/issues/378#issuecomment-23111549 */

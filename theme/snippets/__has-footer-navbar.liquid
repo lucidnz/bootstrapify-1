@@ -1,0 +1,6 @@
+{% assign has_footer_navbar = false %}
+{% if settings.show-multiple-currencies != blank and settings.currency-switcher-position == 'footer-navbar' %}{% assign has_footer_navbar = true %}{% endif %}
+{% if settings.footer-navbar-linklist-left != blank %}{% assign has_footer_navbar = true %}{% endif %}
+{% if settings.footer-navbar-linklist-right != blank %}{% assign has_footer_navbar = true %}{% endif %}
+{% if settings.newsletter-signup-placement contains 'footer-navbar' %}{% assign has_footer_navbar = true %}{% endif %}
+{% if settings.social-links-placement contains 'footer-navbar' and has_social %}{% assign has_footer_navbar = true %}{% endif %}

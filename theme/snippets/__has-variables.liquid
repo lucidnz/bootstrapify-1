@@ -1,0 +1,61 @@
+{% capture has_vars %}
+
+{% include '__has-cart' %}
+{% include '__has-prices' %}
+{% include '__has-social' %}
+{% include '__has-top-navbar' %}
+{% include '__has-fixed-top-navbar' %}
+{% include '__has-main-navbar' %}
+{% include '__has-sidebar' %}
+{% include '__has-footer' %}
+{% include '__has-footer-navbar' %}
+{% include '__has-fixed-footer-navbar' %}
+{% assign typeahead = collections[settings.typeahead-collection].all_products | map: 'title' | join: '","' | prepend:'"' | append:'"' %}
+{% assign truncate_words = settings.truncate-words | plus: 0 %}
+{% assign testimonials_blog_post_limit = settings.testimonials-blog-post-limit | plus: 0 %}
+{% if settings.homepage-products-limit contains 'limit' %}{% assign homepage_products_limit = nil %}{% else %}{% assign homepage_products_limit = settings.homepage-products-limit | times: 1 %}{% endif %}
+{% assign collection_minimum_products = settings.hidden-collection-limit | plus: 0 %}
+{% if settings.thumbnail-layout == 'masonry' %}{% assign thumbnail_layout = 'masonry' %}{% else %}{% assign thumbnail_layout = 'ordered' %}{% endif %}
+
+{% assign has_window_width_thumbnail_container = false %}
+{% if template == 'index' or template == 'collection' or template == 'product' %}
+  {% if settings.window-width-thumbnail-container %}
+    {% assign has_window_width_thumbnail_container = true %}
+  {% endif %}
+{% endif %}
+
+{% if template == 'index' %}{% assign sidebar_template = 'homepage' %}{% else %}{% assign sidebar_template = template %}{% endif %}
+{% assign sidebar_template = sidebar_template | prepend: 'show-sidebar-on-' %}
+
+{% assign banner_template = template | split: '.' | first %}
+{% assign banner_img = [banner_template]metafields.banner.image %}
+
+{% assign current_url = false %}
+{% assign current_handle = false %}
+{% case template %}
+	{% when 'page' %}
+		{% assign current_url = page.url %}
+		{% assign current_handle = page.handle %}
+	{% when 'blog' %}
+		{% assign current_url = blog.url %}
+		{% assign current_handle = blog.handle %}
+	{% when 'article' %}
+		{% assign current_url = article.url %}
+		{% assign current_handle = article.url | split: '/' | last | split: '#' | first %}
+	{% when 'collection' %}
+	  {% if collection.url %}
+  		{% assign current_url = collection.url %}
+    {% else %}
+      {% assign current_url = '/collections/all' %}
+    {% endif %}
+	  {% assign current_handle = collection.handle %}
+	{% when 'product' %}
+		{% assign current_url = product.url %}
+		{% assign current_handle = product.handle %}
+  {% when 'index' %}
+    {% assign current_url = '/' %}
+{% endcase %}
+
+{% if settings.use-mega-dropdown-menu %}{% assign has_mega_menu = true %}{% endif %}
+
+{% endcapture %}

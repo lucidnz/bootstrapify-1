@@ -1,0 +1,15 @@
+{% assign blog = blogs[settings.featured-blog] %}
+{% if blog != empty and blog.articles.size > 0 %}
+
+{% assign cols = 4 %}
+
+<section id="featured-blog" class="section-wrap">
+	<h2 class="page-header">{{ blog.title }}&emsp;<a class="small" href="{{ blog.url }}">View all</a></h2>
+
+	<div class="row">
+		{% for l in blog.articles | limit: 4 %}
+		{% include 'features-loop' with 'blog' %}
+		{% endfor %}
+	</div>
+	{% endif %}
+</section>
