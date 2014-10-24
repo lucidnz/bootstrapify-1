@@ -24,6 +24,7 @@ module.exports = function(grunt) {
           alert: true,
           Image: true,
           $: true,
+          _: true,
           jQuery: true,
           Shopify: true,
           Currency: true
@@ -43,6 +44,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'theme/assets/jquery.ajax-cart.min.js': 'dist/js/jquery.ajax-cart.js',
+          'theme/assets/jquery.free-shipping.min.js': 'dist/js/jquery.free-shipping.js',
           'theme/assets/bootstrapify-option-selection.min.js': 'dist/js/bootstrapify-option-selection.js',
           'theme/assets/jquery.instagram.min.js': ['bower_components/jquery-instagram/dist/instagram.js', 'dist/js/jquery.instagram.js']
         }
@@ -172,6 +174,12 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
+            cwd: 'bower_components/jquery-colorbox/',
+            src: 'jquery.colorbox-min.js',
+            dest: 'theme/assets/'
+          },
+          {
+            expand: true,
             cwd: 'bower_components/orderly/dist/',
             src: 'jquery.orderly.min.js',
             dest: 'theme/assets/'
@@ -202,6 +210,36 @@ module.exports = function(grunt) {
             dest: 'theme/assets/'
           }
         ]
+      }
+    },
+    shopify_theme_settings: {
+      settings: {
+        options: {
+          templates: ['settings/templates']
+        },
+        files: {
+          'theme/config/settings.html': [
+            'settings/branding.yml',
+            'settings/colour.yml',
+            'settings/design.yml',
+            'settings/layout.yml',
+            'settings/homepage.yml',
+            'settings/homepage-slider.yml',
+            'settings/typography.yml',
+            'settings/blog.yml',
+            'settings/products.yml',
+            'settings/collections.yml',
+            'settings/sidebar.yml',
+            'settings/navigation.yml',
+            'settings/footer.yml',
+            'settings/cart.yml',
+            'settings/age-verification.yml',
+            'settings/localization.yml',
+            'settings/money.yml',
+            'settings/social.yml',
+            'settings/advanced.yml'
+          ]
+        }
       }
     },
     compress: {
@@ -240,6 +278,10 @@ module.exports = function(grunt) {
       compress: {
         files: ['theme/**'],
         tasks: ['compress']
+      },
+      shopify_theme_settings: {
+        files: 'settings/*.yml',
+        tasks: ['shopify_theme_settings']
       }
     }
   });
@@ -252,7 +294,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-shopify-theme-settings');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass', 'compress']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'concat', 'sass', 'shopify_theme_settings', 'compress']);
 };

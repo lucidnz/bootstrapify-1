@@ -1,0 +1,26 @@
+{% assign state = events-article %}
+{% assign link = false %}
+{% assign collection_tag_collection = false %}
+{% for tag in article.tags %}
+  {% if tag contains 'collection:' %}
+    {% assign collection_tag = tag | remove: 'collection:' %}
+    {% if collections[collection_tag].products.size > 0 %}
+      {% assign collection_tag_collection = collections[collection_tag] %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% if article.content != blank %}
+  {% assign link = article.url %}
+{% else %}
+  {% assign link = collection_tag_collection.url %}
+{% endif %}
+
+{% assign sizes = '_pico.,_icon.,_thumb.,_small.,_compact.,_medium.,_large.,_grande.,_1024x1024.,_2048x2048.,_master' | split: ',' %}
+{% if article.excerpt contains '<img' %}
+  {% assign excerpt_thumb = article.excerpt | split: 'src="' %}
+  {% assign excerpt_thumb = excerpt_thumb.last | split: '"' %}
+  {% assign excerpt_thumb = excerpt_thumb.first %}
+  {% for size in sizes %}
+    {% assign excerpt_thumb = excerpt_thumb | replace: size, '_large.' %}
+  {% endfor %}
+{% endif %}

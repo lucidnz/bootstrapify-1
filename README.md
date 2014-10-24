@@ -34,6 +34,9 @@ However there are two caveats with using SCSS with Shopify:
 
 We then use the [Shopify Theme gem](https://github.com/Shopify/shopify_theme) to watch the theme directory and push any changes up to Shopify.
 
+The theme settings that appear in the Shopify Admin (`config/settings.html`) are generated from the YAML files in the `settings` folder using the `grunt-shopify-theme-settings` plugin. 
+You can discover more about this plugin and how it works from its [GitHub page](https://github.com/discolabs/grunt-shopify-theme-settings).
+
 ### Requirements
 
 You will need to install both [Ruby](https://www.ruby-lang.org) and [Node.js](http://nodejs.org/).

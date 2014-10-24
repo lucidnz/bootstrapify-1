@@ -1,0 +1,22 @@
+{% assign tags = __dates-from-tags.tags %}
+{% assign start_date = false %}
+{% assign end_date = false %}
+
+{% for tag in tags %}
+  {% if tag contains 'start_date:' %}
+    {% assign start_date = tag | remove: 'start_date:' | split: '/' %}
+    {% if settings.event-date-format == 'mm/dd/yyyy' %}
+      {% assign start_date = start_date[2] | append: '/' | append: start_date[0] | append: '/' | append: start_date[1] | date: '%s' %}
+    {% else %}
+      {% assign start_date = start_date[2] | append: '/' | append: start_date[1] | append: '/' | append: start_date[0] | date: '%s' %}
+    {% endif %}
+  {% endif %}
+  {% if tag contains 'end_date:' %}
+    {% assign end_date = tag | remove: 'end_date:' | split: '/' %}
+    {% if settings.event-date-format == 'mm/dd/yyyy' %}
+      {% assign end_date = end_date[2] | append: '/' | append: end_date[0] | append: '/' | append: end_date[1] | date: '%s' %}
+    {% else %}
+      {% assign end_date = end_date[2] | append: '/' | append: end_date[1] | append: '/' | append: end_date[0] | date: '%s' %}
+    {% endif %}
+  {% endif %}
+{% endfor %}

@@ -1,0 +1,21 @@
+{% unless free_shipping_threshold == blank %}
+  <div id="free-shipping-wrapper"></div>
+  
+  {{ 'jquery.free-shipping.min.js' | asset_url | script_tag }}
+  <script id="free-shipping-template" type="text/template">
+    <div class="alert alert-<% if (has_free_shipping) { %>success<% } else { %>warning<% } %>">
+      <% if (has_free_shipping) { %>
+        <p>{% include '__localize' with 'This order qualifies for FREE shipping' %}</p>
+      <% } else { %>
+        <p>{% include '__localize' with 'You&rsquo;re' %} <%= difference %> {% include '__localize' with 'away from FREE shipping!' %}</strong></p>
+        <p><a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse' %} {{ collections.[settings.collection-to-link-to-if-cart-empty].title }}&nbsp;&raquo;</a></p>
+      <% } %>
+    </div>
+  </script>
+  <script>
+    $(document).freeShipping({
+      cart_total: {{ cart.total_price }},
+      free_shipping: {{ free_shipping_threshold }}
+    });
+  </script>
+{% endunless %}

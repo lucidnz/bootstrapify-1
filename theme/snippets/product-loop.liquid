@@ -1,8 +1,7 @@
-{% include '__product-image' %}
 <div class="{% include '__thumbnail-span' %} {% for tag in product-loop.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
 	<div class="product-thumbnail">
-		<div class="thumbnail-image">
-			{{ image }}
+		<div class="thumbnail-image{% if product_collection.metafields.secondary-image.show == 'true' and product-loop.metafields.secondary-image.src != blank %} has-secondary-image{% endif %}">
+			{% include '__product-image' %}
 		</div>
 		<a href="{{ product_url }}" class="caption clearfix">
 			{% if settings.show-vendor-with-thumbnail == 'above-product-title' %}<div class="product-vendor">{{ product-loop.vendor }}</div>{% endif %}
@@ -25,8 +24,14 @@
 					{% include '__localize' with 'from' %}
 				</small>
 				{% endif %}
+				
+				{% include '__poa-tag' with product-loop %}
+				{% if price_is_poa %}
+				<span>{% include '__localize' with 'POA' %}</span>
+				{% else %}
 				{% include 'product-price' with product-loop.price %}
-				{% include 'product-badges' with product-loop %}  
+				{% endif %}
+				{% include 'product-labels' with product-loop %}
 			</div>
 			{% endif %}
 		</a>

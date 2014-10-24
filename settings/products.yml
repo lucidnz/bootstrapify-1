@@ -1,0 +1,85 @@
+Products:
+
+  General:
+    notitle: true
+    Display vendor description:
+      name: display-vendor-description
+      type: checkbox
+      inline_label: Yes
+      help: "If checked and a collection exists with the same handle as the vendor handle, the collection description (and image)&#xA0;will be displayed at the bottom of the product page."
+
+    Enable image lightbox:
+      name: enable-image-lightbox
+      type: checkbox
+      inline_label: Yes
+
+    Enable image zoom:
+      name: enable-image-zoom
+      type: checkbox
+      inline_label: Yes
+
+    Hidden tag prefixes:
+      name: hidden-tag-prefixes
+      type: text-single
+      help: Comma-separated list of tag prefixes to never display on the site. These can be used for creating more complex collection.
+      default: "hd,hidden"
+
+    Show product description as tabs:
+      name: product-description-as-tabs
+      type: checkbox
+      inline_label: Yes
+      help: h2's in your products description will be used to determine the starting of each tab.
+
+    Product tab linklist:
+      name: product-tab-linklist
+      type: linklist
+      help: A linklist of static pages that are generic across all products.
+
+    Secondary call to action URL:
+      name: secondary-call-to-action-url
+      type: text-single
+      help: E.g. link to your contact page for customers who want a customised version of your product.
+
+    Show product collections:
+      name: show-product-collections
+      type: checkbox
+      inline_label: Yes
+
+    Show product tags:
+      name: show-product-tags
+      type: checkbox
+      inline_label: Yes
+
+    Show product type:
+      name: show-product-type
+      type: checkbox
+      inline_label: Yes
+
+    Show product vendor:
+      name: show-product-vendor
+      type: checkbox
+      inline_label: Yes
+
+    Show unavailable products:
+      name: show-unavailable-products
+      type: checkbox
+      inline_label: Yes
+
+    Show notify me form when sold out:
+      name: show-notify-me
+      type: checkbox
+      inline_label: Yes
+
+    Show related products:
+      name: show-related-products
+      type: checkbox
+      inline_label: Yes
+
+    Show social share links:
+      name: show-social-share-links
+      type: checkbox
+      inline_label: Yes
+      
+    Secondary collection on products page:
+      name: secondary-related-collection
+      type: collection

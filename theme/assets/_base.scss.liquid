@@ -36,6 +36,12 @@
   h1, h2, h3, h4, h5, h6,
   .h1, .h2, .h3, .h4, .h5, .h6 {
     color: $colour;
+    a {
+      color: $colour;
+      &:hover {
+        color: hover-colour( $colour );
+      }
+    }
   }
 }
 
@@ -563,10 +569,11 @@ $footer-link-color:     {% if settings.footer-link-colour != blank %} {{ setting
 $footer-text-color:     {% if settings.footer-text-colour != blank %} {{ settings.footer-text-colour }} {% else %} false {% endif %} !default;
 
 {% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
-// a flag to toggle asset pipeline / compass integration
-// defaults to true if twbs-font-path function is present (no function => twbs-font-path('') parsed as string == right side)
-// in Sass 3.3 this can be improved with: function-exists(twbs-font-path)
+// When true, asset path helpers are used, otherwise the regular CSS `url()` is used.
+// When there no function is defined, `fn('')` is parsed as string that equals the right hand side
+// NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
 $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
+
 //
 // Variables
 // --------------------------------------------------
@@ -642,7 +649,10 @@ $headings-color:          inherit !default;
 //## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
-$icon-font-path: "bootstrap/" !default;
+
+// [converter] Asset helpers such as Sprockets and Node.js Mincer do not resolve relative paths
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default;
+
 //** File name for all font files.
 $icon-font-name:          "glyphicons-halflings-regular" !default;
 //** Element ID within SVG icon file.
@@ -8252,6 +8262,7 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: table;
+  table-layout: fixed;
   width: 100%;
   height: 100%;
 }
@@ -8264,6 +8275,10 @@ body {
 .collection-description {
   padding-top: $grid-gutter-width;
   padding-bottom: $grid-gutter-width;
+}
+
+.section-wrap:last-of-type .main-content {
+  padding-bottom: 3em;
 }
 
 #footer-content {
@@ -8457,6 +8472,25 @@ header .article-meta{
   #homepage-blog [class^="col-"]:first-of-type h4{
     margin-top: 0;
   }
+}
+
+/* Grids */
+
+.collection-grid {
+  @include make-xs-column(12);
+  @include make-sm-column(6);
+  @include make-md-column(4);
+  @include make-lg-column({{ 12 | divided_by: settings.collections-per-row }});
+}
+
+.contact-page-content {
+  @include make-md-column(6);
+  @include make-md-column-push(6);
+}
+
+.contact-page-form {
+  @include make-md-column(6);
+  @include make-md-column-pull(6);
 }
 
 /* Navbars */
@@ -8686,17 +8720,97 @@ header .article-meta{
   margin: 0;
 }
 
+.site--page {
+  {% if has_window_width_thumbnail_container %}
+  @extend .fluid-container;
+  {% else %}
+  @extend .container;
+  {% endif %}
+}
+
+/* Thumbnails */
+
+.thumbnail__frame {
+  {% if settings.thumbnails-per-row-mobile != blank %}@include make-xs-column({{ 12 | divided_by: settings.thumbnails-per-row-mobile }});{% endif %}
+  {% if settings.thumbnails-per-row-tablet != blank %}@include make-sm-column({{ 12 | divided_by: settings.thumbnails-per-row-tablet }});{% endif %}
+  {% if settings.thumbnails-per-row-laptop != blank %}@include make-md-column({{ 12 | divided_by: settings.thumbnails-per-row-laptop }});{% endif %}
+  {% if settings.thumbnails-per-row-desktop != blank %}@include make-lg-column({{ 12 | divided_by: settings.thumbnails-per-row-desktop }});{% endif %}
+}
+
 /* Collection */
 
-#collection-intro {
-	.row {
-		img {
-			margin-bottom: 2em;
-		}
-	}
+.collection--header {
+  margin-bottom: $grid-gutter-width;
+  margin-top: $grid-gutter-width;
+  
+  .collection--intro {
+    @include make-row();
+    
+    & > h1, & > h2 {
+      @extend .page-header;
+      @include make-xs-column(12);
+    }
+    
+    .collection__feature-image,
+    .collection__description {
+      @include make-xs-column(12);
+      
+      {% if settings.featured-image-position contains 'half-width' %}
+      @include make-sm-column(6);
+      {% endif %}
+    }
+    
+    .collection__feature-image {
+      {% if settings.featured-image-position contains 'right' %}
+      @include make-sm-column-push(6);
+      {% endif %}
+    }
+  
+    .collection__description {
+      {% if settings.featured-image-position contains 'right' %}
+      @include make-sm-column-pull(6);
+      {% endif %}
+      
+      & > h1:first-child,
+      & > h2:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.collection-thumbnail, .product-thumbnail {
+  .thumbnail-image.has-secondary-image{
+    position: relative;
+  
+    a:first-of-type {
+      opacity: 0 !important;
+    }
+    a:last-of-type {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+    }
+    &:hover {
+      a:first-of-type {
+        opacity: 1 !important;
+      }
+      a:last-of-type {
+        opacity: 0 !important;
+      }
+    }
+  }
 }
 
 /* Products */
+.share-icons {
+  @extend .h4;
+  @extend .text-muted;
+  text-align: center;
+}
+
 .product-thumbnail, .collection-thumbnail {
   @extend .thumbnail;
   margin-bottom: 3em;
@@ -8719,6 +8833,11 @@ header .article-meta{
   > a {
     display: block;
   }
+}
+
+.product-main-image {
+  margin-top: 2.5em;
+  {% if settings.enable-image-lightbox %} cursor: pointer; {% endif %}
 }
 
 .has-overlay-title-on-hover {
@@ -8751,6 +8870,10 @@ header .article-meta{
 			}
 		}
 	}
+}
+
+.product-main-image {
+	margin-top: 2em;
 }
 
 .product-price{
@@ -8798,6 +8921,17 @@ header .article-meta{
   }
 }
 
+.custom-links, .custom-images {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 2em;
+}
+.custom-images {
+	img {
+		display: inline-block;
+	}
+}
+
 .tab-content {
 	padding: 1em 0;
 }
@@ -8809,11 +8943,21 @@ header .article-meta{
   }
 }
 
+.product-badges {
+  @include make-row();
+  li {
+    @include make-xs-column(3);
+  }
+}
+
 /* Cart */
 #cart table {
   td {
     vertical-align: middle;
-  } 
+  }
+  img {
+    margin: auto;
+  }
 }
 .additional-checkout-buttons, .shipping-calculator-wrapper{
   margin-top: $grid-gutter-width;
@@ -8822,6 +8966,9 @@ header .article-meta{
   display: inline-block;
   vertical-align: top;
   margin-right: 0.5em;
+}
+#free-shipping-wrapper {
+  @extend .text-center;
 }
 
 /* Customer */
@@ -8851,6 +8998,55 @@ header .article-meta{
   }
   .modal-body .col:last-child{
     border-left: $hr-border solid 1px;
+  }
+}
+
+/* Events */
+.events {
+  @include make-row();
+  & > header {
+    @include make-xs-column(12);
+    margin-bottom: $grid-gutter-width / 2;
+  }
+  .event {
+    h1 {
+      @extend .h3;
+      margin-top: 0;
+    }
+    h2 {
+      @extend .h4;
+    }
+  }
+  &.events--current .event {
+    @include make-xs-column(12);
+    margin-bottom: $grid-gutter-width;
+  }
+  &.events--upcoming .event {
+    @include make-xs-column(12);
+    margin-bottom: $grid-gutter-width;
+    article {
+      @include make-row();
+      aside {
+        @include make-xs-column(3);
+      }
+      .event-details {
+        @include make-xs-column(9);
+      }
+    }
+  }
+  &.events--previous .event {
+    @include make-xs-column(12);
+    @include make-sm-column(6);
+    margin-bottom: $grid-gutter-width;
+    &:nth-child(even) {
+      clear: left;
+    }
+    article {
+      @include make-row();
+      aside, .event-details {
+        @include make-xs-column(6);
+      }
+    }
   }
 }
 
@@ -8911,12 +9107,48 @@ header .article-meta{
   }
 }
 
+{% assign cols = '' %}
+{% for i in (i..3) %}
+  {% assign c = i | plus: 1 %}
+  {% assign col = 'column-' | append: c %}
+  {% assign col_blog = col | append: '-blog' %}
+  {% assign col_menu = col | append: '-menu' %}
+  {% assign col_text = col | append: '-text' %}
+  {% if settings[col_blog] != blank or settings[col_menu] != blank or settings[col_text] != blank or settings.newsletter-signup-placement contains col or settings.social-links-placement contains col %}
+    {% assign cols = cols | append: col | append: '|' %}
+  {% endif %}
+{% endfor %}
+{% assign footer_columns = cols | split: '|' %}
+
+{% if footer_columns.size > 0 %}
+.footer__grid {
+  @include make-sm-column({{ 12 | divided_by: footer_columns.size }});
+}
+{% endif %}
+
 .footer-credits {
   margin-top: $grid-gutter-width;
 }
 
 #navbar-footer {
   margin-bottom: 0;
+}
+
+/* Index */
+
+.feature-description {
+  @include make_sm-column(12);
+}
+
+.feature-has-icon {
+  .feature-icon {
+    @include make-xs-column(3);
+    @extend .h3;
+  }
+  
+  .feature-description {
+    @include make-xs-column(9);
+  }
 }
 
 /* Homepage slider & Banner */
@@ -9015,11 +9247,7 @@ $i: 1;
     left: auto;
     padding: 0 $grid-gutter-width/2 $grid-gutter-width/2;
     color: $text-color !important;
-    text-align: left !important;
     text-shadow: none;
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-      text-align: left !important;
-    }
   }
   .carousel-indicators{
     bottom: 0;
@@ -9057,6 +9285,78 @@ $i: 1;
     }
   }
 {% endif %};
+
+// colorbox/lightbox
+#cboxOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  z-index: 1080;
+}
+
+#colorbox {
+  z-index: 1090;
+  &:focus {
+    outline: none;
+  }
+  button {
+    @extend .btn;
+    color: #999;
+    background-color: transparent;
+    &:hover, &:focus, &:active {
+      color: #333;
+    }
+  }
+  #cboxCurrent {
+    margin-top: 0.5em;
+  }
+
+  #cboxCurrent {
+    float: none !important;
+    text-align: center;
+  }
+  
+  #cboxClose {
+    display: none;
+    position: absolute;
+    top: -1.5em;
+    right: -2em;
+  }
+  
+  #cboxPrevious, #cboxNext {
+    position: absolute;
+    top: 50%;
+    margin-top: -1em;
+  }
+  
+  #cboxPrevious {
+    left: 0;
+  }
+  
+  #cboxNext {
+    right: 0;
+  }
+}
+
+// embeded videos
+.videoWrapper {
+  display: block;
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 35px;
+	height: 0;
+	
+	iframe, object, embed {
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+	}
+}
 
 /* Brand */
 .navbar-brand, .brand {

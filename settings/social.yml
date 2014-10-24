@@ -1,0 +1,134 @@
+Social:
+
+  General:
+    notitle: true
+
+    Dribble:
+      name: social-links-dribbble
+      type: text-single
+
+    Email:
+      name: social-links-email
+      type: text-single
+
+    Facebook:
+      name: social-links-facebook
+      type: text-single
+
+    Flickr:
+      name: social-links-flickr
+      type: text-single
+
+    Foursquare:
+      name: social-links-foursquare
+      type: text-single
+
+    Github:
+      name: social-links-github
+      type: text-single
+
+    Google+:
+      name: social-links-google-plus
+      type: text-single
+
+    Instagram:
+      name: social-links-instagram
+      type: text-single
+
+    LinkedIn:
+      name: social-links-linkedin
+      type: text-single
+
+    Pinterest:
+      name: social-links-pinterest
+      type: text-single
+
+    RSS:
+      name: social-links-rss
+      type: blog
+
+    Skype:
+      name: social-links-skype
+      type: text-single
+
+    Stack Exchange:
+      name: social-links-stack-exchange
+      type: text-single
+
+    Stack Overflow:
+      name: social-links-stack-overflow
+      type: text-single
+
+    Tumblr:
+      name: social-links-tumblr
+      type: text-single
+
+    Twitter:
+      name: social-links-twitter
+      type: text-single
+
+    Vimeo:
+      name: social-links-vimeo
+      type: text-single
+
+    YouTube:
+      name: social-links-youtube
+      type: text-single
+      help: Enter the url for your social accounts into the fields for each service you want to show. Services left blank wont be shown.
+
+    Social links placement:
+      name: social-links-placement
+      type: select
+      options:
+        top-navbar-left: Top navbar left
+        top-navbar-right: Top navbar right
+        footer-column-1: Footer column 1
+        footer-column-2: Footer column 2
+        footer-column-3: Footer column 3
+        footer-column-4: Footer column 4
+        sidebar: Sidebar
+        footer-navbar-left: Footer navbar left
+        footer-navbar-right: Footer navbar right
+
+    Instagram default hashtag:
+      name: instagram-default-hashtag
+      type: text-single
+      help: A default hashtag for all instagram feeds to use if a page specific one is not set.
+
+    Instagram client id:
+      name: instagram-client-id
+      type: text-single
+      help: "You can obtain a client id registering a new Instagram API client app at <a href=\"http://instagram.com/developer/clients/register/\">http://instagram.com/developer/clients/register/</a>"
+
+    Instagram blacklist:
+      name: instagram-blacklist
+      type: text-multi
+      help: "A comma separated list of image ids that you don&apos;t wish to show in your instagram feeds."
+
+    Newsletter platform:
+      name: newsletter-platform
+      type: select
+      options:
+        shopify: Shopify
+        campaign-monitor: Campaign Monitor
+        mailchimp: MailChimp
+
+    Newsletter signup placement:
+      name: newsletter-signup-placement
+      type: select
+      options:
+        dont-show: "Don't show"
+        top-navbar-left: Top navbar left
+        top-navbar-right: Top navbar right
+        sidebar: Sidebar
+        footer-column-1: Footer column 1
+        footer-column-2: Footer column 2
+        footer-column-3: Footer column 3
+        footer-column-4: Footer column 4
+        footer-navbar-left: Footer navbar left
+        footer-navbar-right: Footer navbar right
+
+    Newsletter submit URL:
+      name: newsletter-form-action-url
+      type: text-single
+      help: "Paste in Campaign Monitor or MailChimp’s form action URL. Don’t paste the entire form code; just the “action” parameter."

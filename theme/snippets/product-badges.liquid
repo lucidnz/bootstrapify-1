@@ -1,2 +1,12 @@
-{% if product-badges.compare_at_price_min > 0 %} <span class="label label-success pull-right">{% if settings.show-on-sale-badge == 'as-text' %}{% include '__localize' with 'On Sale' %}{% else %}{{ product-badges.compare_at_price_max | minus: product-badges.price | times: 100.0 | divided_by: product-badges.compare_at_price_max | round }}{% include '__localize' with '% off' %}{% endif %}</span>{% endif %}
-{% if product-badges.available == false and settings.show-out-of-stock-badge == true %} <span class="label label-default pull-right">{% include '__localize' with 'Sold Out' %}</span>{% endif %}
+{% capture badge_tag %}{% include '__localize' with 'badge' %}:{% endcapture %}
+{% capture badges %}{% endcapture %}
+{% for tag in product.tags %}
+  {% if tag contains badge_tag %}
+    {% capture badges %}{{ badges }}<li>{{ tag | remove: badge_tag | handleize | append: '_medium.png' | file_url | img_tag }}</li>{% endcapture %}
+  {% endif %}
+{% endfor %}
+{% unless badges == '' %}
+<ul class="list-inline product-badges">
+  {{ badges }}
+</ul>
+{% endunless %}

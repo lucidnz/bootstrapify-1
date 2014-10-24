@@ -1,0 +1,8 @@
+{% capture poa-tag %}
+{% assign price_is_poa = false %}
+{% for tag in __poa-tag.tags %}
+  {% if tag contains 'POA' or tag contains 'poa' %}
+    {% assign price_is_poa = true %}
+  {% endif %}
+{% endfor %}
+{% endcapture %}

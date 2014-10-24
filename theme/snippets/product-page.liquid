@@ -9,11 +9,11 @@
 {% capture image %}
 {% assign featured_image = selected_or_first_variant.featured_image | default: product.featured_image %}
 {% unless settings.container-width-large-devices contains 'px' %}{% assign product_img_size = '1024x1024' %}{% else %}{% assign product_img_size = 'grande' %}{% endunless %}
-{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% else %}{% assign round-class = null %}{% endif %}	
-<img class="{{ round-class }}" src="{{ featured_image.src | product_img_url: product_img_size }}" alt="{{ featured_image.alt }}" itemprop="image">
+<img src="{{ featured_image.src | product_img_url: product_img_size }}" alt="{{ featured_image.alt }}" itemprop="image">
 {% endcapture %}
 {% endif %}
 {% endcapture %}
+{% include '__poa-tag' with product %}
 
 <section id="{% include '__advanced-layout-id' with 'product-wrap' %}" class="product-wrap section-wrap">
 	{% include '__containers-open' %}
@@ -37,11 +37,7 @@
 						<div class="thumbnail">
 							<div class="thumbnail-image product-main-thumb">
 								<a href="#" data-main-image="{{ image.src | product_img_url: product_img_size }}">
-									{% if settings.round-thumbnail-images %}
-									{{ image.src | product_img_url: 'medium' | img_tag: image.alt, 'img-circle' }}
-									{% else %}
 									{{ image.src | product_img_url: 'medium' | img_tag: image.alt }}
-									{% endif %}
 								</a>
 							</div>
 						</div>
@@ -54,7 +50,13 @@
 			<!-- details col -->
 			<div id="product-details" class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
+				{% include 'product-badges' %}
 				{% if has_prices %}
+				{% if price_is_poa %}
+				<div class="product-price-poa">
+				  <span>{% include '__localize' with 'POA' %}</span>
+				</div>
+				{% else %}
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
 				  <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>{% if settings.append-plus-taxes-to-price %}<small class="text-muted"> {% include '__localize' with 'plus taxes' %}</small>{% endif %}
 					<del class="compare-at-price-field text-muted"></del>
@@ -63,56 +65,29 @@
 					<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
 				</div>
 				{% endif %}
+				{% endif %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 				
-				{% if settings.product-tab-linklist == null %}
-				<div itemprop="description">{% include '__formatted-content' with product.description %}</div>
-				{% else %}
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab-desc" data-toggle="tab">{% include '__localize' with 'Description' %}</a></li>
-					{% for l in linklists[settings.product-tab-linklist].links %}
-					{% assign t_string = t_string | append: ',' | append: l.title %}
-					<li><a href="#{{ l.handle | prepend: 'tab-' }}" data-toggle="tab">{{ l.title }}</a></li>
-					{% endfor %}
-					{% for t in product.metafields.tabs %}
-					{% unless t_string contains t.first %}
-						<li><a href="#{{ t.first| handleize | prepend: 'tab-' }}" data-toggle="tab">{{ t.first }}</a></li>
-					{% endunless %}
+				{% if product.metafields.custom_links.size > 0 %}
+				<ul class="custom-links">
+					{% for l in product.metafields.custom_links %}
+						<li><a href="{{ l.last }}" class="btn btn-default" title="{{ l.first }}" target="_blank">{{ l.first }}</a></li>
 					{% endfor %}
 				</ul>
-				<div class="tab-content">
-					<div class="tab-pane fade in active" id="tab-desc">
-						<div itemprop="description">{% include '__formatted-content' with product.description %}</div>
-					</div>
-					{% for l in linklists[settings.product-tab-linklist].links %}
-					<div class="tab-pane fade" id="{{ l.handle | prepend: 'tab-' }}">
-						{% if l.handle contains 'review' and l.url == '#' %}
-						<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-						{% assign t_reviews = true %}
-						{% else %}
-						{% for t in product.metafields.tabs %}{% if t.first == l.title %}{% assign t_found = true %}{% assign t_content = t.last %}{% endif %}{% endfor %}
-						{% if t_found == true %}
-						{{ t_content }}
-						{% else %}
-						{% include '__formatted-content' with l.object.content %}
-						{% endif %}
-						{% assign t_found = false %}
-						{% endif %}
-					</div>
-					{% endfor %}
-					{% for t in product.metafields.tabs %}
-					{% unless t_string contains t.first %}
-					<div class="tab-pane fade" id="{{ t.first| handleize | prepend: 'tab-' }}">
-						{% include '__formatted-content' with t.last %}
-					</div>
-					{% endunless %}
-					{% endfor %}
-				</div>
 				{% endif %}
-    
+				{% if product.metafields.custom_images.size > 0 %}
+				<ul class="custom-images">
+				{% for l in product.metafields.custom_images %}
+					<li><img src="{{ l.last }}" class="custom-image" alt="{{ l.first }}"></li>
+				{% endfor %}
+				</ul>
+				{% endif %}
+				
+				{% include 'product-description' %}
+				
 				{% include 'product-specs' %}
       		  
-			  	{% unless t_reviews == true %}
+		  	{% unless t_reviews == true %}
 				<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
 				{% endunless %}
 			</div>

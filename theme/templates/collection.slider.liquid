@@ -1,0 +1,4 @@
+{% capture collection_slider %}{% if settings.show-featured-products-slider and collection.products.size > 0 %}
+<div class="container">{% include 'slider' with collection %}</div>
+{% endif %}{% endcapture %}
+{% include 'collection-page' %}
