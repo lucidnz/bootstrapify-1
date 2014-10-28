@@ -1,9 +1,2 @@
-<h4><strong>{{ i.title | link_to: i.url }}</strong></h4>
-<div class="media">
-  {% if i.featured_image %}
-  <a href="{{i.url}}" class="pull-left"><img src="{{ i.featured_image | product_img_url: 'thumbnail' }}" class="media-object thumbnail"></a>
-  {% endif %}
-  <div class="media-body">
-    <p>{{ i.content | strip_html | truncatewords: 40 | highlight: search.terms }} <a href="{{ i.url }}">{% include '__localize' with 'Read more' %}</a></p>
-  </div>
-</div>
+<h3 class="clearfix">{{ i.title | link_to: i.url }}</h3>
+<p>{% include '__excerpt' with i.content %} <a href="{{ i.url }}">{% include '__localize' with 'Read&nbsp;more' %}</a></p>

@@ -1,0 +1,21 @@
+{% unless settings.testimonials-blog == blank %}
+{% assign testimonials_blog = blogs[settings.testimonials-blog] %}
+<h2 class="page-header">{{ testimonials_blog.title }}</h2>
+<div class="row">
+  {% for t in testimonials_blog.articles %}
+  <div class="col-sm-6">
+    <div class="media">
+	  {% unless t.excerpt == null %}
+      <div class="pull-left col-xs-3">
+        <p>{{ t.excerpt | replace: '_small', '_medium' | replace: '<img', '<img class="img-circle"' }}</p>
+      </div>
+	  {% endunless %}
+      <div class="media-body">
+        <p><i class="fa fa-quote-left pull-left text-muted"></i>{{ t.content }}</p>
+        <p class="text-muted"> &mdash; {{ t.title }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endunless %}

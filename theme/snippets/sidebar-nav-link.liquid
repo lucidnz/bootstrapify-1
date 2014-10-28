@@ -16,7 +16,11 @@
   {% endunless %}
   {% else %}
   <div class="h4{% if sidebar-nav-link.active %} active{% endif %}">
-    <a href="{{ sidebar-nav-link.url }}" title="View {{ sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>{% unless sidebar-nav-link.url == "#" %}&nbsp;<small class="text-muted"><a data-toggle="collapse" href="#child_{{ sidebar-nav-link.handle }}"><i class="fa fa-plus-circle"></i></a></small>{% endunless %}
+    {% if sidebar-nav-link.url == '#' %}
+    <a data-toggle="collapse" href="#child_{{ sidebar-nav-link.handle }}" title="View {{ sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>
+    {% else %}
+    <a href="{{ sidebar-nav-link.url }}" title="View {{ sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>&nbsp;<small class="text-muted"><a data-toggle="collapse" href="#child_{{ sidebar-nav-link.handle }}"><i class="fa fa-plus-circle"></i></a></small>
+    {% endif %}
   </div>
   <div class="collapse" id="child_{{ sidebar-nav-link.handle }}">
     {% include 'sidebar-nav' with child_linklist %}

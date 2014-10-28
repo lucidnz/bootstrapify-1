@@ -1,0 +1,9 @@
+{% capture vars %}
+  {% assign typeahead = "" %}
+  {% for p in collections[settings.typeahead-collection].products %}    
+    {% assign typeahead = typeahead | append: '"' | append: p.title | append: '"' %}
+    {% unless forloop.last %}
+      {% assign typeahead = typeahead | append: ',' %}
+    {% endunless %}
+  {% endfor %}
+{% endcapture %}{{ typeahead }}

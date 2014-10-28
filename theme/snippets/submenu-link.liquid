@@ -1,0 +1,27 @@
+{% include '__show-link' with submenu-link %}
+
+{% if show_link == true %}
+<li class="handle_{{ submenu-link.object.handle }}">
+  {% if child_linklist.links.size == 0 %}
+  {% unless submenu-link.url == "#" %}
+  {% capture link %}<a href="{{ submenu-link.url }}" title="View {{ submenu-link.title }}">{{ submenu-link.title }}</a>{% endcapture %}
+  <div class="h4{% if submenu-link.active %} active{% endif %}">
+    {{ link }}
+    {% comment %}
+    {% if submenu-link.type == 'collection_link' %}
+      <small class="text-muted">{{ submenu-link.object.all_products_count }} products</small>
+    {% endif %}
+    {% endcomment %}
+  </div>
+  {% endunless %}
+  {% else %}
+  <div class="h4{% if submenu-link.active %} active{% endif %}">
+    <a data-toggle="collapse" href="#child_{{ submenu-link.handle }}" title="View {{ submenu-link.title }}">{{ submenu-link.title }}</a>{% unless submenu-link.url == "#" %}&nbsp;<small class="text-muted"><a href="{{ submenu-link.url }}">{% include '__localize' with 'View&nbsp;all' %}</a></small>{% endunless %}
+  </div>
+  <div class="collapse" id="child_{{ submenu-link.handle }}">
+    {% include 'sidebar-nav' with child_linklist %}
+  </div>
+  {% endif %}
+</li>
+{% assign show_link = false %}
+{% endif %}

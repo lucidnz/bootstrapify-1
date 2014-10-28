@@ -1,6 +1,6 @@
 {% capture vars %}
   {% if search.performed %}
-    {% capture title %}{% include '__localize' with 'Search results for' %} {{ settings.left-quote }}{{ page_title }}{{ settings.right-quote }}{% endcapture %}
+    {% capture title %}{% include '__localize' with 'Search results for' %} &ldquo;{{ page_title }}&rdquo;{% endcapture %}
   {% else %}
     {% assign title = page_title %}
     {% if collection.title != blank and collection.title != page_title and template != 'index' %}

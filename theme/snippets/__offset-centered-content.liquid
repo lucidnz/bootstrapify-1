@@ -1,0 +1,9 @@
+{% if settings.show-sidebar != true and settings.centered-layout == true %}
+<div class="row">
+  <div class="col-lg-offset-2 col-lg-8">
+    {% include '__formatted-content' with __offset-centered-content %}
+  </div>
+</div>
+{% else %}
+  {% include '__formatted-content' with __offset-centered-content %}
+{% endif %}

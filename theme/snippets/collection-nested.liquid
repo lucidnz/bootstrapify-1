@@ -18,25 +18,23 @@
 
 {% if nested_collections.size > 0 %}
 <section class="collection--nested-collections">
-  <div class="site--page">
-    <div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
-    {% for nested_collection in nested_collections %}
-      {% assign hide_products = true %}
-      {% assign child_handle = nested_collection | handleize | downcase %}
-      {% if collections[child_handle].products.size > 0 %}
-        {% if settings.show-products-on-nested-collections-page %}
-          {% assign is_nested = true %}
-          {% include 'collection-header' with collections[child_handle] %}
-          {% assign product_collection = collections[child_handle] %}
-          {% for collection_product in product_collection.products %}
-            {% include 'product-loop' with collection_product %}
-          {% endfor %}
-        {% else %}
-          {% include 'collection-loop' with collections[child_handle] %}
-        {% endif %}
+  <div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
+  {% for nested_collection in nested_collections %}
+    {% assign hide_products = true %}
+    {% assign child_handle = nested_collection | handleize | downcase %}
+    {% if collections[child_handle].products.size > 0 %}
+      {% if settings.show-products-on-nested-collections-page %}
+        {% assign is_nested = true %}
+        {% include 'collection-header' with collections[child_handle] %}
+        {% assign product_collection = collections[child_handle] %}
+        {% for collection_product in product_collection.products %}
+          {% include 'product-loop' with collection_product %}
+        {% endfor %}
+      {% else %}
+        {% include 'collection-loop' with collections[child_handle] %}
       {% endif %}
-    {% endfor %}
-    </div>
+    {% endif %}
+  {% endfor %}
   </div>
 </section>
 {% endif %}
