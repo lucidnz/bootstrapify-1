@@ -1,0 +1,18 @@
+{% include '__product-image' %}
+<div class="{% for tag in _product.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% include '__thumbnail-span' %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
+  <div class="product-thumbnail">
+    <div class="thumbnail-image">
+      {{ image }}
+    </div>
+    <a href="{{ product_url }}" class="caption clearfix">
+	  {% if settings.show-vendor-with-thumbnail == 'above-product-title' %}<div class="product-vendor">{{ _product.vendor }}</div>{% endif %}
+      <h4 class="product-title">{{ _product.title }}</h4>
+	  {% if settings.show-vendor-with-thumbnail == 'below-product-title' %}<div class="product-vendor">{{ _product.vendor }}</div>{% endif %}
+      <div class="shopify-product-reviews-badge" data-id="{{ _product.id }}"></div>
+      {% if has_prices and _product.price > 0 %}<div class="price">
+        {% if _product.price_varies %}<small class="text-muted">{% include '__localize' with 'from' %}</small>&nbsp;{% include 'product-price' with _product.price_min %}{% else %}{% include 'product-price' with _product.price %}{% endif %}
+        {% include 'product-badges' with _product %}  
+      </div>{% endif %}
+    </a>
+  </div>
+</div>

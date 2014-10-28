@@ -1,0 +1,69 @@
+{% capture product_description %}{% include '__formatted-content' with product.description %}{% endcapture %}
+{% if settings.product-description-as-tabs and product_description contains '<h2' %}
+
+  {% assign tab_count = 0 %}
+  {% assign tab_title_list = '|' %}
+  {% capture tab_titles %}{% endcapture %}
+  {% capture tab_contents %}{% endcapture %}
+
+  {% assign tabs = product_description | split: '<h2' %}
+  {% for tab in tabs %}
+    {% assign tab_parts = tab | split: '</h2>' %}
+    {% assign tab_title = tab_parts.first | split: '>' | last %}
+    {% assign tab_handle = tab_title | handleize %}
+    {% capture tab_content %}
+      {{ tab_parts.first | prepend: '<h2' | append: '</h2>' }}
+      {{ tab_parts.last }}
+    {% endcapture %}
+    
+    {% unless tab_title == blank %}
+      {% assign tab_count = tab_count | plus: 1 %}
+      {% assign tab_title_list = tab_title_list | prepend: '|' | prepend: tab_handle %}
+      
+      {% capture tab_titles %}
+        {{ tab_titles }}
+        <li{% if tab_count == 1 %} class="active"{% endif %}><a href="#{{ tab_handle | prepend: 'tab-' }}" data-toggle="tab">{{ tab_title }}</a></li>
+      {% endcapture %}
+      
+      {% capture tab_contents %}
+        {{ tab_contents }}
+        <div class="tab-pane fade{% if tab_count == 1 %} in active{% endif %}" id="{{ tab_handle | prepend: 'tab-' }}">
+          {{ tab_content }}
+        </div>
+      {% endcapture %}
+    {% endunless %}
+  {% endfor %}
+
+  {% if settings.product-tab-linklist != blank %}
+    {% for tab in linklists[settings.product-tab-linklist].links %}
+      {% assign t_tab_handle = tab.handle | append: '|' | prepend: '|' %}
+      {% unless tab_title_list contains tab_handle %}    
+        {% assign tab_count = tab_count | plus: 1 %}
+            
+        {% capture tab_titles %}
+          {{ tab_titles }}
+          <li{% if tab_count == 1 %} class="active"{% endif %}><a href="#{{ tab.handle | prepend: 'tab-' }}" data-toggle="tab">{{ tab.title }}</a></li>
+        {% endcapture %}
+        
+        {% capture tab_contents %}
+          {{ tab_contents }}
+          <div class="tab-pane fade{% if tab_count == 1 %} in active{% endif %}" id="{{ tab.handle | prepend: 'tab-' }}">
+            {% if l.handle contains 'review' and l.url == '#' %}
+          		<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+        		{% else %}
+              {% include '__formatted-content' with tab.object.content %}
+            {% endif %}
+          </div>
+        {% endcapture %}       
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+<ul class="nav nav-tabs">
+  {{ tab_titles }}
+</ul>
+<div class="tab-content">
+  {{ tab_contents }}
+</div>
+{% else %}
+<div itemprop="description">{{ product_description }}</div>
+{% endif %}

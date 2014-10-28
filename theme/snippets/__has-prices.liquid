@@ -1,0 +1,13 @@
+{% assign has_prices = true %}
+{% if has_cart == false and settings.hide-prices-if-cart-disabled %}{% assign has_prices = false %}{% endif %}
+{% assign c_sum = 0.0 %}
+{% if template contains 'collection' %}
+{% for p in collection.all_products %}
+  {% if p.price > 0 %}
+    {% assign c_sum = c_sum | plus: p.price %}
+  {% endif %}
+{% endfor %}
+{% if c_sum == 0 %}
+  {% assign has_prices = false %}
+{% endif %}
+{% endif %}

@@ -1,0 +1,7 @@
+{% assign has_footer = false %}
+{% if settings.column-1-blog != blank or settings.column-1-menu != blank or settings.column-1-text != blank %}{% assign has_footer = true %}{% endif %}
+{% if settings.column-2-blog != blank or settings.column-2-menu != blank or settings.column-2-text != blank %}{% assign has_footer = true %}{% endif %}
+{% if settings.column-3-blog != blank or settings.column-3-menu != blank or settings.column-3-text != blank %}{% assign has_footer = true %}{% endif %}
+{% if settings.column-4-blog != blank or settings.column-4-menu != blank or settings.column-4-text != blank %}{% assign has_footer = true %}{% endif %}
+{% if settings.newsletter-signup-placement contains 'footer-column' %}{% assign has_footer = true %}{% endif %}
+{% if settings.social-links-placement contains 'footer-column' and has_social %}{% assign has_footer = true %}{% endif %}

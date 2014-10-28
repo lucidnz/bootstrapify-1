@@ -21,7 +21,7 @@
         <a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a>
         {% endif %}
       </h3>
-      {{ object.content }}
+      {% include '__excerpt' with object.content %}
     </div>
   </div>
 </div>

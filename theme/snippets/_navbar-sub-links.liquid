@@ -1,0 +1,24 @@
+{% if _navbar-sub-links < 2 %}
+  {% assign submenu = l.title | handleize %}
+  {% assign show = true %}
+  {% assign min_products = settings.hide-collections-with-less-than-this-number-of-products | plus: 0 %}
+  {% if l.type == 'collection_link' and l.object.all_products.size <= min_products %}{% assign show = false %}{% endif %}
+  {% if linklists[submenu].links.size > 0 and _navbar-sub-links < 1 and show %}
+    <li class="submenu">
+      <ul class="nav">
+        <li role="presentation" class="dropdown-header">{{ l.title }}</li>
+        {% for l in linklists[submenu].links %}
+          {% assign show = true %}
+          {% if l.type == 'collection_link' and l.object.all_products.size <= min_products %}{% assign show = false %}{% endif %}
+          {% if show %}
+          {% assign level_count = _navbar-sub-links | plus: 1 %}
+          {% include '_navbar-sub-links' with level_count %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </li>
+  {% else %}
+    <li><a tabindex="-1" href="{{ l.url }}" title="{{ l.title }}">{{ l.title }}</a></li>
+  {% endif %}
+{% endif %}
+
