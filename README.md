@@ -1,3 +1,9 @@
+# Collaborate with Bootstrapify
+
+Each developer should create their own `theme_id` at least and work on that template preview especially if they are working on branch.
+
+For live site, perhaps use `master` branch, or maybe best is to separate into `production` or `live` branch.
+
 # Bootstrapify 3.1.1
 
 Bootstrapify is an open-source base theme for [Shopify](http://www.shopify.com?ref=lucid-design) that makes it super quick and easy for developers to start building amazing, responsive themes without having to do all the fiddly, repetitive setup work when starting from scratch.
