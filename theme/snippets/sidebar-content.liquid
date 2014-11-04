@@ -1,9 +1,10 @@
 <aside class="sidebar {% include '__sidebar-span' %}">
   <div class="sidebar-content">
+    {% assign is_sidebar = true %}
     {% if settings.logo-placement == 'sidebar' %}<div class="hidden-xs">{% include 'brand' %}</div>{% endif %}
     
     {% if settings.search-placement == 'sidebar' %}
-      {% include 'search-form' %}
+    {% include 'search-form' %}
     {% endif %}
       
     {% if settings.tag-placement == 'sidebar' and template contains 'collection' %}
@@ -12,35 +13,52 @@
     {% endif %}
     
     {% unless linklists[settings.sidebar-linklist] == empty %}
-	{% assign s_linklist = settings.sidebar-linklist %}
-	{% if collection.metafields.sidebar.linklist != blank %}
-	{% assign s_linklist = collection.metafields.sidebar.linklist %}
-	{% endif %}
-      <h3>{{ linklists[s_linklist].title }}</h3>
-      {% include 'sidebar-nav' with linklists[s_linklist] %}
+    {% assign s_linklist = settings.sidebar-linklist %}
+    {% if collection.metafields.sidebar.linklist != blank %}
+    {% assign s_linklist = collection.metafields.sidebar.linklist %}
+    {% endif %}
+    <h3>{{ linklists[s_linklist].title }}</h3>
+    {% include 'sidebar-nav' with linklists[s_linklist] %}
     {% endunless %}
     
     {% if template == 'blog' or template == 'article' %}
-      <h3>{% include '__localize' with 'Recent articles' %}</h3>
-      {% for a in blog.articles limit:settings.blog-list-limit %}
-        {% include 'article-excerpt' %}
-      {% endfor %}
+    <h3>{% include '__localize' with 'Recent articles' %}</h3>
+    {% for a in blog.articles limit:settings.blog-list-limit %}
+    {% include 'article-excerpt' %}
+    {% endfor %}
     {% endif %}
   
     {% unless blogs[settings.sidebar-blog] == empty %}
-      <h3>{{ blogs[settings.sidebar-blog].title }}</h3>
-      {% for a in blogs[settings.sidebar-blog].articles limit:settings.blog-list-limit %}
-      <h5>{{ a.title | link_to: a.url, a.title }} <small class="text-muted help-block">{{ a.published_at | date: settings.short-date-format }}</small></h5>
-      {% endfor %}
+    <h3>{{ blogs[settings.sidebar-blog].title }}</h3>
+    {% for a in blogs[settings.sidebar-blog].articles limit:settings.blog-list-limit %}
+    <h5>{{ a.title | link_to: a.url, a.title }} <small class="text-muted help-block">{{ a.published_at | date: settings.short-date-format }}</small></h5>
+    {% endfor %}
     {% endunless %}
     
     {% if settings.newsletter-signup-placement == 'sidebar' %}
-      {% include 'newsletter-signup-form' %}
+    <hr>
+    {% include 'newsletter-signup-form' %}
     {% endif %}
             
     {% if settings.social-links-placement == 'sidebar' %}
-      <hr>
-      {% include 'social-links' with 'lg' %}
+    <hr>
+    {% include 'social-links' with 'lg' %}
     {% endif %}
+	
+    {% for l in linklists.advanced-sidebar-linklist.links %}
+    {% assign t_object = l.object %}
+    <div class="sidebar--{{ l.type | split: '_' | first }}">
+      <h4>{{ l.title }}</h4>
+      {% if l.type == 'page_link' %}
+      {% include '__formatted-content' with t_object.content %}
+      {% elsif l.type == 'collection_link' %}
+      {% include 'collection-loop' with l.object %}
+      {% elsif l.type == 'product_link' %}
+      {% include 'product-loop' with t_object %}
+      {% endif %}
+    </div>
+    {% endfor %}
+    
+    {% assign is_sidebar = false %}
   </div>
 </aside>

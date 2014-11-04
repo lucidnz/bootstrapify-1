@@ -1,4 +1,4 @@
-<div class="{% include '__thumbnail-span' %} {% for tag in product-loop.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
+<div class="product-grid {% for tag in product-loop.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
 	<div class="product-thumbnail">
 		<div class="thumbnail-image{% if product_collection.metafields.secondary-image.show == 'true' and product-loop.metafields.secondary-image.src != blank %} has-secondary-image{% endif %}">
 			{% include '__product-image' %}
@@ -29,5 +29,21 @@
 			</div>
 			{% endif %}
 		</a>
+    {% if is_sidebar %}
+    <form id="{% include '__advanced-layout-id' with 'product-form' %}" action="/cart/add" method="post" role="form" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="{{ product-loop.variants.first.id }}" />
+      <div class="row">
+        <div class="col-sm-8 add-to-cart-button-wrap">
+          <div class="form-group">
+            {% if product-loop.available %}
+            <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="purchase-btn" />
+            {% else %}
+            <input type="submit" name="add" value="{% include '__localize' with 'Sold Out' %}" id="purchase" class="purchase-btn" disabled />
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </form>
+    {% endif %}
 	</div>
 </div>
