@@ -1,25 +1,21 @@
 {% include '__show-link' with sidebar-nav-link %}
 
 {% if show_link == true %}
-<li class="handle_{{ sidebar-nav-link.object.handle }}">
+<li class="submenu-item">
   {% if child_linklist.links.size == 0 %}
-  {% unless sidebar-nav-link.url == "#" %}
-  {% capture link %}<a href="{{ sidebar-nav-link.url }}" title="View {{ sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>{% endcapture %}
-  <div class="h4{% if sidebar-nav-link.active %} active{% endif %}">
+  {% capture link %}<a href="{{ sidebar-nav-link.url }}" title="View {{ sidebar-nav-link.title | strip_html }}">{{ sidebar-nav-link.title }}</a>{% endcapture %}
+  <div class="submenu-link-title{% if sidebar-nav-link.active %} active{% endif %}">
     {{ link }}
-    {% comment %}
-    {% if sidebar-nav-link.type == 'collection_link' %}
-      <small class="text-muted">{{ sidebar-nav-link.object.all_products_count }} products</small>
-    {% endif %}
-    {% endcomment %}
   </div>
-  {% endunless %}
   {% else %}
-  <div class="h4{% if sidebar-nav-link.active %} active{% endif %}">
-    <a href="{{ sidebar-nav-link.url }}" title="View {{ sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>{% unless sidebar-nav-link.url == "#" %}&nbsp;<small class="text-muted"><a data-toggle="collapse" href="#child_{{ sidebar-nav-link.handle }}"><i class="fa fa-plus-circle"></i></a></small>{% endunless %}
-  </div>
-  <div class="collapse" id="child_{{ sidebar-nav-link.handle }}">
-    {% include 'sidebar-nav' with child_linklist %}
+  {% if s_linklist == blank %}{% assign child_id = 'child_' | prepend: 'mm_' %}{% else %}{% assign child_id = 'child_' %}{% endif %}
+  <div class="submenu-column">
+    <div class="submenu-link-title{% if sidebar-nav-link.active %} active{% endif %}">
+      <a href="{{ sidebar-nav-link.url }}" title="View {{ sidebar-nav-link.title | strip_html }}">{{ sidebar-nav-link.title }}</a>{% unless sidebar-nav-link.url == "#" or s_linklist == blank %}&nbsp;<small class="text-muted"><a data-toggle="collapse" href="#{{ child_id }}{{ sidebar-nav-link.handle }}"><i class="fa fa-plus-circle"></i></a></small>{% endunless %}
+    </div>
+    <div class="collapse{% if collapse_in %} in{% endif %}" id="{{ child_id }}{{ sidebar-nav-link.handle }}">
+      {% include 'sidebar-nav' with child_linklist %}
+    </div>
   </div>
   {% endif %}
 </li>

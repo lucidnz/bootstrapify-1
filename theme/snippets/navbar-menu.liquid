@@ -25,7 +25,7 @@
     {% endif %}
     {% if has_cart %}
     <li class="hidden-xs{% if template == 'cart' %} active{% endif %}">
-      <a class="cartCount" href="/cart"><i class="fa fa-shopping-cart"></i>{% if cart.item_count > 0 %} <span class="badge">{{ cart.item_count }}</span>{% endif %}</a>
+      <a class="cartCount btn btn-primary" href="/cart">View Cart <i class="fa fa-shopping-cart"></i>{% if cart.item_count > 0 %} <span class="badge">{{ cart.item_count }}</span>{% endif %}</a>
     </li>
     {% endif %}
     {% if settings.currency-switcher-position == 'top-navbar' %}
