@@ -43,6 +43,18 @@
 
   <div id="wrap">
     {% include 'navbar' with 'top' %}
+    {% if has_mega_menu %}
+    {% for l in linklists[settings.top-navbar-linklist-left].links %}
+    <div class="mega-menu collapse" id="menu-{{ l.handle }}">
+      <div class="container">
+        {% assign collapse_in = true %}
+        {% include 'sidebar-nav' with linklists[l.handle] %}
+		{% assign collapse_in = false %}
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+	
     <div id="content">
       {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
     	{% if has_main_menu %}
@@ -52,12 +64,13 @@
     	{% endif %}
       {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
       
-      {% if settings.slider-width != "window-width" or settings.show-breadcrumbs %}
-      <div class="container">
-        {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
+        {% if settings.slider-width == "site-width" and template == "index" %}
+			<div class="carousel-container">{% include 'slider' %}</div>
+		{% elsif settings.slider-width == "site-width" %}
+			<div class="carousel-container">{% include 'banner' %}</div>
+		{% endif %}
+	  
         {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
-      </div>
-      {% endif %}
       
 		{% if has_sidebar and settings[sidebar_template] %}
 			{% unless has_window_width_thumbnail_container %}<div class="container"><div class="row">{% endunless %}
@@ -108,7 +121,7 @@
 	})
   
     {% unless current_handle == blank %}
-      $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
+      $('#child_{{ current_coll_handle }}').addClass('in');
     {% endunless %}
 	
   	{% if settings.instagram-feed and settings.instagram-client-id != blank %}
