@@ -51,12 +51,23 @@
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
 				{% if has_prices %}
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
-				  <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>{% if settings.append-plus-taxes-to-price %}<small class="text-muted"> {% include '__localize' with 'plus taxes' %}</small>{% endif %}
+					<span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>{% if settings.append-plus-taxes-to-price %}<small class="text-muted"> {% include '__localize' with 'plus taxes' %}</small>{% endif %}
 					<del class="compare-at-price-field text-muted"></del>
 					<span class="sale-label" style="display: none;">{% include '__localize' with 'On Sale' %}</span>
+					<span class="price-excl-tax">{{ product.price | divided_by: 1.15 | money_with_currency }} {% include '__localize' with 'Excl. Taxes' %}</span>{% comment %}Need to integrate with theme settings and option selector{% endcomment  %}
 					<meta itemprop="currency" content="{{ shop.currency }}" />
 					<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
 				</div>
+				<dl class="product-specs">
+					{% if settings.show-product-sku %}
+					<dt>{% include '__localize' with 'SKU' %}:</dt>
+					<dd>{{ product.variants.first.sku }}</dd>
+					{% endif %}
+					{% if settings.show-product-availability %}
+					<dt>{% include '__localize' with 'Availability' %}:</dt>
+					<dd>{{ product.variants.first.inventory_quantity }} {% include '__localize' with 'items in stock' %}</dd>
+					{% endif %}
+				</dl>
 				{% endif %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 				
@@ -75,57 +86,17 @@
 				</ul>
 				{% endif %}
 				
-				{% if settings.product-tab-linklist == blank %}
-				<div itemprop="description">{% include '__formatted-content' with product.description %}</div>
-				{% else %}
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab-desc" data-toggle="tab">{% include '__localize' with 'Description' %}</a></li>
-					{% for l in linklists[settings.product-tab-linklist].links %}
-					{% assign t_string = t_string | append: ',' | append: l.title %}
-					<li><a href="#{{ l.handle | prepend: 'tab-' }}" data-toggle="tab">{{ l.title }}</a></li>
-					{% endfor %}
-					{% for t in product.metafields.tabs %}
-					{% unless t_string contains t.first %}
-						<li><a href="#{{ t.first| handleize | prepend: 'tab-' }}" data-toggle="tab">{{ t.first }}</a></li>
-					{% endunless %}
-					{% endfor %}
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane fade in active" id="tab-desc">
-						<div itemprop="description">{% include '__formatted-content' with product.description %}</div>
-					</div>
-					{% for l in linklists[settings.product-tab-linklist].links %}
-					<div class="tab-pane fade" id="{{ l.handle | prepend: 'tab-' }}">
-						{% if l.handle contains 'review' and l.url == '#' %}
-						<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-						{% assign t_reviews = true %}
-						{% else %}
-						{% for t in product.metafields.tabs %}{% if t.first == l.title %}{% assign t_found = true %}{% assign t_content = t.last %}{% endif %}{% endfor %}
-						{% if t_found == true %}
-						{{ t_content }}
-						{% else %}
-						{% include '__formatted-content' with l.object.content %}
-						{% endif %}
-						{% assign t_found = false %}
-						{% endif %}
-					</div>
-					{% endfor %}
-					{% for t in product.metafields.tabs %}
-					{% unless t_string contains t.first %}
-					<div class="tab-pane fade" id="{{ t.first| handleize | prepend: 'tab-' }}">
-						{% include '__formatted-content' with t.last %}
-					</div>
-					{% endunless %}
-					{% endfor %}
-				</div>
+				{% if settings.product-description-placement == 'in-product-details-column' %}
+					{% include 'product-description' %}
 				{% endif %}
-    
-				{% include 'product-specs' %}
-      		  
-			  	{% unless t_reviews == true %}
-				<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-				{% endunless %}
 			</div>
 		</div>
+		{% if settings.product-description-placement == 'under-product-details-and-images' %}
+		<div class="row">
+			<div class="product-description col-sm-12">
+				{% include 'product-description' %}
+			</div>
+		</div>
+		{% endif %}
 	{% include '__containers-close' %}
 </section>
