@@ -33,6 +33,10 @@
   {% endif %}
 {% endfor %}
 
+{% if settings.cta-banner %}
+  <div class="cta-banner"><a href="{{ settings.cta-banner-link }}">{{ settings.cta-banner-text }}</a></div>
+{% endif %}
+  
 {% unless items == '' %}
   <div id="myCarousel" class="carousel slide{% if settings.carousel-transition == 'fade' %} carousel-fade{% endif %}" data-current-slide="slide-1"{% if settings.auto-play-slider %} data-ride="carousel"{% endif %}>
     <!-- Indicators -->
