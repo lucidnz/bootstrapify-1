@@ -4,7 +4,7 @@
 {% include 'collection-header' with collection %}
 {% else %}
 <div class="container">
-  <h1 class="page-header">{{ page_title }}</h1>
+  <h1 class="page-header">{{ page_title }}{% if current_tags != null %} - {{ current_tags }}{% endif %}</h1>
 </div>
 {% endif %}
 
