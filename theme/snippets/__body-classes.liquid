@@ -7,7 +7,7 @@ template-{{ template | replace: '.', '-' }}
 {% if has_top_navbar %} has-top-navbar{% endif %}
 {% if has_fixed_top_navbar %} has-fixed-top-navbar{% else %} has-static-top-navbar{% endif %}
 {% if has_main_menu %} has-main-menu{% endif %}
-{% if has_sidebar %} has-sidebar{% endif %}
+{% if has_sidebar %} has-sidebar{% else %} no-sidebar{% endif %}
 {% if has_footer %} has-footer{% endif %}
 {% if has_footer_navbar %} has-footer-navbar{% endif %}
 {% if has_fixed_footer_navbar %} has-fixed-footer-navbar{% endif %}
