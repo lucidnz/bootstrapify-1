@@ -3,13 +3,21 @@
 {% elsif settings.newsletter-platform == "mailchimp" %}
   {% assign email_name = 'EMAIL' %}
 {% else %}
-  {% assign email_name = 'contact[email]' %}
+  {% assign e_name = 'contact[email]' %}
+  {% assign n_name = 'contact[name]' %}
 {% endif %}
 {% capture fields %}<input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
+{% if form-placement == null %}
+  <input id="fieldEmail" name="{{ n_name }}" class="form-control" type="name" placeholder="{% include '__localize' with 'Your name' %}" />
+  <input id="fieldEmail" name="{{ e_name }}" class="form-control" type="email" placeholder="{% include '__localize' with 'Your email' %}" />
+  <button type="submit" class="btn btn-primary">{% include '__localize' with 'Subscribe' %}</button>
+{% else %}
 <div class="input-group">
-  <input id="fieldEmail" name="{{ email_name }}" class="form-control" type="email" placeholder="{% include '__localize' with 'Your email' %}" />
+  <input id="fieldEmail" name="{{ e_name }}" class="form-control" type="email" placeholder="{% include '__localize' with 'Your email' %}" />
   <span class="input-group-btn"><button type="submit" class="btn btn-primary">{% include '__localize' with 'Subscribe' %}</button></span>
-</div>{% endcapture %}
+</div>
+{% endif %}
+{% endcapture %}
 
 {% capture form %}
   <div class="newsletter-form">
@@ -34,8 +42,8 @@
   {{ form }}
 </div>
 {% else %}
-<h4 {% unless newsletter-signup-form == 'footer' %}class="page-header"{% endunless %}>{% include '__localize' with 'Join our newsletter' %}</h4>
-<div class="form-inline">
+<h4>{% include '__localize' with 'Join our newsletter' %}</h4>
+<div class="form-block">
   {{ form }}
 </div>
 {% endif %}
