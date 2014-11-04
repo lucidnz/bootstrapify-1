@@ -47,18 +47,23 @@
 {% assign has_main_menu = false %}
 {% if settings.main-menu-linklist != blank %}{% assign has_main_menu = true %}{% endif %}
 
+{% if template == 'index' %}{% assign sidebar_template = 'homepage' %}{% else %}{% assign sidebar_template = template %}{% endif %}
+{% assign sidebar_template = sidebar_template | prepend: 'show-sidebar-on-' %}
+
 {% assign has_sidebar = false %}
 {% unless has_window_width_thumbnail_container %}
-	{% if settings.logo-placement == 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
-	{% if settings.tag-placement == 'sidebar' %}
-	  {% if template == 'collection' or template == 'blog' or template == 'article' %}
-	    {% assign has_sidebar = true %}
-	  {% endif %}
+	{% if settings[sidebar_template] %}
+		{% if settings.logo-placement == 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
+		{% if settings.tag-placement == 'sidebar' %}
+		  {% if template == 'collection' or template == 'blog' or template == 'article' %}
+		    {% assign has_sidebar = true %}
+		  {% endif %}
+		{% endif %}
+		{% if settings.sidebar-linklist != blank %}{% assign has_sidebar = true %}{% endif %}
+		{% if settings.sidebar-blog != blank %}{% assign has_sidebar = true %}{% endif %}
+		{% if settings.newsletter-signup-placement contains 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
+		{% if settings.social-links-placement contains 'sidebar' and has_social %}{% assign has_sidebar = true %}{% endif %}
 	{% endif %}
-	{% if settings.sidebar-linklist != blank %}{% assign has_sidebar = true %}{% endif %}
-	{% if settings.sidebar-blog != blank %}{% assign has_sidebar = true %}{% endif %}
-	{% if settings.newsletter-signup-placement contains 'sidebar' %}{% assign has_sidebar = true %}{% endif %}
-	{% if settings.social-links-placement contains 'sidebar' and has_social %}{% assign has_sidebar = true %}{% endif %}
 {% endunless %}
 
 {% assign has_footer = false %}
@@ -108,14 +113,12 @@
   {% endif %}
 {% endif %}
 
-{% if template == 'index' %}{% assign sidebar_template = 'homepage' %}{% else %}{% assign sidebar_template = template %}{% endif %}
-{% assign sidebar_template = sidebar_template | prepend: 'show-sidebar-on-' %}
-
 {% assign banner_template = template | split: '.' | first %}
 {% assign banner_img = [banner_template]metafields.banner.image %}
 
 {% assign current_url = false %}
 {% assign current_handle = false %}
+{% assign current_coll_handle = false %}
 {% case template %}
 	{% when 'page' %}
 		{% assign current_url = page.url %}
@@ -129,13 +132,15 @@
 	{% when 'collection' %}
 	  {% if collection.url %}
   		{% assign current_url = collection.url %}
-    {% else %}
-      {% assign current_url = '/collections/all' %}
-    {% endif %}
+      {% else %}
+        {% assign current_url = '/collections/all' %}
+      {% endif %}
 	  {% assign current_handle = collection.handle %}
+	  {% assign current_coll_handle = current_handle %}
 	{% when 'product' %}
 		{% assign current_url = product.url %}
 		{% assign current_handle = product.handle %}
+		{% assign current_coll_handle = collection.handle %}
   {% when 'index' %}
     {% assign current_url = '/' %}
 {% endcase %}
