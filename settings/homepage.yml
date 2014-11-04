@@ -2,6 +2,19 @@ Homepage:
 
   General:
     notitle: true
+	
+    Show call-to-action banner:
+      name: cta-banner
+      type: checkbox
+      inline_label: Yes
+	  
+    Call-to-action banner text:
+      name: cta-banner-text
+      type: text-single
+	  
+    Call-to-action banner link:
+      name: cta-banner-link
+      type: text-single
 
     Homepage content:
       name: homepage-content
@@ -20,6 +33,7 @@ Homepage:
         3: 3
         4: 4
         6: 6
+        8: 8
         12: 12
         unlimited: Unlimited
 
