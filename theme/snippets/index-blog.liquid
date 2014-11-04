@@ -1,4 +1,11 @@
+{% if t_object %}
+{% assign _blog = t_object %}
+{% else %}
 {% assign _blog = blogs[settings.homepage-blog] %}
+{% endif %}
+
+{{ t_object.template }}
+
 {% if _blog != empty and _blog.articles.size > 0 %}
 <section id="homepage-blog" class="section-wrap">
 	{% include '__containers-open' %}
