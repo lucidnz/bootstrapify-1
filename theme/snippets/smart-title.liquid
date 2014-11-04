@@ -2,7 +2,7 @@
   {% if search.performed %}
     {% capture title %}{% include '__localize' with 'Search results for' %} {{ settings.left-quote }}{{ page_title }}{{ settings.right-quote }}{% endcapture %}
   {% else %}
-    {% assign title = page_title %}
+    {% assign title = page_title | append: ' ' | append: current_tags %}
     {% if collection.title != blank and collection.title != page_title and template != 'index' %}
        {% assign title = title | append: ' | ' | append: collection.title %}
     {% elsif blog.title != blank and blog.title != page_title %}
