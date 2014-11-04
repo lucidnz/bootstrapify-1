@@ -4,7 +4,7 @@
       {% include 'collection-image' %}
     </div>
     <div class="caption clearfix">
-      {% if collections-list == 'featured' %}{% assign _title = l.title %}{% else %}{% assign _title = collection-loop.title %}{% endif %}
+      {% if collections-list == 'featured' or collections-list == 't_object' %}{% assign _title = l.title %}{% else %}{% assign _title = collection-loop.title %}{% endif %}
       <h4>{{ _title | link_to: collection-loop.url, collection-loop.title }}</h4>
       {% capture product_title %}{% include '__localize' with 'Product' %}{% endcapture %}
       {% capture products_title %}{% include '__localize' with 'Products' %}{% endcapture %}
