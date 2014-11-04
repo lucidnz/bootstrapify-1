@@ -24,6 +24,13 @@ Products:
       help: Comma-separated list of tag prefixes to never display on the site. These can be used for creating more complex collection.
       default: "hd,hidden"
 
+    Product description placement:
+      name: product-description-placement
+      type: select
+      options:
+        in-product-details-column: In product details column
+        under-product-details-and-images: Under product details and images
+
     Product Tab Linklist:
       name: product-tab-linklist
       type: linklist
@@ -32,6 +39,16 @@ Products:
       name: secondary-call-to-action-url
       type: text-single
       help: E.g. link to your contact page for customers who want a customised version of your product.
+	  
+    Show product SKU:
+      name: show-product-sku
+      type: checkbox
+      inline_label: Yes
+	  
+    Show product Availability:
+      name: show-product-availability
+      type: checkbox
+      inline_label: Yes
 
     Show product collections:
       name: show-product-collections
