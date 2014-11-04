@@ -2,14 +2,16 @@
 	{% if template contains 'index' %}
 		{% if settings.homepage-products-limit contains 'limited' %}{% assign limit = nil %}{% else %}{% assign limit = settings.homepage-products-limit %}{% endif %}
 		{% if t_object != blank %}
-			{% assign product_collection = t_object %}
+			{% assign product_collection = t_object.products %}
 		{% else %}
-			{% assign product_collection = collections[settings.homepage-products-collection] %}
+			{% assign product_collection = collections[settings.homepage-products-collection].products %}
 		{% endif %}
+	{% elsif template contains 'search' %}
+		{% assign product_collection = search.results %}
 	{% elsif collection %}
-		{% assign product_collection = collection %}
+		{% assign product_collection = collection.products %}
 	{% endif %}
-	{% for p in product_collection.products | limit: limit %}
+	{% for p in product_collection | limit: limit %}
 		{% assign product_count = forloop.length %}
 		{% include 'product-loop' with p %}
 	{% endfor %}
