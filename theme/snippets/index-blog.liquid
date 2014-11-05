@@ -7,7 +7,7 @@
 		<div class="row">
 			{% for l in _blog.articles | limit: 4 %}
 			{% assign cols = forloop.length %}
-			{% include 'features-loop' with 'blog' %}
+			{% include 'index-features-loop' with 'blog' %}
 			{% endfor %}
 		</div>
 	{% include '__containers-close' %}
