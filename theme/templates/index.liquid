@@ -41,6 +41,10 @@
 		{% include 'products-list' %}
 	{% include '__containers-close' %}
 </section>
+{% else %}
+  {% if settings.homepage-products-collection == 'frontpage' %}
+    {% include 'onboarding-featured-products' %}
+  {% endif %}
 {% endif %}
 {% endunless %}
 
