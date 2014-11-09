@@ -32,13 +32,20 @@
 <!-- Featured Products -->
 {% unless settings.homepage-products-collection == blank %}
 {% assign homepage_collection = collections[settings.homepage-products-collection] %}
+{% assign homepage_collection_products_count = homepage_collection.all_products_count | times: 1 %}
+{% if homepage_collection_products_count > 0 %}
 {% assign is-product-list = true %}
 <section id="product-list" class="section-wrap">
 	{% include '__containers-open' %}
-		<h2 class="page-header" id="products-title">{% if homepage_collection.all_products_count > homepage_products_limit %}<a href="{{ homepage_collection.url }}">{{ homepage_collection.title }}</a> <a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% else %}{{ homepage_collection.title }}{% endif %}</h2>
+		<h2 class="page-header" id="products-title">{% if homepage_collection_products_count > homepage_products_limit %}<a href="{{ homepage_collection.url }}">{{ homepage_collection.title }}</a> <a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% else %}{{ homepage_collection.title }}{% endif %}</h2>
 		{% include 'products-list' %}
 	{% include '__containers-close' %}
 </section>
+{% else %}
+  {% if settings.homepage-products-collection == 'frontpage' %}
+    {% include 'onboarding-featured-products' %}
+  {% endif %}
+{% endif %}
 {% endunless %}
 
 <!-- Homepage Blog Overview -->
