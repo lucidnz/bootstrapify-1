@@ -278,6 +278,7 @@ $line-height-base:    1.42858;
   $headings-color:    {{ settings.heading-colour }} !default;
 {% endif %}
 
+$headings-text-transform: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == 'title-case'%}capitalize{% else %}none{% endif %} !default;
 
 /* Components */
 
@@ -569,7 +570,7 @@ $footer-link-color:     {% if settings.footer-link-colour != blank %} {{ setting
 $footer-text-color:     {% if settings.footer-text-colour != blank %} {{ settings.footer-text-colour }} {% else %} false {% endif %} !default;
 
 {% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
-// When true, asset path helpers are used, otherwise the regular CSS `url()` is used.
+// When true, asset path helpers are used, otherwise regular url() is used
 // When there no function is defined, `fn('')` is parsed as string that equals the right hand side
 // NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
 $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
@@ -6985,7 +6986,8 @@ a.list-group-item {
   &.disabled:focus {
     background-color: $list-group-disabled-bg;
     color: $list-group-disabled-color;
-
+    cursor: not-allowed;
+    
     // Force color to inherit for custom content
     .list-group-item-heading {
       color: inherit;
@@ -8382,7 +8384,7 @@ body {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-style: {% if settings.font-heading-style == 'italic' %} italic {% else %} normal {% endif %};
-  text-transform: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %} {{ settings.font-heading-case }} {% elsif settings.font-heading-case == 'title-case'%} capitalize {% else %} none {% endif %};
+  text-transform: $headings-text-transform;
   {% if settings.heading-letterpress %}
     text-shadow: 0 1px 0 rgba(if(lightness($body-bg) > 60%, lighten($body-bg, 100%), darken($body-bg, 100%)), .25);
   {% endif %}
