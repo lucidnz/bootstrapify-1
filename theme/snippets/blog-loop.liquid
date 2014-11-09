@@ -6,7 +6,7 @@
 		</div>
 	</header>
 
-	<section class="col-xs-12{% unless has_sidebar %} col-md-9{% endunless %} col-lg-9{% if settings.sidebar-placement == 'right' %} col-md-push-3 col-lg-push-3{% endif %}">
+	<section class="col-xs-12{% unless has_sidebar %} col-md-9{% endunless %} col-lg-9{% if settings.sidebar-placement == 'right' %}{% unless has_sidebar %} col-md-push-3{% endunless %} col-lg-push-3{% endif %}">
     {% assign has_excerpt = false %}
 		{% if template contains 'testimonials' %}
     <i class="fa fa-quote-left pull-left text-muted"></i>
@@ -20,7 +20,7 @@
 		{% endif %}
 	</section>
 
-	<section class="excerpt-meta visible-lg {% unless has_sidebar %} visible-md{% endunless %} col-xs-12{% unless has_sidebar %} col-md-3{% endunless %} col-lg-3{% if settings.sidebar-placement == 'right' %} col-md-pull-9 col-lg-pull-9{% endif %}">
+	<section class="excerpt-meta visible-lg {% unless has_sidebar %} visible-md{% endunless %} col-xs-12{% unless has_sidebar %} col-md-3{% endunless %} col-lg-3{% if settings.sidebar-placement == 'right' %}{% unless has_sidebar %}  col-md-pull-9{% endunless %} col-lg-pull-9{% endif %}">
 		{% include 'article-meta' with a %}
 	</section>
 
