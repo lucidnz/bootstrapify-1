@@ -1,0 +1,10 @@
+{% if product.metafields.inventory.ShappifySaleEndDate %} 
+<div id="shappify_count_down"></div> 
+<script type="text/javascript"> 
+ShappifySaleEnds = new Date("{{ product.metafields.inventory.ShappifySaleEndDate | date: "%B %d, %Y %H:%M:%S"}}"); 
+ShappifyToday = new Date("{{ 'now' | date: "%B %d, %Y %H:%M:%S"}}"); </script> 
+<script type="text/javascript" src="//secure.shappify.com/apps/discount/discount-sales-clock-js.php?shop={{ shop.permanent_domain }}">
+</span>
+</script> 
+<link rel="stylesheet" type="text/css" href="//secure.shappify.com/apps/discount/discount-sales-clock-css.php?shop={{ shop.permanent_domain }}" /> 
+{% endif %}
