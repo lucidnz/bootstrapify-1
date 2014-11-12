@@ -8804,6 +8804,11 @@ header .article-meta{
       }
     }
   }
+  .price {
+    .sale-label {
+      @extend .pull-right;
+    }
+  }
 }
 
 .instagram-thumb img {
@@ -8904,9 +8909,14 @@ header .article-meta{
 	margin-bottom: 1em;
 }
 
-#product-details form {
-  margin-bottom: 3em;
-}
+#product-details {
+  form {
+    margin-bottom: 3em;
+  }
+  .sale-label {
+    display: none;
+  }
+} 
 
 .image-placeholder {
   display: block;

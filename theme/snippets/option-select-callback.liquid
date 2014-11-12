@@ -16,6 +16,8 @@ var selectCallback = function(variant, selector){
   var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
   var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
   var soldOutStr = '{% include '__localize' with 'Sold out' %}';
+  var onSaleStr = '{% include '__localize' with 'On Sale' %}';
+  var percentOffStr = '{% include '__localize' with '% off' %}';
       
   // disable purchase button
   purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);
@@ -33,6 +35,10 @@ var selectCallback = function(variant, selector){
       // variant is on sale
       var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
       compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
+      
+      var priceDiff = variant.compare_at_price - variant.price;
+      var salePrice = Math.round((priceDiff / variant.compare_at_price) * 100);
+      saleField.html(salePrice + percentOffStr);
       saleField.show();
     }
         
