@@ -36,9 +36,12 @@ var selectCallback = function(variant, selector){
       var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
       compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
       
+      {% if settings.show-on-sale-badge != 'as-text' %}
       var priceDiff = variant.compare_at_price - variant.price;
       var salePrice = Math.round((priceDiff / variant.compare_at_price) * 100);
       saleField.html(salePrice + percentOffStr);
+      {% endif %}
+      
       saleField.show();
     }
         
