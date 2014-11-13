@@ -8811,6 +8811,26 @@ header .article-meta{
   }
 }
 
+.quick-cart {
+  @include make-row();
+  padding: $thumbnail-caption-padding;
+  .quick-cart-btn-wrapper {
+    @include make-sm-column(6);
+    margin-top: 1em;
+  }
+}
+.quick-cart-btn {
+  @extend .btn;
+  @extend .btn-lg;
+  @extend .btn-block;
+  &.view {
+    @extend .btn-default;
+  }
+  &.add-to-cart {
+    @extend .btn-primary;
+  }
+}
+
 .instagram-thumb img {
   margin-left: auto;
   margin-right: auto;

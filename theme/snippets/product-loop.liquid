@@ -35,5 +35,19 @@
 			</div>
 			{% endif %}
 		</a>
+		{% if settings.quick-cart %}
+		<div class="quick-cart">
+		  <div class="quick-cart-btn-wrapper">
+    		<a href="{{ product_url }}" class="quick-cart-btn view">{% include '__localize' with 'View product' %}</a>
+		  </div>
+		  <div class="quick-cart-btn-wrapper">
+		    <form id="{% include '__advanced-layout-id' with 'product-form' %}" action="/cart/add" method="post" role="form" enctype="multipart/form-data">
+		      <input type="hidden" name="id" value="{{ product-loop.selected_or_first_available_variant.id }}" />
+		      <input type="hidden" name="quantity" value="1" />
+		      <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="quick-cart-btn add-to-cart" />
+		    </form>
+		  </div>
+		</div>
+		{% endif %}
 	</div>
 </div>

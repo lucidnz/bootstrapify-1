@@ -33,6 +33,11 @@ Collections:
       type: checkbox
       inline_label: Yes
 
+    Show Quick Cart:
+      name: quick-cart
+      type: checkbox
+      inline_label: Yes
+
     Show product sorter:
       name: show-product-sorter
       type: checkbox
