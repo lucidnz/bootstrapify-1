@@ -24,9 +24,9 @@
         {% assign variant_max_stock = product.metafields.availability[variant_max_stock_meta_name] | times: 1 %}
       {% endif %}
   
-      {% capture variant_availability_tag %}{{ variant_max_stock_meta_name }}:{% endcapture %}
+      {% capture variant_availability_tag %}{% include '__localize' with 'max-stock-level' %}-{{ v.sku }}:{% endcapture %}
       {% for tag in product.tags %}
-        {% if tag contains availability_tag %}
+        {% if tag contains variant_availability_tag %}
           {% assign variant_max_stock = tag | replace: variant_availability_tag,'' | times: 1 %}
         {% endif %}
       {% endfor %}
