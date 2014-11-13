@@ -1,31 +1,31 @@
 {% if settings.show-stock-availability %}
   {% assign max_stock = 100 %}
   
-  {% if product.metafields.availability.max-stock-level != blank %}
-    {% assign max_stock = product.metafields.availability.max-stock-level | times: 1 %}
+  {% if product-availability.metafields.availability.max-stock-level != blank %}
+    {% assign max_stock = product-availability.metafields.availability.max-stock-level | times: 1 %}
   {% elsif settings.max-stock-availability != blank %}
     {% assign max_stock = settings.max-stock-availability | times: 1 %}
   {% endif %}
   
   {% capture availability_tag %}{% include '__localize' with 'max-stock-level' %}:{% endcapture %}
-  {% for tag in product.tags %}
+  {% for tag in product-availability.tags %}
     {% if tag contains availability_tag %}
       {% assign max_stock = tag | replace: availability_tag,'' | times: 1 %}
     {% endif %}
   {% endfor %}
   
   {% capture availability %}{% endcapture %}
-  {% for v in product.variants %}
+  {% for v in product-availability.variants %}
     {% if v.available %}
       {% assign variant_max_stock = max_stock | times: 1 %}
       
       {% assign variant_max_stock_meta_name = v.sku | prepend: 'max-stock-level-' %}
-      {% if product.metafields.availability[variant_max_stock_meta_name] != blank %}
-        {% assign variant_max_stock = product.metafields.availability[variant_max_stock_meta_name] | times: 1 %}
+      {% if product-availability.metafields.availability[variant_max_stock_meta_name] != blank %}
+        {% assign variant_max_stock = product-availability.metafields.availability[variant_max_stock_meta_name] | times: 1 %}
       {% endif %}
   
       {% capture variant_availability_tag %}{% include '__localize' with 'max-stock-level' %}-{{ v.sku }}:{% endcapture %}
-      {% for tag in product.tags %}
+      {% for tag in product-availability.tags %}
         {% if tag contains variant_availability_tag %}
           {% assign variant_max_stock = tag | replace: variant_availability_tag,'' | times: 1 %}
         {% endif %}

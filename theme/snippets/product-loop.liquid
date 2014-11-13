@@ -34,7 +34,14 @@
 				{% include 'product-labels' with product-loop %}
 			</div>
 			{% endif %}
+			
+			{% comment %}
+  		{% if settings.show-stock-availability-on-collection %}
+    		{% include 'product-availability' with product-loop %}
+  		{% endif %}
+  		{% endcomment %}
 		</a>
+
 		{% if settings.quick-cart %}
 		<div class="quick-cart">
 		  <div class="quick-cart-btn-wrapper">

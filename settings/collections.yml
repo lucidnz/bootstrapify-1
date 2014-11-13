@@ -37,6 +37,11 @@ Collections:
       name: quick-cart
       type: checkbox
       inline_label: Yes
+      
+    Show products stock availability:
+      name: show-stock-availability-on-collection
+      type: checkbox
+      inline_label: Yes
 
     Show product sorter:
       name: show-product-sorter
