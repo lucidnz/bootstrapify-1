@@ -10,6 +10,7 @@
         {% assign col_blog = col | append: '-blog' %}
         {% assign col_menu = col | append: '-menu' %}
         {% assign col_text = col | append: '-text' %}
+        
         {% if settings[col_blog] != blank or settings[col_menu] != blank or settings[col_text] != blank or settings.newsletter-signup-placement contains col or settings.social-links-placement contains col %}
           {% assign cols = cols | append: col | append: '|' %}
         {% endif %}
