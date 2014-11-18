@@ -934,25 +934,6 @@ header .article-meta{
   }
 }
 
-{% assign cols = '' %}
-{% for i in (i..3) %}
-  {% assign c = i | plus: 1 %}
-  {% assign col = 'column-' | append: c %}
-  {% assign col_blog = col | append: '-blog' %}
-  {% assign col_menu = col | append: '-menu' %}
-  {% assign col_text = col | append: '-text' %}
-  {% if settings[col_blog] != blank or settings[col_menu] != blank or settings[col_text] != blank or settings.newsletter-signup-placement contains col or settings.social-links-placement contains col %}
-    {% assign cols = cols | append: col | append: '|' %}
-  {% endif %}
-{% endfor %}
-{% assign footer_columns = cols | split: '|' %}
-
-{% if footer_columns.size > 0 %}
-.footer__grid {
-  @include make-sm-column({{ 12 | divided_by: footer_columns.size }});
-}
-{% endif %}
-
 .footer-credits {
   margin-top: $grid-gutter-width;
 }
