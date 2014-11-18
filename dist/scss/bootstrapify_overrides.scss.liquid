@@ -593,6 +593,24 @@ header .article-meta{
   }
 }
 
+.btn-signup {
+  .navbar-default & {
+    @if $btn-primary-bg == $navbar-default-bg {  
+      @if lightness($btn-primary-bg) < 5% {
+        @include button-variant(lighten($btn-primary-color,10%), lighten($btn-primary-bg,10%), lighten($btn-primary-border,10%));
+      } @else {
+        @include button-variant(darken($btn-primary-color,10%), darken($btn-primary-bg,10%), darken($btn-primary-border,10%));
+      }
+    } @else {
+      @extend .btn-primary;
+    }
+  }
+  
+  .footer__grid & {
+    @extend .btn-primary;
+  }
+}
+
 .instagram-thumb img {
   margin-left: auto;
   margin-right: auto;
