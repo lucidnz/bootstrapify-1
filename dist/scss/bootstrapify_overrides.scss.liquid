@@ -572,6 +572,14 @@ header .article-meta{
   }
 }
 
+.product-deal {
+  @include make-row();
+  padding: 0 $thumbnail-caption-padding;
+  .sale-clock, .product-availability {
+    @include make-xs-column(12);
+  }
+}
+
 .quick-cart {
   @include make-row();
   padding: $thumbnail-caption-padding;
@@ -799,6 +807,7 @@ header .article-meta{
   @extend .alert;
   @extend .alert-info;
   @extend .h3;
+  margin: 0;
   text-align: center;
 }
 

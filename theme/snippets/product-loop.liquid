@@ -28,36 +28,43 @@
         </small>
         {% endif %}
 				
-        {% include '__poa-tag' with product-loop %}
-        {% if price_is_poa %}
-        <span>{% include '__localize' with 'POA' %}</span>
-        {% else %}
-        {% include 'product-price' with product-loop.price %}
-        {% endif %}
-        {% include 'product-labels' with product-loop %}
-      </div>
-      {% endif %}
-			
-      {% comment %}
-      {% if settings.show-stock-availability-on-collection %}
-      {% include 'product-availability' with product-loop %}
-      {% endif %}
-      {% endcomment %}
-    </a>
+				{% include '__poa-tag' with product-loop %}
+				{% if price_is_poa %}
+				<span>{% include '__localize' with 'POA' %}</span>
+				{% else %}
+				{% include 'product-price' with product-loop.price %}
+				{% endif %}
+				{% include 'product-labels' with product-loop %}
+			</div>
+			{% endif %}
+		</a>
 
-    {% if settings.quick-cart %}
-    <div class="quick-cart">
-      <div class="quick-cart-btn-wrapper">
-        <a href="{{ product_url }}" class="quick-cart-btn view">{% include '__localize' with 'View product' %}</a>
+    {% if settings.show-stock-availability-on-collection %}
+    <div class="product-deal">
+      <div class="product-availability">
+    		{% include 'product-availability' with product-loop %}
       </div>
-      <div class="quick-cart-btn-wrapper">
-        <form id="{% include '__advanced-layout-id' with 'product-form' %}" action="/cart/add" method="post" role="form" enctype="multipart/form-data">
-          <input type="hidden" name="id" value="{{ product-loop.selected_or_first_available_variant.id }}" />
-          <input type="hidden" name="quantity" value="1" />
-          <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="quick-cart-btn add-to-cart" />
-        </form>
+      {% if product-loop.metafields.inventory.ShappifySaleEndDate %}
+      <div class="sale-clock">
+        {% include 'shappify-sales-clock' with product-loop %}
       </div>
+      {% endif %}
     </div>
-    {% endif %}
-  </div>
+		{% endif %}
+
+		{% if settings.quick-cart %}
+		<div class="quick-cart">
+		  <div class="quick-cart-btn-wrapper">
+    		<a href="{{ product_url }}" class="quick-cart-btn view">{% include '__localize' with 'View product' %}</a>
+		  </div>
+		  <div class="quick-cart-btn-wrapper">
+		    <form id="{% include '__advanced-layout-id' with 'product-form' %}" action="/cart/add" method="post" role="form" enctype="multipart/form-data">
+		      <input type="hidden" name="id" value="{{ product-loop.selected_or_first_available_variant.id }}" />
+		      <input type="hidden" name="quantity" value="1" />
+		      <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="quick-cart-btn add-to-cart" />
+		    </form>
+		  </div>
+		</div>
+		{% endif %}
+	</div>
 </div>

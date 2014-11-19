@@ -60,7 +60,8 @@
                   <input type="hidden" name="updates[{{ i.id }}]" id="updates_{{ i.id }}" value="{{ i.quantity }}"/>
                   {{ i.quantity }}
                   {% else %}
-                  <input type="text" class="form-control" name="updates[{{ i.id }}]" id="updates_{{ i.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
+            	    {% include '_product-max-qty' with i.product %}
+                  <input type="number" class="form-control" name="updates[{{ i.id }}]" id="updates_{{ i.id }}" value="{{ i.quantity }}" min="0"{% if product_max_qty %} max="{{ product_max_qty }}"{% endif %} onfocus="this.select();"/>
                   {% endif %}
                 </td>
                 <td><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>

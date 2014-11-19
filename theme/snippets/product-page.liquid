@@ -67,7 +67,7 @@
 				</div>
 				{% endif %}
 				{% endif %}
-				{% include 'shappify-sales-clock' %}
+				{% include 'shappify-sales-clock' with product %}
 				{% include 'product-availability' with product %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 				

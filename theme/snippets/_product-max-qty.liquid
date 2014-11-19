@@ -1,0 +1,7 @@
+{% assign product_max_qty = false %}
+{% capture product_max_tag %}{% include '__localize' with 'product-max-qty' %}:{% endcapture %}
+{% for tag in _product-max-qty.tags %}
+  {% if tag contains product_max_tag %}
+    {% assign product_max_qty = tag | replace: product_max_tag,'' | times: 1 %}
+  {% endif %}
+{% endfor %}

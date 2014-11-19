@@ -40,7 +40,8 @@
   	<div class="col-sm-4 quantity-wrap">
       {% unless price_is_poa %}
   	  <div class="form-group">
-    		<input class="form-control input-lg" min="1" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" />
+  	    {% include '_product-max-qty' with product %}
+    		<input class="form-control input-lg" type="number" id="quantity" placeholder="Quantity" name="quantity" value="1" min="0"{% if product_max_qty %} max="{{ product_max_qty }}"{% endif %} />
   	  </div>
     	{% endunless %}
   	</div>
