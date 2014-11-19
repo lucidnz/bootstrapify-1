@@ -201,15 +201,19 @@ header .article-meta{
 
 .label {
   font-weight: normal;
-  margin-left: 1em;
+  
+   & + .label {
+     margin-left: .5em;
+  }
+}
+
+
+.label-product {
+  @extend .label-default;
 }
 
 .help-block {
   color: text-muted($text-color);
-}
-
-.money {
-  @extend .text-right;
 }
 
 .social-icons {
@@ -566,11 +570,6 @@ header .article-meta{
       }
     }
   }
-  .price {
-    .sale-label {
-      @extend .pull-right;
-    }
-  }
 }
 
 .quick-cart {
@@ -687,9 +686,26 @@ header .article-meta{
 	margin-top: 2em;
 }
 
-.product-price{
-  margin: $grid-gutter-width 0;
-  @extend .h3;
+.product-price {
+  @extend .h4;
+  line-height: normal;
+  @extend .clearfix;
+  
+  .money {
+    color: $brand-primary;
+  }
+  
+  .text-muted .money {
+    color: $text-muted;
+  }
+  
+  .caption & {
+    margin: 0;
+  }
+  
+  .template-product & {
+    margin: $grid-gutter-width 0;
+  }
 }
 
 .purchase-btn {
@@ -699,9 +715,18 @@ header .article-meta{
   @extend .btn-block;
 }
 
-.sale-label{
-  @extend .label;
+.caption {
+  .product-labels {
+    @extend .pull-right;
+  }
+}
+
+.label-sale {
   @extend .label-success;
+}
+
+.label-unavailable {
+  @extend .label-default;
 }
 
 .product-variants {
@@ -713,7 +738,7 @@ header .article-meta{
   form {
     margin-bottom: 3em;
   }
-  .sale-label {
+  .label-sale {
     display: none;
   }
 } 
@@ -784,6 +809,10 @@ header .article-meta{
   }
   img {
     margin: auto;
+  }
+  
+  .money {
+    @extend .text-right;
   }
 }
 .additional-checkout-buttons, .shipping-calculator-wrapper{

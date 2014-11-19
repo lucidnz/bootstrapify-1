@@ -1,2 +1,21 @@
-{% if product-labels.compare_at_price_min > 0 %} <span class="sale-label">{% if settings.show-on-sale-badge == 'as-text' %}{% include '__localize' with 'On Sale' %}{% else %}{{ product-labels.compare_at_price_max | minus: product-labels.price | times: 100.0 | divided_by: product-labels.compare_at_price_max | round }}{% include '__localize' with '% off' %}{% endif %}</span>{% endif %}
-{% if product-labels.available == false and settings.show-out-of-stock-badge == true %} <span class="sale-label">{% include '__localize' with 'Sold Out' %}</span>{% endif %}
+<div class="product-labels">
+{% if product-labels.compare_at_price_min > 0 %} 
+<span class="label label-sale">
+  {% if settings.show-on-sale-badge == 'as-text' %}{% include '__localize' with 'On Sale' %}{% else %}{{ product-labels.compare_at_price_max | minus: product-labels.price | times: 100.0 | divided_by: product-labels.compare_at_price_max | round }}{% include '__localize' with '% off' %}{% endif %}
+</span>
+{% endif %}
+{% if product-labels.available == false and settings.show-out-of-stock-badge == true %}
+<span class="label label-unavailable">
+  {% include '__localize' with 'Sold Out' %}
+</span>
+{% endif %}
+
+{% for pl in product-labels.tags %}
+  {% assign pl_parts = pl | split: ':' %}
+  {% assign pl_key = pl_parts.first %}
+  {% assign pl_name = pl_parts.last | strip %}
+  {% if pl_key == 'label' %}
+<span class="label label-product label-{{ pl_name | handleize }}">{{ pl_name | replace: ' ', '&nbsp;' }}</span>
+  {% endif %}
+{% endfor %}
+</div>
