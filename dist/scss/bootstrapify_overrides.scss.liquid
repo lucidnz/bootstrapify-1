@@ -216,6 +216,16 @@ header .article-meta{
   a:hover {
     text-decoration: none;
   }
+
+  .navbar & {
+    a {
+      color: $navbar-default-link-color;
+      
+      &:hover {
+        color: $navbar-default-link-hover-color;
+      }
+    }
+  }
 }
 
 .nav-pills a {
@@ -591,6 +601,24 @@ header .article-meta{
   }
 }
 
+.btn-signup {
+  .navbar-default & {
+    @if $btn-primary-bg == $navbar-default-bg {  
+      @if lightness($btn-primary-bg) < 5% {
+        @include button-variant(lighten($btn-primary-color,10%), lighten($btn-primary-bg,10%), lighten($btn-primary-border,10%));
+      } @else {
+        @include button-variant(darken($btn-primary-color,10%), darken($btn-primary-bg,10%), darken($btn-primary-border,10%));
+      }
+    } @else {
+      @extend .btn-primary;
+    }
+  }
+  
+  .footer__grid & {
+    @extend .btn-primary;
+  }
+}
+
 .instagram-thumb img {
   margin-left: auto;
   margin-right: auto;
@@ -913,25 +941,6 @@ header .article-meta{
     }
   }
 }
-
-{% assign cols = '' %}
-{% for i in (i..3) %}
-  {% assign c = i | plus: 1 %}
-  {% assign col = 'column-' | append: c %}
-  {% assign col_blog = col | append: '-blog' %}
-  {% assign col_menu = col | append: '-menu' %}
-  {% assign col_text = col | append: '-text' %}
-  {% if settings[col_blog] != blank or settings[col_menu] != blank or settings[col_text] != blank or settings.newsletter-signup-placement contains col or settings.social-links-placement contains col %}
-    {% assign cols = cols | append: col | append: '|' %}
-  {% endif %}
-{% endfor %}
-{% assign footer_columns = cols | split: '|' %}
-
-{% if footer_columns.size > 0 %}
-.footer__grid {
-  @include make-sm-column({{ 12 | divided_by: footer_columns.size }});
-}
-{% endif %}
 
 .footer-credits {
   margin-top: $grid-gutter-width;

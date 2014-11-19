@@ -1,8 +1,6 @@
 <footer id="footer-content" class="footer">
   <div class="container">
-    {% if has_footer %}
-    <div class="row">
-      
+    {% if has_footer %}      
       {% assign cols = '' %}
       {% for i in (i..3) %}
         {% assign c = i | plus: 1 %}
@@ -17,6 +15,7 @@
       {% endfor %}
       {% assign footer_columns = cols | split: '|' %}
       
+    <div class="row">
       {% for footer_column in footer_columns %}
         {% include 'footer-column-loop' %}
       {% endfor %}
