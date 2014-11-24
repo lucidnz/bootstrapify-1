@@ -18,6 +18,7 @@
 
 {% if nested_collections.size > 0 %}
 <section class="collection--nested-collections">
+  {% include '__containers-open' %}
   <div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
   {% for nested_collection in nested_collections %}
     {% assign hide_products = true %}
@@ -36,5 +37,6 @@
     {% endif %}
   {% endfor %}
   </div>
+  {% include '__containers-close' %}
 </section>
 {% endif %}
