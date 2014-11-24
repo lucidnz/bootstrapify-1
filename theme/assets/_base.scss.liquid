@@ -8977,7 +8977,16 @@ header .article-meta{
 
 .caption {
   .product-labels {
-    @extend .pull-right;
+    float: right;
+  }
+}
+
+.product-labels {
+  .label {
+    margin: 0 .5em 0 0;
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 }
 
