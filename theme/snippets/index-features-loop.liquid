@@ -14,14 +14,13 @@
     </div>
     {% endif %}
     <div class="feature-description">
-      <h3>
-        {% if l.object.published_at == blank %}
-        {{ l.title }}
-        {% else %}
-        <a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a>
-        {% endif %}
-      </h3>
-      {% include '__excerpt' with object.content %}
+      {% if l.object.published_at == blank %}
+        <h3>{{ l.title }}</h3>
+        {{ object.content }}
+      {% else %}
+        <h3><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h3>
+        {% include '__excerpt' with object.content %}
+      {% endif %}
     </div>
   </div>
 </div>
