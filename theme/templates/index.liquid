@@ -42,7 +42,17 @@
 	{% include '__containers-close' %}
 </section>
 {% else %}
-  {% if settings.homepage-products-collection == 'frontpage' %}
+  {% if settings.collection-fallback-page != blank %}
+    {% assign fallback = pages[settings.collection-fallback-page] %}
+    <section id="collection-page" class="section-wrap">
+    	{% include '__containers-open' %}
+    		<h1 class="page-header" id="collection-page-title">{{ fallback.title }}</h1>
+    		{% unless fallback.content == blank %}
+    		{% include '__formatted-content' with fallback.content %}
+    		{% endunless %}
+    	{% include '__containers-close' %}
+    </section>
+  {% elsif settings.homepage-products-collection == 'frontpage' %}
     {% include 'onboarding-featured-products' %}
   {% endif %}
 {% endif %}
