@@ -1,0 +1,48 @@
+{% assign span = cols | modulo: 12 %}
+{% assign span = 12 | divided_by: span %}
+{% if features-loop == 'linklist' %}
+{% assign object = l.object %}
+{% capture excerpt %}{% include '__excerpt' with object.content %}{% endcapture %}
+{% else %}
+{% assign object = l %}
+{% if object.excerpt == blank %}
+{% capture excerpt %}{% include '__excerpt' with object.content %}{% endcapture %}
+{% else %}
+{% assign excerpt = object.excerpt %}
+{% endif %}
+{% assign sizes = '_pico.,_icon.,_thumb.,_small.,_compact.,_medium.,_large.,_grande.,_1024x1024.,_2048x2048.,_master' | split: ',' %}
+{% assign src = null %}
+{% if excerpt contains "<img" %}
+    {% assign src = excerpt | split: 'src="' %}
+    {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn'; | replace: 'http:http://';, 'http://'; | remove: 'https:' %}
+	{% for s in sizes %}
+	{% assign src = src | replace: s, '_large.' %}
+	{% endfor %}
+{% endif %}
+{% endif %}
+{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% elsif settings.round-thumbnail-images-on-homepage and template == 'index' %}{% assign round-class = 'img-circle' %}{% endif %}
+
+{% capture blurb %}
+{% if src != null %}
+<a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}"><img src="{{ src }}" class="{{ round-class }}" alt="{{ object.title }}"></a>
+{% endif %}
+<h4 class="media-heading"><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h4>
+{% if features-loop == 'blog' %}{% include 'article-meta' with object %}{% endif %}
+<p>{% if excerpt == blank and shop.url contains 'myshopify' and settings.development-mode %}This will show an excerpt of the content (if one exists). To hide this placeholder text, disable development mode in Settings > Advanced.{% elsif src == null %}{{ excerpt | strip_html }}{% endif %}</p>
+{% endcapture %}
+<div class="col-sm-{{ span }}">
+  {% if object.metafields.icon.name == blank %}
+  {{ blurb }}
+  {% else %}
+  <div class="media">
+    <h4 class="pull-left">
+      <i class="fa fa-{{ object.metafields.icon.name }} fa-fw fa-2x text-muted media-object"></i>
+    </h4>
+    <div class="media-body">
+      {{ blurb }}
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% assign break = forloop.index | modulo: cols %}
+{% if break == 0 %}<div class="clearfix"></div>{% endif %}
