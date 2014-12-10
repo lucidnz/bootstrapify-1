@@ -3,10 +3,14 @@
   {% if settings.homepage-collections-limit contains 'row' %}{% assign limit = settings.homepage-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: settings.collections-per-row %}{% else %}{% assign limit = 50 %}{% endif %}
   {% assign collection_count = 1 %}
   {% for l in linklists[settings.homepage-collections-linklist].links %}
-    {% assign collection_object = l.object %}
-    {% if collection_object.all_products_count >= collection_minimum_products and collection_count <= limit and collection_object.all_products_count > 0 %}
-    {% include 'collection-loop' with collection_object %}
-    {% assign collection_count = collection_count | plus: 1 %}
+    {% assign l_object = l.object %}
+    {% if l.type == 'collection_link' %}
+      {% if l_object.all_products_count >= collection_minimum_products and collection_count <= limit and l_object.all_products_count > 0 %}
+      {% include 'collection-loop' with l_object %}
+      {% assign collection_count = collection_count | plus: 1 %}
+      {% endif %}
+    {% elsif l.type == 'product_link' %}
+      {% include 'product-loop' with l_object %}
     {% endif %}
   {% endfor %}
 {% elsif collections-list == 'all-collections' %}
