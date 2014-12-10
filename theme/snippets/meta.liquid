@@ -1,9 +1,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 <title>{% include 'smart-title' with 'strip_html' %} | {{ shop.name }}</title>
-{% if page_description %}
-<meta name="description" content="{{ page_description | escape }}" />
-{% endif %}
+<meta name="description" content="{% if page_description %}{{ page_description | escape }}{% else %}{{ shop.description | escape }}{% endif %}" />
 
 <link rel="canonical" href="{{ canonical_url }}" />
 
