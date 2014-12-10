@@ -1,5 +1,5 @@
 <section class="collection--header">
-  <div class="container">
+  {% unless has_sidebar %}<div class="container">{% endunless %}
     {% include 'collection-description' %}
-  </div>
+  {% unless has_sidebar %}</div>{% endunless %}
 </section>
