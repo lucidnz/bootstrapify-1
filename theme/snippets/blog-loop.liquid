@@ -1,0 +1,27 @@
+<article class="excerpt row">
+	<header class="col-xs-12">
+		{% unless template contains 'testimonials' %}<h2>{{ a.title | link_to: a.url, a.title }}</h2>{% endunless %}
+		<div class="excerpt-meta hidden-lg {% unless has_sidebar %} hidden-md{% endunless %}">
+			{% include 'article-meta' with a %}
+		</div>
+	</header>
+
+	<section class="col-xs-12{% unless has_sidebar %} col-md-9{% endunless %} col-lg-9{% if settings.sidebar-placement == 'right' %}{% unless has_sidebar %} col-md-push-3{% endunless %} col-lg-push-3{% endif %}">
+    {% assign has_excerpt = false %}
+		{% if template contains 'testimonials' %}
+    <i class="fa fa-quote-left pull-left text-muted"></i>
+    {{ a.content }}
+    <p class="text-muted"> &mdash; {{ a.title }}</p>
+    {% elsif a.excerpt == blank %}
+    {% include '__formatted-content' with a.content %}
+		{% else %}
+    {% assign has_excerpt = true %}
+		{{ a.excerpt }}
+		{% endif %}
+	</section>
+
+	<section class="excerpt-meta visible-lg {% unless has_sidebar %} visible-md{% endunless %} col-xs-12{% unless has_sidebar %} col-md-3{% endunless %} col-lg-3{% if settings.sidebar-placement == 'right' %}{% unless has_sidebar %}  col-md-pull-9{% endunless %} col-lg-pull-9{% endif %}">
+		{% include 'article-meta' with a %}
+	</section>
+
+</article>

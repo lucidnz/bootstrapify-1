@@ -1,29 +1,32 @@
 <div class="{% include '__thumbnail-span' %} {% for tag in product-loop.tags %}tag-{{ tag | downcase | handleize }} {% endfor %}{% if thumbnail_layout == 'masonry' %} masonry{% endif %}" {% include '__product-data-attr' with _product %}>
-	<div class="product-thumbnail">
-		<div class="thumbnail-image{% if product_collection.metafields.secondary-image.show == 'true' and product-loop.metafields.secondary-image.src != blank %} has-secondary-image{% endif %}">
-			{% include '__product-image' %}
-		</div>
-		<a href="{{ product_url }}" class="caption clearfix">
-			{% if settings.show-vendor-with-thumbnail == 'above-product-title' %}<div class="product-vendor">{{ product-loop.vendor }}</div>{% endif %}
-			<h4 class="product-title">{{ product-loop.title }}</h4>
-			{% if settings.show-vendor-with-thumbnail == 'below-product-title' %}<div class="product-vendor">{{ product-loop.vendor }}</div>{% endif %}
-			<div class="shopify-product-reviews-badge" data-id="{{ product-loop.id }}"></div>
-			{% if has_prices and product-loop.price > 0 %}
-			<div class="price">
-				{% if settings.show-compare-at-price and product-loop.compare_at_price > 0 %}	
-				<small class="text-muted"><del>{% capture was %}
-					{% include '__localize' with 'was' %} 
-					{% if settings.show-currency-with-prices == "with-currency" %}
-					{{ product-loop.compare_at_price_max | money_with_currency }}
-					{% else %}
-					{{ product-loop.compare_at_price_max | money }}
-					{% endif %}
-          {% endcapture %}{{ was | strip }}</del></small>&nbsp;
-				{% elsif product-loop.price_varies %}
-				<small class="text-muted">
-					{% include '__localize' with 'from' %}
-				</small>
-				{% endif %}
+  <div class="product-thumbnail">
+    <div class="thumbnail-image{% if product_collection.metafields.secondary-image.show == 'true' and product-loop.metafields.secondary-image.src != blank %} has-secondary-image{% endif %}">
+      {% include '__product-image' %}
+    </div>
+    <a href="{{ product_url }}" class="caption clearfix">
+      {% if settings.show-vendor-with-thumbnail == 'above-product-title' %}<div class="product-vendor">{{ product-loop.vendor }}</div>{% endif %}
+      <h4 class="product-title">{{ product-loop.title }}</h4>
+      {% if settings.show-vendor-with-thumbnail == 'below-product-title' %}<div class="product-vendor">{{ product-loop.vendor }}</div>{% endif %}
+      <div class="shopify-product-reviews-badge" data-id="{{ product-loop.id }}"></div>
+      {% if has_prices and product-loop.price > 0 %}
+      <div class="product-price">
+        {% if settings.show-compare-at-price and product-loop.compare_at_price > 0 %}	
+          {% capture was %}
+          {% include '__localize' with 'was' %}
+          <span class="money">
+          {% if settings.show-currency-with-prices == "with-currency" %}
+          {{ product-loop.compare_at_price_max | money_with_currency }}
+          {% else %}
+          {{ product-loop.compare_at_price_max | money }}
+          {% endif %}
+          </span>
+          {% endcapture %}
+        <small class="text-muted"><del>{{ was | strip }}</del></small>&nbsp;
+        {% elsif product-loop.price_varies %}
+        <small class="text-muted">
+          {% include '__localize' with 'from' %}
+        </small>
+        {% endif %}
 				
 				{% include '__poa-tag' with product-loop %}
 				{% if price_is_poa %}
@@ -35,5 +38,33 @@
 			</div>
 			{% endif %}
 		</a>
+
+    {% if settings.show-stock-availability-on-collection %}
+    <div class="product-deal">
+      <div class="product-availability">
+    		{% include 'product-availability' with product-loop %}
+      </div>
+      {% if product-loop.metafields.inventory.ShappifySaleEndDate %}
+      <div class="sale-clock">
+        {% include 'shappify-sales-clock' with product-loop %}
+      </div>
+      {% endif %}
+    </div>
+		{% endif %}
+
+		{% if settings.quick-cart %}
+		<div class="quick-cart">
+		  <div class="quick-cart-btn-wrapper">
+    		<a href="{{ product_url }}" class="quick-cart-btn view">{% include '__localize' with 'View product' %}</a>
+		  </div>
+		  <div class="quick-cart-btn-wrapper">
+		    <form id="{% include '__advanced-layout-id' with 'product-form' %}" action="/cart/add" method="post" role="form" enctype="multipart/form-data">
+		      <input type="hidden" name="id" value="{{ product-loop.selected_or_first_available_variant.id }}" />
+		      <input type="hidden" name="quantity" value="1" />
+		      <input type="submit" name="add" value="{% include '__localize' with 'Add to cart' %}" id="purchase" class="quick-cart-btn add-to-cart" />
+		    </form>
+		  </div>
+		</div>
+		{% endif %}
 	</div>
 </div>

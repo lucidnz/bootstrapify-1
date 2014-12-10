@@ -97,7 +97,7 @@
 {% assign typeahead = collections[settings.typeahead-collection].all_products | map: 'title' | join: '","' | prepend:'"' | append:'"' %}
 {% assign truncate_words = settings.truncate-words | plus: 0 %}
 {% assign testimonials_blog_post_limit = settings.testimonials-blog-post-limit | plus: 0 %}
-{% if settings.homepage-products-limit contains 'limit' %}{% assign homepage_products_limit = nil %}{% else %}{% assign homepage_products_limit = settings.homepage-products-limit | times: 1 %}{% endif %}
+{% if settings.homepage-products-limit contains 'unlimited' %}{% assign homepage_products_limit = 9999 %}{% else %}{% assign homepage_products_limit = settings.homepage-products-limit | times: 1 %}{% endif %}
 {% assign collection_minimum_products = settings.hidden-collection-limit | plus: 0 %}
 {% if settings.thumbnail-layout == 'masonry' %}{% assign thumbnail_layout = 'masonry' %}{% else %}{% assign thumbnail_layout = 'ordered' %}{% endif %}
 

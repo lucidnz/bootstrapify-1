@@ -11,13 +11,19 @@
       {% assign icon = 'envelope' %}
     {% when 'rss' %}
       {% assign blog_rss = settings[social_link] %}
-      {% assign link_href = blogs[blog_rss].url | append: '.atom' %}
+      {% if blogs[blog_rss].url != blank %}
+        {% assign link_href = blogs[blog_rss].url | append: '.atom' %}
+      {% else %}
+        {% assign link_href = '' %}
+      {% endif %}
     {% when 'vimeo' %}
       {% assign icon = icon | append: '-square' %}
     {% endcase %}
     
+    {% if link_href != blank %}
     <a href="{{ link_href }}" target="_blank">
     	<i class="fa fa-{{ icon }} fa-fw {% if social-links %}fa-{{ social-links }}{% endif %}"></i>
     </a>
+    {% endif %}
   {% endunless %}
 {% endfor %}

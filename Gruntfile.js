@@ -55,6 +55,15 @@ module.exports = function(grunt) {
         src: ['dist/js/base.js', 'dist/js/images.js', 'dist/js/facebook-gallery.js', 'dist/js/recover-password.js'],
         dest: 'theme/assets/_base.js'
       },
+      wufoo: {
+        src: [
+        'dist/scss/bootstrapify_variables.scss.liquid',
+        'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_variables.scss',
+        'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_forms.scss',
+        'dist/scss/wufoo.scss'
+        ],
+        dest: 'theme/assets/_wufoo.scss.liquid'
+      },
       styles: {
         src: [
           'dist/scss/bootstrapify_mixins.scss.liquid',

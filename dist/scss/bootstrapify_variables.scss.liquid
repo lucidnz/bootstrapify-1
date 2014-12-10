@@ -77,6 +77,7 @@ $line-height-base:    1.42858;
   $headings-color:    {{ settings.heading-colour }} !default;
 {% endif %}
 
+$headings-text-transform: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == 'title-case'%}capitalize{% else %}none{% endif %} !default;
 
 /* Components */
 

@@ -90,6 +90,12 @@ To compile the SCSS files automaticly when they are saved run:
 
     grunt watch
 
+### Common issues
+
+#### Spawn issue on 64-bit Linux systems
+
+If you're running the task on 64-bit Linux systems, you may get a `ENOENT spawn` error when the theme settings tasks is running.
+See [here](https://github.com/discolabs/grunt-shopify-theme-settings/issues/17) for more details and an easy fix.
 
 ## Bugs, issues or feature requests
 

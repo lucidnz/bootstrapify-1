@@ -18,6 +18,7 @@
 
 {% if nested_collections.size > 0 %}
 <section class="collection--nested-collections">
+  {% include '__containers-open' %}
   <div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
   {% for nested_collection in nested_collections %}
     {% assign hide_products = true %}
@@ -25,7 +26,7 @@
     {% if collections[child_handle].products.size > 0 %}
       {% if settings.show-products-on-nested-collections-page %}
         {% assign is_nested = true %}
-        {% include 'collection-header' with collections[child_handle] %}
+        {% include 'collection-description' with collections[child_handle] %}
         {% assign product_collection = collections[child_handle] %}
         {% for collection_product in product_collection.products %}
           {% include 'product-loop' with collection_product %}
@@ -36,5 +37,6 @@
     {% endif %}
   {% endfor %}
   </div>
+  {% include '__containers-close' %}
 </section>
 {% endif %}
