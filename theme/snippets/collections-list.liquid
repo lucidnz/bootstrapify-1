@@ -3,7 +3,6 @@
   {% if settings.homepage-collections-limit contains 'row' %}{% assign limit = settings.homepage-collections-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: settings.collections-per-row %}{% else %}{% assign limit = 50 %}{% endif %}
   {% assign collection_count = 1 %}
   {% for l in linklists[settings.homepage-collections-linklist].links %}
-    <!-- {{ l.type }} -->
     {% assign l_object = l.object %}
     {% if l.type == 'collection_link' %}
       {% if l_object.all_products_count >= collection_minimum_products and collection_count <= limit and l_object.all_products_count > 0 %}
