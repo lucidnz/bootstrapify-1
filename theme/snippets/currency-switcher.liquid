@@ -3,7 +3,7 @@
 {% assign supported_codes = settings.supported-currencies | remove: ',' | split: ' ' %}
 
 <li class="currency-picker">
-  <a href="#" id="current-currency">{% if settings.currency-switcher-position == 'footer-navbar' %}All prices in {% endif %}<span class="selected-currency">{{ shop.currency }}</span></a>
+  <a href="#" id="current-currency">{% if settings.currency-switcher-position == 'footer-navbar' %}{{ 'currency.all-prices-in' | t }} {% endif %}<span class="selected-currency">{{ shop.currency }}</span></a>
   <form id="currencies-picker" class="navbar-form" style="display:none;">
     <div class="form-group">
       <select id="currencies" class="form-control" name="currencies">

@@ -10,15 +10,16 @@
   
   {% if navbar-menu == 'top-right' %}
     {% if shop.customer_accounts_enabled %}
+    
     <li class="dropdown hidden-xs{% if template contains 'customers' %} active{% endif %}">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
       <ul class="dropdown-menu">
         {% if customer %}
-        <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
-        <li>{% capture logout %}{% include '__localize' with 'Log out' %}{% endcapture %}{{ logout | customer_logout_link }}</li>
+        <li><a href="/account">{{ 'customer-accounts.navbar-welcome-note' | t: first_name: customer.first_name }}</a></li>
+        <li>{{ 'customer-accounts.sign-out' | t | customer_logout_link }}</li>
         {% else %}
-        <li>{% capture register %}{% include '__localize' with 'Register' %}{% endcapture %}{{ register | customer_register_link }}</li>
-        <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
+        <li>{{ 'customer-accounts.register' | t | customer_register_link }}</li>
+        <li>{{ 'customer-accounts.sign-in' | t | customer_login_link }}</li>
         {% endif %}
       </ul>
     </li>

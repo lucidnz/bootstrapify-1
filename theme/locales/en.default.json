@@ -1,2 +1,23 @@
 {
+  "customer-accounts": {
+    "navbar-welcome-note": "Welcome, {{ first_name }}!",
+    "register": "Register an account",
+    "sign-in": "Log in",
+    "sign-out": "Log out"
+  },
+  "currency": {
+    "all-prices-in": "All prices in"
+  },
+  "navigation": {
+    "search-button": "Search"
+  },
+  "social": {
+    "newsletter": {
+      "sign-up-form-title": "Join our newsletter",
+      "sign-up-form-placeholder": "Your email",
+      "sign-up-form-button": "Subscribe",
+      "sign-up-form-success-message": "Thank you for subscribing to our email newsletter.",
+      "sign-up-form-error-message": "There was an error subscribing to our email newsletter."
+    }
+  }
 }

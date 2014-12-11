@@ -7,8 +7,8 @@
 {% endif %}
 {% capture fields %}<input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
 <div class="input-group">
-  <input id="fieldEmail" name="{{ email_name }}" class="form-control" type="email" placeholder="{% include '__localize' with 'Your email' %}" />
-  <span class="input-group-btn"><button type="submit" class="btn btn-signup">{% include '__localize' with 'Subscribe' %}</button></span>
+  <input id="fieldEmail" name="{{ email_name }}" class="form-control" type="email" placeholder="{{ 'social.newsletter.sign-up-form-placeholder' | t }}" />
+  <span class="input-group-btn"><button type="submit" class="btn btn-signup">{{ 'social.newsletter.sign-up-form-button' | t }}</button></span>
 </div>{% endcapture %}
 
 {% capture form %}
@@ -34,7 +34,7 @@
   {{ form }}
 </div>
 {% else %}
-<h4 {% unless newsletter-signup-form == 'footer' %}class="page-header"{% endunless %}>{% include '__localize' with 'Join our newsletter' %}</h4>
+<h4 {% unless newsletter-signup-form == 'footer' %}class="page-header"{% endunless %}>{{ 'social.newsletter.sign-up-form-title' | t }}</h4>
 <div class="form-inline">
   {{ form }}
 </div>
@@ -67,12 +67,12 @@
         data: $form.serialize()
       })
       .done(function(result){
-        $form.prepend('<div class="alert alert-success">Thank you for subscribing to our email newsletter.</div>');
+        $form.prepend('<div class="alert alert-success">{{ "social.newsletter.sign-up-form-success-message" | t }}</div>');
         resetNewsletterForm($form);
       })
       .fail(function(err){
         console.log('err: ', err);
-        $form.prepend('<div class="alert alert-danger">There was an error subscribing to our email newsletter.</div>');
+        $form.prepend('<div class="alert alert-danger">{{ "social.newsletter.sign-up-form-error-message" | t }}</div>');
         resetNewsletterForm($form);
       });
     }
