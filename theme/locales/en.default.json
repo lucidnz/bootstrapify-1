@@ -13,8 +13,9 @@
       "search-form-placeholder": "Search",
       "search-form-button": "Search"
     },
-    "breadcrumbs": {
-      "filtered-by-tags": "Filtered by"
+    "tags": {
+      "filtered-by-tags": "Filtered by",
+      "sidebar-tag-filter-title": "Filter"
     }
   },
   "carousel": {

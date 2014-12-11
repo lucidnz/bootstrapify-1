@@ -9,7 +9,7 @@
         {% endif %}
           
         {% if settings.tag-placement == 'sidebar' and template contains 'collection' %}
-        <h3>{% include '__localize' with 'Filter' %}</h3>
+        <h3>{{ 'navigation.tags.sidebar-tag-filter-title' | t }}</h3>
         {% include 'tag-buttons' %}
         {% endif %}
         

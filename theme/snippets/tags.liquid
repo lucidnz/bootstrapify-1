@@ -9,10 +9,10 @@
 <ul class="nav nav-pills {% if settings.tag-placement == 'sidebar' %}nav-stacked{% else %}pull-left{% endif %}">
   {% if tag_style == 'menu' %}
   <li class="dropdown{% if current_tags contains g_find %} active{% endif %}">
-    <a role="button" data-toggle="dropdown" href="#" id="group_{{ tags }}">{% include '__localize' with 'Filter by' %} {{ tags }} <span class="caret"></span></a>
+    <a role="button" data-toggle="dropdown" href="#" id="group_{{ tags }}">{{ 'navigation.tags.filtered-by-tags' | t }} {{ tags }} <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="group_{{ tags }}">
     {% endif %}
-      {% if tag_style == 'buttons' %}<li class="disabled"><a href="#">{% include '__localize' with 'Filter by' %} {{ tags }}</a></li>{% endif %}
+      {% if tag_style == 'buttons' %}<li class="disabled"><a href="#">{{ 'navigation.tags.filtered-by-tags' | t }} {{ tags }}</a></li>{% endif %}
       {% for t in all_tags %}
         {% assign current_tags_downcase = current_tags | downcase %}
         {% assign t_downcase = t | downcase %}
