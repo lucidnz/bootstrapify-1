@@ -9,7 +9,13 @@
     "all-prices-in": "All prices in"
   },
   "navigation": {
-    "search-button": "Search"
+    "search": {
+      "search-form-placeholder": "Search",
+      "search-form-button": "Search"
+    },
+    "breadcrumbs": {
+      "filtered-by-tags": "Filtered by"
+    }
   },
   "carousel": {
     "product-slide": {
