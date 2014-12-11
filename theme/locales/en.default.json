@@ -11,6 +11,12 @@
   "navigation": {
     "search-button": "Search"
   },
+  "carousel": {
+    "product-slide": {
+      "vendor-attribution": "By {{ vendor }}",
+      "call-to-action-button": "View {{ product_title }}"
+    }
+  },
   "social": {
     "newsletter": {
       "sign-up-form-title": "Join our newsletter",
