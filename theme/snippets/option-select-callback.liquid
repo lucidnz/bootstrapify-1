@@ -13,11 +13,11 @@ var selectCallback = function(variant, selector){
   var compareAtPriceField = $productWrap.find('.compare-at-price-field');
   var $notifyForm = $productWrap.find('.notify-me-wrapper'); // Show/hide notify form
   
-  var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
-  var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
-  var soldOutStr = '{% include '__localize' with 'Sold out' %}';
-  var onSaleStr = '{% include '__localize' with 'On Sale' %}';
-  var percentOffStr = '{% include '__localize' with '% off' %}';
+  var addToCartStr = "{{ 'products.add-to-cart-button' | t }}"; // '{% include '__localize' with 'Add to cart' %}';
+  var soldOutStr = "{{ 'products.add-to-cart-button-sold-out' | t }}"; // '{% include '__localize' with 'Sold out' %}';
+  var unavailableStr = "{{ 'products.add-to-cart-button-unavailable' | t }}"; // '{% include '__localize' with 'Unavailable' %}';
+  var onSaleStr = "{{ 'products.on-sale' | t }}"; // '{% include '__localize' with 'On Sale' %}'; // not being used ???
+  var percentOffStr = "{{ 'products.percent-off' | t }}"; // '{% include '__localize' with '% off' %}';
       
   // disable purchase button
   purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);

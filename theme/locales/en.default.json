@@ -22,6 +22,11 @@
     }
   },
   "products": {
+    "add-to-cart-button": "Add to cart",
+    "add-to-cart-button-unavailable": "Unavailable",
+    "add-to-cart-button-sold-out": "Sold out",
+    "on-sale": "On sale",
+    "percent-off": "% off",
     "product-count": "{{ product_count }} products"
   },
   "blog": {
