@@ -14,16 +14,16 @@
         {% endif %}
         
         {% unless linklists[settings.sidebar-linklist] == empty %}
-    	{% assign s_linklist = settings.sidebar-linklist %}
-    	{% if collection.metafields.sidebar.linklist != blank %}
-    	{% assign s_linklist = collection.metafields.sidebar.linklist %}
-    	{% endif %}
+        	{% assign s_linklist = settings.sidebar-linklist %}
+        	{% if collection.metafields.sidebar.linklist != blank %}
+        	{% assign s_linklist = collection.metafields.sidebar.linklist %}
+        	{% endif %}
           <h3>{{ linklists[s_linklist].title }}</h3>
           {% include 'sidebar-nav' with linklists[s_linklist] %}
         {% endunless %}
         
         {% if template == 'blog' or template == 'article' %}
-          <h3>{% include '__localize' with 'Recent articles' %}</h3>
+          <h3>{{ 'blog.sidebar-blog-list-title' | t }}</h3>
           {% for a in blog.articles limit:settings.blog-list-limit %}
             {% include 'article-excerpt' %}
           {% endfor %}
@@ -32,7 +32,7 @@
         {% unless blogs[settings.sidebar-blog] == empty %}
           <h3>{{ blogs[settings.sidebar-blog].title }}</h3>
           {% for a in blogs[settings.sidebar-blog].articles limit:settings.blog-list-limit %}
-          <h5>{{ a.title | link_to: a.url, a.title }} <small class="text-muted help-block">{{ a.published_at | date: settings.short-date-format }}</small></h5>
+          <h5>{{ a.title | link_to: a.url, a.title }} <small class="text-muted help-block">{{ a.published_at | date: format: 'short-date' }}</small></h5>
           {% endfor %}
         {% endunless %}
         

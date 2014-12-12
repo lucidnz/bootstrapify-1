@@ -16,7 +16,16 @@
     "tags": {
       "filtered-by-tags": "Filtered by",
       "sidebar-tag-filter-title": "Filter"
+    },
+    "links": {
+      "link-tag-title-attribute": "View {{ link_title }}"
     }
+  },
+  "products": {
+    "product-count": "{{ product_count }} products"
+  },
+  "blog": {
+    "sidebar-blog-list-title": "Recent articles"
   },
   "carousel": {
     "product-slide": {
@@ -32,5 +41,9 @@
       "sign-up-form-success-message": "Thank you for subscribing to our email newsletter.",
       "sign-up-form-error-message": "There was an error subscribing to our email newsletter."
     }
+  },
+  "date_formats": {
+    "short-date": "%d %B %Y",
+    "long-date": "%d %B %Y at %H:%M"
   }
 }
