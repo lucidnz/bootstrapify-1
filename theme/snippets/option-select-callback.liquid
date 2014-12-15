@@ -1,5 +1,7 @@
 <script>
-var selectCallback = function(variant, selector){
+var selectCallback = function(variant, selector, a, b, c){
+  console.log(variant, selector, a, b, c);
+  console.log('--------');
   
   // get the current product
   var $productWrap = $('#'+selector.existingSelectorId).closest('.product-wrap');
@@ -13,15 +15,14 @@ var selectCallback = function(variant, selector){
   var compareAtPrice = $productWrap.find('.compare-at-price');
   var $notifyForm = $productWrap.find('.notify-me-wrapper'); // Show/hide notify form
   
-  var addToCartStr = "{{ 'products.add-to-cart-button' | t }}"; // '{% include '__localize' with 'Add to cart' %}';
-  var soldOutStr = "{{ 'products.add-to-cart-button-sold-out' | t }}"; // '{% include '__localize' with 'Sold out' %}';
-  var unavailableStr = "{{ 'products.add-to-cart-button-unavailable' | t }}"; // '{% include '__localize' with 'Unavailable' %}';
-  var onSaleStr = "{{ 'products.on-sale' | t }}"; // '{% include '__localize' with 'On Sale' %}'; // <--- not being used ???
-  var percentOffStr = "{{ 'products.percent-off' | t }}"; // '{% include '__localize' with '% off' %}';
+  var addToCartStr = "{{ 'products.add-to-cart-button' | t }}";
+  var soldOutStr = "{{ 'products.add-to-cart-button-sold-out' | t }}";
+  var unavailableStr = "{{ 'products.add-to-cart-button-unavailable' | t }}";
+  var percentOffStr = "{{ 'products.percent-off' | t }}";
       
   // disable purchase button
   purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);
-  priceField.addClass('text-muted');
+  priceField.addClass('text-muted').html(unavailableStr);
   saleField.hide();
   compareAtPrice.hide().find('.compare-at-price-field').html('');
       
