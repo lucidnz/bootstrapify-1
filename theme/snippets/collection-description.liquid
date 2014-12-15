@@ -15,7 +15,7 @@
   {% unless collection-header.description == blank %}
   {% unless is_nested and settings.show-descriptions-on-nested-collections-page == false %}
   <div class="collection__description">
-    {{ collection-header.description }}
+    {% include '__formatted-content' with collection-header.description %}
   </div>
   {% endunless %}
   {% endunless %}
