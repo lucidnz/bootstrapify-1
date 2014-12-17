@@ -21,7 +21,7 @@
     {% endcase %}
     
     {% if link_href != blank %}
-    <a href="{{ link_href }}" target="_blank">
+    <a href="{{ link_href }}" title="{{ link }}" target="_blank">
     	<i class="fa fa-{{ icon }} fa-fw {% if social-links %}fa-{{ social-links }}{% endif %}"></i>
     </a>
     {% endif %}

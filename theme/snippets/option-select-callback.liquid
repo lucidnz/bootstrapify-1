@@ -1,5 +1,7 @@
 <script>
-var selectCallback = function(variant, selector){
+var selectCallback = function(variant, selector, a, b, c){
+  console.log(variant, selector, a, b, c);
+  console.log('--------');
   
   // get the current product
   var $productWrap = $('#'+selector.existingSelectorId).closest('.product-wrap');
@@ -10,20 +12,19 @@ var selectCallback = function(variant, selector){
   var quantityWrap = $productWrap.find('.quantity-wrap');
   var addToCartButtonWrap = $productWrap.find('.add-to-cart-button-wrap');
   var saleField = $productWrap.find('.label-sale');
-  var compareAtPriceField = $productWrap.find('.compare-at-price-field');
+  var compareAtPrice = $productWrap.find('.compare-at-price');
   var $notifyForm = $productWrap.find('.notify-me-wrapper'); // Show/hide notify form
   
-  var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
-  var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
-  var soldOutStr = '{% include '__localize' with 'Sold out' %}';
-  var onSaleStr = '{% include '__localize' with 'On Sale' %}';
-  var percentOffStr = '{% include '__localize' with '% off' %}';
+  var addToCartStr = "{{ 'products.add-to-cart-button' | t }}";
+  var soldOutStr = "{{ 'products.add-to-cart-button-sold-out' | t }}";
+  var unavailableStr = "{{ 'products.add-to-cart-button-unavailable' | t }}";
+  var percentOffStr = "{{ 'products.percent-off' | t }}";
       
   // disable purchase button
   purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);
-  priceField.addClass('text-muted');
+  priceField.addClass('text-muted').html(unavailableStr);
   saleField.hide();
-  compareAtPriceField.html('').hide();
+  compareAtPrice.hide().find('.compare-at-price-field').html('');
       
   if(variant){
     // we have a variant so update the price
@@ -34,7 +35,7 @@ var selectCallback = function(variant, selector){
     if(variant.compare_at_price > 0){
       // variant is on sale
       var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
-      compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
+      compareAtPrice.show().find('.compare-at-price-field').html('<span class="money">'+compareAtFormattedMoney+'</span>');
       
       {% if settings.show-on-sale-badge != 'as-text' %}
       var priceDiff = variant.compare_at_price - variant.price;

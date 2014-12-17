@@ -4,12 +4,12 @@
 <li class="handle_{{ sidebar-nav-link.object.handle }}">
   {% if child_linklist.links.size == 0 %}
   {% unless sidebar-nav-link.url == "#" %}
-  {% capture link %}<a href="{{ sidebar-nav-link.url }}" title="View {{ sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>{% endcapture %}
+  {% capture link %}<a href="{{ sidebar-nav-link.url }}" title="{{ 'navigation.links.link-tag-title-attribute' | t: link_title: sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>{% endcapture %}
   <div class="h4{% if sidebar-nav-link.active %} active{% endif %}">
     {{ link }}
     {% comment %}
     {% if sidebar-nav-link.type == 'collection_link' %}
-      <small class="text-muted">{{ sidebar-nav-link.object.all_products_count }} products</small>
+      <small class="text-muted">{{ 'products.product-count' | t: product_count: sidebar-nav-link.object.all_products_count }}</small>
     {% endif %}
     {% endcomment %}
   </div>
@@ -17,9 +17,9 @@
   {% else %}
   <div class="h4{% if sidebar-nav-link.active %} active{% endif %}">
     {% if sidebar-nav-link.url == '#' %}
-    <a data-toggle="collapse" href="#child_{{ sidebar-nav-link.handle }}" title="View {{ sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>
+    <a data-toggle="collapse" href="#child_{{ sidebar-nav-link.handle }}" title="{{ 'navigation.links.link-tag-title-attribute' | t: link_title: sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>
     {% else %}
-    <a href="{{ sidebar-nav-link.url }}" title="View {{ sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>&nbsp;<small class="text-muted"><a data-toggle="collapse" href="#child_{{ sidebar-nav-link.handle }}"><i class="fa fa-plus-circle"></i></a></small>
+    <a href="{{ sidebar-nav-link.url }}" title="{{ 'navigation.links.link-tag-title-attribute' | t: link_title: sidebar-nav-link.title }}">{{ sidebar-nav-link.title }}</a>&nbsp;<small class="text-muted"><a data-toggle="collapse" href="#child_{{ sidebar-nav-link.handle }}"><i class="fa fa-plus-circle"></i></a></small>
     {% endif %}
   </div>
   <div class="collapse" id="child_{{ sidebar-nav-link.handle }}">
