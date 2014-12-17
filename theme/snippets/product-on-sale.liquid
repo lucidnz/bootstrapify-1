@@ -1,0 +1,2 @@
+{% if product-on-sale.compare_at_price_min > 0 %} <span class="label label-success pull-right">{% include '__localize' with 'On Sale' %}</span>{% endif %}
+{% if product-on-sale.available == false and settings.show-out-of-stock-badge == true %} <span class="label label-danger pull-right">{% include '__localize' with 'Sold Out' %}</span>{% endif %}

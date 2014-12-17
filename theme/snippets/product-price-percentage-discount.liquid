@@ -1,0 +1,3 @@
+{% assign sale_price = product-price-percentage-discount.price | times: 100 %}
+{% assign original_price = product-price-percentage-discount.compare_at_price_max | times: 100 %}
+{% assign dollar_discount = original_price | minus: sale_price %}{{ dollar_discount | divided_by: original_price }}

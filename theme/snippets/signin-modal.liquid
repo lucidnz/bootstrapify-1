@@ -1,0 +1,38 @@
+{% if shop.customer_accounts_enabled %}
+<!-- Button trigger modal -->
+<a {% if customer %} href="/account" {% else %} data-toggle="modal" href="#signinModal" {% endif %} class="btn btn-primary btn-lg">Launch sign-in modal</a>
+
+{% unless customer %}
+<!-- Modal -->
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col col-md-6">
+            <fieldset class="customer-login-form">
+              <legend>Sign-in</legend>
+              {% include '_form-login' %}
+            </fieldset>
+            <fieldset class="customer-recover-password-form">
+              <legend>Reset Password</legend>
+              {% include '_form-recover-password' %}
+            </fieldset>
+          </div>
+          <div class="col col-md-6">
+            <fieldset class="customer-register-form">
+              <legend>Register</legend>
+              {% include '_form-register' %}
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endunless %}
+{% endif %}
