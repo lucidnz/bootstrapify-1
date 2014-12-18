@@ -2,7 +2,7 @@
 
 {% if linklists[submenu].links.size > 0 %}
 <li class="{% if l.active %}active{% endif %} dropdown">
-  <a href="#" title="{{ l.title | strip_html }}"{% if has_mega_menu %} data-toggle="collapse" data-parent="#mega-menu" data-target="#menu-{{ l.handle }}"{% else %} class="dropdown-toggle" data-toggle="dropdown"{% endif %}>
+  <a href="#" title="{{ l.title | strip_html }}"{% if has_mega_menu and is_mobile != true %} data-toggle="collapse" data-parent="#mega-menu" data-target="#menu-{{ l.handle }}"{% else %} class="dropdown-toggle" data-toggle="dropdown"{% endif %}>
     {{ l.title }}
     <b class="caret"></b>
   </a>

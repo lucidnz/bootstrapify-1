@@ -48,10 +48,15 @@
     <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
       {% if navbar == 'top' %}
       <div class="visible-xs">
-        {% include 'navbar-main' %}
+        {% assign is_mobile = true %}
+        {% include 'navbar-menu' with 'top-left' %}
+        {% include 'navbar-menu' with 'top-right' %}
+        {% assign is_mobile = false %}
       </div>
+      <div class="hidden-xs">
       {% include 'navbar-menu' with 'top-left' %}
       {% include 'navbar-menu' with 'top-right' %}
+      </div>
       {% else %}
       {% include 'navbar-main' %}
       {% endif %}
