@@ -40,3 +40,13 @@ Money:
       type: checkbox
       inline_label: Yes
       help: "You can localize the wording in the Localization settings using &#x201C;plus-taxes: + GST&#x201D;"
+
+    Credit Cards Icons:
+      notitle: true
+      repeat: [AmericanExpress, Discover, Mastercard, Paypal, Stripe, Visa]
+
+      Show credit card {i}:
+        name: show-cc-{i}
+        type: checkbox
+        inline_label: {i}
+        hide_label: true
