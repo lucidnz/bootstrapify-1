@@ -2,7 +2,13 @@
 {% capture badges %}{% endcapture %}
 {% for tag in product.tags %}
   {% if tag contains badge_tag %}
-    {% capture badges %}{{ badges }}<li>{{ tag | remove: badge_tag | handleize | append: '_medium.png' | file_url | img_tag }}</li>{% endcapture %}
+    
+    {% assign b = tag | remove: badge_tag %}
+    {% if b contains ' ' %}
+      {% assign b = b | handleize %}
+    {% endif %}
+    
+    {% capture badges %}{{ badges }}<li>{{ b | append: '_medium.png' | file_url | img_tag }}</li>{% endcapture %}
   {% endif %}
 {% endfor %}
 {% unless badges == '' %}
