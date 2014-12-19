@@ -4,6 +4,9 @@
   {% if tag contains badge_tag %}
     
     {% assign b = tag | remove: badge_tag %}
+    {% if b.first == ' ' %}
+      {% assign b = b | remove_first: ' ' %}
+    {% endif %}
     {% if b contains ' ' %}
       {% assign b = b | handleize %}
     {% endif %}
