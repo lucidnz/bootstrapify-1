@@ -3,10 +3,17 @@
 {% for tag in product.tags %}
   {% if tag contains badge_tag %}
     
+    {% assign file_types = '.png|.jpg|.gif' | spilt: '|' %}
+    
     {% assign b = tag | remove: badge_tag %}
     {% if b.first == ' ' %}
       {% assign b = b | remove_first: ' ' %}
     {% endif %}
+    {% for f_type in file_types %}
+      {% if b contains f_type %}
+        {% assign b = b | remove: f_type %}
+      {% endif %}
+    {% endfor %}
     {% if b contains ' ' %}
       {% assign b = b | handleize %}
     {% endif %}
