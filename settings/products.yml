@@ -83,3 +83,19 @@ Products:
     Secondary collection on products page:
       name: secondary-related-collection
       type: collection
+      
+    Show stock availability:
+      name: show-stock-availability
+      type: checkbox
+      inline_label: Yes
+      
+    Max stock availability fallback:
+      name: max-stock-availability
+      type: text-single
+      help: This can be overridden on a product-by-product basis with the meta feild 'availability.max-stock-level' inside a product. Or on specific variants by using the meta feild 'availability.max-stock-level-[variant sku here]'.
+      default: 100
+      
+    Colour stock availability as traffic light:
+      name: colour-stock-availability
+      type: checkbox
+      inline_label: Yes

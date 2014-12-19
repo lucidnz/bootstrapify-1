@@ -41,7 +41,7 @@
   FreeShipping.prototype._as_money = function(int, prefix, suffix) {
     prefix = prefix || '$';
     suffix = suffix || '';
-    return prefix + int.toLocaleString() + (int % 1).toFixed(2).toLocaleString().replace(/^[+-]?0/,'') + suffix;
+    return prefix + int.toFixed(2).toLocaleString() + suffix;
   };
 
   $.fn.freeShipping = function (opts) {

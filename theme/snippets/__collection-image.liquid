@@ -1,0 +1,8 @@
+{% if settings.round-thumbnail-images and template != 'index' %}{% assign round-class = 'img-circle' %}{% elsif settings.round-thumbnail-images-on-homepage and template == 'index' %}{% assign round-class = 'img-circle' %}{% endif %}
+{% if _collection.image %}
+  {% capture image %}{{ _collection.image.src | collection_img_url: 'large' | img_tag: _collection.image.alt, round-class | link_to: _collection.url }}{% endcapture %}
+{% elsif _collection.products.first.featured_image %}
+  {% capture image %}{{ _collection.products.first.featured_image.src | product_img_url: 'large' | img_tag: _collection.products.first.featured_image.alt, round-class | link_to: _collection.url }}{% endcapture %}
+{% else %}
+  {% include '__image-placeholder' %}
+{% endif %}

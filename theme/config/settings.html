@@ -1816,6 +1816,36 @@
                     </select>
             </td>
         </tr>
+        <tr>
+            <th>
+                <label for="show-stock-availability">Show stock availability</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="show-stock-availability" name="show-stock-availability" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="max-stock-availability">Max stock availability fallback</label>
+            </th>
+            <td>
+                <input type="text" id="max-stock-availability" name="max-stock-availability" class="text" value="100" />
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <small>This can be overridden on a product-by-product basis with the meta feild 'availability.max-stock-level' inside a product. Or on specific variants by using the meta feild 'availability.max-stock-level-[variant sku here]'.</small>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="colour-stock-availability">Colour stock availability as traffic light</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="colour-stock-availability" name="colour-stock-availability" value="1" /> Yes</label>
+            </td>
+        </tr>
     </table>
 </fieldset>
 <fieldset>
@@ -1879,6 +1909,22 @@
             </th>
             <td>
                 <label><input type="checkbox" id="show-compare-at-price" name="show-compare-at-price" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="quick-cart">Show Quick Cart</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="quick-cart" name="quick-cart" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="show-stock-availability-on-collection">Show products stock availability</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="show-stock-availability-on-collection" name="show-stock-availability-on-collection" value="1" /> Yes</label>
             </td>
         </tr>
         <tr>
@@ -2143,6 +2189,21 @@
                         Main content
                     </option>
                 </select>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="collection-fallback-page">Show a page when collections are empty</label>
+            </th>
+            <td>
+                <select id="collection-fallback-page" name="collection-fallback-page" class="page">
+                    </select>
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <small>If a collection is featured on the homepage but is empty, it will fallback to a selected page.</small>
             </td>
         </tr>
         <tr>

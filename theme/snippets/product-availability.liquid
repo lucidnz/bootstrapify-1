@@ -1,0 +1,72 @@
+{% if settings.show-stock-availability %}
+  {% assign max_stock = 100 %}
+  
+  {% if product-availability.metafields.availability.max-stock-level != blank %}
+    {% assign max_stock = product-availability.metafields.availability.max-stock-level | times: 1 %}
+  {% elsif settings.max-stock-availability != blank %}
+    {% assign max_stock = settings.max-stock-availability | times: 1 %}
+  {% endif %}
+  
+  {% capture availability_tag %}{% include '__localize' with 'max-stock-level' %}:{% endcapture %}
+  {% for tag in product-availability.tags %}
+    {% if tag contains availability_tag %}
+      {% assign max_stock = tag | replace: availability_tag,'' | times: 1 %}
+    {% endif %}
+  {% endfor %}
+  
+  {% capture availability %}{% endcapture %}
+  {% for v in product-availability.variants %}
+    {% if v.available %}
+      {% assign variant_max_stock = max_stock | times: 1 %}
+      
+      {% assign variant_max_stock_meta_name = v.sku | prepend: 'max-stock-level-' %}
+      {% if product-availability.metafields.availability[variant_max_stock_meta_name] != blank %}
+        {% assign variant_max_stock = product-availability.metafields.availability[variant_max_stock_meta_name] | times: 1 %}
+      {% endif %}
+  
+      {% capture variant_availability_tag %}{% include '__localize' with 'max-stock-level' %}-{{ v.sku }}:{% endcapture %}
+      {% for tag in product-availability.tags %}
+        {% if tag contains variant_availability_tag %}
+          {% assign variant_max_stock = tag | replace: variant_availability_tag,'' | times: 1 %}
+        {% endif %}
+      {% endfor %}
+      
+      {% assign qty = v.inventory_quantity | times: 100 %}
+      {% assign percent_left = qty | divided_by: variant_max_stock %}
+      
+      {% assign progress_class = 'progress-bar' %}
+      {% if settings.colour-stock-availability %}
+        {% if percent_left < 15 %}
+          {% assign progress_class = progress_class | append: ' progress-bar-danger' %}
+        {% elsif percent_left < 45 %}
+          {% assign progress_class = progress_class | append: ' progress-bar-warning' %}
+        {% else %}
+          {% assign progress_class = progress_class | append: ' progress-bar-success' %}
+        {% endif %}
+      {% endif %}
+      
+      {% capture availability %}
+      {{ availability }}
+      <li>
+        {% if forloop.length > 1 %}
+        <h4>{{ v.title }}</h4>
+        {% endif %}
+        <div class="progress">
+          <div class="{{ progress_class }}" role="progressbar" aria-valuenow="{{ percent_left }}" aria-valuemin="0" aria-valuemax="{{ variant_max_stock }}" style="width: {{ percent_left }}%;">
+            <span class="sr-only">{{ percent_left }}% Available</span>
+          </div>
+        </div>
+      </li>
+      {% endcapture %}
+    {% endif %}
+  {% endfor %}
+  
+  {% if availability != blank %}
+    <div class="availability">
+      <h3>Availability</h3>
+      <ul class="list-unstyled">
+        {{ availability }}
+      </ul>
+    </div>
+  {% endif %}
+{% endif %}

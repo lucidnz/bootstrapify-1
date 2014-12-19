@@ -9,19 +9,21 @@ var selectCallback = function(variant, selector){
   var priceField = $productWrap.find('.price-field');
   var quantityWrap = $productWrap.find('.quantity-wrap');
   var addToCartButtonWrap = $productWrap.find('.add-to-cart-button-wrap');
-  var saleField = $productWrap.find('.sale-label');
-  var compareAtPriceField = $productWrap.find('.compare-at-price-field');
+  var saleField = $productWrap.find('.label-sale');
+  var compareAtPrice = $productWrap.find('.compare-at-price');
   var $notifyForm = $productWrap.find('.notify-me-wrapper'); // Show/hide notify form
   
   var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
   var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
   var soldOutStr = '{% include '__localize' with 'Sold out' %}';
+  var onSaleStr = '{% include '__localize' with 'On Sale' %}';
+  var percentOffStr = '{% include '__localize' with '% off' %}';
       
   // disable purchase button
   purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);
   priceField.addClass('text-muted');
   saleField.hide();
-  compareAtPriceField.html('').hide();
+  compareAtPrice.hide().find('.compare-at-price-field').html('');
       
   if(variant){
     // we have a variant so update the price
@@ -32,7 +34,14 @@ var selectCallback = function(variant, selector){
     if(variant.compare_at_price > 0){
       // variant is on sale
       var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
-      compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
+      compareAtPrice.show().find('.compare-at-price-field').html('<span class="money">'+compareAtFormattedMoney+'</span>');
+      
+      {% if settings.show-on-sale-badge != 'as-text' %}
+      var priceDiff = variant.compare_at_price - variant.price;
+      var salePrice = Math.round((priceDiff / variant.compare_at_price) * 100);
+      saleField.html(salePrice + percentOffStr);
+      {% endif %}
+      
       saleField.show();
     }
         

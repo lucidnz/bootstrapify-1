@@ -1,0 +1,1391 @@
+/* Set up base Bootstrap and Bootstrapify variables with values from Shopify settings */
+
+/* Colours */
+
+  $brand-primary:   {% if settings.brand-primary != blank %} {{ settings.brand-primary }} {% else %} null {% endif %} !default;
+
+/* Scaffolding */
+// background colour for body
+       $body-bg:    {% if settings.background-colour != blank %} {{ settings.background-colour }} {% else %} null {% endif %} !default;
+  $border-color:    null !default;
+  @if $body-bg {
+  $border-color:    {% if settings.show-borders %} border-color($body-bg) {% else %} $body-bg {% endif %} !default;
+  }
+  $max-height-break: 800px;
+
+// Global text color on body
+{% if settings.text-colour != blank %}
+    $text-color:    {{ settings.text-colour }} !default;
+{% endif %}
+
+// Global link color on body
+{% if settings.link-colour != blank %}
+        $link-color:    {{ settings.link-colour }} !default;
+  $link-hover-color:    hover-colour( $link-color ) !default;
+{% endif %}
+
+
+/* Typography */
+// Global font family on body
+{% if settings.font-body-custom != blank %}
+  $font-family-base:    '{{ settings.font-body-custom | remove: "'" | remove: '"' }}'{% if settings.font-body != blank %},{{ settings.font-body }}{% endif %} !default;
+{% elsif settings.font-body != blank %}
+  $font-family-base:    {{ settings.font-body }} !default;
+{% endif %}
+
+// Global font size on body
+$font-size-base:    {% if settings.font-body-size != blank %} {{ settings.font-body-size }} {% else %} 14px {% endif %} !default;
+$font-weight: {% if settings.font-body-weight != blank %} {{ settings.font-body-weight }} {% else %} normal {% endif %} !default;
+$font-style:  {% if settings.font-body-style == 'italic' %} italic {% else %} normal {% endif %} !default;
+$text-transform: {% if settings.font-body-case == 'lowercase' or settings.font-body-case == 'uppercase' %} {{ settings.font-body-case }} {% elsif settings.font-body-case == 'title-case'%} capitalize {% else %} none {% endif %} !default;
+
+// Global heading font size on body
+// Work out sensible sizing for inbetween headings
+// h5 should always be the same as $font-size-base
+       $heading-size:   {% if settings.font-heading-size != blank %} {{ settings.font-heading-size }} {% else %} false {% endif %} !default;
+       // define variable scope
+       $font-size-h1:   null !default;
+       $font-size-h2:   null !default;
+       $font-size-h3:   null !default;
+       $font-size-h4:   null !default;
+       
+@if $heading-size {
+  $heading-size-step:   (($heading-size - $font-size-base) / 4) !default;
+       $font-size-h1:   $heading-size !default;
+       $font-size-h2:   floor(($heading-size - $heading-size-step)) !default;
+       $font-size-h3:   floor(($heading-size - ($heading-size-step * 2))) !default;
+       $font-size-h4:   floor(($heading-size - ($heading-size-step * 3))) !default;
+}
+
+// Fix rounding issue as sass var can only hold 5 decimal places (orig: 1.428571429)
+$line-height-base:    1.42858;
+
+// Font family for headings
+{% if settings.font-heading-custom != blank %}
+  $headings-font-family:    '{{ settings.font-heading-custom | remove: "'" | remove: '"' }}'{% if settings.font-heading != blank %},{{ settings.font-heading }}{% endif %} !default;
+{% elsif settings.font-heading != blank %}
+  $headings-font-family:    {{ settings.font-heading }} !default;
+{% endif %}
+
+// Font weight for headings
+{% if settings.font-heading-weight != blank %}
+  $headings-font-weight:    {{ settings.font-heading-weight }} !default;
+{% endif %}
+
+// Font colour for headings
+{% if settings.heading-colour != blank %}
+  $headings-color:    {{ settings.heading-colour }} !default;
+{% endif %}
+
+$headings-text-transform: {% if settings.font-heading-case == 'lowercase' or settings.font-heading-case == 'uppercase' %}{{ settings.font-heading-case }}{% elsif settings.font-heading-case == 'title-case'%}capitalize{% else %}none{% endif %} !default;
+
+/* Components */
+
+
+/* Tables */
+       $table-bg-accent:   null !default;
+        $table-bg-hover:   null !default;
+    $table-border-color:   null !default;
+@if $body-bg {
+       $table-bg-accent:   lighten($body-bg, 2%) !default;  // Background color used for `.table-striped`.
+        $table-bg-hover:   lighten($body-bg, 4%) !default;  // Background color used for `.table-hover`.
+    $table-border-color:   $border-color !default; // Border color for table and cell borders.
+}
+
+
+/* Buttons */
+   $btn-default-color:    null !default;
+      $btn-default-bg:    null !default;
+  $btn-default-border:    null !default;
+@if $body-bg {
+  {% if settings.text-colour != blank %}
+   $btn-default-color:    $text-color !default;
+  {% endif %}
+      $btn-default-bg:    darken($body-bg, 2%) !default;
+  $btn-default-border:    darken($body-bg, 5%) !default;
+}
+
+{% if settings.button-colour != blank %}
+       $btn-primary-bg:    {{ settings.button-colour }} !default;
+    $btn-primary-color:    {% if settings.button-text-colour != blank %} {{ settings.button-text-colour }} {% else %} text-colour($btn-primary-bg) {% endif %} !default;
+{% endif %}
+
+
+/* Forms */
+                 $input-bg:    null !default;
+              $input-color:    null !default;
+             $input-border:    null !default;
+       $input-border-focus:    null !default;
+  $input-color-placeholder:    null !default;
+             $legend-color:    null !default;
+      $legend-border-color:    null !default;
+     $input-group-addon-bg:    null !default;
+     
+@if $body-bg {
+                 $input-bg:    lighten($body-bg, 10%) !default;
+  {% if settings.text-colour != blank %}
+              $input-color:    $text-color !default;
+  {% endif %}
+             $input-border:    $border-color !default;
+  @if $brand-primary {
+       $input-border-focus:    $brand-primary !default;
+  }
+  $input-color-placeholder:    darken($input-bg, 15%) !default;
+  
+  {% if settings.text-colour != blank %}
+             $legend-color:    $text-color !default;
+  {% endif %}
+      $legend-border-color:    $border-color !default;
+
+     // Background color for textual input addons
+     $input-group-addon-bg:    $body-bg !default;
+}
+
+
+/* Dropdowns */
+{% if settings.navbar-background-colour != blank %}
+  $dropdown-bg:    lighten({{ settings.navbar-background-colour }}, 80%) !default;
+{% else %}
+  $dropdown-bg:    null !default;
+  @if $body-bg { $dropdown-bg: lighten($body-bg, 80%) !default; }
+{% endif %}
+                   
+           $dropdown-divider-bg:    null !default;
+           $dropdown-link-color:    null !default;
+     $dropdown-link-hover-color:    null !default;
+  $dropdown-link-disabled-color:    null !default;
+         $dropdown-header-color:    null !default;
+        $dropdown-link-hover-bg:    null !default;
+@if $dropdown-bg {
+           $dropdown-divider-bg:    darken($dropdown-bg, 5%) !default;
+  {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
+           $dropdown-link-color:    darken({% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %}, 80%) !default;
+     $dropdown-link-hover-color:    hover-colour( $dropdown-link-color ) !default;
+  $dropdown-link-disabled-color:    lighten($dropdown-link-color, 5%) !default;
+         $dropdown-header-color:    lighten($dropdown-link-color, 5%) !default;
+  {% endif %}
+        $dropdown-link-hover-bg:    darken($dropdown-bg, 10%) !default;
+}
+
+/* Media queries breakpoints */
+{% if settings.container-width-small-devices != blank %}
+  {% assign small_container = settings.container-width-small-devices | remove: 'px' | times: 1 %}
+  {% if small_container > 768 %} /* 768: bootstrap default $screen-sm-min */
+    $screen-md-min:   {{ small_container | plus: 1 }}px !default;
+  {% endif %}
+{% endif %}
+{% if settings.container-width-medium-devices != blank %}
+  {% assign medium_container = settings.container-width-medium-devices | remove: 'px' | times: 1 %}
+  {% if medium_container > 992 %} /* 992: bootstrap default $screen-md-min */
+    $screen-md-min:   {{ medium_container | plus: 1 }}px !default;
+  {% endif %}
+{% endif %}
+{% if settings.container-width-large-devices != blank %}
+  {% assign large_container = settings.container-width-large-devices | remove: 'px' | times: 1 %}
+  {% if large_container > 1200 %} /* 1200: bootstrap default $screen-lg-min */
+    $screen-lg-min:   {{ large_container | plus: 1 }}px !default;
+  {% endif %}
+{% endif %}
+
+/* Container sizes */
+{% if settings.container-width-small-devices != blank %}
+  $container-sm:    {{ settings.container-width-small-devices }} !default;
+{% endif %}
+{% if settings.container-width-medium-devices != blank %}
+  $container-md:    {{ settings.container-width-medium-devices }} !default;
+{% endif %}
+{% if settings.container-width-large-devices != blank %}
+  $container-lg:    {{ settings.container-width-large-devices }} !default;
+{% endif %}
+
+
+/* Navbar */
+/*                    $navbar-default-bg:    {% if settings.navbar-background-colour != blank %} {{ settings.navbar-background-colour }} {% else %} if($body-bg, desaturate(darken($body-bg, 1.5%), 15%), null) {% endif %} !default; */
+{% if settings.navbar-background-colour != blank %}
+  $navbar-default-bg:   {{ settings.navbar-background-colour }} !default;
+{% else %}
+  $navbar-default-bg:   null !default;
+  @if $body-bg { $navbar-default-bg: desaturate(darken($body-bg, 1.5%), 15%) !default; }
+{% endif %}
+
+                $navbar-default-color:    null !default;
+               $navbar-default-border:    null !default;
+       $navbar-default-link-active-bg:    null !default;
+      $navbar-default-toggle-hover-bg:    null !default;
+   $navbar-default-toggle-icon-bar-bg:    null !default;
+  $navbar-default-toggle-border-color:    null !default;
+@if $navbar-default-bg {
+  {% if settings.navbar-background-colour != blank or settings.text-colour != blank %}
+                $navbar-default-color:    {% if settings.navbar-background-colour != blank %} text-colour({{ settings.navbar-background-colour }}, 80%) {% else %} $text-color {% endif %} !default;
+               $navbar-default-border:    darken($navbar-default-bg, 5%) !default;
+       $navbar-default-link-active-bg:    darken($navbar-default-bg, 5%) !default;
+            // Navbar toggle
+      $navbar-default-toggle-hover-bg:    darken($navbar-default-bg, 5%) !default;
+   $navbar-default-toggle-icon-bar-bg:    text-muted($navbar-default-color) !default;
+  $navbar-default-toggle-border-color:    darken($navbar-default-bg, 5%) !default;
+  {% endif %}
+}
+              // Navbar brand label
+          $navbar-default-brand-color:    null !default;
+    $navbar-default-brand-hover-color:    null !default;
+  @if $brand-primary {
+          $navbar-default-brand-color:    $brand-primary !default;
+    $navbar-default-brand-hover-color:    hover-colour($navbar-default-brand-color, 10%) !default;
+  }
+
+  {% if settings.navbar-link-colour != blank or settings.link-colour != blank %}
+           $navbar-default-link-color:    {% if settings.navbar-link-colour != blank %} {{ settings.navbar-link-colour }} {% else %} $link-color {% endif %} !default; 
+     $navbar-default-link-hover-color:    hover-colour($navbar-default-link-color) !default;
+    $navbar-default-link-active-color:    hover-colour($navbar-default-link-color) !default;
+  $navbar-default-link-disabled-color:    lighten($navbar-default-link-color, 5%) !default;
+  {% endif %}
+
+/* Navs */
+                        $nav-link-hover-bg:   null !default;
+                    $nav-tabs-border-color:   null !default;
+         $nav-tabs-link-hover-border-color:   null !default;
+         $nav-tabs-active-link-hover-color:   null !default;
+  $nav-tabs-active-link-hover-border-color:   null !default;
+     $nav-tabs-justified-link-border-color:   null !default;
+@if $body-bg {
+                        $nav-link-hover-bg:   darken($body-bg, 10%) !default;
+  
+                      // Tabs
+                    $nav-tabs-border-color:   border-color($body-bg) !default;
+         $nav-tabs-link-hover-border-color:   $nav-link-hover-bg !default;
+  {% if settings.text-colour != blank %}
+         $nav-tabs-active-link-hover-color:   $text-color !default;
+  {% endif %}
+  $nav-tabs-active-link-hover-border-color:   $nav-tabs-border-color !default;
+     $nav-tabs-justified-link-border-color:   $nav-tabs-border-color !default;
+}
+
+
+/* Pagination */
+               $pagination-bg:    null !default;
+           $pagination-border:    null !default;
+         $pagination-hover-bg:    null !default;
+     $pagination-hover-border:    null !default;
+     $pagination-active-color:    null !default;
+   $pagination-disabled-color:    null !default;
+      $pagination-disabled-bg:    null !default;
+  $pagination-disabled-border:    null !default;
+  
+@if $body-bg {
+               $pagination-bg:    $body-bg !default;
+           $pagination-border:    darken($body-bg, 5%) !default;
+  
+         $pagination-hover-bg:    darken($body-bg, 10%) !default;
+     $pagination-hover-border:    $pagination-border !default;
+  {% if settings.link-colour != blank %}
+     $pagination-active-color:    text-colour($link-color) !default;
+  {% endif %}
+  {% if settings.text-colour != blank %}
+   $pagination-disabled-color:    lighten($text-color, 5%) !default;
+  {% endif %}
+      $pagination-disabled-bg:    $body-bg !default;
+  $pagination-disabled-border:    $pagination-border !default;
+}
+
+
+/* Pager - inherits from Pagination */
+
+
+/* Jumbotron */
+  $jumbotron-bg:    null !default;
+@if $body-bg {
+  $jumbotron-bg:    darken($body-bg, 5%) !default;
+}
+
+
+/* Thumbnails */
+  {% if settings.show-borders %}
+               $thumbnail-bg:   #fff !default;
+           $thumbnail-border:   $border-color !default;  
+  {% else %}
+               $thumbnail-bg:   transparent !default;
+           $thumbnail-border:   transparent !default;
+          $thumbnail-padding:   0px !default;
+    $thumbnail-border-radius:   0px !default;
+  {% endif %}
+
+
+/* Wells */
+{% if settings.background-colour != blank %}
+      $well-bg:   rgba(darken($body-bg, 3%), .5) !default;
+  $well-border:   $border-color !default;
+{% endif %}
+
+
+/* Breadcrumbs */
+            $breadcrumb-bg:   null !default;
+         $breadcrumb-color:   null !default;
+  $breadcrumb-active-color:   null !default;
+  
+@if $body-bg {
+            $breadcrumb-bg:   rgba(darken($body-bg, 3%), .5) !default;
+  {% if settings.text-colour != blank %}
+         $breadcrumb-color:   lighten($text-color, 15%) !default;
+  $breadcrumb-active-color:   text-muted($text-color) !default;
+  {% endif %}
+}
+
+
+/* Type */
+
+                $text-muted:    null !default;
+      $headings-small-color:    null !default;
+    $blockquote-small-color:    null !default;
+               $close-color:    null !default;
+         $close-text-shadow:    null !default;
+   $blockquote-border-color:    null !default;
+         $abbr-border-color:    null !default;
+  $page-header-border-color:    null !default;
+  
+@if $body-bg {
+{% if settings.text-colour != blank %}
+                $text-muted:    text-muted($text-color) !default;
+      $headings-small-color:    $text-muted !default;
+    $blockquote-small-color:    $text-muted !default;
+               $close-color:    $text-color !default;
+         $close-text-shadow:    0 1px 0 rgba(if(lightness($body-bg) > 60%, lighten($body-bg, 100%), darken($body-bg, 100%)), .25) !default;
+{% endif %}
+   $blockquote-border-color:    border-color($body-bg) !default;
+         $abbr-border-color:    $border-color !default;
+  $page-header-border-color:    $border-color !default;
+}
+
+/* Miscellaneous */
+  $hr-border:    null !default;
+@if $body-bg {
+  $hr-border:   border-color($body-bg) !default;
+}
+  
+  
+/* Footer */
+$footer-bg:             {% if settings.footer-background-colour != blank %} {{ settings.footer-background-colour }} {% else %} false {% endif %} !default;
+$footer-headings-color: {% if settings.footer-heading-colour != blank %} {{ settings.footer-heading-colour }} {% else %} false {% endif %} !default;
+$footer-link-color:     {% if settings.footer-link-colour != blank %} {{ settings.footer-link-colour }} {% else %} false {% endif %} !default;
+$footer-text-color:     {% if settings.footer-text-colour != blank %} {{ settings.footer-text-colour }} {% else %} false {% endif %} !default;
+
+{% unless settings.sass-variables == blank %}{{ settings.sass-variables }}{% endunless %}
+// When true, asset path helpers are used, otherwise the regular CSS `url()` is used.
+// When there no function is defined, `fn('')` is parsed as string that equals the right hand side
+// NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
+$bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
+
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-darker:            lighten(#000, 13.5%) !default; // #222
+$gray-dark:              lighten(#000, 20%) !default;   // #333
+$gray:                   lighten(#000, 33.5%) !default; // #555
+$gray-light:             lighten(#000, 46.7%) !default; // #777
+$gray-lighter:           lighten(#000, 93.5%) !default; // #eee
+
+$brand-primary:         #428bca !default;
+$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:               #fff !default;
+//** Global text color on `<body>`.
+$text-color:            $gray-dark !default;
+
+//** Global textual link color.
+$link-color:            $brand-primary !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%) !default;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+
+$font-size-base:          14px !default;
+$font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$font-size-h1:            floor(($font-size-base * 2.6)) !default; // ~36px
+$font-size-h2:            floor(($font-size-base * 2.15)) !default; // ~30px
+$font-size-h3:            ceil(($font-size-base * 1.7)) !default; // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-h5:            $font-size-base !default;
+$font-size-h6:            ceil(($font-size-base * 0.85)) !default; // ~12px
+
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-base:        1.428571429 !default; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+$line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
+
+//** By default, this inherits from the `<body>`.
+$headings-font-family:    inherit !default;
+$headings-font-weight:    500 !default;
+$headings-line-height:    1.1 !default;
+$headings-color:          inherit !default;
+
+
+//== Iconography
+//
+//## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
+
+//** Load fonts from this directory.
+
+// [converter] Asset helpers such as Sprockets and Node.js Mincer do not resolve relative paths
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default;
+
+//** File name for all font files.
+$icon-font-name:          "glyphicons-halflings-regular" !default;
+//** Element ID within SVG icon file.
+$icon-font-svg-id:        "glyphicons_halflingsregular" !default;
+
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+$padding-base-vertical:     6px !default;
+$padding-base-horizontal:   12px !default;
+
+$padding-large-vertical:    10px !default;
+$padding-large-horizontal:  16px !default;
+
+$padding-small-vertical:    5px !default;
+$padding-small-horizontal:  10px !default;
+
+$padding-xs-vertical:       1px !default;
+$padding-xs-horizontal:     5px !default;
+
+$line-height-large:         1.33 !default;
+$line-height-small:         1.5 !default;
+
+$border-radius-base:        4px !default;
+$border-radius-large:       6px !default;
+$border-radius-small:       3px !default;
+
+//** Global color for active items (e.g., navs or dropdowns).
+$component-active-color:    #fff !default;
+//** Global background color for active items (e.g., navs or dropdowns).
+$component-active-bg:       $brand-primary !default;
+
+//** Width of the `border` for generating carets that indicator dropdowns.
+$caret-width-base:          4px !default;
+//** Carets increase slightly in size for larger components.
+$caret-width-large:         5px !default;
+
+
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+
+//** Padding for `<th>`s and `<td>`s.
+$table-cell-padding:            8px !default;
+//** Padding for cells in `.table-condensed`.
+$table-condensed-cell-padding:  5px !default;
+
+//** Default background color used for all tables.
+$table-bg:                      transparent !default;
+//** Background color used for `.table-striped`.
+$table-bg-accent:               #f9f9f9 !default;
+//** Background color used for `.table-hover`.
+$table-bg-hover:                #f5f5f5 !default;
+$table-bg-active:               $table-bg-hover !default;
+
+//** Border color for table and cell borders.
+$table-border-color:            #ddd !default;
+
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-font-weight:                normal !default;
+
+$btn-default-color:              #333 !default;
+$btn-default-bg:                 #fff !default;
+$btn-default-border:             #ccc !default;
+
+$btn-primary-color:              #fff !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border:             darken($btn-primary-bg, 5%) !default;
+
+$btn-success-color:              #fff !default;
+$btn-success-bg:                 $brand-success !default;
+$btn-success-border:             darken($btn-success-bg, 5%) !default;
+
+$btn-info-color:                 #fff !default;
+$btn-info-bg:                    $brand-info !default;
+$btn-info-border:                darken($btn-info-bg, 5%) !default;
+
+$btn-warning-color:              #fff !default;
+$btn-warning-bg:                 $brand-warning !default;
+$btn-warning-border:             darken($btn-warning-bg, 5%) !default;
+
+$btn-danger-color:               #fff !default;
+$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-border:              darken($btn-danger-bg, 5%) !default;
+
+$btn-link-disabled-color:        $gray-light !default;
+
+
+//== Forms
+//
+//##
+
+//** `<input>` background color
+$input-bg:                       #fff !default;
+//** `<input disabled>` background color
+$input-bg-disabled:              $gray-lighter !default;
+
+//** Text color for `<input>`s
+$input-color:                    $gray !default;
+//** `<input>` border color
+$input-border:                   #ccc !default;
+//** `<input>` border radius
+$input-border-radius:            $border-radius-base !default;
+//** Border color for inputs on focus
+$input-border-focus:             #66afe9 !default;
+
+//** Placeholder text color
+$input-color-placeholder:        $gray-light !default;
+
+//** Default `.form-control` height
+$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
+//** Large `.form-control` height
+$input-height-large:             (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
+//** Small `.form-control` height
+$input-height-small:             (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
+
+$legend-color:                   $gray-dark !default;
+$legend-border-color:            #e5e5e5 !default;
+
+//** Background color for textual input addons
+$input-group-addon-bg:           $gray-lighter !default;
+//** Border color for textual input addons
+$input-group-addon-border-color: $input-border !default;
+
+
+//== Dropdowns
+//
+//## Dropdown menu container and contents.
+
+//** Background for the dropdown menu.
+$dropdown-bg:                    #fff !default;
+//** Dropdown menu `border-color`.
+$dropdown-border:                rgba(0,0,0,.15) !default;
+//** Dropdown menu `border-color` **for IE8**.
+$dropdown-fallback-border:       #ccc !default;
+//** Divider color for between dropdown items.
+$dropdown-divider-bg:            #e5e5e5 !default;
+
+//** Dropdown link text color.
+$dropdown-link-color:            $gray-dark !default;
+//** Hover color for dropdown links.
+$dropdown-link-hover-color:      darken($gray-dark, 5%) !default;
+//** Hover background for dropdown links.
+$dropdown-link-hover-bg:         #f5f5f5 !default;
+
+//** Active dropdown menu item text color.
+$dropdown-link-active-color:     $component-active-color !default;
+//** Active dropdown menu item background color.
+$dropdown-link-active-bg:        $component-active-bg !default;
+
+//** Disabled dropdown menu item background color.
+$dropdown-link-disabled-color:   $gray-light !default;
+
+//** Text color for headers within dropdown menus.
+$dropdown-header-color:          $gray-light !default;
+
+//** Deprecated `$dropdown-caret-color` as of v3.1.0
+$dropdown-caret-color:           #000 !default;
+
+
+//-- Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+//
+// Note: These variables are not generated into the Customizer.
+
+$zindex-navbar:            1000 !default;
+$zindex-dropdown:          1000 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;
+$zindex-navbar-fixed:      1030 !default;
+$zindex-modal-background:  1040 !default;
+$zindex-modal:             1050 !default;
+
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+//** Deprecated `$screen-xs` as of v3.0.1
+$screen-xs:                  480px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min:              $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+$grid-columns:              12 !default;
+//** Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:         30px !default;
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint:     $screen-sm-min !default;
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
+
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+// Small screen / tablet
+$container-tablet:             ((720px + $grid-gutter-width)) !default;
+//** For `$screen-sm-min` and up.
+$container-sm:                 $container-tablet !default;
+
+// Medium screen / desktop
+$container-desktop:            ((940px + $grid-gutter-width)) !default;
+//** For `$screen-md-min` and up.
+$container-md:                 $container-desktop !default;
+
+// Large screen / wide desktop
+$container-large-desktop:      ((1140px + $grid-gutter-width)) !default;
+//** For `$screen-lg-min` and up.
+$container-lg:                 $container-large-desktop !default;
+
+
+//== Navbar
+//
+//##
+
+// Basics of a navbar
+$navbar-height:                    50px !default;
+$navbar-margin-bottom:             $line-height-computed !default;
+$navbar-border-radius:             $border-radius-base !default;
+$navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
+$navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
+$navbar-collapse-max-height:       340px !default;
+
+$navbar-default-color:             #777 !default;
+$navbar-default-bg:                #f8f8f8 !default;
+$navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
+
+// Navbar links
+$navbar-default-link-color:                #777 !default;
+$navbar-default-link-hover-color:          #333 !default;
+$navbar-default-link-hover-bg:             transparent !default;
+$navbar-default-link-active-color:         #555 !default;
+$navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%) !default;
+$navbar-default-link-disabled-color:       #ccc !default;
+$navbar-default-link-disabled-bg:          transparent !default;
+
+// Navbar brand label
+$navbar-default-brand-color:               $navbar-default-link-color !default;
+$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
+$navbar-default-brand-hover-bg:            transparent !default;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:           #ddd !default;
+$navbar-default-toggle-icon-bar-bg:        #888 !default;
+$navbar-default-toggle-border-color:       #ddd !default;
+
+
+// Inverted navbar
+// Reset inverted navbar basics
+$navbar-inverse-color:                      $gray-light !default;
+$navbar-inverse-bg:                         #222 !default;
+$navbar-inverse-border:                     darken($navbar-inverse-bg, 10%) !default;
+
+// Inverted navbar links
+$navbar-inverse-link-color:                 $gray-light !default;
+$navbar-inverse-link-hover-color:           #fff !default;
+$navbar-inverse-link-hover-bg:              transparent !default;
+$navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color !default;
+$navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 10%) !default;
+$navbar-inverse-link-disabled-color:        #444 !default;
+$navbar-inverse-link-disabled-bg:           transparent !default;
+
+// Inverted navbar brand label
+$navbar-inverse-brand-color:                $navbar-inverse-link-color !default;
+$navbar-inverse-brand-hover-color:          #fff !default;
+$navbar-inverse-brand-hover-bg:             transparent !default;
+
+// Inverted navbar toggle
+$navbar-inverse-toggle-hover-bg:            #333 !default;
+$navbar-inverse-toggle-icon-bar-bg:         #fff !default;
+$navbar-inverse-toggle-border-color:        #333 !default;
+
+
+//== Navs
+//
+//##
+
+//=== Shared nav styles
+$nav-link-padding:                          10px 15px !default;
+$nav-link-hover-bg:                         $gray-lighter !default;
+
+$nav-disabled-link-color:                   $gray-light !default;
+$nav-disabled-link-hover-color:             $gray-light !default;
+
+$nav-open-link-hover-color:                 #fff !default;
+
+//== Tabs
+$nav-tabs-border-color:                     #ddd !default;
+
+$nav-tabs-link-hover-border-color:          $gray-lighter !default;
+
+$nav-tabs-active-link-hover-bg:             $body-bg !default;
+$nav-tabs-active-link-hover-color:          $gray !default;
+$nav-tabs-active-link-hover-border-color:   #ddd !default;
+
+$nav-tabs-justified-link-border-color:            #ddd !default;
+$nav-tabs-justified-active-link-border-color:     $body-bg !default;
+
+//== Pills
+$nav-pills-border-radius:                   $border-radius-base !default;
+$nav-pills-active-link-hover-bg:            $component-active-bg !default;
+$nav-pills-active-link-hover-color:         $component-active-color !default;
+
+
+//== Pagination
+//
+//##
+
+$pagination-color:                     $link-color !default;
+$pagination-bg:                        #fff !default;
+$pagination-border:                    #ddd !default;
+
+$pagination-hover-color:               $link-hover-color !default;
+$pagination-hover-bg:                  $gray-lighter !default;
+$pagination-hover-border:              #ddd !default;
+
+$pagination-active-color:              #fff !default;
+$pagination-active-bg:                 $brand-primary !default;
+$pagination-active-border:             $brand-primary !default;
+
+$pagination-disabled-color:            $gray-light !default;
+$pagination-disabled-bg:               #fff !default;
+$pagination-disabled-border:           #ddd !default;
+
+
+//== Pager
+//
+//##
+
+$pager-bg:                             $pagination-bg !default;
+$pager-border:                         $pagination-border !default;
+$pager-border-radius:                  15px !default;
+
+$pager-hover-bg:                       $pagination-hover-bg !default;
+
+$pager-active-bg:                      $pagination-active-bg !default;
+$pager-active-color:                   $pagination-active-color !default;
+
+$pager-disabled-color:                 $pagination-disabled-color !default;
+
+
+//== Jumbotron
+//
+//##
+
+$jumbotron-padding:              30px !default;
+$jumbotron-color:                inherit !default;
+$jumbotron-bg:                   $gray-lighter !default;
+$jumbotron-heading-color:        inherit !default;
+$jumbotron-font-size:            ceil(($font-size-base * 1.5)) !default;
+
+
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+
+$state-success-text:             #3c763d !default;
+$state-success-bg:               #dff0d8 !default;
+$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%) !default;
+
+$state-info-text:                #31708f !default;
+$state-info-bg:                  #d9edf7 !default;
+$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%) !default;
+
+$state-warning-text:             #8a6d3b !default;
+$state-warning-bg:               #fcf8e3 !default;
+$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
+
+$state-danger-text:              #a94442 !default;
+$state-danger-bg:                #f2dede !default;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;
+
+
+//== Tooltips
+//
+//##
+
+//** Tooltip max width
+$tooltip-max-width:           200px !default;
+//** Tooltip text color
+$tooltip-color:               #fff !default;
+//** Tooltip background color
+$tooltip-bg:                  #000 !default;
+$tooltip-opacity:             .9 !default;
+
+//** Tooltip arrow width
+$tooltip-arrow-width:         5px !default;
+//** Tooltip arrow color
+$tooltip-arrow-color:         $tooltip-bg !default;
+
+
+//== Popovers
+//
+//##
+
+//** Popover body background color
+$popover-bg:                          #fff !default;
+//** Popover maximum width
+$popover-max-width:                   276px !default;
+//** Popover border color
+$popover-border-color:                rgba(0,0,0,.2) !default;
+//** Popover fallback border color
+$popover-fallback-border-color:       #ccc !default;
+
+//** Popover title background color
+$popover-title-bg:                    darken($popover-bg, 3%) !default;
+
+//** Popover arrow width
+$popover-arrow-width:                 10px !default;
+//** Popover arrow color
+$popover-arrow-color:                 #fff !default;
+
+//** Popover outer arrow width
+$popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
+//** Popover outer arrow color
+$popover-arrow-outer-color:           fade_in($popover-border-color, 0.05) !default;
+//** Popover outer arrow fallback color
+$popover-arrow-outer-fallback-color:  darken($popover-fallback-border-color, 20%) !default;
+
+
+//== Labels
+//
+//##
+
+//** Default label background color
+$label-default-bg:            $gray-light !default;
+//** Primary label background color
+$label-primary-bg:            $brand-primary !default;
+//** Success label background color
+$label-success-bg:            $brand-success !default;
+//** Info label background color
+$label-info-bg:               $brand-info !default;
+//** Warning label background color
+$label-warning-bg:            $brand-warning !default;
+//** Danger label background color
+$label-danger-bg:             $brand-danger !default;
+
+//** Default label text color
+$label-color:                 #fff !default;
+//** Default text color of a linked label
+$label-link-hover-color:      #fff !default;
+
+
+//== Modals
+//
+//##
+
+//** Padding applied to the modal body
+$modal-inner-padding:         15px !default;
+
+//** Padding applied to the modal title
+$modal-title-padding:         15px !default;
+//** Modal title line-height
+$modal-title-line-height:     $line-height-base !default;
+
+//** Background color of modal content area
+$modal-content-bg:                             #fff !default;
+//** Modal content border color
+$modal-content-border-color:                   rgba(0,0,0,.2) !default;
+//** Modal content border color **for IE8**
+$modal-content-fallback-border-color:          #999 !default;
+
+//** Modal backdrop background color
+$modal-backdrop-bg:           #000 !default;
+//** Modal backdrop opacity
+$modal-backdrop-opacity:      .5 !default;
+//** Modal header border color
+$modal-header-border-color:   #e5e5e5 !default;
+//** Modal footer border color
+$modal-footer-border-color:   $modal-header-border-color !default;
+
+$modal-lg:                    900px !default;
+$modal-md:                    600px !default;
+$modal-sm:                    300px !default;
+
+
+//== Alerts
+//
+//## Define alert colors, border radius, and padding.
+
+$alert-padding:               15px !default;
+$alert-border-radius:         $border-radius-base !default;
+$alert-link-font-weight:      bold !default;
+
+$alert-success-bg:            $state-success-bg !default;
+$alert-success-text:          $state-success-text !default;
+$alert-success-border:        $state-success-border !default;
+
+$alert-info-bg:               $state-info-bg !default;
+$alert-info-text:             $state-info-text !default;
+$alert-info-border:           $state-info-border !default;
+
+$alert-warning-bg:            $state-warning-bg !default;
+$alert-warning-text:          $state-warning-text !default;
+$alert-warning-border:        $state-warning-border !default;
+
+$alert-danger-bg:             $state-danger-bg !default;
+$alert-danger-text:           $state-danger-text !default;
+$alert-danger-border:         $state-danger-border !default;
+
+
+//== Progress bars
+//
+//##
+
+//** Background color of the whole progress component
+$progress-bg:                 #f5f5f5 !default;
+//** Progress bar text color
+$progress-bar-color:          #fff !default;
+
+//** Default progress bar color
+$progress-bar-bg:             $brand-primary !default;
+//** Success progress bar color
+$progress-bar-success-bg:     $brand-success !default;
+//** Warning progress bar color
+$progress-bar-warning-bg:     $brand-warning !default;
+//** Danger progress bar color
+$progress-bar-danger-bg:      $brand-danger !default;
+//** Info progress bar color
+$progress-bar-info-bg:        $brand-info !default;
+
+
+//== List group
+//
+//##
+
+//** Background color on `.list-group-item`
+$list-group-bg:                 #fff !default;
+//** `.list-group-item` border color
+$list-group-border:             #ddd !default;
+//** List group border radius
+$list-group-border-radius:      $border-radius-base !default;
+
+//** Background color of single list items on hover
+$list-group-hover-bg:           #f5f5f5 !default;
+//** Text color of active list items
+$list-group-active-color:       $component-active-color !default;
+//** Background color of active list items
+$list-group-active-bg:          $component-active-bg !default;
+//** Border color of active list elements
+$list-group-active-border:      $list-group-active-bg !default;
+//** Text color for content within active list items
+$list-group-active-text-color:  lighten($list-group-active-bg, 40%) !default;
+
+//** Text color of disabled list items
+$list-group-disabled-color:      $gray-light !default;
+//** Background color of disabled list items
+$list-group-disabled-bg:         $gray-lighter !default;
+//** Text color for content within disabled list items
+$list-group-disabled-text-color: $list-group-disabled-color !default;
+
+$list-group-link-color:         #555 !default;
+$list-group-link-hover-color:   $list-group-link-color !default;
+$list-group-link-heading-color: #333 !default;
+
+
+//== Panels
+//
+//##
+
+$panel-bg:                    #fff !default;
+$panel-body-padding:          15px !default;
+$panel-heading-padding:       10px 15px !default;
+$panel-footer-padding:        $panel-heading-padding !default;
+$panel-border-radius:         $border-radius-base !default;
+
+//** Border color for elements within panels
+$panel-inner-border:          #ddd !default;
+$panel-footer-bg:             #f5f5f5 !default;
+
+$panel-default-text:          $gray-dark !default;
+$panel-default-border:        #ddd !default;
+$panel-default-heading-bg:    #f5f5f5 !default;
+
+$panel-primary-text:          #fff !default;
+$panel-primary-border:        $brand-primary !default;
+$panel-primary-heading-bg:    $brand-primary !default;
+
+$panel-success-text:          $state-success-text !default;
+$panel-success-border:        $state-success-border !default;
+$panel-success-heading-bg:    $state-success-bg !default;
+
+$panel-info-text:             $state-info-text !default;
+$panel-info-border:           $state-info-border !default;
+$panel-info-heading-bg:       $state-info-bg !default;
+
+$panel-warning-text:          $state-warning-text !default;
+$panel-warning-border:        $state-warning-border !default;
+$panel-warning-heading-bg:    $state-warning-bg !default;
+
+$panel-danger-text:           $state-danger-text !default;
+$panel-danger-border:         $state-danger-border !default;
+$panel-danger-heading-bg:     $state-danger-bg !default;
+
+
+//== Thumbnails
+//
+//##
+
+//** Padding around the thumbnail image
+$thumbnail-padding:           4px !default;
+//** Thumbnail background color
+$thumbnail-bg:                $body-bg !default;
+//** Thumbnail border color
+$thumbnail-border:            #ddd !default;
+//** Thumbnail border radius
+$thumbnail-border-radius:     $border-radius-base !default;
+
+//** Custom text color for thumbnail captions
+$thumbnail-caption-color:     $text-color !default;
+//** Padding around the thumbnail caption
+$thumbnail-caption-padding:   9px !default;
+
+
+//== Wells
+//
+//##
+
+$well-bg:                     #f5f5f5 !default;
+$well-border:                 darken($well-bg, 7%) !default;
+
+
+//== Badges
+//
+//##
+
+$badge-color:                 #fff !default;
+//** Linked badge text color on hover
+$badge-link-hover-color:      #fff !default;
+$badge-bg:                    $gray-light !default;
+
+//** Badge text color in active nav link
+$badge-active-color:          $link-color !default;
+//** Badge background color in active nav link
+$badge-active-bg:             #fff !default;
+
+$badge-font-weight:           bold !default;
+$badge-line-height:           1 !default;
+$badge-border-radius:         10px !default;
+
+
+//== Breadcrumbs
+//
+//##
+
+$breadcrumb-padding-vertical:   8px !default;
+$breadcrumb-padding-horizontal: 15px !default;
+//** Breadcrumb background color
+$breadcrumb-bg:                 #f5f5f5 !default;
+//** Breadcrumb text color
+$breadcrumb-color:              #ccc !default;
+//** Text color of current page in the breadcrumb
+$breadcrumb-active-color:       $gray-light !default;
+//** Textual separator for between breadcrumb elements
+$breadcrumb-separator:          "/" !default;
+
+
+//== Carousel
+//
+//##
+
+$carousel-text-shadow:                        0 1px 2px rgba(0,0,0,.6) !default;
+
+$carousel-control-color:                      #fff !default;
+$carousel-control-width:                      15% !default;
+$carousel-control-opacity:                    .5 !default;
+$carousel-control-font-size:                  20px !default;
+
+$carousel-indicator-active-bg:                #fff !default;
+$carousel-indicator-border-color:             #fff !default;
+
+$carousel-caption-color:                      #fff !default;
+
+
+//== Close
+//
+//##
+
+$close-font-weight:           bold !default;
+$close-color:                 #000 !default;
+$close-text-shadow:           0 1px 0 #fff !default;
+
+
+//== Code
+//
+//##
+
+$code-color:                  #c7254e !default;
+$code-bg:                     #f9f2f4 !default;
+
+$kbd-color:                   #fff !default;
+$kbd-bg:                      #333 !default;
+
+$pre-bg:                      #f5f5f5 !default;
+$pre-color:                   $gray-dark !default;
+$pre-border-color:            #ccc !default;
+$pre-scrollable-max-height:   340px !default;
+
+
+//== Type
+//
+//##
+
+//** Horizontal offset for forms and lists.
+$component-offset-horizontal: 180px !default;
+//** Text muted color
+$text-muted:                  $gray-light !default;
+//** Abbreviations and acronyms border color
+$abbr-border-color:           $gray-light !default;
+//** Headings small color
+$headings-small-color:        $gray-light !default;
+//** Blockquote small color
+$blockquote-small-color:      $gray-light !default;
+//** Blockquote font size
+$blockquote-font-size:        ($font-size-base * 1.25) !default;
+//** Blockquote border color
+$blockquote-border-color:     $gray-lighter !default;
+//** Page header border color
+$page-header-border-color:    $gray-lighter !default;
+//** Width of horizontal description list titles
+$dl-horizontal-offset:        $component-offset-horizontal !default;
+//** Horizontal line color.
+$hr-border:                   $gray-lighter !default;
+
+
+
+// Form validation states
+//
+// Used in forms.less to generate the form validation CSS for warnings, errors,
+// and successes.
+
+@mixin form-control-validation($text-color: #555, $border-color: #ccc, $background-color: #f5f5f5) {
+  // Color the label and help text
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline  {
+    color: $text-color;
+  }
+  // Set the border and box shadow on specific inputs to match
+  .form-control {
+    border-color: $border-color;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075)); // Redeclare so transitions work
+    &:focus {
+      border-color: darken($border-color, 10%);
+      $shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten($border-color, 20%);
+      @include box-shadow($shadow);
+    }
+  }
+  // Set validation states also for addons
+  .input-group-addon {
+    color: $text-color;
+    border-color: $border-color;
+    background-color: $background-color;
+  }
+  // Optional feedback icon
+  .form-control-feedback {
+    color: $text-color;
+  }
+}
+
+
+// Form control focus state
+//
+// Generate a customized focus state and for any input with the specified color,
+// which defaults to the `$input-border-focus` variable.
+//
+// We highly encourage you to not customize the default value, but instead use
+// this to tweak colors on an as-needed basis. This aesthetic change is based on
+// WebKit's default styles, but applicable to a wider range of browsers. Its
+// usability and accessibility should be taken into account with any change.
+//
+// Example usage: change the default blue border and shadow to white for better
+// contrast against a dark gray background.
+@mixin form-control-focus($color: $input-border-focus) {
+  $color-rgba: rgba(red($color), green($color), blue($color), .6);
+  &:focus {
+    border-color: $color;
+    outline: 0;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $color-rgba);
+  }
+}
+
+// Form control sizing
+//
+// Relative text size, padding, and border-radii changes for form controls. For
+// horizontal sizing, wrap controls in the predefined grid classes. `<select>`
+// element gets special love because it's special, and that's a fact!
+// [converter] $parent hack
+@mixin input-size($parent, $input-height, $padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  #{$parent} {
+    height: $input-height;
+    padding: $padding-vertical $padding-horizontal;
+    font-size: $font-size;
+    line-height: $line-height;
+    border-radius: $border-radius;
+  }
+
+  select#{$parent} {
+    height: $input-height;
+    line-height: $input-height;
+  }
+
+  textarea#{$parent},
+  select[multiple]#{$parent} {
+    height: auto;
+  }
+}
+
+#container, html.embed {
+  background-color: transparent  !important;
+}
+
+html,
+body,
+.wufoo,
+.wufoo section,
+.wufoo .info,
+.wufoo li div,
+legend,
+label,
+div,
+input,
+textarea,
+button,
+select.select,
+select,
+p {
+  font-family: $font-family-base, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-weight: $font-weight !important;
+  line-height: 1.5em !important;
+}
+
+.wufoo h1,
+.wufoo h2,
+.wufoo h3,
+.wufoo h4 {
+  font-family: $headings-font-family, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-weight: $headings-font-weight !important;
+  text-transform: $headings-text-transform !important;
+}
+
+.wufoo {
+  li {
+    padding: 1em 0 !important;
+  }
+  
+  li section {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    div {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+  
+  h1 {
+    font-size: $font-size-h1 !important;
+  }
+  
+  h2 {
+    font-size: $font-size-h2 !important;
+    margin-bottom: 1em !important;
+  }
+  
+  h3 {
+    font-size: $font-size-h3 !important;
+  }
+  
+  h4 {
+    font-size: $font-size-h4 !important;
+  }
+  
+  input,
+  textarea,
+  select {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+  }
+
+  strong,
+  b {
+    font-weight: 500 !important;
+  }
+}

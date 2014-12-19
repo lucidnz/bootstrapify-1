@@ -43,13 +43,27 @@
 	{% endif %}
 	
 	{% if l.type == 'collection_link' %}
-	<!-- collection snippet -->
-	<section id="product-list-{{ advanced_layout_index }}" class="section-wrap">
-		{% include '__containers-open' %}
-		<h2 class="page-header"><a href="{{ l.url }}">{{ l.title }}</a>{% if t_object.all_products_count > homepage_products_limit %} <a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% endif %}</h2>
-		{% include 'products-list' %}
-		{% include '__containers-open' %}
-	</section>
+  	{% if t_object.all_products_count > 0 %}
+  	<!-- collection snippet -->
+  	<section id="product-list-{{ advanced_layout_index }}" class="section-wrap">
+  		{% include '__containers-open' %}
+  		<h2 class="page-header">{% if t_object.all_products_count > homepage_products_limit %}<a href="{{ l.url }}">{{ l.title }}</a> <a class="small" href="{{ homepage_collection.url }}">{% include '__localize' with 'View all' %}</a>{% else %}{{ l.title  }}{% endif %}</h2>
+  		{% include 'products-list' %}
+  		{% include '__containers-open' %}
+  	</section>
+  	{% else %}
+    	{% if settings.collection-fallback-page != blank %}
+        {% assign fallback = pages[settings.collection-fallback-page] %}
+        <section id="collection-page" class="section-wrap">
+        	{% include '__containers-open' %}
+        		<h1 class="page-header" id="collection-page-title">{{ fallback.title }}</h1>
+        		{% unless fallback.content == blank %}
+        		{% include '__formatted-content' with fallback.content %}
+        		{% endunless %}
+        	{% include '__containers-close' %}
+        </section>
+    	{% endif %}
+  	{% endif %}
 	{% endif %}
 	
 	{% if l.type == 'blog_link' %}

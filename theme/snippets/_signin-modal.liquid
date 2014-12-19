@@ -1,8 +1,12 @@
-{% if shop.customer_accounts_enabled %}
+{% comment %}
+  
+  DO NOT REMOVE!!!
+  Even though this is not used currently it is important for this: https://github.com/luciddesign/bootstrapify/wiki/Account-login-modal-form
+  
+{% endcomment %}
 <!-- Button trigger modal -->
-<a {% if customer %} href="/account" {% else %} data-toggle="modal" href="#signinModal" {% endif %} class="btn btn-primary btn-lg">Launch sign-in modal</a>
+<a data-toggle="modal" href="#signinModal" class="btn btn-primary btn-lg">Launch sign-in modal</a>
 
-{% unless customer %}
 <!-- Modal -->
 <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -34,5 +38,3 @@
     </div>
   </div>
 </div>
-{% endunless %}
-{% endif %}

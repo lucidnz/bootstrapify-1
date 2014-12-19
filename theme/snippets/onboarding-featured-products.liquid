@@ -1,0 +1,24 @@
+<!-- onboarding -->
+<section id="product-list" class="section-wrap">
+	{% include '__containers-open' %}
+  <h2>Featured Products</h2>
+  <p>You have no products in your Frontpage collection. This placeholder will appear until you <a href="/admin/custom_collections">add a product to this collection</a>.</p>
+  <div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
+    {% for i in (1..4) %}
+    <div class="{% include '__thumbnail-span' %} {% if thumbnail_layout == 'masonry' %} masonry{% endif %}">
+    	<div class="product-thumbnail">
+    		<div class="thumbnail-image">
+    			{% include '__product-image' %}
+    		</div>
+    		<a href="/admin/products" class="caption clearfix">
+    			<h4 class="product-title">Example product</h4>
+    			<div class="price">
+            <span class="money">$19.95</span>
+    			</div>
+    		</a>
+    	</div>
+    </div>
+    {% endfor %}
+  </div>
+	{% include '__containers-close' %}
+</section>

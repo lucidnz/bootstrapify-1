@@ -7,34 +7,44 @@
   {% include '__containers-open' %}
   <h1 class="page-header">{% include 'smart-title' %}</h1>
 
-  {% if search.performed and search.results.size > 0 %}
-    {% include '__default-pagination' %}
-    {% paginate search.results by default-pagination %}
+  {% if search.results_count > 0 %}
+  {% include '__default-pagination' %}
+  {% paginate search.results by default-pagination %}
+  <div class="row search-products">
     {% for i in search.results %}
-    {% include 'search-loop' %}
-    {% endfor %}
-    {% include 'pagination' %}
-    {% endpaginate %}
-  {% else %}
-    {% if search.performed %}
-    <h3>{% include '__localize' with 'No search results found' %}.</h3>
-    <p class="lead">
-      {% include '__localize' with 'Try another search' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with ' or browse all products' %}</a>.{% endunless %}
-    </p>
+    {% if i.price != blank %}
+    {% assign product_count = forloop.length %}
+    {% include 'product-loop' with i %}
     {% endif %}
-    <form class="form-inline" action="/search">
-      <div class="input-group input-group-appended">
-        <input type="search" name="q" class="form-control search-bar" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}">
-        <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Search" />
-        </span>
-      </div>
-    </form>
+    {% endfor %}
+  </div>
+  <div class="search-pages">
+    {% for i in search.results %}
+    {% if i.price == blank %}
+    {% include 'search-loop' %}
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% include 'pagination' %}
+  {% endpaginate %}
+  {% else %}
+  <h3>{% include '__localize' with 'No search results found' %}.</h3>
+  <p class="lead">
+    {% include '__localize' with 'Try another search' %}{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with ' or browse all products' %}</a>.{% endunless %}
+  </p>
+  <form class="form-inline" action="/search">
+    <div class="input-group input-group-appended">
+      <input type="search" name="q" class="form-control search-bar" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}">
+      <span class="input-group-btn">
+        <input type="submit" class="btn btn-primary" value="Search" />
+      </span>
+    </div>
+  </form>
   {% endif %}
   {% include '__containers-close' %}
 </section>
 
 {% else %}
-  {% layout none %}
-  {% include 'respond' %}
+{% layout none %}
+{% include 'respond' %}
 {% endunless %}

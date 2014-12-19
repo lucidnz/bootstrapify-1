@@ -1,0 +1,80 @@
+#container, html.embed {
+  background-color: transparent  !important;
+}
+
+html,
+body,
+.wufoo,
+.wufoo section,
+.wufoo .info,
+.wufoo li div,
+legend,
+label,
+div,
+input,
+textarea,
+button,
+select.select,
+select,
+p {
+  font-family: $font-family-base, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-weight: $font-weight !important;
+  line-height: 1.5em !important;
+}
+
+.wufoo h1,
+.wufoo h2,
+.wufoo h3,
+.wufoo h4 {
+  font-family: $headings-font-family, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-weight: $headings-font-weight !important;
+  text-transform: $headings-text-transform !important;
+}
+
+.wufoo {
+  li {
+    padding: 1em 0 !important;
+  }
+  
+  li section {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    div {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+  
+  h1 {
+    font-size: $font-size-h1 !important;
+  }
+  
+  h2 {
+    font-size: $font-size-h2 !important;
+    margin-bottom: 1em !important;
+  }
+  
+  h3 {
+    font-size: $font-size-h3 !important;
+  }
+  
+  h4 {
+    font-size: $font-size-h4 !important;
+  }
+  
+  input,
+  textarea,
+  select {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+  }
+
+  strong,
+  b {
+    font-weight: 500 !important;
+  }
+}

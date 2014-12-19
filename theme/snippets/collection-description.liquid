@@ -1,0 +1,22 @@
+<div class="collection--intro">
+  {% if is_nested %}
+  {% capture collection_title %}<h2>{{ collection-header.title }}</h2>{% endcapture %}
+  {% else %}
+  {% capture collection_title %}<h1>{{ collection-header.title }}</h1>{% endcapture %}
+  {% endif %}
+      
+  {% if settings.collection-header-placement == 'above-products' %}{{ collection_title }}{% endif %}
+  {% unless col_image_position == 'do-not-show' or collection-header.image == null %}
+  <div class="collection__feature-image">
+    {% if col_image_position == 'full-width-above' %}{% assign col_thumb_size = '2048x2048' %}{% else %}{% assign col_thumb_size = 'grande' %}{% endif %}
+    {{ collection-header.image.src | collection_img_url: col_thumb_size | img_tag: collection-header.image.alt }}
+  </div>
+  {% endunless %}
+  {% unless collection-header.description == blank %}
+  {% unless is_nested and settings.show-descriptions-on-nested-collections-page == false %}
+  <div class="collection__description">
+    {% include '__formatted-content' with collection-header.description %}
+  </div>
+  {% endunless %}
+  {% endunless %}
+</div>

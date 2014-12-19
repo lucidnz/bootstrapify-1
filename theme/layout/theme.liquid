@@ -7,7 +7,7 @@
   {{ '_base.scss.css' | asset_url | stylesheet_tag }}
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   
-  {{ '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js' | script_tag }}
+  {{ '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' | script_tag }}
   {{ 'jquery.min.js' | asset_url | script_tag }}
   {{ '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js' | script_tag }}
 
@@ -137,8 +137,9 @@
       {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
       {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
       $(uniformThumbnailElements).uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
-        $('.collection-thumbnail .caption').orderly({ method: 'children' });
-        $('.product-thumbnail .caption').orderly({ method: 'children' });
+        //$('.collection-thumbnail .caption').orderly({ method: 'children' });
+        //$('.product-thumbnail .caption').orderly({ method: 'children' });
+        $('.caption').orderly({ method: 'children' });
       });
     {% endif %}
     

@@ -58,14 +58,17 @@
 				</div>
 				{% else %}
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
-				  <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>{% if settings.append-plus-taxes-to-price %}<small class="text-muted"> {% include '__localize' with 'plus taxes' %}</small>{% endif %}
-					<del class="compare-at-price-field text-muted"></del>
-					<span class="sale-label" style="display: none;">{% include '__localize' with 'On Sale' %}</span>
+				  <span class="price-field">{% include 'product-price' with selected_or_first_variant.price %}</span>
+          {% if settings.append-plus-taxes-to-price %}<small class="text-muted"> {% include '__localize' with 'plus taxes' %}</small>{% endif %}
+					<small class="compare-at-price text-muted"><del>{% include '__localize' with 'was' %} <span class="compare-at-price-field"></span></del></small>
+          {% include 'product-labels' with product %}
 					<meta itemprop="currency" content="{{ shop.currency }}" />
 					<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
 				</div>
 				{% endif %}
 				{% endif %}
+				{% include 'shappify-sales-clock' with product %}
+				{% include 'product-availability' with product %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
 				
 				{% if product.metafields.custom_links.size > 0 %}

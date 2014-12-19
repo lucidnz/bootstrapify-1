@@ -33,6 +33,16 @@ Collections:
       type: checkbox
       inline_label: Yes
 
+    Show Quick Cart:
+      name: quick-cart
+      type: checkbox
+      inline_label: Yes
+      
+    Show products stock availability:
+      name: show-stock-availability-on-collection
+      type: checkbox
+      inline_label: Yes
+
     Show product sorter:
       name: show-product-sorter
       type: checkbox
@@ -150,6 +160,11 @@ Collections:
         do-not-show: Do not show
         sidebar: Sidebar
         main-content: Main content
+        
+    Show a page when collections are empty:
+      name: collection-fallback-page
+      type: page
+      help: "If a collection is featured on the homepage but is empty, it will fallback to a selected page."
 
     “Recommended” products collection:
       name: recommended-products-collection
