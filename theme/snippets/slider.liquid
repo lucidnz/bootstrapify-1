@@ -12,8 +12,8 @@
         <div class="carousel-caption">
           <h2>{{ slide.title }}</h2>
           {% assign vendor_handle = slide.vendor | handleize %}
-          {% unless slider.handle == vendor_handle %}<p class="lead">By {{ slide.vendor }}</p>{% endunless %}
-          <p><a href="{{ slide.url }}" class="btn btn-primary btn-lg">{% include '__localize' with 'View Product' %}</a></p>
+          {% unless slider.handle == vendor_handle %}<p class="lead">{{ 'carousel.product-slide.vendor-attribution' | t: vendor: slide.vendor }}</p>{% endunless %}
+          <p><a href="{{ slide.url }}" class="btn btn-primary btn-lg">{{ 'carousel.product-slide.call-to-action-button' | t: product_title: slide.title }}</a></p>
         </div>
       </div>
     {% endcapture %}

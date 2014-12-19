@@ -8,6 +8,6 @@
     <li class="active">{{ page_title }}</li>
   {% else %}
     <li>{{ page_title | link_to: './' }}</li>
-    <li class="active">{% include '__localize' with 'Filtered by' %} {{ current_tags | join: ' + ' }}</li>
+    <li class="active">{{ 'navigation.tags.filtered-by-tags' | t }} {{ current_tags | join: ' + ' }}</li>
   {% endif %}
 </ul>
