@@ -22,6 +22,20 @@
           {% include 'sidebar-nav' with linklists[s_linklist] %}
         {% endunless %}
         
+        {% unless linklists[settings.sidebar-items-linklist] == empty %}
+          <h3>{{ linklists[settings.sidebar-items-linklist].title }}</h3>
+          {% assign thumbnails_disabled = true %}
+          {% for i in linklists[settings.sidebar-items-linklist].links %}
+            {% if i.object.products.size > 0 %}
+              {% include 'collection-loop' with i.object %}
+            {% endif %}
+            {% if i.object.price > 0 %}
+              {% include 'product-loop' with i.object %}
+            {% endif %}
+          {% endfor %}
+          {% assign thumbnails_disabled = nil %}
+        {% endunless %}
+        
         {% if template == 'blog' or template == 'article' %}
           <h3>{{ 'blog.sidebar-blog-list-title' | t }}</h3>
           {% for a in blog.articles limit:settings.blog-list-limit %}

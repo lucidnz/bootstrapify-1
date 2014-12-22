@@ -139,7 +139,7 @@
       $(uniformThumbnailElements).uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
         //$('.collection-thumbnail .caption').orderly({ method: 'children' });
         //$('.product-thumbnail .caption').orderly({ method: 'children' });
-        $('.caption').orderly({ method: 'children' });
+        $('.row').find('.caption').orderly({ method: 'children' });
       });
     {% endif %}
     

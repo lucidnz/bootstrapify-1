@@ -18,6 +18,10 @@ Sidebar:
     Sidebar linklist:
       name: sidebar-linklist
       type: linklist
+      
+    Sidebar items linklist:
+      name: sidebar-items-linklist
+      type: linklist
 
     Sidebar placement:
       name: sidebar-placement

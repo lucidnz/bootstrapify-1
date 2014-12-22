@@ -19,7 +19,7 @@
 {% if nested_collections.size > 0 %}
 <section class="collection--nested-collections">
   {% include '__containers-open' %}
-  <div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %}">
+  <div class="row{% if thumbnail_layout == 'masonry' %} masonry-collection{% endif %} collection-grid">
   {% for nested_collection in nested_collections %}
     {% assign hide_products = true %}
     {% assign child_handle = nested_collection | handleize | downcase %}
