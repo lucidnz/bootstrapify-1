@@ -1,0 +1,29 @@
+{% for s in blogs[settings.slide-blog].articles %}
+{% capture slide_image_src %}{% include '__img-thumb-url' with s.excerpt %}{% endcapture %}
+{% assign slide_vertical_align = 'bottom' %}
+{% assign slide_align = 'center' %}
+{% assign slide_color = 'light' %}
+
+{% for t in s.tags %}
+  {% assign key = t | downcase %}
+  {% assign value = t | split: ':' | last | strip %}
+  {% if key contains 'vertical align:' %}
+    {% assign slide_vertical_align = value %}
+  {% elsif key contains 'align:' %}
+    {% assign slide_align = value %}
+  {% elsif key contains 'theme:' %}
+    {% assign slide_color = value %}
+  {% endif %}
+{% endfor %}
+{% capture indicators %}{{ indicators }}<li data-target="#myCarousel" data-slide-to="{{slide_count}}"{% if slide_count == 0 %} class="active"{% endif %}></li>{% endcapture %}
+{% capture items %}{{ items }}
+<div id="{{ s.handle }}" class="item{% if slide_count == 0 %} active{% endif %} vertical-align-{{ slide_vertical_align }} align-{{ slide_align }} theme-{{ slide_color }}">
+  <img src="{{ slide_image_src | replace: '.jpg', '_2048x2048.jpg' | replace: '.jpeg', '_2048x2048.jpeg' | replace: '.png', '_2048x2048.png' }}" alt="{{ s.title }}">
+  <div class="carousel-caption">
+    <h2>{{ s.title }}</h2>
+    {% if s.content != blank %}{{ s.content }}{% endif %}
+  </div>
+</div>
+{% endcapture %}
+{% assign slide_count = slide_count | plus: 1 %}
+{% endfor %}

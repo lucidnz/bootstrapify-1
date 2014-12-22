@@ -1,0 +1,1 @@
+{{ __img-thumb-url | split: 'src="' | last | split: '"' | first | remove: '_pico' | remove: '_icon' | remove: '_thumb' | remove: '_small' | remove: '_compact' | remove: '_medium' | remove: '_large' | remove: '_grande' | remove: '_original' | remove: '_1024x1024' | remove: '_2048x2048' | remove: '_master' }}

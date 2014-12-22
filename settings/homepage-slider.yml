@@ -43,6 +43,10 @@ Homepage slider:
         slide: Slide
         fade: Fade
 
+    Slide blog:
+      name: slide-blog
+      type: blog
+  
   Slide {i}:
     repeat: [1, 2, 3, 4, 5]
 

@@ -1058,6 +1058,58 @@ $i: 1;
 }
 
 .carousel-caption {
+  .vertical-align-top & {
+    top: 0;
+    bottom: auto;
+  }
+  
+  .vertical-align-middle & {
+    top: 35%;
+    bottom: auto;
+  }
+  
+  .align-left & {
+    text-align: left;
+    
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+      text-align: left;
+    }
+  }
+  
+  .align-right & {
+    text-align: right;
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+      text-align: right;
+    }
+  }
+  
+  .theme-light & {
+    color: $gray-dark;
+    text-shadow: none;
+  
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+      text-shadow: none;
+      @media (min-width: $screen-sm-min){
+        color: $gray-dark;
+      }
+    }
+
+    .carousel-control {
+      color: $gray-dark;
+    }
+
+    @media (min-width: $screen-sm-min){
+      .carousel-indicators li{
+        border-color: $gray-dark;
+        &.active {
+          background-color: $gray-dark;
+        }
+      }
+    }
+  }
+}
+
+.carousel-caption {
   h2 {
     margin-top: 0.35em;
   }
