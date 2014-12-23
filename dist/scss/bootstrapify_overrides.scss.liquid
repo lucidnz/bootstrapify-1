@@ -930,6 +930,14 @@ header .article-meta{
 
 /* Sidebar */  
 .sidebar {
+  h3 {
+    margin-top: 2em;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
   padding-top: $padding-base-horizontal;
   padding-bottom: $padding-base-horizontal;
   {% if settings.sidebar-background-colour != blank %} @include background-color({{ settings.sidebar-background-colour }}); {% endif %}
@@ -1064,7 +1072,12 @@ $i: 1;
   }
   
   .vertical-align-middle & {
-    top: 35%;
+    @media (min-width: $screen-lg-min){
+      top: 35%;
+    }
+    @media (max-width: $screen-md-max){
+      top: 10%;
+    }
     bottom: auto;
   }
   
@@ -1110,8 +1123,9 @@ $i: 1;
 }
 
 .carousel-caption {
-  h2 {
-    margin-top: 0.35em;
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 1em;
   }
 }
 
@@ -1173,7 +1187,7 @@ $i: 1;
     width: $caption-container-sm;
     margin-left: -($caption-container-sm / 2);
     color: white;
-    h2 {
+    h1, h2, h3, h4, h5, h6 {
       color: white;
     }
   }
