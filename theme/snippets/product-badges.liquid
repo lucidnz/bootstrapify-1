@@ -12,13 +12,21 @@
     {% for f_type in file_types %}
       {% if b contains f_type %}
         {% assign b = b | remove: f_type %}
+        {% assign file_type = f_type %}
       {% endif %}
     {% endfor %}
     {% if b contains ' ' %}
       {% assign b = b | handleize %}
     {% endif %}
     
-    {% capture badges %}{{ badges }}<li>{{ b | append: '_medium.png' | file_url | img_tag }}</li>{% endcapture %}
+    {% capture badges %}
+    	{{ badges }}
+    	<li>
+    	  <img src="{{ b | append: '_medium.png' | file_url }}" alt="{{ product.title }}" onerror="$(this).hide()"/>
+    	  <img src="{{ b | append: '_medium.jpg' | file_url }}" alt="{{ product.title }}" onerror="$(this).hide()"/>
+    	  <img src="{{ b | append: '_medium.gif' | file_url }}" alt="{{ product.title }}" onerror="$(this).hide()"/>
+      </li>
+    {% endcapture %}
   {% endif %}
 {% endfor %}
 {% unless badges == '' %}
