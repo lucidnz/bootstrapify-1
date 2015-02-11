@@ -2,6 +2,12 @@ Products:
 
   General:
     notitle: true
+
+    Show price if 0:
+      name: show-price-if-zero
+      type: checkbox
+      inline_label: Yes
+      
     Display vendor description:
       name: display-vendor-description
       type: checkbox

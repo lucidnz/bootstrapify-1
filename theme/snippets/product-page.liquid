@@ -51,6 +51,8 @@
 			<div id="product-details" class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
 				{% include 'product-badges' %}
+				
+				{% if settings.show-price-if-zero and product.price > 0 %}
 				{% if has_prices %}
 				{% if price_is_poa %}
 				<div class="product-price-poa">
@@ -67,9 +69,11 @@
 				</div>
 				{% endif %}
 				{% endif %}
+				
 				{% include 'shappify-sales-clock' with product %}
 				{% include 'product-availability' with product %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
+				{% endif %}
 				
 				{% if product.metafields.custom_links.size > 0 %}
 				<ul class="custom-links">
