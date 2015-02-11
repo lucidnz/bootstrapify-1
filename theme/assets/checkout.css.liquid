@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
  * Shopify checkout reset
  */
@@ -8,7 +9,7 @@ body, h1, #header h1, #wallet #cost, h2, #overview h2, h3, h3.divider, #pay-with
 #thumbs div, #thumbs td, .slim #thumbs td, #thumbs h3, #thumbs .plisthead, #thumbs #email label, #email #thumbs label, #thumbs #email td.label, #email #thumbs td.label, #thumbs h3 span, #thumbs .plisthead span, #thumbs #email label span, #email #thumbs label span, #thumbs #email td.label span, #email #thumbs td.label span, #thumbs span, #overview .hint, #payment-type, #payment-type li, #payment-type li:hover, li.text-payment, .center,
 #addresses, #email, #email label, #email td.label, #email input, #shipping-same label, #shipping-same td.label, .address-notification, #gateway-logos, #gateway-logos img, #pay-with, #pay-with h3, #pay-with #thumbs .plisthead, #thumbs #pay-with .plisthead, #pay-with #email label, #email #pay-with label, #pay-with #email td.label, #email #pay-with td.label, #payment, #or, #payment-methods li,
 #payment-methods input, #credit-card-valid, img.credit-card, .field-with-errors, .field-with-errors input, .field-with-errors .error-message, .severe-error, .gleft, .gright, label, label.inline, #shipping-same label, .soft label, .medium label, td.label, .form ul.inline li label, .item-inventory-action label,
-input[type=text], input[type=password], textarea, #buttons, #buttons input, dl, dt, dd, dl .hint, .group, .pgroup, .pgroup dl, input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit], input#create-account-btn, textarea.short, input.digit-2, textarea.tall,
+input[type=text], input[type=password], textarea, #buttons, #buttons input, dl, dt, dd, dl .hint, .group, .pgroup, .pgroup dl, input.btn, input[type=submit], #buttons input, .sign-in-area input[type=submit], input#create-account-btn, textarea.short, input.digit-2, textarea.tall,
 .ta-success, .big, input.long, input.short, .small, h1 span.subtitle, #header h1 span.subtitle, #wallet #cost span.subtitle, label.inline, #shipping-same label.inline, td.inline.label, .form ul.inline li label.inline, .pageform h4, .soft, .soft #shipping-same label, #shipping-same .soft label, .soft label, .soft td.label, .soft .form ul.inline li label, .form ul.inline li .soft label, .medium #shipping-same label, #shipping-same .medium label, .medium label, .medium td.label, .medium .form ul.inline li label, .form ul.inline li .medium label, .medium p, .medium fieldset#switchsolo p, fieldset#switchsolo .medium p, .medium #footer p, #footer .medium p, .medium #container.slim #footer p, #container.slim #footer .medium p, ul.radios li, fieldset, fieldset#switchsolo, fieldset#switchsolo, legend, fieldset .medium p, .medium fieldset p, fieldset p, fieldset#switchsolo p, fieldset .header-description p, .header-description fieldset p, fieldset #footer p, #footer fieldset p, fieldset #container.slim #footer p, #container.slim #footer fieldset p,
 span.hint a, td.label, td.lprice, td.sprice, td.weight, th.trash, th.sku, a.bottab, a.more, a.less, .group #pay-with h3, #pay-with .group h3, .group h3, .group #thumbs .plisthead, #thumbs .group .plisthead, .group #email label, #email .group label, .group #email td.label, #email .group td.label, .pgroup #pay-with h3, #pay-with .pgroup h3, .pgroup h3, .pgroup #thumbs .plisthead, #thumbs .pgroup .plisthead, .pgroup #email label, #email .pgroup label, .pgroup #email td.label, #email .pgroup td.label, .form td, .form ul.inline li, .form ul.inline li #shipping-same label, #shipping-same .form ul.inline li label, .form ul.inline li td.label, .form ul.inline li label, .form td.lbl,
 .form td input, .form td input.short, .form td textarea, .highlight, #customer_login.required, .sign-in, .forgot-password, #reset-email, .multiple_address_selection td, table.form.full,
@@ -47,7 +48,7 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
   line-height: 100%;
   border: #ccc solid 1px; }
 
-input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit], input#create-account-btn, #buttons input, .sign-in-area input[type=submit] {
+input.btn, input[type=submit], #buttons input, .sign-in-area input[type=submit], input#create-account-btn, #buttons input, .sign-in-area input[type=submit] {
   background: #ddd;
   padding: 5px; }
 
@@ -330,7 +331,7 @@ th {
   .table th {
     background-color: #fff !important; }
 
-  .btn > .caret, input[type=submit] > .caret, #buttons input > .caret, #create-account-btn > .caret,
+  .btn > .caret, input[type=submit] > .caret, #buttons input > .caret, .sign-in-area input[type=submit] > .caret, #create-account-btn > .caret,
   .dropup > .btn > .caret,
   .dropup > input[type=submit] > .caret,
   #buttons .dropup > input > .caret,
@@ -981,7 +982,7 @@ body {
   font-size: 14px;
   line-height: 1.42857;
   color: #333333;
-  background-color: white; }
+  background-color: #fff; }
 
 input,
 button,
@@ -1020,8 +1021,8 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.42857;
-  background-color: white;
-  border: 1px solid #dddddd;
+  background-color: #fff;
+  border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -1634,8 +1635,8 @@ code {
 kbd {
   padding: 2px 4px;
   font-size: 90%;
-  color: white;
-  background-color: #333333;
+  color: #fff;
+  background-color: #333;
   border-radius: 3px;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25); }
   kbd kbd {
@@ -1652,8 +1653,8 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   color: #333333;
-  background-color: whitesmoke;
-  border: 1px solid #cccccc;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
   border-radius: 4px; }
   pre code {
     padding: 0;
@@ -2356,10 +2357,10 @@ th {
     padding: 8px;
     line-height: 1.42857;
     vertical-align: top;
-    border-top: 1px solid #dddddd; }
+    border-top: 1px solid #ddd; }
   .table > thead > tr > th {
     vertical-align: bottom;
-    border-bottom: 2px solid #dddddd; }
+    border-bottom: 2px solid #ddd; }
   .table > caption + thead > tr:first-child > th,
   .table > caption + thead > tr:first-child > td,
   .table > colgroup + thead > tr:first-child > th,
@@ -2368,9 +2369,9 @@ th {
   .table > thead:first-child > tr:first-child > td {
     border-top: 0; }
   .table > tbody + tbody {
-    border-top: 2px solid #dddddd; }
+    border-top: 2px solid #ddd; }
   .table .table {
-    background-color: white; }
+    background-color: #fff; }
 
 .table-condensed > thead > tr > th,
 .table-condensed > thead > tr > td,
@@ -2381,14 +2382,14 @@ th {
   padding: 5px; }
 
 .table-bordered {
-  border: 1px solid #dddddd; }
+  border: 1px solid #ddd; }
   .table-bordered > thead > tr > th,
   .table-bordered > thead > tr > td,
   .table-bordered > tbody > tr > th,
   .table-bordered > tbody > tr > td,
   .table-bordered > tfoot > tr > th,
   .table-bordered > tfoot > tr > td {
-    border: 1px solid #dddddd; }
+    border: 1px solid #ddd; }
   .table-bordered > thead > tr > th,
   .table-bordered > thead > tr > td {
     border-bottom-width: 2px; }
@@ -2399,7 +2400,7 @@ th {
 
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-  background-color: whitesmoke; }
+  background-color: #f5f5f5; }
 
 table col[class*="col-"] {
   position: static;
@@ -2422,7 +2423,7 @@ table th[class*="col-"] {
 .table > tfoot > tr > th.active,
 .table > tfoot > tr.active > td,
 .table > tfoot > tr.active > th {
-  background-color: whitesmoke; }
+  background-color: #f5f5f5; }
 
 .table-hover > tbody > tr > td.active:hover,
 .table-hover > tbody > tr > th.active:hover, .table-hover > tbody > tr.active:hover > td, .table-hover > tbody > tr:hover > .active, .table-hover > tbody > tr.active:hover > th {
@@ -2499,7 +2500,7 @@ table th[class*="col-"] {
     overflow-y: hidden;
     overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    border: 1px solid #dddddd;
+    border: 1px solid #ddd;
     -webkit-overflow-scrolling: touch; }
     .table-responsive > .table {
       margin-bottom: 0; }
@@ -2600,9 +2601,9 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
   font-size: 14px;
   line-height: 1.42857;
   color: #555555;
-  background-color: white;
+  background-color: #fff;
   background-image: none;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -2627,9 +2628,9 @@ input.short, .form td input, .form td input.short, .form td textarea, .form.full
     color: #777777; }
   .form-control[disabled], #email input[disabled], #payment-methods input[disabled], .field-with-errors input[disabled], input[disabled][type=text], input[disabled][type=password], textarea[disabled], input[disabled].digit-2, input[disabled].long,
   input[disabled].short, .form td input[disabled], .form td textarea[disabled], select[disabled], .form-control[readonly], #email input[readonly], #payment-methods input[readonly], .field-with-errors input[readonly], input[readonly][type=text], input[readonly][type=password], textarea[readonly], input[readonly].digit-2, input[readonly].long,
-  input[readonly].short, .form td input[readonly], .form td textarea[readonly], select[readonly], fieldset[disabled] .form-control, fieldset[disabled]#switchsolo .form-control, fieldset[disabled] #email input, #email fieldset[disabled] input, fieldset[disabled] #payment-methods input, #payment-methods fieldset[disabled] input, fieldset[disabled] .field-with-errors input, .field-with-errors fieldset[disabled] input, fieldset[disabled]#switchsolo .field-with-errors input, .field-with-errors fieldset[disabled]#switchsolo input, fieldset[disabled] input[type=text], fieldset[disabled]#switchsolo input[type=text], fieldset[disabled] input[type=password], fieldset[disabled]#switchsolo input[type=password], fieldset[disabled] textarea, fieldset[disabled]#switchsolo textarea, fieldset[disabled] input.digit-2, fieldset[disabled]#switchsolo input.digit-2, fieldset[disabled] input.long, fieldset[disabled]#switchsolo input.long,
+  input[readonly].short, .form td input[readonly], .form td textarea[readonly], select[readonly], fieldset[disabled] .form-control, fieldset[disabled]#switchsolo .form-control, fieldset[disabled] #email input, #email fieldset[disabled] input, fieldset[disabled] #payment-methods input, #payment-methods fieldset[disabled] input, fieldset[disabled] .field-with-errors input, .field-with-errors fieldset[disabled] input, fieldset[disabled]#switchsolo .field-with-errors input, .field-with-errors fieldset[disabled]#switchsolo input, fieldset[disabled] input[type=text], fieldset[disabled]#switchsolo input[type=text], fieldset[disabled] input[type=password], fieldset[disabled]#switchsolo input[type=password], fieldset[disabled] textarea, fieldset[disabled]#switchsolo textarea, fieldset[disabled] textarea.short, fieldset[disabled] input.digit-2, fieldset[disabled]#switchsolo input.digit-2, fieldset[disabled] textarea.tall, fieldset[disabled] input.long, fieldset[disabled]#switchsolo input.long,
   fieldset[disabled] input.short,
-  fieldset[disabled]#switchsolo input.short, fieldset[disabled] .form td input, .form td fieldset[disabled] input, fieldset[disabled]#switchsolo .form td input, .form td fieldset[disabled]#switchsolo input, fieldset[disabled] select, fieldset[disabled]#switchsolo select {
+  fieldset[disabled]#switchsolo input.short, fieldset[disabled] .form td input, .form td fieldset[disabled] input, fieldset[disabled]#switchsolo .form td input, .form td fieldset[disabled]#switchsolo input, fieldset[disabled] .form td textarea, .form td fieldset[disabled] textarea, fieldset[disabled] select, fieldset[disabled]#switchsolo select {
     cursor: not-allowed;
     background-color: #eeeeee;
     opacity: 1; }
@@ -2650,8 +2651,8 @@ input[type="month"] {
   .form-horizontal .form-group-sm input[type="date"].short, .form-horizontal .form-group-sm .form td input[type="date"], .form td .form-horizontal .form-group-sm input[type="date"], .input-group-sm > input[type="date"].form-control, #email .input-group-sm > input[type="date"], #payment-methods .input-group-sm > input[type="date"], .field-with-errors .input-group-sm > input[type="date"], .input-group-sm > input[type="date"][type=text], .input-group-sm > input[type="date"][type=password], .input-group-sm > input[type="date"].digit-2, .input-group-sm > input[type="date"].long,
   .input-group-sm > input[type="date"].short, .form td .input-group-sm > input[type="date"],
   .input-group-sm > input[type="date"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="date"][type=submit],
   .input-group-sm > .input-group-btn > input[type="date"].btn,
+  .input-group-sm > .input-group-btn > input[type="date"][type=submit],
   #buttons .input-group-sm > .input-group-btn > input[type="date"],
   .input-group-sm > .input-group-btn > input[type="date"]#create-account-btn,
   input[type="time"].input-sm,
@@ -2680,8 +2681,8 @@ input[type="month"] {
   .input-group-sm > input[type="time"].short,
   .form td .input-group-sm > input[type="time"],
   .input-group-sm > input[type="time"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="time"][type=submit],
   .input-group-sm > .input-group-btn > input[type="time"].btn,
+  .input-group-sm > .input-group-btn > input[type="time"][type=submit],
   #buttons .input-group-sm > .input-group-btn > input[type="time"],
   .input-group-sm > .input-group-btn > input[type="time"]#create-account-btn,
   input[type="datetime-local"].input-sm,
@@ -2710,8 +2711,8 @@ input[type="month"] {
   .input-group-sm > input[type="datetime-local"].short,
   .form td .input-group-sm > input[type="datetime-local"],
   .input-group-sm > input[type="datetime-local"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="datetime-local"][type=submit],
   .input-group-sm > .input-group-btn > input[type="datetime-local"].btn,
+  .input-group-sm > .input-group-btn > input[type="datetime-local"][type=submit],
   #buttons .input-group-sm > .input-group-btn > input[type="datetime-local"],
   .input-group-sm > .input-group-btn > input[type="datetime-local"]#create-account-btn,
   input[type="month"].input-sm,
@@ -2740,8 +2741,8 @@ input[type="month"] {
   .input-group-sm > input[type="month"].short,
   .form td .input-group-sm > input[type="month"],
   .input-group-sm > input[type="month"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="month"][type=submit],
   .input-group-sm > .input-group-btn > input[type="month"].btn,
+  .input-group-sm > .input-group-btn > input[type="month"][type=submit],
   #buttons .input-group-sm > .input-group-btn > input[type="month"],
   .input-group-sm > .input-group-btn > input[type="month"]#create-account-btn {
     line-height: 30px; }
@@ -2749,8 +2750,8 @@ input[type="month"] {
   .form-horizontal .form-group-lg input[type="date"].short, .form-horizontal .form-group-lg .form td input[type="date"], .form td .form-horizontal .form-group-lg input[type="date"], .input-group-lg > input[type="date"].form-control, #email .input-group-lg > input[type="date"], #payment-methods .input-group-lg > input[type="date"], .field-with-errors .input-group-lg > input[type="date"], .input-group-lg > input[type="date"][type=text], .input-group-lg > input[type="date"][type=password], .input-group-lg > input[type="date"].digit-2, .input-group-lg > input[type="date"].long,
   .input-group-lg > input[type="date"].short, .form td .input-group-lg > input[type="date"],
   .input-group-lg > input[type="date"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="date"][type=submit],
   .input-group-lg > .input-group-btn > input[type="date"].btn,
+  .input-group-lg > .input-group-btn > input[type="date"][type=submit],
   #buttons .input-group-lg > .input-group-btn > input[type="date"],
   .input-group-lg > .input-group-btn > input[type="date"]#create-account-btn,
   input[type="time"].input-lg,
@@ -2779,8 +2780,8 @@ input[type="month"] {
   .input-group-lg > input[type="time"].short,
   .form td .input-group-lg > input[type="time"],
   .input-group-lg > input[type="time"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="time"][type=submit],
   .input-group-lg > .input-group-btn > input[type="time"].btn,
+  .input-group-lg > .input-group-btn > input[type="time"][type=submit],
   #buttons .input-group-lg > .input-group-btn > input[type="time"],
   .input-group-lg > .input-group-btn > input[type="time"]#create-account-btn,
   input[type="datetime-local"].input-lg,
@@ -2809,8 +2810,8 @@ input[type="month"] {
   .input-group-lg > input[type="datetime-local"].short,
   .form td .input-group-lg > input[type="datetime-local"],
   .input-group-lg > input[type="datetime-local"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="datetime-local"][type=submit],
   .input-group-lg > .input-group-btn > input[type="datetime-local"].btn,
+  .input-group-lg > .input-group-btn > input[type="datetime-local"][type=submit],
   #buttons .input-group-lg > .input-group-btn > input[type="datetime-local"],
   .input-group-lg > .input-group-btn > input[type="datetime-local"]#create-account-btn,
   input[type="month"].input-lg,
@@ -2839,8 +2840,8 @@ input[type="month"] {
   .input-group-lg > input[type="month"].short,
   .form td .input-group-lg > input[type="month"],
   .input-group-lg > input[type="month"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="month"][type=submit],
   .input-group-lg > .input-group-btn > input[type="month"].btn,
+  .input-group-lg > .input-group-btn > input[type="month"][type=submit],
   #buttons .input-group-lg > .input-group-btn > input[type="month"],
   .input-group-lg > .input-group-btn > input[type="month"]#create-account-btn {
     line-height: 46px; }
@@ -2938,14 +2939,14 @@ input[type="checkbox"] {
   margin-bottom: 0; }
   .form-control-static.input-lg, .form-horizontal .form-group-lg .form-control-static.form-control, .form-horizontal .form-group-lg #email input.form-control-static, #email .form-horizontal .form-group-lg input.form-control-static, .form-horizontal .form-group-lg #payment-methods input.form-control-static, #payment-methods .form-horizontal .form-group-lg input.form-control-static, .form-horizontal .form-group-lg .field-with-errors input.form-control-static, .field-with-errors .form-horizontal .form-group-lg input.form-control-static, .form-horizontal .form-group-lg input.form-control-static[type=text], .form-horizontal .form-group-lg input.form-control-static[type=password], .form-horizontal .form-group-lg textarea.form-control-static, .form-horizontal .form-group-lg input.form-control-static.digit-2, .form-horizontal .form-group-lg input.form-control-static.long,
   .form-horizontal .form-group-lg input.form-control-static.short, .form-horizontal .form-group-lg .form td input.form-control-static, .form td .form-horizontal .form-group-lg input.form-control-static, .form-horizontal .form-group-lg select.form-control-static, .input-group-lg > .form-control-static.form-control, #email .input-group-lg > input.form-control-static, #payment-methods .input-group-lg > input.form-control-static, .field-with-errors .input-group-lg > input.form-control-static, .input-group-lg > input.form-control-static[type=text], .input-group-lg > input.form-control-static[type=password], .input-group-lg > textarea.form-control-static, .input-group-lg > input.form-control-static.digit-2, .input-group-lg > input.form-control-static.long,
-  .input-group-lg > input.form-control-static.short, .form td .input-group-lg > input.form-control-static, .input-group-lg > select.form-control-static,
+  .input-group-lg > input.form-control-static.short, .form td .input-group-lg > input.form-control-static, .form td .input-group-lg > textarea.form-control-static, .input-group-lg > select.form-control-static,
   .input-group-lg > .form-control-static.input-group-addon,
   .input-group-lg > .input-group-btn > .form-control-static.btn,
   .input-group-lg > .input-group-btn > input.form-control-static[type=submit],
   #buttons .input-group-lg > .input-group-btn > input.form-control-static,
   .input-group-lg > .input-group-btn > .form-control-static#create-account-btn, .form-control-static.input-sm, .form-horizontal .form-group-sm .form-control-static.form-control, .form-horizontal .form-group-sm #email input.form-control-static, #email .form-horizontal .form-group-sm input.form-control-static, .form-horizontal .form-group-sm #payment-methods input.form-control-static, #payment-methods .form-horizontal .form-group-sm input.form-control-static, .form-horizontal .form-group-sm .field-with-errors input.form-control-static, .field-with-errors .form-horizontal .form-group-sm input.form-control-static, .form-horizontal .form-group-sm input.form-control-static[type=text], .form-horizontal .form-group-sm input.form-control-static[type=password], .form-horizontal .form-group-sm textarea.form-control-static, .form-horizontal .form-group-sm input.form-control-static.digit-2, .form-horizontal .form-group-sm input.form-control-static.long,
   .form-horizontal .form-group-sm input.form-control-static.short, .form-horizontal .form-group-sm .form td input.form-control-static, .form td .form-horizontal .form-group-sm input.form-control-static, .form-horizontal .form-group-sm select.form-control-static, .input-group-sm > .form-control-static.form-control, #email .input-group-sm > input.form-control-static, #payment-methods .input-group-sm > input.form-control-static, .field-with-errors .input-group-sm > input.form-control-static, .input-group-sm > input.form-control-static[type=text], .input-group-sm > input.form-control-static[type=password], .input-group-sm > textarea.form-control-static, .input-group-sm > input.form-control-static.digit-2, .input-group-sm > input.form-control-static.long,
-  .input-group-sm > input.form-control-static.short, .form td .input-group-sm > input.form-control-static, .input-group-sm > select.form-control-static,
+  .input-group-sm > input.form-control-static.short, .form td .input-group-sm > input.form-control-static, .form td .input-group-sm > textarea.form-control-static, .input-group-sm > select.form-control-static,
   .input-group-sm > .form-control-static.input-group-addon,
   .input-group-sm > .input-group-btn > .form-control-static.btn,
   .input-group-sm > .input-group-btn > input.form-control-static[type=submit],
@@ -2968,14 +2969,14 @@ input[type="checkbox"] {
   line-height: 1.5;
   border-radius: 3px; }
 
-select.input-sm, .form-horizontal .form-group-sm select, .input-group-sm > select,
+select.input-sm, .form-horizontal .form-group-sm select.form-control, .form-horizontal .form-group-sm select, .input-group-sm > select.form-control, .input-group-sm > select,
 .input-group-sm > select.input-group-addon,
 .input-group-sm > .input-group-btn > select.btn,
 .input-group-sm > .input-group-btn > select#create-account-btn {
   height: 30px;
   line-height: 30px; }
 
-textarea.input-sm, .form-horizontal .form-group-sm textarea, .form-horizontal .form-group-sm textarea.short, .form-horizontal .form-group-sm textarea.tall, .form-horizontal .form-group-sm .form td textarea, .form td .form-horizontal .form-group-sm textarea, .input-group-sm > textarea, .input-group-sm > textarea.short, .input-group-sm > textarea.tall, .form td .input-group-sm > textarea,
+textarea.input-sm, .form-horizontal .form-group-sm textarea.form-control, .form-horizontal .form-group-sm textarea, .form-horizontal .form-group-sm textarea.short, .form-horizontal .form-group-sm textarea.tall, .form-horizontal .form-group-sm .form td textarea, .form td .form-horizontal .form-group-sm textarea, .input-group-sm > textarea.form-control, .input-group-sm > textarea, .input-group-sm > textarea.short, .input-group-sm > textarea.tall, .form td .input-group-sm > textarea,
 .input-group-sm > textarea.input-group-addon,
 .input-group-sm > .input-group-btn > textarea.btn,
 .input-group-sm > .input-group-btn > textarea#create-account-btn,
@@ -3000,14 +3001,14 @@ select[multiple].input-sm,
   line-height: 1.33;
   border-radius: 6px; }
 
-select.input-lg, .form-horizontal .form-group-lg select, .input-group-lg > select,
+select.input-lg, .form-horizontal .form-group-lg select.form-control, .form-horizontal .form-group-lg select, .input-group-lg > select.form-control, .input-group-lg > select,
 .input-group-lg > select.input-group-addon,
 .input-group-lg > .input-group-btn > select.btn,
 .input-group-lg > .input-group-btn > select#create-account-btn {
   height: 46px;
   line-height: 46px; }
 
-textarea.input-lg, .form-horizontal .form-group-lg textarea, .form-horizontal .form-group-lg textarea.short, .form-horizontal .form-group-lg textarea.tall, .form-horizontal .form-group-lg .form td textarea, .form td .form-horizontal .form-group-lg textarea, .input-group-lg > textarea, .input-group-lg > textarea.short, .input-group-lg > textarea.tall, .form td .input-group-lg > textarea,
+textarea.input-lg, .form-horizontal .form-group-lg textarea.form-control, .form-horizontal .form-group-lg textarea, .form-horizontal .form-group-lg textarea.short, .form-horizontal .form-group-lg textarea.tall, .form-horizontal .form-group-lg .form td textarea, .form td .form-horizontal .form-group-lg textarea, .input-group-lg > textarea.form-control, .input-group-lg > textarea, .input-group-lg > textarea.short, .input-group-lg > textarea.tall, .form td .input-group-lg > textarea,
 .input-group-lg > textarea.input-group-addon,
 .input-group-lg > .input-group-btn > textarea.btn,
 .input-group-lg > .input-group-btn > textarea#create-account-btn,
@@ -3020,7 +3021,7 @@ select[multiple].input-lg,
 
 .has-feedback {
   position: relative; }
-  .has-feedback .form-control, .has-feedback #email input, #email .has-feedback input, .has-feedback #payment-methods input, #payment-methods .has-feedback input, .has-feedback .field-with-errors input, .field-with-errors .has-feedback input, .has-feedback input[type=text], .has-feedback input[type=password], .has-feedback textarea, .has-feedback input.digit-2, .has-feedback input.long,
+  .has-feedback .form-control, .has-feedback #email input, #email .has-feedback input, .has-feedback #payment-methods input, #payment-methods .has-feedback input, .has-feedback .field-with-errors input, .field-with-errors .has-feedback input, .has-feedback input[type=text], .has-feedback input[type=password], .has-feedback textarea, .has-feedback textarea.short, .has-feedback input.digit-2, .has-feedback textarea.tall, .has-feedback input.long,
   .has-feedback input.short, .has-feedback .form td input, .form td .has-feedback input, .has-feedback .form td textarea, .form td .has-feedback textarea, .has-feedback select {
     padding-right: 42.5px; }
 
@@ -3036,7 +3037,7 @@ select[multiple].input-lg,
   text-align: center; }
 
 .input-lg + .form-control-feedback, .form-horizontal .form-group-lg .form-control + .form-control-feedback, .form-horizontal .form-group-lg #email input + .form-control-feedback, #email .form-horizontal .form-group-lg input + .form-control-feedback, .form-horizontal .form-group-lg #payment-methods input + .form-control-feedback, #payment-methods .form-horizontal .form-group-lg input + .form-control-feedback, .form-horizontal .form-group-lg .field-with-errors input + .form-control-feedback, .field-with-errors .form-horizontal .form-group-lg input + .form-control-feedback, .form-horizontal .form-group-lg input[type=text] + .form-control-feedback, .form-horizontal .form-group-lg input[type=password] + .form-control-feedback, .form-horizontal .form-group-lg textarea + .form-control-feedback, .form-horizontal .form-group-lg input.digit-2 + .form-control-feedback, .form-horizontal .form-group-lg input.long + .form-control-feedback,
-.form-horizontal .form-group-lg input.short + .form-control-feedback, .form-horizontal .form-group-lg .form td input + .form-control-feedback, .form td .form-horizontal .form-group-lg input + .form-control-feedback, .form-horizontal .form-group-lg select + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, #email .input-group-lg > input + .form-control-feedback, #payment-methods .input-group-lg > input + .form-control-feedback, .field-with-errors .input-group-lg > input + .form-control-feedback, .input-group-lg > input[type=text] + .form-control-feedback, .input-group-lg > input[type=password] + .form-control-feedback, .input-group-lg > textarea + .form-control-feedback, .input-group-lg > input.digit-2 + .form-control-feedback, .input-group-lg > input.long + .form-control-feedback,
+.form-horizontal .form-group-lg input.short + .form-control-feedback, .form-horizontal .form-group-lg .form td input + .form-control-feedback, .form td .form-horizontal .form-group-lg input + .form-control-feedback, .form-horizontal .form-group-lg .form td textarea + .form-control-feedback, .form-horizontal .form-group-lg select + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, #email .input-group-lg > input + .form-control-feedback, #payment-methods .input-group-lg > input + .form-control-feedback, .field-with-errors .input-group-lg > input + .form-control-feedback, .input-group-lg > input[type=text] + .form-control-feedback, .input-group-lg > input[type=password] + .form-control-feedback, .input-group-lg > textarea + .form-control-feedback, .input-group-lg > input.digit-2 + .form-control-feedback, .input-group-lg > input.long + .form-control-feedback,
 .input-group-lg > input.short + .form-control-feedback, .form td .input-group-lg > input + .form-control-feedback, .input-group-lg > select + .form-control-feedback,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
@@ -3048,7 +3049,7 @@ select[multiple].input-lg,
   line-height: 46px; }
 
 .input-sm + .form-control-feedback, .form-horizontal .form-group-sm .form-control + .form-control-feedback, .form-horizontal .form-group-sm #email input + .form-control-feedback, #email .form-horizontal .form-group-sm input + .form-control-feedback, .form-horizontal .form-group-sm #payment-methods input + .form-control-feedback, #payment-methods .form-horizontal .form-group-sm input + .form-control-feedback, .form-horizontal .form-group-sm .field-with-errors input + .form-control-feedback, .field-with-errors .form-horizontal .form-group-sm input + .form-control-feedback, .form-horizontal .form-group-sm input[type=text] + .form-control-feedback, .form-horizontal .form-group-sm input[type=password] + .form-control-feedback, .form-horizontal .form-group-sm textarea + .form-control-feedback, .form-horizontal .form-group-sm input.digit-2 + .form-control-feedback, .form-horizontal .form-group-sm input.long + .form-control-feedback,
-.form-horizontal .form-group-sm input.short + .form-control-feedback, .form-horizontal .form-group-sm .form td input + .form-control-feedback, .form td .form-horizontal .form-group-sm input + .form-control-feedback, .form-horizontal .form-group-sm select + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, #email .input-group-sm > input + .form-control-feedback, #payment-methods .input-group-sm > input + .form-control-feedback, .field-with-errors .input-group-sm > input + .form-control-feedback, .input-group-sm > input[type=text] + .form-control-feedback, .input-group-sm > input[type=password] + .form-control-feedback, .input-group-sm > textarea + .form-control-feedback, .input-group-sm > input.digit-2 + .form-control-feedback, .input-group-sm > input.long + .form-control-feedback,
+.form-horizontal .form-group-sm input.short + .form-control-feedback, .form-horizontal .form-group-sm .form td input + .form-control-feedback, .form td .form-horizontal .form-group-sm input + .form-control-feedback, .form-horizontal .form-group-sm .form td textarea + .form-control-feedback, .form-horizontal .form-group-sm select + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, #email .input-group-sm > input + .form-control-feedback, #payment-methods .input-group-sm > input + .form-control-feedback, .field-with-errors .input-group-sm > input + .form-control-feedback, .input-group-sm > input[type=text] + .form-control-feedback, .input-group-sm > input[type=password] + .form-control-feedback, .input-group-sm > textarea + .form-control-feedback, .input-group-sm > input.digit-2 + .form-control-feedback, .input-group-sm > input.long + .form-control-feedback,
 .input-group-sm > input.short + .form-control-feedback, .form td .input-group-sm > input + .form-control-feedback, .input-group-sm > select + .form-control-feedback,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
@@ -3068,13 +3069,13 @@ select[multiple].input-lg,
 .has-success .radio-inline,
 .has-success .checkbox-inline {
   color: #3c763d; }
-.has-success .form-control, .has-success #email input, #email .has-success input, .has-success #payment-methods input, #payment-methods .has-success input, .has-success .field-with-errors input, .field-with-errors .has-success input, .has-success input[type=text], .has-success input[type=password], .has-success textarea, .has-success input.digit-2, .has-success input.long,
+.has-success .form-control, .has-success #email input, #email .has-success input, .has-success #payment-methods input, #payment-methods .has-success input, .has-success .field-with-errors input, .field-with-errors .has-success input, .has-success input[type=text], .has-success input[type=password], .has-success textarea, .has-success textarea.short, .has-success input.digit-2, .has-success textarea.tall, .has-success input.long,
 .has-success input.short, .has-success .form td input, .form td .has-success input, .has-success .form td textarea, .form td .has-success textarea, .has-success select {
   border-color: #3c763d;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-success .form-control:focus, .has-success #email input:focus, #email .has-success input:focus, .has-success #payment-methods input:focus, #payment-methods .has-success input:focus, .has-success .field-with-errors input:focus, .field-with-errors .has-success input:focus, .has-success input[type=text]:focus, .has-success input[type=password]:focus, .has-success textarea:focus, .has-success input.digit-2:focus, .has-success input.long:focus,
-  .has-success input.short:focus, .has-success .form td input:focus, .form td .has-success input:focus, .has-success select:focus {
+  .has-success .form-control:focus, .has-success #email input:focus, #email .has-success input:focus, .has-success #payment-methods input:focus, #payment-methods .has-success input:focus, .has-success .field-with-errors input:focus, .field-with-errors .has-success input:focus, .has-success input[type=text]:focus, .has-success input[type=password]:focus, .has-success textarea:focus, .has-success textarea.short:focus, .has-success input.digit-2:focus, .has-success textarea.tall:focus, .has-success input.long:focus,
+  .has-success input.short:focus, .has-success .form td input:focus, .form td .has-success input:focus, .has-success .form td textarea:focus, .form td .has-success textarea:focus, .has-success select:focus {
     border-color: #2b542c;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168; }
@@ -3094,13 +3095,13 @@ select[multiple].input-lg,
 .has-warning .radio-inline,
 .has-warning .checkbox-inline {
   color: #8a6d3b; }
-.has-warning .form-control, .has-warning #email input, #email .has-warning input, .has-warning #payment-methods input, #payment-methods .has-warning input, .has-warning .field-with-errors input, .field-with-errors .has-warning input, .has-warning input[type=text], .has-warning input[type=password], .has-warning textarea, .has-warning input.digit-2, .has-warning input.long,
+.has-warning .form-control, .has-warning #email input, #email .has-warning input, .has-warning #payment-methods input, #payment-methods .has-warning input, .has-warning .field-with-errors input, .field-with-errors .has-warning input, .has-warning input[type=text], .has-warning input[type=password], .has-warning textarea, .has-warning textarea.short, .has-warning input.digit-2, .has-warning textarea.tall, .has-warning input.long,
 .has-warning input.short, .has-warning .form td input, .form td .has-warning input, .has-warning .form td textarea, .form td .has-warning textarea, .has-warning select {
   border-color: #8a6d3b;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-warning .form-control:focus, .has-warning #email input:focus, #email .has-warning input:focus, .has-warning #payment-methods input:focus, #payment-methods .has-warning input:focus, .has-warning .field-with-errors input:focus, .field-with-errors .has-warning input:focus, .has-warning input[type=text]:focus, .has-warning input[type=password]:focus, .has-warning textarea:focus, .has-warning input.digit-2:focus, .has-warning input.long:focus,
-  .has-warning input.short:focus, .has-warning .form td input:focus, .form td .has-warning input:focus, .has-warning select:focus {
+  .has-warning .form-control:focus, .has-warning #email input:focus, #email .has-warning input:focus, .has-warning #payment-methods input:focus, #payment-methods .has-warning input:focus, .has-warning .field-with-errors input:focus, .field-with-errors .has-warning input:focus, .has-warning input[type=text]:focus, .has-warning input[type=password]:focus, .has-warning textarea:focus, .has-warning textarea.short:focus, .has-warning input.digit-2:focus, .has-warning textarea.tall:focus, .has-warning input.long:focus,
+  .has-warning input.short:focus, .has-warning .form td input:focus, .form td .has-warning input:focus, .has-warning .form td textarea:focus, .form td .has-warning textarea:focus, .has-warning select:focus {
     border-color: #66512c;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b; }
@@ -3127,13 +3128,13 @@ select[multiple].input-lg,
 .has-error .checkbox-inline,
 .field-with-errors .checkbox-inline {
   color: #a94442; }
-.has-error .form-control, .field-with-errors .form-control, .has-error #email input, #email .has-error input, .field-with-errors #email input, #email .field-with-errors input, .has-error #payment-methods input, #payment-methods .has-error input, .field-with-errors #payment-methods input, #payment-methods .field-with-errors input, .field-with-errors input, .has-error input[type=text], .has-error input[type=password], .has-error textarea, .field-with-errors textarea, .has-error input.digit-2, .has-error input.long,
+.has-error .form-control, .field-with-errors .form-control, .has-error #email input, #email .has-error input, .field-with-errors #email input, #email .field-with-errors input, .has-error #payment-methods input, #payment-methods .has-error input, .field-with-errors #payment-methods input, #payment-methods .field-with-errors input, .has-error .field-with-errors input, .field-with-errors .has-error input, .field-with-errors input, .has-error input[type=text], .has-error input[type=password], .has-error textarea, .field-with-errors textarea, .has-error textarea.short, .has-error input.digit-2, .has-error textarea.tall, .has-error input.long,
 .has-error input.short, .has-error .form td input, .form td .has-error input, .field-with-errors .form td input, .form td .field-with-errors input, .has-error .form td textarea, .form td .has-error textarea, .field-with-errors .form td textarea, .form td .field-with-errors textarea, .has-error select, .field-with-errors select {
   border-color: #a94442;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-error .form-control:focus, .field-with-errors .form-control:focus, .has-error #email input:focus, #email .has-error input:focus, .field-with-errors #email input:focus, #email .field-with-errors input:focus, .has-error #payment-methods input:focus, #payment-methods .has-error input:focus, .field-with-errors #payment-methods input:focus, #payment-methods .field-with-errors input:focus, .field-with-errors input:focus, .has-error input[type=text]:focus, .has-error input[type=password]:focus, .has-error textarea:focus, .field-with-errors textarea:focus, .has-error input.digit-2:focus, .has-error input.long:focus,
-  .has-error input.short:focus, .has-error .form td input:focus, .form td .has-error input:focus, .field-with-errors .form td input.short:focus, .form td .field-with-errors input.short:focus, .field-with-errors .form.full td input:focus, .form.full td .field-with-errors input:focus, .has-error select:focus, .field-with-errors select:focus {
+  .has-error .form-control:focus, .field-with-errors .form-control:focus, .has-error #email input:focus, #email .has-error input:focus, .field-with-errors #email input:focus, #email .field-with-errors input:focus, .has-error #payment-methods input:focus, #payment-methods .has-error input:focus, .field-with-errors #payment-methods input:focus, #payment-methods .field-with-errors input:focus, .has-error .field-with-errors input:focus, .field-with-errors .has-error input:focus, .field-with-errors input:focus, .has-error input[type=text]:focus, .has-error input[type=password]:focus, .has-error textarea:focus, .field-with-errors textarea:focus, .has-error textarea.short:focus, .has-error input.digit-2:focus, .has-error textarea.tall:focus, .has-error input.long:focus,
+  .has-error input.short:focus, .has-error .form td input:focus, .form td .has-error input:focus, .field-with-errors .form td input.short:focus, .form td .field-with-errors input.short:focus, .has-error .form td textarea:focus, .form td .has-error textarea:focus, .field-with-errors .form.full td input:focus, .form.full td .field-with-errors input:focus, .has-error select:focus, .field-with-errors select:focus {
     border-color: #843534;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483; }
@@ -3144,7 +3145,7 @@ select[multiple].input-lg,
 .has-error .form-control-feedback, .field-with-errors .form-control-feedback {
   color: #a94442; }
 
-.has-feedback label.sr-only ~ .form-control-feedback, .has-feedback #shipping-same label.sr-only ~ .form-control-feedback, #shipping-same .has-feedback label.sr-only ~ .form-control-feedback, .has-feedback td.sr-only.label ~ .form-control-feedback {
+.has-feedback label.sr-only ~ .form-control-feedback, .has-feedback #shipping-same label.sr-only ~ .form-control-feedback, #shipping-same .has-feedback label.sr-only ~ .form-control-feedback, .has-feedback .soft label.sr-only ~ .form-control-feedback, .has-feedback .medium label.sr-only ~ .form-control-feedback, .has-feedback td.sr-only.label ~ .form-control-feedback, .has-feedback .form ul.inline li label.sr-only ~ .form-control-feedback, .has-feedback .item-inventory-action label.sr-only ~ .form-control-feedback {
   top: 0; }
 
 .help-block {
@@ -3158,7 +3159,7 @@ select[multiple].input-lg,
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle; }
-  .form-inline .form-control, .navbar-form .form-control, .form-inline #email input, #email .form-inline input, .navbar-form #email input, #email .navbar-form input, .form-inline #payment-methods input, #payment-methods .form-inline input, .navbar-form #payment-methods input, #payment-methods .navbar-form input, .form-inline .field-with-errors input, .field-with-errors .form-inline input, .navbar-form .field-with-errors input, .field-with-errors .navbar-form input, .form-inline input[type=text], .navbar-form input[type=text], .form-inline input[type=password], .navbar-form input[type=password], .form-inline textarea, .navbar-form textarea, .form-inline input.digit-2, .navbar-form input.digit-2, .form-inline input.long, .navbar-form input.long,
+  .form-inline .form-control, .navbar-form .form-control, .form-inline #email input, #email .form-inline input, .navbar-form #email input, #email .navbar-form input, .form-inline #payment-methods input, #payment-methods .form-inline input, .navbar-form #payment-methods input, #payment-methods .navbar-form input, .form-inline .field-with-errors input, .field-with-errors .form-inline input, .navbar-form .field-with-errors input, .field-with-errors .navbar-form input, .form-inline input[type=text], .navbar-form input[type=text], .form-inline input[type=password], .navbar-form input[type=password], .form-inline textarea, .navbar-form textarea, .form-inline textarea.short, .form-inline input.digit-2, .navbar-form input.digit-2, .form-inline textarea.tall, .form-inline input.long, .navbar-form input.long,
   .form-inline input.short,
   .navbar-form input.short, .form-inline .form td input, .form td .form-inline input, .navbar-form .form td input, .form td .navbar-form input, .form-inline .form td textarea, .form td .form-inline textarea, .navbar-form .form td textarea, .form td .navbar-form textarea, .form-inline select, .navbar-form select {
     display: inline-block;
@@ -3190,8 +3191,12 @@ select[multiple].input-lg,
     .navbar-form .input-group input[type=password],
     .form-inline .input-group textarea,
     .navbar-form .input-group textarea,
+    .form-inline .input-group textarea.short,
+    .navbar-form .input-group textarea.short,
     .form-inline .input-group input.digit-2,
     .navbar-form .input-group input.digit-2,
+    .form-inline .input-group textarea.tall,
+    .navbar-form .input-group textarea.tall,
     .form-inline .input-group input.long,
     .navbar-form .input-group input.long,
     .form-inline .input-group input.short,
@@ -3200,12 +3205,16 @@ select[multiple].input-lg,
     .form td .form-inline .input-group input,
     .navbar-form .input-group .form td input,
     .form td .navbar-form .input-group input,
+    .form-inline .input-group .form td textarea,
+    .form td .form-inline .input-group textarea,
+    .navbar-form .input-group .form td textarea,
+    .form td .navbar-form .input-group textarea,
     .form-inline .input-group select,
     .navbar-form .input-group select {
       width: auto; }
-  .form-inline .input-group > .form-control, .navbar-form .input-group > .form-control, .form-inline #email .input-group > input, #email .form-inline .input-group > input, .navbar-form #email .input-group > input, #email .navbar-form .input-group > input, .form-inline #payment-methods .input-group > input, #payment-methods .form-inline .input-group > input, .navbar-form #payment-methods .input-group > input, #payment-methods .navbar-form .input-group > input, .form-inline .field-with-errors .input-group > input, .field-with-errors .form-inline .input-group > input, .navbar-form .field-with-errors .input-group > input, .field-with-errors .navbar-form .input-group > input, .form-inline .input-group > input[type=text], .navbar-form .input-group > input[type=text], .form-inline .input-group > input[type=password], .navbar-form .input-group > input[type=password], .form-inline .input-group > textarea, .navbar-form .input-group > textarea, .form-inline .input-group > input.digit-2, .navbar-form .input-group > input.digit-2, .form-inline .input-group > input.long, .navbar-form .input-group > input.long,
+  .form-inline .input-group > .form-control, .navbar-form .input-group > .form-control, .form-inline #email .input-group > input, #email .form-inline .input-group > input, .navbar-form #email .input-group > input, #email .navbar-form .input-group > input, .form-inline #payment-methods .input-group > input, #payment-methods .form-inline .input-group > input, .navbar-form #payment-methods .input-group > input, #payment-methods .navbar-form .input-group > input, .form-inline .field-with-errors .input-group > input, .field-with-errors .form-inline .input-group > input, .navbar-form .field-with-errors .input-group > input, .field-with-errors .navbar-form .input-group > input, .form-inline .input-group > input[type=text], .navbar-form .input-group > input[type=text], .form-inline .input-group > input[type=password], .navbar-form .input-group > input[type=password], .form-inline .input-group > textarea, .navbar-form .input-group > textarea, .form-inline .input-group > textarea.short, .navbar-form .input-group > textarea.short, .form-inline .input-group > input.digit-2, .navbar-form .input-group > input.digit-2, .form-inline .input-group > textarea.tall, .navbar-form .input-group > textarea.tall, .form-inline .input-group > input.long, .navbar-form .input-group > input.long,
   .form-inline .input-group > input.short,
-  .navbar-form .input-group > input.short, .form-inline .form td .input-group > input, .form td .form-inline .input-group > input, .navbar-form .form td .input-group > input, .form td .navbar-form .input-group > input, .form-inline .input-group > select, .navbar-form .input-group > select {
+  .navbar-form .input-group > input.short, .form-inline .form td .input-group > input, .form td .form-inline .input-group > input, .navbar-form .form td .input-group > input, .form td .navbar-form .input-group > input, .form-inline .form td .input-group > textarea, .form td .form-inline .input-group > textarea, .navbar-form .form td .input-group > textarea, .form td .navbar-form .input-group > textarea, .form-inline .input-group > select, .navbar-form .input-group > select {
     width: 100%; }
   .form-inline .control-label, .navbar-form .control-label {
     margin-bottom: 0;
@@ -3315,7 +3324,7 @@ select[multiple].input-lg,
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
   .btn:hover, input[type=submit]:hover, #buttons input:hover, #create-account-btn:hover, .btn:focus, input[type=submit]:focus, #buttons input:focus, #create-account-btn:focus {
-    color: #333333;
+    color: #333;
     text-decoration: none; }
   .btn:active, input[type=submit]:active, #buttons input:active, #create-account-btn:active, .btn.active, input.active[type=submit], #buttons input.active, .active#create-account-btn {
     outline: 0;
@@ -3331,28 +3340,28 @@ select[multiple].input-lg,
     box-shadow: none; }
 
 .btn-default, input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit], #create-account-btn {
-  color: #333333;
-  background-color: white;
-  border-color: #cccccc; }
-  .btn-default:hover, input[type=submit]:hover, input.btn:hover, #buttons input:hover, #create-account-btn:hover, .btn-default:focus, input[type=submit]:focus, input.btn:focus, #buttons input:focus, #create-account-btn:focus, .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open > .btn-default.dropdown-toggle, .open > input.dropdown-toggle[type=submit], .open > input.dropdown-toggle.btn, #buttons .open > input.dropdown-toggle, .open > .dropdown-toggle#create-account-btn {
-    color: #333333;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc; }
+  .btn-default:hover, input[type=submit]:hover, input.btn:hover, #buttons input:hover, #create-account-btn:hover, .btn-default:focus, input[type=submit]:focus, input.btn:focus, #buttons input:focus, #create-account-btn:focus, .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open > .btn-default.dropdown-toggle, .open > input.dropdown-toggle[type=submit], .open > input.dropdown-toggle.btn, #buttons .open > input.dropdown-toggle, .sign-in-area .open > input.dropdown-toggle[type=submit], .open > .dropdown-toggle#create-account-btn {
+    color: #333;
     background-color: #e6e6e6;
     border-color: #adadad; }
-  .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open > .btn-default.dropdown-toggle, .open > input.dropdown-toggle[type=submit], .open > input.dropdown-toggle.btn, #buttons .open > input.dropdown-toggle, .open > .dropdown-toggle#create-account-btn {
+  .btn-default:active, input[type=submit]:active, input.btn:active, #buttons input:active, #create-account-btn:active, .btn-default.active, input.active[type=submit], input.active.btn, #buttons input.active, .active#create-account-btn, .open > .btn-default.dropdown-toggle, .open > input.dropdown-toggle[type=submit], .open > input.dropdown-toggle.btn, #buttons .open > input.dropdown-toggle, .sign-in-area .open > input.dropdown-toggle[type=submit], .open > .dropdown-toggle#create-account-btn {
     background-image: none; }
   .btn-default.disabled, input.disabled[type=submit], input.disabled.btn, #buttons input.disabled, .disabled#create-account-btn, .btn-default.disabled:hover, input.disabled[type=submit]:hover, input.disabled.btn:hover, #buttons input.disabled:hover, .disabled#create-account-btn:hover, .btn-default.disabled:focus, input.disabled[type=submit]:focus, input.disabled.btn:focus, #buttons input.disabled:focus, .disabled#create-account-btn:focus, .btn-default.disabled:active, input.disabled[type=submit]:active, input.disabled.btn:active, #buttons input.disabled:active, .disabled#create-account-btn:active, .btn-default.disabled.active, input.disabled.active[type=submit], input.disabled.active.btn, #buttons input.disabled.active, .disabled.active#create-account-btn, .btn-default[disabled], input[disabled][type=submit], input[disabled].btn, #buttons input[disabled], [disabled]#create-account-btn, .btn-default[disabled]:hover, input[disabled][type=submit]:hover, input[disabled].btn:hover, #buttons input[disabled]:hover, [disabled]#create-account-btn:hover, .btn-default[disabled]:focus, input[disabled][type=submit]:focus, input[disabled].btn:focus, #buttons input[disabled]:focus, [disabled]#create-account-btn:focus, .btn-default[disabled]:active, input[disabled][type=submit]:active, input[disabled].btn:active, #buttons input[disabled]:active, [disabled]#create-account-btn:active, .btn-default[disabled].active, input[disabled].active[type=submit], input[disabled].active.btn, #buttons input[disabled].active, [disabled].active#create-account-btn, fieldset[disabled] .btn-default, fieldset[disabled]#switchsolo .btn-default, fieldset[disabled] input[type=submit], fieldset[disabled]#switchsolo input[type=submit], fieldset[disabled] input.btn, fieldset[disabled]#switchsolo input.btn, fieldset[disabled] #buttons input, #buttons fieldset[disabled] input, fieldset[disabled] #create-account-btn, fieldset[disabled] .btn-default:hover, fieldset[disabled]#switchsolo .btn-default:hover, fieldset[disabled] input[type=submit]:hover, fieldset[disabled]#switchsolo input[type=submit]:hover, fieldset[disabled] input.btn:hover, fieldset[disabled]#switchsolo input.btn:hover, fieldset[disabled] #buttons input:hover, #buttons fieldset[disabled] input:hover, fieldset[disabled] #create-account-btn:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled]#switchsolo .btn-default:focus, fieldset[disabled] input[type=submit]:focus, fieldset[disabled]#switchsolo input[type=submit]:focus, fieldset[disabled] input.btn:focus, fieldset[disabled]#switchsolo input.btn:focus, fieldset[disabled] #buttons input:focus, #buttons fieldset[disabled] input:focus, fieldset[disabled] #create-account-btn:focus, fieldset[disabled] .btn-default:active, fieldset[disabled]#switchsolo .btn-default:active, fieldset[disabled] input[type=submit]:active, fieldset[disabled]#switchsolo input[type=submit]:active, fieldset[disabled] input.btn:active, fieldset[disabled]#switchsolo input.btn:active, fieldset[disabled] #buttons input:active, #buttons fieldset[disabled] input:active, fieldset[disabled] #create-account-btn:active, fieldset[disabled] .btn-default.active, fieldset[disabled]#switchsolo .btn-default.active, fieldset[disabled] input.active[type=submit], fieldset[disabled]#switchsolo input.active[type=submit], fieldset[disabled] input.active.btn, fieldset[disabled]#switchsolo input.active.btn, fieldset[disabled] #buttons input.active, #buttons fieldset[disabled] input.active, fieldset[disabled] .active#create-account-btn {
-    background-color: white;
-    border-color: #cccccc; }
+    background-color: #fff;
+    border-color: #ccc; }
   .btn-default .badge, input[type=submit] .badge, input.btn .badge, #buttons input .badge, #create-account-btn .badge {
-    color: white;
-    background-color: #333333; }
+    color: #fff;
+    background-color: #333; }
 
 .btn-primary, #buttons input {
-  color: white;
+  color: #fff;
   background-color: #428bca;
   border-color: #357ebd; }
   .btn-primary:hover, #buttons input:hover, .btn-primary:focus, #buttons input:focus, .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active, .open > .btn-primary.dropdown-toggle, #buttons .open > input.dropdown-toggle {
-    color: white;
+    color: #fff;
     background-color: #3071a9;
     border-color: #285e8e; }
   .btn-primary:active, #buttons input:active, .btn-primary.active, #buttons input.active, .open > .btn-primary.dropdown-toggle, #buttons .open > input.dropdown-toggle {
@@ -3362,14 +3371,14 @@ select[multiple].input-lg,
     border-color: #357ebd; }
   .btn-primary .badge, #buttons input .badge {
     color: #428bca;
-    background-color: white; }
+    background-color: #fff; }
 
 .btn-success {
-  color: white;
+  color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c; }
   .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle {
-    color: white;
+    color: #fff;
     background-color: #449d44;
     border-color: #398439; }
   .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle {
@@ -3379,14 +3388,14 @@ select[multiple].input-lg,
     border-color: #4cae4c; }
   .btn-success .badge {
     color: #5cb85c;
-    background-color: white; }
+    background-color: #fff; }
 
 .btn-info {
-  color: white;
+  color: #fff;
   background-color: #5bc0de;
   border-color: #46b8da; }
   .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open > .btn-info.dropdown-toggle {
-    color: white;
+    color: #fff;
     background-color: #31b0d5;
     border-color: #269abc; }
   .btn-info:active, .btn-info.active, .open > .btn-info.dropdown-toggle {
@@ -3396,14 +3405,14 @@ select[multiple].input-lg,
     border-color: #46b8da; }
   .btn-info .badge {
     color: #5bc0de;
-    background-color: white; }
+    background-color: #fff; }
 
 .btn-warning {
-  color: white;
+  color: #fff;
   background-color: #f0ad4e;
   border-color: #eea236; }
   .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open > .btn-warning.dropdown-toggle {
-    color: white;
+    color: #fff;
     background-color: #ec971f;
     border-color: #d58512; }
   .btn-warning:active, .btn-warning.active, .open > .btn-warning.dropdown-toggle {
@@ -3413,14 +3422,14 @@ select[multiple].input-lg,
     border-color: #eea236; }
   .btn-warning .badge {
     color: #f0ad4e;
-    background-color: white; }
+    background-color: #fff; }
 
 .btn-danger {
-  color: white;
+  color: #fff;
   background-color: #d9534f;
   border-color: #d43f3a; }
   .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open > .btn-danger.dropdown-toggle {
-    color: white;
+    color: #fff;
     background-color: #c9302c;
     border-color: #ac2925; }
   .btn-danger:active, .btn-danger.active, .open > .btn-danger.dropdown-toggle {
@@ -3430,7 +3439,7 @@ select[multiple].input-lg,
     border-color: #d43f3a; }
   .btn-danger .badge {
     color: #d9534f;
-    background-color: white; }
+    background-color: #fff; }
 
 .btn-link {
   color: #428bca;
@@ -3451,19 +3460,19 @@ select[multiple].input-lg,
     color: #777777;
     text-decoration: none; }
 
-.btn-lg, .btn-group-lg > .btn, .btn-group-lg > input[type=submit], #buttons .btn-group-lg > input, .btn-group-lg > #create-account-btn {
+.btn-lg, .btn-group-lg > .btn, .btn-group-lg > input[type=submit], #buttons .btn-group-lg > input, .sign-in-area .btn-group-lg > input[type=submit], .btn-group-lg > #create-account-btn {
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.33;
   border-radius: 6px; }
 
-.btn-sm, .btn-group-sm > .btn, .btn-group-sm > input[type=submit], #buttons .btn-group-sm > input, .btn-group-sm > #create-account-btn {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > input[type=submit], #buttons .btn-group-sm > input, .sign-in-area .btn-group-sm > input[type=submit], .btn-group-sm > #create-account-btn {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px; }
 
-.btn-xs, .btn-group-xs > .btn, .btn-group-xs > input[type=submit], #buttons .btn-group-xs > input, .btn-group-xs > #create-account-btn {
+.btn-xs, .btn-group-xs > .btn, .btn-group-xs > input[type=submit], #buttons .btn-group-xs > input, .sign-in-area .btn-group-xs > input[type=submit], .btn-group-xs > #create-account-btn {
   padding: 1px 5px;
   font-size: 12px;
   line-height: 1.5;
@@ -3537,8 +3546,8 @@ tbody.collapse.in {
   list-style: none;
   font-size: 14px;
   text-align: left;
-  background-color: white;
-  border: 1px solid #cccccc;
+  background-color: #fff;
+  border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -3564,10 +3573,10 @@ tbody.collapse.in {
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   text-decoration: none;
   color: #262626;
-  background-color: whitesmoke; }
+  background-color: #f5f5f5; }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
-  color: white;
+  color: #fff;
   text-decoration: none;
   outline: 0;
   background-color: #428bca; }
@@ -3638,48 +3647,56 @@ tbody.collapse.in {
   position: relative;
   display: inline-block;
   vertical-align: middle; }
-  .btn-group > .btn, .btn-group > input[type=submit], #buttons .btn-group > input, .btn-group > #create-account-btn,
+  .btn-group > .btn, .btn-group > input[type=submit], #buttons .btn-group > input, .sign-in-area .btn-group > input[type=submit], .btn-group > #create-account-btn,
   .btn-group-vertical > .btn,
   .btn-group-vertical > input[type=submit],
   #buttons .btn-group-vertical > input,
+  .sign-in-area .btn-group-vertical > input[type=submit],
   .btn-group-vertical > #create-account-btn {
     position: relative;
     float: left; }
-    .btn-group > .btn:hover, .btn-group > input[type=submit]:hover, #buttons .btn-group > input:hover, .btn-group > #create-account-btn:hover, .btn-group > .btn:focus, .btn-group > input[type=submit]:focus, #buttons .btn-group > input:focus, .btn-group > #create-account-btn:focus, .btn-group > .btn:active, .btn-group > input[type=submit]:active, #buttons .btn-group > input:active, .btn-group > #create-account-btn:active, .btn-group > .btn.active, .btn-group > input.active[type=submit], #buttons .btn-group > input.active, .btn-group > .active#create-account-btn,
+    .btn-group > .btn:hover, .btn-group > input[type=submit]:hover, #buttons .btn-group > input:hover, .sign-in-area .btn-group > input[type=submit]:hover, .btn-group > #create-account-btn:hover, .btn-group > .btn:focus, .btn-group > input[type=submit]:focus, #buttons .btn-group > input:focus, .sign-in-area .btn-group > input[type=submit]:focus, .btn-group > #create-account-btn:focus, .btn-group > .btn:active, .btn-group > input[type=submit]:active, #buttons .btn-group > input:active, .sign-in-area .btn-group > input[type=submit]:active, .btn-group > #create-account-btn:active, .btn-group > .btn.active, .btn-group > input.active[type=submit], #buttons .btn-group > input.active, .sign-in-area .btn-group > input.active[type=submit], .btn-group > .active#create-account-btn,
     .btn-group-vertical > .btn:hover,
     .btn-group-vertical > input[type=submit]:hover,
     #buttons .btn-group-vertical > input:hover,
+    .sign-in-area .btn-group-vertical > input[type=submit]:hover,
     .btn-group-vertical > #create-account-btn:hover,
     .btn-group-vertical > .btn:focus,
     .btn-group-vertical > input[type=submit]:focus,
     #buttons .btn-group-vertical > input:focus,
+    .sign-in-area .btn-group-vertical > input[type=submit]:focus,
     .btn-group-vertical > #create-account-btn:focus,
     .btn-group-vertical > .btn:active,
     .btn-group-vertical > input[type=submit]:active,
     #buttons .btn-group-vertical > input:active,
+    .sign-in-area .btn-group-vertical > input[type=submit]:active,
     .btn-group-vertical > #create-account-btn:active,
     .btn-group-vertical > .btn.active,
     .btn-group-vertical > input.active[type=submit],
     #buttons .btn-group-vertical > input.active,
+    .sign-in-area .btn-group-vertical > input.active[type=submit],
     .btn-group-vertical > .active#create-account-btn {
       z-index: 2; }
-    .btn-group > .btn:focus, .btn-group > input[type=submit]:focus, #buttons .btn-group > input:focus, .btn-group > #create-account-btn:focus,
+    .btn-group > .btn:focus, .btn-group > input[type=submit]:focus, #buttons .btn-group > input:focus, .sign-in-area .btn-group > input[type=submit]:focus, .btn-group > #create-account-btn:focus,
     .btn-group-vertical > .btn:focus,
     .btn-group-vertical > input[type=submit]:focus,
     #buttons .btn-group-vertical > input:focus,
+    .sign-in-area .btn-group-vertical > input[type=submit]:focus,
     .btn-group-vertical > #create-account-btn:focus {
       outline: 0; }
 
-.btn-group .btn + .btn, .btn-group input[type=submit] + .btn, .btn-group #buttons input + .btn, #buttons .btn-group input + .btn, .btn-group #create-account-btn + .btn, .btn-group .btn + input[type=submit], .btn-group input[type=submit] + input[type=submit], .btn-group #create-account-btn + input[type=submit], .btn-group #buttons .btn + input, #buttons .btn-group .btn + input, .btn-group #buttons input + input, #buttons .btn-group input + input, .btn-group #buttons #create-account-btn + input, #buttons .btn-group #create-account-btn + input, .btn-group .btn + #create-account-btn, .btn-group input[type=submit] + #create-account-btn, .btn-group #buttons input + #create-account-btn, #buttons .btn-group input + #create-account-btn, .btn-group #create-account-btn + #create-account-btn,
+.btn-group .btn + .btn, .btn-group input[type=submit] + .btn, .btn-group #buttons input + .btn, #buttons .btn-group input + .btn, .btn-group .sign-in-area input[type=submit] + .btn, .btn-group #create-account-btn + .btn, .btn-group .btn + input[type=submit], .btn-group input[type=submit] + input[type=submit], .btn-group #create-account-btn + input[type=submit], .btn-group #buttons .btn + input, #buttons .btn-group .btn + input, .btn-group #buttons input + input, #buttons .btn-group input + input, #buttons .btn-group .sign-in-area input[type=submit] + input, .btn-group #buttons #create-account-btn + input, #buttons .btn-group #create-account-btn + input, .btn-group .sign-in-area .btn + input[type=submit], .btn-group #buttons .sign-in-area input + input[type=submit], #buttons .btn-group .sign-in-area input + input[type=submit], .btn-group .sign-in-area input[type=submit] + input[type=submit], .btn-group .sign-in-area #create-account-btn + input[type=submit], .btn-group .btn + #create-account-btn, .btn-group input[type=submit] + #create-account-btn, .btn-group #buttons input + #create-account-btn, #buttons .btn-group input + #create-account-btn, .btn-group .sign-in-area input[type=submit] + #create-account-btn, .btn-group #create-account-btn + #create-account-btn,
 .btn-group .btn + .btn-group,
 .btn-group input[type=submit] + .btn-group,
 .btn-group #buttons input + .btn-group,
 #buttons .btn-group input + .btn-group,
+.btn-group .sign-in-area input[type=submit] + .btn-group,
 .btn-group #create-account-btn + .btn-group,
 .btn-group .btn-group + .btn,
 .btn-group .btn-group + input[type=submit],
 .btn-group #buttons .btn-group + input,
 #buttons .btn-group .btn-group + input,
+.btn-group .sign-in-area .btn-group + input[type=submit],
 .btn-group .btn-group + #create-account-btn,
 .btn-group .btn-group + .btn-group {
   margin-left: -1px; }
@@ -3694,21 +3711,21 @@ tbody.collapse.in {
   .btn-toolbar .btn-group,
   .btn-toolbar .input-group {
     float: left; }
-  .btn-toolbar > .btn, .btn-toolbar > input[type=submit], #buttons .btn-toolbar > input, .btn-toolbar > #create-account-btn,
+  .btn-toolbar > .btn, .btn-toolbar > input[type=submit], #buttons .btn-toolbar > input, .sign-in-area .btn-toolbar > input[type=submit], .btn-toolbar > #create-account-btn,
   .btn-toolbar > .btn-group,
   .btn-toolbar > .input-group {
     margin-left: 5px; }
 
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .btn-group > input[type=submit]:not(:first-child):not(:last-child):not(.dropdown-toggle), #buttons .btn-group > input:not(:first-child):not(:last-child):not(.dropdown-toggle), .btn-group > #create-account-btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .btn-group > input[type=submit]:not(:first-child):not(:last-child):not(.dropdown-toggle), #buttons .btn-group > input:not(:first-child):not(:last-child):not(.dropdown-toggle), .sign-in-area .btn-group > input[type=submit]:not(:first-child):not(:last-child):not(.dropdown-toggle), .btn-group > #create-account-btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0; }
 
-.btn-group > .btn:first-child, .btn-group > input[type=submit]:first-child, #buttons .btn-group > input:first-child, .btn-group > #create-account-btn:first-child {
+.btn-group > .btn:first-child, .btn-group > input[type=submit]:first-child, #buttons .btn-group > input:first-child, .sign-in-area .btn-group > input[type=submit]:first-child, .btn-group > #create-account-btn:first-child {
   margin-left: 0; }
-  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .btn-group > input[type=submit]:first-child:not(:last-child):not(.dropdown-toggle), #buttons .btn-group > input:first-child:not(:last-child):not(.dropdown-toggle), .btn-group > #create-account-btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .btn-group > input[type=submit]:first-child:not(:last-child):not(.dropdown-toggle), #buttons .btn-group > input:first-child:not(:last-child):not(.dropdown-toggle), .sign-in-area .btn-group > input[type=submit]:first-child:not(:last-child):not(.dropdown-toggle), .btn-group > #create-account-btn:first-child:not(:last-child):not(.dropdown-toggle) {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0; }
 
-.btn-group > .btn:last-child:not(:first-child), .btn-group > input[type=submit]:last-child:not(:first-child), #buttons .btn-group > input:last-child:not(:first-child), .btn-group > #create-account-btn:last-child:not(:first-child),
+.btn-group > .btn:last-child:not(:first-child), .btn-group > input[type=submit]:last-child:not(:first-child), #buttons .btn-group > input:last-child:not(:first-child), .sign-in-area .btn-group > input[type=submit]:last-child:not(:first-child), .btn-group > #create-account-btn:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0; }
@@ -3757,7 +3774,7 @@ tbody.collapse.in {
 .dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .btn-group-lg > input[type=submit] .caret, .dropup #buttons .btn-group-lg > input .caret, #buttons .dropup .btn-group-lg > input .caret, .dropup .btn-group-lg > #create-account-btn .caret {
   border-width: 0 5px 5px; }
 
-.btn-group-vertical > .btn, .btn-group-vertical > input[type=submit], #buttons .btn-group-vertical > input, .btn-group-vertical > #create-account-btn,
+.btn-group-vertical > .btn, .btn-group-vertical > input[type=submit], #buttons .btn-group-vertical > input, .sign-in-area .btn-group-vertical > input[type=submit], .btn-group-vertical > #create-account-btn,
 .btn-group-vertical > .btn-group,
 .btn-group-vertical > .btn-group > .btn,
 .btn-group-vertical > .btn-group > input[type=submit],
@@ -3787,13 +3804,13 @@ tbody.collapse.in {
   margin-top: -1px;
   margin-left: 0; }
 
-.btn-group-vertical > .btn:not(:first-child):not(:last-child), .btn-group-vertical > input[type=submit]:not(:first-child):not(:last-child), #buttons .btn-group-vertical > input:not(:first-child):not(:last-child), .btn-group-vertical > #create-account-btn:not(:first-child):not(:last-child) {
+.btn-group-vertical > .btn:not(:first-child):not(:last-child), .btn-group-vertical > input[type=submit]:not(:first-child):not(:last-child), #buttons .btn-group-vertical > input:not(:first-child):not(:last-child), .sign-in-area .btn-group-vertical > input[type=submit]:not(:first-child):not(:last-child), .btn-group-vertical > #create-account-btn:not(:first-child):not(:last-child) {
   border-radius: 0; }
-.btn-group-vertical > .btn:first-child:not(:last-child), .btn-group-vertical > input[type=submit]:first-child:not(:last-child), #buttons .btn-group-vertical > input:first-child:not(:last-child), .btn-group-vertical > #create-account-btn:first-child:not(:last-child) {
+.btn-group-vertical > .btn:first-child:not(:last-child), .btn-group-vertical > input[type=submit]:first-child:not(:last-child), #buttons .btn-group-vertical > input:first-child:not(:last-child), .sign-in-area .btn-group-vertical > input[type=submit]:first-child:not(:last-child), .btn-group-vertical > #create-account-btn:first-child:not(:last-child) {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
-.btn-group-vertical > .btn:last-child:not(:first-child), .btn-group-vertical > input[type=submit]:last-child:not(:first-child), #buttons .btn-group-vertical > input:last-child:not(:first-child), .btn-group-vertical > #create-account-btn:last-child:not(:first-child) {
+.btn-group-vertical > .btn:last-child:not(:first-child), .btn-group-vertical > input[type=submit]:last-child:not(:first-child), #buttons .btn-group-vertical > input:last-child:not(:first-child), .sign-in-area .btn-group-vertical > input[type=submit]:last-child:not(:first-child), .btn-group-vertical > #create-account-btn:last-child:not(:first-child) {
   border-bottom-left-radius: 4px;
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
@@ -3815,7 +3832,7 @@ tbody.collapse.in {
   width: 100%;
   table-layout: fixed;
   border-collapse: separate; }
-  .btn-group-justified > .btn, .btn-group-justified > input[type=submit], #buttons .btn-group-justified > input, .btn-group-justified > #create-account-btn,
+  .btn-group-justified > .btn, .btn-group-justified > input[type=submit], #buttons .btn-group-justified > input, .sign-in-area .btn-group-justified > input[type=submit], .btn-group-justified > #create-account-btn,
   .btn-group-justified > .btn-group {
     float: none;
     display: table-cell;
@@ -3843,7 +3860,7 @@ tbody.collapse.in {
     float: none;
     padding-left: 0;
     padding-right: 0; }
-  .input-group .form-control, .input-group #email input, #email .input-group input, .input-group #payment-methods input, #payment-methods .input-group input, .input-group .field-with-errors input, .field-with-errors .input-group input, .input-group input[type=text], .input-group input[type=password], .input-group textarea, .input-group input.digit-2, .input-group input.long,
+  .input-group .form-control, .input-group #email input, #email .input-group input, .input-group #payment-methods input, #payment-methods .input-group input, .input-group .field-with-errors input, .field-with-errors .input-group input, .input-group input[type=text], .input-group input[type=password], .input-group textarea, .input-group textarea.short, .input-group input.digit-2, .input-group textarea.tall, .input-group input.long,
   .input-group input.short, .input-group .form td input, .form td .input-group input, .input-group .form td textarea, .form td .input-group textarea, .input-group select {
     position: relative;
     z-index: 2;
@@ -3863,7 +3880,9 @@ tbody.collapse.in {
 .input-group input[type=text],
 .input-group input[type=password],
 .input-group textarea,
+.input-group textarea.short,
 .input-group input.digit-2,
+.input-group textarea.tall,
 .input-group input.long,
 .input-group input.short,
 .input-group .form td input,
@@ -3884,11 +3903,15 @@ tbody.collapse.in {
   .input-group input[type=text]:not(:first-child):not(:last-child),
   .input-group input[type=password]:not(:first-child):not(:last-child),
   .input-group textarea:not(:first-child):not(:last-child),
+  .input-group textarea.short:not(:first-child):not(:last-child),
   .input-group input.digit-2:not(:first-child):not(:last-child),
+  .input-group textarea.tall:not(:first-child):not(:last-child),
   .input-group input.long:not(:first-child):not(:last-child),
   .input-group input.short:not(:first-child):not(:last-child),
   .input-group .form td input:not(:first-child):not(:last-child),
   .form td .input-group input:not(:first-child):not(:last-child),
+  .input-group .form td textarea:not(:first-child):not(:last-child),
+  .form td .input-group textarea:not(:first-child):not(:last-child),
   .input-group select:not(:first-child):not(:last-child) {
     border-radius: 0; }
 
@@ -3906,10 +3929,10 @@ tbody.collapse.in {
   color: #555555;
   text-align: center;
   background-color: #eeeeee;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border-radius: 4px; }
   .input-group-addon.input-sm, .form-horizontal .form-group-sm .input-group-addon.form-control, .form-horizontal .form-group-sm #email input.input-group-addon, #email .form-horizontal .form-group-sm input.input-group-addon, .form-horizontal .form-group-sm #payment-methods input.input-group-addon, #payment-methods .form-horizontal .form-group-sm input.input-group-addon, .form-horizontal .form-group-sm .field-with-errors input.input-group-addon, .field-with-errors .form-horizontal .form-group-sm input.input-group-addon, .form-horizontal .form-group-sm input.input-group-addon[type=text], .form-horizontal .form-group-sm input.input-group-addon[type=password], .form-horizontal .form-group-sm textarea.input-group-addon, .form-horizontal .form-group-sm input.input-group-addon.digit-2, .form-horizontal .form-group-sm input.input-group-addon.long,
-  .form-horizontal .form-group-sm input.input-group-addon.short, .form-horizontal .form-group-sm .form td input.input-group-addon, .form td .form-horizontal .form-group-sm input.input-group-addon, .form-horizontal .form-group-sm select.input-group-addon, #email .input-group-sm > input.input-group-addon, #payment-methods .input-group-sm > input.input-group-addon,
+  .form-horizontal .form-group-sm input.input-group-addon.short, .form-horizontal .form-group-sm .form td input.input-group-addon, .form td .form-horizontal .form-group-sm input.input-group-addon, .form-horizontal .form-group-sm select.input-group-addon, #email .input-group-sm > input.input-group-addon, #payment-methods .input-group-sm > input.input-group-addon, .field-with-errors .input-group-sm > input.input-group-addon, .form td .input-group-sm > input.input-group-addon, .form td .input-group-sm > textarea.input-group-addon,
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-group-btn > .input-group-addon.btn,
   .input-group-sm > .input-group-btn > input.input-group-addon[type=submit],
@@ -3919,7 +3942,7 @@ tbody.collapse.in {
     font-size: 12px;
     border-radius: 3px; }
   .input-group-addon.input-lg, .form-horizontal .form-group-lg .input-group-addon.form-control, .form-horizontal .form-group-lg #email input.input-group-addon, #email .form-horizontal .form-group-lg input.input-group-addon, .form-horizontal .form-group-lg #payment-methods input.input-group-addon, #payment-methods .form-horizontal .form-group-lg input.input-group-addon, .form-horizontal .form-group-lg .field-with-errors input.input-group-addon, .field-with-errors .form-horizontal .form-group-lg input.input-group-addon, .form-horizontal .form-group-lg input.input-group-addon[type=text], .form-horizontal .form-group-lg input.input-group-addon[type=password], .form-horizontal .form-group-lg textarea.input-group-addon, .form-horizontal .form-group-lg input.input-group-addon.digit-2, .form-horizontal .form-group-lg input.input-group-addon.long,
-  .form-horizontal .form-group-lg input.input-group-addon.short, .form-horizontal .form-group-lg .form td input.input-group-addon, .form td .form-horizontal .form-group-lg input.input-group-addon, .form-horizontal .form-group-lg select.input-group-addon, #email .input-group-lg > input.input-group-addon, #payment-methods .input-group-lg > input.input-group-addon,
+  .form-horizontal .form-group-lg input.input-group-addon.short, .form-horizontal .form-group-lg .form td input.input-group-addon, .form td .form-horizontal .form-group-lg input.input-group-addon, .form-horizontal .form-group-lg select.input-group-addon, #email .input-group-lg > input.input-group-addon, #payment-methods .input-group-lg > input.input-group-addon, .field-with-errors .input-group-lg > input.input-group-addon, .form td .input-group-lg > input.input-group-addon, .form td .input-group-lg > textarea.input-group-addon,
   .input-group-lg > .input-group-addon,
   .input-group-lg > .input-group-btn > .input-group-addon.btn,
   .input-group-lg > .input-group-btn > input.input-group-addon[type=submit],
@@ -3932,12 +3955,13 @@ tbody.collapse.in {
   .input-group-addon input[type="checkbox"] {
     margin-top: 0; }
 
-.input-group .form-control:first-child, .input-group #email input:first-child, #email .input-group input:first-child, .input-group #payment-methods input:first-child, #payment-methods .input-group input:first-child, .input-group .field-with-errors input:first-child, .field-with-errors .input-group input:first-child, .input-group input[type=text]:first-child, .input-group input[type=password]:first-child, .input-group textarea:first-child, .input-group input.digit-2:first-child, .input-group input.long:first-child,
-.input-group input.short:first-child, .input-group .form td input:first-child, .form td .input-group input:first-child, .input-group select:first-child,
+.input-group .form-control:first-child, .input-group #email input:first-child, #email .input-group input:first-child, .input-group #payment-methods input:first-child, #payment-methods .input-group input:first-child, .input-group .field-with-errors input:first-child, .field-with-errors .input-group input:first-child, .input-group input[type=text]:first-child, .input-group input[type=password]:first-child, .input-group textarea:first-child, .input-group textarea.short:first-child, .input-group input.digit-2:first-child, .input-group textarea.tall:first-child, .input-group input.long:first-child,
+.input-group input.short:first-child, .input-group .form td input:first-child, .form td .input-group input:first-child, .input-group .form td textarea:first-child, .form td .input-group textarea:first-child, .input-group select:first-child,
 .input-group-addon:first-child,
 .input-group-btn:first-child > .btn,
 .input-group-btn:first-child > input[type=submit],
 #buttons .input-group-btn:first-child > input,
+.sign-in-area .input-group-btn:first-child > input[type=submit],
 .input-group-btn:first-child > #create-account-btn,
 .input-group-btn:first-child > .btn-group > .btn,
 .input-group-btn:first-child > .btn-group > input[type=submit],
@@ -3947,6 +3971,7 @@ tbody.collapse.in {
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > input[type=submit]:not(:last-child):not(.dropdown-toggle),
 #buttons .input-group-btn:last-child > input:not(:last-child):not(.dropdown-toggle),
+.sign-in-area .input-group-btn:last-child > input[type=submit]:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > #create-account-btn:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
 .input-group-btn:last-child > .btn-group:not(:last-child) > input[type=submit],
@@ -3958,12 +3983,13 @@ tbody.collapse.in {
 .input-group-addon:first-child {
   border-right: 0; }
 
-.input-group .form-control:last-child, .input-group #email input:last-child, #email .input-group input:last-child, .input-group #payment-methods input:last-child, #payment-methods .input-group input:last-child, .input-group .field-with-errors input:last-child, .field-with-errors .input-group input:last-child, .input-group input[type=text]:last-child, .input-group input[type=password]:last-child, .input-group textarea:last-child, .input-group input.digit-2:last-child, .input-group input.long:last-child,
-.input-group input.short:last-child, .input-group .form td input:last-child, .form td .input-group input:last-child, .input-group select:last-child,
+.input-group .form-control:last-child, .input-group #email input:last-child, #email .input-group input:last-child, .input-group #payment-methods input:last-child, #payment-methods .input-group input:last-child, .input-group .field-with-errors input:last-child, .field-with-errors .input-group input:last-child, .input-group input[type=text]:last-child, .input-group input[type=password]:last-child, .input-group textarea:last-child, .input-group textarea.short:last-child, .input-group input.digit-2:last-child, .input-group textarea.tall:last-child, .input-group input.long:last-child,
+.input-group input.short:last-child, .input-group .form td input:last-child, .form td .input-group input:last-child, .input-group .form td textarea:last-child, .form td .input-group textarea:last-child, .input-group select:last-child,
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
 .input-group-btn:last-child > input[type=submit],
 #buttons .input-group-btn:last-child > input,
+.sign-in-area .input-group-btn:last-child > input[type=submit],
 .input-group-btn:last-child > #create-account-btn,
 .input-group-btn:last-child > .btn-group > .btn,
 .input-group-btn:last-child > .btn-group > input[type=submit],
@@ -3973,6 +3999,7 @@ tbody.collapse.in {
 .input-group-btn:first-child > .btn:not(:first-child),
 .input-group-btn:first-child > input[type=submit]:not(:first-child),
 #buttons .input-group-btn:first-child > input:not(:first-child),
+.sign-in-area .input-group-btn:first-child > input[type=submit]:not(:first-child),
 .input-group-btn:first-child > #create-account-btn:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
 .input-group-btn:first-child > .btn-group:not(:first-child) > input[type=submit],
@@ -3988,16 +4015,16 @@ tbody.collapse.in {
   position: relative;
   font-size: 0;
   white-space: nowrap; }
-  .input-group-btn > .btn, .input-group-btn > input[type=submit], #buttons .input-group-btn > input, .input-group-btn > #create-account-btn {
+  .input-group-btn > .btn, .input-group-btn > input[type=submit], #buttons .input-group-btn > input, .sign-in-area .input-group-btn > input[type=submit], .input-group-btn > #create-account-btn {
     position: relative; }
     .input-group-btn > .btn + .btn, .input-group-btn > input[type=submit] + .btn, #buttons .input-group-btn > input + .btn, .input-group-btn > #create-account-btn + .btn, .input-group-btn > .btn + input[type=submit], .input-group-btn > input[type=submit] + input[type=submit], .input-group-btn > #create-account-btn + input[type=submit], #buttons .input-group-btn > .btn + input, #buttons .input-group-btn > input + input, #buttons .input-group-btn > #create-account-btn + input, .input-group-btn > .btn + #create-account-btn, .input-group-btn > input[type=submit] + #create-account-btn, #buttons .input-group-btn > input + #create-account-btn, .input-group-btn > #create-account-btn + #create-account-btn {
       margin-left: -1px; }
-    .input-group-btn > .btn:hover, .input-group-btn > input[type=submit]:hover, #buttons .input-group-btn > input:hover, .input-group-btn > #create-account-btn:hover, .input-group-btn > .btn:focus, .input-group-btn > input[type=submit]:focus, #buttons .input-group-btn > input:focus, .input-group-btn > #create-account-btn:focus, .input-group-btn > .btn:active, .input-group-btn > input[type=submit]:active, #buttons .input-group-btn > input:active, .input-group-btn > #create-account-btn:active {
+    .input-group-btn > .btn:hover, .input-group-btn > input[type=submit]:hover, #buttons .input-group-btn > input:hover, .sign-in-area .input-group-btn > input[type=submit]:hover, .input-group-btn > #create-account-btn:hover, .input-group-btn > .btn:focus, .input-group-btn > input[type=submit]:focus, #buttons .input-group-btn > input:focus, .sign-in-area .input-group-btn > input[type=submit]:focus, .input-group-btn > #create-account-btn:focus, .input-group-btn > .btn:active, .input-group-btn > input[type=submit]:active, #buttons .input-group-btn > input:active, .sign-in-area .input-group-btn > input[type=submit]:active, .input-group-btn > #create-account-btn:active {
       z-index: 2; }
-  .input-group-btn:first-child > .btn, .input-group-btn:first-child > input[type=submit], #buttons .input-group-btn:first-child > input, .input-group-btn:first-child > #create-account-btn,
+  .input-group-btn:first-child > .btn, .input-group-btn:first-child > input[type=submit], #buttons .input-group-btn:first-child > input, .sign-in-area .input-group-btn:first-child > input[type=submit], .input-group-btn:first-child > #create-account-btn,
   .input-group-btn:first-child > .btn-group {
     margin-right: -1px; }
-  .input-group-btn:last-child > .btn, .input-group-btn:last-child > input[type=submit], #buttons .input-group-btn:last-child > input, .input-group-btn:last-child > #create-account-btn,
+  .input-group-btn:last-child > .btn, .input-group-btn:last-child > input[type=submit], #buttons .input-group-btn:last-child > input, .sign-in-area .input-group-btn:last-child > input[type=submit], .input-group-btn:last-child > #create-account-btn,
   .input-group-btn:last-child > .btn-group {
     margin-left: -1px; }
 
@@ -4039,7 +4066,7 @@ tbody.collapse.in {
     max-width: none; }
 
 .nav-tabs {
-  border-bottom: 1px solid #dddddd; }
+  border-bottom: 1px solid #ddd; }
   .nav-tabs > li {
     float: left;
     margin-bottom: -1px; }
@@ -4049,11 +4076,11 @@ tbody.collapse.in {
       border: 1px solid transparent;
       border-radius: 4px 4px 0 0; }
       .nav-tabs > li > a:hover {
-        border-color: #eeeeee #eeeeee #dddddd; }
+        border-color: #eeeeee #eeeeee #ddd; }
     .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
       color: #555555;
-      background-color: white;
-      border: 1px solid #dddddd;
+      background-color: #fff;
+      border: 1px solid #ddd;
       border-bottom-color: transparent;
       cursor: default; }
 
@@ -4064,7 +4091,7 @@ tbody.collapse.in {
   .nav-pills > li + li {
     margin-left: 2px; }
   .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-    color: white;
+    color: #fff;
     background-color: #428bca; }
 
 .nav-stacked > li {
@@ -4100,17 +4127,17 @@ tbody.collapse.in {
   .nav-tabs.nav-justified > .active > a:hover,
   .nav-tabs-justified > .active > a:focus,
   .nav-tabs.nav-justified > .active > a:focus {
-    border: 1px solid #dddddd; }
+    border: 1px solid #ddd; }
   @media (min-width: 768px) {
     .nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a {
-      border-bottom: 1px solid #dddddd;
+      border-bottom: 1px solid #ddd;
       border-radius: 4px 4px 0 0; }
     .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a,
     .nav-tabs-justified > .active > a:hover,
     .nav-tabs.nav-justified > .active > a:hover,
     .nav-tabs-justified > .active > a:focus,
     .nav-tabs.nav-justified > .active > a:focus {
-      border-bottom-color: white; } }
+      border-bottom-color: #fff; } }
 
 .tab-content > .tab-pane {
   display: none; }
@@ -4344,10 +4371,10 @@ tbody.collapse.in {
 .navbar-btn {
   margin-top: 8px;
   margin-bottom: 8px; }
-  .navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .btn-group-sm > input.navbar-btn[type=submit], #buttons .btn-group-sm > input.navbar-btn, .btn-group-sm > .navbar-btn#create-account-btn {
+  .navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .btn-group-sm > input.navbar-btn[type=submit], #buttons .btn-group-sm > input.navbar-btn, .sign-in-area .btn-group-sm > input.navbar-btn[type=submit], .btn-group-sm > .navbar-btn#create-account-btn {
     margin-top: 10px;
     margin-bottom: 10px; }
-  .navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .btn-group-xs > input.navbar-btn[type=submit], #buttons .btn-group-xs > input.navbar-btn, .btn-group-xs > .navbar-btn#create-account-btn {
+  .navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .btn-group-xs > input.navbar-btn[type=submit], #buttons .btn-group-xs > input.navbar-btn, .sign-in-area .btn-group-xs > input.navbar-btn[type=submit], .btn-group-xs > .navbar-btn#create-account-btn {
     margin-top: 14px;
     margin-bottom: 14px; }
 
@@ -4366,29 +4393,29 @@ tbody.collapse.in {
   background-color: #f8f8f8;
   border-color: #e7e7e7; }
   .navbar-default .navbar-brand, #footer .navbar-brand, #container.slim #footer .navbar-brand {
-    color: #777777; }
+    color: #777; }
     .navbar-default .navbar-brand:hover, #footer .navbar-brand:hover, #container.slim #footer .navbar-brand:hover, .navbar-default .navbar-brand:focus, #footer .navbar-brand:focus, #container.slim #footer .navbar-brand:focus {
       color: #5e5e5e;
       background-color: transparent; }
   .navbar-default .navbar-text, #footer .navbar-text, #container.slim #footer .navbar-text {
-    color: #777777; }
+    color: #777; }
   .navbar-default .navbar-nav > li > a, #footer .navbar-nav > li > a, #container.slim #footer .navbar-nav > li > a {
-    color: #777777; }
+    color: #777; }
     .navbar-default .navbar-nav > li > a:hover, #footer .navbar-nav > li > a:hover, #container.slim #footer .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, #footer .navbar-nav > li > a:focus, #container.slim #footer .navbar-nav > li > a:focus {
-      color: #333333;
+      color: #333;
       background-color: transparent; }
   .navbar-default .navbar-nav > .active > a, #footer .navbar-nav > .active > a, #container.slim #footer .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, #footer .navbar-nav > .active > a:hover, #container.slim #footer .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, #footer .navbar-nav > .active > a:focus, #container.slim #footer .navbar-nav > .active > a:focus {
-    color: #555555;
+    color: #555;
     background-color: #e7e7e7; }
   .navbar-default .navbar-nav > .disabled > a, #footer .navbar-nav > .disabled > a, #container.slim #footer .navbar-nav > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, #footer .navbar-nav > .disabled > a:hover, #container.slim #footer .navbar-nav > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus, #footer .navbar-nav > .disabled > a:focus, #container.slim #footer .navbar-nav > .disabled > a:focus {
-    color: #cccccc;
+    color: #ccc;
     background-color: transparent; }
   .navbar-default .navbar-toggle, #footer .navbar-toggle, #container.slim #footer .navbar-toggle {
-    border-color: #dddddd; }
+    border-color: #ddd; }
     .navbar-default .navbar-toggle:hover, #footer .navbar-toggle:hover, #container.slim #footer .navbar-toggle:hover, .navbar-default .navbar-toggle:focus, #footer .navbar-toggle:focus, #container.slim #footer .navbar-toggle:focus {
-      background-color: #dddddd; }
+      background-color: #ddd; }
     .navbar-default .navbar-toggle .icon-bar, #footer .navbar-toggle .icon-bar, #container.slim #footer .navbar-toggle .icon-bar {
-      background-color: #888888; }
+      background-color: #888; }
   .navbar-default .navbar-collapse, #footer .navbar-collapse, #container.slim #footer .navbar-collapse,
   .navbar-default .navbar-form,
   #footer .navbar-form,
@@ -4396,63 +4423,63 @@ tbody.collapse.in {
     border-color: #e7e7e7; }
   .navbar-default .navbar-nav > .open > a, #footer .navbar-nav > .open > a, #container.slim #footer .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, #footer .navbar-nav > .open > a:hover, #container.slim #footer .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, #footer .navbar-nav > .open > a:focus, #container.slim #footer .navbar-nav > .open > a:focus {
     background-color: #e7e7e7;
-    color: #555555; }
+    color: #555; }
   @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a, #footer .navbar-nav .open .dropdown-menu > li > a, #container.slim #footer .navbar-nav .open .dropdown-menu > li > a {
-      color: #777777; }
+      color: #777; }
       .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, #footer .navbar-nav .open .dropdown-menu > li > a:hover, #container.slim #footer .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, #footer .navbar-nav .open .dropdown-menu > li > a:focus, #container.slim #footer .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #333333;
+        color: #333;
         background-color: transparent; }
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a, #footer .navbar-nav .open .dropdown-menu > .active > a, #container.slim #footer .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, #footer .navbar-nav .open .dropdown-menu > .active > a:hover, #container.slim #footer .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus, #footer .navbar-nav .open .dropdown-menu > .active > a:focus, #container.slim #footer .navbar-nav .open .dropdown-menu > .active > a:focus {
-      color: #555555;
+      color: #555;
       background-color: #e7e7e7; }
     .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a, #footer .navbar-nav .open .dropdown-menu > .disabled > a, #container.slim #footer .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover, #footer .navbar-nav .open .dropdown-menu > .disabled > a:hover, #container.slim #footer .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus, #footer .navbar-nav .open .dropdown-menu > .disabled > a:focus, #container.slim #footer .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-      color: #cccccc;
+      color: #ccc;
       background-color: transparent; } }
   .navbar-default .navbar-link, #footer .navbar-link, #container.slim #footer .navbar-link {
-    color: #777777; }
+    color: #777; }
     .navbar-default .navbar-link:hover, #footer .navbar-link:hover, #container.slim #footer .navbar-link:hover {
-      color: #333333; }
+      color: #333; }
   .navbar-default .btn-link, #footer .btn-link, #container.slim #footer .btn-link {
-    color: #777777; }
+    color: #777; }
     .navbar-default .btn-link:hover, #footer .btn-link:hover, #container.slim #footer .btn-link:hover, .navbar-default .btn-link:focus, #footer .btn-link:focus, #container.slim #footer .btn-link:focus {
-      color: #333333; }
+      color: #333; }
     .navbar-default .btn-link[disabled]:hover, #footer .btn-link[disabled]:hover, #container.slim #footer .btn-link[disabled]:hover, .navbar-default .btn-link[disabled]:focus, #footer .btn-link[disabled]:focus, #container.slim #footer .btn-link[disabled]:focus, fieldset[disabled] .navbar-default .btn-link:hover, fieldset[disabled]#switchsolo .navbar-default .btn-link:hover, fieldset[disabled] #footer .btn-link:hover, fieldset[disabled] #container.slim #footer .btn-link:hover, #container.slim fieldset[disabled] #footer .btn-link:hover, fieldset[disabled] .navbar-default .btn-link:focus, fieldset[disabled]#switchsolo .navbar-default .btn-link:focus, fieldset[disabled] #footer .btn-link:focus, fieldset[disabled] #container.slim #footer .btn-link:focus, #container.slim fieldset[disabled] #footer .btn-link:focus {
-      color: #cccccc; }
+      color: #ccc; }
 
 .navbar-inverse {
-  background-color: #222222;
+  background-color: #222;
   border-color: #090909; }
   .navbar-inverse .navbar-brand {
     color: #777777; }
     .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
-      color: white;
+      color: #fff;
       background-color: transparent; }
   .navbar-inverse .navbar-text {
     color: #777777; }
   .navbar-inverse .navbar-nav > li > a {
     color: #777777; }
     .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-      color: white;
+      color: #fff;
       background-color: transparent; }
   .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-    color: white;
+    color: #fff;
     background-color: #090909; }
   .navbar-inverse .navbar-nav > .disabled > a, .navbar-inverse .navbar-nav > .disabled > a:hover, .navbar-inverse .navbar-nav > .disabled > a:focus {
-    color: #444444;
+    color: #444;
     background-color: transparent; }
   .navbar-inverse .navbar-toggle {
-    border-color: #333333; }
+    border-color: #333; }
     .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
-      background-color: #333333; }
+      background-color: #333; }
     .navbar-inverse .navbar-toggle .icon-bar {
-      background-color: white; }
+      background-color: #fff; }
   .navbar-inverse .navbar-collapse,
   .navbar-inverse .navbar-form {
     border-color: #101010; }
   .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
     background-color: #090909;
-    color: white; }
+    color: #fff; }
   @media (max-width: 767px) {
     .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
       border-color: #090909; }
@@ -4461,37 +4488,37 @@ tbody.collapse.in {
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
       color: #777777; }
       .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: white;
+        color: #fff;
         background-color: transparent; }
     .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
-      color: white;
+      color: #fff;
       background-color: #090909; }
     .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-      color: #444444;
+      color: #444;
       background-color: transparent; } }
   .navbar-inverse .navbar-link {
     color: #777777; }
     .navbar-inverse .navbar-link:hover {
-      color: white; }
+      color: #fff; }
   .navbar-inverse .btn-link {
     color: #777777; }
     .navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus {
-      color: white; }
+      color: #fff; }
     .navbar-inverse .btn-link[disabled]:hover, .navbar-inverse .btn-link[disabled]:focus, fieldset[disabled] .navbar-inverse .btn-link:hover, fieldset[disabled]#switchsolo .navbar-inverse .btn-link:hover, fieldset[disabled] .navbar-inverse .btn-link:focus, fieldset[disabled]#switchsolo .navbar-inverse .btn-link:focus {
-      color: #444444; }
+      color: #444; }
 
 .breadcrumb {
   padding: 8px 15px;
   margin-bottom: 20px;
   list-style: none;
-  background-color: whitesmoke;
+  background-color: #f5f5f5;
   border-radius: 4px; }
   .breadcrumb > li {
     display: inline-block; }
     .breadcrumb > li + li:before {
-      content: "/\00a0";
+      content: "/ ";
       padding: 0 5px;
-      color: #cccccc; }
+      color: #ccc; }
   .breadcrumb > .active {
     color: #777777; }
 
@@ -4510,8 +4537,8 @@ tbody.collapse.in {
       line-height: 1.42857;
       text-decoration: none;
       color: #428bca;
-      background-color: white;
-      border: 1px solid #dddddd;
+      background-color: #fff;
+      border: 1px solid #ddd;
       margin-left: -1px; }
     .pagination > li:first-child > a,
     .pagination > li:first-child > span {
@@ -4527,13 +4554,13 @@ tbody.collapse.in {
   .pagination > li > span:focus {
     color: #2a6496;
     background-color: #eeeeee;
-    border-color: #dddddd; }
+    border-color: #ddd; }
   .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus,
   .pagination > .active > span,
   .pagination > .active > span:hover,
   .pagination > .active > span:focus {
     z-index: 2;
-    color: white;
+    color: #fff;
     background-color: #428bca;
     border-color: #428bca;
     cursor: default; }
@@ -4544,8 +4571,8 @@ tbody.collapse.in {
   .pagination > .disabled > a:hover,
   .pagination > .disabled > a:focus {
     color: #777777;
-    background-color: white;
-    border-color: #dddddd;
+    background-color: #fff;
+    border-color: #ddd;
     cursor: not-allowed; }
 
 .pagination-lg > li > a,
@@ -4590,8 +4617,8 @@ tbody.collapse.in {
     .pager li > span {
       display: inline-block;
       padding: 5px 14px;
-      background-color: white;
-      border: 1px solid #dddddd;
+      background-color: #fff;
+      border: 1px solid #ddd;
       border-radius: 15px; }
     .pager li > a:hover,
     .pager li > a:focus {
@@ -4608,7 +4635,7 @@ tbody.collapse.in {
   .pager .disabled > a:focus,
   .pager .disabled > span {
     color: #777777;
-    background-color: white;
+    background-color: #fff;
     cursor: not-allowed; }
 
 .label {
@@ -4617,7 +4644,7 @@ tbody.collapse.in {
   font-size: 75%;
   font-weight: bold;
   line-height: 1;
-  color: white;
+  color: #fff;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
@@ -4629,7 +4656,7 @@ tbody.collapse.in {
     top: -1px; }
 
 a.label:hover, a.label:focus {
-  color: white;
+  color: #fff;
   text-decoration: none;
   cursor: pointer; }
 
@@ -4669,7 +4696,7 @@ a.label:hover, a.label:focus {
   padding: 3px 7px;
   font-size: 12px;
   font-weight: bold;
-  color: white;
+  color: #fff;
   line-height: 1;
   vertical-align: baseline;
   white-space: nowrap;
@@ -4686,12 +4713,12 @@ a.label:hover, a.label:focus {
     padding: 1px 5px; }
   a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
     color: #428bca;
-    background-color: white; }
+    background-color: #fff; }
   .nav-pills > li > a > .badge {
     margin-left: 3px; }
 
 a.badge:hover, a.badge:focus {
-  color: white;
+  color: #fff;
   text-decoration: none;
   cursor: pointer; }
 
@@ -4729,8 +4756,8 @@ a.badge:hover, a.badge:focus {
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.42857;
-  background-color: white;
-  border: 1px solid #dddddd;
+  background-color: #fff;
+  border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -4767,7 +4794,7 @@ a.thumbnail.active,
     color: inherit; }
   .alert .alert-link, .flash .alert-link, #info-bar .alert-link {
     font-weight: bold; }
-  .alert > p, .flash > p, .flash.notice > p, .flash.error > p, #info-bar > p, fieldset#switchsolo .alert > p, fieldset#switchsolo .flash > p, #footer .alert > p, #footer .flash > p, #container.slim #footer .alert > p, #container.slim #footer .flash > p, #container.slim #footer #info-bar > p,
+  .alert > p, .flash > p, .flash.notice > p, .flash.error > p, #info-bar > p, .medium .alert > p, .medium .flash > p, .medium #info-bar > p, fieldset .alert > p, fieldset .flash > p, fieldset .flash.notice > p, fieldset .flash.error > p, fieldset #info-bar > p, fieldset#switchsolo .alert > p, fieldset#switchsolo .flash > p, .header-description .alert > p, .header-description .flash > p, .header-description #info-bar > p, #footer .alert > p, #footer .flash > p, #footer #info-bar > p, #container.slim #footer .alert > p, #container.slim #footer .flash > p, #container.slim #footer #info-bar > p,
   .alert > ul,
   .flash > ul,
   .flash.notice > ul,
@@ -4826,20 +4853,18 @@ a.thumbnail.active,
 @-webkit-keyframes progress-bar-stripes {
   from {
     background-position: 40px 0; }
-
   to {
     background-position: 0 0; } }
 @keyframes progress-bar-stripes {
   from {
     background-position: 40px 0; }
-
   to {
     background-position: 0 0; } }
 .progress {
   overflow: hidden;
   height: 20px;
   margin-bottom: 20px;
-  background-color: whitesmoke;
+  background-color: #f5f5f5;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); }
@@ -4850,7 +4875,7 @@ a.thumbnail.active,
   height: 100%;
   font-size: 12px;
   line-height: 20px;
-  color: white;
+  color: #fff;
   text-align: center;
   background-color: #428bca;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
@@ -4945,8 +4970,8 @@ a.thumbnail.active,
   display: block;
   padding: 10px 15px;
   margin-bottom: -1px;
-  background-color: white;
-  border: 1px solid #dddddd; }
+  background-color: #fff;
+  border: 1px solid #ddd; }
   .list-group-item:first-child {
     border-top-right-radius: 4px;
     border-top-left-radius: 4px; }
@@ -4960,13 +4985,13 @@ a.thumbnail.active,
     margin-right: 5px; }
 
 a.list-group-item {
-  color: #555555; }
+  color: #555; }
   a.list-group-item .list-group-item-heading {
-    color: #333333; }
+    color: #333; }
   a.list-group-item:hover, a.list-group-item:focus {
     text-decoration: none;
-    color: #555555;
-    background-color: whitesmoke; }
+    color: #555;
+    background-color: #f5f5f5; }
 
 .list-group-item.disabled, .list-group-item.disabled:hover, .list-group-item.disabled:focus {
   background-color: #eeeeee;
@@ -4977,7 +5002,7 @@ a.list-group-item {
     color: #777777; }
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
   z-index: 2;
-  color: white;
+  color: #fff;
   background-color: #428bca;
   border-color: #428bca; }
   .list-group-item.active .list-group-item-heading,
@@ -5083,7 +5108,7 @@ a.list-group-item-danger {
 
 .panel {
   margin-bottom: 20px;
-  background-color: white;
+  background-color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -5115,8 +5140,8 @@ a.list-group-item-danger {
 
 .panel-footer {
   padding: 10px 15px;
-  background-color: whitesmoke;
-  border-top: 1px solid #dddddd;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px; }
 
@@ -5190,7 +5215,7 @@ a.list-group-item-danger {
     border-bottom-right-radius: 3px; }
 .panel > .panel-body + .table,
 .panel > .panel-body + .table-responsive {
-  border-top: 1px solid #dddddd; }
+  border-top: 1px solid #ddd; }
 .panel > .table > tbody:first-child > tr:first-child th,
 .panel > .table > tbody:first-child > tr:first-child td {
   border-top: 0; }
@@ -5255,37 +5280,37 @@ a.list-group-item-danger {
   .panel-group .panel-heading {
     border-bottom: 0; }
     .panel-group .panel-heading + .panel-collapse > .panel-body {
-      border-top: 1px solid #dddddd; }
+      border-top: 1px solid #ddd; }
   .panel-group .panel-footer {
     border-top: 0; }
     .panel-group .panel-footer + .panel-collapse .panel-body {
-      border-bottom: 1px solid #dddddd; }
+      border-bottom: 1px solid #ddd; }
 
 .panel-default {
-  border-color: #dddddd; }
+  border-color: #ddd; }
   .panel-default > .panel-heading {
     color: #333333;
-    background-color: whitesmoke;
-    border-color: #dddddd; }
+    background-color: #f5f5f5;
+    border-color: #ddd; }
     .panel-default > .panel-heading + .panel-collapse > .panel-body {
-      border-top-color: #dddddd; }
+      border-top-color: #ddd; }
     .panel-default > .panel-heading .badge {
-      color: whitesmoke;
+      color: #f5f5f5;
       background-color: #333333; }
   .panel-default > .panel-footer + .panel-collapse > .panel-body {
-    border-bottom-color: #dddddd; }
+    border-bottom-color: #ddd; }
 
 .panel-primary {
   border-color: #428bca; }
   .panel-primary > .panel-heading {
-    color: white;
+    color: #fff;
     background-color: #428bca;
     border-color: #428bca; }
     .panel-primary > .panel-heading + .panel-collapse > .panel-body {
       border-top-color: #428bca; }
     .panel-primary > .panel-heading .badge {
       color: #428bca;
-      background-color: white; }
+      background-color: #fff; }
   .panel-primary > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #428bca; }
 
@@ -5371,7 +5396,7 @@ a.list-group-item-danger {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: whitesmoke;
+  background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -5393,12 +5418,12 @@ a.list-group-item-danger {
   font-size: 21px;
   font-weight: bold;
   line-height: 1;
-  color: black;
-  text-shadow: 0 1px 0 white;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
   opacity: 0.2;
   filter: alpha(opacity=20); }
   .close:hover, .close:focus {
-    color: black;
+    color: #000;
     text-decoration: none;
     cursor: pointer;
     opacity: 0.5;
@@ -5447,8 +5472,8 @@ button.close {
 
 .modal-content {
   position: relative;
-  background-color: white;
-  border: 1px solid #999999;
+  background-color: #fff;
+  border: 1px solid #999;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
@@ -5463,7 +5488,7 @@ button.close {
   bottom: 0;
   left: 0;
   z-index: 1040;
-  background-color: black; }
+  background-color: #000; }
   .modal-backdrop.fade {
     opacity: 0;
     filter: alpha(opacity=0); }
@@ -5496,10 +5521,10 @@ button.close {
     display: table; }
   .modal-footer:after {
     clear: both; }
-  .modal-footer .btn + .btn, .modal-footer input[type=submit] + .btn, .modal-footer #buttons input + .btn, #buttons .modal-footer input + .btn, .modal-footer #create-account-btn + .btn, .modal-footer .btn + input[type=submit], .modal-footer input[type=submit] + input[type=submit], .modal-footer #create-account-btn + input[type=submit], .modal-footer #buttons .btn + input, #buttons .modal-footer .btn + input, .modal-footer #buttons input + input, #buttons .modal-footer input + input, .modal-footer #buttons #create-account-btn + input, #buttons .modal-footer #create-account-btn + input, .modal-footer .btn + #create-account-btn, .modal-footer input[type=submit] + #create-account-btn, .modal-footer #buttons input + #create-account-btn, #buttons .modal-footer input + #create-account-btn, .modal-footer #create-account-btn + #create-account-btn {
+  .modal-footer .btn + .btn, .modal-footer input[type=submit] + .btn, .modal-footer #buttons input + .btn, #buttons .modal-footer input + .btn, .modal-footer .sign-in-area input[type=submit] + .btn, .modal-footer #create-account-btn + .btn, .modal-footer .btn + input[type=submit], .modal-footer input[type=submit] + input[type=submit], .modal-footer #create-account-btn + input[type=submit], .modal-footer #buttons .btn + input, #buttons .modal-footer .btn + input, .modal-footer #buttons input + input, #buttons .modal-footer input + input, #buttons .modal-footer .sign-in-area input[type=submit] + input, .modal-footer #buttons #create-account-btn + input, #buttons .modal-footer #create-account-btn + input, .modal-footer .sign-in-area .btn + input[type=submit], .modal-footer #buttons .sign-in-area input + input[type=submit], #buttons .modal-footer .sign-in-area input + input[type=submit], .modal-footer .sign-in-area input[type=submit] + input[type=submit], .modal-footer .sign-in-area #create-account-btn + input[type=submit], .modal-footer .btn + #create-account-btn, .modal-footer input[type=submit] + #create-account-btn, .modal-footer #buttons input + #create-account-btn, #buttons .modal-footer input + #create-account-btn, .modal-footer .sign-in-area input[type=submit] + #create-account-btn, .modal-footer #create-account-btn + #create-account-btn {
     margin-left: 5px;
     margin-bottom: 0; }
-  .modal-footer .btn-group .btn + .btn, .modal-footer .btn-group input[type=submit] + .btn, .modal-footer .btn-group #buttons input + .btn, #buttons .modal-footer .btn-group input + .btn, .modal-footer .btn-group #create-account-btn + .btn, .modal-footer .btn-group .btn + input[type=submit], .modal-footer .btn-group input[type=submit] + input[type=submit], .modal-footer .btn-group #create-account-btn + input[type=submit], .modal-footer .btn-group #buttons .btn + input, #buttons .modal-footer .btn-group .btn + input, .modal-footer .btn-group #buttons input + input, #buttons .modal-footer .btn-group input + input, .modal-footer .btn-group #buttons #create-account-btn + input, #buttons .modal-footer .btn-group #create-account-btn + input, .modal-footer .btn-group .btn + #create-account-btn, .modal-footer .btn-group input[type=submit] + #create-account-btn, .modal-footer .btn-group #buttons input + #create-account-btn, #buttons .modal-footer .btn-group input + #create-account-btn, .modal-footer .btn-group #create-account-btn + #create-account-btn {
+  .modal-footer .btn-group .btn + .btn, .modal-footer .btn-group input[type=submit] + .btn, .modal-footer .btn-group #buttons input + .btn, #buttons .modal-footer .btn-group input + .btn, .modal-footer .btn-group .sign-in-area input[type=submit] + .btn, .modal-footer .btn-group #create-account-btn + .btn, .modal-footer .btn-group .btn + input[type=submit], .modal-footer .btn-group input[type=submit] + input[type=submit], .modal-footer .btn-group #create-account-btn + input[type=submit], .modal-footer .btn-group #buttons .btn + input, #buttons .modal-footer .btn-group .btn + input, .modal-footer .btn-group #buttons input + input, #buttons .modal-footer .btn-group input + input, #buttons .modal-footer .btn-group .sign-in-area input[type=submit] + input, .modal-footer .btn-group #buttons #create-account-btn + input, #buttons .modal-footer .btn-group #create-account-btn + input, .modal-footer .btn-group .sign-in-area .btn + input[type=submit], .modal-footer .btn-group #buttons .sign-in-area input + input[type=submit], #buttons .modal-footer .btn-group .sign-in-area input + input[type=submit], .modal-footer .btn-group .sign-in-area input[type=submit] + input[type=submit], .modal-footer .btn-group .sign-in-area #create-account-btn + input[type=submit], .modal-footer .btn-group .btn + #create-account-btn, .modal-footer .btn-group input[type=submit] + #create-account-btn, .modal-footer .btn-group #buttons input + #create-account-btn, #buttons .modal-footer .btn-group input + #create-account-btn, .modal-footer .btn-group .sign-in-area input[type=submit] + #create-account-btn, .modal-footer .btn-group #create-account-btn + #create-account-btn {
     margin-left: -1px; }
   .modal-footer .btn-block + .btn-block {
     margin-left: 0; }
@@ -5553,10 +5578,10 @@ button.close {
 .tooltip-inner {
   max-width: 200px;
   padding: 3px 8px;
-  color: white;
+  color: #fff;
   text-align: center;
   text-decoration: none;
-  background-color: black;
+  background-color: #000;
   border-radius: 4px; }
 
 .tooltip-arrow {
@@ -5571,45 +5596,45 @@ button.close {
   left: 50%;
   margin-left: -5px;
   border-width: 5px 5px 0;
-  border-top-color: black; }
+  border-top-color: #000; }
 .tooltip.top-left .tooltip-arrow {
   bottom: 0;
   left: 5px;
   border-width: 5px 5px 0;
-  border-top-color: black; }
+  border-top-color: #000; }
 .tooltip.top-right .tooltip-arrow {
   bottom: 0;
   right: 5px;
   border-width: 5px 5px 0;
-  border-top-color: black; }
+  border-top-color: #000; }
 .tooltip.right .tooltip-arrow {
   top: 50%;
   left: 0;
   margin-top: -5px;
   border-width: 5px 5px 5px 0;
-  border-right-color: black; }
+  border-right-color: #000; }
 .tooltip.left .tooltip-arrow {
   top: 50%;
   right: 0;
   margin-top: -5px;
   border-width: 5px 0 5px 5px;
-  border-left-color: black; }
+  border-left-color: #000; }
 .tooltip.bottom .tooltip-arrow {
   top: 0;
   left: 50%;
   margin-left: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: black; }
+  border-bottom-color: #000; }
 .tooltip.bottom-left .tooltip-arrow {
   top: 0;
   left: 5px;
   border-width: 0 5px 5px;
-  border-bottom-color: black; }
+  border-bottom-color: #000; }
 .tooltip.bottom-right .tooltip-arrow {
   top: 0;
   right: 5px;
   border-width: 0 5px 5px;
-  border-bottom-color: black; }
+  border-bottom-color: #000; }
 
 .popover {
   position: absolute;
@@ -5620,9 +5645,9 @@ button.close {
   max-width: 276px;
   padding: 1px;
   text-align: left;
-  background-color: white;
+  background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -5677,7 +5702,7 @@ button.close {
     bottom: 1px;
     margin-left: -10px;
     border-bottom-width: 0;
-    border-top-color: white; }
+    border-top-color: #fff; }
 .popover.right > .arrow {
   top: 50%;
   left: -11px;
@@ -5690,7 +5715,7 @@ button.close {
     left: 1px;
     bottom: -10px;
     border-left-width: 0;
-    border-right-color: white; }
+    border-right-color: #fff; }
 .popover.bottom > .arrow {
   left: 50%;
   margin-left: -11px;
@@ -5703,7 +5728,7 @@ button.close {
     top: 1px;
     margin-left: -10px;
     border-top-width: 0;
-    border-bottom-color: white; }
+    border-bottom-color: #fff; }
 .popover.left > .arrow {
   top: 50%;
   right: -11px;
@@ -5715,7 +5740,7 @@ button.close {
     content: " ";
     right: 1px;
     border-right-width: 0;
-    border-left-color: white;
+    border-left-color: #fff;
     bottom: -10px; }
 
 .carousel {
@@ -5770,7 +5795,7 @@ button.close {
   opacity: 0.5;
   filter: alpha(opacity=50);
   font-size: 20px;
-  color: white;
+  color: #fff;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
   .carousel-control.left {
@@ -5789,7 +5814,7 @@ button.close {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1); }
   .carousel-control:hover, .carousel-control:focus {
     outline: 0;
-    color: white;
+    color: #fff;
     text-decoration: none;
     opacity: 0.9;
     filter: alpha(opacity=90); }
@@ -5836,7 +5861,7 @@ button.close {
     height: 10px;
     margin: 1px;
     text-indent: -999px;
-    border: 1px solid white;
+    border: 1px solid #fff;
     border-radius: 10px;
     cursor: pointer;
     background-color: #000 \9;
@@ -5845,7 +5870,7 @@ button.close {
     margin: 0;
     width: 12px;
     height: 12px;
-    background-color: white; }
+    background-color: #fff; }
 
 .carousel-caption {
   position: absolute;
@@ -5855,7 +5880,7 @@ button.close {
   z-index: 10;
   padding-top: 20px;
   padding-bottom: 20px;
-  color: white;
+  color: #fff;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
   .carousel-caption .btn, .carousel-caption input[type=submit], .carousel-caption #buttons input, #buttons .carousel-caption input, .carousel-caption #create-account-btn {
@@ -6102,7 +6127,7 @@ button.close {
   padding-left: 15px;
   padding-right: 15px; }
 
-#create-account + p, #container.slim #footer #create-account + p {
+#create-account + p, .medium #create-account + p, fieldset #create-account + p, .header-description #create-account + p, #footer #create-account + p, #container.slim #footer #create-account + p {
   clear: both; }
 
 /* Type */
@@ -6210,7 +6235,7 @@ h1#tagline {
 /* Setting variables */
 /* Design and typography styles */
 body {
-  background-color: {% if settings.background-colour != blank %}{{ settings.background-colour }}{% else %}white{% endif %};
+  background-color: {% if settings.background-colour != blank %}{{ settings.background-colour }}{% else %}#fff{% endif %};
   /* {% if settings.site-background-image != blank %} */
   background-image: url({{ "site-background-image-file.jpg" | asset_url }});
   /* {% unless settings.site-background-image-repeat == blank %} */
@@ -6270,11 +6295,11 @@ body {
       color: {% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %};
       opacity: 0.4; }
   body .btn-primary, body #buttons input, #buttons body input, body #buttons input {
-    color: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}white{% endif %};
+    color: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}#fff{% endif %};
     background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %};
     border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %}; }
     body .btn-primary:hover, body #buttons input:hover, #buttons body input:hover, body .btn-primary:active, body #buttons input:active, #buttons body input:active, body .btn-primary:focus, body #buttons input:focus, #buttons body input:focus, body #buttons input:hover, body #buttons input:active, body #buttons input:focus {
-      color: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}white{% endif %};
+      color: {% if settings.button-text-colour != blank %}{{ settings.button-text-colour }}{% else %}#fff{% endif %};
       background-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %};
       border-color: {% if settings.button-colour != blank %}{{ settings.button-colour }}{% else %}{% if settings.link-colour != blank %}{{ settings.link-colour }}{% else %}#428bca{% endif %}{% endif %};
       opacity: 0.4; }
@@ -6303,3 +6328,5 @@ body {
 
 /* {% endif %} */
 /* {% unless settings.custom-checkout-css == blank %}{{ settings.custom-checkout-css | prepend: '*\/' | append: '\/*' | remove: '\' }}{% endunless %} */
+
+/*# sourceMappingURL=checkout.css.liquid.map */
