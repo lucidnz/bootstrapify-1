@@ -52,7 +52,7 @@
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
 				{% include 'product-badges' %}
 				
-				{% if settings.show-price-if-zero and product.price > 0 %}
+				{% unless settings.show-price-if-zero == false and product.price == 0 %}
 				{% if has_prices %}
 				{% if price_is_poa %}
 				<div class="product-price-poa">
@@ -73,7 +73,7 @@
 				{% include 'shappify-sales-clock' with product %}
 				{% include 'product-availability' with product %}
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
-				{% endif %}
+				{% endunless %}
 				
 				{% if product.metafields.custom_links.size > 0 %}
 				<ul class="custom-links">
