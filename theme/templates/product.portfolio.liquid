@@ -36,6 +36,8 @@
   <div class="row">			
     <div class="col-sm-{% if product.price > 0 %}9{% else %}12{% endif %}">
       <h1 itemprop="name">{{ page_title }}</h1>
+      
+      {% unless settings.show-price-if-zero == false and product.price == 0 %}
       {% if has_prices %}
 				{% if price_is_poa %}
 				<div class="lead product-price-poa">
@@ -49,6 +51,7 @@
         </div>
         {% endif %}
       {% endif %}
+      {% endunless %}
         
       {% include '__formatted-content' with product.description %}
 
