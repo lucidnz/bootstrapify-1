@@ -102,7 +102,7 @@ Shopify.updateOptionsInSelector = function($productForm, selectorIndex) {
   if (jQuery.inArray(initialValue, availableOptions) !== -1) {
     selector.val(initialValue);
   }
-  selector.trigger('change');  
+  selector.trigger('change');
   
 };
  
