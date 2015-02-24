@@ -46,6 +46,7 @@
     
     {% unless navbar == 'footer' %}
     <div class="collapse navbar-collapse" id="{{ navbar }}-nav">
+  
       {% if navbar == 'top' %}
       <div class="visible-xs">
         {% include 'navbar-main' %}
@@ -55,6 +56,7 @@
       {% else %}
       {% include 'navbar-main' %}
       {% endif %}
+
     </div>
     {% endunless %}
     {% unless navbar == 'main' %}
