@@ -52,7 +52,7 @@
 				<h1 class="hidden-xs" itemprop="name">{{ product.title }}</h1>
 				{% include 'product-badges' %}
 				
-				{% unless settings.show-price-if-zero == false and product.price == 0 %}
+				{% unless settings.show-price-if-zero == blank and product.price == 0 %}
 				{% if has_prices %}
 				{% if price_is_poa %}
 				<div class="product-price-poa">
