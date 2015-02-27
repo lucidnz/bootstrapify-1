@@ -62,3 +62,61 @@ $(document).on('show.bs.collapse', '#top-nav', function(){
 $(document).on('hidden.bs.collapse', '#top-nav', function(){
   $('body').removeClass('navbar-collapse-show').addClass('navbar-collapse-hide');
 });
+
+/* Trigger window resize after SPR has loaded */
+$(function() {
+  
+/*
+  try {
+    SPR.$(document).on('spr:badge:loaded', function () {
+      console.log('fucking badges');
+    });
+        
+    SPR.$(document).on('spr:reviews:loaded', function () {
+      console.log('spr:reviews:loaded');
+    });
+    
+    SPR.$(document).on('spr:product:loaded', function () {
+      console.log('spr:product');
+    });
+  } catch (e) {
+    console.log(e);
+  }
+*/
+  
+  
+/*
+  if (SPR === undefined) {
+    console.log('no spr');
+  } else {
+    console.log('!SPR!', SPR);
+  }
+*/
+  
+});
+
+
+
+
+
+
+/*
+      var SPR = SPR || false;
+      console.log('spr', SPR);
+      if (SPR) {
+        console.log('!!!!!');
+        SPR.$(document).on('spr:badge:loaded', function () {
+          console.log('fucking badges');
+        });
+        
+         SPR.$(document).on('spr:reviews:loaded', function () {
+          console.log('spr:reviews:loaded');
+        });
+        
+         SPR.$(document).on('spr:product:loaded', function () {
+          console.log('spr:product');
+        });
+      } else {
+        
+      }
+*/
