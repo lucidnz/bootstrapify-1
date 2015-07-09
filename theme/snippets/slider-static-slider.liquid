@@ -1,6 +1,5 @@
-{% for i in (i..4) %}
-{% assign c = i | plus: 1 %}
-{% assign slide = 'slide-' | append: c %}
+{% for i in (1..4) %}
+{% assign slide = 'slide-' | append: i %}
 {% assign active_slide = slide | append: '-active' %}
 {% assign slide_image = slide | append: '-image' %}
 {% assign slide_image = slide | append: '-image' %}

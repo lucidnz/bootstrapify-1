@@ -9298,9 +9298,8 @@ header .article-meta{
 }
 
 // Slider caption positions
-{% for i in (i..5) %}
-  {% assign c = i | plus: 1 %}
-  {% assign slide = 'slide-' | append: c %}
+{% for i in (1..5) %}
+  {% assign slide = 'slide-' | append: i %}
   {% assign slide_dark = slide | append: '-dark' %}
   {% assign slide_position = slide | append: '-position' %}
   ${{ slide_dark }}: {% if settings[slide_dark] != blank %}true{% else %}false{% endif %};

@@ -2,9 +2,8 @@
   <div class="container">
     {% if has_footer %}      
       {% assign cols = '' %}
-      {% for i in (i..3) %}
-        {% assign c = i | plus: 1 %}
-        {% assign col = 'column-' | append: c %}
+      {% for i in (1..3) %}
+        {% assign col = 'column-' | append: i %}
         {% assign col_blog = col | append: '-blog' %}
         {% assign col_menu = col | append: '-menu' %}
         {% assign col_text = col | append: '-text' %}
