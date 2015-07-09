@@ -14,12 +14,12 @@
     </div>
     {% endif %}
     <div class="feature-description">
-      {% if l.object.published_at == blank %}
+      {% if object.published_at == blank %}
         <h3>{{ l.title }}</h3>
-        {{ object.content }}
+        {% if l.type == 'collection_link' %}{{ object.description }}{% else %}{{ object.content }}{% endif %}
       {% else %}
-        <h3><a href="{{ l.url }}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h3>
-        {% include '__excerpt' with object.content %}
+        <h3><a href="{% if object.metafields.target.url != blank %}{{ object.metafields.target.url }}{% else %}{{ l.url }}{% endif %}" title="{% include '__localize' with 'Go to ' %} {{ object.title }}">{{ l.title }}</a></h3>
+        {% if l.type == 'collection_link' %}{{ object.description }}{% else %}{% include '__excerpt' with object.content %}{% endif %}
       {% endif %}
     </div>
   </div>

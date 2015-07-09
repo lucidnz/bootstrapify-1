@@ -1,10 +1,10 @@
 {% assign submenu = l.title | handleize %}
 {% assign min_products = settings.hide-collections-with-less-than-this-number-of-products | plus: 0 %}
-  
+
 {% include '__show-link' with submenu %}
 
 {% if show_link %}
-{% if linklists[submenu].links.size > 0 %}
+{% if linklists[submenu].links.size > 0 and settings.multiple-level-dropdowns == true %}
 <li class="submenu">
   <ul class="nav">
     <li role="presentation" class="dropdown-header">{{ l.title }}</li>

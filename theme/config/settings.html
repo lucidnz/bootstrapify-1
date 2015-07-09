@@ -57,6 +57,14 @@
                 <small>This is the icon class (such as "icon icon-your-logo") which enables you to use icons from the likes of Font Awesome, IcoMoon etc. If this is set, it overrides image and text.</small>
             </td>
         </tr>
+        <tr>
+            <th>
+                <label for="brand-byline">Byline</label>
+            </th>
+            <td>
+                <input type="text" id="brand-byline" name="brand-byline" class="text" value="" />
+            </td>
+        </tr>
     </table>
 </fieldset>
 <fieldset>
@@ -2523,6 +2531,20 @@
             <th></th>
             <td>
                 <small>We recommend you create a collection of&nbsp;<em>all&nbsp;</em>products (i.e., an automatic collection where price (and/or inventory) is greater than 0.</small>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="multiple-level-dropdowns">Allow multiple level dropdowns</label>
+            </th>
+            <td>
+                <label><input type="checkbox" id="multiple-level-dropdowns" name="multiple-level-dropdowns" value="1" /> Yes</label>
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <small>This will allow your dropdowns to go down more than one level. Use this with extreme caution, if your linklists are not crafted correctly you can cause an infinate loop that will result in a Shopify liquid error.</small>
             </td>
         </tr>
         <tr>

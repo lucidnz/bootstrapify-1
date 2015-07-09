@@ -59,6 +59,12 @@ Navigation:
       type: collection
       help: "We recommend you create a collection of&#xA0;<em>all&#xA0;</em>products (i.e., an automatic collection where price (and/or inventory) is greater than 0."
 
+    Allow multiple level dropdowns:
+      name: multiple-level-dropdowns
+      type: checkbox
+      inline_label: Yes
+      help: "This will allow your dropdowns to go down more than one level. Use this with extreme caution, if your linklists are not crafted correctly you can cause an infinate loop that will result in a Shopify liquid error."
+
     Use “Mega” dropdown menu:
       name: use-mega-dropdown-menu
       type: checkbox

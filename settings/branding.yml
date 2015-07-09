@@ -28,3 +28,7 @@ Branding:
       name: logo-icon-class
       type: text-single
       help: This is the icon class (such as "icon icon-your-logo") which enables you to use icons from the likes of Font Awesome, IcoMoon etc. If this is set, it overrides image and text.
+      
+    Byline:
+      name: brand-byline
+      type: text-single

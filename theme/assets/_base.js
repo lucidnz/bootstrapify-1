@@ -62,6 +62,7 @@ $(document).on('show.bs.collapse', '#top-nav', function(){
 $(document).on('hidden.bs.collapse', '#top-nav', function(){
   $('body').removeClass('navbar-collapse-show').addClass('navbar-collapse-hide');
 });
+
 var preloadProductImages = function(){
   var $thumbs = $('[data-main-image]');
   if($thumbs.length > 0){
