@@ -1,3 +1,8 @@
+!important message!
+
+We made a new version of Bootstrapify and you can find it here: [https://github.com/luciddesign/Bootstrapify-4](https://github.com/luciddesign/Bootstrapify-4)
+
+
 # Bootstrapify 3.1.1
 
 Bootstrapify is an open-source base theme for [Shopify](http://www.shopify.com?ref=lucid-design) that makes it super quick and easy for developers to start building amazing, responsive themes without having to do all the fiddly, repetitive setup work when starting from scratch.
