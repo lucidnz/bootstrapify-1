@@ -1,1 +1,0 @@
- data-variants="{% for variant in product-loop.variants %}{% if variant.available == true %}{{ variant.title | downcase | handleize }} {% endif %}{% endfor %}" data-alpha="{{ product-loop.title }}" data-price="{{ product-loop.price }}"

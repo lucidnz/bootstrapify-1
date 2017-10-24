@@ -1,8 +1,0 @@
-{% capture iframe_replace_begining %}<span class="videoWrapper"><iframe{% endcapture %}
-{% capture iframe_replace_end %}</iframe></span>{% endcapture %}
-{% assign formatted_content = __formatted-content | remove: '<p>===</p>' | remove: '===' | replace: '<iframe',iframe_replace_begining | replace: '</iframe>',iframe_replace_end | replace: '<p>&nbsp;</p>',' ' %}
-{% if formatted_content contains '<p>' %}
-  {{ formatted_content }}
-{% else %}
-  <p>{{ formatted_content }}</p>
-{% endif %}

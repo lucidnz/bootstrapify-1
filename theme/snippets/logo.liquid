@@ -1,7 +1,0 @@
-{% if settings.logo-icon-class != blank %}
-  <span class="{{ settings.logo-icon-class }}"><span class="sr-only">{{ shop.name }}</span></span>
-{% elsif settings.logo-image %}
-  <img src="{{ 'logo-image-file.png' | asset_url }}" alt="{{ shop.name }} {% include '__localize' with 'logo' %}">
-{% else %}
-  {{ shop.name }}
-{% endif %}
